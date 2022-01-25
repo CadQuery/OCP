@@ -13,24 +13,19 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _OpenGl_Workspace_Header
-#define _OpenGl_Workspace_Header
+#ifndef OpenGl_Workspace_HeaderFile
+#define OpenGl_Workspace_HeaderFile
 
 #include <Graphic3d_BufferType.hxx>
+#include <Graphic3d_PresentationAttributes.hxx>
 
 #include <OpenGl_Aspects.hxx>
-#include <OpenGl_CappingAlgo.hxx>
-#include <OpenGl_FrameBuffer.hxx>
-#include <OpenGl_Material.hxx>
-#include <OpenGl_Matrix.hxx>
-#include <OpenGl_ShaderObject.hxx>
-#include <OpenGl_ShaderProgram.hxx>
-#include <OpenGl_TextureBufferArb.hxx>
-#include <OpenGl_RenderFilter.hxx>
 #include <OpenGl_Vec.hxx>
-#include <OpenGl_Window.hxx>
 
+class OpenGl_FrameBuffer;
+class OpenGl_Group;
 class OpenGl_View;
+class OpenGl_Window;
 class Image_PixMap;
 
 class OpenGl_Workspace;
@@ -176,8 +171,9 @@ public:
 
   //! Checks whether the element can be rendered or not.
   //! @param theElement [in] the element to check
+  //! @param theGroup   [in] the group containing the element
   //! @return True if element can be rendered
-  bool ShouldRender (const OpenGl_Element* theElement);
+  bool ShouldRender (const OpenGl_Element* theElement, const OpenGl_Group* theGroup);
 
   //! Return the number of skipped transparent elements within active OpenGl_RenderFilter_OpaqueOnly filter.
   //! @sa OpenGl_LayerList::Render()
@@ -186,12 +182,6 @@ public:
   //! Reset skipped transparent elements counter.
   //! @sa OpenGl_LayerList::Render()
   void ResetSkippedCounter() { myNbSkippedTranspElems = 0; }
-
-  //! @return applied view matrix.
-  inline const OpenGl_Matrix* ViewMatrix() const { return ViewMatrix_applied; }
-
-  //! @return applied model structure matrix.
-  inline const OpenGl_Matrix* ModelMatrix() const { return StructureMatrix_applied; }
 
   //! Returns face aspect for none culling mode.
   const OpenGl_Aspects& NoneCulling() const { return myNoneCulling; }
@@ -229,13 +219,8 @@ protected: //! @name fields related to status
 
   Handle(Graphic3d_PresentationAttributes) myAspectFaceAppliedWithHL;
 
-  const OpenGl_Matrix* ViewMatrix_applied;
-  const OpenGl_Matrix* StructureMatrix_applied;
-
   bool            myToAllowFaceCulling; //!< allow back face culling
   Handle(Graphic3d_PresentationAttributes) myHighlightStyle; //!< active highlight style
-
-  OpenGl_Matrix myModelViewMatrix; //!< Model matrix with applied structure transformations
 
   OpenGl_Aspects myAspectFaceHl; //!< Hiddenline aspect
 

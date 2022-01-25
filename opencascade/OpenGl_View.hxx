@@ -13,55 +13,43 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _OpenGl_View_Header
-#define _OpenGl_View_Header
-
-#include <Standard_Transient.hxx>
-#include <Standard_Type.hxx>
-
-#include <TColStd_Array2OfReal.hxx>
-#include <NCollection_List.hxx>
-#include <math_BullardGenerator.hxx>
-
-#include <Quantity_NameOfColor.hxx>
-#include <Aspect_FillMethod.hxx>
-#include <Aspect_GradientFillMethod.hxx>
+#ifndef OpenGl_View_HeaderFile
+#define OpenGl_View_HeaderFile
 
 #include <Graphic3d_CView.hxx>
 #include <Graphic3d_CullingTool.hxx>
 #include <Graphic3d_GraduatedTrihedron.hxx>
 #include <Graphic3d_SequenceOfHClipPlane.hxx>
 #include <Graphic3d_ToneMappingMethod.hxx>
-#include <Graphic3d_TypeOfShadingModel.hxx>
 #include <Graphic3d_WorldViewProjState.hxx>
 #include <Graphic3d_ZLayerSettings.hxx>
+#include <math_BullardGenerator.hxx>
 
 #include <OpenGl_Aspects.hxx>
-#include <OpenGl_BackgroundArray.hxx>
-#include <OpenGl_Context.hxx>
 #include <OpenGl_FrameBuffer.hxx>
 #include <OpenGl_FrameStatsPrs.hxx>
 #include <OpenGl_GraduatedTrihedron.hxx>
 #include <OpenGl_LayerList.hxx>
-#include <OpenGl_LineAttributes.hxx>
 #include <OpenGl_SceneGeometry.hxx>
 #include <OpenGl_Structure.hxx>
-#include <OpenGl_Window.hxx>
-#include <OpenGl_Workspace.hxx>
 #include <OpenGl_TileSampler.hxx>
 
 #include <map>
 #include <set>
 
-struct OpenGl_Matrix;
-
-class Graphic3d_StructureManager;
+class OpenGl_BackgroundArray;
+class OpenGl_DepthPeeling;
 class OpenGl_GraphicDriver;
 class OpenGl_PBREnvironment;
+struct OpenGl_RaytraceMaterial;
 class OpenGl_StateCounter;
+class OpenGl_ShadowMap;
+class OpenGl_ShadowMapArray;
+class OpenGl_ShaderObject;
+class OpenGl_TextureBuffer;
 class OpenGl_TriangleSet;
 class OpenGl_Workspace;
-class OpenGl_View;
+
 DEFINE_STANDARD_HANDLE(OpenGl_View,Graphic3d_CView)
 
 //! Implementation of OpenGl view.
@@ -80,7 +68,7 @@ public:
   Standard_EXPORT virtual ~OpenGl_View();
 
   //! Release OpenGL resources.
-  Standard_EXPORT void ReleaseGlResources (const Handle(OpenGl_Context)& theCtx);
+  Standard_EXPORT virtual void ReleaseGlResources (const Handle(OpenGl_Context)& theCtx);
 
   //! Deletes and erases the view.
   Standard_EXPORT virtual void Remove() Standard_OVERRIDE;
@@ -106,8 +94,7 @@ public:
                                           const Aspect_RenderingContext theContext) Standard_OVERRIDE;
 
   //! Returns window associated with the view.
-  virtual Handle(Aspect_Window) Window() const Standard_OVERRIDE
-  { return myWindow->PlatformWindow(); }
+  Standard_EXPORT virtual Handle(Aspect_Window) Window() const Standard_OVERRIDE;
 
   //! Returns True if the window associated to the view is defined.
   virtual Standard_Boolean IsDefined() const Standard_OVERRIDE
@@ -203,6 +190,9 @@ public:
                                                   const Standard_Integer theWidth,
                                                   const Standard_Integer theHeight) Standard_OVERRIDE;
 
+  //! Returns additional buffers for depth peeling OIT.
+  const Handle(OpenGl_DepthPeeling)& DepthPeelingFbos() const { return myDepthPeelingFbos; }
+
 public:
 
   //! Returns gradient background fill colors.
@@ -211,10 +201,7 @@ public:
   //! Sets gradient background fill colors.
   Standard_EXPORT virtual void SetGradientBackground (const Aspect_GradientBackground& theBackground) Standard_OVERRIDE;
 
-  //! Returns background image texture map.
-  virtual Handle(Graphic3d_TextureMap) BackgroundImage() Standard_OVERRIDE { return myBackgroundImage; }
-
-  //! Sets image texture or environment cubemap as backround.
+  //! Sets image texture or environment cubemap as background.
   //! @param theTextureMap [in] source to set a background;
   //!                           should be either Graphic3d_Texture2D or Graphic3d_CubeMap
   //! @param theToUpdatePBREnv [in] defines whether IBL maps will be generated or not
@@ -222,43 +209,24 @@ public:
   Standard_EXPORT virtual void SetBackgroundImage (const Handle(Graphic3d_TextureMap)& theTextureMap,
                                                    Standard_Boolean theToUpdatePBREnv = Standard_True) Standard_OVERRIDE;
 
+  //! Sets environment texture for the view.
+  Standard_EXPORT virtual void SetTextureEnv (const Handle(Graphic3d_TextureEnv)& theTextureEnv) Standard_OVERRIDE;
+
   //! Returns background image fill style.
   Standard_EXPORT virtual Aspect_FillMethod BackgroundImageStyle() const Standard_OVERRIDE;
 
   //! Sets background image fill style.
   Standard_EXPORT virtual void SetBackgroundImageStyle (const Aspect_FillMethod theFillStyle) Standard_OVERRIDE;
 
-  //! Returns cubemap being set last time on background.
-  Standard_EXPORT Handle(Graphic3d_CubeMap) BackgroundCubeMap() const Standard_OVERRIDE;
-
-  //! Generates PBR specular probe and irradiance map
-  //! in order to provide environment indirect illumination in PBR shading model (Image Based Lighting).
-  //! The source of environment data is background cubemap.
-  //! If PBR is unavailable it does nothing.
-  //! If PBR is available but there is no cubemap being set to background it clears all IBL maps (see 'ClearPBREnvironment').
-  virtual void GeneratePBREnvironment() Standard_OVERRIDE { myPBREnvRequest = OpenGl_PBREnvRequest_BAKE; }
-
-  //! Fills PBR specular probe and irradiance map with white color.
-  //! So that environment indirect illumination will be constant
-  //! and will be fully controlled by ambient light sources.
-  //! If PBR is unavailable it does nothing.
-  virtual void ClearPBREnvironment() Standard_OVERRIDE { myPBREnvRequest = OpenGl_PBREnvRequest_CLEAR; }
+  //! Enables or disables IBL (Image Based Lighting) from background cubemap.
+  //! Has no effect if PBR is not used.
+  //! @param[in] theToEnableIBL enable or disable IBL from background cubemap
+  //! @param[in] theToUpdate redraw the view
+  Standard_EXPORT virtual void SetImageBasedLighting (Standard_Boolean theToEnableIBL) Standard_OVERRIDE;
 
   //! Returns number of mipmap levels used in specular IBL map.
   //! 0 if PBR environment is not created.
   Standard_EXPORT unsigned int SpecIBLMapLevels() const;
-
-  //! Returns environment texture set for the view.
-  virtual Handle(Graphic3d_TextureEnv) TextureEnv() const Standard_OVERRIDE { return myTextureEnvData; }
-
-  //! Sets environment texture for the view.
-  Standard_EXPORT virtual void SetTextureEnv (const Handle(Graphic3d_TextureEnv)& theTextureEnv) Standard_OVERRIDE;
-
-  //! Return backfacing model used for the view.
-  virtual Graphic3d_TypeOfBackfacingModel BackfacingModel() const Standard_OVERRIDE { return myBackfacing; }
-
-  //! Sets backfacing model for the view.
-  virtual void SetBackfacingModel (const Graphic3d_TypeOfBackfacingModel theModel) Standard_OVERRIDE { myBackfacing = theModel; }
 
   //! Returns local camera origin currently set for rendering, might be modified during rendering.
   const gp_XYZ& LocalOrigin() const { return myLocalOrigin; }
@@ -354,6 +322,9 @@ protected: //! @name Internal methods for managing GL resources
 
 protected: //! @name low-level redrawing sub-routines
 
+  //! Prepare frame buffers for rendering.
+  Standard_EXPORT virtual bool prepareFrameBuffers (Graphic3d_Camera::Projection& theProj);
+
   //! Redraws view for the given monographic camera projection, or left/right eye.
   Standard_EXPORT virtual void redraw (const Graphic3d_Camera::Projection theProjection,
                                        OpenGl_FrameBuffer*                theReadDrawFbo,
@@ -386,6 +357,10 @@ protected: //! @name low-level redrawing sub-routines
   Standard_EXPORT void bindDefaultFbo (OpenGl_FrameBuffer* theCustomFbo = NULL);
 
 protected: //! @name Rendering of GL graphics (with prepared drawing buffer).
+
+  //! Renders the graphical contents of the view into the preprepared shadowmap framebuffer.
+  //! @param theShadowMap [in] the framebuffer for rendering shadowmap.
+  Standard_EXPORT virtual void renderShadowMap (const Handle(OpenGl_ShadowMap)& theShadowMap);
 
   //! Renders the graphical contents of the view into the preprepared window or framebuffer.
   //! @param theProjection [in] the projection that should be used for rendering.
@@ -462,11 +437,6 @@ private:
   bool checkOitCompatibility (const Handle(OpenGl_Context)& theGlContext,
                               const Standard_Boolean theMSAA);
 
-  //! Chooses compatible internal color format for OIT frame buffer.
-  bool chooseOitColorConfiguration (const Handle(OpenGl_Context)& theGlContext,
-                                    const Standard_Integer theConfigIndex,
-                                    OpenGl_ColorFormats& theFormats);
-
 protected:
 
   OpenGl_GraphicDriver*    myDriver;
@@ -475,13 +445,10 @@ protected:
   Handle(OpenGl_Caps)      myCaps;
   Standard_Boolean         myWasRedrawnGL;
 
-  Graphic3d_TypeOfBackfacingModel myBackfacing;
   Handle(Graphic3d_SequenceOfHClipPlane) myClipPlanes;
   gp_XYZ                          myLocalOrigin;
   Handle(OpenGl_FrameBuffer)      myFBO;
   Standard_Boolean                myToShowGradTrihedron;
-  Handle(Graphic3d_TextureMap)    myBackgroundImage;
-  Handle(Graphic3d_TextureEnv)    myTextureEnvData;
   Graphic3d_GraduatedTrihedron    myGTrihedronData;
 
   Handle(Graphic3d_LightSet)      myNoShadingLight;
@@ -505,8 +472,6 @@ protected:
   OpenGl_GraduatedTrihedron myGraduatedTrihedron;
   OpenGl_FrameStatsPrs      myFrameStatsPrs;
 
-  Handle(OpenGl_TextureSet) myTextureEnv;
-
   //! Framebuffers for OpenGL output.
   Handle(OpenGl_FrameBuffer) myOpenGlFBO;
   Handle(OpenGl_FrameBuffer) myOpenGlFBO2;
@@ -523,7 +488,9 @@ protected: //! @name Rendering properties
   Handle(OpenGl_FrameBuffer) myMainSceneFbosOit[2];      //!< Additional buffers for transparent draw of main layer.
   Handle(OpenGl_FrameBuffer) myImmediateSceneFbos[2];    //!< Additional buffers for immediate layer in stereo mode.
   Handle(OpenGl_FrameBuffer) myImmediateSceneFbosOit[2]; //!< Additional buffers for transparency draw of immediate layer.
-  Handle(OpenGl_FrameBuffer) myXrSceneFbo;            //!< additional FBO (without MSAA) for submitting to XR
+  Handle(OpenGl_FrameBuffer) myXrSceneFbo;               //!< additional FBO (without MSAA) for submitting to XR
+  Handle(OpenGl_DepthPeeling)   myDepthPeelingFbos;   //!< additional buffers for depth peeling
+  Handle(OpenGl_ShadowMapArray) myShadowMaps;         //!< additional FBOs for shadow map rendering
   OpenGl_VertexBuffer        myFullScreenQuad;        //!< Vertices for full-screen quad rendering.
   OpenGl_VertexBuffer        myFullScreenQuadFlip;
   Standard_Boolean           myToFlipOutput;          //!< Flag to draw result image upside-down
@@ -540,9 +507,9 @@ protected: //! @name Background parameters
 
   OpenGl_Aspects*            myTextureParams;                     //!< Stores texture and its parameters for textured background
   OpenGl_Aspects*            myCubeMapParams;                     //!< Stores cubemap and its parameters for cubemap background
-  Handle(Graphic3d_CubeMap)  myBackgroundCubeMap;                 //!< Cubemap has been set as background
-  Graphic3d_TypeOfBackground myBackgroundType;                    //!< Current type of background
+  OpenGl_Aspects*            myColoredQuadParams;                 //!< Stores parameters for gradient (corner mode) background
   OpenGl_BackgroundArray*    myBackgrounds[Graphic3d_TypeOfBackground_NB]; //!< Array of primitive arrays of different background types
+  Handle(OpenGl_TextureSet)  myTextureEnv;
 
 protected: //! @name methods related to PBR
 
@@ -551,14 +518,7 @@ protected: //! @name methods related to PBR
 
   //! Generates IBL maps used in PBR pipeline.
   //! If background cubemap is not set clears all IBL maps.
-  Standard_EXPORT void bakePBREnvironment (const Handle(OpenGl_Context)& theCtx);
-
-  //! Fills all IBL maps with white color.
-  //! So that environment lighting is considered to be constant and is completely controls by ambient light sources.
-  Standard_EXPORT void clearPBREnvironment (const Handle(OpenGl_Context)& theCtx);
-
-  //! Process requests to generate or to clear PBR environment.
-  Standard_EXPORT void processPBREnvRequest (const Handle(OpenGl_Context)& theCtx);
+  Standard_EXPORT void updatePBREnvironment (const Handle(OpenGl_Context)& theCtx);
 
 protected: //! @name fields and types related to PBR
 
@@ -570,17 +530,9 @@ protected: //! @name fields and types related to PBR
     OpenGl_PBREnvState_CREATED
   };
 
-  //! Type of action which can be done with PBR environment.
-  enum PBREnvironmentRequest
-  {
-    OpenGl_PBREnvRequest_NONE,
-    OpenGl_PBREnvRequest_BAKE,
-    OpenGl_PBREnvRequest_CLEAR
-  };
-
   Handle(OpenGl_PBREnvironment) myPBREnvironment; //!< manager of IBL maps used in PBR pipeline
   PBREnvironmentState           myPBREnvState;    //!< state of PBR environment
-  PBREnvironmentRequest         myPBREnvRequest;  //!< type of action is requested to be done with PBR environment
+  Standard_Boolean              myPBREnvRequest;  //!< update PBR environment
 
 protected: //! @name data types related to ray-tracing
 
@@ -644,8 +596,7 @@ protected: //! @name data types related to ray-tracing
     OpenGl_RT_uFrameRndSeed,
 
     // adaptive FSAA params
-    OpenGl_RT_uOffsetX,
-    OpenGl_RT_uOffsetY,
+    OpenGl_RT_uFsaaOffset,
     OpenGl_RT_uSamples,
 
     // images used by ISS mode
@@ -705,7 +656,8 @@ protected: //! @name data types related to ray-tracing
     }
 
     //! Returns shader source combined with prefix.
-    TCollection_AsciiString Source() const;
+    TCollection_AsciiString Source (const Handle(OpenGl_Context)& theCtx,
+                                    const GLenum theType) const;
 
     //! Loads shader source from specified files.
     Standard_Boolean LoadFromFiles (const TCollection_AsciiString* theFileNames, const TCollection_AsciiString& thePrefix = EMPTY_PREFIX);
@@ -735,6 +687,9 @@ protected: //! @name data types related to ray-tracing
 
     //! Actual ray-tracing depth (number of ray bounces).
     Standard_Integer NbBounces;
+
+    //! Define depth computation
+    Standard_Boolean IsZeroToOneDepth;
 
     //! Enables/disables light propagation through transparent media.
     Standard_Boolean TransparentShadows;
@@ -766,7 +721,7 @@ protected: //! @name data types related to ray-tracing
     //! Enables/disables depth-of-field effect (path tracing, perspective camera).
     Standard_Boolean DepthOfField;
 
-    //! Enables/disables cubemap backgraund.
+    //! Enables/disables cubemap background.
     Standard_Boolean CubemapForBack;
 
     //! Tone mapping method for path tracing.
@@ -776,6 +731,7 @@ protected: //! @name data types related to ray-tracing
     RaytracingParams()
     : StackSize              (THE_DEFAULT_STACK_SIZE),
       NbBounces              (THE_DEFAULT_NB_BOUNCES),
+      IsZeroToOneDepth       (Standard_False),
       TransparentShadows     (Standard_False),
       GlobalIllumination     (Standard_False),
       UseBindlessTextures    (Standard_False),
@@ -1042,27 +998,27 @@ protected: //! @name fields related to ray-tracing
   Handle(OpenGl_ShaderProgram) myOutImageProgram;
 
   //! Texture buffer of data records of bottom-level BVH nodes.
-  Handle(OpenGl_TextureBufferArb) mySceneNodeInfoTexture;
+  Handle(OpenGl_TextureBuffer) mySceneNodeInfoTexture;
   //! Texture buffer of minimum points of bottom-level BVH nodes.
-  Handle(OpenGl_TextureBufferArb) mySceneMinPointTexture;
+  Handle(OpenGl_TextureBuffer) mySceneMinPointTexture;
   //! Texture buffer of maximum points of bottom-level BVH nodes.
-  Handle(OpenGl_TextureBufferArb) mySceneMaxPointTexture;
+  Handle(OpenGl_TextureBuffer) mySceneMaxPointTexture;
   //! Texture buffer of transformations of high-level BVH nodes.
-  Handle(OpenGl_TextureBufferArb) mySceneTransformTexture;
+  Handle(OpenGl_TextureBuffer) mySceneTransformTexture;
 
   //! Texture buffer of vertex coords.
-  Handle(OpenGl_TextureBufferArb) myGeometryVertexTexture;
+  Handle(OpenGl_TextureBuffer) myGeometryVertexTexture;
   //! Texture buffer of vertex normals.
-  Handle(OpenGl_TextureBufferArb) myGeometryNormalTexture;
+  Handle(OpenGl_TextureBuffer) myGeometryNormalTexture;
   //! Texture buffer of vertex UV coords.
-  Handle(OpenGl_TextureBufferArb) myGeometryTexCrdTexture;
+  Handle(OpenGl_TextureBuffer) myGeometryTexCrdTexture;
   //! Texture buffer of triangle indices.
-  Handle(OpenGl_TextureBufferArb) myGeometryTriangTexture;
+  Handle(OpenGl_TextureBuffer) myGeometryTriangTexture;
 
   //! Texture buffer of material properties.
-  Handle(OpenGl_TextureBufferArb) myRaytraceMaterialTexture;
+  Handle(OpenGl_TextureBuffer) myRaytraceMaterialTexture;
   //! Texture buffer of light source properties.
-  Handle(OpenGl_TextureBufferArb) myRaytraceLightSrcTexture;
+  Handle(OpenGl_TextureBuffer) myRaytraceLightSrcTexture;
 
   //! 1st framebuffer (FBO) to perform adaptive FSAA.
   //! Used in compatibility mode (no adaptive sampling).

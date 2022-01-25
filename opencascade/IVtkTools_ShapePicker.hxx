@@ -49,7 +49,7 @@ public:
 
   //! Pick entities in the given point.
   //! @return Number of detected entities.
-  int Pick (double theX, double theY, double theZ, vtkRenderer *theRenderer = NULL);
+  virtual int Pick (double theX, double theY, double theZ, vtkRenderer *theRenderer = NULL) Standard_OVERRIDE;
 
   //! Pick entities in the given rectangle area.
   //! @return Number of detected entities.
@@ -164,7 +164,7 @@ private:
   vtkSmartPointer<vtkRenderer>        myRenderer;       //!< VTK renderer
   bool                                myIsRectSelection;//!< Rectangle selection mode flag
   bool                                myIsPolySelection;//!< Polyline selection mode flag
-  float                               myTolerance;      //!< Selectoin tolerance
+  float                               myTolerance;      //!< Selection tolerance
 };
 
 #ifdef _MSC_VER

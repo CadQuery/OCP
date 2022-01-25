@@ -35,7 +35,6 @@
 #include <IGESData_HArray1OfIGESEntity.hxx>
 class Interface_ParamList;
 class Interface_Check;
-class Interface_InterfaceError;
 class IGESData_IGESEntity;
 class IGESData_IGESReaderData;
 class IGESData_ParamCursor;
@@ -80,7 +79,7 @@ public:
   //! parameter : it can be ended by two lists (Associativities and
   //! Properties), which can be empty, or even absent. Hence, it is
   //! necessary to know, at the end of specific reading, how many
-  //! parameters have been read : the optionnal lists follow
+  //! parameters have been read : the optional lists follow
   Standard_EXPORT Standard_Integer CurrentNumber() const;
   
   //! sets current parameter number to a new value
@@ -109,7 +108,7 @@ public:
   //! be encountered, they correspond to "Integer", see also below
   Standard_EXPORT Interface_ParamType ParamType (const Standard_Integer num) const;
   
-  //! returns litteral value of a parameter, as it was in file
+  //! returns literal value of a parameter, as it was in file
   Standard_EXPORT Standard_CString ParamValue (const Standard_Integer num) const;
   
   //! says if a parameter is defined (not void)
@@ -302,7 +301,7 @@ public:
   //! If "ord" is given True (default), entities will be added to
   //! the list in their original order
   //! Remark : Negative or Null Pointers are ignored
-  //! Else ("ord" False), order is not garanteed (faster mode)
+  //! Else ("ord" False), order is not guaranteed (faster mode)
   //! If all params cannot be read as Entities, same as above
   //! Warning  Give "ord" to False ONLY if order is not significant
   Standard_EXPORT Standard_Boolean ReadEntList (const Handle(IGESData_IGESReaderData)& IR, const IGESData_ParamCursor& PC, const Standard_CString mess, Interface_EntityList& val, const Standard_Boolean ord = Standard_True);

@@ -23,33 +23,20 @@
 #include <Aspect_GradientFillMethod.hxx>
 #include <Aspect_GridDrawMode.hxx>
 #include <Aspect_GridType.hxx>
-
 #include <gp_Ax3.hxx>
 #include <Graphic3d_StructureManager.hxx>
-#include <Graphic3d_TypeOfShadingModel.hxx>
 #include <Graphic3d_Vertex.hxx>
 #include <Graphic3d_ZLayerSettings.hxx>
-
-#include <Standard.hxx>
-#include <Standard_Boolean.hxx>
-#include <Standard_CString.hxx>
-#include <Standard_ExtString.hxx>
-#include <Standard_Integer.hxx>
-#include <Standard_Real.hxx>
-#include <Standard_Type.hxx>
-
 #include <TColStd_MapOfInteger.hxx>
 #include <TColStd_ListIteratorOfListOfTransient.hxx>
 #include <TColStd_SequenceOfInteger.hxx>
 #include <TCollection_AsciiString.hxx>
 #include <TCollection_ExtendedString.hxx>
-
 #include <V3d_ListOfLight.hxx>
 #include <V3d_ListOfView.hxx>
 #include <V3d_TypeOfOrientation.hxx>
 #include <V3d_TypeOfView.hxx>
 #include <V3d_TypeOfVisualization.hxx>
-
 #include <Quantity_Color.hxx>
 
 class Aspect_Grid;
@@ -143,7 +130,7 @@ public:
   //! attached to the viewer by supplying the colour objects
   void SetDefaultBgGradientColors (const Quantity_Color& theColor1,
                                    const Quantity_Color& theColor2,
-                                   const Aspect_GradientFillMethod theFillStyle = Aspect_GFM_HOR)
+                                   const Aspect_GradientFillMethod theFillStyle = Aspect_GradientFillMethod_Horizontal)
   {
     myGradientBackground.SetColors (theColor1, theColor2, theFillStyle);
   }
@@ -166,11 +153,11 @@ public:
   //! Gives the default visualization mode.
   void SetDefaultVisualization (const V3d_TypeOfVisualization theType) { myVisualization = theType; }
 
-  //! Returns the default type of Shading
-  Graphic3d_TypeOfShadingModel DefaultShadingModel() const { return myShadingModel; }
+  //! Returns the default type of Shading; Graphic3d_TypeOfShadingModel_Phong by default.
+  Graphic3d_TypeOfShadingModel DefaultShadingModel() const { return myDefaultRenderingParams.ShadingModel; }
 
   //! Gives the default type of SHADING.
-  void SetDefaultShadingModel (const Graphic3d_TypeOfShadingModel theType) { myShadingModel = theType; }
+  void SetDefaultShadingModel (const Graphic3d_TypeOfShadingModel theType) { myDefaultRenderingParams.ShadingModel = theType; }
 
   //! Returns the default type of View (orthographic or perspective projection) to be returned by CreateView() method.
   V3d_TypeOfView DefaultTypeOfView() const { return myDefaultTypeOfView; }
@@ -352,51 +339,61 @@ public: //! @name grid management
   
   //! Returns TRUE when grid echo must be displayed at hit point.
   Standard_Boolean GridEcho() const { return myGridEcho; }
-  
+
   //! Returns Standard_True if a grid is activated in <me>.
-  Standard_EXPORT Standard_Boolean IsActive() const;
-  
+  Standard_EXPORT Standard_Boolean IsGridActive();
+
   //! Returns the defined grid in <me>.
-  Standard_EXPORT Handle(Aspect_Grid) Grid() const;
+  Handle(Aspect_Grid) Grid (bool theToCreate = true) { return Grid (myGridType, theToCreate); }
+
+  //! Returns the defined grid in <me>.
+  Standard_EXPORT Handle(Aspect_Grid) Grid (Aspect_GridType theGridType, bool theToCreate = true);
 
   //! Returns the current grid type defined in <me>.
   Aspect_GridType GridType() const { return myGridType; }
-  
+
   //! Returns the current grid draw mode defined in <me>.
-  Standard_EXPORT Aspect_GridDrawMode GridDrawMode() const;
-  
+  Standard_EXPORT Aspect_GridDrawMode GridDrawMode();
+
   //! Returns the definition of the rectangular grid.
-  Standard_EXPORT void RectangularGridValues (Standard_Real& XOrigin, Standard_Real& YOrigin, Standard_Real& XStep, Standard_Real& YStep, Standard_Real& RotationAngle) const;
-  
+  Standard_EXPORT void RectangularGridValues (Standard_Real& theXOrigin, Standard_Real& theYOrigin,
+                                              Standard_Real& theXStep, Standard_Real& theYStep,
+                                              Standard_Real& theRotationAngle);
+
   //! Sets the definition of the rectangular grid.
   //! <XOrigin>, <YOrigin> defines the origin of the grid.
   //! <XStep> defines the interval between 2 vertical lines.
   //! <YStep> defines the interval between 2 horizontal lines.
   //! <RotationAngle> defines the rotation angle of the grid.
   Standard_EXPORT void SetRectangularGridValues (const Standard_Real XOrigin, const Standard_Real YOrigin, const Standard_Real XStep, const Standard_Real YStep, const Standard_Real RotationAngle);
-  
+
   //! Returns the definition of the circular grid.
-  Standard_EXPORT void CircularGridValues (Standard_Real& XOrigin, Standard_Real& YOrigin, Standard_Real& RadiusStep, Standard_Integer& DivisionNumber, Standard_Real& RotationAngle) const;
-  
+  Standard_EXPORT void CircularGridValues (Standard_Real& theXOrigin, Standard_Real& theYOrigin,
+                                           Standard_Real& theRadiusStep,
+                                           Standard_Integer& theDivisionNumber,
+                                           Standard_Real& theRotationAngle);
+
   //! Sets the definition of the circular grid.
   //! <XOrigin>, <YOrigin> defines the origin of the grid.
   //! <RadiusStep> defines the interval between 2 circles.
   //! <DivisionNumber> defines the section number of one half circle.
   //! <RotationAngle> defines the rotation angle of the grid.
   Standard_EXPORT void SetCircularGridValues (const Standard_Real XOrigin, const Standard_Real YOrigin, const Standard_Real RadiusStep, const Standard_Integer DivisionNumber, const Standard_Real RotationAngle);
-  
+
   //! Returns the location and the size of the grid.
-  Standard_EXPORT void CircularGridGraphicValues (Standard_Real& Radius, Standard_Real& OffSet) const;
-  
+  Standard_EXPORT void CircularGridGraphicValues (Standard_Real& theRadius,
+                                                  Standard_Real& theOffSet);
+
   //! Sets the location and the size of the grid.
   //! <XSize> defines the width of the grid.
   //! <YSize> defines the height of the grid.
   //! <OffSet> defines the displacement along the plane normal.
   Standard_EXPORT void SetCircularGridGraphicValues (const Standard_Real Radius, const Standard_Real OffSet);
-  
+
   //! Returns the location and the size of the grid.
-  Standard_EXPORT void RectangularGridGraphicValues (Standard_Real& XSize, Standard_Real& YSize, Standard_Real& OffSet) const;
-  
+  Standard_EXPORT void RectangularGridGraphicValues (Standard_Real& theXSize, Standard_Real& theYSize,
+                                                     Standard_Real& theOffSet);
+
   //! Sets the location and the size of the grid.
   //! <XSize> defines the width of the grid.
   //! <YSize> defines the height of the grid.
@@ -411,42 +408,9 @@ public: //! @name grid management
 
 public: //! @name deprecated methods
 
-  Standard_DEPRECATED("This constructor is deprecated")
-  Standard_EXPORT V3d_Viewer (const Handle(Graphic3d_GraphicDriver)& theDriver,
-                              const Standard_ExtString theName,
-                              const Standard_CString theDomain = "",
-                              const Standard_Real theViewSize = 1000.0,
-                              const V3d_TypeOfOrientation theViewProj = V3d_XposYnegZpos,
-                              const Quantity_Color& theViewBackground = Quantity_NOC_GRAY30,
-                              const V3d_TypeOfVisualization theVisualization = V3d_ZBUFFER,
-                              const Graphic3d_TypeOfShadingModel theShadingModel = Graphic3d_TOSM_VERTEX,
-                              const Standard_Boolean theComputedMode = Standard_True,
-                              const Standard_Boolean theDefaultComputedMode = Standard_True);
-
-  //! Defines the default base colour of views attached
-  //! to the Viewer by supplying the type of colour
-  //! definition and the three component values.
-  Standard_DEPRECATED("This method is deprecated - SetDefaultBackgroundColor() taking Quantity_Color should be used instead")
-  void SetDefaultBackgroundColor (const Quantity_TypeOfColor theType,
-                                  const Standard_Real theV1,
-                                  const Standard_Real theV2,
-                                  const Standard_Real theV3)
-  {
-    Standard_Real aV1 = theV1;
-    Standard_Real aV2 = theV2;
-    Standard_Real aV3 = theV3;
-    if (aV1 < 0.0) aV1 = 0.0; else if (aV1 > 1.0) aV1 = 1.0;
-    if (aV2 < 0.0) aV2 = 0.0; else if (aV2 > 1.0) aV2 = 1.0;
-    if (aV3 < 0.0) aV3 = 0.0; else if (aV3 > 1.0) aV3 = 1.0;
-    SetDefaultBackgroundColor (Quantity_Color (aV1, aV2, aV3, theType));
-  }
-
-  Standard_DEPRECATED("This method is deprecated - DefaultBackgroundColor() without arguments should be used instead")
-  void DefaultBackgroundColor (const Quantity_TypeOfColor theType, Standard_Real& theV1, Standard_Real& theV2, Standard_Real& theV3) const
-  {
-    Quantity_Color aColor = DefaultBackgroundColor();
-    aColor.Values (theV1, theV2, theV3, theType) ;
-  }
+  //! Returns Standard_True if a grid is activated in <me>.
+  Standard_DEPRECATED ("Deprecated method - IsGridActive() should be used instead")
+  Standard_Boolean IsActive() { return IsGridActive(); }
 
   //! Initializes an internal iterator on the active views.
   Standard_DEPRECATED ("Deprecated method - ActiveViews() should be used instead")
@@ -539,7 +503,6 @@ private:
   Standard_Real myViewSize;
   V3d_TypeOfOrientation myViewProj;
   V3d_TypeOfVisualization myVisualization;
-  Graphic3d_TypeOfShadingModel myShadingModel;
   V3d_TypeOfView myDefaultTypeOfView;
   Graphic3d_RenderingParams myDefaultRenderingParams;
 

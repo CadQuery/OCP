@@ -16,8 +16,9 @@
 #ifndef _StdPrs_Isolines_H__
 #define _StdPrs_Isolines_H__
 
-#include <BRepAdaptor_HSurface.hxx>
+#include <BRepAdaptor_Surface.hxx>
 #include <Geom_Surface.hxx>
+#include <gp_Lin2d.hxx>
 #include <Prs3d_Drawer.hxx>
 #include <Prs3d_Presentation.hxx>
 #include <Prs3d_LineAspect.hxx>
@@ -157,13 +158,13 @@ public:
   //! @param theUIsoParams [in] the parameters of u isolines to compute.
   //! @param theVIsoParams [in] the parameters of v isolines to compute.
   Standard_EXPORT static void AddOnSurface (const Handle(Prs3d_Presentation)&   thePresentation,
-                                            const Handle(BRepAdaptor_HSurface)& theSurface,
+                                            const Handle(BRepAdaptor_Surface)& theSurface,
                                             const Handle(Prs3d_Drawer)&         theDrawer,
                                             const Standard_Real                 theDeflection,
                                             const TColStd_SequenceOfReal&       theUIsoParams,
                                             const TColStd_SequenceOfReal&       theVIsoParams);
 
-  //! Evalute sequence of parameters for drawing uv isolines for a given face.
+  //! Evaluate sequence of parameters for drawing uv isolines for a given face.
   //! @param theFace [in] the face.
   //! @param theNbIsoU [in] the number of u isolines.
   //! @param theNbIsoV [in] the number of v isolines.
@@ -220,7 +221,7 @@ private:
   //! @param theVIsoParams [in] the parameters of v isolines to compute
   //! @param theUPolylines [out] the sequence of result polylines
   //! @param theVPolylines [out] the sequence of result polylines
-  Standard_EXPORT static void addOnSurface (const Handle(BRepAdaptor_HSurface)& theSurface,
+  Standard_EXPORT static void addOnSurface (const Handle(BRepAdaptor_Surface)& theSurface,
                                             const Handle(Prs3d_Drawer)&         theDrawer,
                                             const Standard_Real                 theDeflection,
                                             const TColStd_SequenceOfReal&       theUIsoParams,

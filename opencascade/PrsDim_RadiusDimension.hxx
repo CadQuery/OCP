@@ -23,7 +23,7 @@
 
 DEFINE_STANDARD_HANDLE(PrsDim_RadiusDimension, PrsDim_Dimension)
 
-//! Radius dimension. Can be constructued:
+//! Radius dimension. Can be constructed:
 //! - On generic circle.
 //! - On generic circle with user-defined anchor point on that circle.
 //! - On generic shape containing geometry that can be measured
@@ -127,9 +127,9 @@ protected:
 
   Standard_EXPORT virtual Standard_Real ComputeValue() const Standard_OVERRIDE;
 
-  Standard_EXPORT virtual void Compute (const Handle(PrsMgr_PresentationManager3d)& thePresentationManager,
-                                        const Handle(Prs3d_Presentation)& thePresentation,
-                                        const Standard_Integer theMode = 0) Standard_OVERRIDE;
+  Standard_EXPORT virtual void Compute (const Handle(PrsMgr_PresentationManager)& thePrsMgr,
+                                        const Handle(Prs3d_Presentation)& thePrs,
+                                        const Standard_Integer theMode) Standard_OVERRIDE;
 
 protected:
 

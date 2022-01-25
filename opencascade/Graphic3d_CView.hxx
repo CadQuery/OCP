@@ -35,6 +35,7 @@
 #include <Graphic3d_TextureEnv.hxx>
 #include <Graphic3d_TypeOfAnswer.hxx>
 #include <Graphic3d_TypeOfBackfacingModel.hxx>
+#include <Graphic3d_TypeOfBackground.hxx>
 #include <Graphic3d_TypeOfShadingModel.hxx>
 #include <Graphic3d_TypeOfVisualization.hxx>
 #include <Graphic3d_Vec3.hxx>
@@ -48,7 +49,6 @@
 
 class Aspect_XRSession;
 class Graphic3d_CView;
-class Graphic3d_GraphicDriver;
 class Graphic3d_Layer;
 class Graphic3d_StructureManager;
 
@@ -99,12 +99,19 @@ public:
 
 public:
 
-  //! Returns default Shading Model of the view; Graphic3d_TOSM_FRAGMENT by default.
-  Graphic3d_TypeOfShadingModel ShadingModel() const { return myShadingModel; }
+  //! Returns default Shading Model of the view; Graphic3d_TypeOfShadingModel_Phong by default.
+  Graphic3d_TypeOfShadingModel ShadingModel() const { return myRenderParams.ShadingModel; }
 
   //! Sets default Shading Model of the view.
-  //! Will throw an exception on attempt to set Graphic3d_TOSM_DEFAULT.
+  //! Will throw an exception on attempt to set Graphic3d_TypeOfShadingModel_DEFAULT.
   Standard_EXPORT void SetShadingModel (Graphic3d_TypeOfShadingModel theModel);
+
+  //! Return backfacing model used for the view; Graphic3d_TypeOfBackfacingModel_Auto by default,
+  //! which means that backface culling is defined by each presentation.
+  Graphic3d_TypeOfBackfacingModel BackfacingModel() const { return myBackfacing; }
+
+  //! Sets backfacing model for the view.
+  void SetBackfacingModel (const Graphic3d_TypeOfBackfacingModel theModel) { myBackfacing = theModel; }
 
   //! Returns visualization type of the view.
   Graphic3d_TypeOfVisualization VisualizationType() const { return myVisualization; }
@@ -352,6 +359,8 @@ public:
   //! Returns reference to current rendering parameters and effect settings.
   Graphic3d_RenderingParams& ChangeRenderingParams() { return myRenderParams; }
 
+public:
+
   //! Returns background  fill color.
   virtual Aspect_Background Background() const { return Aspect_Background (myBgColor.GetRGB()); }
 
@@ -365,9 +374,15 @@ public:
   virtual void SetGradientBackground (const Aspect_GradientBackground& theBackground) = 0;
 
   //! Returns background image texture map.
-  virtual Handle(Graphic3d_TextureMap) BackgroundImage() = 0;
+  const Handle(Graphic3d_TextureMap)& BackgroundImage() { return myBackgroundImage; }
 
-  //! Sets image texture or environment cubemap as backround.
+  //! Returns cubemap being set last time on background.
+  const Handle(Graphic3d_CubeMap)& BackgroundCubeMap() const { return myCubeMapBackground; }
+
+  //! Returns cubemap being set last time on background.
+  const Handle(Graphic3d_CubeMap)& IBLCubeMap() const { return myCubeMapIBL; }
+
+  //! Sets image texture or environment cubemap as background.
   //! @param theTextureMap [in] source to set a background;
   //!                           should be either Graphic3d_Texture2D or Graphic3d_CubeMap
   //! @param theToUpdatePBREnv [in] defines whether IBL maps will be generated or not
@@ -381,33 +396,25 @@ public:
   //! Sets background image fill style.
   virtual void SetBackgroundImageStyle (const Aspect_FillMethod theFillStyle) = 0;
 
-  //! Returns cubemap being setted last time on background.
-  virtual Handle(Graphic3d_CubeMap) BackgroundCubeMap() const = 0;
+  //! Returns background type.
+  Graphic3d_TypeOfBackground BackgroundType() const { return myBackgroundType; }
 
-  //! Generates PBR specular probe and irradiance map
-  //! in order to provide environment indirect illumination in PBR shading model (Image Based Lighting).
-  //! The source of environment data is background cubemap.
-  //! If PBR is unavailable it does nothing.
-  //! If PBR is available but there is no cubemap being set to background it clears all IBL maps (see 'ClearPBREnvironment').
-  virtual void GeneratePBREnvironment() = 0;
+  //! Sets background type.
+  void SetBackgroundType (Graphic3d_TypeOfBackground theType) { myBackgroundType = theType; }
 
-  //! Fills PBR specular probe and irradiance map with white color.
-  //! So that environment indirect illumination will be constant
-  //! and will be fully controlled by ambient light sources.
-  //! If PBR is unavailable it does nothing.
-  virtual void ClearPBREnvironment() = 0;
+  //! Enables or disables IBL (Image Based Lighting) from background cubemap.
+  //! Has no effect if PBR is not used.
+  //! @param[in] theToEnableIBL enable or disable IBL from background cubemap
+  //! @param[in] theToUpdate redraw the view
+  virtual void SetImageBasedLighting (Standard_Boolean theToEnableIBL) = 0;
 
   //! Returns environment texture set for the view.
-  virtual Handle(Graphic3d_TextureEnv) TextureEnv() const = 0; 
+  const Handle(Graphic3d_TextureEnv)& TextureEnv() const { return myTextureEnvData; }
 
   //! Sets environment texture for the view.
   virtual void SetTextureEnv (const Handle(Graphic3d_TextureEnv)& theTextureEnv) = 0;
 
-  //! Return backfacing model used for the view.
-  virtual Graphic3d_TypeOfBackfacingModel BackfacingModel() const = 0;
-
-  //! Sets backfacing model for the view.
-  virtual void SetBackfacingModel (const Graphic3d_TypeOfBackfacingModel theModel) = 0;
+public:
 
   //! Returns list of lights of the view.
   virtual const Handle(Graphic3d_LightSet)& Lights() const = 0;
@@ -484,7 +491,7 @@ public:
   void SetBaseXRCamera (const Handle(Graphic3d_Camera)& theCamera) { myBaseXRCamera = theCamera; }
 
   //! Convert XR pose to world space.
-  //! @param theTrsfXR [in] transformation defined in VR local coordinate system,
+  //! @param thePoseXR [in] transformation defined in VR local coordinate system,
   //!                       oriented as Y-up, X-right and -Z-forward
   //! @return transformation defining orientation of XR pose in world space
   gp_Trsf PoseXRToWorld (const gp_Trsf& thePoseXR) const
@@ -495,6 +502,14 @@ public:
     gp_Trsf aTrsfCS;
     aTrsfCS.SetTransformation (aCameraCS, anAxVr);
     return aTrsfCS * thePoseXR;
+  }
+
+  //! Returns view direction in the world space based on XR pose.
+  //! @param thePoseXR [in] transformation defined in VR local coordinate system,
+  //!                       oriented as Y-up, X-right and -Z-forward
+  gp_Ax1 ViewAxisInWorld (const gp_Trsf& thePoseXR) const
+  {
+    return gp_Ax1 (gp::Origin(), -gp::DZ()).Transformed (PoseXRToWorld (thePoseXR));
   }
 
   //! Recomputes PosedXRCamera() based on BaseXRCamera() and head orientation.
@@ -559,7 +574,14 @@ protected:
 
   Standard_Integer myId;
   Graphic3d_RenderingParams myRenderParams;
-  Quantity_ColorRGBA        myBgColor;
+
+  Quantity_ColorRGBA           myBgColor;
+  Handle(Graphic3d_TextureMap) myBackgroundImage;
+  Handle(Graphic3d_CubeMap)    myCubeMapBackground;  //!< Cubemap displayed at background
+  Handle(Graphic3d_CubeMap)    myCubeMapIBL;         //!< Cubemap used for environment lighting
+  Handle(Graphic3d_TextureEnv) myTextureEnvData;
+  Graphic3d_TypeOfBackground   myBackgroundType;     //!< Current type of background
+
   Handle(Graphic3d_StructureManager) myStructureManager;
   Handle(Graphic3d_Camera)  myCamera;
   Graphic3d_SequenceOfStructure myStructsToCompute;
@@ -569,7 +591,7 @@ protected:
   Standard_Boolean myIsInComputedMode;
   Standard_Boolean myIsActive;
   Standard_Boolean myIsRemoved;
-  Graphic3d_TypeOfShadingModel  myShadingModel;
+  Graphic3d_TypeOfBackfacingModel myBackfacing;
   Graphic3d_TypeOfVisualization myVisualization;
 
   Handle(Aspect_XRSession) myXRSession;

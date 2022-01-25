@@ -16,13 +16,7 @@
 #ifndef _SelectMgr_Frustum_HeaderFile
 #define _SelectMgr_Frustum_HeaderFile
 
-#include <BVH_Box.hxx>
-#include <gp_Pnt.hxx>
-#include <gp_Vec.hxx>
-#include <gp_XYZ.hxx>
 #include <SelectMgr_BaseFrustum.hxx>
-#include <TColgp_HArray1OfPnt.hxx>
-#include <TColgp_Array1OfPnt2d.hxx>
 
 //! This is an internal class containing representation of rectangular selecting frustum, created in case
 //! of point and box selection, and algorithms for overlap detection between selecting
@@ -73,28 +67,59 @@ protected:
 
   //! Returns true if selecting volume is overlapped by axis-aligned bounding box
   //! with minimum corner at point theMinPt and maximum at point theMaxPt
-  Standard_Boolean hasOverlap (const SelectMgr_Vec3& theBoxMin,
-                               const SelectMgr_Vec3& theBoxMax,
-                               Standard_Boolean*     theInside = NULL) const;
+  Standard_Boolean hasBoxOverlap (const SelectMgr_Vec3& theBoxMin,
+                                  const SelectMgr_Vec3& theBoxMax,
+                                  Standard_Boolean*     theInside = NULL) const;
 
   //! SAT intersection test between defined volume and given point
-  Standard_Boolean hasOverlap (const gp_Pnt& thePnt) const;
+  Standard_Boolean hasPointOverlap (const gp_Pnt& thePnt) const;
 
   //! SAT intersection test between defined volume and given segment
-  Standard_Boolean hasOverlap (const gp_Pnt& thePnt1,
-                               const gp_Pnt& thePnt2) const;
+  Standard_Boolean hasSegmentOverlap (const gp_Pnt& thePnt1,
+                                      const gp_Pnt& thePnt2) const;
 
   //! SAT intersection test between frustum given and planar convex polygon represented as ordered point set
-  Standard_Boolean hasOverlap (const TColgp_Array1OfPnt& theArrayOfPnts,
-                               gp_Vec& theNormal) const;
+  Standard_Boolean hasPolygonOverlap (const TColgp_Array1OfPnt& theArrayOfPnts,
+                                      gp_Vec& theNormal) const;
 
   //! SAT intersection test between defined volume and given triangle
-  Standard_Boolean hasOverlap (const gp_Pnt& thePnt1,
-                               const gp_Pnt& thePnt2,
-                               const gp_Pnt& thePnt3,
-                               gp_Vec& theNormal) const;
+  Standard_Boolean hasTriangleOverlap (const gp_Pnt& thePnt1,
+                                       const gp_Pnt& thePnt2,
+                                       const gp_Pnt& thePnt3,
+                                       gp_Vec& theNormal) const;
+
+  //! Intersection test between defined volume and given sphere
+  Standard_Boolean hasSphereOverlap (const gp_Pnt& thePnt1,
+                                     const Standard_Real theRadius,
+                                     Standard_Boolean* theInside = NULL) const;
+
+  //! Intersection test between defined volume and given cylinder (or cone).
+  Standard_Boolean hasCylinderOverlap (const Standard_Real theBottomRad,
+                                       const Standard_Real theTopRad,
+                                       const Standard_Real theHeight,
+                                       const gp_Trsf& theTrsf,
+                                       Standard_Boolean* theInside = NULL) const;
+
+  //! Checking whether the point thePnt is inside the shape with borders theVertices.
+  //! thePnt and theVertices lie in the same plane.
+  Standard_Boolean IsDotInside (const gp_Pnt& thePnt,
+                                const TColgp_Array1OfPnt& theVertices) const;
 
 private:
+
+  //! Return true if one segment enclosed between the points thePnt1Seg1 and thePnt2Seg1
+  //! intersects another segment that enclosed between thePnt1Seg2 and thePnt2Seg2.
+  Standard_Boolean isSegmentsIntersect (const gp_Pnt& thePnt1Seg1,
+                                        const gp_Pnt& thePnt2Seg1,
+                                        const gp_Pnt& thePnt1Seg2,
+                                        const gp_Pnt& thePnt2Seg2) const;
+
+  //! Checking whether the borders theVertices of the shape intersect
+  //! the cylinder (or cone) end face with the center theCenter and radius theRadius
+  Standard_Boolean isIntersectCylinderEndFace (const Standard_Real theRad,
+                                               const gp_Pnt& theCenter,
+                                               const gp_Trsf& theTrsf,
+                                               const TColgp_Array1OfPnt& theVertices) const;
 
   //! Checks if AABB and frustum are separated along the given axis
   Standard_Boolean isSeparated (const SelectMgr_Vec3& theBoxMin,

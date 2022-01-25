@@ -32,11 +32,6 @@
 #include <gp_Pnt2d.hxx>
 #include <TColgp_Array1OfPnt2d.hxx>
 #include <TColStd_Array1OfInteger.hxx>
-class Standard_NoSuchObject;
-class Standard_DomainError;
-class Standard_OutOfRange;
-class StdFail_UndefinedDerivative;
-class BRepAdaptor_Curve;
 class TopoDS_Edge;
 class gp_Pnt;
 class gp_Vec;
@@ -127,7 +122,7 @@ public:
   //! Stores in <T> the  parameters bounding the intervals
   //! of continuity <S>.
   //!
-  //! The array must provide  enough room to  accomodate
+  //! The array must provide  enough room to  accommodate
   //! for the parameters. i.e. T.Length() > NbIntervals()
     void Intervals (TColStd_Array1OfReal& T, const GeomAbs_Shape S) const;
   

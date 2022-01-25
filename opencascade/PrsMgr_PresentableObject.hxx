@@ -28,10 +28,12 @@
 #include <PrsMgr_ListOfPresentableObjects.hxx>
 #include <PrsMgr_Presentation.hxx>
 #include <PrsMgr_Presentations.hxx>
+#include <PrsMgr_DisplayStatus.hxx>
 #include <PrsMgr_TypeOfPresentation3d.hxx>
 #include <TColStd_ListOfInteger.hxx>
 
 class PrsMgr_PresentationManager;
+Standard_DEPRECATED("Deprecated alias to PrsMgr_PresentationManager")
 typedef PrsMgr_PresentationManager PrsMgr_PresentationManager3d;
 
 //! A framework to supply the Graphic3d structure of the object to be presented.
@@ -95,17 +97,21 @@ public:
   void UnsetDisplayMode() { myDrawer->SetDisplayMode (-1); }
 
   //! Returns true if the Interactive Object is in highlight mode.
+  //! @sa HilightAttributes()
   Standard_Boolean HasHilightMode() const { return !myHilightDrawer.IsNull() && myHilightDrawer->DisplayMode() != -1; }
 
   //! Returns highlight display mode.
   //! This is obsolete method for backward compatibility - use ::HilightAttributes() and ::DynamicHilightAttributes() instead.
+  //! @sa HilightAttributes()
   Standard_Integer HilightMode() const { return !myHilightDrawer.IsNull() ? myHilightDrawer->DisplayMode() : -1; }
 
   //! Sets highlight display mode.
   //! This is obsolete method for backward compatibility - use ::HilightAttributes() and ::DynamicHilightAttributes() instead.
+  //! @sa HilightAttributes()
   Standard_EXPORT void SetHilightMode (const Standard_Integer theMode);
 
   //! Unsets highlight display mode.
+  //! @sa HilightAttributes()
   void UnsetHilightMode()
   {
     if (!myHilightDrawer.IsNull())
@@ -161,6 +167,9 @@ public:
   //! Set type of presentation.
   Standard_EXPORT void SetTypeOfPresentation (const PrsMgr_TypeOfPresentation3d theType);
 
+  //! Return presentation display status; PrsMgr_DisplayStatus_None by default.
+  PrsMgr_DisplayStatus DisplayStatus() const { return myDisplayStatus; }
+
 public: //! @name presentation attributes
 
   //! Returns the attributes settings.
@@ -170,14 +179,16 @@ public: //! @name presentation attributes
   virtual void SetAttributes(const Handle(Prs3d_Drawer)& theDrawer) { myDrawer = theDrawer; }
 
   //! Returns the hilight attributes settings.
-  //! When not NULL, overrides both Prs3d_TypeOfHighlight_LocalSelected and Prs3d_TypeOfHighlight_Selected defined within AIS_InteractiveContext.
+  //! When not NULL, overrides both Prs3d_TypeOfHighlight_LocalSelected and Prs3d_TypeOfHighlight_Selected defined within AIS_InteractiveContext::HighlightStyle().
+  //! @sa AIS_InteractiveContext::HighlightStyle()
   const Handle(Prs3d_Drawer)& HilightAttributes() const { return myHilightDrawer; }
 
   //! Initializes the hilight drawing tool theDrawer.
   virtual void SetHilightAttributes(const Handle(Prs3d_Drawer)& theDrawer) { myHilightDrawer = theDrawer; }
 
   //! Returns the hilight attributes settings.
-  //! When not NULL, overrides both Prs3d_TypeOfHighlight_LocalDynamic and Prs3d_TypeOfHighlight_Dynamic defined within AIS_InteractiveContext.
+  //! When not NULL, overrides both Prs3d_TypeOfHighlight_LocalDynamic and Prs3d_TypeOfHighlight_Dynamic defined within AIS_InteractiveContext::HighlightStyle().
+  //! @sa AIS_InteractiveContext::HighlightStyle()
   const Handle(Prs3d_Drawer)& DynamicHilightAttributes() const { return myDynHilightDrawer; }
 
   //! Initializes the dynamic hilight drawing tool.
@@ -483,49 +494,6 @@ public: //! @name deprecated methods
   Standard_DEPRECATED("This method is deprecated - UpdatePresentations() should be called instead")
   Standard_EXPORT void ToBeUpdated (TColStd_ListOfInteger& ListOfMode) const;
 
-  Standard_DEPRECATED("This method is deprecated - overload taking Handle should be used instead")
-  void SetClipPlanes (const Graphic3d_SequenceOfHClipPlane& thePlanes)
-  {
-    Handle(Graphic3d_SequenceOfHClipPlane) aPlanes = new Graphic3d_SequenceOfHClipPlane (thePlanes);
-    SetClipPlanes (aPlanes);
-  }
-
-  //! Sets up Transform Persistence Mode for this object.
-  //! This function used to lock in object position, rotation and / or zooming relative to camera position.
-  //! Object will be drawn in the origin setted by thePoint parameter (except Graphic3d_TMF_TriedronPers flag
-  //! - see description later). theMode should be:
-  //! -   Graphic3d_TMF_None - no persistence attributes (reset);
-  //! -   Graphic3d_TMF_ZoomPers - object doesn't resize;
-  //! -   Graphic3d_TMF_RotatePers - object doesn't rotate;
-  //! -   Graphic3d_TMF_ZoomRotatePers - object doesn't resize and rotate;
-  //! -   Graphic3d_TMF_RotatePers - object doesn't rotate;
-  //! -   Graphic3d_TMF_TriedronPers - object behaves like trihedron.
-  //! If Graphic3d_TMF_TriedronPers or Graphic3d_TMF_2d persistence mode selected thePoint coordinates X and Y means:
-  //! -   X = 0.0, Y = 0.0 - center of view window;
-  //! -   X > 0.0, Y > 0.0 - right upper corner of view window;
-  //! -   X > 0.0, Y < 0.0 - right lower corner of view window;
-  //! -   X < 0.0, Y > 0.0 - left  upper corner of view window;
-  //! -   X < 0.0, Y < 0.0 - left  lower corner of view window.
-  //! And Z coordinate defines the gap from border of view window (except center position).
-  Standard_DEPRECATED("This method is deprecated - SetTransformPersistence() taking Graphic3d_TransformPers should be called instead")
-  void SetTransformPersistence (const Graphic3d_TransModeFlags theMode, const gp_Pnt& thePoint = gp_Pnt (0.0, 0.0, 0.0))
-  {
-    SetTransformPersistence (Graphic3d_TransformPers::FromDeprecatedParams (theMode, thePoint));
-  }
-
-  //! Gets  Transform  Persistence Mode  for  this  object
-  Standard_DEPRECATED("This method is deprecated - TransformPersistence() should be called instead")
-  Graphic3d_TransModeFlags GetTransformPersistenceMode() const
-  {
-    return myTransformPersistence.IsNull()
-         ? Graphic3d_TMF_None
-         : myTransformPersistence->Mode();
-  }
-
-  //! Gets  point  of  transform  persistence for  this  object
-  Standard_DEPRECATED("This method is deprecated - TransformPersistence() should be called instead")
-  Standard_EXPORT gp_Pnt GetTransformPersistencePoint() const;
-
   //! Get value of the flag "propagate visual state"
   //! It means that the display/erase/color visual state is propagated automatically to all children;
   //! by default, the flag is true 
@@ -565,6 +533,7 @@ protected:
   PrsMgr_ListOfPresentableObjects        myChildren;                //!< list of children
   gp_GTrsf                               myInvTransformation;       //!< inversion of absolute transformation (combined parents + local transformations)
   PrsMgr_TypeOfPresentation3d            myTypeOfPresentation3d;    //!< presentation type
+  PrsMgr_DisplayStatus                   myDisplayStatus;           //!< presentation display status
 
   Aspect_TypeOfFacingModel               myCurrentFacingModel;      //!< current facing model
   Standard_ShortReal                     myOwnWidth;                //!< custom width value

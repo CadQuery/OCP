@@ -27,10 +27,8 @@
 #include <Standard_IStream.hxx>
 #include <NCollection_IndexedDataMap.hxx>
 
-class Standard_NoSuchObject;
 class Standard_GUID;
 class CDM_Document;
-class TCollection_ExtendedString;
 class PCDM_Reader;
 class CDM_MetaData;
 class PCDM_RetrievalDriver;
@@ -58,7 +56,19 @@ public:
   //! opened by an application since the application resources are
   //! needed to store it.
   Standard_EXPORT static Handle(CDF_Application) Load (const Standard_GUID& aGUID);
-  
+
+  //! Constructs an new empty document.
+  //! This document will have the specified format.
+  //! If InitDocument() is redefined for a specific
+  //! application, the new document is handled by the
+  //! applicative session.
+  Standard_EXPORT virtual void NewDocument(const TCollection_ExtendedString& theFormat, Handle(CDM_Document)& theDoc);
+
+  //! Initialize a document for the applicative session.
+  //! This virtual function is called by NewDocument
+  //! and should be redefined for each specific application.
+  Standard_EXPORT virtual void InitDocument(const Handle(CDM_Document)& theDoc) const;
+
   //! puts the document in the current session directory
   //! and calls the virtual method Activate on it.
   Standard_EXPORT void Open (const Handle(CDM_Document)& aDocument);
@@ -85,12 +95,13 @@ public:
   //!
   //! Handle(CDM_Document) theDocument=myApplication->Retrieve("|user|cascade","box");
   //!
-  //! Since  the version is not specified in  this syntax, the  latest wil be used.
+  //! Since  the version is not specified in  this syntax, the  latest will be used.
   //! A link is kept with the database through an instance of CDM_MetaData
   Standard_EXPORT Handle(CDM_Document) Retrieve
     (const TCollection_ExtendedString& aFolder,
      const TCollection_ExtendedString& aName,
      const Standard_Boolean UseStorageConfiguration = Standard_True,
+     const Handle(PCDM_ReaderFilter)& theFilter = Handle(PCDM_ReaderFilter)(),
      const Message_ProgressRange& theRange = Message_ProgressRange());
   
   //! This method retrieves  a  document from the database.
@@ -112,22 +123,27 @@ public:
      const TCollection_ExtendedString& aName, 
      const TCollection_ExtendedString& aVersion, 
      const Standard_Boolean UseStorageConfiguration = Standard_True,
+     const Handle(PCDM_ReaderFilter)& theFilter = Handle(PCDM_ReaderFilter)(),
      const Message_ProgressRange& theRange = Message_ProgressRange());
   
-  Standard_EXPORT PCDM_ReaderStatus CanRetrieve (const TCollection_ExtendedString& aFolder,
-                                                 const TCollection_ExtendedString& aName);
+  Standard_EXPORT PCDM_ReaderStatus CanRetrieve (const TCollection_ExtendedString& theFolder,
+                                                 const TCollection_ExtendedString& theName,
+                                                 const bool theAppendMode);
   
-  Standard_EXPORT PCDM_ReaderStatus CanRetrieve (const TCollection_ExtendedString& aFolder,
-                                                 const TCollection_ExtendedString& aName,
-                                                 const TCollection_ExtendedString& aVersion);
+  Standard_EXPORT PCDM_ReaderStatus CanRetrieve (const TCollection_ExtendedString& theFolder,
+                                                 const TCollection_ExtendedString& theName,
+                                                 const TCollection_ExtendedString& theVersion,
+                                                 const bool theAppendMode);
   
   //! Checks  status  after  Retrieve
   PCDM_ReaderStatus GetRetrieveStatus() const { return myRetrievableStatus; }
   
-  //! Reads aDoc from standard SEEKABLE stream theIStream,
-  //! the stream should support SEEK fuctionality
-  Standard_EXPORT Handle(CDM_Document) Read
+  //! Reads theDocument from standard SEEKABLE stream theIStream,
+  //! the stream should support SEEK functionality
+  Standard_EXPORT void Read
     (Standard_IStream& theIStream,
+     Handle(CDM_Document)& theDocument,
+     const Handle(PCDM_ReaderFilter)& theFilter = Handle(PCDM_ReaderFilter)(),
      const Message_ProgressRange& theRange = Message_ProgressRange());
  
   //! Returns instance of read driver for specified format.
@@ -197,19 +213,21 @@ private:
   Standard_EXPORT Handle(CDM_Document) Retrieve
     (const Handle(CDM_MetaData)& aMetaData, 
      const Standard_Boolean UseStorageConfiguration, 
+     const Handle(PCDM_ReaderFilter)& theFilter = Handle(PCDM_ReaderFilter)(),
      const Message_ProgressRange& theRange = Message_ProgressRange()) Standard_OVERRIDE;
   
   Standard_EXPORT Handle(CDM_Document) Retrieve
     (const Handle(CDM_MetaData)& aMetaData,
      const Standard_Boolean UseStorageConfiguration, 
      const Standard_Boolean IsComponent, 
+     const Handle(PCDM_ReaderFilter)& theFilter = Handle(PCDM_ReaderFilter)(),
      const Message_ProgressRange& theRange = Message_ProgressRange());
   
   Standard_EXPORT Standard_Integer DocumentVersion (const Handle(CDM_MetaData)& theMetaData) Standard_OVERRIDE;
   
   Standard_EXPORT CDF_TypeOfActivation TypeOfActivation (const Handle(CDM_MetaData)& aMetaData);
   
-  Standard_EXPORT PCDM_ReaderStatus CanRetrieve (const Handle(CDM_MetaData)& aMetaData);
+  Standard_EXPORT PCDM_ReaderStatus CanRetrieve (const Handle(CDM_MetaData)& aMetaData, const bool theAppendMode);
 
 protected:
 

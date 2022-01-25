@@ -24,6 +24,7 @@
 #include <PrsDim_KindOfDimension.hxx>
 #include <PrsDim_KindOfSurface.hxx>
 #include <Geom_Curve.hxx>
+#include <gp_Circ.hxx>
 #include <gp_Pln.hxx>
 #include <Prs3d_ArrowAspect.hxx>
 #include <Prs3d_DimensionAspect.hxx>
@@ -148,7 +149,7 @@ DEFINE_STANDARD_HANDLE(PrsDim_Dimension, AIS_InteractiveObject)
 //! this 3d point to the set of parameters including adjusting of the dimension plane (this plane will be
 //! automatic plane, NOT user-defined one).
 //! If the fixed text position is set, the flag myIsFixedTextPosition is set to TRUE.
-//! ATTENSION! myIsFixedTextPosition fixes all parameters of the set from recomputing inside
+//! ATTENTION! myIsFixedTextPosition fixes all parameters of the set from recomputing inside
 //! SetMeasureGeometry() methods. Parameters in dimension aspect (they are horizontal text position
 //! and extension size) are adjusted on presentation computing step, user-defined values in
 //! dimension aspect are not changed.
@@ -249,7 +250,7 @@ public:
   Standard_EXPORT void SetCustomValue (const Standard_Real theValue);
 
   //! Sets user-defined dimension value.
-  //! Unit conversion during the display is not applyed.
+  //! Unit conversion during the display is not applied.
   //! @param theValue [in] the user-defined value to display.
   Standard_EXPORT void SetCustomValue (const TCollection_ExtendedString& theValue);
 
@@ -316,7 +317,7 @@ public:
   PrsDim_KindOfDimension KindOfDimension() const { return myKindOfDimension; }
 
   //! @return the kind of interactive.
-  virtual AIS_KindOfInteractive Type() const Standard_OVERRIDE { return AIS_KOI_Dimension; }
+  virtual AIS_KindOfInteractive Type() const Standard_OVERRIDE { return AIS_KindOfInteractive_Dimension; }
 
   //! Returns true if the class of objects accepts the display mode theMode.
   //! The interactive context can have a default mode of representation for
@@ -475,7 +476,7 @@ protected:
   //! @param theCircle [out] the circle geometry.
   //! @param theMiddleArcPoint [out] the middle point of the arc.
   //! @param theIsClosed [out] returns TRUE if the geometry is closed circle.
-  //! @return TRUE if the the circle is successfully got from the input shape.
+  //! @return TRUE if the circle is successfully returned from the input shape.
   Standard_EXPORT Standard_Boolean InitCircularDimension (const TopoDS_Shape& theShape,
                                                           gp_Circ& theCircle,
                                                           gp_Pnt& theMiddleArcPoint,

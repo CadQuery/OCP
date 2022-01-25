@@ -71,7 +71,8 @@ public:
   const Handle(TDocStd_Document)& Document() const { return myXdeDoc; }
 
   //! Set target document.
-  void SetDocument (const Handle(TDocStd_Document)& theDoc) { myXdeDoc = theDoc; }
+  //! Set system length unit according to the units of the document
+  Standard_EXPORT void SetDocument(const Handle(TDocStd_Document)& theDoc);
 
   //! Return prefix for generating root labels names.
   const TCollection_AsciiString& RootPrefix() const { return myRootPrefix; }
@@ -200,7 +201,7 @@ protected:
 protected:
 
   //! Fill document with new root shapes.
-  Standard_EXPORT void fillDocument();
+  Standard_EXPORT virtual void fillDocument();
 
   //! Append new shape into the document (recursively).
   Standard_EXPORT Standard_Boolean addShapeIntoDoc (CafDocumentTools& theTools,
@@ -211,8 +212,7 @@ protected:
   //! Append new sub-shape into the document (recursively).
   Standard_EXPORT Standard_Boolean addSubShapeIntoDoc (CafDocumentTools& theTools,
                                                        const TopoDS_Shape& theShape,
-                                                       const TDF_Label& theParentLabel,
-                                                       const RWMesh_NodeAttributes& theAttribs);
+                                                       const TDF_Label& theParentLabel);
 
   //! Put name attribute onto the label.
   Standard_EXPORT void setShapeName (const TDF_Label& theLabel,

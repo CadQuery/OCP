@@ -13,8 +13,8 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _OpenGl_Font_H__
-#define _OpenGl_Font_H__
+#ifndef OpenGl_Font_HeaderFile
+#define OpenGl_Font_HeaderFile
 
 #include <OpenGl_Texture.hxx>
 #include <OpenGl_Vec.hxx>
@@ -113,6 +113,12 @@ public:
   Standard_EXPORT bool RenderGlyph (const Handle(OpenGl_Context)& theCtx,
                                     const Standard_Utf32Char      theUChar,
                                     Tile&                         theGlyph);
+
+  //! @return first texture.
+  const Handle(OpenGl_Texture)& Texture() const
+  {
+    return myTextures.First();
+  }
 
 protected:
 

@@ -13,13 +13,16 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _OpenGl_State_HeaderFile
-#define _OpenGl_State_HeaderFile
+#ifndef OpenGl_ShaderStates_HeaderFile
+#define OpenGl_ShaderStates_HeaderFile
 
+#include <Graphic3d_RenderTransparentMethod.hxx>
 #include <NCollection_List.hxx>
 #include <Graphic3d_LightSet.hxx>
 #include <OpenGl_Element.hxx>
 #include <OpenGl_Vec.hxx>
+
+class OpenGl_ShadowMapArray;
 
 //! Defines interface for OpenGL state.
 class OpenGl_StateInterface
@@ -122,7 +125,7 @@ class OpenGl_LightSourceState : public OpenGl_StateInterface
 public:
 
   //! Creates uninitialized state of light sources.
-  OpenGl_LightSourceState() : mySpecIBLMapLevels (0) {}
+  OpenGl_LightSourceState() : mySpecIBLMapLevels (0), myToCastShadows (Standard_True) {}
 
   //! Sets new light sources.
   void Set (const Handle(Graphic3d_LightSet)& theLightSources) { myLightSources = theLightSources; }
@@ -137,10 +140,27 @@ public:
   //! Sets number of mipmap levels used in specular IBL map.
   void SetSpecIBLMapLevels(Standard_Integer theSpecIBLMapLevels) { mySpecIBLMapLevels = theSpecIBLMapLevels; }
 
+  //! Returns TRUE if shadowmap is set.
+  bool HasShadowMaps() const { return myToCastShadows && !myShadowMaps.IsNull(); }
+
+  //! Returns shadowmap.
+  const Handle(OpenGl_ShadowMapArray)& ShadowMaps() const { return myShadowMaps; }
+
+  //! Sets shadowmap.
+  void SetShadowMaps (const Handle(OpenGl_ShadowMapArray)& theMap) { myShadowMaps = theMap; }
+
+  //! Returns TRUE if shadowmap should be enabled when available; TRUE by default.
+  bool ToCastShadows() const { return myToCastShadows; }
+
+  //! Set if shadowmap should be enabled when available.
+  void SetCastShadows (bool theToCast) { myToCastShadows = theToCast; }
+
 private:
 
   Handle(Graphic3d_LightSet) myLightSources;     //!< List of OCCT light sources
   Standard_Integer           mySpecIBLMapLevels; //!< Number of mipmap levels used in specular IBL map (0 by default or in case of using non-PBR shading model)
+  Handle(OpenGl_ShadowMapArray) myShadowMaps;    //!< active shadowmap
+  Standard_Boolean           myToCastShadows;    //!< enable/disable shadowmap
 
 };
 
@@ -175,23 +195,23 @@ class OpenGl_OitState : public OpenGl_StateInterface
 public:
 
   //! Creates new uniform state.
-  OpenGl_OitState() : myToEnableWrite (false), myDepthFactor (0.5f) {}
+  OpenGl_OitState() : myOitMode (Graphic3d_RTM_BLEND_UNORDERED), myDepthFactor (0.5f) {}
 
   //! Sets the uniform values.
   //! @param theToEnableWrite [in] flag indicating whether color and coverage
   //!  values for OIT processing should be written by shader program.
   //! @param theDepthFactor [in] scalar factor [0-1] defining influence of depth
   //!  component of a fragment to its final coverage coefficient.
-  void Set (const bool  theToEnableWrite,
+  void Set (Graphic3d_RenderTransparentMethod theMode,
             const float theDepthFactor)
   {
-    myToEnableWrite = theToEnableWrite;
-    myDepthFactor   = static_cast<float> (Max (0.f, Min (1.f, theDepthFactor)));
+    myOitMode = theMode;
+    myDepthFactor = static_cast<float> (Max (0.f, Min (1.f, theDepthFactor)));
   }
 
   //! Returns flag indicating whether writing of output for OIT processing
   //! should be enabled/disabled.
-  bool ToEnableWrite() const { return myToEnableWrite; }
+  Graphic3d_RenderTransparentMethod ActiveMode() const { return myOitMode; }
 
   //! Returns factor defining influence of depth component of a fragment
   //! to its final coverage coefficient.
@@ -199,8 +219,8 @@ public:
 
 private:
 
-  bool  myToEnableWrite; //!< writing color and coverage.
-  float myDepthFactor;   //!< factor of depth influence to coverage.
+  Graphic3d_RenderTransparentMethod myOitMode;     //!< active OIT method for the main GLSL program
+  float                             myDepthFactor; //!< factor of depth influence to coverage
 };
 
 #endif // _OpenGl_State_HeaderFile

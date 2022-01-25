@@ -26,7 +26,6 @@
 #include <Standard_Real.hxx>
 #include <Standard_Boolean.hxx>
 #include <BRepBuilderAPI_FaceError.hxx>
-class StdFail_NotDone;
 class TopoDS_Face;
 class gp_Pln;
 class gp_Cylinder;
@@ -72,7 +71,7 @@ public:
   //! Not done.
   Standard_EXPORT BRepBuilderAPI_MakeFace();
   
-  //! Load a face. Usefull to add wires.
+  //! Load a face. useful to add wires.
   Standard_EXPORT BRepBuilderAPI_MakeFace(const TopoDS_Face& F);
   
   //! Make a face from a plane.

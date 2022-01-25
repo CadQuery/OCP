@@ -64,7 +64,7 @@ private:
                                  const Standard_Integer theMode) Standard_OVERRIDE;
 
   //! Dummy.
-  virtual void Compute (const Handle(PrsMgr_PresentationManager3d)& ,
+  virtual void Compute (const Handle(PrsMgr_PresentationManager)& ,
                         const Handle(Prs3d_Presentation)& ,
                         const Standard_Integer ) Standard_OVERRIDE {}
 
@@ -73,7 +73,6 @@ private:
 private:
   IVtkOCC_Shape::Handle myShape;
   Bnd_Box               myBndBox;
-  Handle(Prs3d_Drawer)  myOCCTDrawer;
 };
 
 #endif // __IVTKOCC_SELECTABLEOBJECT_H__

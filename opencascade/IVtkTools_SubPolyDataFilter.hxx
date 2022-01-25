@@ -60,7 +60,7 @@ public:
 protected:
   //! @brief Filter cells according to the given set of ids.
   //! Note: Data arrays are not passed through if filtering is turned on.
-  virtual int RequestData(vtkInformation *, vtkInformationVector **, vtkInformationVector *);
+  virtual int RequestData(vtkInformation *, vtkInformationVector **, vtkInformationVector *) Standard_OVERRIDE;
 
   IVtkTools_SubPolyDataFilter();
   virtual ~IVtkTools_SubPolyDataFilter();
@@ -70,6 +70,7 @@ protected:
   IVtk_IdTypeMap myIdsSet;
   const char*    myIdsArrayName;
   bool           myDoFiltering;
+  bool           myToCopyNormals;
 };
 
 #ifdef _MSC_VER

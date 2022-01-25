@@ -16,7 +16,7 @@
 #ifndef _OpenGl_Sampler_Header
 #define _OpenGl_Sampler_Header
 
-#include <OpenGl_Context.hxx>
+#include <Graphic3d_TextureParams.hxx>
 #include <OpenGl_Resource.hxx>
 
 class OpenGl_Texture;
@@ -27,11 +27,12 @@ class OpenGl_Sampler : public OpenGl_Resource
 {
   friend class OpenGl_Context;
   friend class OpenGl_Texture;
+  friend class OpenGl_Text;
   DEFINE_STANDARD_RTTIEXT(OpenGl_Sampler, OpenGl_Resource)
 public:
 
   //! Helpful constant defining invalid sampler identifier
-  static const GLuint NO_SAMPLER = 0;
+  static const unsigned int NO_SAMPLER = 0;
 
 public:
 
@@ -84,15 +85,15 @@ public:
 
   //! Sets specific sampler parameter.
   void SetParameter (const Handle(OpenGl_Context)& theCtx,
-                     GLenum theTarget,
-                     GLenum theParam,
-                     GLint  theValue)
+                     unsigned int theTarget,
+                     unsigned int theParam,
+                     Standard_Integer theValue)
   {
     setParameter (theCtx, this, theTarget, theParam, theValue);
   }
 
   //! Returns OpenGL sampler ID.
-  GLuint SamplerID() const
+  unsigned int SamplerID() const
   {
     return mySamplerID;
   }
@@ -124,9 +125,9 @@ protected:
   //! Sets specific sampler parameter.
   Standard_EXPORT static void setParameter (const Handle(OpenGl_Context)& theContext,
                                             OpenGl_Sampler* theSampler,
-                                            GLenum theTarget,
-                                            GLenum theParam,
-                                            GLint  theValue);
+                                            unsigned int theTarget,
+                                            unsigned int theParam,
+                                            Standard_Integer theValue);
 
   //! Apply sampler parameters.
   //! @param theCtx     [in] active OpenGL context
@@ -138,7 +139,7 @@ protected:
   Standard_EXPORT static void applySamplerParams (const Handle(OpenGl_Context)& theCtx,
                                                   const Handle(Graphic3d_TextureParams)& theParams,
                                                   OpenGl_Sampler* theSampler,
-                                                  const GLenum theTarget,
+                                                  const unsigned int theTarget,
                                                   const Standard_Integer theMaxMipLevel);
 
   //! Apply global texture state for deprecated OpenGL functionality.
@@ -155,7 +156,7 @@ protected:
 
   Handle(Graphic3d_TextureParams) myParams;          //!< texture parameters
   unsigned int                    mySamplerRevision; //!< modification counter of parameters related to sampler state
-  GLuint                          mySamplerID;       //!< OpenGL sampler object ID
+  unsigned int                    mySamplerID;       //!< OpenGL sampler object ID
   bool                            myIsImmutable;     //!< immutable flag preventing further modifications of sampler parameters, FALSE by default
 
 };

@@ -35,7 +35,13 @@ if( NOT EXISTS ${CMAKE_SOURCE_DIR}/OCP )
             all ocp.toml ${PLATFORM}
         WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
         COMMAND_ECHO STDOUT
+        RESULT_VARIABLE PYWRAP_RESULT
     )
+
+    if( ${PYWRAP_RESULT} GREATER 0)
+        message(FATAL_ERROR "Pywrap call failed")
+    endif()
+
 endif()
 
 add_subdirectory( ${CMAKE_SOURCE_DIR}/OCP )

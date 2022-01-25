@@ -25,7 +25,6 @@
 #include <Standard_Integer.hxx>
 class Interface_Graph;
 class Standard_Transient;
-class Interface_EntityIterator;
 
 
 //! Defines general form for classes of graph algorithms on
@@ -63,7 +62,7 @@ public:
   
   //! Returns Result under the exact form of an EntityIterator :
   //! Can be used when EntityIterator itself is required (as a
-  //! returned value for instance), whitout way for a sub-class
+  //! returned value for instance), without way for a sub-class
   Standard_EXPORT Interface_EntityIterator Result();
   
   //! Does the Evaluation before starting the iteration itself

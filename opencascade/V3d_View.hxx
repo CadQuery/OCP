@@ -24,13 +24,10 @@
 #include <Aspect_Handle.hxx>
 #include <Aspect_RenderingContext.hxx>
 #include <Aspect_TypeOfTriedronPosition.hxx>
-
 #include <Bnd_Box.hxx>
-
 #include <gp_Ax3.hxx>
 #include <gp_Dir.hxx>
 #include <gp_Pnt.hxx>
-
 #include <Graphic3d_BufferType.hxx>
 #include <Graphic3d_Camera.hxx>
 #include <Graphic3d_ClipPlane.hxx>
@@ -40,46 +37,26 @@
 #include <Graphic3d_SequenceOfHClipPlane.hxx>
 #include <Graphic3d_TypeOfShadingModel.hxx>
 #include <Graphic3d_Vertex.hxx>
-
 #include <Image_PixMap.hxx>
-
-#include <Standard_Transient.hxx>
-
 #include <Quantity_TypeOfColor.hxx>
-
-#include <Standard.hxx>
-#include <Standard_Address.hxx>
-#include <Standard_Boolean.hxx>
-#include <Standard_CString.hxx>
-#include <Standard_Integer.hxx>
-#include <Standard_Real.hxx>
-#include <Standard_Type.hxx>
-
 #include <TColStd_Array2OfReal.hxx>
 #include <TColStd_ListIteratorOfListOfTransient.hxx>
-
 #include <V3d_ImageDumpOptions.hxx>
+#include <V3d_ListOfLight.hxx>
+#include <V3d_Viewer.hxx>
 #include <V3d_Trihedron.hxx>
 #include <V3d_TypeOfAxe.hxx>
-
 #include <V3d_TypeOfBackfacingModel.hxx>
 #include <V3d_TypeOfOrientation.hxx>
 #include <V3d_TypeOfView.hxx>
 #include <V3d_TypeOfVisualization.hxx>
-#include <V3d_Viewer.hxx>
-#include <V3d_ViewerPointer.hxx>
 
 class Aspect_Grid;
 class Aspect_Window;
 class Graphic3d_Group;
 class Graphic3d_Structure;
 class Graphic3d_TextureEnv;
-class Standard_MultiplyDefined;
-class Standard_TypeMismatch;
-class V3d_BadValue;
-class V3d_UnMapped;
 
-class V3d_View;
 DEFINE_STANDARD_HANDLE(V3d_View, Standard_Transient)
 
 //! Defines the application object VIEW for the
@@ -128,7 +105,7 @@ public:
                                    const Standard_Integer theY2);
 
   //! Destroys the view.
-  Standard_EXPORT void Remove() const;
+  Standard_EXPORT void Remove();
 
   //! Deprecated, Redraw() should be used instead.
   Standard_EXPORT void Update() const;
@@ -198,6 +175,8 @@ public:
   //! displayed objects.
   Standard_EXPORT void ZFitAll (const Standard_Real theScaleFactor = 1.0) const;
 
+public:
+
   //! Defines the background color of the view by the color definition type and the three corresponding values.
   Standard_EXPORT void SetBackgroundColor (const Quantity_TypeOfColor theType,
                                            const Standard_Real theV1,
@@ -211,11 +190,11 @@ public:
   //! and the fill method (horizontal by default).
   Standard_EXPORT void SetBgGradientColors (const Quantity_Color& theColor1,
                                             const Quantity_Color& theColor2,
-                                            const Aspect_GradientFillMethod theFillStyle = Aspect_GFM_HOR,
+                                            const Aspect_GradientFillMethod theFillStyle = Aspect_GradientFillMethod_Horizontal,
                                             const Standard_Boolean theToUpdate = Standard_False);
 
   //! Defines the gradient background fill method of the view.
-  Standard_EXPORT void SetBgGradientStyle (const Aspect_GradientFillMethod theMethod = Aspect_GFM_HOR,
+  Standard_EXPORT void SetBgGradientStyle (const Aspect_GradientFillMethod theMethod = Aspect_GradientFillMethod_Horizontal,
                                            const Standard_Boolean theToUpdate = Standard_False);
 
   //! Defines the background texture of the view by supplying the texture image file name
@@ -240,17 +219,24 @@ public:
                                              Standard_Boolean                 theToUpdatePBREnv = Standard_True,
                                              Standard_Boolean                 theToUpdate = Standard_False);
 
-  //! Generates PBR specular probe and irradiance map
-  //! in order to provide environment indirect illumination in PBR shading model (Image Based Lighting).
-  //! The source of environment data is background cubemap.
-  //! If PBR is unavailable it does nothing.
-  //! If PBR is available but there is no cubemap being set to background it clears all IBL maps (see 'ClearPBREnvironment').
-  Standard_EXPORT void GeneratePBREnvironment (Standard_Boolean theToUpdate = Standard_False);
+  //! Returns TRUE if IBL (Image Based Lighting) from background cubemap is enabled.
+  Standard_EXPORT Standard_Boolean IsImageBasedLighting() const;
 
-  //! Fills PBR specular probe and irradiance map with white color.
-  //! So that environment indirect illumination will be constant and will be fully controlled by ambient light sources.
-  //! If PBR is unavailable it does nothing.
-  Standard_EXPORT void ClearPBREnvironment (Standard_Boolean theToUpdate = Standard_False);
+  //! Enables or disables IBL (Image Based Lighting) from background cubemap.
+  //! Has no effect if PBR is not used.
+  //! @param[in] theToEnableIBL enable or disable IBL from background cubemap
+  //! @param[in] theToUpdate redraw the view
+  Standard_EXPORT void SetImageBasedLighting (Standard_Boolean theToEnableIBL,
+                                              Standard_Boolean theToUpdate = Standard_False);
+
+  //! Activates IBL from background cubemap.
+  void GeneratePBREnvironment (Standard_Boolean theToUpdate = Standard_False) { SetImageBasedLighting (Standard_True, theToUpdate); }
+
+  //! Disables IBL from background cubemap; fills PBR specular probe and irradiance map with white color.
+  void ClearPBREnvironment (Standard_Boolean theToUpdate = Standard_False) { SetImageBasedLighting (Standard_True, theToUpdate); }
+
+  //! Sets the environment texture to use. No environment texture by default.
+  Standard_EXPORT void SetTextureEnv (const Handle(Graphic3d_TextureEnv)& theTexture);
 
   //! Definition of an axis from its origin and
   //! its orientation .
@@ -259,11 +245,7 @@ public:
   Standard_EXPORT void SetAxis (const Standard_Real X, const Standard_Real Y, const Standard_Real Z,
                                 const Standard_Real Vx, const Standard_Real Vy, const Standard_Real Vz);
 
-  //! Defines the shading model for the visualization. Various models are available.
-  Standard_EXPORT void SetShadingModel (const Graphic3d_TypeOfShadingModel theShadingModel);
-
-  //! Sets the environment texture to use. No environment texture by default.
-  Standard_EXPORT void SetTextureEnv (const Handle(Graphic3d_TextureEnv)& theTexture);
+public:
 
   //! Defines the visualization type in the view.
   Standard_EXPORT void SetVisualization (const V3d_TypeOfVisualization theType);
@@ -285,6 +267,16 @@ public:
 
   //! sets the immediate update mode and returns the previous one.
   Standard_EXPORT Standard_Boolean SetImmediateUpdate (const Standard_Boolean theImmediateUpdate);
+
+  //! Returns trihedron object.
+  const Handle(V3d_Trihedron)& Trihedron (bool theToCreate = true)
+  {
+    if (myTrihedron.IsNull() && theToCreate)
+    {
+      myTrihedron = new V3d_Trihedron();
+    }
+    return myTrihedron;
+  }
 
   //! Customization of the ZBUFFER Triedron.
   //! XColor,YColor,ZColor - colors of axis
@@ -484,7 +476,7 @@ public:
   Standard_EXPORT void SetCenter (const Standard_Integer theXp, const Standard_Integer theYp);
 
   //! Defines the view projection size in its maximum dimension,
-  //! keeping the inital height/width ratio unchanged.
+  //! keeping the initial height/width ratio unchanged.
   Standard_EXPORT void SetSize (const Standard_Real theSize);
 
   //! Defines the Depth size of the view
@@ -704,8 +696,11 @@ public:
   //! the visual axis measured from the Y axis of the screen.
   Standard_EXPORT Standard_Real Twist() const;
 
-  //! Returns the current shading model.
+  //! Returns the current shading model; Graphic3d_TypeOfShadingModel_Phong by default.
   Standard_EXPORT Graphic3d_TypeOfShadingModel ShadingModel() const;
+
+  //! Defines the shading model for the visualization.
+  Standard_EXPORT void SetShadingModel (const Graphic3d_TypeOfShadingModel theShadingModel);
 
   Standard_EXPORT Handle(Graphic3d_TextureEnv) TextureEnv() const;
 
@@ -866,18 +861,11 @@ public:
   }
 
   //! Manages display of the back faces
-  //! When <aModel> is TOBM_AUTOMATIC the object backfaces
-  //! are displayed only for surface objects and
-  //! never displayed for solid objects.
-  //! this was the previous mode.
-  //! <aModel> is TOBM_ALWAYS_DISPLAYED the object backfaces
-  //! are always displayed both for surfaces or solids.
-  //! <aModel> is TOBM_NEVER_DISPLAYED the object backfaces
-  //! are never displayed.
-  Standard_EXPORT void SetBackFacingModel (const V3d_TypeOfBackfacingModel theModel = V3d_TOBM_AUTOMATIC);
+  Standard_EXPORT void SetBackFacingModel (const Graphic3d_TypeOfBackfacingModel theModel = Graphic3d_TypeOfBackfacingModel_Auto);
 
-  //! Returns current state of the back faces display
-  Standard_EXPORT V3d_TypeOfBackfacingModel BackFacingModel() const;
+  //! Returns current state of the back faces display; Graphic3d_TypeOfBackfacingModel_Auto by default,
+  //! which means that backface culling is defined by each presentation.
+  Standard_EXPORT Graphic3d_TypeOfBackfacingModel BackFacingModel() const;
 
   //! Adds clip plane to the view. The composition of clip planes truncates the
   //! rendering space to convex volume. Number of supported clip planes can be consulted
@@ -890,6 +878,10 @@ public:
   //! @param thePlane [in] the clip plane to be removed from view.
   Standard_EXPORT virtual void RemoveClipPlane (const Handle(Graphic3d_ClipPlane)& thePlane);
 
+  //! Get clip planes.
+  //! @return sequence clip planes that have been set for the view
+  Standard_EXPORT const Handle(Graphic3d_SequenceOfHClipPlane)& ClipPlanes() const;
+
   //! Sets sequence of clip planes to the view. The planes that have been set
   //! before are removed from the view. The composition of clip planes
   //! truncates the rendering space to convex volume. Number of supported
@@ -898,17 +890,6 @@ public:
   //! exceed the limit are ignored during rendering.
   //! @param thePlanes [in] the clip planes to set.
   Standard_EXPORT void SetClipPlanes (const Handle(Graphic3d_SequenceOfHClipPlane)& thePlanes);
-
-  Standard_DEPRECATED("This method is deprecated - overload taking Handle should be used instead")
-  void SetClipPlanes (const Graphic3d_SequenceOfHClipPlane& thePlanes)
-  {
-    Handle(Graphic3d_SequenceOfHClipPlane) aPlanes = new Graphic3d_SequenceOfHClipPlane (thePlanes);
-    SetClipPlanes (aPlanes);
-  }
-
-  //! Get clip planes.
-  //! @return sequence clip planes that have been set for the view
-  Standard_EXPORT const Handle(Graphic3d_SequenceOfHClipPlane)& ClipPlanes() const;
 
   //! Returns the MAX number of clipping planes associated to the view.
   Standard_EXPORT Standard_Integer PlaneLimit() const;
@@ -1042,7 +1023,7 @@ protected:
 
 private:
 
-  V3d_ViewerPointer MyViewer;
+  V3d_Viewer* MyViewer;
   V3d_ListOfLight myActiveLights;
   gp_Dir myDefaultViewAxis;
   gp_Pnt myDefaultViewPoint;

@@ -28,9 +28,6 @@
 #include <TopTools_SequenceOfShape.hxx>
 
 class LocOpe_WiresOnShape;
-class StdFail_NotDone;
-class Standard_ConstructionError;
-class Standard_NoSuchObject;
 class TopoDS_Shape;
 class TopoDS_Wire;
 class TopoDS_Face;
@@ -65,7 +62,7 @@ public:
   BRepFeat_SplitShape(const TopoDS_Shape& S);
 
   //! Add splitting edges or wires for whole initial shape
-  //! withot additional specification edge->face, edge->edge
+  //! without additional specification edge->face, edge->edge
   //! This method puts edge on the corresponding faces from initial shape
   Standard_Boolean Add(const TopTools_SequenceOfShape& theEdges);
   
@@ -109,7 +106,7 @@ public:
   Standard_EXPORT const TopTools_ListOfShape& Right() const;
   
   //! Builds the cut and the resulting faces and edges as well.
-  Standard_EXPORT void Build() Standard_OVERRIDE;
+  Standard_EXPORT void Build(const Message_ProgressRange& theRange = Message_ProgressRange()) Standard_OVERRIDE;
   
   //! Returns true if the shape has been deleted.
   Standard_EXPORT virtual Standard_Boolean IsDeleted (const TopoDS_Shape& S) Standard_OVERRIDE;

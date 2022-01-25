@@ -201,9 +201,12 @@ public:
     return myIsValidDT;
   }
 
+  //! Dumps the content of me into the stream
+  Standard_EXPORT void DumpJson (Standard_OStream& theOStream, Standard_Integer theDepth = -1) const;
+
   DEFINE_STANDARD_RTTIEXT(XCAFDimTolObjects_DatumObject,Standard_Transient)
 
-private: 
+private:
 
   Handle(TCollection_HAsciiString) myName;
   XCAFDimTolObjects_DatumModifiersSequence myModifiers;
@@ -214,10 +217,10 @@ private:
   Standard_Boolean myIsDTarget;
   Standard_Boolean myIsValidDT;
   XCAFDimTolObjects_DatumTargetType myDTargetType;
-  gp_Ax2 myAxis;
   Standard_Real myLength;
   Standard_Real myWidth;
   Standard_Integer myDatumTargetNumber;
+  gp_Ax2 myAxis;
   gp_Ax2 myPlane;
   gp_Pnt myPnt;
   gp_Pnt myPntText;

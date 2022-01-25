@@ -29,22 +29,19 @@
 #include <Standard_CString.hxx>
 class Interface_Protocol;
 class Interface_CopyControl;
-class Standard_NoSuchObject;
-class Interface_Graph;
 class Interface_CopyTool;
 class Interface_EntityIterator;
 class Interface_InterfaceModel;
 class Standard_Transient;
 class IFSelect_GeneralModifier;
 class Interface_Check;
-class Interface_CheckIterator;
 
 
-//! This class gathers various informations used by Model Modifiers
+//! This class gathers various information used by Model Modifiers
 //! apart from the target model itself, and the CopyTool which
 //! must be passed directly.
 //!
-//! These informations report to original data : model, entities,
+//! These information report to original data : model, entities,
 //! and the selection list if there is one : it allows to query
 //! about such or such starting entity, or result entity, or
 //! iterate on selection list ...
@@ -59,8 +56,7 @@ public:
 
   DEFINE_STANDARD_ALLOC
 
-  
-  //! Prepares a ContextModif with these informations :
+  //! Prepares a ContextModif with these information :
   //! - the graph established from original model (target passed
   //! directly to Modifier)
   //! - the CopyTool which detains the CopyControl, which maps
@@ -71,7 +67,7 @@ public:
   //! transferred entities (no filter active)
   Standard_EXPORT IFSelect_ContextModif(const Interface_Graph& graph, const Interface_CopyTool& TC, const Standard_CString filename = "");
   
-  //! Prepares a ContextModif with these informations :
+  //! Prepares a ContextModif with these information :
   //! - the graph established from original model (target passed
   //! directly to Modifier)
   //! - an optional file name (for file output)
@@ -172,8 +168,8 @@ public:
   
   //! Traces the modification of the current entity (see above,
   //! ValueOriginal and ValueResult) for default trace level >= 2.
-  //! To be called on each indivudual entity really modified
-  //! <mess> is an optionnal additional message
+  //! To be called on each individual entity really modified
+  //! <mess> is an optional additional message
   Standard_EXPORT void Trace (const Standard_CString mess = "");
   
   //! Adds a Check to the CheckList. If it is empty, nothing is done
@@ -206,18 +202,7 @@ public:
   //! Returns the complete CheckList
   Standard_EXPORT Interface_CheckIterator CheckList() const;
 
-
-
-
-protected:
-
-
-
-
-
 private:
-
-
 
   Interface_Graph thegraf;
   Handle(Interface_Protocol) theprot;
@@ -229,13 +214,6 @@ private:
   Standard_Integer thecurr;
   Standard_Integer thecurt;
 
-
 };
-
-
-
-
-
-
 
 #endif // _IFSelect_ContextModif_HeaderFile

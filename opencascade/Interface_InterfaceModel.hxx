@@ -31,11 +31,7 @@
 class Interface_Check;
 class TCollection_HAsciiString;
 class Interface_GTool;
-class Standard_OutOfRange;
-class Standard_NoSuchObject;
-class Interface_InterfaceMismatch;
 class Interface_Protocol;
-class Standard_Transient;
 class Interface_ReportEntity;
 class Interface_CheckIterator;
 class Interface_GeneralLib;
@@ -114,7 +110,7 @@ public:
   //! addition to the standard Memory Manager; can be redefined
   Standard_EXPORT virtual void ClearEntities();
   
-  //! Erases informations about labels, if any : specific to each
+  //! Erases information about labels, if any : specific to each
   //! norm
   Standard_EXPORT virtual void ClearLabels() = 0;
   
@@ -199,12 +195,12 @@ public:
   
   //! Removes the ReportEntity attached to Entity <num>. Returns
   //! True if done, False if no ReportEntity was attached to <num>.
-  //! Warning : the caller must assume that this clearing is meaningfull
+  //! Warning : the caller must assume that this clearing is meaningful
   Standard_EXPORT Standard_Boolean ClearReportEntity (const Standard_Integer num);
   
   //! Sets or Replaces a ReportEntity for the Entity <num>. Returns
   //! True if Report is replaced, False if it has been replaced
-  //! Warning : the caller must assume that this setting is meaningfull
+  //! Warning : the caller must assume that this setting is meaningful
   Standard_EXPORT Standard_Boolean SetReportEntity (const Standard_Integer num, const Handle(Interface_ReportEntity)& rep);
   
   //! Adds a ReportEntity as such. Returns False if the concerned
@@ -315,11 +311,11 @@ public:
   Standard_EXPORT Interface_EntityIterator Entities() const;
   
   //! Returns the list of all ReportEntities, i.e. data about
-  //! Entities read with Error or Warning informations
+  //! Entities read with Error or Warning information
   //! (each item has to be casted to Report Entity then it can be
   //! queried for Concerned Entity, Content, Check ...)
   //! By default, returns the main reports, is <semantic> is True it
-  //! returns the list for sematic checks
+  //! returns the list for semantic checks
   Standard_EXPORT Interface_EntityIterator Reports (const Standard_Boolean semantic = Standard_False) const;
   
   //! Returns the list of ReportEntities which redefine data

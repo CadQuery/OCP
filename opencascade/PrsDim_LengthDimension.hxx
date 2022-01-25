@@ -26,7 +26,7 @@
 
 DEFINE_STANDARD_HANDLE (PrsDim_LengthDimension, PrsDim_Dimension)
 
-//! Length dimension. Can be constructued:
+//! Length dimension. Can be constructed:
 //! - Between two generic points.
 //! - Between two vertices.
 //! - Between two faces.
@@ -36,7 +36,7 @@ DEFINE_STANDARD_HANDLE (PrsDim_LengthDimension, PrsDim_Dimension)
 //! In case of two points (vertices) or one linear edge the user-defined plane
 //! that includes this geometry is necessary to be set.
 //!
-//! In case of face-edge, edge-vertex or face-face lengthes the automatic plane
+//! In case of face-edge, edge-vertex or face-face lengths the automatic plane
 //! computing is allowed. For this plane the third point is found on the
 //! edge or on the face.
 //!
@@ -48,6 +48,10 @@ class PrsDim_LengthDimension : public PrsDim_Dimension
 {
   DEFINE_STANDARD_RTTIEXT(PrsDim_LengthDimension, PrsDim_Dimension)
 public:
+
+  //! Construct an empty length dimension.
+  //! @sa SetMeasuredGeometry(), SetMeasuredShapes() for initialization.
+  Standard_EXPORT PrsDim_LengthDimension();
 
   //! Construct length dimension between face and edge.
   //! Here dimension can be built without user-defined plane.
@@ -88,23 +92,23 @@ public:
 
 public:
 
-  //! @return first attachement point.
+  //! @return first attachment point.
   const gp_Pnt& FirstPoint() const { return myFirstPoint; }
 
-  //! @return second attachement point.
+  //! @return second attachment point.
   const gp_Pnt& SecondPoint() const { return mySecondPoint; }
 
-  //! @return first attachement shape.
+  //! @return first attachment shape.
   const TopoDS_Shape& FirstShape() const { return myFirstShape; }
 
-  //! @return second attachement shape.
+  //! @return second attachment shape.
   const TopoDS_Shape& SecondShape() const { return mySecondShape; }
 
 public:
 
   //! Measure distance between two points.
   //! The dimension will become invalid if the new distance between
-  //! attachement points is less than Precision::Confusion().
+  //! attachment points is less than Precision::Confusion().
   //! @param theFirstPoint [in] the first point.
   //! @param theSecondPoint [in] the second point.
   //! @param thePlane [in] the user-defined plane
@@ -176,7 +180,7 @@ protected:
   //! @return dimension value
   Standard_EXPORT Standard_Real ComputeValue() const Standard_OVERRIDE;
 
-  Standard_EXPORT virtual void Compute (const Handle(PrsMgr_PresentationManager3d)& thePresentationManager,
+  Standard_EXPORT virtual void Compute (const Handle(PrsMgr_PresentationManager)& thePresentationManager,
                                         const Handle(Prs3d_Presentation)& thePresentation,
                                         const Standard_Integer theMode = 0) Standard_OVERRIDE;
 
@@ -208,8 +212,7 @@ protected:
   //! Auxiliary method for InitTwoShapesPoints()
   //! in case of the distance between edge and vertex.
   //! Finds the point on the edge that is the closest one to <theVertex>.
-  //! @param theEdgeDir [out] is the direction on the edge to build
-  //! automatical plane.
+  //! @param theEdgeDir [out] is the direction on the edge to build automatic plane.
   Standard_EXPORT Standard_Boolean InitEdgeVertexLength (const TopoDS_Edge& theEdge,
                                                          const TopoDS_Vertex& theVertex,
                                                          gp_Dir& theEdgeDir,
@@ -220,9 +223,8 @@ protected:
   //! The first attachment point is first parameter point from <theEdge>.
   //! Find the second attachment point which belongs to <theFace>
   //! Iterate over the edges of the face and find the closest point according
-  //! to finded point on edge.
-  //! @param theEdgeDir [out] is the direction on the edge to build
-  //! automatical plane.
+  //! to found point on edge.
+  //! @param theEdgeDir [out] is the direction on the edge to build automatic plane.
   Standard_EXPORT Standard_Boolean InitEdgeFaceLength (const TopoDS_Edge& theEdge,
                                                        const TopoDS_Face& theFace,
                                                        gp_Dir& theEdgeDir);
@@ -236,7 +238,7 @@ protected:
   //! Initialization of two attach points in case of one owner shape.
   Standard_EXPORT Standard_Boolean InitOneShapePoints (const TopoDS_Shape& theShape);
 
-private:
+protected:
 
   gp_Pnt myFirstPoint;
   gp_Pnt mySecondPoint;

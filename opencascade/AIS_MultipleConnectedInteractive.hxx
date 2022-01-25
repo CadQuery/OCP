@@ -44,9 +44,9 @@ public:
     return connect (theAnotherObj, theLocation, theTrsfPers);
   }
 
-  Standard_EXPORT virtual AIS_KindOfInteractive Type() const Standard_OVERRIDE;
-  
-  Standard_EXPORT virtual Standard_Integer Signature() const Standard_OVERRIDE;
+  virtual AIS_KindOfInteractive Type() const Standard_OVERRIDE { return AIS_KindOfInteractive_Object; }
+
+  virtual Standard_Integer Signature() const Standard_OVERRIDE { return 1; }
   
   //! Returns true if the object is connected to others.
   Standard_EXPORT Standard_Boolean HasConnection() const;
@@ -99,15 +99,6 @@ public: // short aliases to Connect() method
     return connect (theAnotherObj, new TopLoc_Datum3D (theLocation), theTrsfPers);
   }
 
-  Standard_DEPRECATED("This method is deprecated - Connect() taking Graphic3d_TransformPers should be called instead")
-  Handle(AIS_InteractiveObject) Connect (const Handle(AIS_InteractiveObject)& theInteractive,
-                                         const gp_Trsf& theLocation,
-                                         const Graphic3d_TransModeFlags& theTrsfPersFlag,
-                                         const gp_Pnt& theTrsfPersPoint)
-  {
-    return connect (theInteractive, new TopLoc_Datum3D (theLocation), Graphic3d_TransformPers::FromDeprecatedParams (theTrsfPersFlag, theTrsfPersPoint));
-  }
-
 protected:
   
   //! this method is redefined virtual;
@@ -116,7 +107,9 @@ protected:
   //! compute anything, but just uses the
   //! presentation of this last object, with
   //! a transformation if there's one stored.
-  Standard_EXPORT virtual void Compute (const Handle(PrsMgr_PresentationManager3d)& aPresentationManager, const Handle(Prs3d_Presentation)& aPresentation, const Standard_Integer aMode = 0) Standard_OVERRIDE;
+  Standard_EXPORT virtual void Compute (const Handle(PrsMgr_PresentationManager)& thePrsMgr,
+                                        const Handle(Prs3d_Presentation)& thePrs,
+                                        const Standard_Integer theMode) Standard_OVERRIDE;
 
   //! Establishes the connection between the Connected Interactive Object, theInteractive, and its reference.
   //! Locates instance in theLocation and applies specified transformation persistence mode.

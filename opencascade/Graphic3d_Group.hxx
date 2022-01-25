@@ -38,6 +38,7 @@
 class Graphic3d_Structure;
 class Graphic3d_ArrayOfPrimitives;
 class Graphic3d_Text;
+class Graphic3d_TransformPers;
 
 //! This class allows the definition of groups
 //! of primitives inside of graphic objects (presentations).
@@ -76,7 +77,7 @@ class Graphic3d_Group : public Standard_Transient
 
 public:
 
-  //! Supress all primitives and attributes of <me>.
+  //! Suppress all primitives and attributes of <me>.
   //! To clear group without update in Graphic3d_StructureManager
   //! pass Standard_False as <theUpdateStructureMgr>. This
   //! used on context and viewer destruction, when the pointer
@@ -85,10 +86,10 @@ public:
   //! cross-reference);
   Standard_EXPORT virtual void Clear (const Standard_Boolean theUpdateStructureMgr = Standard_True);
 
-  //! Supress the group <me> in the structure.
+  //! Suppress the group <me> in the structure.
   Standard_EXPORT virtual ~Graphic3d_Group();
 
-  //! Supress the group <me> in the structure.
+  //! Suppress the group <me> in the structure.
   //! Warning: No more graphic operations in <me> after this call.
   //! Modifies the current modelling transform persistence (pan, zoom or rotate)
   //! Get the current modelling transform persistence (pan, zoom or rotate)
@@ -125,9 +126,6 @@ public:
   //! Adds an array of primitives for display
   Standard_EXPORT void AddPrimitiveArray (const Handle(Graphic3d_ArrayOfPrimitives)& thePrim, const Standard_Boolean theToEvalMinMax = Standard_True);
 
-  //! Creates a primitive array with single marker using AddPrimitiveArray().
-  Standard_EXPORT void Marker (const Graphic3d_Vertex& thePoint, const Standard_Boolean theToEvalMinMax = Standard_True);
-
 public:
 
   //! sets the stencil test to theIsEnabled state;
@@ -135,6 +133,12 @@ public:
 
   //! sets the flipping to theIsEnabled state.
   Standard_EXPORT virtual void SetFlippingOptions (const Standard_Boolean theIsEnabled, const gp_Ax2& theRefPlane) = 0;
+
+  //! Return transformation persistence.
+  const Handle(Graphic3d_TransformPers)& TransformPersistence() const { return myTrsfPers; }
+
+  //! Set transformation persistence.
+  Standard_EXPORT virtual void SetTransformPersistence (const Handle(Graphic3d_TransformPers)& theTrsfPers);
 
   //! Returns true if the group contains Polygons, Triangles or Quadrangles.
   bool ContainsFacet() const { return myContainsFacet; }
@@ -172,6 +176,9 @@ public:
 
 //! @name obsolete methods
 public:
+
+  Standard_DEPRECATED("Deprecated method Marker(), pass Graphic3d_ArrayOfPoints to AddPrimitiveArray() instead")
+  Standard_EXPORT void Marker (const Graphic3d_Vertex& thePoint, const Standard_Boolean theToEvalMinMax = Standard_True);
 
   //! Creates the string <AText> at position <APoint>.
   //! The 3D point of attachment is projected. The text is
@@ -290,6 +297,7 @@ protected:
 
 protected:
 
+  Handle(Graphic3d_TransformPers) myTrsfPers; //!< current transform persistence
   Graphic3d_Structure* myStructure;     //!< pointer to the parent structure
   Graphic3d_BndBox4f   myBounds;        //!< bounding box
   bool                 myIsClosed;      //!< flag indicating closed volume

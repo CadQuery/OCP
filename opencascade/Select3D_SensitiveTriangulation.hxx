@@ -25,6 +25,7 @@
 #include <SelectMgr_SelectingVolumeManager.hxx>
 #include <Select3D_SensitiveSet.hxx>
 
+class Poly_Triangle;
 class Poly_Triangulation;
 
 //! A framework to define selection of a sensitive entity made of a set of triangles.
@@ -53,6 +54,29 @@ public:
                                                    const Handle(TColStd_HArray1OfInteger)& theFreeEdges,
                                                    const gp_Pnt& theCOG,
                                                    const Standard_Boolean theIsInterior);
+public:
+
+  //! Get last detected triangle.
+  //! @param theTriangle [out] triangle node indexes
+  //! @return TRUE if defined
+  Standard_EXPORT bool LastDetectedTriangle (Poly_Triangle& theTriangle) const;
+
+  //! Get last detected triangle.
+  //! @param theTriangle [out] triangle node indexes
+  //! @param theTriNodes [out] triangle nodes (with pre-applied transformation)
+  //! @return TRUE if defined
+  Standard_EXPORT bool LastDetectedTriangle (Poly_Triangle& theTriangle,
+                                             gp_Pnt theTriNodes[3]) const;
+
+  //! Return index of last detected triangle within [1..NbTris] range, or -1 if undefined.
+  Standard_Integer LastDetectedTriangleIndex() const
+  {
+    return (myDetectedIdx != -1 && mySensType == Select3D_TOS_INTERIOR && !myBVHPrimIndexes.IsNull())
+          ? myBVHPrimIndexes->Value (myDetectedIdx) + 1
+          : -1;
+  }
+
+public:
 
   //! Returns the amount of nodes in triangulation
   Standard_EXPORT virtual Standard_Integer NbSubElements() const Standard_OVERRIDE;
@@ -96,7 +120,14 @@ public:
   //! Dumps the content of me into the stream
   Standard_EXPORT virtual void DumpJson (Standard_OStream& theOStream, Standard_Integer theDepth = -1) const Standard_OVERRIDE;
 
+  //! Checks whether one or more entities of the set overlap current selecting volume.
+  Standard_EXPORT virtual Standard_Boolean Matches (SelectBasics_SelectingVolumeManager& theMgr,
+                                                    SelectBasics_PickResult& thePickResult) Standard_OVERRIDE;
+
 protected:
+
+  //! Compute bounding box.
+  void computeBoundingBox();
 
   //! Inner function for transformation application to bounding
   //! box of the triangulation
@@ -118,7 +149,7 @@ private:
                                                             Standard_Integer theElemIdx,
                                                             Standard_Boolean theIsFullInside) Standard_OVERRIDE;
 
-private:
+protected:
 
   Handle(Poly_Triangulation)       myTriangul;
   TopLoc_Location                  myInitLocation;

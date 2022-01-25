@@ -17,25 +17,18 @@
 #ifndef _GeomLib_HeaderFile
 #define _GeomLib_HeaderFile
 
-#include <Standard.hxx>
-#include <Standard_DefineAlloc.hxx>
-#include <Standard_Handle.hxx>
-
-#include <Standard_Real.hxx>
+#include <Adaptor3d_Surface.hxx>
 #include <GeomAbs_Shape.hxx>
-#include <Standard_Integer.hxx>
-#include <Standard_Boolean.hxx>
 #include <TColgp_Array1OfPnt.hxx>
 #include <TColStd_Array1OfReal.hxx>
 #include <TColStd_HArray1OfReal.hxx>
 #include <TColStd_SequenceOfReal.hxx>
+
 class Geom_Curve;
 class gp_Ax2;
 class Geom2d_Curve;
 class gp_GTrsf2d;
 class Adaptor3d_CurveOnSurface;
-class Adaptor2d_HCurve2d;
-class Adaptor3d_HSurface;
 class Geom_BoundedCurve;
 class gp_Pnt;
 class gp_Vec;
@@ -45,17 +38,8 @@ class Adaptor3d_Curve;
 class Geom_BSplineSurface;
 class Geom_BezierSurface;
 class Geom_Surface;
-class gp_Pnt2d;
-class GeomLib_MakeCurvefromApprox;
-class GeomLib_Interpolate;
-class GeomLib_DenominatorMultiplier;
-class GeomLib_CheckBSplineCurve;
-class GeomLib_Check2dBSplineCurve;
-class GeomLib_IsPlanarSurface;
-class GeomLib_Tool;
-class GeomLib_PolyFunc;
-class GeomLib_LogSample;
 
+typedef class Adaptor2d_Curve2d Adaptor2d_Curve2d;
 
 //! Geom    Library.    This   package   provides   an
 //! implementation of  functions for basic computation
@@ -141,18 +125,18 @@ public:
   //! Tol is used to determine singular cases.
   Standard_EXPORT static void AxeOfInertia (const TColgp_Array1OfPnt& Points, gp_Ax2& Axe, Standard_Boolean& IsSingular, const Standard_Real Tol = 1.0e-7);
   
-  //! Compute principale axes  of  inertia, and dispertion
+  //! Compute principale axes  of  inertia, and dispersion
   //! value  of some  points.
   Standard_EXPORT static void Inertia (const TColgp_Array1OfPnt& Points, gp_Pnt& Bary, gp_Dir& XDir, gp_Dir& YDir, Standard_Real& Xgap, Standard_Real& YGap, Standard_Real& ZGap);
   
   //! Warning!  This assume that the InParameter is an increasing sequence
   //! of real number and it will not check for that : Unpredictable
   //! result can happen if this is not satisfied. It is the caller
-  //! responsability to check for that property.
+  //! responsibility to check for that property.
   //!
   //! This  method makes uniform NumPoints segments S1,...SNumPoints out
   //! of the segment defined by the first parameter and the
-  //! last  parameter ofthe  InParameter ; keeps   only one
+  //! last  parameter of the  InParameter ; keeps   only one
   //! point of the InParameters set of parameter in each of
   //! the uniform segments taking care of the first and the
   //! last   parameters. For the ith segment the element of
@@ -190,13 +174,13 @@ public:
   //! the maximum of the evaluated distance
   Standard_EXPORT static void EvalMaxParametricDistance (const Adaptor3d_Curve& Curve, const Adaptor3d_Curve& AReferenceCurve, const Standard_Real Tolerance, const TColStd_Array1OfReal& Parameters, Standard_Real& MaxDistance);
   
-  //! this will compute the maximum distancef at the parameters
+  //! this will compute the maximum distance at the parameters
   //! given in the Parameters array by projecting from the Curve
   //! to the reference curve and taking the minimum distance
   //! Than the maximum will be taken on those minimas.
   Standard_EXPORT static void EvalMaxDistanceAlongParameter (const Adaptor3d_Curve& Curve, const Adaptor3d_Curve& AReferenceCurve, const Standard_Real Tolerance, const TColStd_Array1OfReal& Parameters, Standard_Real& MaxDistance);
   
-  //! Cancel,on the boudaries,the denominator  first derivative
+  //! Cancel,on the boundaries,the denominator  first derivative
   //! in  the directions wished by the user and set its value to 1.
   Standard_EXPORT static void CancelDenominatorDerivative (Handle(Geom_BSplineSurface)& BSurf, const Standard_Boolean UDirection, const Standard_Boolean VDirection);
   
@@ -244,7 +228,7 @@ public:
   //! @param theParam     Line parameter.
   //! @param theIsForward Flag indicating forward parameterization on a isoline.
   //! @return Standard_True when 2d curve is a line and Standard_False otherwise.
-  Standard_EXPORT static Standard_Boolean isIsoLine (const Handle(Adaptor2d_HCurve2d) theC2D,
+  Standard_EXPORT static Standard_Boolean isIsoLine (const Handle(Adaptor2d_Curve2d) theC2D,
                                                      Standard_Boolean&                theIsU,
                                                      Standard_Real&                   theParam,
                                                      Standard_Boolean&                theIsForward);
@@ -256,8 +240,8 @@ public:
   //! @param theParam Line parameter.
   //! @param theIsForward Flag indicating forward parameterization on a isoline.
   //! @return Standard_True when 3d curve is built and Standard_False otherwise.
-  Standard_EXPORT static Handle(Geom_Curve) buildC3dOnIsoLine (const Handle(Adaptor2d_HCurve2d) theC2D,
-                                                               const Handle(Adaptor3d_HSurface) theSurf,
+  Standard_EXPORT static Handle(Geom_Curve) buildC3dOnIsoLine (const Handle(Adaptor2d_Curve2d) theC2D,
+                                                               const Handle(Adaptor3d_Surface) theSurf,
                                                                const Standard_Real              theFirst,
                                                                const Standard_Real              theLast,
                                                                const Standard_Real              theTolerance,

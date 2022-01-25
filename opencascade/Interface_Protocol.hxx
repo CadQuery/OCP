@@ -24,8 +24,6 @@
 #include <Standard_Integer.hxx>
 #include <Standard_Boolean.hxx>
 #include <Standard_Type.hxx>
-class Interface_InterfaceError;
-class Standard_Transient;
 class Interface_Graph;
 class Interface_Check;
 class Interface_InterfaceModel;
@@ -95,7 +93,7 @@ public:
   //!
   //! Very specific of each norm, i.e. of each protocol : the
   //! uppest level Protocol assumes it, it can call GlobalCheck of
-  //! its ressources only if it is necessary
+  //! its resources only if it is necessary
   //!
   //! Default does nothing, can be redefined
   Standard_EXPORT virtual Standard_Boolean GlobalCheck (const Interface_Graph& G, Handle(Interface_Check)& ach) const;

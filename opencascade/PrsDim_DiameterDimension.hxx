@@ -24,7 +24,7 @@
 
 DEFINE_STANDARD_HANDLE(PrsDim_DiameterDimension, PrsDim_Dimension)
 
-//! Diameter dimension. Can be constructued:
+//! Diameter dimension. Can be constructed:
 //! - On generic circle.
 //! - On generic circle with user-defined anchor point on that circle
 //!   (dimension plane is oriented to follow the anchor point).
@@ -137,9 +137,9 @@ protected:
 
   Standard_EXPORT virtual Standard_Real ComputeValue() const Standard_OVERRIDE;
 
-  Standard_EXPORT virtual void Compute (const Handle(PrsMgr_PresentationManager3d)& thePresentationManager,
+  Standard_EXPORT virtual void Compute (const Handle(PrsMgr_PresentationManager)& thePrsMgr,
                                         const Handle(Prs3d_Presentation)& thePresentation,
-                                        const Standard_Integer theMode = 0) Standard_OVERRIDE;
+                                        const Standard_Integer theMode) Standard_OVERRIDE;
 
   Standard_EXPORT virtual void ComputeFlyoutSelection (const Handle(SelectMgr_Selection)& theSelection,
                                                        const Handle(SelectMgr_EntityOwner)& theEntityOwner) Standard_OVERRIDE;

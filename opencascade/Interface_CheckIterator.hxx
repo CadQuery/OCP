@@ -31,7 +31,6 @@
 #include <TColStd_HSequenceOfTransient.hxx>
 class Interface_InterfaceModel;
 class Interface_IntVal;
-class Standard_NoSuchObject;
 class Interface_Check;
 class Standard_Transient;
 
@@ -164,7 +163,7 @@ public:
   Standard_EXPORT void Next() const;
   
   //! Returns Check currently Iterated
-  //! It brings all other informations (status, messages, ...)
+  //! It brings all other information (status, messages, ...)
   //! The Number of the Entity in the Model is given by Number below
   Standard_EXPORT const Handle(Interface_Check)& Value() const;
   

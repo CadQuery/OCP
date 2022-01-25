@@ -11,13 +11,16 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
+#ifndef Interface_Statics_HeaderFile
+#define Interface_Statics_HeaderFile
+
 //  Macros to help static Handles not to be "constructed" before main run
 //  In order to avoid it, the Handle to be statically reserved is encapsulated
 //  in a structure itself designated through a Null Pointer :
 //  Only the pointer is declared static, and initialized to NULL : then,
 //  there is no routine to call for static construction
 
-//  Remember that the objet designated by a static Handle should not be created
+//  Remember that the object designated by a static Handle should not be created
 //  in the static declaration, but must anyway be created, during main run,
 //  once before its first use : this is the initialization step.
 
@@ -44,7 +47,7 @@
 //  ***************************************************
 //  Old statement (in a routine, not static) :
 //          if (object.IsNull()) object = new pk_class (..args if any..);
-//  can be maintained, but preceeded by an initialization :
+//  can be maintained, but preceded by an initialization :
 //          InitHandle(pk_class,object);         // -> Null Handle
 
 //  ***************************************************
@@ -90,3 +93,5 @@ Handle(type)& var = var##_s->H;
 #define InitHandleVal(type,var,value) \
 if(!var##_s) { var##_s=new type##_struc; var##_s->H=value; }\
 Handle(type)& var = var##_s->H;
+
+#endif

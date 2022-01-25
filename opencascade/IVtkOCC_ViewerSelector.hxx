@@ -25,7 +25,6 @@
 //! @brief Class that implements OCCT selection algorithm.
 //!
 //! Inspired by StdSelect_ViewerSelector3d class from OCCT 6.5.1
-
 class IVtkOCC_ViewerSelector : public SelectMgr_ViewerSelector
 {
 public:
@@ -58,6 +57,9 @@ public:
   //! Deactivate the given selection
   void Deactivate (const Handle(SelectMgr_Selection)& theSelection);
 
+  //! Converts VTK camera defiened for input view to OCC camera
+  static Handle(Graphic3d_Camera) ConvertVtkToOccCamera (const IVtk_IView::Handle& theView);
+
   DEFINE_STANDARD_RTTIEXT(IVtkOCC_ViewerSelector,SelectMgr_ViewerSelector)
 
 private:
@@ -66,4 +68,5 @@ private:
 };
 
 DEFINE_STANDARD_HANDLE( IVtkOCC_ViewerSelector, SelectMgr_ViewerSelector )
+
 #endif // __IVTKOCC_VIEWERSELECTOR_H__

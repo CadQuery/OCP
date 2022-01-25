@@ -43,19 +43,14 @@
 #include <TopAbs_State.hxx>
 #include <HLRAlgo_InterferenceList.hxx>
 class BRepTopAdaptor_TopolTool;
-class StdFail_UndefinedDerivative;
-class HLRAlgo_Projector;
-class HLRAlgo_Interference;
 class gp_Dir2d;
 class HLRBRep_EdgeData;
 class HLRBRep_FaceData;
 class IntRes2d_IntersectionPoint;
 class TableauRejection;
 
-
 class HLRBRep_Data;
 DEFINE_STANDARD_HANDLE(HLRBRep_Data, Standard_Transient)
-
 
 class HLRBRep_Data : public Standard_Transient
 {
@@ -84,7 +79,7 @@ public:
     Standard_ShortReal Tolerance() const;
   
   //! end of building  of the Data and updating
-  //! all the informations linked to the projection.
+  //! all the information linked to the projection.
   Standard_EXPORT void Update (const HLRAlgo_Projector& P);
   
     HLRAlgo_Projector& Projector();
@@ -166,10 +161,9 @@ public:
   //! classification.
   Standard_EXPORT TopAbs_State Compare (const Standard_Integer E, const HLRBRep_EdgeData& ED);
   
-  //! Simple classification of part of edge  [p1,  p2]
-  //! returns  OUT  if  at  least  1 of  Nbp  points  of  edge  is  out
-  //! othewise  returns  IN
-  //! It  is  used  to  check  "suspision"  hided  part  of  edge.
+  //! Simple classification of part of edge [p1,  p2].
+  //! Returns OUT if at least 1 of Nbp points of edge is out; otherwise returns IN.
+  //! It is used to check "suspicion" hidden part of edge.
   Standard_EXPORT TopAbs_State SimplClassify (const Standard_Integer E, const HLRBRep_EdgeData& ED, const Standard_Integer Nbp, const Standard_Real p1, const Standard_Real p2);
   
   //! Classification of an edge.
@@ -184,18 +178,10 @@ public:
   Destroy();
 }
 
-
-
   DEFINE_STANDARD_RTTIEXT(HLRBRep_Data,Standard_Transient)
-
-protected:
-
-
-
 
 private:
 
-  
   //! Orient the   OutLines  ( left  must  be  inside in
   //! projection ). Returns True if the face of a closed
   //! shell has been inverted;
@@ -208,9 +194,10 @@ private:
   //! Returns  True  if the  intersection is  rejected.
   Standard_EXPORT Standard_Boolean RejectedPoint (const IntRes2d_IntersectionPoint& PInter, const TopAbs_Orientation BoundOri, const Standard_Integer NumSeg);
   
-  //! returns True  if there is a common  vertex between
-  //! myLE and myFE  dependig  on  <head1> and  <head2>.
+  //! Returns True if there is a common vertex between myLE and myFE depending on <head1> and <head2>.
   Standard_EXPORT Standard_Boolean SameVertex (const Standard_Boolean head1, const Standard_Boolean head2);
+
+private:
 
   Standard_Integer myNbVertices;
   Standard_Integer myNbEdges;
@@ -272,14 +259,9 @@ private:
   Standard_Boolean myAboveIntf;
   TableauRejection* myReject;
 
-
 };
 
-
 #include <HLRBRep_Data.lxx>
-
-
-
 
 
 #endif // _HLRBRep_Data_HeaderFile

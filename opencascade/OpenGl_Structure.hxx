@@ -13,8 +13,8 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef OpenGl_Structure_Header
-#define OpenGl_Structure_Header
+#ifndef OpenGl_Structure_HeaderFile
+#define OpenGl_Structure_HeaderFile
 
 #include <Graphic3d_CStructure.hxx>
 #include <Graphic3d_SequenceOfHClipPlane.hxx>
@@ -23,7 +23,6 @@
 
 #include <OpenGl_GraphicDriver.hxx>
 #include <OpenGl_Group.hxx>
-#include <OpenGl_Matrix.hxx>
 #include <OpenGl_Vec.hxx>
 #include <OpenGl_Workspace.hxx>
 
@@ -146,6 +145,27 @@ protected:
 
   //! Render the bounding box.
   Standard_EXPORT void renderBoundingBox(const Handle(OpenGl_Workspace)& theWorkspace) const;
+
+  //! Apply transform persistence into context.
+  //! It disables shadows on non-3d objects when toEnable is true and restores otherwise.
+  //! @param[in]  theCtx current context
+  //! @param[in]  theTrsfPers transform persistence
+  //! @param[in]  theIsLocal specifies if transform persistence is defined locally or to entire presentation
+  //! @param[out] theOldCastShadows state of the previous cast shadows state
+  Standard_EXPORT void applyPersistence (const Handle(OpenGl_Context)& theCtx,
+                                         const Handle(Graphic3d_TransformPers)& theTrsfPersistence,
+                                         const Standard_Boolean theIsLocal,
+                                         Standard_Boolean& theOldCastShadows) const;
+
+  //! Restore context from transform persistence changes.
+  //! @param[in] theCtx current context
+  //! @param[in] theTrsfPers transform persistence
+  //! @param[in] theIsLocal specifies if transform persistence is defined locally or to entire presentation
+  //! @param[in] theOldCastShadows state of the previous cast shadows state
+  Standard_EXPORT void revertPersistence (const Handle(OpenGl_Context)& theCtx,
+                                          const Handle(Graphic3d_TransformPers)& theTrsfPersistence,
+                                          const Standard_Boolean theIsLocal,
+                                          const Standard_Boolean theOldCastShadows) const;
 
 protected:
 

@@ -25,19 +25,16 @@
 #include <Standard_Real.hxx>
 #include <Standard_Boolean.hxx>
 #include <IntSurf_Transition.hxx>
-class Adaptor2d_HCurve2d;
+
 class Adaptor3d_HVertex;
-class Standard_DomainError;
-class gp_Pnt;
-class IntSurf_Transition;
 
 
 //! Definition of a vertex on the contour line.
 //! Most of the time, such a point is an intersection
 //! between the contour and a restriction of the surface.
-//! When it is not tyhe method IsOnArc return False.
-//! Such a point is contains geometrical informations (see
-//! the Value method) and logical informations.
+//! When it is not the method IsOnArc return False.
+//! Such a point is contains geometrical information (see
+//! the Value method) and logical information.
 class Contap_Point 
 {
 public:
@@ -64,7 +61,7 @@ public:
   
   //! Sets the value of the arc and of the parameter on
   //! this arc of the point.
-    void SetArc (const Handle(Adaptor2d_HCurve2d)& A, const Standard_Real Param, const IntSurf_Transition& TLine, const IntSurf_Transition& TArc);
+    void SetArc (const Handle(Adaptor2d_Curve2d)& A, const Standard_Real Param, const IntSurf_Transition& TLine, const IntSurf_Transition& TArc);
   
     void SetMultiple();
   
@@ -88,7 +85,7 @@ public:
   
   //! Returns the arc of restriction containing the
   //! vertex.
-    const Handle(Adaptor2d_HCurve2d)& Arc() const;
+    const Handle(Adaptor2d_Curve2d)& Arc() const;
   
   //! Returns the parameter of the point on the
   //! arc returned by the method Arc().
@@ -137,7 +134,7 @@ private:
   Standard_Real vparam;
   Standard_Real paraline;
   Standard_Boolean onarc;
-  Handle(Adaptor2d_HCurve2d) arc;
+  Handle(Adaptor2d_Curve2d) arc;
   IntSurf_Transition traline;
   IntSurf_Transition traarc;
   Standard_Real prmarc;

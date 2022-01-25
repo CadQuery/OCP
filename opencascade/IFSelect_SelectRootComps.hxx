@@ -29,65 +29,45 @@ class Standard_Transient;
 class Interface_InterfaceModel;
 class TCollection_AsciiString;
 
-
 class IFSelect_SelectRootComps;
 DEFINE_STANDARD_HANDLE(IFSelect_SelectRootComps, IFSelect_SelectExtract)
 
 //! A SelectRootComps sorts the Entities which are part of Strong
-//! Componants, local roots of a set of Entities : they can be
-//! Single Componants (containing one Entity) or Cycles
+//! Components, local roots of a set of Entities : they can be
+//! Single Components (containing one Entity) or Cycles
 //! This class gives a more secure result than SelectRoots (which
-//! considers only Single Componants) but is longer to work : it
+//! considers only Single Components) but is longer to work : it
 //! can be used when there can be or there are cycles in a Model
 //! For each cycle, one Entity is given arbitrarily
-//! Reject works as for SelectRoots : Strong Componants defined in
+//! Reject works as for SelectRoots : Strong Components defined in
 //! the input list which are not local roots are given
 class IFSelect_SelectRootComps : public IFSelect_SelectExtract
 {
 
 public:
 
-  
   //! Creates a SelectRootComps
   Standard_EXPORT IFSelect_SelectRootComps();
-  
-  //! Returns the list of local root strong componants, by one
-  //! Entity par componant. It is redefined for a purpose of
-  //! effeciency : calling a Sort routine for each Entity would
-  //! cost more ressource than to work in once using a Map
+
+  //! Returns the list of local root strong components, by one Entity per component.
+  //! It is redefined for a purpose of efficiency : calling a Sort routine for each Entity would
+  //! cost more resources than to work in once using a Map
   //! RootResult takes in account the Direct status
   Standard_EXPORT virtual Interface_EntityIterator RootResult (const Interface_Graph& G) const Standard_OVERRIDE;
-  
+
   //! Returns always True, because RootResult has done work
   Standard_EXPORT Standard_Boolean Sort (const Standard_Integer rank, const Handle(Standard_Transient)& ent, const Handle(Interface_InterfaceModel)& model) const Standard_OVERRIDE;
   
-  //! Returns a text defining the criterium : "Local Root Componants"
+  //! Returns a text defining the criterium : "Local Root Components"
   Standard_EXPORT TCollection_AsciiString ExtractLabel() const Standard_OVERRIDE;
-
-
-
 
   DEFINE_STANDARD_RTTIEXT(IFSelect_SelectRootComps,IFSelect_SelectExtract)
 
 protected:
 
-  
   //! Returns True, RootResult assuring uniqueness
   Standard_EXPORT virtual Standard_Boolean HasUniqueResult() const Standard_OVERRIDE;
 
-
-
-private:
-
-
-
-
 };
-
-
-
-
-
-
 
 #endif // _IFSelect_SelectRootComps_HeaderFile

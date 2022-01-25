@@ -13,10 +13,8 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef OpenGl_PrimitiveArray_Header
-#define OpenGl_PrimitiveArray_Header
-
-#include <OpenGl_IndexBuffer.hxx>
+#ifndef OpenGl_PrimitiveArray_HeaderFile
+#define OpenGl_PrimitiveArray_HeaderFile
 
 #include <Aspect_InteriorStyle.hxx>
 #include <Aspect_TypeOfMarker.hxx>
@@ -26,6 +24,8 @@
 
 #include <OpenGl_Element.hxx>
 
+class OpenGl_IndexBuffer;
+class OpenGl_VertexBuffer;
 class OpenGl_GraphicDriver;
 
 //! Class for rendering of arbitrary primitive array.
@@ -74,7 +74,7 @@ public:
   void Invalidate() const { myIsVboInit = Standard_False; }
 
   //! @return primitive type (GL_LINES, GL_TRIANGLES and others)
-  GLint DrawMode() const { return myDrawMode; }
+  Standard_Integer DrawMode() const { return myDrawMode; }
 
   //! Return TRUE if primitive type generates shaded triangulation.
   virtual Standard_Boolean IsFillDrawMode() const Standard_OVERRIDE { return myIsFillType; }
@@ -101,7 +101,7 @@ public:
 public:
 
   //! Returns index VBO.
-  const Handle(OpenGl_VertexBuffer)& IndexVbo() const { return  myVboIndices; }
+  const Handle(OpenGl_IndexBuffer)& IndexVbo() const { return  myVboIndices; }
 
   //! Returns attributes VBO.
   const Handle(OpenGl_VertexBuffer)& AttributesVbo() const { return myVboAttribs; }
@@ -148,13 +148,13 @@ private:
 
 protected:
 
-  mutable Handle(OpenGl_VertexBuffer)   myVboIndices;
+  mutable Handle(OpenGl_IndexBuffer)    myVboIndices;
   mutable Handle(OpenGl_VertexBuffer)   myVboAttribs;
 
   mutable Handle(Graphic3d_IndexBuffer) myIndices;
   mutable Handle(Graphic3d_Buffer)      myAttribs;
   mutable Handle(Graphic3d_BoundBuffer) myBounds;
-  GLshort                               myDrawMode;
+  short                                 myDrawMode;
   mutable Standard_Boolean              myIsFillType;
   mutable Standard_Boolean              myIsVboInit;
 

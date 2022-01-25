@@ -13,8 +13,8 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _V3d_Plane_H__
-#define _V3d_Plane_H__
+#ifndef V3d_Plane_HeaderFile
+#define V3d_Plane_HeaderFile
 
 #include <Graphic3d_ClipPlane.hxx>
 #include <Graphic3d_Structure.hxx>
@@ -57,7 +57,7 @@ public:
                                  const Standard_Real theC,
                                  const Standard_Real theD);
 
-  //! Display the plane representation in the choosen view.
+  //! Display the plane representation in the chosen view.
   Standard_EXPORT virtual void Display (const Handle(V3d_View)& theView,
                                         const Quantity_Color& theColor = Quantity_NOC_GRAY);
 
@@ -83,7 +83,7 @@ public:
 
 private:
 
-  //! Updates the the plane representation.
+  //! Updates the plane representation.
   Standard_EXPORT void Update();
 
 protected:

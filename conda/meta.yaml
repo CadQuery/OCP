@@ -1,5 +1,5 @@
-{% set OCCT_VER = "7.5.3" %}
-{% set OCP_TWEAK = "0" %}
+{% set OCCT_VER = "7.6.0" %}
+{% set OCP_TWEAK = "alpha" %}
 
 package:
   name: ocp
@@ -9,7 +9,7 @@ source:
   path: ..
 
 build:
-  number: 3
+  number: 0
   script:
     {% if not os.path.exists('build') %}
     - cmake -B build -S . -G Ninja -DCMAKE_BUILD_TYPE=Release
@@ -38,12 +38,11 @@ requirements:
     - schema
     - tqdm
     - toposort
-  host:
-    - python {{ environ.get('PYTHON_VERSION') }}
-    - occt {{OCCT_VER}}
+    - vtk=9.1
   run:
     - python {{ environ.get('PYTHON_VERSION') }}
     - occt {{OCCT_VER}}
+    - {{ pin_compatible('vtk', max_pin='x.x') }}
 
 test:
   imports:

@@ -27,7 +27,7 @@ DEFINE_STANDARD_HANDLE(AIS_RubberBand, AIS_InteractiveObject)
 //! Presentation for drawing rubber band selection.
 //! It supports rectangle and polygonal selection.
 //! It is constructed in 2d overlay.
-//! Default configaration is built without filling.
+//! Default configuration is built without filling.
 //! For rectangle selection use SetRectangle() method.
 //! For polygonal selection use AddPoint() and GetPoints() methods.
 class AIS_RubberBand : public AIS_InteractiveObject
@@ -135,9 +135,15 @@ public:
 
 protected:
 
+  //! Returns true if the interactive object accepts the display mode.
+  Standard_Boolean AcceptDisplayMode (const Standard_Integer theMode) const Standard_OVERRIDE
+  {
+    return theMode == 0;
+  }
+
   //! Computes presentation of rubber band.
-  Standard_EXPORT virtual void Compute (const Handle(PrsMgr_PresentationManager3d)& thePresentationManager,
-                                        const Handle(Prs3d_Presentation)& thePresentation,
+  Standard_EXPORT virtual void Compute (const Handle(PrsMgr_PresentationManager)& thePrsMgr,
+                                        const Handle(Prs3d_Presentation)& thePrs,
                                         const Standard_Integer theMode) Standard_OVERRIDE;
 
   //! Does not fill selection primitives for rubber band.

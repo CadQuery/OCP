@@ -25,19 +25,20 @@
 #include <AIS_ListOfInteractive.hxx>
 #include <AIS_Selection.hxx>
 #include <AIS_SelectionModesConcurrency.hxx>
+#include <AIS_SelectionScheme.hxx>
 #include <AIS_StatusOfDetection.hxx>
 #include <AIS_StatusOfPick.hxx>
 #include <AIS_TypeOfIso.hxx>
 #include <Aspect_TypeOfFacingModel.hxx>
+#include <Graphic3d_Vec2.hxx>
 #include <Prs3d_Drawer.hxx>
 #include <Prs3d_TypeOfHighlight.hxx>
-#include <PrsMgr_PresentationManager3d.hxx>
+#include <PrsMgr_PresentationManager.hxx>
 #include <SelectMgr_AndOrFilter.hxx>
 #include <SelectMgr_IndexedMapOfOwner.hxx>
 #include <SelectMgr_ListOfFilter.hxx>
 #include <SelectMgr_PickingStrategy.hxx>
-#include <Standard.hxx>
-#include <Standard_Type.hxx>
+#include <SelectMgr_SelectionManager.hxx>
 #include <StdSelect_ViewerSelector3d.hxx>
 #include <TCollection_AsciiString.hxx>
 #include <TColgp_Array1OfPnt2d.hxx>
@@ -45,7 +46,6 @@
 #include <TopAbs_ShapeEnum.hxx>
 #include <Quantity_Color.hxx>
 
-class SelectMgr_SelectionManager;
 class V3d_Viewer;
 class V3d_View;
 class TopLoc_Location;
@@ -53,7 +53,6 @@ class TCollection_ExtendedString;
 class Prs3d_LineAspect;
 class Prs3d_BasicAspect;
 class TopoDS_Shape;
-class SelectMgr_EntityOwner;
 class SelectMgr_Filter;
 
 //! The Interactive Context allows you to manage graphic behavior and selection of Interactive Objects in one or more viewers.
@@ -82,7 +81,7 @@ public: //! @name object display management
   //! - AIS_DS_Erased    hidden in main viewer
   //! - AIS_DS_Temporary temporarily displayed
   //! - AIS_DS_None      nowhere displayed.
-  Standard_EXPORT AIS_DisplayStatus DisplayStatus (const Handle(AIS_InteractiveObject)& anIobj) const;
+  Standard_EXPORT PrsMgr_DisplayStatus DisplayStatus (const Handle(AIS_InteractiveObject)& anIobj) const;
 
   //! Returns the status of the Interactive Context for the view of the Interactive Object.
   Standard_EXPORT void Status (const Handle(AIS_InteractiveObject)& anObj, TCollection_ExtendedString& astatus) const;
@@ -110,27 +109,12 @@ public: //! @name object display management
                                 const Standard_Integer               theDispMode,
                                 const Standard_Integer               theSelectionMode,
                                 const Standard_Boolean               theToUpdateViewer,
-                                const AIS_DisplayStatus              theDispStatus = AIS_DS_None);
+                                const PrsMgr_DisplayStatus           theDispStatus = PrsMgr_DisplayStatus_None);
 
   //! Allows you to load the Interactive Object with a given selection mode,
   //! and/or with the desired decomposition option, whether the object is visualized or not.
   //! The loaded objects will be selectable but displayable in highlighting only when detected by the Selector.
   Standard_EXPORT void Load (const Handle(AIS_InteractiveObject)& theObj, const Standard_Integer theSelectionMode = -1);
-
-  Standard_DEPRECATED("Deprecated method Display() with obsolete argument theToAllowDecomposition")
-  void Display (const Handle(AIS_InteractiveObject)& theIObj,
-                const Standard_Integer               theDispMode,
-                const Standard_Integer               theSelectionMode,
-                const Standard_Boolean               theToUpdateViewer,
-                const Standard_Boolean               theToAllowDecomposition,
-                const AIS_DisplayStatus              theDispStatus = AIS_DS_None)
-  {
-    (void )theToAllowDecomposition;
-    Display (theIObj, theDispMode, theSelectionMode, theToUpdateViewer, theDispStatus);
-  }
-
-  Standard_DEPRECATED("Deprecated method Load() with obsolete last argument theToAllowDecomposition")
-  void Load (const Handle(AIS_InteractiveObject)& theObj, Standard_Integer theSelectionMode, Standard_Boolean ) { Load (theObj, theSelectionMode); }
 
   //! Hides the object. The object's presentations are simply flagged as invisible and therefore excluded from redrawing.
   //! To show hidden objects, use Display().
@@ -194,60 +178,73 @@ public: //! @name object display management
 
 public: //! @name highlighting management
 
-  //! Returns highlight style settings.
+  //! Returns default highlight style settings (could be overridden by PrsMgr_PresentableObject).
+  //!
+  //! Tip: although highlighting style is defined by Prs3d_Drawer,
+  //! only a small set of properties derived from it's base class Graphic3d_PresentationAttributes will be actually used in most cases.
+  //!
+  //! Default highlight style for all types is Aspect_TOHM_COLOR. Other defaults:
+  //!  - Prs3d_TypeOfHighlight_Dynamic
+  //!    * Color: Quantity_NOC_CYAN1;
+  //!    * Layer: Graphic3d_ZLayerId_Top,
+  //!             object highlighting is drawn on top of main scene within Immediate Layers,
+  //!             so that V3d_View::RedrawImmediate() will be enough to see update;
+  //!  - Prs3d_TypeOfHighlight_LocalDynamic
+  //!    * Color: Quantity_NOC_CYAN1;
+  //!    * Layer: Graphic3d_ZLayerId_Topmost,
+  //!             object parts highlighting is drawn on top of main scene within Immediate Layers
+  //!             with depth cleared (even overlapped geometry will be revealed);
+  //!  - Prs3d_TypeOfHighlight_Selected
+  //!    * Color: Quantity_NOC_GRAY80;
+  //!    * Layer: Graphic3d_ZLayerId_UNKNOWN,
+  //!             object highlighting is drawn on top of main scene within the same layer
+  //!             as object itself (e.g. Graphic3d_ZLayerId_Default by default) and increased priority.
+  //!
+  //! @param[in] theStyleType highlight style to modify
+  //! @return drawer associated to specified highlight type
+  //!
+  //! @sa MoveTo() using Prs3d_TypeOfHighlight_Dynamic and Prs3d_TypeOfHighlight_LocalDynamic types
+  //! @sa SelectDetected() using Prs3d_TypeOfHighlight_Selected and Prs3d_TypeOfHighlight_LocalSelected types
+  //! @sa PrsMgr_PresentableObject::DynamicHilightAttributes() overriding Prs3d_TypeOfHighlight_Dynamic and Prs3d_TypeOfHighlight_LocalDynamic defaults on object level
+  //! @sa PrsMgr_PresentableObject::HilightAttributes() overriding Prs3d_TypeOfHighlight_Selected and Prs3d_TypeOfHighlight_LocalSelected defaults on object level
   const Handle(Prs3d_Drawer)& HighlightStyle (const Prs3d_TypeOfHighlight theStyleType) const { return myStyles[theStyleType]; }
 
   //! Setup highlight style settings.
-  //! It is preferred modifying existing style returned by method HighlightStyle()
-  //! instead of creating a new drawer.
+  //! Tip: it is better modifying existing style returned by method HighlightStyle()
+  //! instead of creating a new Prs3d_Drawer to avoid unexpected results due misconfiguration.
   //!
   //! If a new highlight style is created, its presentation Zlayer should be checked,
   //! otherwise highlighting might not work as expected.
-  //! Default values are:
-  //!  - Prs3d_TypeOfHighlight_Dynamic:      Graphic3d_ZLayerId_Top,
-  //!    object highlighting is drawn on top of main scene within Immediate Layers,
-  //!    so that V3d_View::RedrawImmediate() will be enough to see update;
-  //!  - Prs3d_TypeOfHighlight_LocalDynamic: Graphic3d_ZLayerId_Topmost,
-  //!    object parts highlighting is drawn on top of main scene within Immediate Layers
-  //!    with depth cleared (even overlapped geometry will be revealed);
-  //!  - Prs3d_TypeOfHighlight_Selected:     Graphic3d_ZLayerId_UNKNOWN,
-  //!    object highlighting is drawn on top of main scene within the same layer
-  //!    as object itself (e.g. Graphic3d_ZLayerId_Default by default) and increased priority.
   void SetHighlightStyle (const Prs3d_TypeOfHighlight theStyleType,
-                          const Handle(Prs3d_Drawer)& theStyle) { myStyles[theStyleType] = theStyle; }
+                          const Handle(Prs3d_Drawer)& theStyle)
+  {
+    myStyles[theStyleType] = theStyle;
+    if (theStyleType == Prs3d_TypeOfHighlight_None)
+    {
+      myDefaultDrawer = theStyle;
+    }
+  }
 
-  //! Returns current dynamic highlight style settings.
-  //! By default:
-  //!   - the color of dynamic highlight is Quantity_NOC_CYAN1;
-  //!   - the presentation for dynamic highlight is completely opaque;
-  //!   - the type of highlight is Aspect_TOHM_COLOR.
+  //! Returns current dynamic highlight style settings corresponding to Prs3d_TypeOfHighlight_Dynamic.
+  //! This is just a short-cut to HighlightStyle(Prs3d_TypeOfHighlight_Dynamic).
   const Handle(Prs3d_Drawer)& HighlightStyle() const
   {
     return myStyles[Prs3d_TypeOfHighlight_Dynamic];
   }
 
-  //! Setup the style of dynamic highlighting.
-  //! It is preferred modifying existing style returned by method HighlightStyle()
-  //! instead of creating a new drawer.
-  //!
-  //! If a new highlight style is created, its presentation Zlayer should be checked,
-  //! otherwise highlighting might not work as expected.
-  //! Default value is Graphic3d_ZLayerId_Top,
-  //! object highlighting is drawn on top of main scene within Immediate Layers,
-  //! so that V3d_View::RedrawImmediate() will be enough to see update;
+  //! Setup the style of dynamic highlighting corrsponding to Prs3d_TypeOfHighlight_Selected.
+  //! This is just a short-cut to SetHighlightStyle(Prs3d_TypeOfHighlight_Dynamic,theStyle).
   void SetHighlightStyle (const Handle(Prs3d_Drawer)& theStyle) { myStyles[Prs3d_TypeOfHighlight_Dynamic] = theStyle; }
 
-  //! Returns current selection style settings.
-  //! By default:
-  //!   - the color of selection is Quantity_NOC_GRAY80;
-  //!   - the presentation for selection is completely opaque;
-  //!   - the type of highlight is Aspect_TOHM_COLOR.
+  //! Returns current selection style settings corrsponding to Prs3d_TypeOfHighlight_Selected.
+  //! This is just a short-cut to HighlightStyle(Prs3d_TypeOfHighlight_Selected).
   const Handle(Prs3d_Drawer)& SelectionStyle() const
   {
     return myStyles[Prs3d_TypeOfHighlight_Selected];
   }
 
   //! Setup the style of selection highlighting.
+  //! This is just a short-cut to SetHighlightStyle(Prs3d_TypeOfHighlight_Selected,theStyle).
   void SetSelectionStyle (const Handle(Prs3d_Drawer)& theStyle) { myStyles[Prs3d_TypeOfHighlight_Selected] = theStyle; }
 
   //! Returns highlight style of the object if it is marked as highlighted via global status
@@ -267,16 +264,6 @@ public: //! @name highlighting management
   //! Returns true if the owner is marked as selected
   //! @param theOwner [in] the owner to check
   Standard_EXPORT Standard_Boolean IsHilighted (const Handle(SelectMgr_EntityOwner)& theOwner) const;
-
-  //! Updates the display in the viewer to take dynamic detection into account.
-  //! On dynamic detection by the mouse cursor, sensitive primitives are highlighted.
-  //! The highlight color of entities detected by mouse movement is white by default.
-  Standard_DEPRECATED("Deprecated method Hilight()")
-  void Hilight (const Handle(AIS_InteractiveObject)& theObj,
-                const Standard_Boolean               theIsToUpdateViewer)
-  {
-    return HilightWithColor (theObj, myStyles[Prs3d_TypeOfHighlight_Dynamic], theIsToUpdateViewer);
-  }
 
   //! Changes the color of all the lines of the object in view.
   Standard_EXPORT void HilightWithColor (const Handle(AIS_InteractiveObject)& theObj,
@@ -344,14 +331,6 @@ public: //! @name object local transformation management
   Standard_EXPORT void SetTransformPersistence (const Handle(AIS_InteractiveObject)& theObject,
                                                 const Handle(Graphic3d_TransformPers)& theTrsfPers);
 
-  Standard_DEPRECATED("This method is deprecated - SetTransformPersistence() taking Graphic3d_TransformPers should be called instead")
-  void SetTransformPersistence (const Handle(AIS_InteractiveObject)& theObj,
-                                const Graphic3d_TransModeFlags&      theFlag,
-                                const gp_Pnt&                        thePoint = gp_Pnt (0.0, 0.0, 0.0))
-  {
-    SetTransformPersistence (theObj, Graphic3d_TransformPers::FromDeprecatedParams (theFlag, thePoint));
-  }
-
 public: //! @name mouse picking logic (detection and dynamic highlighting of entities under cursor)
 
   //! Setup pixel tolerance for MoveTo() operation.
@@ -377,8 +356,19 @@ public: //! @name mouse picking logic (detection and dynamic highlighting of ent
   //! This is done by the view theView passing this position to the main viewer and updating it.
   //! If theToRedrawOnUpdate is set to false, callee should call RedrawImmediate() to highlight detected object.
   //! @sa PickingStrategy()
+  //! @sa HighlightStyle() defining default dynamic highlight styles of detected owners
+  //!                      (Prs3d_TypeOfHighlight_Dynamic and Prs3d_TypeOfHighlight_LocalDynamic)
+  //! @sa PrsMgr_PresentableObject::DynamicHilightAttributes() defining per-object dynamic highlight style of detected owners (overrides defaults)
   Standard_EXPORT AIS_StatusOfDetection MoveTo (const Standard_Integer  theXPix,
                                                 const Standard_Integer  theYPix,
+                                                const Handle(V3d_View)& theView,
+                                                const Standard_Boolean  theToRedrawOnUpdate);
+
+  //! Relays axis theAxis to the interactive context selectors.
+  //! This is done by the view theView passing this axis to the main viewer and updating it.
+  //! If theToRedrawOnUpdate is set to false, callee should call RedrawImmediate() to highlight detected object.
+  //! @sa PickingStrategy()
+  Standard_EXPORT AIS_StatusOfDetection MoveTo (const gp_Ax1& theAxis,
                                                 const Handle(V3d_View)& theView,
                                                 const Standard_Boolean  theToRedrawOnUpdate);
 
@@ -388,12 +378,12 @@ public: //! @name mouse picking logic (detection and dynamic highlighting of ent
   Standard_EXPORT Standard_Boolean ClearDetected (Standard_Boolean theToRedrawImmediate = Standard_False);
 
   //! Returns true if there is a mouse-detected entity in context.
-  //! @sa DetectedOwner()/HasNextDetected()/HilightPreviousDetected()/HilightNextDetected().
+  //! @sa DetectedOwner(), HasNextDetected(), HilightPreviousDetected(), HilightNextDetected().
   Standard_Boolean HasDetected() const { return !myLastPicked.IsNull(); }
 
   //! Returns the owner of the detected sensitive primitive which is currently dynamically highlighted.
   //! WARNING! This method is irrelevant to InitDetected()/MoreDetected()/NextDetected().
-  //! @sa HasDetected()/HasNextDetected()/HilightPreviousDetected()/HilightNextDetected().
+  //! @sa HasDetected(), HasNextDetected(), HilightPreviousDetected(), HilightNextDetected().
   const Handle(SelectMgr_EntityOwner)& DetectedOwner() const { return myLastPicked; }
 
   //! Returns the interactive objects last detected in context.
@@ -402,7 +392,7 @@ public: //! @name mouse picking logic (detection and dynamic highlighting of ent
   Handle(AIS_InteractiveObject) DetectedInteractive() const { return Handle(AIS_InteractiveObject)::DownCast (myLastPicked->Selectable()); }
 
   //! Returns true if there is a detected shape in local context.
-  //! @sa HasDetected()/DetectedShape()
+  //! @sa HasDetected(), DetectedShape()
   Standard_DEPRECATED ("Local Context is deprecated - local selection should be used without Local Context")
   Standard_EXPORT Standard_Boolean HasDetectedShape() const;
 
@@ -412,7 +402,7 @@ public: //! @name mouse picking logic (detection and dynamic highlighting of ent
   Standard_EXPORT const TopoDS_Shape& DetectedShape() const;
   
   //! returns True if other entities were detected in the last mouse detection
-  //! @sa HilightPreviousDetected()/HilightNextDetected().
+  //! @sa HilightPreviousDetected(), HilightNextDetected().
   Standard_Boolean HasNextDetected() const { return !myDetectedSeq.IsEmpty() && myCurHighlighted <= myDetectedSeq.Upper(); }
 
   //! If more than 1 object is detected by the selector, only the "best" owner is hilighted at the mouse position.
@@ -420,18 +410,18 @@ public: //! @name mouse picking logic (detection and dynamic highlighting of ent
   //! If The method select is called, the selected entity will be the hilighted one!
   //! WARNING: Loop Method. When all the detected entities have been hilighted, the next call will hilight the first one again.
   //! @return the Rank of hilighted entity
-  //! @sa HasNextDetected()/HilightPreviousDetected().
+  //! @sa HasNextDetected(), HilightPreviousDetected().
   Standard_EXPORT Standard_Integer HilightNextDetected (const Handle(V3d_View)& theView, const Standard_Boolean theToRedrawImmediate = Standard_True);
 
   //! Same as previous methods in reverse direction.
-  //! @sa HasNextDetected()/HilightNextDetected().
+  //! @sa HasNextDetected(), HilightNextDetected().
   Standard_EXPORT Standard_Integer HilightPreviousDetected (const Handle(V3d_View)& theView, const Standard_Boolean theToRedrawImmediate = Standard_True);
 
 public: //! @name iteration through detected entities
 
   //! Initialization for iteration through mouse-detected objects in
   //! interactive context or in local context if it is opened.
-  //! @sa DetectedCurrentOwner()/MoreDetected()/NextDetected().
+  //! @sa DetectedCurrentOwner(), MoreDetected(), NextDetected().
   void InitDetected()
   {
     if (!myDetectedSeq.IsEmpty())
@@ -442,24 +432,19 @@ public: //! @name iteration through detected entities
 
   //! Return TRUE if there is more mouse-detected objects after the current one
   //! during iteration through mouse-detected interactive objects.
-  //! @sa DetectedCurrentOwner()/InitDetected()/NextDetected().
+  //! @sa DetectedCurrentOwner(), InitDetected(), NextDetected().
   Standard_Boolean MoreDetected() const { return myCurDetected >= myDetectedSeq.Lower() && myCurDetected <= myDetectedSeq.Upper(); }
 
   //! Gets next current object during iteration through mouse-detected interactive objects.
-  //! @sa DetectedCurrentOwner()/InitDetected()/MoreDetected().
+  //! @sa DetectedCurrentOwner(), InitDetected(), MoreDetected().
   void NextDetected() { ++myCurDetected; }
 
   //! Returns the owner from detected list pointed by current iterator position.
   //! WARNING! This method is irrelevant to DetectedOwner() which returns last picked Owner regardless of iterator position!
-  //! @sa InitDetected()/MoreDetected()/NextDetected().
+  //! @sa InitDetected(), MoreDetected(), NextDetected().
   Standard_EXPORT Handle(SelectMgr_EntityOwner) DetectedCurrentOwner() const;
 
 public: //! @name Selection management
-
-  //! Sets the graphic basic aspect to the current presentation of ALL selected objects.
-  Standard_DEPRECATED ("Deprecated method - presentation attributes should be assigned directly to object")
-  Standard_EXPORT void SetSelectedAspect (const Handle(Prs3d_BasicAspect)& theAspect,
-                                          const Standard_Boolean           theToUpdateViewer);
 
   //! Adds object in the selection.
   Standard_EXPORT AIS_StatusOfPick AddSelect (const Handle(SelectMgr_EntityOwner)& theObject);
@@ -470,46 +455,58 @@ public: //! @name Selection management
     return AddSelect (theObject->GlobalSelOwner());
   }
 
-  //! Selects everything found in the bounding rectangle defined by the pixel minima and maxima, XPMin, YPMin, XPMax, and YPMax in the view.
-  //! The objects detected are passed to the main viewer, which is then updated.
-  Standard_EXPORT AIS_StatusOfPick Select (const Standard_Integer  theXPMin,
-                                           const Standard_Integer  theYPMin,
-                                           const Standard_Integer  theXPMax,
-                                           const Standard_Integer  theYPMax,
-                                           const Handle(V3d_View)& theView,
-                                           const Standard_Boolean  theToUpdateViewer);
-  
-  //! polyline selection; clears the previous picked list
-  Standard_EXPORT AIS_StatusOfPick Select (const TColgp_Array1OfPnt2d& thePolyline,
-                                           const Handle(V3d_View)&     theView,
-                                           const Standard_Boolean      theToUpdateViewer);
+  //! Selects objects within the bounding rectangle.
+  //! Viewer should be explicitly redrawn after selection.
+  //! @param thePntMin [in] rectangle lower point (in pixels)
+  //! @param thePntMax [in] rectangle upper point (in pixels)
+  //! @param theView   [in] active view where rectangle is defined
+  //! @param theSelScheme [in] selection scheme
+  //! @return picking status
+  //! @sa StdSelect_ViewerSelector3d::AllowOverlapDetection()
+  Standard_EXPORT AIS_StatusOfPick SelectRectangle (const Graphic3d_Vec2i&    thePntMin,
+                                                    const Graphic3d_Vec2i&    thePntMax,
+                                                    const Handle(V3d_View)&   theView,
+                                                    const AIS_SelectionScheme theSelScheme = AIS_SelectionScheme_Replace);
 
-  //! Stores and hilights the previous detected; Unhilights the previous picked.
-  //! @sa MoveTo().
-  Standard_EXPORT AIS_StatusOfPick Select (const Standard_Boolean theToUpdateViewer);
+  //! Select everything found in the polygon defined by bounding polyline.
+  //! Viewer should be explicitly redrawn after selection.
+  //! @param thePolyline  [in] polyline defining polygon bounds (in pixels)
+  //! @param theView      [in] active view where polyline is defined
+  //! @param theSelScheme [in] selection scheme
+  //! @return picking status
+  Standard_EXPORT AIS_StatusOfPick SelectPolygon (const TColgp_Array1OfPnt2d& thePolyline,
+                                                  const Handle(V3d_View)&     theView,
+                                                  const AIS_SelectionScheme   theSelScheme = AIS_SelectionScheme_Replace);
 
-  //! Adds the last detected to the list of previous picked.
-  //! If the last detected was already declared as picked, removes it from the Picked List.
-  //! @sa MoveTo().
-  Standard_EXPORT AIS_StatusOfPick ShiftSelect (const Standard_Boolean theToUpdateViewer);
+  //! Selects the topmost object picked by the point in the view,
+  //! Viewer should be explicitly redrawn after selection.
+  //! @param thePnt  [in] point pixel coordinates within the view
+  //! @param theView [in] active view where point is defined
+  //! @param theSelScheme [in] selection scheme
+  //! @return picking status
+  Standard_EXPORT AIS_StatusOfPick SelectPoint (const Graphic3d_Vec2i&    thePnt,
+                                                const Handle(V3d_View)&   theView,
+                                                const AIS_SelectionScheme theSelScheme = AIS_SelectionScheme_Replace);
 
-  //! Adds the last detected to the list of previous picked.
-  //! If the last detected was already declared as picked, removes it from the Picked List.
-  Standard_EXPORT AIS_StatusOfPick ShiftSelect (const TColgp_Array1OfPnt2d& thePolyline,
-                                                const Handle(V3d_View)&     theView,
-                                                const Standard_Boolean      theToUpdateViewer);
-
-  //! Rectangle of selection; adds new detected entities into the picked list,
-  //! removes the detected entities that were already stored.
-  Standard_EXPORT AIS_StatusOfPick ShiftSelect (const Standard_Integer  theXPMin,
-                                                const Standard_Integer  theYPMin,
-                                                const Standard_Integer  theXPMax,
-                                                const Standard_Integer  theYPMax,
-                                                const Handle(V3d_View)& theView,
-                                                const Standard_Boolean  theToUpdateViewer);
+  //! Select and hilights the previous detected via AIS_InteractiveContext::MoveTo() method;
+  //! unhilights the previous picked.
+  //! Viewer should be explicitly redrawn after selection.
+  //! @param theSelScheme [in] selection scheme
+  //! @return picking status
+  //!
+  //! @sa HighlightStyle() defining default highlight styles of selected owners (Prs3d_TypeOfHighlight_Selected and Prs3d_TypeOfHighlight_LocalSelected)
+  //! @sa PrsMgr_PresentableObject::HilightAttributes() defining per-object highlight style of selected owners (overrides defaults)
+  Standard_EXPORT AIS_StatusOfPick SelectDetected (const AIS_SelectionScheme theSelScheme = AIS_SelectionScheme_Replace);
 
   //! Returns bounding box of selected objects.
   Standard_EXPORT Bnd_Box BoundingBoxOfSelection() const;
+
+  //! Sets list of owner selected/deselected using specified selection scheme.
+  //! @param theOwners owners to change selection state
+  //! @param theSelScheme selection scheme
+  //! @return picking status
+  Standard_EXPORT AIS_StatusOfPick Select (const AIS_NArray1OfEntityOwner& theOwners,
+                                           const AIS_SelectionScheme theSelScheme);
 
   //! Fits the view correspondingly to the bounds of selected objects.
   //! Infinite objects are ignored if infinite state of AIS_InteractiveObject is set to true.
@@ -599,23 +596,23 @@ public: //! @name Selection management
   Standard_EXPORT Handle(AIS_InteractiveObject) FirstSelectedObject() const;
 
   //! Count a number of selected entities using InitSelected()+MoreSelected()+NextSelected() iterator.
-  //! @sa SelectedOwner()/InitSelected()/MoreSelected()/NextSelected().
+  //! @sa SelectedOwner(), InitSelected(), MoreSelected(), NextSelected().
   Standard_Integer NbSelected() { return mySelection->Extent(); }
 
   //! Initializes a scan of the selected objects.
-  //! @sa SelectedOwner()/MoreSelected()/NextSelected().
+  //! @sa SelectedOwner(), MoreSelected(), NextSelected().
   void InitSelected() { mySelection->Init(); }
 
   //! Returns true if there is another object found by the scan of the list of selected objects.
-  //! @sa SelectedOwner()/InitSelected()/NextSelected().
+  //! @sa SelectedOwner(), InitSelected(), NextSelected().
   Standard_Boolean MoreSelected() const { return mySelection->More(); }
 
   //! Continues the scan to the next object in the list of selected objects.
-  //! @sa SelectedOwner()/InitSelected()/MoreSelected().
+  //! @sa SelectedOwner(), InitSelected(), MoreSelected().
   void NextSelected() { mySelection->Next(); }
 
   //! Returns the owner of the selected entity.
-  //! @sa InitSelected()/MoreSelected()/NextSelected().
+  //! @sa InitSelected(), MoreSelected(), NextSelected().
   Handle(SelectMgr_EntityOwner) SelectedOwner() const
   {
     return !mySelection->More()
@@ -643,7 +640,7 @@ public: //! @name Selection management
   //!   TopoDS_Shape aSelShape     = aBRepOwner->Shape();
   //!   TopoDS_Shape aLocatedShape = aSelShape.Located (aBRepOwner->Location() * aSelShape.Location());
   //! @endcode
-  //! @sa SelectedOwner()/HasSelectedShape().
+  //! @sa SelectedOwner(), HasSelectedShape().
   Standard_EXPORT TopoDS_Shape SelectedShape() const;
 
   //! Returns SelectedInteractive()->HasOwner().
@@ -746,19 +743,22 @@ public: //! @name Selection Filters management
   { myFilters->SetFilterType (theFilterType); }
 
   //! Returns the list of filters active in a local context.
-  Standard_EXPORT const SelectMgr_ListOfFilter& Filters() const;
+  const SelectMgr_ListOfFilter& Filters() const { return myFilters->StoredFilters(); }
+
+  //! @return the context selection global context filter.
+  const Handle(SelectMgr_AndOrFilter)& GlobalFilter() const { return myFilters; }
 
   //! Allows you to add the filter.
-  Standard_EXPORT void AddFilter (const Handle(SelectMgr_Filter)& theFilter);
+  void AddFilter (const Handle(SelectMgr_Filter)& theFilter) { myFilters->Add (theFilter); }
 
   //! Removes a filter from context.
-  Standard_EXPORT void RemoveFilter (const Handle(SelectMgr_Filter)& theFilter);
+  void RemoveFilter (const Handle(SelectMgr_Filter)& theFilter) { myFilters->Remove (theFilter); }
 
   //! Remove all filters from context.
-  Standard_EXPORT void RemoveFilters();
+  void RemoveFilters() { myFilters->Clear(); }
 
   //! Return picking strategy; SelectMgr_PickingStrategy_FirstAcceptable by default.
-  //! @sa MoveTo()/Filters()
+  //! @sa MoveTo(), Filters()
   SelectMgr_PickingStrategy PickingStrategy() const { return myPickingStrategy; }
 
   //! Setup picking strategy - which entities detected by picking line will be accepted, considering Selection Filters.
@@ -784,14 +784,22 @@ public: //! @name common properties
   //! This contains all the color and line attributes which can be used by interactive objects which do not have their own attributes.
   const Handle(Prs3d_Drawer)& DefaultDrawer() const { return myDefaultDrawer; }
 
+  //! Sets the default attribute manager; should be set at context creation time.
+  //! Warning - this setter doesn't update links to the default drawer of already displayed objects!
+  void SetDefaultDrawer (const Handle(Prs3d_Drawer)& theDrawer)
+  {
+    myDefaultDrawer = theDrawer;
+    myStyles[Prs3d_TypeOfHighlight_None] = myDefaultDrawer;
+  }
+
   //! Returns the current viewer.
   const Handle(V3d_Viewer)& CurrentViewer() const { return myMainVwr; }
 
   const Handle(SelectMgr_SelectionManager)& SelectionManager() const { return mgrSelector; }
 
-  const Handle(PrsMgr_PresentationManager3d)& MainPrsMgr() const { return myMainPM; }
+  const Handle(PrsMgr_PresentationManager)& MainPrsMgr() const { return myMainPM; }
 
-  const Handle(StdSelect_ViewerSelector3d)& MainSelector() const { return myMainSel; }
+  const Handle(StdSelect_ViewerSelector3d)& MainSelector() const { return mgrSelector->Selector(); }
 
   //! Updates the current viewer.
   Standard_EXPORT void UpdateCurrentViewer();
@@ -814,16 +822,27 @@ public: //! @name common properties
 
   //! Returns the list theListOfIO of objects with indicated display status particular Type WhichKind and Signature WhichSignature.
   //! By Default, WhichSignature equals 1. This means that there is a check on type only.
-  Standard_EXPORT void ObjectsByDisplayStatus (const AIS_DisplayStatus theStatus, AIS_ListOfInteractive& theListOfIO) const;
+  Standard_EXPORT void ObjectsByDisplayStatus (const PrsMgr_DisplayStatus theStatus, AIS_ListOfInteractive& theListOfIO) const;
 
   //! gives the list of objects with indicated display status
   //! Type and signature by Default, <WhichSignature> = -1 means control only on <WhichKind>.
-  Standard_EXPORT void ObjectsByDisplayStatus (const AIS_KindOfInteractive WhichKind, const Standard_Integer WhichSignature, const AIS_DisplayStatus theStatus, AIS_ListOfInteractive& theListOfIO) const;
+  Standard_EXPORT void ObjectsByDisplayStatus (const AIS_KindOfInteractive WhichKind,
+                                               const Standard_Integer WhichSignature,
+                                               const PrsMgr_DisplayStatus theStatus,
+                                               AIS_ListOfInteractive& theListOfIO) const;
   
   //! fills <aListOfIO> with objects of a particular Type and Signature with no consideration of display status.
   //! by Default, <WhichSignature> = -1 means control only on <WhichKind>.
-  //! if <WhichKind> = AIS_KOI_None and <WhichSignature> = -1, all the objects are put into the list.
-  Standard_EXPORT void ObjectsInside (AIS_ListOfInteractive& aListOfIO, const AIS_KindOfInteractive WhichKind = AIS_KOI_None, const Standard_Integer WhichSignature = -1) const;
+  //! if <WhichKind> = AIS_KindOfInteractive_None and <WhichSignature> = -1, all the objects are put into the list.
+  Standard_EXPORT void ObjectsInside (AIS_ListOfInteractive& aListOfIO,
+                                      const AIS_KindOfInteractive WhichKind = AIS_KindOfInteractive_None,
+                                      const Standard_Integer WhichSignature = -1) const;
+
+  //! Create iterator through all objects registered in context.
+  AIS_DataMapIteratorOfDataMapOfIOStatus ObjectIterator() const
+  {
+    return AIS_DataMapIteratorOfDataMapOfIOStatus (myObjects);
+  }
 
   //! Rebuilds 1st level of BVH selection forcibly
   Standard_EXPORT void RebuildSelectionStructs();
@@ -832,12 +851,10 @@ public: //! @name common properties
   Standard_EXPORT void Disconnect (const Handle(AIS_InteractiveObject)& theAssembly, const Handle(AIS_InteractiveObject)& theObjToDisconnect = NULL);
 
   //! Query objects visible or hidden in specified view due to affinity mask.
-  Standard_EXPORT void ObjectsForView (AIS_ListOfInteractive& theListOfIO, const Handle(V3d_View)& theView, const Standard_Boolean theIsVisibleInView, const AIS_DisplayStatus theStatus = AIS_DS_None) const;
-
-  //! Clears all the structures which don't belong to objects displayed at neutral point
-  //! only effective when no Local Context is opened...
-  //! returns the number of removed  structures from the viewers.
-  Standard_EXPORT Standard_Integer PurgeDisplay();
+  Standard_EXPORT void ObjectsForView (AIS_ListOfInteractive& theListOfIO,
+                                       const Handle(V3d_View)& theView,
+                                       const Standard_Boolean theIsVisibleInView,
+                                       const PrsMgr_DisplayStatus theStatus = PrsMgr_DisplayStatus_None) const;
 
   //! Return rotation gravity point.
   Standard_EXPORT virtual gp_Pnt GravityPoint (const Handle(V3d_View)& theView) const;
@@ -993,7 +1010,7 @@ public: //! @name tessellation deviation properties for automatic triangulation
   //! The default value is 0.001.
   //! In drawing shapes, however, you are allowed to ask for a relative deviation.
   //! This deviation will be: SizeOfObject * DeviationCoefficient.
-  Standard_EXPORT void SetDeviationCoefficient (const Standard_Real theCoefficient);
+  void SetDeviationCoefficient (const Standard_Real theCoefficient) { myDefaultDrawer->SetDeviationCoefficient (theCoefficient); }
   
   //! Returns the deviation coefficient.
   //! Drawings of curves or patches are made with respect to a maximal chordal deviation.
@@ -1007,12 +1024,12 @@ public: //! @name tessellation deviation properties for automatic triangulation
   //! The default value is 0.001.
   //! In drawing shapes, however, you are allowed to ask for a relative deviation.
   //! This deviation will be: SizeOfObject * DeviationCoefficient.
-  Standard_EXPORT Standard_Real DeviationCoefficient() const;
+  Standard_Real DeviationCoefficient() const { return myDefaultDrawer->DeviationCoefficient(); }
 
   //! default 20 degrees
-  Standard_EXPORT void SetDeviationAngle (const Standard_Real anAngle);
+  void SetDeviationAngle (const Standard_Real theAngle) { myDefaultDrawer->SetDeviationAngle (theAngle); }
 
-  Standard_EXPORT Standard_Real DeviationAngle() const;
+  Standard_Real DeviationAngle() const { return myDefaultDrawer->DeviationAngle(); }
 
 public: //! @name HLR (Hidden Line Removal) display attributes
 
@@ -1021,19 +1038,19 @@ public: //! @name HLR (Hidden Line Removal) display attributes
   //! Color: Quantity_NOC_YELLOW
   //! Type of line: Aspect_TOL_DASH
   //! Width: 1.
-  Standard_EXPORT Handle(Prs3d_LineAspect) HiddenLineAspect() const;
+  const Handle(Prs3d_LineAspect)& HiddenLineAspect() const { return myDefaultDrawer->HiddenLineAspect(); }
 
   //! Sets the hidden line aspect anAspect.
   //! Aspect defines display attributes for hidden lines in HLR projections.
-  Standard_EXPORT void SetHiddenLineAspect (const Handle(Prs3d_LineAspect)& anAspect) const;
+  void SetHiddenLineAspect (const Handle(Prs3d_LineAspect)& theAspect) const { myDefaultDrawer->SetHiddenLineAspect (theAspect); }
 
   //! returns Standard_True if the hidden lines are to be drawn.
   //! By default the hidden lines are not drawn.
-  Standard_EXPORT Standard_Boolean DrawHiddenLine() const;
+  Standard_Boolean DrawHiddenLine() const { return myDefaultDrawer->DrawHiddenLine(); }
 
-  Standard_EXPORT void EnableDrawHiddenLine() const;
+  void EnableDrawHiddenLine() const { myDefaultDrawer->EnableDrawHiddenLine(); }
 
-  Standard_EXPORT void DisableDrawHiddenLine() const;
+  void DisableDrawHiddenLine() const { myDefaultDrawer->DisableDrawHiddenLine(); }
 
 public: //! @name iso-line display attributes
 
@@ -1044,11 +1061,11 @@ public: //! @name iso-line display attributes
   Standard_EXPORT Standard_Integer IsoNumber (const AIS_TypeOfIso WhichIsos = AIS_TOI_Both);
   
   //! Returns True if drawing isoparameters on planes is enabled.
-  Standard_EXPORT void IsoOnPlane (const Standard_Boolean SwitchOn);
+  void IsoOnPlane (const Standard_Boolean theToSwitchOn) { myDefaultDrawer->SetIsoOnPlane (theToSwitchOn); }
   
   //! Returns True if drawing isoparameters on planes is enabled.
   //! if <forUIsos> = False,
-  Standard_EXPORT Standard_Boolean IsoOnPlane() const;
+  Standard_Boolean IsoOnPlane() const { return myDefaultDrawer->IsoOnPlane(); }
 
   //! Enables or disables on-triangulation build for isolines for a particular object.
   //! In case if on-triangulation builder is disabled, default on-plane builder will compute isolines for the object given.
@@ -1057,12 +1074,88 @@ public: //! @name iso-line display attributes
 
   //! Enables or disables on-triangulation build for isolines for default drawer.
   //! In case if on-triangulation builder is disabled, default on-plane builder will compute isolines for the object given.
-  Standard_EXPORT void IsoOnTriangulation (const Standard_Boolean theToSwitchOn);
+  void IsoOnTriangulation (const Standard_Boolean theToSwitchOn) { myDefaultDrawer->SetIsoOnTriangulation (theToSwitchOn); }
 
   //! Returns true if drawing isolines on triangulation algorithm is enabled.
-  Standard_EXPORT Standard_Boolean IsoOnTriangulation() const;
+  Standard_Boolean IsoOnTriangulation() const { return myDefaultDrawer->IsoOnTriangulation(); }
 
 //! @name obsolete methods
+public:
+
+  Standard_DEPRECATED("Deprecated method Display() with obsolete argument theToAllowDecomposition")
+  void Display (const Handle(AIS_InteractiveObject)& theIObj,
+                const Standard_Integer               theDispMode,
+                const Standard_Integer               theSelectionMode,
+                const Standard_Boolean               theToUpdateViewer,
+                const Standard_Boolean               theToAllowDecomposition,
+                const PrsMgr_DisplayStatus           theDispStatus = PrsMgr_DisplayStatus_None)
+  {
+    (void )theToAllowDecomposition;
+    Display (theIObj, theDispMode, theSelectionMode, theToUpdateViewer, theDispStatus);
+  }
+
+  Standard_DEPRECATED("Deprecated method Load() with obsolete last argument theToAllowDecomposition")
+  void Load (const Handle(AIS_InteractiveObject)& theObj, Standard_Integer theSelectionMode, Standard_Boolean ) { Load (theObj, theSelectionMode); }
+
+  //! Updates the display in the viewer to take dynamic detection into account.
+  //! On dynamic detection by the mouse cursor, sensitive primitives are highlighted.
+  //! The highlight color of entities detected by mouse movement is white by default.
+  Standard_DEPRECATED("Deprecated method Hilight()")
+  void Hilight (const Handle(AIS_InteractiveObject)& theObj,
+                const Standard_Boolean               theIsToUpdateViewer)
+  {
+    return HilightWithColor (theObj, myStyles[Prs3d_TypeOfHighlight_Dynamic], theIsToUpdateViewer);
+  }
+
+  //! Sets the graphic basic aspect to the current presentation of ALL selected objects.
+  Standard_DEPRECATED ("Deprecated method - presentation attributes should be assigned directly to object")
+  Standard_EXPORT void SetSelectedAspect (const Handle(Prs3d_BasicAspect)& theAspect,
+                                          const Standard_Boolean           theToUpdateViewer);
+
+  //! Selects everything found in the bounding rectangle defined by the pixel minima and maxima, XPMin, YPMin, XPMax, and YPMax in the view.
+  //! The objects detected are passed to the main viewer, which is then updated.
+  Standard_DEPRECATED("This method is deprecated - SelectRectangle() taking AIS_SelectionScheme_Replace should be called instead")
+  Standard_EXPORT AIS_StatusOfPick Select (const Standard_Integer  theXPMin,
+                                           const Standard_Integer  theYPMin,
+                                           const Standard_Integer  theXPMax,
+                                           const Standard_Integer  theYPMax,
+                                           const Handle(V3d_View)& theView,
+                                           const Standard_Boolean  theToUpdateViewer);
+
+  //! polyline selection; clears the previous picked list
+  Standard_DEPRECATED("This method is deprecated - SelectPolygon() taking AIS_SelectionScheme_Replace should be called instead")
+  Standard_EXPORT AIS_StatusOfPick Select (const TColgp_Array1OfPnt2d& thePolyline,
+                                           const Handle(V3d_View)&     theView,
+                                           const Standard_Boolean      theToUpdateViewer);
+
+  //! Stores and hilights the previous detected; Unhilights the previous picked.
+  //! @sa MoveTo().
+  Standard_DEPRECATED("This method is deprecated - SelectDetected() taking AIS_SelectionScheme_Replace should be called instead")
+  Standard_EXPORT AIS_StatusOfPick Select (const Standard_Boolean theToUpdateViewer);
+
+  //! Adds the last detected to the list of previous picked.
+  //! If the last detected was already declared as picked, removes it from the Picked List.
+  //! @sa MoveTo().
+  Standard_DEPRECATED("This method is deprecated - SelectDetected() taking AIS_SelectionScheme_XOR should be called instead")
+  Standard_EXPORT AIS_StatusOfPick ShiftSelect (const Standard_Boolean theToUpdateViewer);
+
+  //! Adds the last detected to the list of previous picked.
+  //! If the last detected was already declared as picked, removes it from the Picked List.
+  Standard_DEPRECATED("This method is deprecated - SelectPolygon() taking AIS_SelectionScheme_XOR should be called instead")
+  Standard_EXPORT AIS_StatusOfPick ShiftSelect (const TColgp_Array1OfPnt2d& thePolyline,
+                                                const Handle(V3d_View)&     theView,
+                                                const Standard_Boolean      theToUpdateViewer);
+
+  //! Rectangle of selection; adds new detected entities into the picked list,
+  //! removes the detected entities that were already stored.
+  Standard_DEPRECATED("This method is deprecated - SelectRectangle() taking AIS_SelectionScheme_XOR should be called instead")
+  Standard_EXPORT AIS_StatusOfPick ShiftSelect (const Standard_Integer  theXPMin,
+                                                const Standard_Integer  theYPMin,
+                                                const Standard_Integer  theXPMax,
+                                                const Standard_Integer  theYPMax,
+                                                const Handle(V3d_View)& theView,
+                                                const Standard_Boolean  theToUpdateViewer);
+
 public:
 
   //! Updates the view of the current object in open context.
@@ -1073,7 +1166,7 @@ public:
 
   //! Allows to add or remove the object given to the list of current and highlight/unhighlight it correspondingly.
   //! Is valid for global context only; for local context use method AddOrRemoveSelected.
-  //! Since this method makes sence only for neutral point selection of a whole object,
+  //! Since this method makes sense only for neutral point selection of a whole object,
   //! if 0 selection of the object is empty this method simply does nothing.
   Standard_DEPRECATED ("Local Context is deprecated - local selection should be used without Local Context")
   void AddOrRemoveCurrentObject (const Handle(AIS_InteractiveObject)& theObj,
@@ -1130,12 +1223,12 @@ public:
 
   //! @return current mouse-detected shape or empty (null) shape, if current interactive object
   //! is not a shape (AIS_Shape) or there is no current mouse-detected interactive object at all.
-  //! @sa DetectedCurrentOwner()/InitDetected()/MoreDetected()/NextDetected().
+  //! @sa DetectedCurrentOwner(), InitDetected(), MoreDetected(), NextDetected().
   Standard_DEPRECATED ("Local Context is deprecated - ::DetectedCurrentOwner() should be called instead")
   Standard_EXPORT const TopoDS_Shape& DetectedCurrentShape() const;
   
   //! @return current mouse-detected interactive object or null object, if there is no currently detected interactives
-  //! @sa DetectedCurrentOwner()/InitDetected()/MoreDetected()/NextDetected().
+  //! @sa DetectedCurrentOwner(), InitDetected(), MoreDetected(), NextDetected().
   Standard_DEPRECATED ("Local Context is deprecated - ::DetectedCurrentOwner() should be called instead")
   Standard_EXPORT Handle(AIS_InteractiveObject) DetectedCurrentObject() const;
 
@@ -1196,8 +1289,11 @@ protected: //! @name internal methods
                                        const Standard_Boolean               theToUpdateViewer);
   
   Standard_EXPORT void InitAttributes();
-  
-  Standard_EXPORT Standard_Integer PurgeViewer (const Handle(V3d_Viewer)& Vwr);
+
+  //! Highlights detected objects.
+  //! If theToRedrawOnUpdate is set to false, callee should call RedrawImmediate() to update view.
+  Standard_EXPORT AIS_StatusOfDetection moveTo (const Handle(V3d_View)& theView,
+                                                const Standard_Boolean  theToRedrawOnUpdate);
 
   //! Helper function to unhighlight all entity owners currently highlighted with seleciton color.
   Standard_EXPORT void unselectOwners (const Handle(AIS_InteractiveObject)& theObject);
@@ -1211,9 +1307,11 @@ protected: //! @name internal methods
   //! for AutoHighlight, e.g. is used for selection.
   Standard_EXPORT void highlightSelected (const Handle(SelectMgr_EntityOwner)& theOwner);
 
-  //! Helper function that highlights the owners with check
-  //! for AutoHighlight, e.g. is used for selection.
-  Standard_EXPORT void highlightOwners (const AIS_NListOfEntityOwner& theOwners);
+  //! Helper function that highlights the owners with check for AutoHighlight, e.g. is used for selection.
+  //! @param theOwners [in] list of owners to highlight
+  //! @param theStyle  [in] highlight style to apply or NULL to apply selection style
+  Standard_EXPORT void highlightOwners (const AIS_NListOfEntityOwner& theOwners,
+                                        const Handle(Prs3d_Drawer)& theStyle);
 
   //! Helper function that highlights global owner of the object given with <theStyle> with check
   //! for AutoHighlight, e.g. is used for selection.
@@ -1348,7 +1446,7 @@ protected: //! @name internal methods
   //! @param theObj [in] the object to change status
   //! @param theStatus status, if NULL, unbind object
   Standard_EXPORT void setObjectStatus (const Handle(AIS_InteractiveObject)& theIObj,
-                                        const AIS_DisplayStatus theStatus,
+                                        const PrsMgr_DisplayStatus theStatus,
                                         const Standard_Integer theDispyMode,
                                         const Standard_Integer theSelectionMode);
 
@@ -1356,9 +1454,8 @@ protected: //! @name internal fields
 
   AIS_DataMapOfIOStatus myObjects;
   Handle(SelectMgr_SelectionManager) mgrSelector;
-  Handle(PrsMgr_PresentationManager3d) myMainPM;
+  Handle(PrsMgr_PresentationManager) myMainPM;
   Handle(V3d_Viewer) myMainVwr;
-  Handle(StdSelect_ViewerSelector3d) myMainSel;
   V3d_View* myLastActiveView;
   Handle(SelectMgr_EntityOwner) myLastPicked;
   Standard_Boolean myToHilightSelected;
