@@ -14,6 +14,8 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
+#include <Standard_OutOfRange.hxx>
+
 //=======================================================================
 //function : MAT_TList
 //purpose  : 
@@ -107,6 +109,8 @@ Standard_Boolean MAT_TList::More() const
 
 Item MAT_TList::Current() const
 {
+  if (thecurrentnode.IsNull())
+    throw Standard_OutOfRange();
   return thecurrentnode->GetItem();
 }
 
