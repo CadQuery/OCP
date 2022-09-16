@@ -38,7 +38,7 @@ class gp_Pnt2d;
 class gp_Vec2d;
 class Geom2d_BezierCurve;
 class Geom2d_BSplineCurve;
-class Adaptor2d_Curve2d;
+
 
 
 class IntPatch_HCurve2dTool 
