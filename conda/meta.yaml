@@ -1,5 +1,4 @@
 {% set OCCT_VER = "7.6.3" %}
-{% set OCCT_VER = "7.6.2" %}
 {% set OCP_TWEAK = "alpha" %}
 
 package:
