@@ -638,7 +638,7 @@ struct Aspect_XVisualInfo {};
 
     [Modules.SelectMgr]
 
-        exclude_typedefs = ["SelectMgr_IndexedMapOfOwner","SelectMgr_MapOfObjectSensitives","SelectMgr_FrustumCache","SelectMgr_IndexedMapOfHSensitive"]
+        exclude_typedefs = ["SelectMgr_MapOfObjectSensitives","SelectMgr_FrustumCache","SelectMgr_IndexedMapOfHSensitive"]
 
     [Modules.OpenGl]
 
