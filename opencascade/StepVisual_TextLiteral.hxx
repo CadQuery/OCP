@@ -18,15 +18,12 @@
 #define _StepVisual_TextLiteral_HeaderFile
 
 #include <Standard.hxx>
-#include <Standard_Type.hxx>
 
 #include <StepGeom_Axis2Placement.hxx>
 #include <StepVisual_TextPath.hxx>
 #include <StepVisual_FontSelect.hxx>
 #include <StepGeom_GeometricRepresentationItem.hxx>
 class TCollection_HAsciiString;
-class StepGeom_Axis2Placement;
-class StepVisual_FontSelect;
 
 
 class StepVisual_TextLiteral;

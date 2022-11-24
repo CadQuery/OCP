@@ -18,12 +18,10 @@
 #define _StepGeom_Conic_HeaderFile
 
 #include <Standard.hxx>
-#include <Standard_Type.hxx>
 
 #include <StepGeom_Axis2Placement.hxx>
 #include <StepGeom_Curve.hxx>
 class TCollection_HAsciiString;
-class StepGeom_Axis2Placement;
 
 
 class StepGeom_Conic;

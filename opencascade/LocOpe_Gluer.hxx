@@ -19,9 +19,7 @@
 
 #include <Standard.hxx>
 #include <Standard_DefineAlloc.hxx>
-#include <Standard_Handle.hxx>
 
-#include <Standard_Boolean.hxx>
 #include <TopoDS_Shape.hxx>
 #include <TopAbs_Orientation.hxx>
 #include <LocOpe_Operation.hxx>
@@ -29,10 +27,6 @@
 #include <TopTools_DataMapOfShapeShape.hxx>
 #include <TopTools_DataMapOfShapeListOfShape.hxx>
 #include <TopTools_ListOfShape.hxx>
-class StdFail_NotDone;
-class Standard_NoSuchObject;
-class Standard_ConstructionError;
-class TopoDS_Shape;
 class TopoDS_Face;
 class TopoDS_Edge;
 

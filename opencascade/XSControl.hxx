@@ -24,19 +24,6 @@
 class XSControl_WorkSession;
 class IFSelect_SessionPilot;
 class XSControl_Vars;
-class XSControl_Controller;
-class XSControl_TransferReader;
-class XSControl_TransferWriter;
-class XSControl_WorkSession;
-class XSControl_SelectForTransfer;
-class XSControl_SignTransferStatus;
-class XSControl_ConnectedShapes;
-class XSControl_Reader;
-class XSControl_Writer;
-class XSControl_Functions;
-class XSControl_FuncShape;
-class XSControl_Utils;
-class XSControl_Vars;
 
 
 //! This package provides complements to IFSelect & Co for
@@ -56,40 +43,6 @@ public:
   //! it provides access to external variables
   Standard_EXPORT static Handle(XSControl_Vars) Vars (const Handle(IFSelect_SessionPilot)& pilot);
 
-
-
-
-protected:
-
-
-
-
-
-private:
-
-
-
-
-friend class XSControl_Controller;
-friend class XSControl_TransferReader;
-friend class XSControl_TransferWriter;
-friend class XSControl_WorkSession;
-friend class XSControl_SelectForTransfer;
-friend class XSControl_SignTransferStatus;
-friend class XSControl_ConnectedShapes;
-friend class XSControl_Reader;
-friend class XSControl_Writer;
-friend class XSControl_Functions;
-friend class XSControl_FuncShape;
-friend class XSControl_Utils;
-friend class XSControl_Vars;
-
 };
-
-
-
-
-
-
 
 #endif // _XSControl_HeaderFile

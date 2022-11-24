@@ -18,9 +18,7 @@
 #define _MoniTool_TypedValue_HeaderFile
 
 #include <Standard.hxx>
-#include <Standard_Type.hxx>
 
-#include <TCollection_AsciiString.hxx>
 #include <MoniTool_ValueType.hxx>
 #include <NCollection_DataMap.hxx>
 #include <Standard_Type.hxx>
@@ -30,13 +28,8 @@
 #include <MoniTool_ValueInterpret.hxx>
 #include <MoniTool_ValueSatisfies.hxx>
 #include <Standard_Transient.hxx>
-#include <Standard_CString.hxx>
-#include <Standard_Boolean.hxx>
 #include <TColStd_HSequenceOfAsciiString.hxx>
 class TCollection_HAsciiString;
-class Standard_Transient;
-class Standard_ConstructionError;
-class TCollection_AsciiString;
 
 class MoniTool_TypedValue;
 DEFINE_STANDARD_HANDLE(MoniTool_TypedValue, Standard_Transient)

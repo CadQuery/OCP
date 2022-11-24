@@ -22,11 +22,9 @@
 #include <Standard_Handle.hxx>
 
 #include <ShapeAnalysis_WireVertex.hxx>
-#include <Standard_Real.hxx>
 #include <Standard_Integer.hxx>
 class TopoDS_Wire;
 class ShapeExtend_WireData;
-class ShapeAnalysis_WireVertex;
 
 
 //! Fixing disconnected edges in the wire

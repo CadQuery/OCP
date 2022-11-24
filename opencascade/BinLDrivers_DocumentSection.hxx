@@ -20,8 +20,6 @@
 #include <Standard_Handle.hxx>
 
 #include <TCollection_AsciiString.hxx>
-#include <Standard_Size.hxx>
-#include <Standard_Boolean.hxx>
 #include <Standard_OStream.hxx>
 #include <Standard_IStream.hxx>
 #include <Message_ProgressIndicator.hxx>
@@ -75,9 +73,10 @@ public:
                               const TDocStd_FormatVersion theDocFormatVersion);
   
   //! Fill a DocumentSection instance from the data that are read
-  //! from TOC.
-  Standard_EXPORT static void ReadTOC (BinLDrivers_DocumentSection& theSection, Standard_IStream& theIS,
-                                       const TDocStd_FormatVersion theDocFormatVersion);
+  //! from TOC. Returns false in case of the stream reading problem.
+  Standard_EXPORT static Standard_Boolean ReadTOC (BinLDrivers_DocumentSection& theSection,
+                                                   Standard_IStream& theIS,
+                                                   const TDocStd_FormatVersion theDocFormatVersion);
 
 
 

@@ -28,21 +28,6 @@ class Units_UnitsDictionary;
 class Units_Quantity;
 class Units_Lexicon;
 class Units_Dimensions;
-class Units_Dimensions;
-class Units_Unit;
-class Units_ShiftedUnit;
-class Units_Token;
-class Units_ShiftedToken;
-class Units_Quantity;
-class Units_UnitsDictionary;
-class Units_UnitsSystem;
-class Units_Explorer;
-class Units_Sentence;
-class Units_MathSentence;
-class Units_UnitSentence;
-class Units_Lexicon;
-class Units_UnitsLexicon;
-class Units_Measurement;
 
 
 //! This  package provides all the  facilities  to create
@@ -102,42 +87,6 @@ public:
   //! return the dimension associated to the Type
   Standard_EXPORT static Handle(Units_Dimensions) Dimensions (const Standard_CString aType);
 
-
-
-
-protected:
-
-
-
-
-
-private:
-
-
-
-
-friend class Units_Dimensions;
-friend class Units_Unit;
-friend class Units_ShiftedUnit;
-friend class Units_Token;
-friend class Units_ShiftedToken;
-friend class Units_Quantity;
-friend class Units_UnitsDictionary;
-friend class Units_UnitsSystem;
-friend class Units_Explorer;
-friend class Units_Sentence;
-friend class Units_MathSentence;
-friend class Units_UnitSentence;
-friend class Units_Lexicon;
-friend class Units_UnitsLexicon;
-friend class Units_Measurement;
-
 };
-
-
-
-
-
-
 
 #endif // _Units_HeaderFile

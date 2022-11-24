@@ -18,11 +18,9 @@
 #define _TopoDS_HShape_HeaderFile
 
 #include <Standard.hxx>
-#include <Standard_Type.hxx>
 
 #include <TopoDS_Shape.hxx>
 #include <Standard_Transient.hxx>
-class TopoDS_Shape;
 
 
 class TopoDS_HShape;

@@ -22,14 +22,10 @@
 #include <Standard_Handle.hxx>
 
 #include <TDF_Label.hxx>
-#include <TopoDS_Shape.hxx>
-#include <Standard_Boolean.hxx>
 #include <TNaming_NameType.hxx>
 #include <TNaming_ListOfNamedShape.hxx>
 #include <TopTools_ListOfShape.hxx>
 class TNaming_NamedShape;
-class TDF_Label;
-class TopoDS_Shape;
 class TNaming_Localizer;
 
 

@@ -14,12 +14,11 @@
 #ifndef _NCollection_AliasedArray_HeaderFile
 #define _NCollection_AliasedArray_HeaderFile
 
-#include <NCollection_DefineAlloc.hxx>
-#include <NCollection_StlIterator.hxx>
 #include <Standard_DimensionMismatch.hxx>
 #include <Standard_OutOfMemory.hxx>
 #include <Standard_OutOfRange.hxx>
 #include <Standard_TypeMismatch.hxx>
+#include <Standard_Macro.hxx>
 
 //! Defines an array of values of configurable size.
 //! For instance, this class allows defining an array of 32-bit or 64-bit integer values with bitness determined in runtime.
@@ -64,14 +63,12 @@ public:
     }
   }
 
-#ifndef OCCT_NO_RVALUE_REFERENCE
   //! Move constructor
-  NCollection_AliasedArray (NCollection_AliasedArray&& theOther)
+  NCollection_AliasedArray (NCollection_AliasedArray&& theOther) Standard_Noexcept
   : myData (theOther.myData), myStride (theOther.myStride), mySize (theOther.mySize), myDeletable (theOther.myDeletable)
   {
     theOther.myDeletable = false;
   }
-#endif
 
   //! Constructor wrapping pre-allocated C-array of values without copying them.
   template<typename Type_t>
@@ -155,13 +152,11 @@ public:
     return Assign (theOther);
   }
 
-#ifndef OCCT_NO_RVALUE_REFERENCE
   //! Move assignment operator; @sa Move()
   NCollection_AliasedArray& operator= (NCollection_AliasedArray&& theOther)
   {
     return Move (theOther);
   }
-#endif
 
   //! Resizes the array to specified bounds.
   //! No re-allocation will be done if length of array does not change,

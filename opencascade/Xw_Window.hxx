@@ -19,15 +19,9 @@
 #include <Aspect_Window.hxx>
 
 #include <Aspect_VKey.hxx>
-#include <Aspect_Handle.hxx>
 
 class Aspect_DisplayConnection;
-class Aspect_WindowDefinitionError;
-class Aspect_WindowError;
 class Aspect_WindowInputListener;
-class Aspect_Background;
-class Quantity_Color;
-class Aspect_GradientBackground;
 
 typedef union _XEvent XEvent;
 

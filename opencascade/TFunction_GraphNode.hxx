@@ -22,12 +22,10 @@
 #include <TColStd_MapOfInteger.hxx>
 #include <TFunction_ExecutionStatus.hxx>
 #include <TDF_Attribute.hxx>
-#include <Standard_Boolean.hxx>
 #include <Standard_Integer.hxx>
 #include <Standard_OStream.hxx>
 class TDF_Label;
 class Standard_GUID;
-class TDF_Attribute;
 class TDF_RelocationTable;
 class TDF_DataSet;
 

@@ -21,18 +21,12 @@
 #include <Standard_DefineAlloc.hxx>
 #include <Standard_Handle.hxx>
 
-#include <Standard_Boolean.hxx>
 #include <math_Matrix.hxx>
 #include <math_IntegerVector.hxx>
-#include <Standard_Real.hxx>
 #include <math_Vector.hxx>
 #include <Standard_OStream.hxx>
 #include <Message_ProgressRange.hxx>
 
-class math_NotSquare;
-class Standard_DimensionError;
-class StdFail_NotDone;
-class math_Matrix;
 
 //! This class implements the Gauss LU decomposition (Crout algorithm)
 //! with partial pivoting (rows interchange) of a square matrix and

@@ -17,12 +17,10 @@
 #define _StepFEA_FeaShellMembraneBendingCouplingStiffness_HeaderFile
 
 #include <Standard.hxx>
-#include <Standard_Type.hxx>
 
 #include <StepFEA_SymmetricTensor42d.hxx>
 #include <StepFEA_FeaMaterialPropertyRepresentationItem.hxx>
 class TCollection_HAsciiString;
-class StepFEA_SymmetricTensor42d;
 
 
 class StepFEA_FeaShellMembraneBendingCouplingStiffness;

@@ -18,14 +18,12 @@
 #define _NLPlate_HPG0G1Constraint_HeaderFile
 
 #include <Standard.hxx>
-#include <Standard_Type.hxx>
 
 #include <Plate_D1.hxx>
 #include <Standard_Integer.hxx>
 #include <NLPlate_HPG0Constraint.hxx>
 class gp_XY;
 class gp_XYZ;
-class Plate_D1;
 
 
 class NLPlate_HPG0G1Constraint;

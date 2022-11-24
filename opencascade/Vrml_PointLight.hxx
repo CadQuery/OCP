@@ -21,13 +21,9 @@
 #include <Standard_DefineAlloc.hxx>
 #include <Standard_Handle.hxx>
 
-#include <Standard_Boolean.hxx>
-#include <Standard_Real.hxx>
 #include <Quantity_Color.hxx>
 #include <gp_Vec.hxx>
 #include <Standard_OStream.hxx>
-class Quantity_Color;
-class gp_Vec;
 
 
 //! defines a point  light node of VRML specifying

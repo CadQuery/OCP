@@ -18,12 +18,10 @@
 #define _StepShape_CsgSolid_HeaderFile
 
 #include <Standard.hxx>
-#include <Standard_Type.hxx>
 
 #include <StepShape_CsgSelect.hxx>
 #include <StepShape_SolidModel.hxx>
 class TCollection_HAsciiString;
-class StepShape_CsgSelect;
 
 
 class StepShape_CsgSolid;

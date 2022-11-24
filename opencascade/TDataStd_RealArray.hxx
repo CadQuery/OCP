@@ -18,20 +18,15 @@
 #define _TDataStd_RealArray_HeaderFile
 
 #include <Standard.hxx>
-#include <Standard_Type.hxx>
 
 #include <TColStd_HArray1OfReal.hxx>
-#include <Standard_Boolean.hxx>
 #include <TDF_Attribute.hxx>
 #include <Standard_Integer.hxx>
 #include <Standard_Real.hxx>
 #include <Standard_OStream.hxx>
 #include <Standard_GUID.hxx>
 
-class TDataStd_DeltaOnModificationOfRealArray;
-class Standard_GUID;
 class TDF_Label;
-class TDF_Attribute;
 class TDF_RelocationTable;
 class TDF_DeltaOnModification;
 

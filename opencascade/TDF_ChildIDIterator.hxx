@@ -22,10 +22,8 @@
 
 #include <Standard_GUID.hxx>
 #include <TDF_ChildIterator.hxx>
-#include <Standard_Boolean.hxx>
 class TDF_Attribute;
 class TDF_Label;
-class Standard_GUID;
 
 
 //! Iterates on the children of a label, to find

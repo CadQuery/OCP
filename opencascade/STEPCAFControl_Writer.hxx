@@ -16,14 +16,12 @@
 #ifndef _STEPCAFControl_Writer_HeaderFile
 #define _STEPCAFControl_Writer_HeaderFile
 
-#include <IFSelect_ReturnStatus.hxx>
 #include <MoniTool_DataMapOfShapeTransient.hxx>
 #include <NCollection_Vector.hxx>
 #include <Standard_DefineAlloc.hxx>
 #include <Standard_Handle.hxx>
 #include <STEPCAFControl_DataMapOfLabelShape.hxx>
 #include <STEPCAFControl_DataMapOfLabelExternFile.hxx>
-#include <STEPControl_StepModelType.hxx>
 #include <STEPControl_Writer.hxx>
 #include <StepAP242_GeometricItemSpecificUsage.hxx>
 #include <StepDimTol_Datum.hxx>
@@ -37,7 +35,6 @@
 
 class XSControl_WorkSession;
 class TDocStd_Document;
-class TCollection_AsciiString;
 class STEPCAFControl_ExternFile;
 class TopoDS_Shape;
 
@@ -73,7 +70,11 @@ public:
   //! filename will be a name of root file, all other files
   //! have names of corresponding parts
   //! Provided for use like single-file writer
-  Standard_EXPORT IFSelect_ReturnStatus Write (const Standard_CString filename);
+  Standard_EXPORT IFSelect_ReturnStatus Write (const Standard_CString theFileName);
+
+  //! Writes all the produced models into the stream.
+  //! Provided for use like single-file writer
+  Standard_EXPORT IFSelect_ReturnStatus WriteStream (std::ostream& theStream);
   
   //! Transfers a document (or single label) to a STEP model
   //! The mode of translation of shape is AsIs
@@ -225,19 +226,29 @@ private:
     const TDF_Label theLabel, const TopoDS_Shape theShape, Handle(StepRepr_RepresentationContext)& theRC,
     Handle(StepAP242_GeometricItemSpecificUsage)& theGISU);
 
-  Standard_EXPORT void WritePresentation(const Handle(XSControl_WorkSession) &WS, const TopoDS_Shape thePresentation,
-    const Handle(TCollection_HAsciiString)& thePrsName, const Standard_Boolean hasSemantic, const Standard_Boolean hasPlane,
-    const gp_Ax2 theAnnotationPlane, const gp_Pnt theTextPosition, const Handle(Standard_Transient) theDimension);
+  Standard_EXPORT void WritePresentation(const Handle(XSControl_WorkSession)&    WS,
+                                         const TopoDS_Shape&                     thePresentation,
+                                         const Handle(TCollection_HAsciiString)& thePrsName,
+                                         const Standard_Boolean                  hasSemantic,
+                                         const Standard_Boolean                  hasPlane,
+                                         const gp_Ax2&                           theAnnotationPlane,
+                                         const gp_Pnt&                           theTextPosition,
+                                         const Handle(Standard_Transient)        theDimension);
 
-  Standard_EXPORT Handle(StepDimTol_Datum) WriteDatumAP242(const Handle(XSControl_WorkSession) &WS, const TDF_LabelSequence theShapeL,
-    const TDF_Label theDatumL, const Standard_Boolean isFirstDTarget, const Handle(StepDimTol_Datum) theWrittenDatum);
+  Standard_EXPORT Handle(StepDimTol_Datum) WriteDatumAP242(const Handle(XSControl_WorkSession)& WS,
+                                                           const TDF_LabelSequence&             theShapeL,
+                                                           const TDF_Label&                     theDatumL,
+                                                           const Standard_Boolean               isFirstDTarget,
+                                                           const Handle(StepDimTol_Datum)       theWrittenDatum);
 
   Standard_EXPORT void WriteToleranceZone(const Handle(XSControl_WorkSession) &WS, const Handle(XCAFDimTolObjects_GeomToleranceObject)& theObject,
     const Handle(StepDimTol_GeometricTolerance)& theEntity, const Handle(StepRepr_RepresentationContext)& theRC);
 
-  Standard_EXPORT void WriteGeomTolerance(const Handle(XSControl_WorkSession) &WS, const TDF_LabelSequence theShapeSeqL,
-    const TDF_Label theGeomTolL, const Handle(StepDimTol_HArray1OfDatumSystemOrReference)& theDatumSystem,
-    const Handle(StepRepr_RepresentationContext)& theRC);
+  Standard_EXPORT void WriteGeomTolerance(const Handle(XSControl_WorkSession)&                      WS,
+                                          const TDF_LabelSequence&                                  theShapeSeqL,
+                                          const TDF_Label&                                          theGeomTolL,
+                                          const Handle(StepDimTol_HArray1OfDatumSystemOrReference)& theDatumSystem,
+                                          const Handle(StepRepr_RepresentationContext)&             theRC);
 
 private:
 

@@ -17,20 +17,15 @@
 #define _TDataStd_ExtStringArray_HeaderFile
 
 #include <Standard.hxx>
-#include <Standard_Type.hxx>
 
 #include <TColStd_HArray1OfExtendedString.hxx>
-#include <Standard_Boolean.hxx>
 #include <TDF_Attribute.hxx>
 #include <Standard_Integer.hxx>
 #include <Standard_OStream.hxx>
 #include <Standard_GUID.hxx>
 
-class TDataStd_DeltaOnModificationOfExtStringArray;
-class Standard_GUID;
 class TDF_Label;
 class TCollection_ExtendedString;
-class TDF_Attribute;
 class TDF_RelocationTable;
 class TDF_DeltaOnModification;
 

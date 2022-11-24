@@ -19,18 +19,14 @@
 
 #include <Standard.hxx>
 #include <Standard_DefineAlloc.hxx>
-#include <Standard_Handle.hxx>
 
 #include <Plate_PinpointConstraint.hxx>
 #include <Plate_D1.hxx>
 #include <gp_XY.hxx>
 #include <Standard_Integer.hxx>
-class gp_XY;
-class Plate_D1;
 class gp_XYZ;
 class Plate_D2;
 class Plate_D3;
-class Plate_PinpointConstraint;
 
 
 //! define a G1, G2  or G3 constraint on the Plate

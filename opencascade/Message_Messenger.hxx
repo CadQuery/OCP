@@ -16,7 +16,6 @@
 #ifndef _Message_Messenger_HeaderFile
 #define _Message_Messenger_HeaderFile
 
-#include <Message_Gravity.hxx>
 #include <Message_SequenceOfPrinters.hxx>
 
 #include <TCollection_HAsciiString.hxx>
@@ -72,7 +71,7 @@ public:
     void Flush(Standard_Boolean doForce = Standard_False)
     {
       myStream.flush();
-      if (doForce || myStream.rdbuf()->in_avail() > 0)
+      if (doForce || myStream.tellp() != std::streampos(0))
       {
         if (myMessenger)
         {

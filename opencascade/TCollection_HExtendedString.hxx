@@ -23,16 +23,8 @@
 #include <TCollection_ExtendedString.hxx>
 #include <Standard_Transient.hxx>
 #include <Standard_CString.hxx>
-#include <Standard_ExtString.hxx>
-#include <Standard_ExtCharacter.hxx>
 #include <Standard_Integer.hxx>
-#include <Standard_Boolean.hxx>
 #include <Standard_OStream.hxx>
-class Standard_NullObject;
-class Standard_OutOfRange;
-class Standard_NumericError;
-class Standard_NegativeValue;
-class TCollection_ExtendedString;
 class TCollection_HAsciiString;
 
 

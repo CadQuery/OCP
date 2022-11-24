@@ -20,9 +20,7 @@
 #include <Standard_Type.hxx>
 
 #include <TDocStd_Application.hxx>
-#include <TColStd_SequenceOfExtendedString.hxx>
 #include <Standard_CString.hxx>
-class TDocStd_Document;
 
 
 class XCAFApp_Application;

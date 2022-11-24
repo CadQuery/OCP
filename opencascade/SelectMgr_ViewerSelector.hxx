@@ -17,10 +17,7 @@
 #ifndef _SelectMgr_ViewerSelector_HeaderFile
 #define _SelectMgr_ViewerSelector_HeaderFile
 
-#include <Graphic3d_SequenceOfStructure.hxx>
-#include <NCollection_DataMap.hxx>
 #include <OSD_Chronometer.hxx>
-#include <Select3D_BVHBuilder3d.hxx>
 #include <SelectMgr_BVHThreadPool.hxx>
 #include <SelectMgr_IndexedDataMapOfOwnerCriterion.hxx>
 #include <SelectMgr_SelectingVolumeManager.hxx>
@@ -35,11 +32,7 @@
 #include <Standard_Transient.hxx>
 #include <StdSelect_TypeOfSelectionImage.hxx>
 #include <TColStd_HArray1OfInteger.hxx>
-#include <TColStd_SequenceOfInteger.hxx>
 
-class Graphic3d_Structure;
-class Graphic3d_TransformPers;
-class SelectMgr_SelectionManager;
 class SelectMgr_SensitiveEntitySet;
 class SelectMgr_EntityOwner;
 class Select3D_SensitiveEntity;
@@ -328,7 +321,7 @@ protected:
 
   //! Traverses BVH containing all added selectable objects and
   //! finds candidates for further search of overlap
-  Standard_EXPORT void TraverseSensitives();
+  Standard_EXPORT void TraverseSensitives (const Standard_Integer theViewId = -1);
 
   //! Internal function that checks if there is possible overlap between some entity of selectable object theObject and
   //! current selecting volume.

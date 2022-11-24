@@ -23,13 +23,9 @@
 #include <TDF_AttributeDeltaList.hxx>
 #include <TCollection_ExtendedString.hxx>
 #include <Standard_Transient.hxx>
-#include <Standard_Boolean.hxx>
 #include <TDF_LabelList.hxx>
 #include <Standard_OStream.hxx>
-class Standard_OutOfRange;
-class TDF_Data;
 class TDF_AttributeDelta;
-class TCollection_ExtendedString;
 
 
 class TDF_Delta;

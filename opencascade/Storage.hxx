@@ -22,18 +22,6 @@
 #include <Standard_Handle.hxx>
 
 class TCollection_AsciiString;
-class Storage_BaseDriver;
-class Storage_CallBack;
-class Storage_DefaultCallBack;
-class Storage_HeaderData;
-class Storage_Data;
-class Storage_TypeData;
-class Storage_RootData;
-class Storage_Root;
-class Storage_Schema;
-class Storage_InternalData;
-class Storage_stCONSTclCOM;
-class Storage_TypedCallBack;
 
 
 //! Storage package is used to write and read persistent objects.
@@ -65,39 +53,6 @@ public:
   //! returns the version of Storage's read/write routines
   Standard_EXPORT static TCollection_AsciiString Version();
 
-
-
-
-protected:
-
-
-
-
-
-private:
-
-
-
-
-friend class Storage_BaseDriver;
-friend class Storage_CallBack;
-friend class Storage_DefaultCallBack;
-friend class Storage_HeaderData;
-friend class Storage_Data;
-friend class Storage_TypeData;
-friend class Storage_RootData;
-friend class Storage_Root;
-friend class Storage_Schema;
-friend class Storage_InternalData;
-friend class Storage_stCONSTclCOM;
-friend class Storage_TypedCallBack;
-
 };
-
-
-
-
-
-
 
 #endif // _Storage_HeaderFile

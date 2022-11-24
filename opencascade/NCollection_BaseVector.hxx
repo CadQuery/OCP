@@ -21,8 +21,6 @@
 #include <NCollection_BaseAllocator.hxx>
 #include <NCollection_DefineAlloc.hxx>
 
-#include <stddef.h>
-
 // this value defines the number of blocks that are reserved
 // when the capacity of vector is increased
 inline Standard_Integer GetCapacity (const Standard_Integer theIncrement)
@@ -69,7 +67,8 @@ protected:
   {
   protected:
     Iterator()
-    : myICurBlock (0),
+    : myVector    (nullptr),
+      myICurBlock (0),
       myIEndBlock (0),
       myCurIndex  (0),
       myEndIndex  (0) {}

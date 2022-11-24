@@ -18,12 +18,10 @@
 #define _BRep_TFace_HeaderFile
 
 #include <Standard.hxx>
-#include <Standard_Type.hxx>
 
 #include <Poly_ListOfTriangulation.hxx>
 #include <TopLoc_Location.hxx>
 #include <Standard_Real.hxx>
-#include <Standard_Boolean.hxx>
 #include <TopoDS_TFace.hxx>
 class Geom_Surface;
 class TopoDS_TShape;
@@ -86,7 +84,7 @@ public:
   void NaturalRestriction (const Standard_Boolean theRestriction) { myNaturalRestriction = theRestriction; }
 
   //! Returns the triangulation of this face according to the mesh purpose.
-  //! @param theMeshPurpose [in] a mesh purpose to find appropriate triangulation (NONE by default).
+  //! @param[in] thePurpose a mesh purpose to find appropriate triangulation (NONE by default).
   //! @return an active triangulation in case of NONE purpose,
   //!         the first triangulation appropriate for the input purpose,
   //!         just the first triangulation if none matching other criteria and input purpose is AnyFallback

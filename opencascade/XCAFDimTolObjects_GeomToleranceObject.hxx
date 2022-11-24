@@ -18,9 +18,7 @@
 #define _XCAFDimTolObjects_GeomToleranceObject_HeaderFile
 
 #include <Standard.hxx>
-#include <Standard_Type.hxx>
 
-#include <XCAFDimTolObjects_GeomToleranceObjectSequence.hxx>
 #include <XCAFDimTolObjects_GeomToleranceType.hxx>
 #include <XCAFDimTolObjects_GeomToleranceTypeValue.hxx>
 #include <Standard_Real.hxx>
@@ -30,7 +28,6 @@
 #include <Standard_Transient.hxx>
 #include <XCAFDimTolObjects_GeomToleranceModif.hxx>
 #include <XCAFDimTolObjects_ToleranceZoneAffectedPlane.hxx>
-#include <gp_Ax2.hxx>
 #include <gp_Pln.hxx>
 #include <TopoDS_Shape.hxx>
 #include <TCollection_HAsciiString.hxx>
@@ -105,7 +102,7 @@ public:
   //! Returns the maximal upper tolerance.
   Standard_EXPORT Standard_Real GetMaxValueModifier() const;
 
-  Standard_EXPORT void SetAxis (const gp_Ax2 theAxis);
+  Standard_EXPORT void SetAxis (const gp_Ax2& theAxis);
   
   Standard_EXPORT gp_Ax2 GetAxis() const;
    

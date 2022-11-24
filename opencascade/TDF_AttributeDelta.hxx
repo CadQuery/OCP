@@ -17,13 +17,11 @@
 #define _TDF_AttributeDelta_HeaderFile
 
 #include <Standard.hxx>
-#include <Standard_Type.hxx>
 
 #include <TDF_Label.hxx>
 #include <Standard_Transient.hxx>
 #include <Standard_OStream.hxx>
 class TDF_Attribute;
-class TDF_Label;
 class Standard_GUID;
 
 

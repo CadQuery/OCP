@@ -19,7 +19,6 @@
 
 #include <Standard.hxx>
 #include <Standard_DefineAlloc.hxx>
-#include <Standard_Handle.hxx>
 
 #include <TopTools_IndexedMapOfShape.hxx>
 #include <TopTools_LocationSet.hxx>
@@ -30,7 +29,6 @@
 #include <TopTools_FormatVersion.hxx>
 
 class TopoDS_Shape;
-class TopTools_LocationSet;
 class TCollection_AsciiString;
 
 

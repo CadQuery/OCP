@@ -19,20 +19,13 @@
 
 #include <Standard.hxx>
 #include <Standard_DefineAlloc.hxx>
-#include <Standard_Handle.hxx>
 
-#include <Standard_Boolean.hxx>
 #include <TopoDS_Shape.hxx>
-#include <Standard_Address.hxx>
 #include <Standard_Integer.hxx>
 #include <LocOpe_SequenceOfLin.hxx>
 #include <LocOpe_SequenceOfCirc.hxx>
 #include <TColGeom_SequenceOfCurve.hxx>
-#include <Standard_Real.hxx>
 #include <TopAbs_Orientation.hxx>
-class StdFail_NotDone;
-class Standard_OutOfRange;
-class TopoDS_Shape;
 class LocOpe_PntFace;
 
 

@@ -17,12 +17,10 @@
 #define _StepElement_CurveElementEndReleasePacket_HeaderFile
 
 #include <Standard.hxx>
-#include <Standard_Type.hxx>
 
 #include <StepElement_CurveElementFreedom.hxx>
 #include <Standard_Real.hxx>
 #include <Standard_Transient.hxx>
-class StepElement_CurveElementFreedom;
 
 
 class StepElement_CurveElementEndReleasePacket;

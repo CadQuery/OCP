@@ -23,10 +23,7 @@
 
 #include <TopAbs_ShapeEnum.hxx>
 #include <Standard_Integer.hxx>
-#include <Standard_Boolean.hxx>
 class TopOpeBRepDS_HDataStructure;
-class Standard_NoMoreObject;
-class Standard_NoSuchObject;
 class TopoDS_Shape;
 class TopoDS_Face;
 class TopoDS_Edge;

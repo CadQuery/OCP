@@ -23,14 +23,10 @@
 #include <XmlObjMgt_DOMString.hxx>
 #include <Standard_Boolean.hxx>
 #include <XmlObjMgt_Element.hxx>
-#include <Standard_Integer.hxx>
 #include <Standard_CString.hxx>
 #include <Standard_Real.hxx>
 class TCollection_ExtendedString;
 class TCollection_AsciiString;
-class XmlObjMgt_Persistent;
-class XmlObjMgt_GP;
-class XmlObjMgt_Array1;
 
 
 //! This package defines services to manage the storage
@@ -81,30 +77,6 @@ public:
   
   Standard_EXPORT static Standard_Boolean GetReal (const XmlObjMgt_DOMString& theString, Standard_Real& theValue);
 
-
-
-
-protected:
-
-
-
-
-
-private:
-
-
-
-
-friend class XmlObjMgt_Persistent;
-friend class XmlObjMgt_GP;
-friend class XmlObjMgt_Array1;
-
 };
-
-
-
-
-
-
 
 #endif // _XmlObjMgt_HeaderFile

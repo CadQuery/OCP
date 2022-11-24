@@ -21,20 +21,15 @@
 #include <Standard_Type.hxx>
 
 #include <Storage_Error.hxx>
-#include <TCollection_AsciiString.hxx>
 #include <Standard_Transient.hxx>
-#include <TColStd_SequenceOfAsciiString.hxx>
 #include <TColStd_SequenceOfExtendedString.hxx>
 #include <Standard_Integer.hxx>
 #include <Storage_HSeqOfRoot.hxx>
-#include <Standard_Boolean.hxx>
 #include <TColStd_HSequenceOfAsciiString.hxx>
 class Storage_HeaderData;
 class Storage_RootData;
 class Storage_TypeData;
 class Storage_InternalData;
-class Storage_Schema;
-class TCollection_AsciiString;
 class TCollection_ExtendedString;
 class Standard_Persistent;
 class Storage_Root;

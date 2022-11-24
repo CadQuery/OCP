@@ -19,20 +19,14 @@
 
 #include <Standard.hxx>
 #include <Standard_DefineAlloc.hxx>
-#include <Standard_Handle.hxx>
 
 #include <TopOpeBRep_PThePointOfIntersection.hxx>
 #include <Standard_Integer.hxx>
 #include <TopAbs_State.hxx>
-#include <Standard_Boolean.hxx>
 #include <TopoDS_Shape.hxx>
-#include <Standard_Real.hxx>
 #include <IntSurf_Transition.hxx>
 #include <Standard_OStream.hxx>
-class Standard_DomainError;
-class IntPatch_Point;
 class gp_Pnt;
-class TopoDS_Shape;
 class gp_Pnt2d;
 class TopoDS_Edge;
 class TopoDS_Face;

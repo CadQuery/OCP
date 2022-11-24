@@ -17,12 +17,10 @@
 #define _StepBasic_ExternallyDefinedItem_HeaderFile
 
 #include <Standard.hxx>
-#include <Standard_Type.hxx>
 
 #include <StepBasic_SourceItem.hxx>
 #include <Standard_Transient.hxx>
 class StepBasic_ExternalSource;
-class StepBasic_SourceItem;
 
 
 class StepBasic_ExternallyDefinedItem;

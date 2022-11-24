@@ -18,14 +18,12 @@
 #define _Storage_InternalData_HeaderFile
 
 #include <Standard.hxx>
-#include <Standard_Type.hxx>
 
 #include <Storage_BucketOfPersistent.hxx>
 #include <Standard_Integer.hxx>
 #include <Storage_HPArray.hxx>
 #include <Storage_MapOfCallBack.hxx>
 #include <Standard_Transient.hxx>
-class Storage_Schema;
 
 
 class Storage_InternalData;

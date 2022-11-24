@@ -18,19 +18,14 @@
 #define _TDataStd_TreeNode_HeaderFile
 
 #include <Standard.hxx>
-#include <Standard_Type.hxx>
 
 #include <TDataStd_PtrTreeNode.hxx>
 #include <Standard_GUID.hxx>
 #include <TDF_Attribute.hxx>
-#include <Standard_Boolean.hxx>
 #include <Standard_Integer.hxx>
 #include <Standard_OStream.hxx>
-class TDataStd_ChildNodeIterator;
 class TDF_Label;
-class Standard_GUID;
 class TDF_AttributeDelta;
-class TDF_Attribute;
 class TDF_RelocationTable;
 class TDF_DataSet;
 

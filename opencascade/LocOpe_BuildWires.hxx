@@ -21,9 +21,7 @@
 #include <Standard_DefineAlloc.hxx>
 #include <Standard_Handle.hxx>
 
-#include <Standard_Boolean.hxx>
 #include <TopTools_ListOfShape.hxx>
-class StdFail_NotDone;
 class LocOpe_WiresOnShape;
 
 

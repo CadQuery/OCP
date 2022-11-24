@@ -22,15 +22,11 @@
 #include <Standard_Handle.hxx>
 
 #include <TopoDS_Edge.hxx>
-#include <TopOpeBRepBuild_ListOfPave.hxx>
 #include <TopOpeBRepBuild_ListIteratorOfListOfPave.hxx>
-#include <Standard_Boolean.hxx>
-#include <Standard_Real.hxx>
 #include <TopOpeBRepBuild_LoopSet.hxx>
 class TopoDS_Shape;
 class TopOpeBRepBuild_Pave;
 class TopOpeBRepBuild_Loop;
-class TopoDS_Edge;
 
 
 

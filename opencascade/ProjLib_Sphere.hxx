@@ -19,13 +19,9 @@
 
 #include <Standard.hxx>
 #include <Standard_DefineAlloc.hxx>
-#include <Standard_Handle.hxx>
 
 #include <gp_Sphere.hxx>
 #include <ProjLib_Projector.hxx>
-#include <Standard_Real.hxx>
-class Standard_NoSuchObject;
-class gp_Sphere;
 class gp_Circ;
 class gp_Lin;
 class gp_Elips;

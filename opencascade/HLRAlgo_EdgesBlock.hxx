@@ -25,7 +25,6 @@
 #include <Standard_Integer.hxx>
 #include <Standard_Transient.hxx>
 #include <TopAbs_Orientation.hxx>
-#include <Standard_Boolean.hxx>
 
 
 class HLRAlgo_EdgesBlock;
@@ -96,7 +95,7 @@ public:
   void Orientation (const Standard_Integer I, const TopAbs_Orientation Or)
   {
     myFlags(I) &= ~EMaskOrient;
-    myFlags(I) |= (Or & EMaskOrient);
+    myFlags(I) |= ((Standard_Integer)Or & (Standard_Integer)EMaskOrient);
   }
 
   TopAbs_Orientation Orientation (const Standard_Integer I) const

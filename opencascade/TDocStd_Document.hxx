@@ -18,13 +18,10 @@
 #define _TDocStd_Document_HeaderFile
 
 #include <Standard.hxx>
-#include <Standard_Type.hxx>
 
-#include <TCollection_ExtendedString.hxx>
 #include <Standard_Integer.hxx>
 #include <TDF_Transaction.hxx>
 #include <TDF_DeltaList.hxx>
-#include <Standard_Boolean.hxx>
 #include <CDM_Document.hxx>
 #include <TDF_LabelMap.hxx>
 #include <Standard_Address.hxx>
@@ -32,9 +29,7 @@
 class TDF_Data;
 class TDF_Delta;
 class TDF_Label;
-class TCollection_ExtendedString;
 class TCollection_AsciiString;
-class CDM_Document;
 class TDocStd_CompoundDelta;
 
 

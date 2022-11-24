@@ -19,7 +19,6 @@
 
 #include <Standard.hxx>
 #include <Standard_DefineAlloc.hxx>
-#include <Standard_Handle.hxx>
 
 #include <TopLoc_IndexedMapOfLocation.hxx>
 #include <Standard_Integer.hxx>
@@ -27,7 +26,6 @@
 #include <Standard_IStream.hxx>
 #include <Message_ProgressRange.hxx>
 
-class Standard_OutOfRange;
 class TopLoc_Location;
 
 

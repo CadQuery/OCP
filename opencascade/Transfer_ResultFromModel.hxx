@@ -24,13 +24,10 @@
 #include <Standard_Integer.hxx>
 #include <Interface_CheckStatus.hxx>
 #include <Standard_Transient.hxx>
-#include <Standard_CString.hxx>
-#include <Standard_Boolean.hxx>
 #include <TColStd_HSequenceOfTransient.hxx>
 class Interface_InterfaceModel;
 class Transfer_ResultFromTransient;
 class Transfer_TransientProcess;
-class Standard_Transient;
 class Interface_CheckIterator;
 
 

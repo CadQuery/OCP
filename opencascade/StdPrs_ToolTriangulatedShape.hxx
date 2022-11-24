@@ -14,21 +14,13 @@
 #ifndef _StdPrs_ToolTriangulatedShape_HeaderFile
 #define _StdPrs_ToolTriangulatedShape_HeaderFile
 
-#include <Poly_Connect.hxx>
-#include <Poly_Triangulation.hxx>
-#include <Prs3d_Drawer.hxx>
-#include <Standard.hxx>
-#include <Standard_Macro.hxx>
+#include <BRepLib_ToolTriangulatedShape.hxx>
 #include <TColgp_Array1OfDir.hxx>
 
-class TopoDS_Face;
-class TopLoc_Location;
 class TopoDS_Shape;
 class Prs3d_Drawer;
-class Poly_Triangulation;
-class Poly_Connect;
 
-class StdPrs_ToolTriangulatedShape
+class StdPrs_ToolTriangulatedShape: public BRepLib_ToolTriangulatedShape
 {
 public:
 
@@ -40,34 +32,6 @@ public:
   //! @return true if shape is closed manifold Solid or compound of such Solids. <br>
   Standard_EXPORT static Standard_Boolean IsClosed (const TopoDS_Shape& theShape);
 
-  //! Computes nodal normals for Poly_Triangulation structure using UV coordinates and surface.
-  //! Does nothing if triangulation already defines normals.
-  //! @param theFace [in] the face
-  //! @param theTris [in] the definition of a face triangulation
-  static void ComputeNormals (const TopoDS_Face& theFace,
-                              const Handle(Poly_Triangulation)& theTris)
-  {
-    Poly_Connect aPolyConnect;
-    ComputeNormals (theFace, theTris, aPolyConnect);
-  }
-
-  //! Computes nodal normals for Poly_Triangulation structure using UV coordinates and surface.
-  //! Does nothing if triangulation already defines normals.
-  //! @param theFace [in] the face
-  //! @param theTris [in] the definition of a face triangulation
-  //! @param thePolyConnect [in,out] optional, initialized tool for exploring triangulation
-  Standard_EXPORT static void ComputeNormals (const TopoDS_Face& theFace,
-                                              const Handle(Poly_Triangulation)& theTris,
-                                              Poly_Connect& thePolyConnect);
-
-  //! Evaluate normals for a triangle of a face.
-  //! @param theFace [in] the face.
-  //! @param thePolyConnect [in] the definition of a face triangulation.
-  //! @param theNormal [out] the array of normals for each triangle.
-  Standard_EXPORT static void Normal (const TopoDS_Face& theFace,
-                                      Poly_Connect& thePolyConnect,
-                                      TColgp_Array1OfDir& theNormals);
-
   //! Computes the absolute deflection value depending on the type of deflection in theDrawer:
   //! <ul>
   //! <li><b>Aspect_TOD_RELATIVE</b>: the absolute deflection is computed using the relative
@@ -77,7 +41,7 @@ public:
   //! In case of the type of deflection in theDrawer computed relative deflection for shape is stored as absolute deflection.
   //! It is necessary to use it later on for sub-shapes.
   //! This function should always be used to compute the deflection value for building
-  //! discrete representations of the shape (triangualtion, wireframe) to avoid incosistencies
+  //! discrete representations of the shape (triangulation, wireframe) to avoid inconsistencies
   //! between different representations of the shape and undesirable visual artifacts.
   Standard_EXPORT static Standard_Real GetDeflection (const TopoDS_Shape& theShape,
                                                       const Handle(Prs3d_Drawer)& theDrawer);
@@ -91,7 +55,7 @@ public:
   //! Validates triangulation within the shape and performs tessellation if necessary.
   //! @param theShape [in] the shape.
   //! @param theDrawer [in] the display settings.
-  //! @return true if tesselation was recomputed and false otherwise.
+  //! @return true if tessellation was recomputed and false otherwise.
   Standard_EXPORT static Standard_Boolean Tessellate (const TopoDS_Shape& theShape,
                                                       const Handle(Prs3d_Drawer)& theDrawer);
 

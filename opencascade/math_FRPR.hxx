@@ -19,16 +19,10 @@
 
 #include <Standard.hxx>
 #include <Standard_DefineAlloc.hxx>
-#include <Standard_Handle.hxx>
 
-#include <Standard_Boolean.hxx>
 #include <math_Vector.hxx>
-#include <Standard_Real.hxx>
-#include <Standard_Integer.hxx>
 #include <math_Status.hxx>
 #include <Standard_OStream.hxx>
-class Standard_DimensionError;
-class StdFail_NotDone;
 class math_MultipleVarFunctionWithGradient;
 
 

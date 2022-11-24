@@ -17,21 +17,15 @@
 #define _TDocStd_XLink_HeaderFile
 
 #include <Standard.hxx>
-#include <Standard_Type.hxx>
 
 #include <TCollection_AsciiString.hxx>
 #include <TDocStd_XLinkPtr.hxx>
 #include <TDF_Attribute.hxx>
-#include <Standard_Boolean.hxx>
 #include <Standard_OStream.hxx>
-class TDocStd_XLinkRoot;
-class TDocStd_XLinkIterator;
 class TDF_Label;
 class TDF_Reference;
 class Standard_GUID;
-class TCollection_AsciiString;
 class TDF_AttributeDelta;
-class TDF_Attribute;
 class TDF_RelocationTable;
 
 

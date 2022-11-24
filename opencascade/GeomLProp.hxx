@@ -22,8 +22,6 @@
 #include <Standard_Handle.hxx>
 
 #include <GeomAbs_Shape.hxx>
-#include <Standard_Real.hxx>
-#include <Standard_Boolean.hxx>
 class Geom_Curve;
 
 
@@ -49,31 +47,6 @@ public:
   //! tolerances from package Precision.
   Standard_EXPORT static GeomAbs_Shape Continuity (const Handle(Geom_Curve)& C1, const Handle(Geom_Curve)& C2, const Standard_Real u1, const Standard_Real u2, const Standard_Boolean r1, const Standard_Boolean r2);
 
-
-
-
-protected:
-
-
-
-
-
-private:
-
-
-
-
-friend class GeomLProp_CurveTool;
-friend class GeomLProp_SurfaceTool;
-friend class GeomLProp_CLProps;
-friend class GeomLProp_SLProps;
-
 };
-
-
-
-
-
-
 
 #endif // _GeomLProp_HeaderFile

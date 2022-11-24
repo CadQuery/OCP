@@ -18,17 +18,14 @@
 #define _TDataStd_Real_HeaderFile
 
 #include <Standard.hxx>
-#include <Standard_Type.hxx>
 
 #include <Standard_Real.hxx>
 #include <TDataStd_RealEnum.hxx>
 #include <TDF_DerivedAttribute.hxx>
-#include <Standard_Boolean.hxx>
 #include <Standard_OStream.hxx>
 #include <Standard_GUID.hxx>
 
 class TDF_Label;
-class TDF_Attribute;
 class TDF_RelocationTable;
 
 

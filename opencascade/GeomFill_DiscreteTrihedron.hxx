@@ -17,12 +17,9 @@
 #define _GeomFill_DiscreteTrihedron_HeaderFile
 
 #include <Standard.hxx>
-#include <Standard_Type.hxx>
 
-#include <gp_Pnt.hxx>
 #include <GeomFill_HSequenceOfAx2.hxx>
 #include <TColStd_HSequenceOfReal.hxx>
-#include <Standard_Boolean.hxx>
 #include <GeomFill_TrihedronLaw.hxx>
 #include <Standard_Real.hxx>
 #include <Standard_Integer.hxx>
@@ -51,7 +48,9 @@ public:
   
   Standard_EXPORT void Init();
   
-  Standard_EXPORT virtual void SetCurve (const Handle(Adaptor3d_Curve)& C) Standard_OVERRIDE;
+  //! initialize curve of trihedron law
+  //! @return Standard_True in case if execution end correctly
+  Standard_EXPORT virtual Standard_Boolean SetCurve (const Handle(Adaptor3d_Curve)& C) Standard_OVERRIDE;
   
   //! compute Trihedron on curve at parameter <Param>
   Standard_EXPORT virtual Standard_Boolean D0 (const Standard_Real Param, gp_Vec& Tangent, gp_Vec& Normal, gp_Vec& BiNormal) Standard_OVERRIDE;

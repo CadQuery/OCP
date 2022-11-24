@@ -19,17 +19,11 @@
 
 #include <Standard.hxx>
 #include <Standard_DefineAlloc.hxx>
-#include <Standard_Handle.hxx>
 
 #include <math_Vector.hxx>
 #include <math_Matrix.hxx>
 #include <Standard_Integer.hxx>
-#include <Standard_Boolean.hxx>
-#include <Standard_Real.hxx>
 #include <Standard_OStream.hxx>
-class StdFail_NotDone;
-class Standard_ConstructionError;
-class math_Matrix;
 
 
 //! This class implements a system resolution C*X = B with

@@ -23,11 +23,9 @@
 #include <Standard_Handle.hxx>
 
 #include <Standard_Real.hxx>
-#include <Standard_Boolean.hxx>
 #include <TopTools_IndexedMapOfShape.hxx>
 #include <Standard_OStream.hxx>
 #include <Standard_IStream.hxx>
-#include <Standard_CString.hxx>
 #include <Message_ProgressRange.hxx>
 #include <TopTools_ListOfShape.hxx>
 
@@ -276,7 +274,7 @@ public:
   //! @param theWithNormals [in]   flag which specifies whether to save triangulation with (TRUE) or without (FALSE) normals;
   //!                              has no effect on triangulation-only geometry
   //! @param theVersion [in]       the TopTools format version
-  //! @param theRange              the range of progress indicator to fill in
+  //! @param theProgress the range of progress indicator to fill in
   Standard_EXPORT static void Write (const TopoDS_Shape& theShape,
                                      Standard_OStream& theStream,
                                      const Standard_Boolean theWithTriangles,
@@ -293,7 +291,7 @@ public:
   //! This alias writes shape with triangulation data.
   //! @param theShape [in] the shape to write
   //! @param theFile [in]  the path to file to output shape into
-  //! @param theRange      the range of progress indicator to fill in
+  //! @param theProgress the range of progress indicator to fill in
   static Standard_Boolean Write (const TopoDS_Shape& theShape,
                                  const Standard_CString theFile,
                                  const Message_ProgressRange& theProgress = Message_ProgressRange())
@@ -310,7 +308,7 @@ public:
   //! @param theWithNormals [in]   flag which specifies whether to save triangulation with (TRUE) or without (FALSE) normals;
   //!                              has no effect on triangulation-only geometry
   //! @param theVersion [in]       the TopTools format version
-  //! @param theRange              the range of progress indicator to fill in
+  //! @param theProgress the range of progress indicator to fill in
   Standard_EXPORT static Standard_Boolean Write (const TopoDS_Shape& theShape,
                                                  const Standard_CString theFile,
                                                  const Standard_Boolean theWithTriangles,
@@ -357,28 +355,6 @@ public:
   //! All sub-shapes having such locations are put in list theProblemShapes
   Standard_EXPORT static void CheckLocations(const TopoDS_Shape& theS,
                                              TopTools_ListOfShape& theProblemShapes);
-
-protected:
-
-
-
-
-
-private:
-
-
-
-
-friend class BRepTools_WireExplorer;
-friend class BRepTools_Modification;
-friend class BRepTools_Modifier;
-friend class BRepTools_TrsfModification;
-friend class BRepTools_NurbsConvertModification;
-friend class BRepTools_GTrsfModification;
-friend class BRepTools_Substitution;
-friend class BRepTools_Quilt;
-friend class BRepTools_ShapeSet;
-friend class BRepTools_ReShape;
 
 };
 

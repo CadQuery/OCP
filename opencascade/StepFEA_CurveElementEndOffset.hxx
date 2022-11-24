@@ -17,12 +17,10 @@
 #define _StepFEA_CurveElementEndOffset_HeaderFile
 
 #include <Standard.hxx>
-#include <Standard_Type.hxx>
 
 #include <StepFEA_CurveElementEndCoordinateSystem.hxx>
 #include <TColStd_HArray1OfReal.hxx>
 #include <Standard_Transient.hxx>
-class StepFEA_CurveElementEndCoordinateSystem;
 
 
 class StepFEA_CurveElementEndOffset;

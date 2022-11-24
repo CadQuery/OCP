@@ -28,22 +28,6 @@ class TopoDS_Face;
 class ShapeExtend_WireData;
 class TopoDS_Shape;
 class TopoDS_Vertex;
-class ShapeAnalysis_Geom;
-class ShapeAnalysis_Curve;
-class ShapeAnalysis_Surface;
-class ShapeAnalysis_Edge;
-class ShapeAnalysis_Wire;
-class ShapeAnalysis_WireOrder;
-class ShapeAnalysis_WireVertex;
-class ShapeAnalysis_CheckSmallFace;
-class ShapeAnalysis_Shell;
-class ShapeAnalysis_ShapeTolerance;
-class ShapeAnalysis_ShapeContents;
-class ShapeAnalysis_FreeBounds;
-class ShapeAnalysis_FreeBoundData;
-class ShapeAnalysis_FreeBoundsProperties;
-class ShapeAnalysis_TransferParameters;
-class ShapeAnalysis_TransferParametersProj;
 
 
 //! This package is intended to analyze geometrical objects
@@ -67,12 +51,9 @@ public:
   DEFINE_STANDARD_ALLOC
 
   
-  //! Returns the outer wire on the face <Face>.
-  //! This is replacement of the method BRepTools::OuterWire
-  //! until it works badly.
-  //! Returns the first wire oriented as outer according to
-  //! FClass2d_Classifier. If none, last wire is returned.
-  Standard_EXPORT static TopoDS_Wire OuterWire (const TopoDS_Face& face);
+  //! Returns positively oriented wire in the face.
+  //! If there is no such wire - returns the last wire of the face.
+  Standard_EXPORT static TopoDS_Wire OuterWire (const TopoDS_Face& theFace);
   
   //! Returns a total area of 2d wire
   Standard_EXPORT static Standard_Real TotCross2D (const Handle(ShapeExtend_WireData)& sewd, const TopoDS_Face& aFace);
@@ -110,43 +91,6 @@ public:
   //! Computes exact UV bounds of all wires on the face
   Standard_EXPORT static void GetFaceUVBounds (const TopoDS_Face& F, Standard_Real& Umin, Standard_Real& Umax, Standard_Real& Vmin, Standard_Real& Vmax);
 
-
-
-
-protected:
-
-
-
-
-
-private:
-
-
-
-
-friend class ShapeAnalysis_Geom;
-friend class ShapeAnalysis_Curve;
-friend class ShapeAnalysis_Surface;
-friend class ShapeAnalysis_Edge;
-friend class ShapeAnalysis_Wire;
-friend class ShapeAnalysis_WireOrder;
-friend class ShapeAnalysis_WireVertex;
-friend class ShapeAnalysis_CheckSmallFace;
-friend class ShapeAnalysis_Shell;
-friend class ShapeAnalysis_ShapeTolerance;
-friend class ShapeAnalysis_ShapeContents;
-friend class ShapeAnalysis_FreeBounds;
-friend class ShapeAnalysis_FreeBoundData;
-friend class ShapeAnalysis_FreeBoundsProperties;
-friend class ShapeAnalysis_TransferParameters;
-friend class ShapeAnalysis_TransferParametersProj;
-
 };
-
-
-
-
-
-
 
 #endif // _ShapeAnalysis_HeaderFile

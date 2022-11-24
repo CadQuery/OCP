@@ -22,12 +22,9 @@
 #include <Standard_Handle.hxx>
 
 #include <TopLoc_SListOfItemLocation.hxx>
-#include <Standard_Boolean.hxx>
 #include <Standard_Integer.hxx>
 #include <Standard_OStream.hxx>
 
-class Standard_NoSuchObject;
-class Standard_ConstructionError;
 class gp_Trsf;
 class TopLoc_Datum3D;
 

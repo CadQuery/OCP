@@ -21,15 +21,8 @@
 #include <Standard_DefineAlloc.hxx>
 #include <Standard_Handle.hxx>
 
-#include <Standard_Integer.hxx>
 #include <ShapeExtend_Status.hxx>
 #include <Standard_Boolean.hxx>
-class ShapeExtend_ComplexCurve;
-class ShapeExtend_CompositeSurface;
-class ShapeExtend_WireData;
-class ShapeExtend_BasicMsgRegistrator;
-class ShapeExtend_MsgRegistrator;
-class ShapeExtend_Explorer;
 
 
 //! This package provides general tools and data structures common
@@ -64,33 +57,6 @@ public:
   //! Tells if a bit flag contains bit corresponding to enumerated status
   Standard_EXPORT static Standard_Boolean DecodeStatus (const Standard_Integer flag, const ShapeExtend_Status status);
 
-
-
-
-protected:
-
-
-
-
-
-private:
-
-
-
-
-friend class ShapeExtend_ComplexCurve;
-friend class ShapeExtend_CompositeSurface;
-friend class ShapeExtend_WireData;
-friend class ShapeExtend_BasicMsgRegistrator;
-friend class ShapeExtend_MsgRegistrator;
-friend class ShapeExtend_Explorer;
-
 };
-
-
-
-
-
-
 
 #endif // _ShapeExtend_HeaderFile

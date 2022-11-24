@@ -22,7 +22,6 @@
 
 #include <Standard_Integer.hxx>
 #include <ShapeUpgrade_FaceDivide.hxx>
-#include <Standard_Boolean.hxx>
 class TopoDS_Face;
 
 
@@ -45,7 +44,7 @@ public:
   
   //! Performs splitting of surface and computes the shell
   //! from source face.
-  Standard_EXPORT virtual Standard_Boolean SplitSurface() Standard_OVERRIDE;
+  Standard_EXPORT virtual Standard_Boolean SplitSurface(const Standard_Real theArea = 0.) Standard_OVERRIDE;
   
   //! Sets the number of cutting lines by which closed face will be split.
   //! The resulting faces will be num+1.

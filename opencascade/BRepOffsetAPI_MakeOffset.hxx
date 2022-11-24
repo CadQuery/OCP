@@ -19,15 +19,11 @@
 
 #include <Standard.hxx>
 #include <Standard_DefineAlloc.hxx>
-#include <Standard_Handle.hxx>
 
-#include <Standard_Boolean.hxx>
-#include <GeomAbs_JoinType.hxx>
 #include <TopoDS_Face.hxx>
 #include <TopTools_ListOfShape.hxx>
 #include <BRepFill_ListOfOffsetWire.hxx>
 #include <BRepBuilderAPI_MakeShape.hxx>
-#include <Standard_Real.hxx>
 class TopoDS_Wire;
 class TopoDS_Shape;
 
@@ -67,6 +63,11 @@ public:
   //! Initialize the evaluation of Offsetting.
   Standard_EXPORT void Init (const GeomAbs_JoinType Join = GeomAbs_Arc, const Standard_Boolean IsOpenResult = Standard_False);
   
+  //! Set approximation flag
+  //! for convertion input contours into ones consisting of
+  //! 2D circular arcs and 2D linear segments only.
+  Standard_EXPORT void SetApprox (const Standard_Boolean ToApprox);
+  
   //! Initializes the algorithm to construct parallels to the wire Spine.
   Standard_EXPORT void AddWire (const TopoDS_Wire& Spine);
   
@@ -83,7 +84,10 @@ public:
   //! from the shape <S>.
   Standard_EXPORT virtual const TopTools_ListOfShape& Generated (const TopoDS_Shape& S) Standard_OVERRIDE;
 
-
+  //! Converts each wire of the face into contour consisting only of
+  //! arcs and segments. New 3D curves are built too.
+  Standard_EXPORT static TopoDS_Face ConvertFace (const TopoDS_Face& theFace,
+                                                  const Standard_Real theAngleTolerance);
 
 
 protected:
@@ -100,6 +104,7 @@ private:
   Standard_Boolean myLastIsLeft;
   GeomAbs_JoinType myJoin;
   Standard_Boolean myIsOpenResult;
+  Standard_Boolean myIsToApprox;
   TopoDS_Face myFace;
   TopTools_ListOfShape myWires;
   BRepFill_ListOfOffsetWire myLeft;

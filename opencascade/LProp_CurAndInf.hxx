@@ -23,11 +23,8 @@
 
 #include <TColStd_SequenceOfReal.hxx>
 #include <LProp_SequenceOfCIType.hxx>
-#include <Standard_Real.hxx>
 #include <Standard_Boolean.hxx>
-#include <Standard_Integer.hxx>
 #include <LProp_CIType.hxx>
-class Standard_OutOfRange;
 
 
 //! Stores the parameters of a curve 2d or 3d corresponding

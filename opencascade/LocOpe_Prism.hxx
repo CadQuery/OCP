@@ -23,14 +23,9 @@
 
 #include <TopoDS_Shape.hxx>
 #include <gp_Vec.hxx>
-#include <Standard_Boolean.hxx>
 #include <TopTools_DataMapOfShapeListOfShape.hxx>
 #include <TopTools_ListOfShape.hxx>
 #include <TColGeom_SequenceOfCurve.hxx>
-class Standard_NoSuchObject;
-class StdFail_NotDone;
-class TopoDS_Shape;
-class gp_Vec;
 class Geom_Curve;
 
 

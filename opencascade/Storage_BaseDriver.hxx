@@ -17,21 +17,13 @@
 #ifndef _Storage_BaseDriver_HeaderFile
 #define _Storage_BaseDriver_HeaderFile
 
-#include <Standard_Type.hxx>
-
 #include <Storage_OpenMode.hxx>
-#include <Storage_Error.hxx>
 #include <Storage_Data.hxx>
 #include <Storage_Position.hxx>
 #include <TCollection_AsciiString.hxx>
 #include <TColStd_SequenceOfAsciiString.hxx>
 #include <TColStd_SequenceOfExtendedString.hxx>
 
-class Storage_StreamTypeMismatchError;
-class Storage_StreamFormatError;
-class Storage_StreamWriteError;
-class Storage_StreamExtCharParityError;
-class TCollection_AsciiString;
 class TCollection_ExtendedString;
 
 DEFINE_STANDARD_HANDLE(Storage_BaseDriver,Standard_Transient)

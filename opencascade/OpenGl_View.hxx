@@ -16,16 +16,10 @@
 #ifndef OpenGl_View_HeaderFile
 #define OpenGl_View_HeaderFile
 
-#include <Graphic3d_CView.hxx>
 #include <Graphic3d_CullingTool.hxx>
-#include <Graphic3d_GraduatedTrihedron.hxx>
-#include <Graphic3d_SequenceOfHClipPlane.hxx>
-#include <Graphic3d_ToneMappingMethod.hxx>
 #include <Graphic3d_WorldViewProjState.hxx>
-#include <Graphic3d_ZLayerSettings.hxx>
 #include <math_BullardGenerator.hxx>
 
-#include <OpenGl_Aspects.hxx>
 #include <OpenGl_FrameBuffer.hxx>
 #include <OpenGl_FrameStatsPrs.hxx>
 #include <OpenGl_GraduatedTrihedron.hxx>
@@ -39,15 +33,12 @@
 
 class OpenGl_BackgroundArray;
 class OpenGl_DepthPeeling;
-class OpenGl_GraphicDriver;
 class OpenGl_PBREnvironment;
 struct OpenGl_RaytraceMaterial;
-class OpenGl_StateCounter;
 class OpenGl_ShadowMap;
 class OpenGl_ShadowMapArray;
 class OpenGl_ShaderObject;
 class OpenGl_TextureBuffer;
-class OpenGl_TriangleSet;
 class OpenGl_Workspace;
 
 DEFINE_STANDARD_HANDLE(OpenGl_View,Graphic3d_CView)
@@ -88,9 +79,8 @@ public:
   Standard_EXPORT Standard_Boolean SetImmediateModeDrawToFront (const Standard_Boolean theDrawToFrontBuffer) Standard_OVERRIDE;
 
   //! Creates and maps rendering window to the view.
-  //! @param theWindow [in] the window.
-  //! @param theContext [in] the rendering context. If NULL the context will be created internally.
-  Standard_EXPORT virtual void SetWindow (const Handle(Aspect_Window)&  theWindow,
+  Standard_EXPORT virtual void SetWindow (const Handle(Graphic3d_CView)& theParentVIew,
+                                          const Handle(Aspect_Window)& theWindow,
                                           const Aspect_RenderingContext theContext) Standard_OVERRIDE;
 
   //! Returns window associated with the view.
@@ -348,6 +338,10 @@ protected: //! @name low-level redrawing sub-routines
                                                 OpenGl_FrameBuffer* theOitAccumFbo,
                                                 const Standard_Boolean theIsPartialUpdate = Standard_False);
 
+  //! Blit subviews into this view.
+  Standard_EXPORT bool blitSubviews (const Graphic3d_Camera::Projection theProjection,
+                                     OpenGl_FrameBuffer* theDrawFbo);
+
   //! Blit image from/to specified buffers.
   Standard_EXPORT bool blitBuffers (OpenGl_FrameBuffer*    theReadFbo,
                                     OpenGl_FrameBuffer*    theDrawFbo,
@@ -382,7 +376,7 @@ protected: //! @name Rendering of GL graphics (with prepared drawing buffer).
                                             OpenGl_FrameBuffer*    theOitAccumFbo,
                                             const Standard_Boolean theToDrawImmediate);
 
-  //! Draw background (gradient / image)
+  //! Draw background (gradient / image / cubemap)
   Standard_EXPORT virtual void drawBackground (const Handle(OpenGl_Workspace)& theWorkspace,
                                                Graphic3d_Camera::Projection theProjection);
 
@@ -406,7 +400,7 @@ private:
 
   //! Adds the structure to display lists of the view.
   Standard_EXPORT virtual void displayStructure (const Handle(Graphic3d_CStructure)& theStructure,
-                                                 const Standard_Integer thePriority) Standard_OVERRIDE;
+                                                 const Graphic3d_DisplayPriority thePriority) Standard_OVERRIDE;
 
   //! Erases the structure from display lists of the view.
   Standard_EXPORT virtual void eraseStructure (const Handle(Graphic3d_CStructure)& theStructure) Standard_OVERRIDE;
@@ -417,7 +411,7 @@ private:
 
   //! Changes the priority of a structure within its Z layer in the specified view.
   Standard_EXPORT virtual void changePriority (const Handle(Graphic3d_CStructure)& theCStructure,
-                                               const Standard_Integer theNewPriority) Standard_OVERRIDE;
+                                               const Graphic3d_DisplayPriority theNewPriority) Standard_OVERRIDE;
 
 private:
 
@@ -510,6 +504,12 @@ protected: //! @name Background parameters
   OpenGl_Aspects*            myColoredQuadParams;                 //!< Stores parameters for gradient (corner mode) background
   OpenGl_BackgroundArray*    myBackgrounds[Graphic3d_TypeOfBackground_NB]; //!< Array of primitive arrays of different background types
   Handle(OpenGl_TextureSet)  myTextureEnv;
+  Handle(OpenGl_Texture)     mySkydomeTexture;
+
+protected: //! @name methods related to skydome background
+
+  //! Generates skydome cubemap.
+  Standard_EXPORT void updateSkydomeBg (const Handle(OpenGl_Context)& theCtx);
 
 protected: //! @name methods related to PBR
 

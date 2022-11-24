@@ -18,9 +18,7 @@
 #define _TDataStd_Variable_HeaderFile
 
 #include <Standard.hxx>
-#include <Standard_Type.hxx>
 
-#include <Standard_Boolean.hxx>
 #include <TCollection_AsciiString.hxx>
 #include <TDF_Attribute.hxx>
 #include <Standard_Real.hxx>
@@ -31,8 +29,6 @@ class TDF_Label;
 class TCollection_ExtendedString;
 class TDataStd_Real;
 class TDataStd_Expression;
-class TCollection_AsciiString;
-class TDF_Attribute;
 class TDF_RelocationTable;
 class TDF_DataSet;
 

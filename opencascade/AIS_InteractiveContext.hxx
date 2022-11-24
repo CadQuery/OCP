@@ -20,7 +20,6 @@
 #include <AIS_DataMapOfIOStatus.hxx>
 #include <AIS_DisplayMode.hxx>
 #include <AIS_DisplayStatus.hxx>
-#include <AIS_ClearMode.hxx>
 #include <AIS_KindOfInteractive.hxx>
 #include <AIS_ListOfInteractive.hxx>
 #include <AIS_Selection.hxx>
@@ -43,7 +42,7 @@
 #include <TCollection_AsciiString.hxx>
 #include <TColgp_Array1OfPnt2d.hxx>
 #include <TColStd_ListOfInteger.hxx>
-#include <TopAbs_ShapeEnum.hxx>
+#include <TColStd_SequenceOfInteger.hxx>
 #include <Quantity_Color.hxx>
 
 class V3d_Viewer;
@@ -277,10 +276,15 @@ public: //! @name highlighting management
 public: //! @name object presence management (View affinity, Layer, Priority)
 
   //! Returns the display priority of the Object.
-  Standard_EXPORT Standard_Integer DisplayPriority (const Handle(AIS_InteractiveObject)& theIObj) const;
+  Standard_EXPORT Graphic3d_DisplayPriority DisplayPriority (const Handle(AIS_InteractiveObject)& theIObj) const;
 
   //! Sets the display priority of the seen parts presentation of the Object.
-  Standard_EXPORT void SetDisplayPriority (const Handle(AIS_InteractiveObject)& theIObj, const Standard_Integer thePriority);
+  Standard_EXPORT void SetDisplayPriority (const Handle(AIS_InteractiveObject)& theIObj,
+                                           const Graphic3d_DisplayPriority thePriority);
+
+  Standard_DEPRECATED("Deprecated since OCCT7.7, Graphic3d_DisplayPriority should be passed instead of integer number to SetDisplayPriority()")
+  void SetDisplayPriority (const Handle(AIS_InteractiveObject)& theIObj,
+                           const Standard_Integer thePriority) { SetDisplayPriority (theIObj, (Graphic3d_DisplayPriority )thePriority); }
 
   //! Get Z layer id set for displayed interactive object.
   Standard_EXPORT Graphic3d_ZLayerId GetZLayer (const Handle(AIS_InteractiveObject)& theIObj) const;
@@ -499,7 +503,10 @@ public: //! @name Selection management
   Standard_EXPORT AIS_StatusOfPick SelectDetected (const AIS_SelectionScheme theSelScheme = AIS_SelectionScheme_Replace);
 
   //! Returns bounding box of selected objects.
-  Standard_EXPORT Bnd_Box BoundingBoxOfSelection() const;
+  Standard_EXPORT Bnd_Box BoundingBoxOfSelection (const Handle(V3d_View)& theView) const;
+
+  Standard_DEPRECATED ("BoundingBoxOfSelection() should be called with View argument")
+  Bnd_Box BoundingBoxOfSelection() const { return BoundingBoxOfSelection (Handle(V3d_View)()); }
 
   //! Sets list of owner selected/deselected using specified selection scheme.
   //! @param theOwners owners to change selection state
@@ -1396,20 +1403,7 @@ protected: //! @name internal methods
   }
 
   //! Assign the context to the object or throw exception if object was already assigned to another context.
-  void setContextToObject (const Handle(AIS_InteractiveObject)& theObj)
-  {
-    if (theObj->HasInteractiveContext())
-    {
-      if (theObj->myCTXPtr != this)
-      {
-        throw Standard_ProgramError("AIS_InteractiveContext - object has been already displayed in another context!");
-      }
-    }
-    else
-    {
-      theObj->SetContext (this);
-    }
-  }
+  Standard_EXPORT void setContextToObject (const Handle(AIS_InteractiveObject)& theObj);
 
   //! Return display mode for highlighting.
   Standard_Integer getHilightMode (const Handle(AIS_InteractiveObject)& theObj,
@@ -1443,8 +1437,8 @@ protected: //! @name internal methods
   }
 
   //! Bind/Unbind status to object and its children
-  //! @param theObj [in] the object to change status
-  //! @param theStatus status, if NULL, unbind object
+  //! @param[in] theIObj the object to change status
+  //! @param[in] theStatus status, if NULL, unbind object
   Standard_EXPORT void setObjectStatus (const Handle(AIS_InteractiveObject)& theIObj,
                                         const PrsMgr_DisplayStatus theStatus,
                                         const Standard_Integer theDispyMode,

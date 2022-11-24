@@ -18,16 +18,12 @@
 #include <gp_TrsfForm.hxx>
 #include <gp_Mat2d.hxx>
 #include <gp_XY.hxx>
-#include <Standard_ConstructionError.hxx>
 #include <Standard_OutOfRange.hxx>
 
-class gp_GTrsf2d;
 class gp_Trsf;
 class gp_Pnt2d;
 class gp_Ax2d;
 class gp_Vec2d;
-class gp_XY;
-class gp_Mat2d;
 
 //! Defines a non-persistent transformation in 2D space.
 //! The following transformations are implemented :

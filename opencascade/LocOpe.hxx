@@ -27,27 +27,6 @@ class TopoDS_Wire;
 class TopoDS_Face;
 class TopoDS_Edge;
 class TopoDS_Shape;
-class LocOpe_SplitShape;
-class LocOpe_WiresOnShape;
-class LocOpe_Spliter;
-class LocOpe_Generator;
-class LocOpe_GeneratedShape;
-class LocOpe_GluedShape;
-class LocOpe_Prism;
-class LocOpe_Revol;
-class LocOpe_Pipe;
-class LocOpe_DPrism;
-class LocOpe_LinearForm;
-class LocOpe_RevolutionForm;
-class LocOpe_Gluer;
-class LocOpe_FindEdges;
-class LocOpe_FindEdgesInFace;
-class LocOpe_PntFace;
-class LocOpe_CurveShapeIntersector;
-class LocOpe_CSIntersector;
-class LocOpe_BuildShape;
-class LocOpe_SplitDrafts;
-class LocOpe_BuildWires;
 
 
 //! Provides  tools to implement local     topological
@@ -72,48 +51,6 @@ public:
   
   Standard_EXPORT static void SampleEdges (const TopoDS_Shape& S, TColgp_SequenceOfPnt& Pt);
 
-
-
-
-protected:
-
-
-
-
-
-private:
-
-
-
-
-friend class LocOpe_SplitShape;
-friend class LocOpe_WiresOnShape;
-friend class LocOpe_Spliter;
-friend class LocOpe_Generator;
-friend class LocOpe_GeneratedShape;
-friend class LocOpe_GluedShape;
-friend class LocOpe_Prism;
-friend class LocOpe_Revol;
-friend class LocOpe_Pipe;
-friend class LocOpe_DPrism;
-friend class LocOpe_LinearForm;
-friend class LocOpe_RevolutionForm;
-friend class LocOpe_Gluer;
-friend class LocOpe_FindEdges;
-friend class LocOpe_FindEdgesInFace;
-friend class LocOpe_PntFace;
-friend class LocOpe_CurveShapeIntersector;
-friend class LocOpe_CSIntersector;
-friend class LocOpe_BuildShape;
-friend class LocOpe_SplitDrafts;
-friend class LocOpe_BuildWires;
-
 };
-
-
-
-
-
-
 
 #endif // _LocOpe_HeaderFile

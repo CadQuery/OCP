@@ -23,15 +23,11 @@
 #include <Standard_Transient.hxx>
 #include <Standard_CString.hxx>
 #include <Standard_Integer.hxx>
-#include <Standard_Type.hxx>
-#include <Standard_Boolean.hxx>
 #include <XmlObjMgt_RRelocationTable.hxx>
 #include <XmlObjMgt_SRelocationTable.hxx>
 class Message_Messenger;
 class TDF_Attribute;
-class TCollection_AsciiString;
 class XmlObjMgt_Persistent;
-class TCollection_ExtendedString;
 
 
 class XmlMDF_ADriver;

@@ -18,10 +18,8 @@
 #define _StdSelect_Shape_HeaderFile
 
 #include <TopoDS_Shape.hxx>
-#include <Prs3d_Drawer.hxx>
 #include <PrsMgr_PresentableObject.hxx>
 
-class TopoDS_Shape;
 
 //! Presentable shape only for purpose of display for BRepOwner...
 class StdSelect_Shape : public PrsMgr_PresentableObject

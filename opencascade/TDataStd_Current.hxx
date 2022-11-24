@@ -18,15 +18,12 @@
 #define _TDataStd_Current_HeaderFile
 
 #include <Standard.hxx>
-#include <Standard_Type.hxx>
 
 #include <TDF_Label.hxx>
 #include <TDF_Attribute.hxx>
 #include <Standard_Boolean.hxx>
 #include <Standard_OStream.hxx>
 class Standard_GUID;
-class TDF_Label;
-class TDF_Attribute;
 class TDF_RelocationTable;
 
 

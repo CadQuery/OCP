@@ -21,10 +21,8 @@
 #include <Standard_Type.hxx>
 
 #include <Standard_Integer.hxx>
-#include <Standard_Real.hxx>
 #include <STEPConstruct_ContextTool.hxx>
 #include <Transfer_ActorOfFinderProcess.hxx>
-#include <Standard_Boolean.hxx>
 #include <TopTools_HSequenceOfShape.hxx>
 #include <STEPControl_StepModelType.hxx>
 class Transfer_Finder;
@@ -118,6 +116,15 @@ private:
   
   //! bind already written shared faces to STEP entity for non-manifold
   Standard_EXPORT void mergeInfoForNM(const Handle(Transfer_FinderProcess)& theFP, const Handle(Standard_Transient) &theInfo) const;
+
+  //! Gets sequence of vertices of all compounds level by recursive
+  //! @param[in] theShape shape to iterate, checked for compound type and sub shapes vertex type
+  //! @param[out] theVertices sequence of found vertices via recursively iterate of shape
+  //! @return TRUE if one or more vertex was found and all shapes were compound or vertex
+  Standard_Boolean separateShapeToSoloVertex(const TopoDS_Shape& theShape,
+                                             TopTools_SequenceOfShape& theVertices);
+
+
 
   Standard_Integer mygroup;
   Standard_Real mytoler;

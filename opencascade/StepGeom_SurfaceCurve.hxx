@@ -18,13 +18,11 @@
 #define _StepGeom_SurfaceCurve_HeaderFile
 
 #include <Standard.hxx>
-#include <Standard_Type.hxx>
 
 #include <StepGeom_HArray1OfPcurveOrSurface.hxx>
 #include <StepGeom_PreferredSurfaceCurveRepresentation.hxx>
 #include <StepGeom_Curve.hxx>
 #include <Standard_Integer.hxx>
-class StepGeom_Curve;
 class TCollection_HAsciiString;
 class StepGeom_PcurveOrSurface;
 

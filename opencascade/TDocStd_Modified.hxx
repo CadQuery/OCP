@@ -18,7 +18,6 @@
 #define _TDocStd_Modified_HeaderFile
 
 #include <Standard.hxx>
-#include <Standard_Type.hxx>
 
 #include <TDF_LabelMap.hxx>
 #include <TDF_Attribute.hxx>
@@ -26,7 +25,6 @@
 #include <Standard_OStream.hxx>
 class TDF_Label;
 class Standard_GUID;
-class TDF_Attribute;
 class TDF_RelocationTable;
 
 

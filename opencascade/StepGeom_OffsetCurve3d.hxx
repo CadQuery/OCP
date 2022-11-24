@@ -20,10 +20,8 @@
 #include <Standard.hxx>
 #include <Standard_Type.hxx>
 
-#include <Standard_Real.hxx>
 #include <StepData_Logical.hxx>
 #include <StepGeom_Curve.hxx>
-class StepGeom_Curve;
 class StepGeom_Direction;
 class TCollection_HAsciiString;
 

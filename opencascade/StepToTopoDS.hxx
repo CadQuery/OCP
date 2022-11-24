@@ -31,24 +31,6 @@
 #include <Standard_CString.hxx>
 #include <StepToTopoDS_GeometricToolError.hxx>
 class TCollection_HAsciiString;
-class StepToTopoDS_Root;
-class StepToTopoDS_TranslateShell;
-class StepToTopoDS_TranslateFace;
-class StepToTopoDS_TranslateEdgeLoop;
-class StepToTopoDS_TranslateEdge;
-class StepToTopoDS_TranslateVertex;
-class StepToTopoDS_TranslatePolyLoop;
-class StepToTopoDS_TranslateVertexLoop;
-class StepToTopoDS_TranslateCompositeCurve;
-class StepToTopoDS_TranslateCurveBoundedSurface;
-class StepToTopoDS_Builder;
-class StepToTopoDS_MakeTransformed;
-class StepToTopoDS_GeometricTool;
-class StepToTopoDS_Tool;
-class StepToTopoDS_CartesianPointHasher;
-class StepToTopoDS_PointPair;
-class StepToTopoDS_PointPairHasher;
-class StepToTopoDS_NMTool;
 
 
 //! This package implements the mapping between AP214
@@ -77,45 +59,6 @@ public:
   
   Standard_EXPORT static Standard_CString DecodeGeometricToolError (const StepToTopoDS_GeometricToolError Error);
 
-
-
-
-protected:
-
-
-
-
-
-private:
-
-
-
-
-friend class StepToTopoDS_Root;
-friend class StepToTopoDS_TranslateShell;
-friend class StepToTopoDS_TranslateFace;
-friend class StepToTopoDS_TranslateEdgeLoop;
-friend class StepToTopoDS_TranslateEdge;
-friend class StepToTopoDS_TranslateVertex;
-friend class StepToTopoDS_TranslatePolyLoop;
-friend class StepToTopoDS_TranslateVertexLoop;
-friend class StepToTopoDS_TranslateCompositeCurve;
-friend class StepToTopoDS_TranslateCurveBoundedSurface;
-friend class StepToTopoDS_Builder;
-friend class StepToTopoDS_MakeTransformed;
-friend class StepToTopoDS_GeometricTool;
-friend class StepToTopoDS_Tool;
-friend class StepToTopoDS_CartesianPointHasher;
-friend class StepToTopoDS_PointPair;
-friend class StepToTopoDS_PointPairHasher;
-friend class StepToTopoDS_NMTool;
-
 };
-
-
-
-
-
-
 
 #endif // _StepToTopoDS_HeaderFile

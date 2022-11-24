@@ -25,7 +25,7 @@
 #include <Message_ProgressRange.hxx>
 
 class StepShape_FacetedBrepAndBrepWithVoids;
-class StdFail_NotDone;
+class StepVisual_TessellatedItem;
 class TopoDS_Solid;
 class Transfer_FinderProcess;
 
@@ -46,7 +46,7 @@ public:
                                        const Message_ProgressRange& theProgress = Message_ProgressRange());
   
   Standard_EXPORT const Handle(StepShape_FacetedBrepAndBrepWithVoids)& Value() const;
-
+  Standard_EXPORT const Handle(StepVisual_TessellatedItem)& TessellatedValue() const;
 
 
 
@@ -61,6 +61,7 @@ private:
 
 
   Handle(StepShape_FacetedBrepAndBrepWithVoids) theFacetedBrepAndBrepWithVoids;
+  Handle(StepVisual_TessellatedItem) theTessellatedItem;
 
 
 };

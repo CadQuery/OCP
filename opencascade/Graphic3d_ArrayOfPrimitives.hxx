@@ -300,16 +300,22 @@ public:
   }
 
   //! Change the vertice of rank theIndex in the array.
+  //! @param[in] theIndex  node index within [1, VertexNumberAllocated()] range
+  //! @param[in] theVertex 3D coordinates
   void SetVertice (const Standard_Integer theIndex, const gp_Pnt& theVertex)
   {
     SetVertice (theIndex, Standard_ShortReal (theVertex.X()), Standard_ShortReal (theVertex.Y()), Standard_ShortReal (theVertex.Z()));
   }
 
-  //! Change the vertice of rank theIndex in the array.
+  //! Change the vertice in the array.
+  //! @param[in] theIndex node index within [1, VertexNumberAllocated()] range
+  //! @param[in] theX coordinate X
+  //! @param[in] theY coordinate Y
+  //! @param[in] theZ coordinate Z
   void SetVertice (const Standard_Integer theIndex, const Standard_ShortReal theX, const Standard_ShortReal theY, const Standard_ShortReal theZ)
   {
     Standard_OutOfRange_Raise_if (theIndex < 1 || theIndex > myAttribs->NbMaxElements(), "BAD VERTEX index");
-    Graphic3d_Vec3& aVec = *reinterpret_cast<Graphic3d_Vec3*> (myAttribs->ChangeData() + myPosStride * (theIndex - 1));
+    Graphic3d_Vec3& aVec = *reinterpret_cast<Graphic3d_Vec3*> (myAttribs->ChangeData() + myPosStride * ((Standard_Size)theIndex - 1));
     aVec.x() = theX;
     aVec.y() = theY;
     aVec.z() = theZ;
@@ -319,19 +325,25 @@ public:
     }
   }
 
-  //! Change the vertex color of rank theIndex in the array.
+  //! Change the vertex color in the array.
+  //! @param[in] theIndex node index within [1, VertexNumberAllocated()] range
+  //! @param[in] theColor node color
   void SetVertexColor (const Standard_Integer theIndex, const Quantity_Color& theColor)
   {
     SetVertexColor (theIndex, theColor.Red(), theColor.Green(), theColor.Blue());
   }
 
-  //! Change the vertex color of rank theIndex in the array.
+  //! Change the vertex color in the array.
+  //! @param[in] theIndex node index within [1, VertexNumberAllocated()] range
+  //! @param[in] theR red   color value within [0, 1] range
+  //! @param[in] theG green color value within [0, 1] range
+  //! @param[in] theB blue  color value within [0, 1] range
   void SetVertexColor (const Standard_Integer theIndex, const Standard_Real theR, const Standard_Real theG, const Standard_Real theB)
   {
     Standard_OutOfRange_Raise_if (theIndex < 1 || theIndex > myAttribs->NbMaxElements(), "BAD VERTEX index");
     if (myColData != NULL)
     {
-      Graphic3d_Vec4ub* aColorPtr = reinterpret_cast<Graphic3d_Vec4ub* >(myColData + myColStride * (theIndex - 1));
+      Graphic3d_Vec4ub* aColorPtr = reinterpret_cast<Graphic3d_Vec4ub* >(myColData + myColStride * ((Standard_Size)theIndex - 1));
       aColorPtr->SetValues (Standard_Byte(theR * 255.0),
                             Standard_Byte(theG * 255.0),
                             Standard_Byte(theB * 255.0), 255);
@@ -339,45 +351,55 @@ public:
     myAttribs->NbElements = Max (theIndex, myAttribs->NbElements);
   }
 
-  //! Change the vertex color of rank theIndex in the array.
+  //! Change the vertex color in the array.
+  //! @param[in] theIndex node index within [1, VertexNumberAllocated()] range
+  //! @param[in] theColor node RGBA color values within [0, 255] range
   void SetVertexColor (const Standard_Integer  theIndex,
                        const Graphic3d_Vec4ub& theColor)
   {
     Standard_OutOfRange_Raise_if (theIndex < 1 || theIndex > myAttribs->NbMaxElements(), "BAD VERTEX index");
     if (myColData != NULL)
     {
-      Graphic3d_Vec4ub* aColorPtr =  reinterpret_cast<Graphic3d_Vec4ub* >(myColData + myColStride * (theIndex - 1));
+      Graphic3d_Vec4ub* aColorPtr =  reinterpret_cast<Graphic3d_Vec4ub* >(myColData + myColStride * ((Standard_Size)theIndex - 1));
       (*aColorPtr) = theColor;
     }
     myAttribs->NbElements = Max (theIndex, myAttribs->NbElements);
   }
 
-  //! Change the vertex color of rank theIndex> in the array.
+  //! Change the vertex color in the array.
   //! @code
   //!   theColor32 = Alpha << 24 + Blue << 16 + Green << 8 + Red
   //! @endcode
+  //! @param[in] theIndex   node index within [1, VertexNumberAllocated()] range
+  //! @param[in] theColor32 packed RGBA color values
   void SetVertexColor (const Standard_Integer theIndex, const Standard_Integer theColor32)
   {
     Standard_OutOfRange_Raise_if (theIndex < 1 || theIndex > myAttribs->NbMaxElements(), "BAD VERTEX index");
     if (myColData != NULL)
     {
-      *reinterpret_cast<Standard_Integer* >(myColData + myColStride * (theIndex - 1)) = theColor32;
+      *reinterpret_cast<Standard_Integer* >(myColData + myColStride * ((Standard_Size)theIndex - 1)) = theColor32;
     }
   }
 
-  //! Change the vertex normal of rank theIndex in the array.
+  //! Change the vertex normal in the array.
+  //! @param[in] theIndex  node index within [1, VertexNumberAllocated()] range
+  //! @param[in] theNormal normalized surface normal
   void SetVertexNormal (const Standard_Integer theIndex, const gp_Dir& theNormal)
   {
     SetVertexNormal (theIndex, theNormal.X(), theNormal.Y(), theNormal.Z());
   }
 
-  //! Change the vertex normal of rank theIndex in the array.
+  //! Change the vertex normal in the array.
+  //! @param[in] theIndex node index within [1, VertexNumberAllocated()] range
+  //! @param[in] theNX surface normal X component
+  //! @param[in] theNY surface normal Y component
+  //! @param[in] theNZ surface normal Z component
   void SetVertexNormal (const Standard_Integer theIndex, const Standard_Real theNX, const Standard_Real theNY, const Standard_Real theNZ)
   {
     Standard_OutOfRange_Raise_if (theIndex < 1 || theIndex > myAttribs->NbMaxElements(), "BAD VERTEX index");
     if (myNormData != NULL)
     {
-      Graphic3d_Vec3& aVec = *reinterpret_cast<Graphic3d_Vec3* >(myNormData + myNormStride * (theIndex - 1));
+      Graphic3d_Vec3& aVec = *reinterpret_cast<Graphic3d_Vec3* >(myNormData + myNormStride * ((Standard_Size)theIndex - 1));
       aVec.x() = Standard_ShortReal (theNX);
       aVec.y() = Standard_ShortReal (theNY);
       aVec.z() = Standard_ShortReal (theNZ);
@@ -385,26 +407,33 @@ public:
     myAttribs->NbElements = Max (theIndex, myAttribs->NbElements);
   }
 
-  //! Change the vertex texel of rank theIndex in the array.
+  //! Change the vertex texel in the array.
+  //! @param[in] theIndex node index within [1, VertexNumberAllocated()] range
+  //! @param[in] theTexel node UV coordinates
   void SetVertexTexel (const Standard_Integer theIndex, const gp_Pnt2d& theTexel)
   {
     SetVertexTexel (theIndex, theTexel.X(), theTexel.Y());
   }
 
-  //! Change the vertex texel of rank theIndex in the array.
+  //! Change the vertex texel in the array.
+  //! @param[in] theIndex node index within [1, VertexNumberAllocated()] range
+  //! @param[in] theTX node U coordinate
+  //! @param[in] theTY node V coordinate
   void SetVertexTexel (const Standard_Integer theIndex, const Standard_Real theTX, const Standard_Real theTY)
   {
     Standard_OutOfRange_Raise_if (theIndex < 1 || theIndex > myAttribs->NbMaxElements(), "BAD VERTEX index");
     if (myTexData != NULL)
     {
-      Graphic3d_Vec2& aVec = *reinterpret_cast<Graphic3d_Vec2* >(myTexData + myTexStride * (theIndex - 1));
+      Graphic3d_Vec2& aVec = *reinterpret_cast<Graphic3d_Vec2* >(myTexData + myTexStride * ((Standard_Size)theIndex - 1));
       aVec.x() = Standard_ShortReal (theTX);
       aVec.y() = Standard_ShortReal (theTY);
     }
     myAttribs->NbElements = Max (theIndex, myAttribs->NbElements);
   }
 
-  //! Returns the vertice at rank theRank from the vertex table if defined.
+  //! Returns the vertice from the vertex table if defined.
+  //! @param[in] theRank node index within [1, VertexNumber()] range
+  //! @return node 3D coordinates
   gp_Pnt Vertice (const Standard_Integer theRank) const
   {
     Standard_Real anXYZ[3];
@@ -413,17 +442,23 @@ public:
   }
 
   //! Returns the vertice coordinates at rank theRank from the vertex table if defined.
+  //! @param[in]  theRank node index within [1, VertexNumber()] range
+  //! @param[out] theX node X coordinate value
+  //! @param[out] theY node Y coordinate value
+  //! @param[out] theZ node Z coordinate value
   void Vertice (const Standard_Integer theRank, Standard_Real& theX, Standard_Real& theY, Standard_Real& theZ) const
   {
     theX = theY = theZ = 0.0;
     Standard_OutOfRange_Raise_if (theRank < 1 || theRank > myAttribs->NbElements, "BAD VERTEX index");
-    const Graphic3d_Vec3& aVec = *reinterpret_cast<const Graphic3d_Vec3*> (myAttribs->Data() + myPosStride * (theRank - 1));
+    const Graphic3d_Vec3& aVec = *reinterpret_cast<const Graphic3d_Vec3*> (myAttribs->Data() + myPosStride * ((Standard_Size)theRank - 1));
     theX = Standard_Real(aVec.x());
     theY = Standard_Real(aVec.y());
     theZ = Standard_Real(aVec.z());
   }
 
   //! Returns the vertex color at rank theRank from the vertex table if defined.
+  //! @param[in] theRank node index within [1, VertexNumber()] range
+  //! @return node color RGB value
   Quantity_Color VertexColor (const Standard_Integer theRank) const
   {
     Standard_Real anRGB[3];
@@ -431,15 +466,21 @@ public:
     return Quantity_Color (anRGB[0], anRGB[1], anRGB[2], Quantity_TOC_RGB);
   }
 
-  //! Returns the vertex color at rank theIndex from the vertex table if defined.
+  //! Returns the vertex color from the vertex table if defined.
+  //! @param[in]  theIndex node index within [1, VertexNumber()] range
+  //! @param[out] theColor node RGBA color values within [0, 255] range
   void VertexColor (const Standard_Integer theIndex,
                     Graphic3d_Vec4ub&      theColor) const
   {
     Standard_OutOfRange_Raise_if (myColData == NULL || theIndex < 1 || theIndex > myAttribs->NbElements, "BAD VERTEX index");
-    theColor = *reinterpret_cast<const Graphic3d_Vec4ub* >(myColData + myColStride * (theIndex - 1));
+    theColor = *reinterpret_cast<const Graphic3d_Vec4ub* >(myColData + myColStride * ((Standard_Size)theIndex - 1));
   }
 
-  //! Returns the vertex color values at rank theRank from the vertex table if defined.
+  //! Returns the vertex color values from the vertex table if defined.
+  //! @param[in]  theRank node index within [1, VertexNumber()] range
+  //! @param[out] theR node red   color component value within [0, 1] range
+  //! @param[out] theG node green color component value within [0, 1] range
+  //! @param[out] theB node blue  color component value within [0, 1] range
   void VertexColor (const Standard_Integer theRank, Standard_Real& theR, Standard_Real& theG, Standard_Real& theB) const
   {
     theR = theG = theB = 0.0;
@@ -448,23 +489,27 @@ public:
     {
       return;
     }
-    const Graphic3d_Vec4ub& aColor = *reinterpret_cast<const Graphic3d_Vec4ub* >(myColData + myColStride * (theRank - 1));
+    const Graphic3d_Vec4ub& aColor = *reinterpret_cast<const Graphic3d_Vec4ub* >(myColData + myColStride * ((Standard_Size)theRank - 1));
     theR = Standard_Real(aColor.r()) / 255.0;
     theG = Standard_Real(aColor.g()) / 255.0;
     theB = Standard_Real(aColor.b()) / 255.0;
   }
 
-  //! Returns the vertex color values at rank theRank from the vertex table if defined.
+  //! Returns the vertex color values from the vertex table if defined.
+  //! @param[in]  theRank  node index within [1, VertexNumber()] range
+  //! @param[out] theColor node RGBA color packed into 32-bit integer
   void VertexColor (const Standard_Integer theRank, Standard_Integer& theColor) const
   {
     Standard_OutOfRange_Raise_if (theRank < 1 || theRank > myAttribs->NbElements, "BAD VERTEX index");
     if (myColData != NULL)
     {
-      theColor = *reinterpret_cast<const Standard_Integer* >(myColData + myColStride * (theRank - 1));
+      theColor = *reinterpret_cast<const Standard_Integer* >(myColData + myColStride * ((Standard_Size)theRank - 1));
     }
   }
 
-  //! Returns the vertex normal at rank theRank from the vertex table if defined.
+  //! Returns the vertex normal from the vertex table if defined.
+  //! @param[in] theRank node index within [1, VertexNumber()] range
+  //! @return normalized 3D vector defining surface normal
   gp_Dir VertexNormal (const Standard_Integer theRank) const
   {
     Standard_Real anXYZ[3];
@@ -473,13 +518,17 @@ public:
   }
 
   //! Returns the vertex normal coordinates at rank theRank from the vertex table if defined.
+  //! @param[in]  theRank node index within [1, VertexNumber()] range
+  //! @param[out] theNX   normal X coordinate
+  //! @param[out] theNY   normal Y coordinate
+  //! @param[out] theNZ   normal Z coordinate
   void VertexNormal (const Standard_Integer theRank, Standard_Real& theNX, Standard_Real& theNY, Standard_Real& theNZ) const
   {
     theNX = theNY = theNZ = 0.0;
     Standard_OutOfRange_Raise_if (theRank < 1 || theRank > myAttribs->NbElements, "BAD VERTEX index");
     if (myNormData != NULL)
     {
-      const Graphic3d_Vec3& aVec = *reinterpret_cast<const Graphic3d_Vec3* >(myNormData + myNormStride * (theRank - 1));
+      const Graphic3d_Vec3& aVec = *reinterpret_cast<const Graphic3d_Vec3* >(myNormData + myNormStride * ((Standard_Size)theRank - 1));
       theNX = Standard_Real(aVec.x());
       theNY = Standard_Real(aVec.y());
       theNZ = Standard_Real(aVec.z());
@@ -487,6 +536,8 @@ public:
   }
 
   //! Returns the vertex texture at rank theRank from the vertex table if defined.
+  //! @param[in] theRank node index within [1, VertexNumber()] range
+  //! @return UV coordinates
   gp_Pnt2d VertexTexel (const Standard_Integer theRank) const
   {
     Standard_Real anXY[2];
@@ -495,13 +546,16 @@ public:
   }
 
   //! Returns the vertex texture coordinates at rank theRank from the vertex table if defined.
+  //! @param[in]  theRank node index within [1, VertexNumber()] range
+  //! @param[out] theTX texel U coordinate value
+  //! @param[out] theTY texel V coordinate value
   void VertexTexel (const Standard_Integer theRank, Standard_Real& theTX, Standard_Real& theTY) const
   {
     theTX = theTY = 0.0;
     Standard_OutOfRange_Raise_if (theRank < 1 || theRank > myAttribs->NbElements, "BAD VERTEX index");
     if (myTexData != NULL)
     {
-      const Graphic3d_Vec2& aVec = *reinterpret_cast<const Graphic3d_Vec2* >(myTexData + myTexStride * (theRank - 1));
+      const Graphic3d_Vec2& aVec = *reinterpret_cast<const Graphic3d_Vec2* >(myTexData + myTexStride * ((Standard_Size)theRank - 1));
       theTX = Standard_Real(aVec.x());
       theTY = Standard_Real(aVec.y());
     }

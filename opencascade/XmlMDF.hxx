@@ -21,10 +21,7 @@
 #include <Standard_Handle.hxx>
 
 #include <XmlObjMgt_Element.hxx>
-#include <XmlObjMgt_SRelocationTable.hxx>
 #include <Standard_Integer.hxx>
-#include <Standard_Boolean.hxx>
-#include <XmlObjMgt_RRelocationTable.hxx>
 #include <XmlMDF_MapOfDriver.hxx>
 
 #include <Message_ProgressRange.hxx>
@@ -33,10 +30,6 @@ class TDF_Data;
 class XmlMDF_ADriverTable;
 class TDF_Label;
 class Message_Messenger;
-class XmlMDF_ADriver;
-class XmlMDF_TagSourceDriver;
-class XmlMDF_ReferenceDriver;
-class XmlMDF_ADriverTable;
 
 
 //! This package provides classes and methods to

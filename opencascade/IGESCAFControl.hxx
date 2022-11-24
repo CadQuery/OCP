@@ -20,7 +20,6 @@
 #include <Standard_DefineAlloc.hxx>
 #include <Standard_Handle.hxx>
 
-#include <Standard_Integer.hxx>
 class Quantity_Color;
 
 
@@ -41,29 +40,6 @@ public:
   //! If no corresponding color defined in IGES, returns 0
   Standard_EXPORT static Standard_Integer EncodeColor (const Quantity_Color& col);
 
-
-
-
-protected:
-
-
-
-
-
-private:
-
-
-
-
-friend class IGESCAFControl_Reader;
-friend class IGESCAFControl_Writer;
-
 };
-
-
-
-
-
-
 
 #endif // _IGESCAFControl_HeaderFile

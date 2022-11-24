@@ -20,17 +20,10 @@
 #include <Standard_DefineAlloc.hxx>
 #include <Standard_Handle.hxx>
 
-#include <Standard_Boolean.hxx>
-#include <Standard_CString.hxx>
 #include <Message_ProgressRange.hxx>
 
 class ShapeProcess_Operator;
 class ShapeProcess_Context;
-class ShapeProcess_Context;
-class ShapeProcess_ShapeContext;
-class ShapeProcess_Operator;
-class ShapeProcess_UOperator;
-class ShapeProcess_OperLibrary;
 
 //! Shape Processing module
 //! allows to define and apply general Shape Processing as a
@@ -59,32 +52,6 @@ public:
                     const Standard_CString seq,
                     const Message_ProgressRange& theProgress = Message_ProgressRange());
 
-
-
-
-protected:
-
-
-
-
-
-private:
-
-
-
-
-friend class ShapeProcess_Context;
-friend class ShapeProcess_ShapeContext;
-friend class ShapeProcess_Operator;
-friend class ShapeProcess_UOperator;
-friend class ShapeProcess_OperLibrary;
-
 };
-
-
-
-
-
-
 
 #endif // _ShapeProcess_HeaderFile

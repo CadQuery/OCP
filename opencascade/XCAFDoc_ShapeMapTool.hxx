@@ -17,7 +17,6 @@
 #define _XCAFDoc_ShapeMapTool_HeaderFile
 
 #include <Standard.hxx>
-#include <Standard_Type.hxx>
 
 #include <TopTools_IndexedMapOfShape.hxx>
 #include <TDF_Attribute.hxx>
@@ -25,7 +24,6 @@
 class Standard_GUID;
 class TDF_Label;
 class TopoDS_Shape;
-class TDF_Attribute;
 class TDF_RelocationTable;
 
 

@@ -21,10 +21,8 @@
 #include <Standard_DefineAlloc.hxx>
 #include <Standard_Handle.hxx>
 
-#include <Standard_Real.hxx>
 #include <GeomAbs_Shape.hxx>
 #include <Standard_Integer.hxx>
-#include <Standard_Boolean.hxx>
 #include <TopTools_HSequenceOfShape.hxx>
 #include <TopAbs_Orientation.hxx>
 class Geom_BSplineCurve;
@@ -35,10 +33,6 @@ class Geom_BSplineSurface;
 class Geom_Surface;
 class TopoDS_Face;
 class TopoDS_Edge;
-class ShapeConstruct_Curve;
-class ShapeConstruct_ProjectCurveOnSurface;
-class ShapeConstruct_CompBezierCurvesToBSplineCurve;
-class ShapeConstruct_MakeTriangulation;
 
 
 //! This package provides new algorithms for constructing

@@ -24,8 +24,6 @@
 #include <StepToTopoDS_TranslateEdgeError.hxx>
 #include <TopoDS_Shape.hxx>
 #include <StepToTopoDS_Root.hxx>
-#include <Standard_Real.hxx>
-class StdFail_NotDone;
 class StepShape_Edge;
 class StepToTopoDS_Tool;
 class StepToTopoDS_NMTool;
@@ -37,7 +35,6 @@ class TopoDS_Vertex;
 class Geom2d_Curve;
 class StepGeom_Pcurve;
 class Geom_Surface;
-class TopoDS_Shape;
 
 
 

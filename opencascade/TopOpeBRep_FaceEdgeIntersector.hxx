@@ -19,12 +19,9 @@
 
 #include <Standard.hxx>
 #include <Standard_DefineAlloc.hxx>
-#include <Standard_Handle.hxx>
 
 #include <TopoDS_Face.hxx>
 #include <TopoDS_Edge.hxx>
-#include <Standard_Real.hxx>
-#include <Standard_Boolean.hxx>
 #include <GeomAdaptor_Curve.hxx>
 #include <IntCurveSurface_SequenceOfPnt.hxx>
 #include <TColStd_SequenceOfInteger.hxx>
@@ -35,11 +32,9 @@
 #include <TopAbs_State.hxx>
 #include <TopAbs_Orientation.hxx>
 #include <TopAbs_ShapeEnum.hxx>
-class TopoDS_Shape;
 class gp_Pnt;
 class gp_Pnt2d;
 class TopOpeBRepDS_Transition;
-class TopoDS_Vertex;
 
 
 //! Describes the intersection of a face and an edge.

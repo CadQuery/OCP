@@ -19,21 +19,14 @@
 
 #include <Standard.hxx>
 #include <Standard_DefineAlloc.hxx>
-#include <Standard_Handle.hxx>
 
 #include <TopoDS_Face.hxx>
 #include <GeomAdaptor_Surface.hxx>
-#include <Standard_Boolean.hxx>
-#include <Standard_Real.hxx>
 #include <TopoDS_Shape.hxx>
 #include <TopTools_ListOfShape.hxx>
 #include <TopOpeBRepTool_DataMapOfOrientedShapeC2DF.hxx>
 #include <TopTools_DataMapOfShapeListOfShape.hxx>
-#include <Standard_Integer.hxx>
 #include <TopTools_DataMapOfOrientedShapeInteger.hxx>
-class TopoDS_Face;
-class GeomAdaptor_Surface;
-class TopoDS_Shape;
 class TopoDS_Edge;
 class TopOpeBRepTool_C2DF;
 class TopoDS_Vertex;

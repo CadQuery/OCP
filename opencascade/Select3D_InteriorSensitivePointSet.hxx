@@ -16,15 +16,9 @@
 #ifndef _Select3D_InteriorSensitivePointSet_HeaderFile
 #define _Select3D_InteriorSensitivePointSet_HeaderFile
 
-#include <NCollection_Vector.hxx>
-
-#include <TColgp_HArray1OfPnt.hxx>
-#include <TColStd_HArray1OfInteger.hxx>
-
 #include <Select3D_SensitivePoly.hxx>
 #include <Select3D_SensitiveSet.hxx>
 
-class gp_Pnt;
 class SelectMgr_EntityOwner;
 
 typedef NCollection_Vector<Handle(Select3D_SensitivePoly)> Select3D_VectorOfHPoly;

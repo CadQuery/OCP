@@ -23,17 +23,14 @@
 #include <TopOpeBRepBuild_Builder1.hxx>
 #include <TopTools_DataMapOfShapeInteger.hxx>
 #include <TColStd_DataMapOfIntegerListOfInteger.hxx>
-#include <Standard_Boolean.hxx>
 #include <TopoDS_Shape.hxx>
 #include <TColStd_ListOfInteger.hxx>
 #include <Standard_Transient.hxx>
 #include <TopAbs_State.hxx>
 #include <TopTools_ListOfShape.hxx>
 #include <Standard_Integer.hxx>
-class Standard_NoSuchObject;
 class TopOpeBRepDS_BuildTool;
 class TopOpeBRepDS_HDataStructure;
-class TopoDS_Shape;
 class TopOpeBRepBuild_Builder;
 
 

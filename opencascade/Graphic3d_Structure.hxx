@@ -17,8 +17,6 @@
 #ifndef _Graphic3d_Structure_HeaderFile
 #define _Graphic3d_Structure_HeaderFile
 
-#include <Graphic3d_BndBox4f.hxx>
-#include <Graphic3d_BndBox4d.hxx>
 #include <Graphic3d_CStructure.hxx>
 #include <Graphic3d_MapOfStructure.hxx>
 #include <Graphic3d_SequenceOfGroup.hxx>
@@ -26,7 +24,6 @@
 #include <Graphic3d_TypeOfConnection.hxx>
 #include <Graphic3d_TypeOfStructure.hxx>
 #include <Graphic3d_TransformPers.hxx>
-#include <Graphic3d_TransModeFlags.hxx>
 #include <Graphic3d_ZLayerId.hxx>
 #include <NCollection_IndexedMap.hxx>
 
@@ -76,7 +73,23 @@ public:
   Standard_EXPORT virtual void Display();
 
   //! Returns the current display priority for this structure.
-  Standard_Integer DisplayPriority() const { return myCStructure->Priority; }
+  Graphic3d_DisplayPriority DisplayPriority() const { return myCStructure->Priority(); }
+
+  //! Modifies the order of displaying the structure.
+  //! Values are between 0 and 10.
+  //! Structures are drawn according to their display priorities in ascending order.
+  //! A structure of priority 10 is displayed the last and appears over the others.
+  //! The default value is 5.
+  //! Warning: If structure is displayed then the SetDisplayPriority method erases it and displays with the new priority.
+  //! Raises Graphic3d_PriorityDefinitionError if Priority is greater than 10 or a negative value.
+  Standard_EXPORT void SetDisplayPriority (const Graphic3d_DisplayPriority thePriority);
+
+  Standard_DEPRECATED("Deprecated since OCCT7.7, Graphic3d_DisplayPriority should be passed instead of integer number to SetDisplayPriority()")
+  void SetDisplayPriority (const Standard_Integer thePriority) { SetDisplayPriority ((Graphic3d_DisplayPriority )thePriority); }
+
+  //! Reset the current priority of the structure to the previous priority.
+  //! Warning: If structure is displayed then the SetDisplayPriority() method erases it and displays with the previous priority.
+  Standard_EXPORT void ResetDisplayPriority();
   
   //! Erases this structure in all the views of the visualiser.
   virtual void Erase() { erase(); }
@@ -106,28 +119,6 @@ public:
     if (!myCStructure.IsNull()) { myCStructure->IsInfinite = theToSet ? 1 : 0; }
   }
 
-  //! Modifies the order of displaying the structure.
-  //! Values are between 0 and 10.
-  //! Structures are drawn according to their display priorities
-  //! in ascending order.
-  //! A structure of priority 10 is displayed the last and appears over the others.
-  //! The default value is 5.
-  //! Category: Methods to modify the class definition
-  //! Warning: If <me> is displayed then the SetDisplayPriority
-  //! method erase <me> and display <me> with the
-  //! new priority.
-  //! Raises PriorityDefinitionError if <Priority> is
-  //! greater than 10 or a negative value.
-  Standard_EXPORT void SetDisplayPriority (const Standard_Integer Priority);
-  
-  //! Reset the current priority of the structure to the
-  //! previous priority.
-  //! Category: Methods to modify the class definition
-  //! Warning: If <me> is displayed then the SetDisplayPriority
-  //! method erase <me> and display <me> with the
-  //! previous priority.
-  Standard_EXPORT void ResetDisplayPriority();
-  
   //! Set Z layer ID for the structure. The Z layer mechanism
   //! allows to display structures presented in higher layers in overlay
   //! of structures in lower layers by switching off z buffer depth
@@ -198,10 +189,6 @@ public:
   //! if <me> is displayed in <aProjetor> and TOS_COMPUTED.
   Standard_EXPORT void ReCompute (const Handle(Graphic3d_DataStructureManager)& aProjector);
   
-  //! Returns Standard_True if the structure <me> contains
-  //! Polygons, Triangles or Quadrangles.
-  Standard_EXPORT Standard_Boolean ContainsFacet() const;
-
   //! Returns the groups sequence included in this structure.
   const Graphic3d_SequenceOfGroup& Groups() const { return myCStructure->Groups(); }
 
@@ -415,7 +402,7 @@ public:
   }
 
   //! Returns the identification number of this structure.
-  Standard_Integer Identification() const { return myCStructure->Id; }
+  Standard_Integer Identification() const { return myCStructure->Identification(); }
   
   //! Prints information about the network associated
   //! with the structure <AStructure>.
@@ -476,12 +463,6 @@ private:
   //! Suppress in the structure <me>, the group theGroup.
   //! It will be erased at the next screen update.
   Standard_EXPORT void Remove (const Handle(Graphic3d_Group)& theGroup);
-  
-  //! Manages the number of groups in the structure <me>
-  //! which contains facet.
-  //! Polygons, Triangles or Quadrangles.
-  //! <ADelta> = +1 or -1
-  Standard_EXPORT void GroupsWithFacet (const Standard_Integer ADelta);
   
   //! Returns the extreme coordinates found in the structure <me> without transformation applied.
   Standard_EXPORT Graphic3d_BndBox4f minMaxCoord() const;

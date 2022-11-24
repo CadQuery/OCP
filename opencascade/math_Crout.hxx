@@ -22,14 +22,8 @@
 #include <Standard_Handle.hxx>
 
 #include <math_Matrix.hxx>
-#include <Standard_Boolean.hxx>
-#include <Standard_Real.hxx>
 #include <math_Vector.hxx>
 #include <Standard_OStream.hxx>
-class StdFail_NotDone;
-class math_NotSquare;
-class Standard_DimensionError;
-class math_Matrix;
 
 
 //! This class implements the Crout algorithm used to solve a

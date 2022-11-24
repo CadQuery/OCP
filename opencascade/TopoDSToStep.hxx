@@ -31,21 +31,6 @@ class Transfer_FinderProcess;
 class TopoDS_Shape;
 class Standard_Transient;
 class TopoDSToStep_Tool;
-class TopoDSToStep_Root;
-class TopoDSToStep_MakeManifoldSolidBrep;
-class TopoDSToStep_MakeBrepWithVoids;
-class TopoDSToStep_MakeFacetedBrep;
-class TopoDSToStep_MakeFacetedBrepAndBrepWithVoids;
-class TopoDSToStep_MakeShellBasedSurfaceModel;
-class TopoDSToStep_MakeGeometricCurveSet;
-class TopoDSToStep_Builder;
-class TopoDSToStep_WireframeBuilder;
-class TopoDSToStep_Tool;
-class TopoDSToStep_FacetedTool;
-class TopoDSToStep_MakeStepFace;
-class TopoDSToStep_MakeStepWire;
-class TopoDSToStep_MakeStepEdge;
-class TopoDSToStep_MakeStepVertex;
 
 
 //! This package implements the mapping between CAS.CAD
@@ -88,42 +73,6 @@ public:
   //! (binders) stored in FinderProcess
   Standard_EXPORT static void AddResult (const Handle(Transfer_FinderProcess)& FP, const TopoDSToStep_Tool& Tool);
 
-
-
-
-protected:
-
-
-
-
-
-private:
-
-
-
-
-friend class TopoDSToStep_Root;
-friend class TopoDSToStep_MakeManifoldSolidBrep;
-friend class TopoDSToStep_MakeBrepWithVoids;
-friend class TopoDSToStep_MakeFacetedBrep;
-friend class TopoDSToStep_MakeFacetedBrepAndBrepWithVoids;
-friend class TopoDSToStep_MakeShellBasedSurfaceModel;
-friend class TopoDSToStep_MakeGeometricCurveSet;
-friend class TopoDSToStep_Builder;
-friend class TopoDSToStep_WireframeBuilder;
-friend class TopoDSToStep_Tool;
-friend class TopoDSToStep_FacetedTool;
-friend class TopoDSToStep_MakeStepFace;
-friend class TopoDSToStep_MakeStepWire;
-friend class TopoDSToStep_MakeStepEdge;
-friend class TopoDSToStep_MakeStepVertex;
-
 };
-
-
-
-
-
-
 
 #endif // _TopoDSToStep_HeaderFile

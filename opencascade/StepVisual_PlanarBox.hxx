@@ -18,13 +18,11 @@
 #define _StepVisual_PlanarBox_HeaderFile
 
 #include <Standard.hxx>
-#include <Standard_Type.hxx>
 
 #include <StepGeom_Axis2Placement.hxx>
 #include <StepVisual_PlanarExtent.hxx>
 #include <Standard_Real.hxx>
 class TCollection_HAsciiString;
-class StepGeom_Axis2Placement;
 
 
 class StepVisual_PlanarBox;

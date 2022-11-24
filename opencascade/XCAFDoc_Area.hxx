@@ -21,12 +21,9 @@
 
 #include <Standard_Real.hxx>
 #include <TDataStd_Real.hxx>
-#include <Standard_Boolean.hxx>
 #include <Standard_OStream.hxx>
 class Standard_GUID;
 class TDF_Label;
-class TDF_Attribute;
-class TDF_RelocationTable;
 
 
 class XCAFDoc_Area;

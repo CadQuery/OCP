@@ -17,12 +17,10 @@
 #define _StepRepr_PropertyDefinitionRepresentation_HeaderFile
 
 #include <Standard.hxx>
-#include <Standard_Type.hxx>
 
 #include <StepRepr_RepresentedDefinition.hxx>
 #include <Standard_Transient.hxx>
 class StepRepr_Representation;
-class StepRepr_RepresentedDefinition;
 
 
 class StepRepr_PropertyDefinitionRepresentation;

@@ -16,9 +16,7 @@
 #ifndef _XCAFDoc_Editor_HeaderFile
 #define _XCAFDoc_Editor_HeaderFile
 
-#include <Standard_DefineAlloc.hxx>
 #include <TDataStd_Name.hxx>
-#include <TDF_AttributeMap.hxx>
 #include <TDF_Label.hxx>
 #include <TDF_LabelDataMap.hxx>
 #include <TDF_LabelSequence.hxx>
@@ -44,7 +42,6 @@ public:
 
   //! Converts all compounds shapes in the document to assembly
   //! @param[in] theDoc input document
-  //! @param[in] theShape input shape label
   //! @param[in] theRecursively recursively expand a compound subshape
   //! @return True if shape successfully expanded
   Standard_EXPORT static Standard_Boolean Expand(const TDF_Label& theDoc,
@@ -97,6 +94,23 @@ public:
                                             const Standard_Boolean theToCopyMaterial = Standard_True,
                                             const Standard_Boolean theToCopyVisMaterial = Standard_True,
                                             const Standard_Boolean theToCopyAttributes = Standard_True);
+
+  //! Applies geometrical scaling to the following assembly components:
+  //! - part geometry
+  //! - sub-assembly/part occurrence location
+  //! - part's centroid, area and volume attributes
+  //! - PMIs (warnings and errors are reported if it is impossible to make changes)
+  //! Normally, should start from a root sub-assembly, but if theForceIfNotRoot true
+  //! scaling will be applied forcibly. If theLabel corresponds to the shape tool
+  //! scaling is applied to the whole assembly.
+  //! @param[in] theLabel starting label
+  //! @param[in] theScaleFactor scale factor, should be positive
+  //! @param[in] theForceIfNotRoot allows scaling of a non root assembly if true,
+  //!                              otherwise - returns false
+  //! @return true in case of success, otherwise - false.
+  Standard_EXPORT static Standard_Boolean RescaleGeometry(const TDF_Label& theLabel,
+                                                          const Standard_Real theScaleFactor,
+                                                          const Standard_Boolean theForceIfNotRoot = Standard_False);
 
 };
 

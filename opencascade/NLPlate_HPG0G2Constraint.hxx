@@ -18,7 +18,6 @@
 #define _NLPlate_HPG0G2Constraint_HeaderFile
 
 #include <Standard.hxx>
-#include <Standard_Type.hxx>
 
 #include <Plate_D2.hxx>
 #include <NLPlate_HPG0G1Constraint.hxx>
@@ -26,7 +25,6 @@
 class gp_XY;
 class gp_XYZ;
 class Plate_D1;
-class Plate_D2;
 
 
 class NLPlate_HPG0G2Constraint;

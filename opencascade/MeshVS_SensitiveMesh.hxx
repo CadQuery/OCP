@@ -17,14 +17,10 @@
 #define _MeshVS_SensitiveMesh_HeaderFile
 
 #include <Standard.hxx>
-#include <Standard_Type.hxx>
 
-#include <Bnd_Box.hxx>
-#include <Select3D_SensitiveEntity.hxx>
 #include <Select3D_SensitiveEntity.hxx>
 #include <Select3D_BndBox3d.hxx>
 
-class Select3D_SensitiveEntity;
 
 //! This class provides custom mesh sensitive entity used in advanced mesh selection.
 class MeshVS_SensitiveMesh : public Select3D_SensitiveEntity

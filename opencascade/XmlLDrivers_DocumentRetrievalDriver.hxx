@@ -23,12 +23,9 @@
 #include <TCollection_ExtendedString.hxx>
 #include <PCDM_RetrievalDriver.hxx>
 #include <XmlObjMgt_Element.hxx>
-#include <Standard_Boolean.hxx>
 #include <Standard_Integer.hxx>
 #include <Storage_Data.hxx>
 class XmlMDF_ADriverTable;
-class TCollection_ExtendedString;
-class PCDM_Document;
 class CDM_Document;
 class CDM_Application;
 class Message_Messenger;

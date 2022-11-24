@@ -20,7 +20,6 @@
 #include <Standard_Type.hxx>
 
 #include <TDataStd_GenericEmpty.hxx>
-#include <Standard_Boolean.hxx>
 #include <TDF_LabelSequence.hxx>
 #include <TColStd_HSequenceOfExtendedString.hxx>
 class XCAFDoc_ShapeTool;
@@ -28,8 +27,6 @@ class TDF_Label;
 class Standard_GUID;
 class TCollection_ExtendedString;
 class TopoDS_Shape;
-class TDF_Attribute;
-class TDF_RelocationTable;
 
 
 class XCAFDoc_LayerTool;

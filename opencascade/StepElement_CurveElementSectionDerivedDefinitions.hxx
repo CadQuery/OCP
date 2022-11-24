@@ -17,7 +17,6 @@
 #define _StepElement_CurveElementSectionDerivedDefinitions_HeaderFile
 
 #include <Standard.hxx>
-#include <Standard_Type.hxx>
 
 #include <Standard_Real.hxx>
 #include <StepElement_HArray1OfMeasureOrUnspecifiedValue.hxx>
@@ -25,7 +24,6 @@
 #include <StepElement_MeasureOrUnspecifiedValue.hxx>
 #include <StepElement_CurveElementSectionDefinition.hxx>
 class TCollection_HAsciiString;
-class StepElement_MeasureOrUnspecifiedValue;
 
 
 class StepElement_CurveElementSectionDerivedDefinitions;

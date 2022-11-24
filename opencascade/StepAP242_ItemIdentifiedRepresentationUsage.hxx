@@ -17,7 +17,6 @@
 #define _StepAP242_ItemIdentifiedRepresentationUsage_HeaderFile
 
 #include <Standard.hxx>
-#include <Standard_Type.hxx>
 
 #include <Standard_Transient.hxx>
 #include <StepAP242_ItemIdentifiedRepresentationUsageDefinition.hxx>
@@ -26,7 +25,6 @@
 
 class TCollection_HAsciiString;
 class StepRepr_Representation;
-class StepAP242_ItemIdentifiedRepresentationUsageDefinition;
 class StepRepr_RepresentationItem;
 
 class StepAP242_ItemIdentifiedRepresentationUsage;

@@ -22,14 +22,11 @@
 
 #include <TColGeom_HArray2OfSurface.hxx>
 #include <TColStd_HArray1OfReal.hxx>
-#include <Standard_Boolean.hxx>
 #include <Geom_Surface.hxx>
 #include <ShapeExtend_Parametrisation.hxx>
 #include <TColStd_Array1OfReal.hxx>
 #include <Standard_Integer.hxx>
-#include <Standard_Real.hxx>
 #include <GeomAbs_Shape.hxx>
-class Geom_Surface;
 class gp_Pnt2d;
 class gp_Trsf2d;
 class gp_Trsf;

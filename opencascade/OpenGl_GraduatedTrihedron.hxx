@@ -17,16 +17,12 @@
 #define OpenGl_GraduatedTrihedron_HeaderFile
 
 #include <Graphic3d_GraduatedTrihedron.hxx>
-#include <gp_Ax1.hxx>
-#include <gp_Pnt.hxx>
-#include <gp_Dir.hxx>
 #include <NCollection_Array1.hxx>
 #include <OpenGl_Aspects.hxx>
 #include <OpenGl_Element.hxx>
 #include <OpenGl_PrimitiveArray.hxx>
 #include <OpenGl_Text.hxx>
 
-class OpenGl_View;
 
 //! This class allows to render Graduated Trihedron, i.e. trihedron with grid.
 //! it is based on Graphic3d_GraduatedTrihedron parameters and support its customization

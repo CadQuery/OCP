@@ -30,13 +30,7 @@
 class Poly_Triangulation;
 class Poly_Polygon3D;
 class Poly_Polygon2D;
-class gp_XY;
 class Poly_Triangle;
-class Poly_Triangulation;
-class Poly_Polygon3D;
-class Poly_Polygon2D;
-class Poly_PolygonOnTriangulation;
-class Poly_Connect;
 
 
 //! This  package  provides  classes  and services  to
@@ -195,15 +189,6 @@ public:
     theArea *= 0.5;
     return Standard_True;
   }
-
-private:
-
-friend class Poly_Triangle;
-friend class Poly_Triangulation;
-friend class Poly_Polygon3D;
-friend class Poly_Polygon2D;
-friend class Poly_PolygonOnTriangulation;
-friend class Poly_Connect;
 
 };
 

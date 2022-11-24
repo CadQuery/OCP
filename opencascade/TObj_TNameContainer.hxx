@@ -18,11 +18,9 @@
 #ifndef TObj_TNameContainer_HeaderFile
 #define TObj_TNameContainer_HeaderFile
 
-#include <TObj_Common.hxx>
 #include <TObj_Container.hxx>
 #include <TDF_Attribute.hxx>
 
-class TObj_TNameContainer;
 
 /** 
 * This class provides OCAF Attribute to storing the unique names of object in
