@@ -33,6 +33,10 @@ jobs:
         ln -s "$(xcrun --sdk macosx --show-sdk-path)/System/Library/Frameworks/OpenGL.framework/Headers" /usr/local/include/OpenGL
       displayName: 'Find GL headers'
 
+  - template: conda-enable.yml@templates
+    parameters:
+      vmImage: ${{ parameters.vmImage }}
+
   - bash: |
       conda update -n base -c defaults conda && \
       conda env create -f ${{ parameters.conda_env_file }} && \
