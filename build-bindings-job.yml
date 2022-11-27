@@ -70,7 +70,7 @@ jobs:
 
   - bash: |
       source activate cpp-py-bindgen && \
-      cat "find_package(Python3 COMPONENTS Development REQUIRED)" >> test.cmake && \
+      echo "find_package(Python3 COMPONENTS Development REQUIRED)" >> test.cmake && \
       cmake --debug-find -DPython3_FIND_VIRTUALENV=only -P test.cmake && \
       cmake -B new -S . -G Ninja
     displayName: 'CMake based pywrap call'
