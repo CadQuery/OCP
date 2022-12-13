@@ -424,9 +424,9 @@ class Adaptor3d_Surface;
 #include <gp_XY.hxx>"""
         include_header_pre = "const size_t DefaultBlockSize = 24600;"
         exclude_classes = ["NCollection","NCollection_ListNode"]
-        
+
         [Modules.NCollection.parsing_headers]
-        
+
             "NCollection_CellFilter.hxx" = """#include <gp_XYZ.hxx>
 #include <gp_XY.hxx>"""
 
@@ -439,7 +439,7 @@ class Adaptor3d_Surface;
         #"OSD_CachedFileSystem::IsOpenIStream","OSD_CachedFileSystem::IsOpenOStream","OSD_CachedFileSystem::OpenOStream","OSD_CachedFileSystem::OpenIStream",
         #"OSD_FileSystemSelector::IsOpenIStream","OSD_FileSystemSelector::IsOpenOStream","OSD_FileSystemSelector::OpenOStream","OSD_FileSystemSelector::OpenIStream",
         #"OSD_LocalFileSystem::IsOpenIStream","OSD_LocalFileSystem::IsOpenOStream","OSD_LocalFileSystem::OpenOStream","OSD_LocalFileSystem::OpenIStream"]
-        
+
         include_body_pre = 'py::class_<OSD_FileSystem, opencascade::handle<OSD_FileSystem>>(m, "OSD_FileSystem");'
 
     [Modules.Storage]
@@ -465,7 +465,7 @@ class Adaptor3d_Surface;
         exclude_methods = ["UnitsMethods::RadianToDegree","UnitsMethods::DegreeToRadian","UnitsMethods::MirrorPCurve"]
 
     [Modules.Poly]
-    
+
         include_header_pre = "#include <OSD_FileSystem.hxx>"
         exclude_classes = ["Poly_MakeLoops","Poly",]
         exclude_methods = ["Poly_CoherentTriangulation::FindTriangle","Poly_CoherentTriangulation::RemoveDegenerated"]
@@ -491,6 +491,11 @@ class Adaptor3d_Surface;
 
         exclude_typedefs = ["BRepBuilderAPI_CellFilter","BRepBuilderAPI_BndBoxTree"]
         exclude_methods = ["BRepBuilderAPI_FastSewing::GetStatuses"]
+
+        [Modules.BRepBuilderAPI.parsing_headers]
+
+        "BRepBuilderAPI_CellFilter.hxx" = "#include <gp_XY.hxx>"
+        "BRepBuilderAPI_VertexInspector.hxx" = "#include <gp_XY.hxx>"
 
 
     [Modules.MAT2d]
@@ -523,9 +528,9 @@ class Adaptor3d_Surface;
     [Modules.HLRBRep]
 
         exclude_classes = ["HLRBRep_CLPropsATool",]
-        
+
         [Modules.HLRBRep.parsing_headers]
-        
+
             "HLRBRep_CLPropsATool.hxx" = "#include <HLRBRep_Curve.hxx>"
 
     [Modules.TopOpeBRepDS]
@@ -544,25 +549,25 @@ class Adaptor3d_Surface;
             body = "[]( BRepAlgoAPI_Algo & self){ return self.RunParallel(); }"
             help = "Returns the flag of parallel processing."
             arguments  = []
-            
+
         [Modules.BRepAlgoAPI.Classes.BRepAlgoAPI_Algo.additional_methods.SetRunParallel]
 
             body = "[]( BRepAlgoAPI_Algo & self , const Standard_Boolean theFlag){ self.SetRunParallel(theFlag); }"
             help = "Set the flag of parallel processing."
             arguments  = ["thFlag"]
-            
+
         [Modules.BRepAlgoAPI.Classes.BRepAlgoAPI_Algo.additional_methods.FuzzyValue]
 
             body = "[]( BRepAlgoAPI_Algo & self){ return self.FuzzyValue(); }"
             help = "Returns the additional tolerance."
             arguments  = []
-            
+
         [Modules.BRepAlgoAPI.Classes.BRepAlgoAPI_Algo.additional_methods.SetFuzzyValue]
 
             body = "[]( BRepAlgoAPI_Algo & self , const Standard_Real theFuzz){ self.SetFuzzyValue(theFuzz); }"
             help = "Sets the additional tolerance."
             arguments  = ["theFuzz"]
-            
+
         [Modules.BRepAlgoAPI.Classes.BRepAlgoAPI_Algo.additional_methods.SetUseOBB]
 
             body = "[]( BRepAlgoAPI_Algo & self , const Standard_Boolean theFlag){ self.SetUseOBB(theFlag); }"
@@ -578,9 +583,9 @@ class Adaptor3d_Surface;
     [Modules.BRepFill]
 
         exclude_typedefs = ["BRepFill_DataMapOfShapeHArray2OfShape"]
-        
+
         [Modules.BRepFill.parsing_headers]
-        
+
             "BRepFill_Sweep.hxx" = "#include <TopTools_HArray1OfShape.hxx>"
             "BRepFill_TrimShellCorner.hxx" = """#include <TopoDS_Vertex.hxx>
 #include <gp_Pln.hxx>"""
@@ -594,9 +599,9 @@ class Adaptor3d_Surface;
     [Modules.BOPDS]
 
         exclude_typedefs = ["BOPDS_DataMapOfPaveBlockCommonBlock"]
-        
+
         [Modules.BOPDS.parsing_headers]
-        
+
             "BOPDS_DataMapOfPaveBlockListOfInteger.hxx" = "#include <BOPDS_PaveBlock.hxx>"
             "BOPDS_DataMapOfIntegerListOfPaveBlock.hxx" = "#include <TColStd_MapIntegerHasher.hxx>"
 
@@ -615,12 +620,23 @@ class Adaptor3d_Surface;
 
         exclude_typedefs = ["TopOpeBRepTool_IndexedDataMapOfSolidClassifier"]
 
+        [Modules.TopOpeBRepTool.parsing_headers]
+
+            "TopOpeBRepTool_TOPOLOGY.hxx" = """
+            class TopoDS_Face;
+            class BRepAdaptor_Curve;
+            class TopoDS_Edge;
+            class TopoDS_Vertex;
+            class TopTools_ListOfShape;
+            class Bnd_Box2d;
+            """
+
     [Modules.BOPTools]
 
         exclude_typedefs = ["BOPTools_BoxBndTree","BOPTools_PairSelector","BOPTools_Box2dTree","BOPTools_BoxPairSelector","BOPTools_Box2dPairSelector"]
-        
+
         [Modules.BOPTools.parsing_headers]
-        
+
             "BOPTools_SetMapHasher.hxx" = "#include <BOPTools_Set.hxx>"
 
     [Modules.Aspect]
@@ -654,9 +670,9 @@ struct NSOpenGLContext {};"""
                            "OpenGl_DepthPeeling::FrontBackColorFbosOit"]
         exclude_typedefs = ["OpenGl_SequenceOfLayers","OpenGl_SetterList","OpenGl_MapOfHatchStylesAndIds","OpenGl_MapOfZLayerSettings","OpenGl_IndexedMapOfStructure","OpenGl_MapOfShaderPrograms","OpenGl_IndexedMapOfStructure","OpenGl_LayerSeqIds"]
         exclude_classes = ["OpenGl_GraduatedTrihedron","OpenGl_LayerList","OpenGl_VariableSetterSelector","OpenGl_RaytraceGeometry"]
-        
+
         [Modules.OpenGl.parsing_headers]
-        
+
             "OpenGl_LayerList.hxx" = "#include <OpenGl_FrameBuffer.hxx>"
             "OpenGl_ShaderObject.hxx" = "#include <NCollection_Sequence.hxx>"
             "OpenGl_BufferCompatT.hxx" = "#include <Graphic3d_Buffer.hxx>"
@@ -714,7 +730,7 @@ struct NSOpenGLContext {};"""
             "Graphic3d_BvhCStructureSetTrsfPers::Center","Graphic3d_BvhCStructureSetTrsfPers::Swap",
             "Graphic3d_Layer::CullableTrsfPersStructuresBVH","Graphic3d_Layer::CullableStructuresBVH"]
         exclude_classes = ["Graphic3d_BvhCStructureSet","Graphic3d_BvhCStructureSetTrsfPers"]
-        
+
         [Modules.Graphic3d.parsing_headers]
 
              "Graphic3d_WorldViewProjState.hxx" = """#include <Standard_OStream.hxx>
@@ -730,9 +746,9 @@ struct NSOpenGLContext {};"""
         exclude_typedefs = ["BVH_PrimitiveSet3d"]
         exclude_class_templates = ["BVH_BaseBox"]
         exclude_class_template_methods = ["BVH_Tools::PointBoxProjection"]
-        
+
         [Modules.BVH.parsing_headers]
-        
+
             "BVH_Ray.hxx" = "#include <BVH_Types.hxx>"
 
     [Modules.TDocStd]
@@ -758,9 +774,9 @@ struct NSOpenGLContext {};"""
     [Modules.CDM]
 
         exclude_typedefs = ["CDM_PresentationDirectory", "CDM_MetaDataLookUpTable"]
-        
+
         [Modules.CDM.parsing_headers]
-        
+
             "CDM_MetaDataLookUpTable.hxx" = "#include <CDM_MetaData.hxx>"
             "CDM_DataMapIteratorOfMetaDataLookUpTable.hxx" = "#include <CDM_MetaData.hxx>"
 
@@ -791,9 +807,9 @@ struct NSOpenGLContext {};"""
 
         exclude_typedefs = ["TNaming_DataMapOfShapePtrRefShape"]
         exclude_methods = ["TNaming_RefShape::FirstUse"]
-        
+
         [Modules.TNaming.parsing_headers]
-        
+
             "TNaming_NCollections.hxx" = "#include <TopoDS_Shape.hxx>"
 
     [Modules.TDF]
@@ -801,7 +817,7 @@ struct NSOpenGLContext {};"""
         exclude_typedefs = ["TDF_AttributeDataMap","TDF_AttributeDoubleMap"]
         exclude_classes = ["TDF_LabelNode"]
         exclude_methods = ["TDF_DerivedAttribute::Register", "TDF_Label::FindAttribute"]
-        
+
         [Modules.TDF.Classes.TDF_Label.additional_methods.FindAttribute]
 
             body = "[]( TDF_Label & self , const Standard_GUID& anID, TDF_Attribute& anAttribute){ Handle(TDF_Attribute) dummy_attr; auto rv = self.FindAttribute(anID, dummy_attr); anAttribute.Restore(dummy_attr); return rv;}"
@@ -821,9 +837,9 @@ struct NSOpenGLContext {};"""
     [Modules.STEPConstruct]
 
         exclude_typedefs = ["STEPConstruct_DataMapOfAsciiStringTransient","STEPConstruct_DataMapOfPointTransient"]
-    
+
         [Modules.STEPConstruct.parsing_headers]
-        
+
             "STEPConstruct_PointHasher.hxx" = "#include <gp_Pnt.hxx>"
 
     [Modules.RWStl]
@@ -841,9 +857,9 @@ struct NSOpenGLContext {};"""
     [Modules.ShapeFix]
 
         include_header_pre_top = "#include <TColStd_HArray1OfReal.hxx>"
-        
+
         [Modules.ShapeFix.parsing_headers]
-        
+
             "ShapeFix_Solid.hxx" = "#include <Message_ProgressRange.hxx>"
 
     [Modules.BRepBlend]
@@ -905,9 +921,9 @@ using PolygonOnTriangulation = ShapePersistent_BRep::PolygonOnTriangulation;
     [Modules.IntAna]
 
         exclude_methods = ["IntAna_Quadric::SpecialPoints"]
-        
+
         [Modules.IntAna.parsing_headers]
-        
+
             "IntAna_Quadric.hxx" = """#include <gp_Pln.hxx>
 #include <gp_Sphere.hxx>
 #include <gp_Cylinder.hxx>
@@ -920,8 +936,12 @@ using PolygonOnTriangulation = ShapePersistent_BRep::PolygonOnTriangulation;
         include_header_pre = """#include <Resource_Manager.hxx>
 #include <PCDM_ReaderFilter.hxx>"""
 
+        [Modules.CDF.parsing_headers]
+
+            "CDF_StoreList.hxx" = "#include <Message_ProgressRange.hxx>"
+
     [Modules.Image]
-    
+
         include_header_pre = """#include <ostream>
 using std::basic_ostream;"""
 
@@ -971,42 +991,42 @@ struct __GLXFBConfigRec {};"""
     [Modules.PCDM]
 
         exclude_classes = ["PCDM_DOMHeaderParser"]
-        
+
         [Modules.PCDM.parsing_headers]
-        
+
             "PCDM_ReadWriter.hxx" = "#include <Standard_IStream.hxx>"
             "PCDM_ReadWriter_1.hxx" = "#include <Standard_IStream.hxx>"
 
     [Modules.ShapeAnalysis]
 
         exclude_classes = ["ShapeAnalysis_BoxBndTreeSelector"]
-        
+
     [Modules.V3d]
-    
+
         include_header_pre = """struct NSOpenGLContext {}; //OSX related"""
-        
+
     [Modules.STEPCAFControl]
-    
-        include_header_pre = "#include <XCAFDoc_ShapeTool.hxx>"        
+
+        include_header_pre = "#include <XCAFDoc_ShapeTool.hxx>"
         exclude_typedefs = ["STEPCAFControl_DataMapOfShapePD","STEPCAFControl_DataMapOfShapePD",
             "STEPCAFControl_DataMapOfSDRExternFile","STEPCAFControl_DataMapOfSDRExternFile",
             "STEPCAFControl_DataMapOfPDExternFile","STEPCAFControl_DataMapOfLabelExternFile",
             "STEPCAFControl_DataMapOfShapeSDR"]
-        
+
         [Modules.STEPCAFControl.parsing_headers]
-        
+
             "STEPCAFControl_Writer.hxx" = "#include <NCollection_Vector.hxx>"
-            
+
     [Modules.XCAFDimTolObjects]
-    
+
         exclude_typedefs = ["XCAFDimTolObjects_DataMapOfToleranceDatum"]
-        
+
     [Modules.XCAFPrs]
-        
+
         include_header_pre = """#include <Image_SupportedFormats.hxx>
 #include <Image_CompressedPixMap.hxx>"""
         exclude_typedefs = ["XCAFPrs_DataMapOfStyleTransient"]
-        
+
     [Modules.AdvApp2Var]
 
         include_header_pre_top ="""#ifdef WIN32
@@ -1016,27 +1036,27 @@ struct __GLXFBConfigRec {};"""
 """
 
     [Modules.BOPAlgo]
-    
+
         include_header_pre = """#include <BOPDS_Iterator.hxx>
 #include <BOPDS_DS.hxx>
 """
-    
+
     [Modules.VrmlAPI]
-    
+
         include_header_pre = "#include <VrmlConverter_Drawer.hxx>"
-    
+
     [Modules.IFSelect]
 
         include_header_pre = """#include <istream>
 using std::basic_istream;"""
 
     [Modules.XSControl]
-    
+
         include_header_pre = """#include <istream>
 using std::basic_istream;"""
 
     [Modules.Message]
-    
+
         exclude_classes = ["Message_LazyProgressScope"]
 
         [Modules.Message.Classes.Message_ProgressScope]
@@ -1056,75 +1076,81 @@ using rapidjson::BasicOStreamWrapper;"""
 
             "RWGltf_GltfOStreamWriter.hxx" = "#include <rapidjson/rapidjson.h>"
 
-    
-    [Modules.BRepApprox_SurfaceTool]
+
+    [Modules.BRepApprox]
 
         [Modules.BRepApprox.parsing_headers]
-        
+
             "BRepApprox_SurfaceTool.hxx" = "#include <BRepAdaptor_Surface.hxx>"
-            
+            "BRepApprox_TheMultiLineToolOfApprox.hxx" = """
+            #include <Approx_Status.hxx>
+            #include <TColgp_Array1OfPnt2d.hxx>
+            #include <TColgp_Array1OfVec.hxx>
+            #include <TColgp_Array1OfVec2d.hxx>
+            """
+
     [Modules.IntPatch]
-    
+
         [Modules.IntPatch.parsing_headers]
-        
+
             "IntPatch_PolyhedronTool.hxx" = "#include <IntPatch_Polyhedron.hxx>"
-            
+
     [Modules.ShapeConstruct]
-    
+
         [Modules.ShapeConstruct.parsing_headers]
-        
+
             "ShapeConstruct_ProjectCurveOnSurface.hxx" = "#include <TColStd_HArray1OfReal.hxx>"
-    
+
     [Modules.HLRAlgo]
-    
+
         [Modules.HLRAlgo.parsing_headers]
-            
+
             "HLRAlgo_HArray1OfPHDat.hxx" = "#include <gp_XYZ.hxx>"
             "HLRAlgo_Array1OfPHDat.hxx" = "#include <gp_XYZ.hxx>"
             "HLRAlgo_PolyHidingData.hxx" = "#include <gp_XYZ.hxx>"
             "HLRAlgo_PolyShellData.hxx" = "#include <HLRAlgo_PolyData.hxx>"
-    
+
     [Modules.ShapeUpgrade]
-    
-        [Modules.ShapeUpgrade.parsing_headers]        
-            
+
+        [Modules.ShapeUpgrade.parsing_headers]
+
             "ShapeUpgrade_UnifySameDomain.hxx" = "#include <Precision.hxx>"
-    
+
     [Modules.IntTools]
-    
+
         [Modules.IntTools.parsing_headers]
-                
+
             "IntTools_SurfaceRangeSampleMapHasher.hxx" = "#include <IntTools_SurfaceRangeSample.hxx>"
             "IntTools_CurveRangeSampleMapHasher.hxx" = "#include <IntTools_CurveRangeSample.hxx>"
             "IntTools_EdgeFace.hxx" = "#include <Precision.hxx>"
-     
+
     [Modules.BRepOffset]
-    
-        [Modules.BRepOffset.parsing_headers]       
-            
+
+        [Modules.BRepOffset.parsing_headers]
+
             "BRepOffset_Inter2d.hxx" = "#include <TopoDS_Edge.hxx>"
-     
+
     [Modules.StdPrs]
-    
+
         [Modules.StdPrs.parsing_headers]
-               
+
             "StdPrs_HLRShape.hxx" = "#include <TopoDS_Shape.hxx>"
             "StdPrs_Vertex.hxx" = "#include <Prs3d_Presentation.hxx>"
             "StdPrs_Point.hxx" = "#include <Prs3d_Presentation.hxx>"
-      
+
     [Modules.Interface]
-    
-        [Modules.Interface.parsing_headers]      
-            
+
+        [Modules.Interface.parsing_headers]
+
             "Interface_ValueInterpret.hxx" = "#include <Interface_TypedValue.hxx>"
-            
+
     [Modules.IVtkVTK]
-    
+
         include_header_pre = """#include <vtkRenderer.h>
 #include "vtk_pybind.h" """
-            
+
     [Modules.IVtkTools]
-    
+
         include_header_pre = """#undef Handle
 #include <vtkRenderer.h>
 #include <vtkActor.h>
@@ -1134,9 +1160,9 @@ using rapidjson::BasicOStreamWrapper;"""
         "IVtkTools_SubPolyDataFilter::PrintSelf", "IVtkTools_DisplayModeFilter::PrintSelf"]
 
     [Modules.IVtk]
-    
+
         exclude_typedefs = ["IVtk_PointIdList"]
-        
+
     [Modules.IVtkOCC]
 
         exclude_methods = ["IVtkOCC_ShapePickerAlgo::Pick", "IVtkOCC_ViewerSelector::Pick"]
@@ -1144,26 +1170,35 @@ using rapidjson::BasicOStreamWrapper;"""
     [Modules.BinLDrivers]
 
         include_header_pre = "#include <PCDM_ReaderFilter.hxx>"
-        
+
     [Modules.BinObjMgt]
-        
+
         exclude_methods = ["BinObjMgt_Persistent::GetOStream", "BinObjMgt_Persistent::GetIStream"]
-        
+
     [Modules.GeomAdaptor]
-    
+
         include_header_pre = """#include <Geom_BezierCurve.hxx>
 #include <Geom_BSplineCurve.hxx>
 #include <Geom_OffsetCurve.hxx>
 """
 
     [Modules.GeomInt]
-    
+
         include_header_pre = """#include <Geom2d_BSplineCurve.hxx>"""
-        
+
+        [Modules.GeomInt.parsing_headers]
+
+        "GeomInt_TheMultiLineToolOfWLApprox.hxx" = """
+        #include <Approx_Status.hxx>
+        #include <TColgp_Array1OfPnt2d.hxx>
+        #include <TColgp_Array1OfVec.hxx>
+        #include <TColgp_Array1OfVec2d.hxx>
+        """
+
     [Modules.StepToGeom]
-    
+
         include_header_pre = """#include <StepKinematics_SpatialRotation.hxx>"""
-        
+
     [Modules.XmlDrivers]
 
         include_header_pre = "#include <PCDM_ReaderFilter.hxx>"
@@ -1171,11 +1206,11 @@ using rapidjson::BasicOStreamWrapper;"""
     [Modules.XmlLDrivers]
 
         include_header_pre = "#include <PCDM_ReaderFilter.hxx>"
-        
+
     [Modules.BRepTools]
-    
+
         include_header_pre = "#include <OSD_FileSystem.hxx>"
-        
+
     [Modules.BRepTopAdaptor]
 
         [Modules.BRepTopAdaptor.parsing_headers]
@@ -1213,3 +1248,21 @@ using rapidjson::BasicOStreamWrapper;"""
     [Modules.IGESSolid]
 
         module_parsing_header = "#include <Standard_OStream.hxx>"
+
+    [Modules.GeomConvert]
+
+        [Modules.GeomConvert.parsing_headers]
+
+        "GeomConvert_SurfToAnaSurf.hxx" = "class Geom_Curve; class gp_Ax3;"
+
+    [Modules.TopoDSToStep]
+
+        [Modules.TopoDSToStep.parsing_headers]
+
+        "TopoDSToStep_MakeTessellatedItem.hxx" = "class TopoDSToStep_Tool;"
+
+    [Modules.XCAFDoc]
+
+        [Modules.XCAFDoc.parsing_headers]
+        "XCAFDoc_AssemblyTool.hxx" = "#include <TDF_Label.hxx>"
+        "XCAFDoc_AssemblyIterator.hxx" = "#include <TDF_Label.hxx>"
