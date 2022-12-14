@@ -324,7 +324,8 @@ modules = ["Standard",
 "IVtk",
 "IVtkOCC",
 "IVtkTools",
-"IVtkVTK"]
+"IVtkVTK",
+"DE"]
 
 exclude = ["Standard_Handle.hxx","Standard",
            "math_GaussPoints.hxx","NCollection_Shared.hxx","OSD_WNT.hxx",
@@ -844,6 +845,13 @@ struct NSOpenGLContext {};"""
 
     [Modules.RWStl]
 
+        include_header_pre = """
+        #include <DE_ConfigurationContext.hxx>
+        #include <NCollection_Buffer.hxx>
+        #include <TDocStd_Document.hxx>
+        #include <XSControl_WorkSession.hxx>
+        #include <TopoDS_Shape.hxx>"""
+
         exclude_methods = ["RWStl_Reader::ReadAscii"]
 
     [Modules.StepShape]
@@ -934,7 +942,8 @@ using PolygonOnTriangulation = ShapePersistent_BRep::PolygonOnTriangulation;
     [Modules.CDF]
 
         include_header_pre = """#include <Resource_Manager.hxx>
-#include <PCDM_ReaderFilter.hxx>"""
+#include <PCDM_ReaderFilter.hxx>
+#include <Message_ProgressRange.hxx>"""
 
         [Modules.CDF.parsing_headers]
 
@@ -1007,7 +1016,9 @@ struct __GLXFBConfigRec {};"""
 
     [Modules.STEPCAFControl]
 
-        include_header_pre = "#include <XCAFDoc_ShapeTool.hxx>"
+        include_header_pre = """
+        #include <DE_ConfigurationContext.hxx>
+        #include <XCAFDoc_ShapeTool.hxx>"""
         exclude_typedefs = ["STEPCAFControl_DataMapOfShapePD","STEPCAFControl_DataMapOfShapePD",
             "STEPCAFControl_DataMapOfSDRExternFile","STEPCAFControl_DataMapOfSDRExternFile",
             "STEPCAFControl_DataMapOfPDExternFile","STEPCAFControl_DataMapOfLabelExternFile",
@@ -1045,6 +1056,14 @@ struct __GLXFBConfigRec {};"""
 
         include_header_pre = "#include <VrmlConverter_Drawer.hxx>"
 
+    [Modules.Vrml]
+
+        include_header_pre = """
+        #include <DE_ConfigurationContext.hxx>
+        #include <TDocStd_Document.hxx>
+        #include <XSControl_WorkSession.hxx>
+        #include <TopoDS_Shape.hxx>"""
+
     [Modules.IFSelect]
 
         include_header_pre = """#include <istream>
@@ -1066,6 +1085,8 @@ using std::basic_istream;"""
     [Modules.RWGltf]
 
         include_header_pre = """#include <istream>
+#include <DE_ConfigurationContext.hxx>
+#include <XSControl_WorkSession.hxx>
 using std::basic_istream;
 using rapidjson::BasicOStreamWrapper;"""
 
