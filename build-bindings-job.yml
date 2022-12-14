@@ -38,7 +38,6 @@ jobs:
       vmImage: ${{ parameters.vmImage }}
 
   - bash: |
-      conda update -n base -c defaults conda && \
       conda env create -f ${{ parameters.conda_env_file }} && \
       conda install -n cpp-py-bindgen -y python=${{ parameters.py_maj }}.${{ parameters.py_min }}
     displayName: 'Prepare conda environment'
