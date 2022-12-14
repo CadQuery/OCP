@@ -59,7 +59,8 @@ set ( OCCT_MODULES
     TKXmlXCAF
     TKVRML
     TKRWMesh
-    TKIVtk)
+    TKIVtk
+    TKDE)
 
 
 add_library( OPENCASCADE INTERFACE )
