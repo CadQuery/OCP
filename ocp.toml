@@ -718,13 +718,17 @@ auto OptionsForAttach = [](){return AIS_Manipulator::OptionsForAttach();};"""
 
         exclude_typedefs = ["Select3D_IndexedMapOfEntity","Graphic3d_Vec3d","Select3D_BndBox3d"]  #couldn't deduce template parameter ‘Hasher’
 
+        [Modules.Select3D.Classes.Select3D_SensitiveCircle]
+
+            exclude_constructors = [0,1] #missing vftable
+
 
     [Modules.Graphic3d]
 
         include_header_pre = """#include <Media_PlayerContext.hxx>
 struct NSOpenGLContext {};"""
         exclude_typedefs = ["Graphic3d_IndexedMapOfView","Graphic3d_IndexedMapOfAddress","Graphic3d_MapOfStructure","Graphic3d_NMapOfTransient","Graphic3d_MapOfObject","Graphic3d_Vec4u","Graphic3d_Vec2u","Graphic3d_Vec3u","Graphic3d_Vec3d","Graphic3d_MapOfAspectsToAspects",
-            "Graphic3d_BndBox4d","Graphic3d_BndBox3d","Graphic3d_BndBox4f"]
+            "Graphic3d_BndBox4d","Graphic3d_BndBox3d","Graphic3d_BndBox4f", "Graphic3d_IndexedMapOfStructure", "Graphic3d_ArrayofIndexedMapOfStructure"]
         exclude_methods = ["Graphic3d_BvhCStructureSet::Size","Graphic3d_BvhCStructureSet::Box",
             "Graphic3d_BvhCStructureSet::Center","Graphic3d_BvhCStructureSet::Swap",
             "Graphic3d_BvhCStructureSetTrsfPers::Size","Graphic3d_BvhCStructureSetTrsfPers::Box",
@@ -1205,7 +1209,13 @@ using rapidjson::BasicOStreamWrapper;"""
 
     [Modules.GeomInt]
 
-        include_header_pre = """#include <Geom2d_BSplineCurve.hxx>"""
+        include_header_pre = """
+        #include <Geom2d_BSplineCurve.hxx>
+        #include <Approx_Status.hxx>
+        #include <TColgp_Array1OfPnt2d.hxx>
+        #include <TColgp_Array1OfVec.hxx>
+        #include <TColgp_Array1OfVec2d.hxx>
+        """
 
         [Modules.GeomInt.parsing_headers]
 
@@ -1287,3 +1297,7 @@ using rapidjson::BasicOStreamWrapper;"""
         [Modules.XCAFDoc.parsing_headers]
         "XCAFDoc_AssemblyTool.hxx" = "#include <TDF_Label.hxx>"
         "XCAFDoc_AssemblyIterator.hxx" = "#include <TDF_Label.hxx>"
+
+    [Modules.DE]
+
+        exclude_typedefs = ["DE_ConfigurationVendorMap", "DE_ConfigurationFormatMap"]
