@@ -1302,6 +1302,6 @@ using rapidjson::BasicOStreamWrapper;"""
 
         exclude_typedefs = ["DE_ConfigurationVendorMap", "DE_ConfigurationFormatMap"]
 
-    [Module.StepVisual]
+    [Modules.StepVisual]
 
         include_header_pre = "#include <StepRepr_RepresentationContext.hxx>"
