@@ -1023,6 +1023,10 @@ struct __GLXFBConfigRec {};"""
         include_header_pre = """
         #include <istream>
         #include <ostream>
+
+        using std::basic_ostream;
+        using std::basic_istream;
+
         #include <DE_ConfigurationContext.hxx>
         #include <XCAFDoc_ShapeTool.hxx>"""
         exclude_typedefs = ["STEPCAFControl_DataMapOfShapePD","STEPCAFControl_DataMapOfShapePD",
