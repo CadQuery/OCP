@@ -1021,6 +1021,8 @@ struct __GLXFBConfigRec {};"""
     [Modules.STEPCAFControl]
 
         include_header_pre = """
+        #include <istream>
+        #include <ostream>
         #include <DE_ConfigurationContext.hxx>
         #include <XCAFDoc_ShapeTool.hxx>"""
         exclude_typedefs = ["STEPCAFControl_DataMapOfShapePD","STEPCAFControl_DataMapOfShapePD",
