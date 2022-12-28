@@ -11,7 +11,7 @@ parameters:
   config_file: 'ocp.toml'
   conda_bld: '3.16.3'
   conda_env_file: 'env.yml'
-  CXX: g++-8
+  CXX: clang++
 
 jobs:
 - job: ${{ parameters.name }}
@@ -98,8 +98,8 @@ jobs:
       artifact: OCP_src_${{ parameters.vmImage }}
 
     - ${{ if contains(parameters.vmImage, 'Ubuntu') }}:
-      - bash: sudo apt-get update && sudo apt-get install ${{ parameters.CXX }} mesa-common-dev libgl1-mesa-dev libglu1-mesa-dev freeglut3-dev
-        displayName: 'Install g++8 and gl headers'
+      - bash: sudo apt-get update && sudo apt-get install mesa-common-dev libgl1-mesa-dev libglu1-mesa-dev freeglut3-dev
+        displayName: 'Install gl headers'
 
     - ${{ if contains(parameters.vmImage, 'mac') }}:
       - bash: |
