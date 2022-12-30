@@ -403,6 +403,10 @@ class Adaptor3d_Surface;
 
     include_pre = "OCP_specific.inc"
 
+[Attributes]
+
+    __version__ = "7.7.0.0dev"
+
 [Modules]
 
     [Modules.gp]
@@ -1311,3 +1315,10 @@ using rapidjson::BasicOStreamWrapper;"""
     [Modules.StepVisual]
 
         include_header_pre = "#include <StepRepr_RepresentationContext.hxx>"
+
+    [Modules.StepControl]
+
+        include_header_pre = """
+        #include <IFSelect_ReturnStatus.hxx>
+        #include <ostream>
+        using std::basic_ostream;"""
