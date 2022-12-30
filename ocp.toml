@@ -1316,7 +1316,7 @@ using rapidjson::BasicOStreamWrapper;"""
 
         include_header_pre = "#include <StepRepr_RepresentationContext.hxx>"
 
-    [Modules.StepControl]
+    [Modules.STEPControl]
 
         include_header_pre = """
         #include <IFSelect_ReturnStatus.hxx>
