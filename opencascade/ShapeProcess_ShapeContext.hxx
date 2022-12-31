@@ -23,12 +23,9 @@
 #include <TopTools_DataMapOfShapeShape.hxx>
 #include <TopAbs_ShapeEnum.hxx>
 #include <ShapeProcess_Context.hxx>
-#include <Standard_CString.hxx>
 #include <Message_Gravity.hxx>
-#include <Standard_Boolean.hxx>
 #include <GeomAbs_Shape.hxx>
 class ShapeExtend_MsgRegistrator;
-class TopoDS_Shape;
 class ShapeBuild_ReShape;
 class BRepTools_Modifier;
 class Message_Msg;

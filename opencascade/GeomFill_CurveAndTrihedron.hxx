@@ -18,11 +18,7 @@
 #define _GeomFill_CurveAndTrihedron_HeaderFile
 
 #include <Standard.hxx>
-#include <Standard_Type.hxx>
 
-#include <Standard_Boolean.hxx>
-#include <gp_Pnt.hxx>
-#include <gp_Vec.hxx>
 #include <gp_Mat.hxx>
 #include <GeomFill_LocationLaw.hxx>
 #include <Standard_Real.hxx>
@@ -52,7 +48,9 @@ public:
   
   Standard_EXPORT GeomFill_CurveAndTrihedron(const Handle(GeomFill_TrihedronLaw)& Trihedron);
   
-  Standard_EXPORT virtual void SetCurve (const Handle(Adaptor3d_Curve)& C) Standard_OVERRIDE;
+  //! initialize curve of trihedron law
+  //! @return Standard_True in case if execution end correctly
+  Standard_EXPORT virtual Standard_Boolean SetCurve (const Handle(Adaptor3d_Curve)& C) Standard_OVERRIDE;
   
   Standard_EXPORT virtual const Handle(Adaptor3d_Curve)& GetCurve() const Standard_OVERRIDE;
   

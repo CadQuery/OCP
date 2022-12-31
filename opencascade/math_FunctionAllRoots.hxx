@@ -24,12 +24,7 @@
 #include <Standard_Boolean.hxx>
 #include <TColStd_SequenceOfReal.hxx>
 #include <TColStd_SequenceOfInteger.hxx>
-#include <Standard_Real.hxx>
-#include <Standard_Integer.hxx>
 #include <Standard_OStream.hxx>
-class Standard_OutOfRange;
-class StdFail_NotDone;
-class Standard_NumericError;
 class math_FunctionWithDerivative;
 class math_FunctionSample;
 

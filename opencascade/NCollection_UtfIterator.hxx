@@ -185,9 +185,9 @@ private:
   //! Standard_Utf16Char on Windows and to Standard_Utf32Char on Linux.
   template <typename TypeChar>
   class CharTypeChooser : 
-    public   opencascade::std::conditional< sizeof(TypeChar) == 1, Standard_Utf8Char,
-    typename opencascade::std::conditional< sizeof(TypeChar) == 2, Standard_Utf16Char,
-    typename opencascade::std::conditional< sizeof(TypeChar) == 4, Standard_Utf32Char, void >::type >::type >
+    public   std::conditional< sizeof(TypeChar) == 1, Standard_Utf8Char,
+    typename std::conditional< sizeof(TypeChar) == 2, Standard_Utf16Char,
+    typename std::conditional< sizeof(TypeChar) == 4, Standard_Utf32Char, void >::type >::type >
   {
   };
 
@@ -216,20 +216,20 @@ private:
 
 private: //! @name unicode magic numbers
 
-  static const unsigned char UTF8_BYTES_MINUS_ONE[256];
-  static const unsigned long offsetsFromUTF8[6];
-  static const unsigned char UTF8_FIRST_BYTE_MARK[7];
-  static const unsigned long UTF8_BYTE_MASK;
-  static const unsigned long UTF8_BYTE_MARK;
-  static const unsigned long UTF16_SURROGATE_HIGH_START;
-  static const unsigned long UTF16_SURROGATE_HIGH_END;
-  static const unsigned long UTF16_SURROGATE_LOW_START;
-  static const unsigned long UTF16_SURROGATE_LOW_END;
-  static const unsigned long UTF16_SURROGATE_HIGH_SHIFT;
-  static const unsigned long UTF16_SURROGATE_LOW_BASE;
-  static const unsigned long UTF16_SURROGATE_LOW_MASK;
-  static const unsigned long UTF32_MAX_BMP;
-  static const unsigned long UTF32_MAX_LEGAL;
+  static const unsigned char      UTF8_BYTES_MINUS_ONE[256];
+  static const Standard_Utf32Char offsetsFromUTF8[6];
+  static const unsigned char      UTF8_FIRST_BYTE_MARK[7];
+  static const Standard_Utf32Char UTF8_BYTE_MASK;
+  static const Standard_Utf32Char UTF8_BYTE_MARK;
+  static const Standard_Utf32Char UTF16_SURROGATE_HIGH_START;
+  static const Standard_Utf32Char UTF16_SURROGATE_HIGH_END;
+  static const Standard_Utf32Char UTF16_SURROGATE_LOW_START;
+  static const Standard_Utf32Char UTF16_SURROGATE_LOW_END;
+  static const Standard_Utf32Char UTF16_SURROGATE_HIGH_SHIFT;
+  static const Standard_Utf32Char UTF16_SURROGATE_LOW_BASE;
+  static const Standard_Utf32Char UTF16_SURROGATE_LOW_MASK;
+  static const Standard_Utf32Char UTF32_MAX_BMP;
+  static const Standard_Utf32Char UTF32_MAX_LEGAL;
 
 private: //! @name private fields
 

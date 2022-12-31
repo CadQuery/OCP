@@ -19,16 +19,13 @@
 
 #include <Standard.hxx>
 #include <Standard_DefineAlloc.hxx>
-#include <Standard_Handle.hxx>
 
-#include <Standard_Boolean.hxx>
 #include <TopTools_DataMapOfShapeListOfShape.hxx>
 #include <TopoDS_Shape.hxx>
 #include <TopTools_IndexedMapOfShape.hxx>
 #include <Standard_Integer.hxx>
 #include <TopTools_MapOfShape.hxx>
 #include <TopTools_ListOfShape.hxx>
-class TopoDS_Shape;
 class TopoDS_Face;
 class TopoDS_Edge;
 

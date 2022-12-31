@@ -22,16 +22,8 @@
 #include <Standard_Handle.hxx>
 
 #include <math_Matrix.hxx>
-#include <Standard_Boolean.hxx>
-#include <Standard_Integer.hxx>
-#include <Standard_Real.hxx>
 #include <math_Vector.hxx>
 #include <Standard_OStream.hxx>
-class StdFail_NotDone;
-class Standard_OutOfRange;
-class Standard_DimensionError;
-class Standard_ConstructionError;
-class math_Matrix;
 
 
 //! This class implements the least square solution of a set of

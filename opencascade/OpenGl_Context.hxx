@@ -16,19 +16,11 @@
 #ifndef OpenGl_Context_HeaderFile
 #define OpenGl_Context_HeaderFile
 
-#include <Aspect_Handle.hxx>
-#include <Aspect_HatchStyle.hxx>
 #include <Aspect_Drawable.hxx>
 #include <Aspect_Display.hxx>
+#include <Aspect_GraphicsLibrary.hxx>
 #include <Aspect_RenderingContext.hxx>
-#include <Aspect_TypeOfLine.hxx>
-#include <NCollection_DataMap.hxx>
 #include <Graphic3d_DiagnosticInfo.hxx>
-#include <Graphic3d_TextureUnit.hxx>
-#include <NCollection_Map.hxx>
-#include <NCollection_Handle.hxx>
-#include <NCollection_List.hxx>
-#include <NCollection_SparseArray.hxx>
 #include <Message.hxx>
 #include <OpenGl_Caps.hxx>
 #include <OpenGl_LineAttributes.hxx>
@@ -41,9 +33,10 @@
 #include <TColStd_IndexedDataMapOfStringString.hxx>
 #include <TColStd_PackedMapOfInteger.hxx>
 #include <OpenGl_Clipping.hxx>
-#include <OpenGl_GlCore11.hxx>
 
 #include <NCollection_Shared.hxx>
+
+#include <memory>
 
 //! Forward declarations
 #if defined(__APPLE__)
@@ -73,6 +66,8 @@ struct OpenGl_ArbSamplerObject;
 struct OpenGl_ArbTexBindless;
 struct OpenGl_ExtGS;
 
+struct OpenGl_GlCore11Fwd;
+struct OpenGl_GlCore11;
 struct OpenGl_GlCore12;
 struct OpenGl_GlCore13;
 struct OpenGl_GlCore14;
@@ -95,7 +90,6 @@ class Graphic3d_Camera;
 class Graphic3d_PresentationAttributes;
 class OpenGl_Aspects;
 class OpenGl_FrameBuffer;
-class OpenGl_Sampler;
 class OpenGl_ShaderProgram;
 class OpenGl_ShaderManager;
 class OpenGl_FrameStats;
@@ -330,6 +324,9 @@ public:
     return (theFuncPtr != NULL);
   }
 
+  //! Return active graphics library.
+  Aspect_GraphicsLibrary GraphicsLibrary() const { return myGapi; }
+
   //! @return true if detected GL version is greater or equal to requested one.
   inline Standard_Boolean IsGlGreaterEqual (const Standard_Integer theVerMajor,
                                             const Standard_Integer theVerMinor) const
@@ -345,7 +342,7 @@ public:
   Standard_Integer VersionMinor() const { return myGlVerMinor; }
 
   //! Access entire map of loaded OpenGL functions.
-  const OpenGl_GlFunctions* Functions() const { return myFuncs.operator->(); }
+  const OpenGl_GlFunctions* Functions() const { return myFuncs.get(); }
 
   //! Clean up errors stack for this GL context (glGetError() in loop).
   //! @return true if some error has been cleared
@@ -367,24 +364,10 @@ public:
   Standard_EXPORT Standard_Boolean SetSwapInterval (const Standard_Integer theInterval);
 
   //! Return true if active mode is GL_RENDER (cached state)
-  Standard_Boolean IsRender() const
-  {
-  #if !defined(GL_ES_VERSION_2_0)
-    return myRenderMode == GL_RENDER;
-  #else
-    return Standard_True;
-  #endif
-  }
+  Standard_EXPORT Standard_Boolean IsRender() const;
 
   //! Return true if active mode is GL_FEEDBACK (cached state)
-  Standard_Boolean IsFeedback() const
-  {
-  #if !defined(GL_ES_VERSION_2_0)
-    return myRenderMode == GL_FEEDBACK;
-  #else
-    return Standard_False;
-  #endif
-  }
+  Standard_EXPORT Standard_Boolean IsFeedback() const;
 
   //! This function retrieves information from GL about free GPU memory that is:
   //!  - OS-dependent. On some OS it is per-process and on others - for entire system.
@@ -405,6 +388,10 @@ public:
   //! Should be called with bound context.
   Standard_EXPORT void DiagnosticInformation (TColStd_IndexedDataMapOfStringString& theDict,
                                               Graphic3d_DiagnosticInfo theFlags) const;
+
+  //! Fetches information about window buffer pixel format.
+  Standard_EXPORT void WindowBufferBits (Graphic3d_Vec4i& theColorBits,
+                                         Graphic3d_Vec2i& theDepthStencilBits) const;
 
   //! Access shared resource by its name.
   //! @param  theKey - unique identifier;
@@ -480,11 +467,9 @@ public:
   //! @return true if texture parameters GL_TEXTURE_BASE_LEVEL/GL_TEXTURE_MAX_LEVEL are supported.
   Standard_Boolean HasTextureBaseLevel() const
   {
-  #if !defined(GL_ES_VERSION_2_0)
-    return IsGlGreaterEqual (1, 2);
-  #else
-    return IsGlGreaterEqual (3, 0);
-  #endif
+    return myGapi == Aspect_GraphicsLibrary_OpenGLES
+         ? IsGlGreaterEqual (3, 0)
+         : IsGlGreaterEqual (1, 2);
   }
 
   //! Return map of supported texture formats.
@@ -506,6 +491,9 @@ public:
 
   //! Return texture unit to be used for sprites (Graphic3d_TextureUnit_PointSprite by default).
   Graphic3d_TextureUnit SpriteTextureUnit() const { return mySpriteTexUnit; }
+
+  //! @return true if MSAA textures are supported.
+  Standard_Boolean HasTextureMultisampling() const { return myHasMsaaTextures; }
 
   //! @return value for GL_MAX_SAMPLES
   Standard_Integer MaxMsaaSamples() const { return myMaxMsaaSamples; }
@@ -571,6 +559,9 @@ public:
 
   //! Overrides if window/surface buffer is sRGB-ready or not (initialized with the context).
   void SetWindowSRGB (bool theIsSRgb) { myIsSRgbWindow = theIsSRgb; }
+
+  //! Returns TRUE if window/surface buffer has deep color (10bit per component / 30bit RGB) or better precision.
+  bool IsWindowDeepColor() const { return myIsWindowDeepColor; }
 
   //! Convert Quantity_ColorRGBA into vec4
   //! with conversion or no conversion into non-linear sRGB
@@ -654,7 +645,7 @@ public:
 
   //! Sets polygon hatch pattern.
   //! Zero-index value is a default alias for solid filling.
-  //! @param the type of hatch supported by base implementation of
+  //! @param theStyle type of hatch supported by base implementation of
   //! OpenGl_LineAttributes (Aspect_HatchStyle) or the type supported by custom
   //! implementation derived from OpenGl_LineAttributes class.
   //! @return old type of hatch.
@@ -721,16 +712,8 @@ public:
   Standard_EXPORT Standard_Boolean IncludeMessage (const unsigned int theSource,
                                                    const unsigned int theId);
 
-  //! @return true if OpenGl context supports left and
-  //! right rendering buffers.
-  Standard_Boolean HasStereoBuffers() const
-  {
-  #if !defined(GL_ES_VERSION_2_0)
-    return myIsStereoBuffers;
-  #else
-    return Standard_False;
-  #endif
-  }
+  //! @return true if OpenGl context supports left and right rendering buffers.
+  Standard_Boolean HasStereoBuffers() const { return myIsStereoBuffers; }
 
 public: //! @name methods to alter or retrieve current state
 
@@ -763,7 +746,7 @@ public: //! @name methods to alter or retrieve current state
     return theIndex >= myDrawBuffers.Lower()
         && theIndex <= myDrawBuffers.Upper()
          ? myDrawBuffers.Value (theIndex)
-         : GL_NONE;
+         : 0; // GL_NONE
   }
 
   //! Switch draw buffer, wrapper for ::glDrawBuffer().
@@ -789,9 +772,9 @@ public: //! @name methods to alter or retrieve current state
   //! - TRUE when writing into offscreen FBO (always expected to be in sRGB or RGBF formats).
   //! - TRUE when writing into sRGB-ready window buffer (might require choosing proper pixel format on window creation).
   //! - FALSE if sRGB rendering is not supported or sRGB-not-ready window buffer is used for drawing.
-  //! @param theIsFbo [in] flag indicating writing into offscreen FBO (always expected sRGB-ready when sRGB FBO is supported)
-  //!                      or into window buffer (FALSE, sRGB-readiness might vary).
-  //! @param theIsSRgb [in] flag indicating off-screen FBO is sRGB-ready
+  //! @param[in] theIsFbo flag indicating writing into offscreen FBO (always expected sRGB-ready when sRGB FBO is supported)
+  //!                     or into window buffer (FALSE, sRGB-readiness might vary).
+  //! @param[in] theIsFboSRgb flag indicating off-screen FBO is sRGB-ready
   Standard_EXPORT void SetFrameBufferSRGB (bool theIsFbo, bool theIsFboSRgb = true);
 
   //! Return cached flag indicating writing into color buffer is enabled or disabled (glColorMask).
@@ -820,10 +803,19 @@ public: //! @name methods to alter or retrieve current state
   Standard_EXPORT bool SetSampleAlphaToCoverage (bool theToEnable);
 
   //! Return back face culling state.
-  bool ToCullBackFaces() const { return myToCullBackFaces; }
+  Graphic3d_TypeOfBackfacingModel FaceCulling() const { return myFaceCulling; }
 
   //! Enable or disable back face culling (glEnable (GL_CULL_FACE)).
-  Standard_EXPORT void SetCullBackFaces (bool theToEnable);
+  Standard_EXPORT void SetFaceCulling (Graphic3d_TypeOfBackfacingModel theMode);
+
+  //! Return back face culling state.
+  bool ToCullBackFaces() const { return myFaceCulling == Graphic3d_TypeOfBackfacingModel_BackCulled; }
+
+  //! Enable or disable back face culling (glCullFace() + glEnable(GL_CULL_FACE)).
+  void SetCullBackFaces (bool theToEnable)
+  {
+    SetFaceCulling (theToEnable ? Graphic3d_TypeOfBackfacingModel_BackCulled : Graphic3d_TypeOfBackfacingModel_DoubleSided);
+  }
 
   //! Fetch OpenGl context state. This class tracks value of several OpenGl
   //! state variables. Consulting the cached values is quicker than
@@ -982,12 +974,12 @@ public: //! @name methods to alter or retrieve current state
   //! - OpenGL 1.5+ (desktop) via glGetBufferSubData();
   //! - OpenGL ES 3.0+ via glMapBufferRange();
   //! - WebGL 2.0+ via gl.getBufferSubData().
-  //! @param theTarget [in] target buffer to map
-  //! @param theOffset [in] offset to the beginning of sub-data
-  //! @param theSize   [in] number of bytes to read
-  //! @param theData  [out] destination pointer to fill
+  //! @param[in]  theTarget target buffer to map {GLenum}
+  //! @param[in]  theOffset offset to the beginning of sub-data {GLintptr}
+  //! @param[in]  theSize   number of bytes to read {GLsizeiptr}
+  //! @param[out] theData   destination pointer to fill
   //! @return FALSE if functionality is unavailable
-  Standard_EXPORT bool GetBufferSubData (GLenum theTarget, GLintptr theOffset, GLsizeiptr theSize, void* theData);
+  Standard_EXPORT bool GetBufferSubData (unsigned int theTarget, intptr_t theOffset, intptr_t theSize, void* theData);
 
   //! Return Graphics Driver's vendor.
   const TCollection_AsciiString& Vendor() const { return myVendor; }
@@ -996,7 +988,7 @@ public: //! @name methods to alter or retrieve current state
   Standard_EXPORT void DumpJson (Standard_OStream& theOStream, Standard_Integer theDepth = -1) const;
     
   //! Dumps the content of openGL state into the stream
-  Standard_EXPORT static void DumpJsonOpenGlState (Standard_OStream& theOStream, Standard_Integer theDepth = -1);
+  Standard_EXPORT void DumpJsonOpenGlState (Standard_OStream& theOStream, Standard_Integer theDepth = -1);
 
   //! Set GL_SHADE_MODEL value.
   Standard_EXPORT void SetShadeModel (Graphic3d_TypeOfShadingModel theModel);
@@ -1077,6 +1069,7 @@ public: //! @name extensions
   Standard_Boolean       extDrawBuffers;     //!< GL_EXT_draw_buffers
   OpenGl_ExtGS*          extGS;              //!< GL_EXT_geometry_shader4
   Standard_Boolean       extBgra;            //!< GL_EXT_bgra or GL_EXT_texture_format_BGRA8888 on OpenGL ES
+  Standard_Boolean       extTexR16;          //!< GL_EXT_texture_norm16 on OpenGL ES; always available on desktop
   Standard_Boolean       extAnis;            //!< GL_EXT_texture_filter_anisotropic
   Standard_Boolean       extPDS;             //!< GL_EXT_packed_depth_stencil
   Standard_Boolean       atiMem;             //!< GL_ATI_meminfo
@@ -1108,8 +1101,9 @@ private: // context info
   OpenGl_Clipping myClippingState; //!< state of clip planes
 
   void*            myGlLibHandle;          //!< optional handle to GL library
-  NCollection_Handle<OpenGl_GlFunctions>
+  std::unique_ptr<OpenGl_GlFunctions>
                    myFuncs;                //!< mega structure for all GL functions
+  Aspect_GraphicsLibrary myGapi;           //!< GAPI name
   Handle(Image_SupportedFormats)
                    mySupportedFormats;     //!< map of supported texture formats
   Standard_Integer myAnisoMax;             //!< maximum level of anisotropy texture filter
@@ -1127,6 +1121,7 @@ private: // context info
   Standard_Integer myGlVerMinor;           //!< cached GL version minor number
   Standard_Boolean myIsInitialized;        //!< flag indicates initialization state
   Standard_Boolean myIsStereoBuffers;      //!< context supports stereo buffering
+  Standard_Boolean myHasMsaaTextures;      //!< context supports MSAA textures
   Standard_Boolean myIsGlNormalizeEnabled; //!< GL_NORMALIZE flag
                                            //!< Used to tell OpenGl that normals should be normalized
   Graphic3d_TextureUnit mySpriteTexUnit;   //!< sampler2D occSamplerPointSprite, texture unit for point sprite texture
@@ -1169,7 +1164,7 @@ private: //! @name fields tracking current state
   Standard_Integer              myShadeModel;      //!< currently used shade model (glShadeModel)
   Standard_Integer              myPolygonMode;     //!< currently used polygon rasterization mode (glPolygonMode)
   Graphic3d_PolygonOffset       myPolygonOffset;   //!< currently applied polygon offset
-  bool                          myToCullBackFaces; //!< back face culling mode enabled state (glIsEnabled (GL_CULL_FACE))
+  Graphic3d_TypeOfBackfacingModel myFaceCulling;   //!< back face culling mode enabled state (glIsEnabled (GL_CULL_FACE))
   Standard_Integer              myReadBuffer;      //!< current read buffer
   NCollection_Array1<Standard_Integer>
                                 myDrawBuffers;     //!< current draw buffers
@@ -1178,6 +1173,7 @@ private: //! @name fields tracking current state
   Standard_Boolean              myAllowAlphaToCov; //!< flag allowing   GL_SAMPLE_ALPHA_TO_COVERAGE usage
   Standard_Boolean              myAlphaToCoverage; //!< flag indicating GL_SAMPLE_ALPHA_TO_COVERAGE state
   Standard_Boolean              myIsGlDebugCtx;    //!< debug context initialization state
+  Standard_Boolean              myIsWindowDeepColor; //!< indicates that window buffer is has deep color pixel format
   Standard_Boolean              myIsSRgbWindow;    //!< indicates that window buffer is sRGB-ready
   Standard_Boolean              myIsSRgbActive;    //!< flag indicating GL_FRAMEBUFFER_SRGB state
   TCollection_AsciiString       myVendor;          //!< Graphics Driver's vendor

@@ -16,7 +16,6 @@
 #ifndef VrmlData_Node_HeaderFile
 #define VrmlData_Node_HeaderFile
 
-#include <Standard_Type.hxx>
 #include <NCollection_List.hxx>
 #include <Standard_Type.hxx>
 #include <Standard_TypeDef.hxx>
@@ -28,8 +27,6 @@
 
 struct VrmlData_InBuffer;
 class VrmlData_Scene;
-class gp_XY;
-class gp_XYZ;
 class TCollection_AsciiString;
 
 /**

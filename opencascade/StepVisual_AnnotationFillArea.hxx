@@ -17,12 +17,9 @@
 #define _StepVisual_AnnotationFillArea_HeaderFile
 
 #include <Standard.hxx>
-#include <Standard_Type.hxx>
 
-#include <StepRepr_HArray1OfRepresentationItem.hxx>
 #include <StepShape_GeometricCurveSet.hxx>
 #include <Standard_Integer.hxx>
-class TCollection_HAsciiString;
 
 class StepVisual_AnnotationFillArea;
 DEFINE_STANDARD_HANDLE(StepVisual_AnnotationFillArea, StepShape_GeometricCurveSet)

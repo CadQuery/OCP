@@ -17,18 +17,13 @@
 #define OpenGl_Structure_HeaderFile
 
 #include <Graphic3d_CStructure.hxx>
-#include <Graphic3d_SequenceOfHClipPlane.hxx>
-
-#include <OpenGl_Aspects.hxx>
 
 #include <OpenGl_GraphicDriver.hxx>
 #include <OpenGl_Group.hxx>
-#include <OpenGl_Vec.hxx>
 #include <OpenGl_Workspace.hxx>
 
 #include <NCollection_List.hxx>
 
-class OpenGl_GraphicDriver;
 
 DEFINE_STANDARD_HANDLE(OpenGl_Structure, Graphic3d_CStructure)
 typedef NCollection_List<const OpenGl_Structure* > OpenGl_ListOfStructure;

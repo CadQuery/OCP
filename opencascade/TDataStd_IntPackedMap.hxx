@@ -17,7 +17,6 @@
 #define _TDataStd_IntPackedMap_HeaderFile
 
 #include <Standard.hxx>
-#include <Standard_Type.hxx>
 
 #include <Standard_Boolean.hxx>
 #include <TDF_Attribute.hxx>
@@ -25,10 +24,8 @@
 #include <Standard_Integer.hxx>
 #include <Standard_OStream.hxx>
 
-class TDataStd_DeltaOnModificationOfIntPackedMap;
 class Standard_GUID;
 class TDF_Label;
-class TDF_Attribute;
 class TDF_RelocationTable;
 class TDF_DeltaOnModification;
 

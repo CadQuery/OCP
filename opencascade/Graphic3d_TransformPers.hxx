@@ -17,7 +17,6 @@
 #define _Graphic3d_TransformPers_HeaderFile
 
 #include <Aspect_TypeOfTriedronPosition.hxx>
-#include <Bnd_Box.hxx>
 #include <BVH_Box.hxx>
 #include <Graphic3d_Camera.hxx>
 #include <Graphic3d_TransformUtils.hxx>
@@ -228,9 +227,10 @@ public:
   //! @param theViewportWidth [in] the width of viewport.
   //! @param theViewportHeight [in] the height of viewport.
   virtual Standard_Real persistentScale (const Handle(Graphic3d_Camera)& theCamera,
-                                         const Standard_Integer /*theViewportWidth*/,
+                                         const Standard_Integer theViewportWidth,
                                          const Standard_Integer theViewportHeight) const
   {
+    (void )theViewportWidth;
     // use total size when tiling is active
     const Standard_Integer aVPSizeY = theCamera->Tile().IsValid() ? theCamera->Tile().TotalSize.y() : theViewportHeight;
 

@@ -22,9 +22,7 @@
 #include <Standard_Handle.hxx>
 
 #include <gp_Vec2d.hxx>
-#include <Standard_Real.hxx>
 #include <Standard_OStream.hxx>
-class gp_Vec2d;
 
 
 //! defines a Texture2Transform node of VRML specifying properties of geometry

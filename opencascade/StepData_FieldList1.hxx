@@ -19,13 +19,10 @@
 
 #include <Standard.hxx>
 #include <Standard_DefineAlloc.hxx>
-#include <Standard_Handle.hxx>
 
 #include <StepData_Field.hxx>
 #include <StepData_FieldList.hxx>
 #include <Standard_Integer.hxx>
-class Standard_OutOfRange;
-class StepData_Field;
 
 
 //! Describes a list of ONE field

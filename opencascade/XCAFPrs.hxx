@@ -24,8 +24,6 @@
 #include <Standard_Boolean.hxx>
 class TDF_Label;
 class TopLoc_Location;
-class XCAFPrs_Driver;
-class XCAFPrs_Style;
 
 
 //! Presentation (visualiation, selection etc.) tools for
@@ -49,29 +47,6 @@ public:
   
   Standard_EXPORT static Standard_Boolean GetViewNameMode();
 
-
-
-
-protected:
-
-
-
-
-
-private:
-
-
-
-
-friend class XCAFPrs_Driver;
-friend class XCAFPrs_Style;
-
 };
-
-
-
-
-
-
 
 #endif // _XCAFPrs_HeaderFile

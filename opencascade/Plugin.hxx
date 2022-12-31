@@ -21,10 +21,8 @@
 #include <Standard_DefineAlloc.hxx>
 #include <Standard_Handle.hxx>
 
-#include <Standard_Boolean.hxx>
 class Standard_Transient;
 class Standard_GUID;
-class Resource_Manager;
 
 class Plugin 
 {

@@ -17,12 +17,10 @@
 #define _StepShape_DimensionalCharacteristicRepresentation_HeaderFile
 
 #include <Standard.hxx>
-#include <Standard_Type.hxx>
 
 #include <StepShape_DimensionalCharacteristic.hxx>
 #include <Standard_Transient.hxx>
 class StepShape_ShapeDimensionRepresentation;
-class StepShape_DimensionalCharacteristic;
 
 
 class StepShape_DimensionalCharacteristicRepresentation;

@@ -22,10 +22,8 @@
 #include <Standard_Handle.hxx>
 
 #include <IntRes2d_IntersectionPoint.hxx>
-#include <Standard_Boolean.hxx>
 #include <TopoDS_Vertex.hxx>
 #include <TopOpeBRepDS_Transition.hxx>
-#include <Standard_Real.hxx>
 #include <Standard_Integer.hxx>
 #include <TopOpeBRep_P2Dstatus.hxx>
 #include <gp_Pnt.hxx>
@@ -33,7 +31,6 @@
 #include <TopOpeBRepDS_Config.hxx>
 class TopOpeBRep_Hctxff2d;
 class TopOpeBRep_Hctxee2d;
-class TopOpeBRep_EdgesIntersector;
 
 // resolve name collisions with X11 headers
 #ifdef Status

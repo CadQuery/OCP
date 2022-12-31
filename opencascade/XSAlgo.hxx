@@ -21,8 +21,6 @@
 #include <Standard_Handle.hxx>
 
 class XSAlgo_AlgoContainer;
-class XSAlgo_ToolContainer;
-class XSAlgo_AlgoContainer;
 
 
 
@@ -44,29 +42,6 @@ public:
   //! Returns default AlgoContainer
   Standard_EXPORT static Handle(XSAlgo_AlgoContainer) AlgoContainer();
 
-
-
-
-protected:
-
-
-
-
-
-private:
-
-
-
-
-friend class XSAlgo_ToolContainer;
-friend class XSAlgo_AlgoContainer;
-
 };
-
-
-
-
-
-
 
 #endif // _XSAlgo_HeaderFile

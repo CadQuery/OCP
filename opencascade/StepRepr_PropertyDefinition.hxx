@@ -17,13 +17,11 @@
 #define _StepRepr_PropertyDefinition_HeaderFile
 
 #include <Standard.hxx>
-#include <Standard_Type.hxx>
 
 #include <StepRepr_CharacterizedDefinition.hxx>
 #include <Standard_Boolean.hxx>
 #include <Standard_Transient.hxx>
 class TCollection_HAsciiString;
-class StepRepr_CharacterizedDefinition;
 
 
 class StepRepr_PropertyDefinition;

@@ -17,12 +17,10 @@
 #define _StepFEA_CurveElementEndRelease_HeaderFile
 
 #include <Standard.hxx>
-#include <Standard_Type.hxx>
 
 #include <StepFEA_CurveElementEndCoordinateSystem.hxx>
 #include <StepElement_HArray1OfCurveElementEndReleasePacket.hxx>
 #include <Standard_Transient.hxx>
-class StepFEA_CurveElementEndCoordinateSystem;
 
 
 class StepFEA_CurveElementEndRelease;

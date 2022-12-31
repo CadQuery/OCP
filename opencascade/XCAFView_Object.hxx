@@ -20,7 +20,6 @@
 #include <Standard.hxx>
 #include <Standard_Type.hxx>
 
-#include <gp_Dir.hxx>
 #include <gp_Pln.hxx>
 #include <gp_Pnt.hxx>
 #include <TColgp_HArray1OfPnt.hxx>
@@ -60,7 +59,7 @@ public:
     return myType;
   }
 
-  void SetProjectionPoint(gp_Pnt thePoint)
+  void SetProjectionPoint(const gp_Pnt& thePoint)
   {
     myProjectionPoint = thePoint;
   }
@@ -70,7 +69,7 @@ public:
     return myProjectionPoint;
   }
 
-  void SetViewDirection(gp_Dir theDirection)
+  void SetViewDirection(const gp_Dir& theDirection)
   {
     myViewDirection = theDirection;
   }
@@ -80,7 +79,7 @@ public:
     return myViewDirection;
   }
 
-  void SetUpDirection(gp_Dir theDirection)
+  void SetUpDirection(const gp_Dir& theDirection)
   {
     myUpDirection = theDirection;
   }
@@ -200,7 +199,7 @@ public:
     return myGDTPoints->Length();
   }
 
-  void SetGDTPoint(const Standard_Integer theIndex, const gp_Pnt thePoint)
+  void SetGDTPoint(const Standard_Integer theIndex, const gp_Pnt& thePoint)
   {
     if (myGDTPoints.IsNull())
       return;

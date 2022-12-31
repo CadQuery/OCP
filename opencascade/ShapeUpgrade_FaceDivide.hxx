@@ -21,7 +21,6 @@
 #include <Standard_Type.hxx>
 
 #include <TopoDS_Face.hxx>
-#include <Standard_Boolean.hxx>
 #include <Standard_Integer.hxx>
 #include <ShapeUpgrade_Tool.hxx>
 #include <ShapeExtend_Status.hxx>
@@ -73,11 +72,17 @@ public:
   //! The context is used to keep track of former splittings
   //! in order to keep sharings. It is updated according to
   //! modifications made.
-  Standard_EXPORT virtual Standard_Boolean Perform();
+  //! The optional argument <theArea> is used to initialize
+  //! the tool for splitting surface in the case of
+  //! splitting into N parts where N is user-defined.
+  Standard_EXPORT virtual Standard_Boolean Perform(const Standard_Real theArea = 0.);
   
   //! Performs splitting of surface and computes the shell
   //! from source face.
-  Standard_EXPORT virtual Standard_Boolean SplitSurface();
+  //! The optional argument <theArea> is used to initialize
+  //! the tool for splitting surface in the case of
+  //! splitting into N parts where N is user-defined.
+  Standard_EXPORT virtual Standard_Boolean SplitSurface(const Standard_Real theArea = 0.);
   
   //! Performs splitting of curves of all the edges in the
   //! shape and divides these edges.

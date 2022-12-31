@@ -18,14 +18,12 @@
 #define _StepVisual_ContextDependentOverRidingStyledItem_HeaderFile
 
 #include <Standard.hxx>
-#include <Standard_Type.hxx>
 
 #include <StepVisual_HArray1OfStyleContextSelect.hxx>
 #include <StepVisual_OverRidingStyledItem.hxx>
 #include <StepVisual_HArray1OfPresentationStyleAssignment.hxx>
 #include <Standard_Integer.hxx>
 class TCollection_HAsciiString;
-class StepRepr_RepresentationItem;
 class StepVisual_StyledItem;
 class StepVisual_StyleContextSelect;
 

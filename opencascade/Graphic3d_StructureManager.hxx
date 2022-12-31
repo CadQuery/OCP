@@ -18,7 +18,6 @@
 #define _Graphic3d_StructureManager_HeaderFile
 
 #include <Aspect_GenId.hxx>
-#include <Aspect_TypeOfHighlightMethod.hxx>
 #include <Graphic3d_CView.hxx>
 #include <Graphic3d_MapOfObject.hxx>
 #include <Graphic3d_MapOfStructure.hxx>
@@ -28,7 +27,6 @@
 #include <Standard_Transient.hxx>
 #include <NCollection_IndexedMap.hxx>
 #include <Standard.hxx>
-#include <Standard_Boolean.hxx>
 #include <Standard_Integer.hxx>
 #include <Standard_Type.hxx>
 #include <TColStd_Array2OfReal.hxx>
@@ -112,7 +110,9 @@ public:
   Standard_EXPORT virtual void SetTransform (const Handle(Graphic3d_Structure)& theStructure, const Handle(TopLoc_Datum3D)& theTrsf);
 
   //! Changes the display priority of the structure <AStructure>.
-  Standard_EXPORT virtual void ChangeDisplayPriority (const Handle(Graphic3d_Structure)& theStructure, const Standard_Integer theOldPriority, const Standard_Integer theNewPriority);
+  Standard_EXPORT virtual void ChangeDisplayPriority (const Handle(Graphic3d_Structure)& theStructure,
+                                                      const Graphic3d_DisplayPriority theOldPriority,
+                                                      const Graphic3d_DisplayPriority theNewPriority);
 
   //! Change Z layer for structure. The Z layer mechanism allows to display structures in higher
   //! layers in overlay of structures in lower layers.
@@ -151,11 +151,12 @@ public:
   //! Recomputes all structures from theStructures.
   Standard_EXPORT void RecomputeStructures (const NCollection_Map<Graphic3d_Structure*>& theStructures);
 
-  Standard_EXPORT Handle(Graphic3d_ViewAffinity) RegisterObject (const Handle(Standard_Transient)& theObject);
+  Standard_EXPORT void RegisterObject (const Handle(Standard_Transient)& theObject,
+                                       const Handle(Graphic3d_ViewAffinity)& theAffinity);
 
   Standard_EXPORT void UnregisterObject (const Handle(Standard_Transient)& theObject);
 
-  Standard_EXPORT Handle(Graphic3d_ViewAffinity) ObjectAffinity (const Handle(Standard_Transient)& theObject) const;
+  Standard_EXPORT const Handle(Graphic3d_ViewAffinity)& ObjectAffinity (const Handle(Standard_Transient)& theObject) const;
 
   //! Returns TRUE if Device Lost flag has been set and presentation data should be reuploaded onto graphics driver.
   Standard_Boolean IsDeviceLost() const { return myDeviceLostFlag; }

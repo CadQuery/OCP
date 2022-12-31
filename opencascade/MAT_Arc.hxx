@@ -23,11 +23,9 @@
 #include <Standard_Integer.hxx>
 #include <Standard_Address.hxx>
 #include <Standard_Transient.hxx>
-#include <Standard_Boolean.hxx>
 #include <MAT_Side.hxx>
 class MAT_BasicElt;
 class MAT_Node;
-class Standard_DomainError;
 
 
 class MAT_Arc;

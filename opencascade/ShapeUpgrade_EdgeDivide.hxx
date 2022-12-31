@@ -20,12 +20,10 @@
 #include <Standard_Type.hxx>
 
 #include <TopoDS_Face.hxx>
-#include <Standard_Boolean.hxx>
 #include <TColStd_HSequenceOfReal.hxx>
 #include <ShapeUpgrade_Tool.hxx>
 class ShapeUpgrade_SplitCurve3d;
 class ShapeUpgrade_SplitCurve2d;
-class TopoDS_Face;
 class TopoDS_Edge;
 
 

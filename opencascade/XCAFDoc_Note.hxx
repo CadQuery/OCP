@@ -15,14 +15,11 @@
 #define _XCAFDoc_Note_HeaderFile
 
 #include <Standard.hxx>
-#include <Standard_Type.hxx>
 #include <TCollection_ExtendedString.hxx>
-#include <OSD_File.hxx>
 #include <TDF_DerivedAttribute.hxx>
 #include <TDF_LabelSequence.hxx>
 #include <XCAFNoteObjects_NoteObject.hxx>
 
-class Standard_GUID;
 class TDF_RelocationTable;
 
 //! A base note attribute.

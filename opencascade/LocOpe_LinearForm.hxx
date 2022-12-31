@@ -19,19 +19,12 @@
 
 #include <Standard.hxx>
 #include <Standard_DefineAlloc.hxx>
-#include <Standard_Handle.hxx>
 
 #include <TopoDS_Shape.hxx>
 #include <gp_Vec.hxx>
-#include <Standard_Boolean.hxx>
 #include <TopTools_DataMapOfShapeListOfShape.hxx>
 #include <gp_Pnt.hxx>
 #include <TopTools_ListOfShape.hxx>
-class Standard_NoSuchObject;
-class StdFail_NotDone;
-class TopoDS_Shape;
-class gp_Vec;
-class gp_Pnt;
 
 
 //! Defines a linear form (using Prism from BRepSweep)

@@ -31,10 +31,7 @@
 #include <Standard_Real.hxx>
 #include <Standard_OStream.hxx>
 #include <Standard_PCharacter.hxx>
-class Standard_NullObject;
-class Standard_OutOfRange;
-class Standard_NumericError;
-class Standard_NegativeValue;
+#include <Standard_Macro.hxx>
 class TCollection_AsciiString;
 
 
@@ -101,16 +98,14 @@ public:
   //! Initializes a ExtendedString with another ExtendedString.
   Standard_EXPORT TCollection_ExtendedString(const TCollection_ExtendedString& astring);
 
-#ifndef OCCT_NO_RVALUE_REFERENCE
   //! Move constructor
-  TCollection_ExtendedString (TCollection_ExtendedString&& theOther)
+  TCollection_ExtendedString (TCollection_ExtendedString&& theOther) Standard_Noexcept
   : mystring (theOther.mystring),
     mylength (theOther.mylength)
   {
     theOther.mystring = NULL;
     theOther.mylength = 0;
   }
-#endif
 
   //! Creation by converting an Ascii string to an extended
   //! string. The string is treated as having UTF-8 coding.
@@ -158,10 +153,8 @@ void operator = (const TCollection_ExtendedString& fromwhere)
   //! Exchange the data of two strings (without reallocating memory).
   Standard_EXPORT void Swap (TCollection_ExtendedString& theOther);
 
-#ifndef OCCT_NO_RVALUE_REFERENCE
   //! Move assignment operator
-  TCollection_ExtendedString& operator= (TCollection_ExtendedString&& theOther) { Swap (theOther); return *this; }
-#endif
+  TCollection_ExtendedString& operator= (TCollection_ExtendedString&& theOther) Standard_Noexcept { Swap (theOther); return *this; }
 
   //! Frees memory allocated by ExtendedString.
   Standard_EXPORT ~TCollection_ExtendedString();
@@ -341,7 +334,7 @@ friend Standard_EXPORT Standard_OStream& operator << (Standard_OStream& astream,
   //! Returns a hashed value for the extended string within the range 1 .. theUpper.
   //! Note: if string is ASCII, the computed value is the same as the value computed with the HashCode function on a
   //! TCollection_AsciiString string composed with equivalent ASCII characters.
-  //! @param theExtendedString the extended string which hash code is to be computed
+  //! @param theString the extended string which hash code is to be computed
   //! @param theUpperBound the upper bound of the range a computing hash code must be within
   //! @return a computed hash code, in the range [1, theUpperBound]
   static Standard_Integer HashCode (const TCollection_ExtendedString& theString,

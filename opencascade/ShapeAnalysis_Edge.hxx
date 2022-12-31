@@ -22,8 +22,6 @@
 #include <Standard_Handle.hxx>
 
 #include <Standard_Integer.hxx>
-#include <Standard_Boolean.hxx>
-#include <Standard_Real.hxx>
 #include <ShapeExtend_Status.hxx>
 class TopoDS_Edge;
 class Geom_Curve;
@@ -35,7 +33,6 @@ class gp_Pnt2d;
 class TopoDS_Vertex;
 class gp_Vec2d;
 class gp_Pnt;
-class Adaptor3d_Curve;
 
 // resolve name collisions with X11 headers
 #ifdef Status

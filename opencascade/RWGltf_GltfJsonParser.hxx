@@ -15,12 +15,8 @@
 #ifndef _RWGltf_GltfJsonParser_HeaderFile
 #define _RWGltf_GltfJsonParser_HeaderFile
 
-#include <Graphic3d_Vec.hxx>
 #include <Message_Gravity.hxx>
 #include <Message_ProgressScope.hxx>
-#include <NCollection_DataMap.hxx>
-#include <NCollection_IndexedMap.hxx>
-#include <RWGltf_GltfAccessor.hxx>
 #include <RWGltf_GltfPrimArrayData.hxx>
 #include <RWGltf_GltfLatePrimitiveArray.hxx>
 #include <RWGltf_GltfBufferView.hxx>
@@ -43,16 +39,17 @@
 
 #ifdef HAVE_RAPIDJSON
   //#define RAPIDJSON_ASSERT
+  #include <Standard_WarningsDisable.hxx>
   #include <rapidjson/document.h>
   #include <rapidjson/prettywriter.h>
   #include <rapidjson/stringbuffer.h>
   #include <rapidjson/istreamwrapper.h>
   #include <rapidjson/ostreamwrapper.h>
-
+  #include <Standard_WarningsRestore.hxx>
+  
   typedef rapidjson::Document::ValueType RWGltf_JsonValue;
 #endif
 
-class Message_ProgressIndicator;
 
 //! INTERNAL tool for parsing glTF document (JSON structure).
 class RWGltf_GltfJsonParser
@@ -92,6 +89,9 @@ public:
 
   //! Set metadata map.
   void SetMetadata (TColStd_IndexedDataMapOfStringString& theMetadata) { myMetadata = &theMetadata; }
+
+  //! Set flag to translate asset.extras into metadata.
+  void SetReadAssetExtras (bool theToRead) { myToReadAssetExtras = theToRead; }
 
   //! Return transformation from glTF to OCCT coordinate system.
   const RWMesh_CoordinateSystemConverter& CoordinateSystemConverter() const { return myCSTrsf; }
@@ -438,6 +438,7 @@ protected:
   bool                      myToLoadAllScenes;  //!< flag to load all scenes in the document, FALSE by default
   bool                      myUseMeshNameAsFallback; //!< flag to use Mesh name in case if Node name is empty, TRUE by default
   bool                      myToProbeHeader;  //!< flag to probe header without full reading, FALSE by default
+  bool                      myToReadAssetExtras; //!< flag to translate asset.extras into metadata, TRUE by default
 
 #ifdef HAVE_RAPIDJSON
   GltfElementMap myGltfRoots[RWGltf_GltfRootElement_NB]; //!< glTF format root elements

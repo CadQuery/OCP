@@ -17,7 +17,6 @@
 #include <OSD_ThreadPool.hxx>
 #include <Standard_Type.hxx>
 #include <memory>
-#include <type_traits>
 
 //! @brief Simple tool for code parallelization.
 //!
@@ -118,12 +117,19 @@ protected:
   //! iteration over objects subject to parallel processing.
   //! It stores pointer to instance of polymorphic iterator inheriting from 
   //! IteratorInterface, which contains actual type-specific iterator.
-  class UniversalIterator : 
+  class UniversalIterator
     // Note that TBB requires that value_type of iterator be copyable, 
     // thus we use its own type for that
-    public std::iterator<std::forward_iterator_tag, UniversalIterator, ptrdiff_t, UniversalIterator*, UniversalIterator&>
   {
   public:
+
+    // Since C++20 inheritance from std::iterator is deprecated, so define predefined types manually:
+    using iterator_category = std::forward_iterator_tag;
+    using value_type = IteratorInterface*;
+    using difference_type = ptrdiff_t;
+    using pointer = value_type;
+    using reference = value_type;
+
     UniversalIterator() {}
 
     UniversalIterator(IteratorInterface* theOther)
@@ -165,25 +171,11 @@ protected:
       return aValue;
     }
 
-    const UniversalIterator& operator* () const { return *this; }
-          UniversalIterator& operator* ()       { return *this; }
-
-    const UniversalIterator* operator->() const { return this; }
-          UniversalIterator* operator->()       { return this; }
-
-    // type cast to actual iterator
-    template <typename Iterator>
-    const Iterator& DownCast () const
-    {
-      return dynamic_cast<OSD_Parallel::IteratorWrapper<Iterator>*>(myPtr.get())->Value();
-    }
+    reference operator* () const { return myPtr.get(); }
+    reference operator* () { return myPtr.get(); }
 
   private:
-#if (defined(_MSC_VER) && (_MSC_VER < 1600))
-    std::auto_ptr<IteratorInterface> myPtr;
-#else
     std::unique_ptr<IteratorInterface> myPtr;
-#endif
   };
 
   //! Interface class representing functor object.
@@ -194,7 +186,14 @@ protected:
   public:
     virtual ~FunctorInterface() {}
 
-    virtual void operator () (UniversalIterator& theIterator) const = 0;
+    virtual void operator () (IteratorInterface* theIterator) const = 0;
+
+    // type cast to actual iterator
+    template <typename Iterator>
+    static const Iterator& DownCast(IteratorInterface* theIterator)
+    {
+      return dynamic_cast<OSD_Parallel::IteratorWrapper<Iterator>*>(theIterator)->Value();
+    }
   };
 
 private:
@@ -209,9 +208,9 @@ private:
     {
     }
 
-    virtual void operator() (UniversalIterator& theIterator) const Standard_OVERRIDE
+    virtual void operator() (IteratorInterface* theIterator) const Standard_OVERRIDE
     {
-      const Iterator& anIt = theIterator.DownCast<Iterator>();
+      const Iterator& anIt = DownCast<Iterator>(theIterator);
       myFunctor(*anIt);
     }
 
@@ -231,9 +230,9 @@ private:
     {
     }
 
-    virtual void operator() (UniversalIterator& theIterator) const Standard_OVERRIDE
+    virtual void operator() (IteratorInterface* theIterator) const Standard_OVERRIDE
     {
-      Standard_Integer anIndex = theIterator.DownCast<Standard_Integer>();
+      Standard_Integer anIndex = DownCast<Standard_Integer>(theIterator);
       myFunctor(anIndex);
     }
 

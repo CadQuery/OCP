@@ -17,36 +17,15 @@
 #ifndef _V3d_View_HeaderFile
 #define _V3d_View_HeaderFile
 
-#include <Aspect_Background.hxx>
-#include <Aspect_FillMethod.hxx>
-#include <Aspect_GradientBackground.hxx>
-#include <Aspect_GradientFillMethod.hxx>
-#include <Aspect_Handle.hxx>
-#include <Aspect_RenderingContext.hxx>
-#include <Aspect_TypeOfTriedronPosition.hxx>
-#include <Bnd_Box.hxx>
-#include <gp_Ax3.hxx>
-#include <gp_Dir.hxx>
-#include <gp_Pnt.hxx>
-#include <Graphic3d_BufferType.hxx>
-#include <Graphic3d_Camera.hxx>
 #include <Graphic3d_ClipPlane.hxx>
-#include <Graphic3d_CView.hxx>
-#include <Graphic3d_GraduatedTrihedron.hxx>
-#include <Graphic3d_RenderingParams.hxx>
-#include <Graphic3d_SequenceOfHClipPlane.hxx>
+#include <Graphic3d_Texture2D.hxx>
 #include <Graphic3d_TypeOfShadingModel.hxx>
-#include <Graphic3d_Vertex.hxx>
 #include <Image_PixMap.hxx>
 #include <Quantity_TypeOfColor.hxx>
-#include <TColStd_Array2OfReal.hxx>
-#include <TColStd_ListIteratorOfListOfTransient.hxx>
 #include <V3d_ImageDumpOptions.hxx>
-#include <V3d_ListOfLight.hxx>
 #include <V3d_Viewer.hxx>
 #include <V3d_Trihedron.hxx>
 #include <V3d_TypeOfAxe.hxx>
-#include <V3d_TypeOfBackfacingModel.hxx>
 #include <V3d_TypeOfOrientation.hxx>
 #include <V3d_TypeOfView.hxx>
 #include <V3d_TypeOfVisualization.hxx>
@@ -76,7 +55,7 @@ DEFINE_STANDARD_HANDLE(V3d_View, Standard_Transient)
 //! View->Move(15.,-5.,0.,False)    (Next motion)
 class V3d_View : public Standard_Transient
 {
-
+  DEFINE_STANDARD_RTTIEXT(V3d_View, Standard_Transient)
 public:
 
   //! Initializes the view.
@@ -96,6 +75,25 @@ public:
   //! the height/width ratio of the window.
   Standard_EXPORT void SetWindow (const Handle(Aspect_Window)& theWindow,
                                   const Aspect_RenderingContext theContext = NULL);
+
+  //! Activates the view as subview of another view.
+  //! @param[in] theParentView parent view to put subview into
+  //! @param[in] theSize subview dimensions;
+  //!                    values >= 2   define size in pixels,
+  //!                    values <= 1.0 define size as a fraction of parent view
+  //! @param[in] theCorner corner within parent view
+  //! @param[in] theOffset offset from the corner;
+  //!                      values >= 1   define offset in pixels,
+  //!                      values <  1.0 define offset as a fraction of parent view
+  //! @param[in] theMargins subview margins in pixels
+  //!
+  //! Example: to split parent view horizontally into 2 subview,
+  //! define one subview with Size=(0.5,1.0),Offset=(0.0,0.0), and 2nd with Size=(0.5,1.0),Offset=(5.0,0.0);
+  Standard_EXPORT void SetWindow (const Handle(V3d_View)& theParentView,
+                                  const Graphic3d_Vec2d& theSize,
+                                  Aspect_TypeOfTriedronPosition theCorner = Aspect_TOTP_LEFT_UPPER,
+                                  const Graphic3d_Vec2d& theOffset = Graphic3d_Vec2d(),
+                                  const Graphic3d_Vec2i& theMargins = Graphic3d_Vec2i());
 
   Standard_EXPORT void SetMagnify (const Handle(Aspect_Window)& theWindow,
                                    const Handle(V3d_View)& thePreviousView,
@@ -218,6 +216,15 @@ public:
   Standard_EXPORT void SetBackgroundCubeMap (const Handle(Graphic3d_CubeMap)& theCubeMap,
                                              Standard_Boolean                 theToUpdatePBREnv = Standard_True,
                                              Standard_Boolean                 theToUpdate = Standard_False);
+
+  //! Returns skydome aspect;
+  const Aspect_SkydomeBackground& BackgroundSkydome() const { return myView->BackgroundSkydome(); }
+
+  //! Sets skydome aspect
+  //! @param theAspect cubemap generation parameters
+  //! @param theToUpdatePBREnv defines whether IBL maps will be generated or not
+  Standard_EXPORT void SetBackgroundSkydome (const Aspect_SkydomeBackground& theAspect,
+                                             Standard_Boolean theToUpdatePBREnv = Standard_True);
 
   //! Returns TRUE if IBL (Image Based Lighting) from background cubemap is enabled.
   Standard_EXPORT Standard_Boolean IsImageBasedLighting() const;
@@ -944,7 +951,25 @@ public:
   //! Dumps the content of me into the stream
   Standard_EXPORT void DumpJson (Standard_OStream& theOStream, Standard_Integer theDepth = -1) const;
 
-  DEFINE_STANDARD_RTTIEXT(V3d_View,Standard_Transient)
+public: //! @name subvew management
+
+  //! Return TRUE if this is a subview of another view.
+  bool IsSubview() const { return myParentView != nullptr; }
+
+  //! Return parent View or NULL if this is not a subview.
+  V3d_View* ParentView() { return myParentView; }
+
+  //! Return subview list.
+  const NCollection_Sequence<Handle(V3d_View)>& Subviews() const { return mySubviews; }
+
+  //! Pick subview from the given 2D point.
+  Standard_EXPORT Handle(V3d_View) PickSubview (const Graphic3d_Vec2i& thePnt) const;
+
+  //! Add subview to the list.
+  Standard_EXPORT void AddSubview (const Handle(V3d_View)& theView);
+
+  //! Remove subview from the list.
+  Standard_EXPORT bool RemoveSubview (const V3d_View* theView);
 
 public: //! @name deprecated methods
 
@@ -1024,6 +1049,10 @@ protected:
 private:
 
   V3d_Viewer* MyViewer;
+
+  NCollection_Sequence<Handle(V3d_View)> mySubviews;
+  V3d_View* myParentView;
+
   V3d_ListOfLight myActiveLights;
   gp_Dir myDefaultViewAxis;
   gp_Pnt myDefaultViewPoint;

@@ -17,7 +17,6 @@
 #define _TDataXtd_Presentation_HeaderFile
 
 #include <Standard.hxx>
-#include <Standard_Type.hxx>
 #include <Standard_GUID.hxx>
 
 #include <gp_Pnt.hxx>
@@ -26,9 +25,6 @@
 #include <TColStd_ListOfInteger.hxx>
 
 class TDF_Label;
-class gp_Pnt;
-class Standard_GUID;
-class TDF_Attribute;
 class TDF_RelocationTable;
 
 

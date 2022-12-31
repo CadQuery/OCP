@@ -17,11 +17,9 @@
 #define _StepBasic_ExternalSource_HeaderFile
 
 #include <Standard.hxx>
-#include <Standard_Type.hxx>
 
 #include <StepBasic_SourceItem.hxx>
 #include <Standard_Transient.hxx>
-class StepBasic_SourceItem;
 
 
 class StepBasic_ExternalSource;

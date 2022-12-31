@@ -25,8 +25,8 @@ jobs:
     submodules: true
 
   - ${{ if contains(parameters.vmImage, 'Ubuntu') }}:
-    - bash: sudo apt-get update && sudo apt-get install mesa-common-dev libegl1-mesa-dev libgl1-mesa-dev libglu1-mesa-dev freeglut3-dev
-      displayName: 'Install gl headers'
+    - bash: sudo apt-get update && sudo apt-get install ${{ parameters.CXX }} mesa-common-dev libegl1-mesa-dev libgl1-mesa-dev libglu1-mesa-dev freeglut3-dev
+      displayName: 'Install gl headers and the requested compiler'
 
   - ${{ if contains(parameters.vmImage, 'mac') }}:
     - bash: |
@@ -69,6 +69,8 @@ jobs:
 
   - bash: |
       source activate cpp-py-bindgen && \
+      echo "find_package(Python3 COMPONENTS Development REQUIRED)" >> test.cmake && \
+      cmake --debug-find -DPython3_FIND_VIRTUALENV=only -P test.cmake && \
       cmake -B new -S . -G Ninja
     displayName: 'CMake based pywrap call'
     name: 'Generate'
@@ -97,7 +99,7 @@ jobs:
 
     - ${{ if contains(parameters.vmImage, 'Ubuntu') }}:
       - bash: sudo apt-get update && sudo apt-get install ${{ parameters.CXX }} mesa-common-dev libgl1-mesa-dev libglu1-mesa-dev freeglut3-dev
-        displayName: 'Install g++8 and gl headers'
+        displayName: 'Install gl headers and the requested compiler'
 
     - ${{ if contains(parameters.vmImage, 'mac') }}:
       - bash: |

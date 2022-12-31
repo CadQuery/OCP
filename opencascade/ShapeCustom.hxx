@@ -25,7 +25,6 @@
 #include <Standard_Real.hxx>
 #include <Standard_Integer.hxx>
 #include <GeomAbs_Shape.hxx>
-#include <Standard_Boolean.hxx>
 #include <Message_ProgressRange.hxx>
 
 class TopoDS_Shape;
@@ -33,17 +32,6 @@ class BRepTools_Modification;
 class BRepTools_Modifier;
 class ShapeBuild_ReShape;
 class ShapeCustom_RestrictionParameters;
-class ShapeCustom_Surface;
-class ShapeCustom_Curve;
-class ShapeCustom_Curve2d;
-class ShapeCustom_RestrictionParameters;
-class ShapeCustom_Modification;
-class ShapeCustom_DirectModification;
-class ShapeCustom_TrsfModification;
-class ShapeCustom_BSplineRestriction;
-class ShapeCustom_ConvertToRevolution;
-class ShapeCustom_SweptToElementary;
-class ShapeCustom_ConvertToBSpline;
 
 
 //! This package is intended to
@@ -110,38 +98,6 @@ public:
   //! Geom_BSplineSurface (with same parameterisation).
   Standard_EXPORT static TopoDS_Shape ConvertToBSpline (const TopoDS_Shape& S, const Standard_Boolean extrMode, const Standard_Boolean revolMode, const Standard_Boolean offsetMode, const Standard_Boolean planeMode = Standard_False);
 
-
-
-
-protected:
-
-
-
-
-
-private:
-
-
-
-
-friend class ShapeCustom_Surface;
-friend class ShapeCustom_Curve;
-friend class ShapeCustom_Curve2d;
-friend class ShapeCustom_RestrictionParameters;
-friend class ShapeCustom_Modification;
-friend class ShapeCustom_DirectModification;
-friend class ShapeCustom_TrsfModification;
-friend class ShapeCustom_BSplineRestriction;
-friend class ShapeCustom_ConvertToRevolution;
-friend class ShapeCustom_SweptToElementary;
-friend class ShapeCustom_ConvertToBSpline;
-
 };
-
-
-
-
-
-
 
 #endif // _ShapeCustom_HeaderFile

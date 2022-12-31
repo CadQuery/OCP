@@ -23,19 +23,15 @@
 
 #include <TColStd_HSequenceOfHAsciiString.hxx>
 #include <Interface_LineBuffer.hxx>
-#include <Standard_Boolean.hxx>
 #include <Standard_Integer.hxx>
 #include <Interface_FloatWriter.hxx>
 #include <Interface_CheckIterator.hxx>
 #include <TColStd_HArray1OfInteger.hxx>
 #include <Standard_CString.hxx>
-#include <Standard_Real.hxx>
 #include <StepData_Logical.hxx>
 #include <TColStd_HArray1OfReal.hxx>
 #include <Standard_OStream.hxx>
 class StepData_StepModel;
-class Interface_InterfaceMismatch;
-class Interface_FloatWriter;
 class StepData_Protocol;
 class StepData_WriterLib;
 class TCollection_AsciiString;
@@ -46,7 +42,6 @@ class StepData_SelectMember;
 class StepData_FieldList;
 class StepData_ESDescr;
 class Standard_Transient;
-class Interface_CheckIterator;
 
 
 //! manages atomic file writing, under control of StepModel (for

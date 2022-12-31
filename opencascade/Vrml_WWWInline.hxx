@@ -19,13 +19,10 @@
 
 #include <Standard.hxx>
 #include <Standard_DefineAlloc.hxx>
-#include <Standard_Handle.hxx>
 
 #include <TCollection_AsciiString.hxx>
 #include <gp_Vec.hxx>
 #include <Standard_OStream.hxx>
-class TCollection_AsciiString;
-class gp_Vec;
 
 
 //! defines a WWWInline node of VRML specifying group properties.

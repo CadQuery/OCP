@@ -20,9 +20,7 @@
 #include <Standard.hxx>
 #include <Standard_Type.hxx>
 
-#include <Standard_Real.hxx>
 #include <GeomFill_TrihedronWithGuide.hxx>
-#include <Standard_Boolean.hxx>
 #include <Standard_Integer.hxx>
 #include <GeomAbs_Shape.hxx>
 #include <TColStd_Array1OfReal.hxx>
@@ -44,7 +42,9 @@ public:
   
   Standard_EXPORT GeomFill_GuideTrihedronAC(const Handle(Adaptor3d_Curve)& guide);
   
-  Standard_EXPORT virtual void SetCurve (const Handle(Adaptor3d_Curve)& C) Standard_OVERRIDE;
+  //! initialize curve of trihedron law
+  //! @return Standard_True
+  Standard_EXPORT virtual Standard_Boolean SetCurve (const Handle(Adaptor3d_Curve)& C) Standard_OVERRIDE;
   
   Standard_EXPORT virtual Handle(GeomFill_TrihedronLaw) Copy() const Standard_OVERRIDE;
   

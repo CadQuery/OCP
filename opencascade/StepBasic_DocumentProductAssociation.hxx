@@ -20,11 +20,9 @@
 #include <Standard_Type.hxx>
 
 #include <StepBasic_ProductOrFormationOrDefinition.hxx>
-#include <Standard_Boolean.hxx>
 #include <Standard_Transient.hxx>
 class TCollection_HAsciiString;
 class StepBasic_Document;
-class StepBasic_ProductOrFormationOrDefinition;
 
 
 class StepBasic_DocumentProductAssociation;

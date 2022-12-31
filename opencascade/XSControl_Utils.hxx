@@ -22,17 +22,14 @@
 #include <Standard_Handle.hxx>
 
 #include <Standard_CString.hxx>
-#include <Standard_Boolean.hxx>
 #include <Standard_Type.hxx>
 #include <Standard_Integer.hxx>
 #include <TColStd_HSequenceOfTransient.hxx>
-#include <Standard_ExtString.hxx>
 #include <TColStd_HSequenceOfHAsciiString.hxx>
 #include <TColStd_HSequenceOfHExtendedString.hxx>
 #include <TopTools_HSequenceOfShape.hxx>
 #include <TopAbs_ShapeEnum.hxx>
 #include <TColStd_HSequenceOfInteger.hxx>
-class Standard_TypeMismatch;
 class Standard_Transient;
 class TCollection_HAsciiString;
 class TCollection_AsciiString;

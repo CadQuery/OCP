@@ -18,7 +18,6 @@
 #include <Standard_Type.hxx>
 
 #include <XmlMDF_ADriver.hxx>
-#include <Standard_Boolean.hxx>
 #include <XmlObjMgt_RRelocationTable.hxx>
 #include <XmlObjMgt_SRelocationTable.hxx>
 class Message_Messenger;
@@ -26,7 +25,6 @@ class TDF_Attribute;
 class XmlObjMgt_Persistent;
 
 
-class XmlMDataStd_NameDriver;
 DEFINE_STANDARD_HANDLE(XmlMDataStd_GenericExtStringDriver, XmlMDF_ADriver)
 
 //! Attribute Driver.

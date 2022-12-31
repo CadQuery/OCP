@@ -20,13 +20,10 @@
 #include <Standard.hxx>
 #include <Standard_DefineAlloc.hxx>
 #include <Standard_Handle.hxx>
-#include <Standard_Boolean.hxx>
 #include <Message_ProgressRange.hxx>
 
 class Transfer_TransientProcess;
 class Interface_InterfaceModel;
-class Standard_NoSuchObject;
-class Transfer_TransferFailure;
 class Transfer_ActorOfTransientProcess;
 class Standard_Transient;
 class Interface_Protocol;

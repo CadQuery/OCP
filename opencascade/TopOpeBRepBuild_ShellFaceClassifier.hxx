@@ -19,19 +19,14 @@
 
 #include <Standard.hxx>
 #include <Standard_DefineAlloc.hxx>
-#include <Standard_Handle.hxx>
 
-#include <Standard_Boolean.hxx>
 #include <gp_Pnt.hxx>
-#include <TopoDS_Shell.hxx>
-#include <BRep_Builder.hxx>
 #include <TopOpeBRepTool_SolidClassifier.hxx>
 #include <TopTools_DataMapOfShapeShape.hxx>
 #include <TopoDS_Shape.hxx>
 #include <TopOpeBRepBuild_CompositeClassifier.hxx>
 #include <TopAbs_State.hxx>
 class TopOpeBRepBuild_BlockBuilder;
-class TopoDS_Shape;
 
 
 

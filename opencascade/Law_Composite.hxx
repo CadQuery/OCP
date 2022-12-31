@@ -20,15 +20,11 @@
 #include <Standard.hxx>
 #include <Standard_Type.hxx>
 
-#include <Standard_Real.hxx>
 #include <Law_Laws.hxx>
-#include <Standard_Boolean.hxx>
 #include <Law_Function.hxx>
 #include <GeomAbs_Shape.hxx>
 #include <Standard_Integer.hxx>
 #include <TColStd_Array1OfReal.hxx>
-class Law_Function;
-class Standard_OutOfRange;
 
 
 class Law_Composite;

@@ -20,18 +20,15 @@
 #include <Standard.hxx>
 #include <Standard_Type.hxx>
 
-#include <Standard_Real.hxx>
 #include <TopoDS_Shape.hxx>
 #include <Standard_Transient.hxx>
 #include <Message_Gravity.hxx>
-#include <Standard_Boolean.hxx>
 #include <Standard_Integer.hxx>
 
 #include <ShapeExtend_BasicMsgRegistrator.hxx>
 
 class ShapeBuild_ReShape;
 class ShapeExtend_BasicMsgRegistrator;
-class TopoDS_Shape;
 class Message_Msg;
 
 

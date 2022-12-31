@@ -18,13 +18,11 @@
 #define _StepShape_BooleanResult_HeaderFile
 
 #include <Standard.hxx>
-#include <Standard_Type.hxx>
 
 #include <StepShape_BooleanOperator.hxx>
 #include <StepShape_BooleanOperand.hxx>
 #include <StepGeom_GeometricRepresentationItem.hxx>
 class TCollection_HAsciiString;
-class StepShape_BooleanOperand;
 
 
 class StepShape_BooleanResult;

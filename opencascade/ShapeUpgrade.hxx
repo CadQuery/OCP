@@ -26,38 +26,6 @@
 #include <TColGeom2d_HSequenceOfBoundedCurve.hxx>
 class Geom_BSplineCurve;
 class Geom2d_BSplineCurve;
-class ShapeUpgrade_Tool;
-class ShapeUpgrade_EdgeDivide;
-class ShapeUpgrade_ClosedEdgeDivide;
-class ShapeUpgrade_WireDivide;
-class ShapeUpgrade_FaceDivide;
-class ShapeUpgrade_ClosedFaceDivide;
-class ShapeUpgrade_FaceDivideArea;
-class ShapeUpgrade_ShapeDivide;
-class ShapeUpgrade_ShapeDivideArea;
-class ShapeUpgrade_ShapeDivideContinuity;
-class ShapeUpgrade_ShapeDivideAngle;
-class ShapeUpgrade_ShapeConvertToBezier;
-class ShapeUpgrade_ShapeDivideClosed;
-class ShapeUpgrade_ShapeDivideClosedEdges;
-class ShapeUpgrade_SplitCurve;
-class ShapeUpgrade_SplitCurve2d;
-class ShapeUpgrade_SplitCurve2dContinuity;
-class ShapeUpgrade_ConvertCurve2dToBezier;
-class ShapeUpgrade_SplitCurve3d;
-class ShapeUpgrade_SplitCurve3dContinuity;
-class ShapeUpgrade_ConvertCurve3dToBezier;
-class ShapeUpgrade_SplitSurface;
-class ShapeUpgrade_SplitSurfaceContinuity;
-class ShapeUpgrade_SplitSurfaceAngle;
-class ShapeUpgrade_ConvertSurfaceToBezierBasis;
-class ShapeUpgrade_SplitSurfaceArea;
-class ShapeUpgrade_ShellSewing;
-class ShapeUpgrade_FixSmallCurves;
-class ShapeUpgrade_FixSmallBezierCurves;
-class ShapeUpgrade_RemoveLocations;
-class ShapeUpgrade_RemoveInternalWires;
-class ShapeUpgrade_UnifySameDomain;
 
 
 //! This package provides tools for splitting and converting shapes by some criteria.
@@ -85,41 +53,6 @@ public:
   //! else returns False (if BS is C1 B-Spline).
   Standard_EXPORT static Standard_Boolean C0BSplineToSequenceOfC1BSplineCurve (const Handle(Geom2d_BSplineCurve)& BS,
                                                                                Handle(TColGeom2d_HSequenceOfBoundedCurve)& seqBS);
-
-private:
-
-friend class ShapeUpgrade_Tool;
-friend class ShapeUpgrade_EdgeDivide;
-friend class ShapeUpgrade_ClosedEdgeDivide;
-friend class ShapeUpgrade_WireDivide;
-friend class ShapeUpgrade_FaceDivide;
-friend class ShapeUpgrade_ClosedFaceDivide;
-friend class ShapeUpgrade_FaceDivideArea;
-friend class ShapeUpgrade_ShapeDivide;
-friend class ShapeUpgrade_ShapeDivideArea;
-friend class ShapeUpgrade_ShapeDivideContinuity;
-friend class ShapeUpgrade_ShapeDivideAngle;
-friend class ShapeUpgrade_ShapeConvertToBezier;
-friend class ShapeUpgrade_ShapeDivideClosed;
-friend class ShapeUpgrade_ShapeDivideClosedEdges;
-friend class ShapeUpgrade_SplitCurve;
-friend class ShapeUpgrade_SplitCurve2d;
-friend class ShapeUpgrade_SplitCurve2dContinuity;
-friend class ShapeUpgrade_ConvertCurve2dToBezier;
-friend class ShapeUpgrade_SplitCurve3d;
-friend class ShapeUpgrade_SplitCurve3dContinuity;
-friend class ShapeUpgrade_ConvertCurve3dToBezier;
-friend class ShapeUpgrade_SplitSurface;
-friend class ShapeUpgrade_SplitSurfaceContinuity;
-friend class ShapeUpgrade_SplitSurfaceAngle;
-friend class ShapeUpgrade_ConvertSurfaceToBezierBasis;
-friend class ShapeUpgrade_SplitSurfaceArea;
-friend class ShapeUpgrade_ShellSewing;
-friend class ShapeUpgrade_FixSmallCurves;
-friend class ShapeUpgrade_FixSmallBezierCurves;
-friend class ShapeUpgrade_RemoveLocations;
-friend class ShapeUpgrade_RemoveInternalWires;
-friend class ShapeUpgrade_UnifySameDomain;
 
 };
 

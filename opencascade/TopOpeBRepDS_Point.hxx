@@ -22,9 +22,6 @@
 #include <Standard_Handle.hxx>
 
 #include <gp_Pnt.hxx>
-#include <Standard_Real.hxx>
-#include <Standard_Boolean.hxx>
-class gp_Pnt;
 class TopoDS_Shape;
 
 

@@ -22,7 +22,6 @@
 #include <Standard_Handle.hxx>
 
 #include <Standard_Integer.hxx>
-#include <Standard_Boolean.hxx>
 #include <TopTools_HSequenceOfShape.hxx>
 #include <TColStd_HSequenceOfTransient.hxx>
 #include <Message_ProgressRange.hxx>
@@ -31,7 +30,6 @@ class Interface_Protocol;
 class Transfer_ActorOfTransientProcess;
 class Interface_InterfaceModel;
 class Transfer_TransientProcess;
-class Standard_OutOfRange;
 class Interface_CheckIterator;
 class TopoDS_Shape;
 class Standard_Transient;

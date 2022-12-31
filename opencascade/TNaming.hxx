@@ -22,7 +22,6 @@
 #include <Standard_Handle.hxx>
 
 #include <TopTools_DataMapOfShapeShape.hxx>
-#include <Standard_Boolean.hxx>
 #include <TopTools_MapOfShape.hxx>
 #include <TopTools_HArray1OfShape.hxx>
 #include <TDF_IDList.hxx>
@@ -38,29 +37,6 @@ class TopoDS_Face;
 class TopoDS_Wire;
 class TopoDS_Solid;
 class TopoDS_Shell;
-class TNaming_CopyShape;
-class TNaming_TranslateTool;
-class TNaming_Translator;
-class TNaming_NamedShape;
-class TNaming_UsedShapes;
-class TNaming_Builder;
-class TNaming_Tool;
-class TNaming_Iterator;
-class TNaming_NewShapeIterator;
-class TNaming_OldShapeIterator;
-class TNaming_SameShapeIterator;
-class TNaming_Name;
-class TNaming_Naming;
-class TNaming_Selector;
-class TNaming_DeltaOnRemoval;
-class TNaming_DeltaOnModification;
-class TNaming_RefShape;
-class TNaming_Scope;
-class TNaming_Identifier;
-class TNaming_Localizer;
-class TNaming_ShapesSet;
-class TNaming_IteratorOnShapesSet;
-class TNaming_NamingTool;
 
 
 //! A topological attribute can be seen as a hook
@@ -203,50 +179,6 @@ public:
   //! the Stream <S> and returns <S>.
   Standard_EXPORT static Standard_OStream& Print (const TDF_Label& ACCESS, Standard_OStream& S);
 
-
-
-
-protected:
-
-
-
-
-
-private:
-
-
-
-
-friend class TNaming_CopyShape;
-friend class TNaming_TranslateTool;
-friend class TNaming_Translator;
-friend class TNaming_NamedShape;
-friend class TNaming_UsedShapes;
-friend class TNaming_Builder;
-friend class TNaming_Tool;
-friend class TNaming_Iterator;
-friend class TNaming_NewShapeIterator;
-friend class TNaming_OldShapeIterator;
-friend class TNaming_SameShapeIterator;
-friend class TNaming_Name;
-friend class TNaming_Naming;
-friend class TNaming_Selector;
-friend class TNaming_DeltaOnRemoval;
-friend class TNaming_DeltaOnModification;
-friend class TNaming_RefShape;
-friend class TNaming_Scope;
-friend class TNaming_Identifier;
-friend class TNaming_Localizer;
-friend class TNaming_ShapesSet;
-friend class TNaming_IteratorOnShapesSet;
-friend class TNaming_NamingTool;
-
 };
-
-
-
-
-
-
 
 #endif // _TNaming_HeaderFile

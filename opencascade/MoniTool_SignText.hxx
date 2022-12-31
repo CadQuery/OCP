@@ -21,9 +21,7 @@
 #include <Standard_Type.hxx>
 
 #include <Standard_Transient.hxx>
-#include <Standard_CString.hxx>
 class TCollection_AsciiString;
-class Standard_Transient;
 
 
 class MoniTool_SignText;

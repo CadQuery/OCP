@@ -19,11 +19,9 @@
 #include <Graphic3d_Group.hxx>
 #include <Graphic3d_Structure.hxx>
 
-#include <NCollection_List.hxx>
 #include <OpenGl_Aspects.hxx>
 #include <OpenGl_Element.hxx>
 
-class OpenGl_Group;
 class OpenGl_Structure;
 
 struct OpenGl_ElementNode
@@ -53,7 +51,11 @@ public:
   }
 
   //! Return TRUE if group contains primitives with transform persistence.
-  bool HasPersistence() const { return myStructure != NULL && !myStructure->TransformPersistence().IsNull(); }
+  bool HasPersistence() const
+  {
+    return !myTrsfPers.IsNull()
+        || (myStructure != NULL && !myStructure->TransformPersistence().IsNull());
+  }
 
   //! Update aspect.
   Standard_EXPORT virtual void SetGroupPrimitivesAspect (const Handle(Graphic3d_Aspects)& theAspect) Standard_OVERRIDE;

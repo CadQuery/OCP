@@ -19,11 +19,9 @@
 
 #include <Standard.hxx>
 #include <Standard_DefineAlloc.hxx>
-#include <Standard_Handle.hxx>
 
 #include <gp_Trsf.hxx>
 #include <Standard_OStream.hxx>
-class gp_Trsf;
 
 
 //! defines a MatrixTransform node of VRML specifying matrix and transform

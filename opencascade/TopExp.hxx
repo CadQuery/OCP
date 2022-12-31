@@ -21,16 +21,15 @@
 #include <Standard_DefineAlloc.hxx>
 #include <Standard_Handle.hxx>
 
-#include <TopAbs_ShapeEnum.hxx>
 #include <TopTools_IndexedMapOfShape.hxx>
 #include <TopTools_IndexedDataMapOfShapeListOfShape.hxx>
 #include <TopTools_MapOfShape.hxx>
+#include <TopoDS_Vertex.hxx>
 #include <Standard_Boolean.hxx>
+
 class TopoDS_Shape;
-class TopoDS_Vertex;
 class TopoDS_Edge;
 class TopoDS_Wire;
-class TopExp_Explorer;
 
 
 //! This package   provides  basic tools  to   explore the
@@ -120,28 +119,6 @@ public:
   //! Warning: <V> has sense only if the value <True> is returned
   Standard_EXPORT static Standard_Boolean CommonVertex (const TopoDS_Edge& E1, const TopoDS_Edge& E2, TopoDS_Vertex& V);
 
-
-
-
-protected:
-
-
-
-
-
-private:
-
-
-
-
-friend class TopExp_Explorer;
-
 };
-
-
-
-
-
-
 
 #endif // _TopExp_HeaderFile

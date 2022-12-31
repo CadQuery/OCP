@@ -18,14 +18,11 @@
 #define _TopOpeBRepBuild_Pave_HeaderFile
 
 #include <Standard.hxx>
-#include <Standard_Type.hxx>
 
-#include <TopoDS_Shape.hxx>
 #include <Standard_Real.hxx>
 #include <Standard_Boolean.hxx>
 #include <TopOpeBRepDS_Kind.hxx>
 #include <TopOpeBRepBuild_Loop.hxx>
-class TopoDS_Shape;
 
 
 class TopOpeBRepBuild_Pave;

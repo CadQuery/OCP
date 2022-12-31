@@ -18,14 +18,11 @@
 #define _TopOpeBRepBuild_Loop_HeaderFile
 
 #include <Standard.hxx>
-#include <Standard_Type.hxx>
 
 #include <Standard_Boolean.hxx>
 #include <TopoDS_Shape.hxx>
 #include <TopOpeBRepBuild_BlockIterator.hxx>
 #include <Standard_Transient.hxx>
-class TopoDS_Shape;
-class TopOpeBRepBuild_BlockIterator;
 
 
 class TopOpeBRepBuild_Loop;

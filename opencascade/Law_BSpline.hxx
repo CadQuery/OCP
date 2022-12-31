@@ -20,7 +20,6 @@
 #include <Standard.hxx>
 #include <Standard_Type.hxx>
 
-#include <Standard_Boolean.hxx>
 #include <GeomAbs_BSplKnotDistribution.hxx>
 #include <GeomAbs_Shape.hxx>
 #include <Standard_Integer.hxx>
@@ -29,13 +28,6 @@
 #include <Standard_Transient.hxx>
 #include <TColStd_Array1OfReal.hxx>
 #include <TColStd_Array1OfInteger.hxx>
-#include <Standard_Real.hxx>
-class Standard_ConstructionError;
-class Standard_DimensionError;
-class Standard_DomainError;
-class Standard_OutOfRange;
-class Standard_RangeError;
-class Standard_NoSuchObject;
 
 
 class Law_BSpline;

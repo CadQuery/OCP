@@ -19,20 +19,14 @@
 
 #include <Standard.hxx>
 #include <Standard_DefineAlloc.hxx>
-#include <Standard_Handle.hxx>
 
 #include <TopoDS_Edge.hxx>
 #include <TopoDS_Face.hxx>
 #include <gp_Dir.hxx>
 #include <gp_Pnt2d.hxx>
-#include <Standard_Boolean.hxx>
 #include <TopTools_DataMapOfShapeReal.hxx>
-#include <Standard_Real.hxx>
 #include <Standard_Integer.hxx>
 #include <TopTools_ListOfShape.hxx>
-class TopoDS_Edge;
-class TopoDS_Face;
-class gp_Pnt2d;
 
 
 

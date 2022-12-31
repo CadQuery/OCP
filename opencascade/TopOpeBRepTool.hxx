@@ -24,33 +24,11 @@
 #include <Standard_Boolean.hxx>
 #include <TopTools_DataMapOfShapeInteger.hxx>
 #include <TopTools_IndexedMapOfOrientedShape.hxx>
-#include <TopTools_ListOfShape.hxx>
 #include <TopTools_DataMapOfShapeListOfShape.hxx>
 #include <Standard_OStream.hxx>
 #include <TopOpeBRepTool_OutCurveType.hxx>
 class TopoDS_Face;
 class TopoDS_Solid;
-class TopOpeBRepTool_GeomTool;
-class TopOpeBRepTool_AncestorsTool;
-class TopOpeBRepTool_C2DF;
-class TopOpeBRepTool_SolidClassifier;
-class TopOpeBRepTool_CurveTool;
-class TopOpeBRepTool_HBoxTool;
-class TopOpeBRepTool_BoxSort;
-class TopOpeBRepTool_ShapeExplorer;
-class TopOpeBRepTool_ShapeTool;
-class TopOpeBRepTool_ShapeClassifier;
-class TopOpeBRepTool_connexity;
-class TopOpeBRepTool_face;
-class TopOpeBRepTool_CLASSI;
-class TopOpeBRepTool_TOOL;
-class TopOpeBRepTool_CORRISO;
-class TopOpeBRepTool_REGUW;
-class TopOpeBRepTool_REGUS;
-class TopOpeBRepTool_makeTransition;
-class TopOpeBRepTool_mkTondgE;
-class TopOpeBRepTool_PurgeInternalEdges;
-class TopOpeBRepTool_FuseEdges;
 
 
 //! This package provides services used by the TopOpeBRep
@@ -113,48 +91,6 @@ public:
   //! Prints <OCT> as string on stream <S>; returns <S>.
   Standard_EXPORT static Standard_OStream& Print (const TopOpeBRepTool_OutCurveType OCT, Standard_OStream& S);
 
-
-
-
-protected:
-
-
-
-
-
-private:
-
-
-
-
-friend class TopOpeBRepTool_GeomTool;
-friend class TopOpeBRepTool_AncestorsTool;
-friend class TopOpeBRepTool_C2DF;
-friend class TopOpeBRepTool_SolidClassifier;
-friend class TopOpeBRepTool_CurveTool;
-friend class TopOpeBRepTool_HBoxTool;
-friend class TopOpeBRepTool_BoxSort;
-friend class TopOpeBRepTool_ShapeExplorer;
-friend class TopOpeBRepTool_ShapeTool;
-friend class TopOpeBRepTool_ShapeClassifier;
-friend class TopOpeBRepTool_connexity;
-friend class TopOpeBRepTool_face;
-friend class TopOpeBRepTool_CLASSI;
-friend class TopOpeBRepTool_TOOL;
-friend class TopOpeBRepTool_CORRISO;
-friend class TopOpeBRepTool_REGUW;
-friend class TopOpeBRepTool_REGUS;
-friend class TopOpeBRepTool_makeTransition;
-friend class TopOpeBRepTool_mkTondgE;
-friend class TopOpeBRepTool_PurgeInternalEdges;
-friend class TopOpeBRepTool_FuseEdges;
-
 };
-
-
-
-
-
-
 
 #endif // _TopOpeBRepTool_HeaderFile

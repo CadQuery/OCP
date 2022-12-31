@@ -21,7 +21,6 @@
 #include <Standard_DefineAlloc.hxx>
 #include <Standard_Handle.hxx>
 
-#include <Standard_Integer.hxx>
 #include <TopAbs_Orientation.hxx>
 #include <Standard_Boolean.hxx>
 #include <ChFiDS_TypeOfConcavity.hxx>
@@ -50,6 +49,12 @@ public:
                                                           const TopoDS_Face& theFace1,
                                                           const TopoDS_Face& theFace2,
                                                           const GeomAbs_Shape Order = GeomAbs_G1);
+  
+  Standard_EXPORT static Standard_Boolean IsTangentFaces (const TopoDS_Edge& theEdge,
+                                                          const TopoDS_Face& theFace1,
+                                                          const TopoDS_Face& theFace2,
+                                                          Standard_Real G1Tol,
+                                                          const GeomAbs_Shape Order = GeomAbs_G1);
 
   //! Returns  Reversed  in  Or1  and(or)  Or2  if
   //! the  concave edge  defined by the  interior of faces F1 and F2,
@@ -77,31 +82,6 @@ public:
   //! identic or opposed  concave  edges.
   Standard_EXPORT static Standard_Boolean SameSide (const TopAbs_Orientation Or, const TopAbs_Orientation OrSave1, const TopAbs_Orientation OrSave2, const TopAbs_Orientation OrFace1, const TopAbs_Orientation OrFace2);
 
-
-
-
-protected:
-
-
-
-
-
-private:
-
-
-
-
-friend class ChFi3d_Builder;
-friend class ChFi3d_ChBuilder;
-friend class ChFi3d_FilBuilder;
-friend class ChFi3d_SearchSing;
-
 };
-
-
-
-
-
-
 
 #endif // _ChFi3d_HeaderFile

@@ -17,7 +17,6 @@
 #ifndef _StdPrs_ShadedShape_HeaderFile
 #define _StdPrs_ShadedShape_HeaderFile
 
-#include <GeomAbs_Shape.hxx>
 #include <Prs3d_Root.hxx>
 #include <Prs3d_Drawer.hxx>
 #include <StdPrs_Volume.hxx>
@@ -25,7 +24,6 @@
 class Graphic3d_ArrayOfSegments;
 class Graphic3d_ArrayOfTriangles;
 class TopoDS_Shape;
-class gp_Pnt2d;
 class BRep_Builder;
 class TopoDS_Compound;
 

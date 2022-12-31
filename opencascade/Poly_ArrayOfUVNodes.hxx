@@ -17,6 +17,7 @@
 #include <NCollection_AliasedArray.hxx>
 #include <gp_Pnt2d.hxx>
 #include <gp_Vec2f.hxx>
+#include <Standard_Macro.hxx>
 
 //! Defines an array of 2D nodes of single/double precision configurable at construction time.
 class Poly_ArrayOfUVNodes : public NCollection_AliasedArray<>
@@ -84,20 +85,18 @@ public:
   //! Assignment operator; @sa Assign()
   Poly_ArrayOfUVNodes& operator= (const Poly_ArrayOfUVNodes& theOther) { return Assign (theOther); }
 
-#ifndef OCCT_NO_RVALUE_REFERENCE
   //! Move constructor
-  Poly_ArrayOfUVNodes (Poly_ArrayOfUVNodes&& theOther)
+  Poly_ArrayOfUVNodes (Poly_ArrayOfUVNodes&& theOther) Standard_Noexcept
   : NCollection_AliasedArray (std::move (theOther))
   {
     //
   }
 
   //! Move assignment operator; @sa Move()
-  Poly_ArrayOfUVNodes& operator= (Poly_ArrayOfUVNodes&& theOther)
+  Poly_ArrayOfUVNodes& operator= (Poly_ArrayOfUVNodes&& theOther) Standard_Noexcept
   {
     return Move (theOther);
   }
-#endif
 
 public:
 

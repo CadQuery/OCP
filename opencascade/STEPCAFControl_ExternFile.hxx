@@ -17,7 +17,6 @@
 #define _STEPCAFControl_ExternFile_HeaderFile
 
 #include <Standard.hxx>
-#include <Standard_Type.hxx>
 
 #include <IFSelect_ReturnStatus.hxx>
 #include <Standard_Boolean.hxx>
@@ -25,7 +24,6 @@
 #include <Standard_Transient.hxx>
 class XSControl_WorkSession;
 class TCollection_HAsciiString;
-class TDF_Label;
 
 
 class STEPCAFControl_ExternFile;

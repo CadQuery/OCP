@@ -17,14 +17,11 @@
 #define _XCAFDoc_Location_HeaderFile
 
 #include <Standard.hxx>
-#include <Standard_Type.hxx>
 
 #include <TopLoc_Location.hxx>
 #include <TDF_Attribute.hxx>
 class Standard_GUID;
 class TDF_Label;
-class TopLoc_Location;
-class TDF_Attribute;
 class TDF_RelocationTable;
 
 

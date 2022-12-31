@@ -19,12 +19,9 @@
 
 #include <Standard.hxx>
 #include <Standard_DefineAlloc.hxx>
-#include <Standard_Handle.hxx>
 
 #include <gp_Cylinder.hxx>
 #include <ProjLib_Projector.hxx>
-class Standard_NoSuchObject;
-class gp_Cylinder;
 class gp_Lin;
 class gp_Circ;
 class gp_Elips;

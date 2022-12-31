@@ -21,10 +21,6 @@
 #include <Standard_Integer.hxx>
 class XmlMDF_ADriverTable;
 class Message_Messenger;
-class XmlMDataXtd_GeometryDriver;
-class XmlMDataXtd_ConstraintDriver;
-class XmlMDataXtd_PatternStdDriver;
-class XmlMDataXtd_TriangulationDriver;
 
 //! Storage and Retrieval drivers for modelling attributes.
 //! Transient attributes are defined in package TDataXtd.
@@ -42,31 +38,6 @@ public:
   
   Standard_EXPORT static Standard_Integer DocumentVersion();
 
-
-
-
-protected:
-
-
-
-
-
-private:
-
-
-
-
-friend class XmlMDataXtd_GeometryDriver;
-friend class XmlMDataXtd_ConstraintDriver;
-friend class XmlMDataXtd_PatternStdDriver;
-friend class XmlMDataXtd_TriangulationDriver;
-
 };
-
-
-
-
-
-
 
 #endif // _XmlMDataXtd_HeaderFile

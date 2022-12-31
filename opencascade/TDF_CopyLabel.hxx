@@ -24,10 +24,7 @@
 #include <TDF_Label.hxx>
 #include <TDF_IDFilter.hxx>
 #include <TDF_AttributeMap.hxx>
-#include <Standard_Boolean.hxx>
 class TDF_RelocationTable;
-class TDF_Label;
-class TDF_IDFilter;
 class TDF_DataSet;
 
 

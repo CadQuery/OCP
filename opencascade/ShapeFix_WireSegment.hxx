@@ -24,11 +24,9 @@
 #include <TopoDS_Vertex.hxx>
 #include <TopAbs_Orientation.hxx>
 #include <TColStd_HSequenceOfInteger.hxx>
-#include <Standard_Boolean.hxx>
 #include <Standard_Integer.hxx>
 class ShapeExtend_WireData;
 class TopoDS_Wire;
-class TopoDS_Vertex;
 class TopoDS_Edge;
 
 

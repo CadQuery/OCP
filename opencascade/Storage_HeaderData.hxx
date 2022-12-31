@@ -21,16 +21,11 @@
 #include <Standard_Type.hxx>
 
 #include <Standard_Integer.hxx>
-#include <TCollection_AsciiString.hxx>
-#include <TCollection_ExtendedString.hxx>
 #include <TColStd_SequenceOfAsciiString.hxx>
 #include <TColStd_SequenceOfExtendedString.hxx>
 #include <Storage_Error.hxx>
 #include <Standard_Transient.hxx>
-class Storage_Schema;
 class Storage_BaseDriver;
-class TCollection_AsciiString;
-class TCollection_ExtendedString;
 
 
 class Storage_HeaderData;

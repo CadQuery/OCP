@@ -21,11 +21,8 @@
 
 #include <gp_XY.hxx>
 #include <Standard_Real.hxx>
-#include <Standard_Integer.hxx>
 #include <Standard_Boolean.hxx>
 
-class Standard_OutOfRange;
-class gp_XY;
 class gp_Ax2d;
 class gp_Trsf2d;
 class gp_Vec2d;
@@ -181,7 +178,6 @@ private:
 };
 
 #include <gp_Vec2d.hxx>
-#include <gp_Ax2d.hxx>
 #include <gp_Trsf2d.hxx>
 
 //=======================================================================

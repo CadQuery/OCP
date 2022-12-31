@@ -20,12 +20,9 @@
 #include <Standard.hxx>
 #include <Standard_Type.hxx>
 
-#include <Standard_Boolean.hxx>
 #include <Geom_Curve.hxx>
 #include <Standard_Integer.hxx>
-#include <Standard_Real.hxx>
 #include <GeomAbs_Shape.hxx>
-class Geom_Curve;
 class gp_Trsf;
 class gp_Pnt;
 class gp_Vec;

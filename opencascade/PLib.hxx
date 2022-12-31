@@ -25,16 +25,10 @@
 #include <TColStd_Array2OfReal.hxx>
 #include <TColgp_Array1OfPnt.hxx>
 #include <TColgp_Array1OfPnt2d.hxx>
-#include <Standard_Real.hxx>
-#include <Standard_Integer.hxx>
 #include <Standard_Boolean.hxx>
 #include <TColgp_Array2OfPnt.hxx>
 #include <GeomAbs_Shape.hxx>
 class math_Matrix;
-class PLib_Base;
-class PLib_JacobiPolynomial;
-class PLib_HermitJacobi;
-class PLib_DoubleJacobiPolynomial;
 
 
 //! PLib means Polynomial  functions library.  This pk
@@ -349,25 +343,6 @@ public:
   Standard_EXPORT static void EvalLength (const Standard_Integer Degree, const Standard_Integer Dimension, Standard_Real& PolynomialCoeff, const Standard_Real U1, const Standard_Real U2, Standard_Real& Length);
   
   Standard_EXPORT static void EvalLength (const Standard_Integer Degree, const Standard_Integer Dimension, Standard_Real& PolynomialCoeff, const Standard_Real U1, const Standard_Real U2, const Standard_Real Tol, Standard_Real& Length, Standard_Real& Error);
-
-
-
-
-protected:
-
-
-
-
-
-private:
-
-
-
-
-friend class PLib_Base;
-friend class PLib_JacobiPolynomial;
-friend class PLib_HermitJacobi;
-friend class PLib_DoubleJacobiPolynomial;
 
 };
 

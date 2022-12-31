@@ -19,12 +19,9 @@
 
 #include <Standard.hxx>
 #include <Standard_DefineAlloc.hxx>
-#include <Standard_Handle.hxx>
 
 #include <gp_Torus.hxx>
 #include <ProjLib_Projector.hxx>
-class Standard_NoSuchObject;
-class gp_Torus;
 class gp_Circ;
 class gp_Lin;
 class gp_Elips;

@@ -21,9 +21,7 @@
 #include <Standard_DefineAlloc.hxx>
 #include <Standard_Handle.hxx>
 
-#include <Standard_Integer.hxx>
 #include <TCollection_ExtendedString.hxx>
-class TCollection_ExtendedString;
 
 
 

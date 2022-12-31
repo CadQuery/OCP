@@ -18,12 +18,10 @@
 #define _StepVisual_PresentationStyleByContext_HeaderFile
 
 #include <Standard.hxx>
-#include <Standard_Type.hxx>
 
 #include <StepVisual_StyleContextSelect.hxx>
 #include <StepVisual_PresentationStyleAssignment.hxx>
 #include <StepVisual_HArray1OfPresentationStyleSelect.hxx>
-class StepVisual_StyleContextSelect;
 
 
 class StepVisual_PresentationStyleByContext;

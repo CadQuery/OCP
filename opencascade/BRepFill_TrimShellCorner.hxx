@@ -23,11 +23,8 @@
 #include <BRepFill_TransitionStyle.hxx>
 #include <gp_Ax2.hxx>
 #include <TopoDS_Shape.hxx>
-#include <TopoDS_Wire.hxx>
-#include <TopoDS_Face.hxx>
 #include <TopTools_HArray2OfShape.hxx>
 #include <TopTools_HArray1OfShape.hxx>
-#include <Standard_Boolean.hxx>
 #include <TopTools_DataMapOfShapeListOfShape.hxx>
 #include <TopTools_ListOfShape.hxx>
 #include <BOPDS_PDS.hxx>
@@ -44,9 +41,12 @@ public:
   //! Constructor: takes faces to intersect,
   //! type of transition (it can be RightCorner or RoundCorner)
   //! and axis of bisector plane
+  //! theIntersectPointCrossDirection : prev path direction at the origin point of theAxeOfBisPlane
+  //! cross next path direction at the origin point of theAxeOfBisPlane. used when EE has more than one vertices
   Standard_EXPORT BRepFill_TrimShellCorner(const Handle(TopTools_HArray2OfShape)& theFaces,
                                            const BRepFill_TransitionStyle         theTransition,
-                                           const gp_Ax2&                          theAxeOfBisPlane);
+                                           const gp_Ax2&                          theAxeOfBisPlane,
+                                           const gp_Vec&                          theIntPointCrossDir);
 
   Standard_EXPORT void AddBounds (const Handle(TopTools_HArray2OfShape)& Bounds);
   
@@ -95,6 +95,7 @@ private:
 
   BRepFill_TransitionStyle myTransition;
   gp_Ax2 myAxeOfBisPlane;
+  gp_Vec myIntPointCrossDir;
   TopoDS_Shape myShape1;
   TopoDS_Shape myShape2;
   Handle(TopTools_HArray2OfShape) myBounds;

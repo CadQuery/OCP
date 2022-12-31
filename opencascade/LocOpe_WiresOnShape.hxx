@@ -23,14 +23,11 @@
 #include <TopoDS_Shape.hxx>
 #include <TopTools_IndexedDataMapOfShapeShape.hxx>
 #include <TopTools_MapOfShape.hxx>
-#include <Standard_Boolean.hxx>
 #include <TopTools_DataMapOfShapeShape.hxx>
 #include <Standard_Integer.hxx>
 #include <Standard_Transient.hxx>
-#include <Standard_Real.hxx>
 #include <TopTools_SequenceOfShape.hxx>
 
-class TopoDS_Shape;
 class TopoDS_Wire;
 class TopoDS_Face;
 class TopoDS_Compound;

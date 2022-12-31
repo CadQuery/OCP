@@ -18,13 +18,11 @@
 #define _StepVisual_StyledItem_HeaderFile
 
 #include <Standard.hxx>
-#include <Standard_Type.hxx>
 
 #include <StepVisual_HArray1OfPresentationStyleAssignment.hxx>
 #include <StepRepr_RepresentationItem.hxx>
 #include <StepVisual_StyledItemTarget.hxx>
 #include <Standard_Integer.hxx>
-class StepRepr_RepresentationItem;
 class TCollection_HAsciiString;
 class StepVisual_PresentationStyleAssignment;
 

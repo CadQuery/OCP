@@ -21,50 +21,7 @@
 #include <Standard_DefineAlloc.hxx>
 #include <Standard_Handle.hxx>
 
-#include <Standard_Integer.hxx>
 #include <math_Vector.hxx>
-#include <Standard_Boolean.hxx>
-class math_Matrix;
-class math_Function;
-class math_FunctionWithDerivative;
-class math_MultipleVarFunction;
-class math_MultipleVarFunctionWithGradient;
-class math_MultipleVarFunctionWithHessian;
-class math_FunctionSet;
-class math_FunctionSetWithDerivatives;
-class math_Gauss;
-class math_GaussLeastSquare;
-class math_SVD;
-class math_DirectPolynomialRoots;
-class math_FunctionRoots;
-class math_BissecNewton;
-class math_FunctionRoot;
-class math_NewtonFunctionRoot;
-class math_BracketedRoot;
-class math_FunctionSetRoot;
-class math_NewtonFunctionSetRoot;
-class math_BracketMinimum;
-class math_BrentMinimum;
-class math_Powell;
-class math_FRPR;
-class math_BFGS;
-class math_NewtonMinimum;
-class math_Jacobi;
-class math_GaussSingleIntegration;
-class math_GaussMultipleIntegration;
-class math_GaussSetIntegration;
-class math_FunctionSample;
-class math_FunctionAllRoots;
-class math_Householder;
-class math_Crout;
-class math_Uzawa;
-class math_TrigonometricFunctionRoots;
-class math_KronrodSingleIntegration;
-class math_EigenValuesSearcher;
-class math_ComputeGaussPointsAndWeights;
-class math_ComputeKronrodPointsAndWeights;
-class math_DoubleTab;
-
 
 
 class math 
@@ -110,67 +67,6 @@ public:
   //! Otherwise this method returns Standard_False.
   Standard_EXPORT static Standard_Boolean KronrodPointsAndWeights (const Standard_Integer Index, math_Vector& Points, math_Vector& Weights);
 
-
-
-
-protected:
-
-
-
-
-
-private:
-
-
-
-
-friend class math_Matrix;
-friend class math_Function;
-friend class math_FunctionWithDerivative;
-friend class math_MultipleVarFunction;
-friend class math_MultipleVarFunctionWithGradient;
-friend class math_MultipleVarFunctionWithHessian;
-friend class math_FunctionSet;
-friend class math_FunctionSetWithDerivatives;
-friend class math_Gauss;
-friend class math_GaussLeastSquare;
-friend class math_SVD;
-friend class math_DirectPolynomialRoots;
-friend class math_FunctionRoots;
-friend class math_BissecNewton;
-friend class math_FunctionRoot;
-friend class math_NewtonFunctionRoot;
-friend class math_BracketedRoot;
-friend class math_FunctionSetRoot;
-friend class math_NewtonFunctionSetRoot;
-friend class math_BracketMinimum;
-friend class math_BrentMinimum;
-friend class math_Powell;
-friend class math_FRPR;
-friend class math_BFGS;
-friend class math_NewtonMinimum;
-friend class math_Jacobi;
-friend class math_GaussSingleIntegration;
-friend class math_GaussMultipleIntegration;
-friend class math_GaussSetIntegration;
-friend class math_FunctionSample;
-friend class math_FunctionAllRoots;
-friend class math_Householder;
-friend class math_Crout;
-friend class math_Uzawa;
-friend class math_TrigonometricFunctionRoots;
-friend class math_KronrodSingleIntegration;
-friend class math_EigenValuesSearcher;
-friend class math_ComputeGaussPointsAndWeights;
-friend class math_ComputeKronrodPointsAndWeights;
-friend class math_DoubleTab;
-
 };
-
-
-
-
-
-
 
 #endif // _math_HeaderFile

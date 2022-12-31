@@ -18,11 +18,8 @@
 #define _GeomFill_Frenet_HeaderFile
 
 #include <Standard.hxx>
-#include <Standard_Type.hxx>
 
-#include <gp_Pnt.hxx>
 #include <TColStd_HArray1OfReal.hxx>
-#include <Standard_Boolean.hxx>
 #include <GeomFill_TrihedronLaw.hxx>
 #include <Standard_Real.hxx>
 #include <Standard_Integer.hxx>
@@ -47,7 +44,9 @@ public:
   
   Standard_EXPORT void Init();
   
-  Standard_EXPORT virtual void SetCurve (const Handle(Adaptor3d_Curve)& C) Standard_OVERRIDE;
+  //! initialize curve of frenet law
+  //! @return Standard_True
+  Standard_EXPORT virtual Standard_Boolean SetCurve (const Handle(Adaptor3d_Curve)& C) Standard_OVERRIDE;
   
   //! compute Triedrhon on curve at parameter <Param>
   Standard_EXPORT virtual Standard_Boolean D0 (const Standard_Real Param, gp_Vec& Tangent, gp_Vec& Normal, gp_Vec& BiNormal) Standard_OVERRIDE;

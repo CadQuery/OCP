@@ -26,16 +26,9 @@
 #include <TopoDS_Face.hxx>
 #include <TopoDS_Wire.hxx>
 #include <TopoDS_Edge.hxx>
-#include <Standard_Real.hxx>
 #include <TColGeom_SequenceOfCurve.hxx>
 #include <TopTools_DataMapOfShapeListOfShape.hxx>
-#include <Standard_Boolean.hxx>
 #include <TopTools_ListOfShape.hxx>
-class Standard_NoSuchObject;
-class Standard_DomainError;
-class StdFail_NotDone;
-class TopoDS_Face;
-class TopoDS_Shape;
 class Geom_Curve;
 
 

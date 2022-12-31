@@ -17,20 +17,14 @@
 #define _TDataStd_ByteArray_HeaderFile
 
 #include <Standard.hxx>
-#include <Standard_Type.hxx>
 
 #include <TColStd_HArray1OfByte.hxx>
-#include <Standard_Boolean.hxx>
 #include <TDF_Attribute.hxx>
 #include <Standard_Integer.hxx>
-#include <Standard_Byte.hxx>
 #include <Standard_OStream.hxx>
 #include <Standard_GUID.hxx>
 
-class TDataStd_DeltaOnModificationOfByteArray;
-class Standard_GUID;
 class TDF_Label;
-class TDF_Attribute;
 class TDF_RelocationTable;
 class TDF_DeltaOnModification;
 

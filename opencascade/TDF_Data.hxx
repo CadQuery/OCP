@@ -21,16 +21,12 @@
 
 #include <TDF_LabelNodePtr.hxx>
 #include <Standard_Integer.hxx>
-#include <Standard_Boolean.hxx>
 #include <TColStd_ListOfInteger.hxx>
 #include <TDF_HAllocator.hxx>
 #include <Standard_Transient.hxx>
 #include <TDF_Label.hxx>
 #include <Standard_OStream.hxx>
 #include <NCollection_DataMap.hxx>
-class Standard_NoMoreObject;
-class TDF_Transaction;
-class TDF_LabelNode;
 class TDF_Delta;
 class TDF_Label;
 

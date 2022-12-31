@@ -22,7 +22,6 @@
 
 #include <TNaming_Name.hxx>
 #include <TDF_Attribute.hxx>
-#include <Standard_Boolean.hxx>
 #include <TDF_LabelMap.hxx>
 #include <Standard_OStream.hxx>
 #include <TDF_AttributeIndexedMap.hxx>
@@ -30,8 +29,6 @@ class Standard_GUID;
 class TDF_Label;
 class TNaming_NamedShape;
 class TopoDS_Shape;
-class TNaming_Name;
-class TDF_Attribute;
 class TDF_RelocationTable;
 class TDF_DataSet;
 class TDF_IDFilter;

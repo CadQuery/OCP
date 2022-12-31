@@ -16,13 +16,11 @@
 #define _XCAFPrs_DocumentExplorer_HeaderFile
 
 #include <NCollection_Vector.hxx>
-#include <NCollection_Sequence.hxx>
 #include <XCAFPrs_DocumentNode.hxx>
 #include <TDF_LabelSequence.hxx>
 #include <TopoDS_Shape.hxx>
 
 class TDocStd_Document;
-class XCAFDoc_ShapeTool;
 class XCAFDoc_ColorTool;
 class XCAFDoc_VisMaterialTool;
 

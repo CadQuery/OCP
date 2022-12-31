@@ -20,14 +20,12 @@
 #include <Standard_Type.hxx>
 
 #include <TDataXtd_ConstraintEnum.hxx>
-#include <Standard_Boolean.hxx>
 #include <TDF_Attribute.hxx>
 #include <Standard_Integer.hxx>
 #include <TDF_LabelList.hxx>
 #include <Standard_OStream.hxx>
 
 class TDataStd_Real;
-class TDF_Attribute;
 class Standard_GUID;
 class TDF_Label;
 class TNaming_NamedShape;

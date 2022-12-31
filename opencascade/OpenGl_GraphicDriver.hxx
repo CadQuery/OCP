@@ -18,16 +18,13 @@
 
 #include <Graphic3d_GraphicDriver.hxx>
 
-#include <Aspect_Display.hxx>
 #include <Aspect_DisplayConnection.hxx>
-#include <Aspect_RenderingContext.hxx>
 #include <Graphic3d_CView.hxx>
 #include <Graphic3d_CStructure.hxx>
 #include <NCollection_DataMap.hxx>
 #include <OpenGl_Context.hxx>
 
 class Aspect_Window;
-class Quantity_Color;
 class OpenGl_Structure;
 class OpenGl_View;
 class OpenGl_Window;
@@ -89,7 +86,13 @@ public:
 
   Standard_EXPORT virtual void RemoveView (const Handle(Graphic3d_CView)& theView) Standard_OVERRIDE;
 
-  Standard_EXPORT virtual Handle(OpenGl_Window) CreateRenderWindow (const Handle(Aspect_Window)& theWindow, const Aspect_RenderingContext theContext);
+  //! Create OpenGL window from native window.
+  //! @param[in] theNativeWindow native window holder
+  //! @param[in] theSizeWindow object defining window dimensions
+  //! @param[in] theContext existing native rendering context
+  Standard_EXPORT virtual Handle(OpenGl_Window) CreateRenderWindow (const Handle(Aspect_Window)& theNativeWindow,
+                                                                    const Handle(Aspect_Window)& theSizeWindow,
+                                                                    const Aspect_RenderingContext theContext);
 
 public:
 
@@ -107,17 +110,17 @@ public:
 public:
 
   //! Adds a layer to all views.
-  //! @param theLayerId    [in] id of new layer, should be > 0 (negative values are reserved for default layers).
-  //! @param theSettings   [in] new layer settings
-  //! @param theLayerAfter [in] id of layer to append new layer before
+  //! @param[in] theNewLayerId id of new layer, should be > 0 (negative values are reserved for default layers).
+  //! @param[in] theSettings   new layer settings
+  //! @param[in] theLayerAfter id of layer to append new layer before
   Standard_EXPORT virtual void InsertLayerBefore (const Graphic3d_ZLayerId theNewLayerId,
                                                   const Graphic3d_ZLayerSettings& theSettings,
                                                   const Graphic3d_ZLayerId theLayerAfter) Standard_OVERRIDE;
 
   //! Adds a layer to all views.
-  //! @param theLayerId     [in] id of created layer
-  //! @param theSettings    [in] new layer settings
-  //! @param theLayerBefore [in] id of layer to append new layer after
+  //! @param[in] theNewLayerId  id of created layer
+  //! @param[in] theSettings    new layer settings
+  //! @param[in] theLayerBefore id of layer to append new layer after
   Standard_EXPORT virtual void InsertLayerAfter (const Graphic3d_ZLayerId theNewLayerId,
                                                  const Graphic3d_ZLayerSettings& theSettings,
                                                  const Graphic3d_ZLayerId theLayerBefore) Standard_OVERRIDE;

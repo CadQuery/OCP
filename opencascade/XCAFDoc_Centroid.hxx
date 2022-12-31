@@ -17,7 +17,6 @@
 #define _XCAFDoc_Centroid_HeaderFile
 
 #include <Standard.hxx>
-#include <Standard_Type.hxx>
 
 #include <gp_Pnt.hxx>
 #include <TDF_Attribute.hxx>
@@ -25,8 +24,6 @@
 #include <Standard_OStream.hxx>
 class Standard_GUID;
 class TDF_Label;
-class gp_Pnt;
-class TDF_Attribute;
 class TDF_RelocationTable;
 
 

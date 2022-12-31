@@ -23,12 +23,10 @@
 #include <TFunction_Logbook.hxx>
 #include <Standard_Integer.hxx>
 #include <TDF_Attribute.hxx>
-#include <Standard_Boolean.hxx>
 #include <Standard_OStream.hxx>
 class TDF_Label;
 class Standard_GUID;
 class TFunction_Logbook;
-class TDF_Attribute;
 class TDF_RelocationTable;
 
 

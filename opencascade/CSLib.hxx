@@ -21,11 +21,9 @@
 #include <Standard_DefineAlloc.hxx>
 #include <Standard_Handle.hxx>
 
-#include <Standard_Real.hxx>
 #include <CSLib_DerivativeStatus.hxx>
 #include <Standard_Boolean.hxx>
 #include <CSLib_NormalStatus.hxx>
-#include <Standard_Integer.hxx>
 #include <TColgp_Array2OfVec.hxx>
 class gp_Vec;
 class gp_Dir;
@@ -122,29 +120,6 @@ public:
   //! In the regular cases , Iduref=Idvref=0.
   Standard_EXPORT static gp_Vec DNNormal (const Standard_Integer Nu, const Standard_Integer Nv, const TColgp_Array2OfVec& DerNUV, const Standard_Integer Iduref = 0, const Standard_Integer Idvref = 0);
 
-
-
-
-protected:
-
-
-
-
-
-private:
-
-
-
-
-friend class CSLib_Class2d;
-friend class CSLib_NormalPolyDef;
-
 };
-
-
-
-
-
-
 
 #endif // _CSLib_HeaderFile

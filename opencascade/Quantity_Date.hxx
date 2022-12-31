@@ -21,10 +21,7 @@
 #include <Standard_DefineAlloc.hxx>
 #include <Standard_Handle.hxx>
 
-#include <Standard_Integer.hxx>
 #include <Standard_Boolean.hxx>
-class Quantity_DateDefinitionError;
-class Standard_OutOfRange;
 class Quantity_Period;
 
 //! This class provides services to manage date information.

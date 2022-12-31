@@ -19,20 +19,12 @@
 #include <BRepAdaptor_Surface.hxx>
 #include <Geom_Surface.hxx>
 #include <gp_Lin2d.hxx>
-#include <Prs3d_Drawer.hxx>
-#include <Prs3d_Presentation.hxx>
 #include <Prs3d_LineAspect.hxx>
-#include <Prs3d_Root.hxx>
 #include <Prs3d_NListOfSequenceOfPnt.hxx>
-#include <Poly_Triangulation.hxx>
 #include <StdPrs_DeflectionCurve.hxx>
 #include <StdPrs_ToolTriangulatedShape.hxx>
-#include <TColStd_Array1OfInteger.hxx>
-#include <TColgp_Array1OfPnt2d.hxx>
 #include <TColStd_SequenceOfReal.hxx>
 
-class Poly_Triangle;
-class TopoDS_Face;
 class TopLoc_Location;
 
 //! Tool for computing isoline representation for a face or surface.

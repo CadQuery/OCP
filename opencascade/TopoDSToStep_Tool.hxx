@@ -22,8 +22,6 @@
 #include <Standard_Handle.hxx>
 
 #include <MoniTool_DataMapOfShapeTransient.hxx>
-#include <Standard_Boolean.hxx>
-#include <Standard_Real.hxx>
 #include <TopoDS_Shell.hxx>
 #include <TopoDS_Face.hxx>
 #include <TopoDS_Wire.hxx>
@@ -32,11 +30,6 @@
 #include <Standard_Integer.hxx>
 class TopoDS_Shape;
 class StepShape_TopologicalRepresentationItem;
-class TopoDS_Shell;
-class TopoDS_Face;
-class TopoDS_Wire;
-class TopoDS_Edge;
-class TopoDS_Vertex;
 
 
 //! This Tool Class provides Information to build

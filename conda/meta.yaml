@@ -1,4 +1,4 @@
-{% set OCCT_VER = "7.6.3" %}
+{% set OCCT_VER = "7.7.0" %}
 {% set OCP_TWEAK = "alpha" %}
 
 package:
@@ -21,9 +21,9 @@ requirements:
   build:
     - clangdev
     - python-clang
-    - boost=1.74.0
+    - boost=1.78.0
     - occt={{ OCCT_VER }}
-    - pybind11>=2.6.*
+    - pybind11=2.9.*
     - python {{ environ.get('PYTHON_VERSION') }}
     - joblib
     - toml
@@ -38,7 +38,7 @@ requirements:
     - schema
     - tqdm
     - toposort
-    - vtk=9.1
+    - vtk
   run:
     - python {{ environ.get('PYTHON_VERSION') }}
     - occt {{OCCT_VER}}

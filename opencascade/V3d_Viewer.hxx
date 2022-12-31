@@ -17,20 +17,13 @@
 #ifndef _V3d_Viewer_HeaderFile
 #define _V3d_Viewer_HeaderFile
 
-#include <Aspect_Background.hxx>
-#include <Aspect_GenId.hxx>
-#include <Aspect_GradientBackground.hxx>
-#include <Aspect_GradientFillMethod.hxx>
 #include <Aspect_GridDrawMode.hxx>
 #include <Aspect_GridType.hxx>
-#include <gp_Ax3.hxx>
 #include <Graphic3d_StructureManager.hxx>
 #include <Graphic3d_Vertex.hxx>
 #include <Graphic3d_ZLayerSettings.hxx>
 #include <TColStd_MapOfInteger.hxx>
-#include <TColStd_ListIteratorOfListOfTransient.hxx>
 #include <TColStd_SequenceOfInteger.hxx>
-#include <TCollection_AsciiString.hxx>
 #include <TCollection_ExtendedString.hxx>
 #include <V3d_ListOfLight.hxx>
 #include <V3d_ListOfView.hxx>
@@ -44,11 +37,9 @@ class Graphic3d_AspectMarker3d;
 class Graphic3d_GraphicDriver;
 class Graphic3d_Group;
 class Graphic3d_Structure;
-class V3d_BadValue;
 class V3d_CircularGrid;
 class V3d_RectangularGrid;
 class V3d_View;
-class Quantity_Color;
 
 //! Defines services on Viewer type objects.
 //! The methods of this class allow editing and
@@ -484,7 +475,7 @@ private:
   Standard_EXPORT void AddView (const Handle(V3d_View)& theView);
   
   //! Delete View in Sequence Of Views.
-  Standard_EXPORT void DelView (const Handle(V3d_View)& theView);
+  Standard_EXPORT void DelView (const V3d_View* theView);
   
 private:
 

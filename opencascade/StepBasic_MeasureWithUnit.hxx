@@ -22,9 +22,7 @@
 
 #include <StepBasic_Unit.hxx>
 #include <Standard_Transient.hxx>
-#include <Standard_Real.hxx>
 class StepBasic_MeasureValueMember;
-class StepBasic_Unit;
 
 
 class StepBasic_MeasureWithUnit;

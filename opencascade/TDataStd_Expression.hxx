@@ -18,7 +18,6 @@
 #define _TDataStd_Expression_HeaderFile
 
 #include <Standard.hxx>
-#include <Standard_Type.hxx>
 
 #include <TCollection_ExtendedString.hxx>
 #include <TDF_AttributeList.hxx>
@@ -26,8 +25,6 @@
 #include <Standard_OStream.hxx>
 class Standard_GUID;
 class TDF_Label;
-class TCollection_ExtendedString;
-class TDF_Attribute;
 class TDF_RelocationTable;
 
 

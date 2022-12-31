@@ -19,15 +19,10 @@
 
 #include <Standard.hxx>
 #include <Standard_DefineAlloc.hxx>
-#include <Standard_Handle.hxx>
 
-#include <Standard_Real.hxx>
 #include <TopoDS_Wire.hxx>
 #include <BRepBuilderAPI_MakeShape.hxx>
 #include <TColgp_Array1OfPnt.hxx>
-#include <Standard_Boolean.hxx>
-class TopoDS_Wire;
-
 
 
 class ShapeConstruct_MakeTriangulation  : public BRepBuilderAPI_MakeShape

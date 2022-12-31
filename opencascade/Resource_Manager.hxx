@@ -29,10 +29,6 @@
 #include <Standard_Integer.hxx>
 #include <Standard_Real.hxx>
 #include <Standard_ExtString.hxx>
-class Standard_TypeMismatch;
-class Resource_NoSuchResource;
-class Standard_OutOfRange;
-class TCollection_AsciiString;
 
 
 class Resource_Manager;
@@ -57,6 +53,9 @@ public:
   //! lines terminated by newline characters or end of file.  The
   //! syntax of an individual resource line is:
   Standard_EXPORT Resource_Manager(const Standard_CString aName, const Standard_Boolean Verbose = Standard_False);
+
+  //! Create an empty Resource manager
+  Standard_EXPORT Resource_Manager();
 
   //! Create a Resource manager.
   //! @param theName [in] description file name
@@ -116,6 +115,9 @@ public:
   //! or file doesn't exist returns empty string.
   Standard_EXPORT static void GetResourcePath (TCollection_AsciiString& aPath, const Standard_CString aName, const Standard_Boolean isUserDefaults);
 
+  //! Returns internal Ref or User map with parameters 
+  Standard_EXPORT Resource_DataMapOfAsciiStringAsciiString& GetMap(Standard_Boolean theRefMap = Standard_True);
+  
 private:
 
   Standard_EXPORT void Load (const TCollection_AsciiString& thePath,

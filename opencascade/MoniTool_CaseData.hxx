@@ -26,15 +26,9 @@
 #include <TColStd_SequenceOfInteger.hxx>
 #include <TColStd_SequenceOfAsciiString.hxx>
 #include <Standard_Transient.hxx>
-#include <Standard_CString.hxx>
-#include <Standard_Boolean.hxx>
-#include <Standard_Real.hxx>
-#include <Standard_Type.hxx>
-class Standard_Transient;
 class TopoDS_Shape;
 class gp_XYZ;
 class gp_XY;
-class TCollection_AsciiString;
 class Message_Msg;
 
 

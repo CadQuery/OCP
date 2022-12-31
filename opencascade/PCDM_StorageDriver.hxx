@@ -21,17 +21,11 @@
 #include <Standard_Type.hxx>
 
 #include <TCollection_ExtendedString.hxx>
-#include <Standard_Boolean.hxx>
 #include <PCDM_StoreStatus.hxx>
 #include <PCDM_Writer.hxx>
 #include <PCDM_SequenceOfDocument.hxx>
-#include <TColStd_SequenceOfExtendedString.hxx>
-class Standard_NoSuchObject;
-class PCDM_DriverError;
 class PCDM_Document;
 class CDM_Document;
-class TCollection_ExtendedString;
-class Storage_Schema;
 
 
 class PCDM_StorageDriver;

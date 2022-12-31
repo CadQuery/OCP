@@ -17,7 +17,6 @@
 #define _StepDimTol_ToleranceZoneDefinition_HeaderFile
 
 #include <Standard.hxx>
-#include <Standard_Type.hxx>
 
 #include <Standard_Transient.hxx>
 #include <Standard_Integer.hxx>
@@ -25,7 +24,6 @@
 #include <StepRepr_ShapeAspect.hxx>
 #include <StepDimTol_ToleranceZone.hxx>
 
-class StepRepr_HArray1OfShapeAspect;
 
 class StepDimTol_ToleranceZoneDefinition;
 DEFINE_STANDARD_HANDLE(StepDimTol_ToleranceZoneDefinition, Standard_Transient)

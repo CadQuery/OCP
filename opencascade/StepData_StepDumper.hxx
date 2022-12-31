@@ -25,11 +25,8 @@
 #include <StepData_WriterLib.hxx>
 #include <StepData_StepWriter.hxx>
 #include <Standard_Integer.hxx>
-#include <Standard_Boolean.hxx>
 class StepData_StepModel;
-class Interface_InterfaceMismatch;
 class StepData_Protocol;
-class StepData_StepWriter;
 
 //! Provides a way to dump entities processed through STEP, with
 //! these features :

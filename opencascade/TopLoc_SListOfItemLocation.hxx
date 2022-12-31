@@ -21,9 +21,8 @@
 #include <Standard_DefineAlloc.hxx>
 #include <Standard_Handle.hxx>
 
-#include <Standard_Boolean.hxx>
+#include <Standard_Macro.hxx>
 class TopLoc_SListNodeOfItemLocation;
-class Standard_NoSuchObject;
 class TopLoc_ItemLocation;
 
 
@@ -70,22 +69,18 @@ public:
     return Assign(Other);
   }
   
-#ifndef OCCT_NO_RVALUE_REFERENCE
-
   //! Move constructor
-  TopLoc_SListOfItemLocation (TopLoc_SListOfItemLocation&& theOther)
+  TopLoc_SListOfItemLocation (TopLoc_SListOfItemLocation&& theOther) Standard_Noexcept
     : myNode(std::move (theOther.myNode))
   {
   }
 
   //! Move operator
-  TopLoc_SListOfItemLocation& operator= (TopLoc_SListOfItemLocation&& theOther)
+  TopLoc_SListOfItemLocation& operator= (TopLoc_SListOfItemLocation&& theOther) Standard_Noexcept
   {
     myNode = std::move (theOther.myNode);
     return *this;
   }
-
-#endif
 
   //! Returne true if this list is empty
   Standard_Boolean IsEmpty() const

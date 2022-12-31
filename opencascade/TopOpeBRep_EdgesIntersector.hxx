@@ -25,15 +25,12 @@
 #include <IntRes2d_SequenceOfIntersectionPoint.hxx>
 #include <IntRes2d_SequenceOfIntersectionSegment.hxx>
 #include <TopAbs_Orientation.hxx>
-#include <TopoDS_Edge.hxx>
 #include <TopoDS_Face.hxx>
-#include <TopoDS_Vertex.hxx>
 #include <TopOpeBRep_SequenceOfPoint2d.hxx>
 #include <TopOpeBRep_P2Dstatus.hxx>
 #include <TopOpeBRepDS_Config.hxx>
 
 class Bnd_Box;
-class Geom2dAdaptor_Curve;
 class BRepAdaptor_Surface;
 class TCollection_AsciiString;
 class TopOpeBRep_Point2d;

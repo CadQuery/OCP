@@ -17,18 +17,13 @@
 #define _XCAFDoc_Color_HeaderFile
 
 #include <Standard.hxx>
-#include <Standard_Type.hxx>
 
-#include <Quantity_Color.hxx>
 #include <Quantity_ColorRGBA.hxx>
 #include <TDF_Attribute.hxx>
 #include <Quantity_NameOfColor.hxx>
-#include <Standard_Real.hxx>
 class Standard_GUID;
 class TDF_Label;
 class Quantity_Color;
-class Quantity_ColorRGBA;
-class TDF_Attribute;
 class TDF_RelocationTable;
 
 

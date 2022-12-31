@@ -22,13 +22,11 @@
 #include <Standard_Handle.hxx>
 
 #include <TopoDS_Wire.hxx>
-#include <Standard_Boolean.hxx>
 #include <StepToTopoDS_Root.hxx>
 class StepGeom_CompositeCurve;
 class Transfer_TransientProcess;
 class StepGeom_Surface;
 class Geom_Surface;
-class TopoDS_Wire;
 
 
 //! Translate STEP entity composite_curve to TopoDS_Wire
