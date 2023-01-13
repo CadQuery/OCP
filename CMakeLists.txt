@@ -31,7 +31,7 @@ if( NOT EXISTS ${CMAKE_SOURCE_DIR}/OCP )
     message( STATUS "Running pywrap")
     execute_process(
         COMMAND
-            ${Python3_EXECUTABLE}
+            ${Python_EXECUTABLE}
             -m bindgen
             -n ${N_PROC}
             -l ${LIBCLANG_PATH}
