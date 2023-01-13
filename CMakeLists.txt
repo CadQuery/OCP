@@ -7,6 +7,8 @@ find_package(LLVM REQUIRED )
 find_package(VTK REQUIRED )
 find_package(RapidJSON REQUIRED )
 find_package( Clang REQUIRED )
+
+set( Python_FIND_VIRTUALENV FIRST )
 find_package( Python3 COMPONENTS Interpreter REQUIRED )
 
 get_target_property( LIBCLANG_PATH libclang IMPORTED_LOCATION_RELEASE )
