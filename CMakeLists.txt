@@ -9,7 +9,7 @@ find_package(RapidJSON REQUIRED )
 find_package( Clang REQUIRED )
 
 set( Python_FIND_VIRTUALENV FIRST )
-find_package( Python3 COMPONENTS Interpreter REQUIRED )
+find_package( Python COMPONENTS Interpreter REQUIRED )
 
 get_target_property( LIBCLANG_PATH libclang IMPORTED_LOCATION_RELEASE )
 set( VTK_INCLUDE_DIR ${VTK_PREFIX_PATH}/include/vtk-${VTK_VERSION_MAJOR}.${VTK_VERSION_MINOR} )
