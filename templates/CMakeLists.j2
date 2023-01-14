@@ -1,6 +1,10 @@
 cmake_minimum_required( VERSION 3.16 )
 project( {{ name }}
-         LANGUAGES C CXX )
+         LANGUAGES CXX )
+
+if( NOT WIN32 )
+    enable_language( C )
+endif()
 
 list( APPEND CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR} )
 
