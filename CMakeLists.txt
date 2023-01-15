@@ -1,4 +1,4 @@
-cmake_minimum_required( VERSION 3.20 )
+cmake_minimum_required( VERSION 3.17 )
 project( OCP )
 
 set( N_PROC 2 CACHE STRING "Number of processes used for generating code")
