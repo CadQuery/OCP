@@ -1,4 +1,4 @@
-cmake_minimum_required( VERSION 3.16 )
+cmake_minimum_required( VERSION 3.17 )
 project( {{ name }}
          LANGUAGES CXX )
 
@@ -8,27 +8,14 @@ endif()
 
 list( APPEND CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR} )
 
-SET(PYTHON_EXECUTABLE "" CACHE PATH "Pyhon executable")
-SET(PYTHON_LIBRARY "" CACHE PATH "Python library path - only relevant on windows")
-SET(PYTHON_SP_DIR "site-packages" CACHE PATH "Python site-packages directory")
+find_package (Python REQUIRED COMPONENTS Interpreter Development)
+message( STATUS "Python lib: ${Python_LIBRARIES}" )
 
-if(DEFINED ENV{CONDA_PREFIX})
-    if(WIN32)
-      set( PYTHON_EXECUTABLE "$ENV{CONDA_PREFIX}/python.exe" CACHE PATH "Pyhon executable" FORCE)
-      add_compile_definitions( _hypot=hypot _AMD64_ _WINDOWS)
-      execute_process(COMMAND ${PYTHON_EXECUTABLE} -c "from sys import version_info as vi; print(f'{vi.major}{vi.minor}')"
-                      OUTPUT_VARIABLE PYTHON_VER )
-      string(STRIP ${PYTHON_VER} PYTHON_VER)
-      set( PYTHON_LIBRARY $ENV{CONDA_PREFIX}/libs/python${PYTHON_VER}.lib CACHE PATH "Python library path - only relevant on windows" FORCE)
-    else()
-      set( PYTHON_EXECUTABLE "$ENV{CONDA_PREFIX}/bin/python" CACHE PATH "Pyhon executble" FORCE)
-    endif()
-endif()
+SET(PYTHON_SP_DIR "site-packages" CACHE PATH "Python site-packages directory (for installing)")
 
 find_package( pybind11 REQUIRED )
 find_package( VTK REQUIRED )
 find_package( OpenCASCADE REQUIRED )
-#find_package( VTK 9 REQUIRED COMPONENTS WrappingPythonCore RenderingCore CommonDataModel CommonExecutionModel )
 
 include_directories( ${PROJECT_SOURCE_DIR} )
 file( GLOB CPP_FILES ${PROJECT_SOURCE_DIR}/*.cpp )
@@ -54,7 +41,7 @@ if(WIN32)
                               "Standard_IMPORTC=extern \"C\""
                               "_SILENCE_CXX17_ITERATOR_BASE_CLASS_DEPRECATION_WARNING")
   target_link_libraries( {{ name }} PRIVATE opengl32 )
-  target_link_libraries( {{ name }} PRIVATE ${PYTHON_LIBRARY} )
+  target_link_libraries( {{ name }} PRIVATE ${Python_LIBRARIES} )
 
 else()
   set_target_properties( {{ name }}
