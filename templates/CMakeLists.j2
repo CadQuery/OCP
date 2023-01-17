@@ -22,8 +22,11 @@ file( GLOB CPP_FILES ${PROJECT_SOURCE_DIR}/*.cpp )
 
 add_library( {{ name }} MODULE ${CPP_FILES} )
 
+target_include_directories( {{ name }} PRIVATE ${OpenCASCADE_INCLUDE_DIR} )
+
 target_link_libraries( {{ name }} PRIVATE ${OpenCASCADE_LIBRARIES} )
 target_link_libraries( {{ name }} PRIVATE pybind11::pybind11 VTK::WrappingPythonCore VTK::RenderingCore VTK::CommonDataModel VTK::CommonExecutionModel)
+
 set_target_properties( {{ name }}
                        PROPERTIES
                        CXX_STANDARD 17
