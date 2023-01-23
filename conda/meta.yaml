@@ -18,27 +18,6 @@ build:
     - cmake --install build --prefix {{ environ.get('STDLIB_DIR') }}
 
 requirements:
-  build:
-    - clangdev
-    - python-clang
-    - boost=1.78.0
-    - occt={{ OCCT_VER }}
-    - pybind11=2.9.*
-    - python {{ environ.get('PYTHON_VERSION') }}
-    - joblib
-    - toml
-    - cmake>=3.16
-    - ninja
-    - click
-    - jinja2
-    - logzero
-    - pandas
-    - path
-    - pyparsing
-    - schema
-    - tqdm
-    - toposort
-    - vtk
   run:
     - python {{ environ.get('PYTHON_VERSION') }}
     - occt {{OCCT_VER}}
