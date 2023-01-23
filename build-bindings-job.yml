@@ -4,10 +4,10 @@ parameters:
   py_maj: '3'
   py_min: '9'
   py_min_build:
-  - 7
   - 8
   - 9
   - 10
+  - 11
   config_file: 'ocp.toml'
   conda_bld: '3.16.3'
   conda_env_file: 'env.yml'
