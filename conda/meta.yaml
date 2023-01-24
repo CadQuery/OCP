@@ -18,6 +18,9 @@ build:
     - cmake --install build --prefix {{ environ.get('STDLIB_DIR') }}
 
 requirements:
+  build:
+    - python {{ environ.get('PYTHON_VERSION') }}
+    - occt={{ OCCT_VER }}
   run:
     - python {{ environ.get('PYTHON_VERSION') }}
     - occt {{OCCT_VER}}
