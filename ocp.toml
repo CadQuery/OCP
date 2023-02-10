@@ -490,7 +490,7 @@ class Adaptor3d_Surface;
 
         [Modules.TopoDS.Classes.TopoDS_Shape.additional_methods.__bool__]
 
-            body = "[]( const TopoDS_Shape & self){ return not self.IsNull();}"
+            body = "[]( const TopoDS_Shape & self){ return !self.IsNull();}"
             help = "Check if shape is not Null"
             arguments  = []
 
