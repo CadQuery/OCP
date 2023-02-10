@@ -488,6 +488,13 @@ class Adaptor3d_Surface;
 
         exclude_typedefs = ["TopoDS_ListOfShape"]
 
+        [Modules.TopoDS.Classes.TopoDS_Shape.additional_methods.__bool__]
+
+            body = "[]( const TopoDS_Shape & self){ return not self.IsNull();}"
+            help = "Check if shape is not Null"
+            arguments  = []
+
+
     [Modules.IntPolyh]
 
         exclude_typedefs = ["IntPolyh_ArrayOfEdges","IntPolyh_ArrayOfTriangles","IntPolyh_ArrayOfPointNormal","IntPolyh_ArrayOfSectionLines","IntPolyh","IntPolyh_ArrayOfTangentZones","IntPolyh_ArrayOfPoints"]
@@ -501,6 +508,12 @@ class Adaptor3d_Surface;
 
         "BRepBuilderAPI_CellFilter.hxx" = "#include <gp_XY.hxx>"
         "BRepBuilderAPI_VertexInspector.hxx" = "#include <gp_XY.hxx>"
+
+        [Modules.BRepBuilderAPI.Classes.BRepBuilderAPI_Command.additional_methods.__bool__]
+
+            body = "[]( const BRepBuilderAPI_Command & self){ return self.IsDone();}"
+            help = "Check if command is done"
+            arguments  = []
 
 
     [Modules.MAT2d]
