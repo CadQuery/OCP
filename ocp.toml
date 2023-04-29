@@ -845,6 +845,12 @@ struct NSOpenGLContext {};"""
             body = "[]( TDF_Label & self , const Standard_GUID& anID, TDF_Attribute& anAttribute){ Handle(TDF_Attribute) dummy_attr; auto rv = self.FindAttribute(anID, dummy_attr); anAttribute.Restore(dummy_attr); return rv;}"
             help = "Finds an attributes according to an ID."
             arguments  = ["GUID","Attribute"]
+            
+        [Modules.TDF.Classes.TDF_Label.additional_methods.__bool__]
+
+            body = "[]( const TDF_Label & self){ return !self.IsNull();}"
+            help = "Check if label is not Null"
+            arguments  = []
 
 
     [Modules.XmlTObjDrivers]
