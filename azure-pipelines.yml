@@ -27,4 +27,4 @@ jobs:
 - template: build-bindings-job.yml
   parameters:
     name: OSX
-    vmImage: 'macOS-10.15'
+    vmImage: 'macOS-latest'
