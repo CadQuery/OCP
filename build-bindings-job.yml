@@ -55,6 +55,7 @@ jobs:
         source activate cpp-py-bindgen && \
         echo | clang -v -E -x c - && \
         cd $CONDA_PREFIX && \
+        find . -iname \*.h\* && \
         find . -name type_traits\* && \
         sudo find /usr/local/ -name type_traits\*
       displayName: 'Mac header check'
