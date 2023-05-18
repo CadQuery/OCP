@@ -38,8 +38,8 @@ jobs:
       vmImage: ${{ parameters.vmImage }}
 
   - bash: |
-      conda env create -f ${{ parameters.conda_env_file }} && \
-      conda install -n cpp-py-bindgen -y python=${{ parameters.py_maj }}.${{ parameters.py_min }}
+      mamba env create -f ${{ parameters.conda_env_file }} && \
+      mamba install -n cpp-py-bindgen -y python=${{ parameters.py_maj }}.${{ parameters.py_min }}
     displayName: 'Prepare conda environment'
 
   - bash: |
@@ -55,6 +55,8 @@ jobs:
         source activate cpp-py-bindgen && \
         echo | clang -v -E -x c - && \
         cd $CONDA_PREFIX && \
+        cat /usr/local/miniconda/envs/cpp-py-bindgen/include/c++/v1/cstddef && \
+        cat /usr/local/miniconda/envs/cpp-py-bindgen/include/c++/v1/stddef.h && \ 
         find . -iname \*.h\* && \
         find . -name type_traits\* && \
         sudo find /usr/local/ -name type_traits\*
