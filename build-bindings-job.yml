@@ -30,8 +30,12 @@ jobs:
 
   - ${{ if contains(parameters.vmImage, 'mac') }}:
     - bash: |
-        ln -s "$(xcrun --sdk macosx12.0 --show-sdk-path)/System/Library/Frameworks/OpenGL.framework/Headers" /usr/local/include/OpenGL
-      displayName: 'Find GL headers'
+        curl -L -O https://github.com/phracker/MacOSX-SDKs/releases/download/11.3/MacOSX10.9.sdk.tar.xz && \
+        mkdir -p /opt && \
+        tar -xf MacOSX10.9.sdk.tar.xz -C /opt && \
+        ln -s /opt/MacOSX10.9.sdk/usr/local/include /usr/local/include && \
+        ln -s /opt/MacOSX10.9.sdk/System/Library/Frameworks/OpenGL.framework/Headers /usr/local/include/OpenGL
+      displayName: 'SDK install and symlink'
 
   - template: conda-enable.yml@templates
     parameters:
