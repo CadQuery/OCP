@@ -10,7 +10,7 @@ parameters:
   - 11
   config_file: 'ocp.toml'
   conda_bld: '3.16.3'
-  conda_env_file: 'env.yml'
+  conda_env_file: 'environment.devenv.yml'
   CXX: g++-8
 
 jobs:
