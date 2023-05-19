@@ -45,6 +45,7 @@ jobs:
       vmImage: ${{ parameters.vmImage }}
 
   - bash: |
+      mamba-devenv -f ${{ parameters.conda_env_file }} --print && \
       mamba-devenv -f ${{ parameters.conda_env_file }} && \
       mamba install -n cpp-py-bindgen -y python=${{ parameters.py_maj }}.${{ parameters.py_min }}
     displayName: 'Prepare conda environment'
