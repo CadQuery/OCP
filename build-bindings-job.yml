@@ -33,7 +33,7 @@ jobs:
         curl -L -O https://github.com/phracker/MacOSX-SDKs/releases/download/11.3/MacOSX10.9.sdk.tar.xz && \
         sudo mkdir -p /opt && \
         sudo tar -xf MacOSX10.9.sdk.tar.xz -C /opt && \
-        sudo ln -s /opt/MacOSX10.9.sdk/usr/local/include /usr/local/include && \
+        sudo ln -s /opt/MacOSX10.9.sdk/usr/include /usr/local/include && \
         sudo ln -s /opt/MacOSX10.9.sdk/System/Library/Frameworks/OpenGL.framework/Headers /usr/local/include/OpenGL
       displayName: 'SDK install and symlink'
 
