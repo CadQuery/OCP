@@ -34,7 +34,9 @@ jobs:
         sudo mkdir -p /opt && \
         sudo tar -xf MacOSX10.9.sdk.tar.xz -C /opt && \
         sudo ln -s /opt/MacOSX10.9.sdk/usr/include /usr/local/include && \
-        sudo ln -s /opt/MacOSX10.9.sdk/System/Library/Frameworks/OpenGL.framework/Headers /usr/local/include/OpenGL
+        sudo ln -s /opt/MacOSX10.9.sdk/System/Library/Frameworks/OpenGL.framework/Headers /usr/local/include/OpenGL && \
+        echo "Listing usr/local/include" && \
+        find /usr/local/include -iname \*.h
       displayName: 'SDK install and symlink'
 
   - template: conda-enable.yml@templates
@@ -63,9 +65,7 @@ jobs:
         cat /usr/local/miniconda/envs/cpp-py-bindgen/include/c++/v1/stddef.h && \ 
         find . -iname \*.h\* && \
         find . -name type_traits\* && \
-        sudo find /usr/local/ -name type_traits\* && \
-        echo "usr/local/include" && \
-        find /usr/local/include \*.h
+        sudo find /usr/local/ -name type_traits\*
       displayName: 'Mac header check'
 
   - bash: |
