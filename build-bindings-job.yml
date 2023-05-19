@@ -33,11 +33,11 @@ jobs:
         curl -L -O https://github.com/phracker/MacOSX-SDKs/releases/download/11.3/MacOSX10.9.sdk.tar.xz && \
         sudo mkdir -p /opt && \
         sudo tar -xf MacOSX10.9.sdk.tar.xz -C /opt && \
-        sudo mkdir -p /opt/usr/local/include && \
+        sudo mkdir -p /opt/usr/local/ && \
         sudo ln -s /opt/MacOSX10.9.sdk/usr/include /opt/usr/local/include && \
         sudo ln -s /opt/MacOSX10.9.sdk/System/Library/Frameworks/OpenGL.framework/Headers /usr/local/include/OpenGL && \
         echo "Listing usr/local/include" && \
-        find /opt/usr/local/include -iname \*.h
+        ls -l /opt/usr/local/
       displayName: 'SDK install and symlink'
 
   - template: conda-enable.yml@templates
