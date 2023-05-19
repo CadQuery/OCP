@@ -37,8 +37,8 @@ if( NOT EXISTS ${CMAKE_SOURCE_DIR}/OCP )
             -l ${LIBCLANG_PATH}
             -i ${CLANG_INCLUDE_DIRS}/
             -i ${VTK_INCLUDE_DIR}/
-            ${CXX_INCLUDES}
             -i ${CLANG_INSTALL_PREFIX}/lib/clang/${LLVM_VERSION}/include/
+            ${CXX_INCLUDES}
             all ocp.toml ${PLATFORM}
         WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
         COMMAND_ECHO STDOUT
