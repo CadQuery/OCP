@@ -35,7 +35,7 @@ jobs:
         sudo tar -xf MacOSX10.15.sdk.tar.xz -C /opt && \
         sudo mkdir -p /opt/usr/local/ && \
         sudo ln -s /opt/MacOSX10.15.sdk/usr/include /opt/usr/local/include && \
-        sudo ln -s /opt/MacOSX10.15.sdk/System/Library/Frameworks/OpenGL.framework/Headers /usr/local/include/OpenGL && \
+        sudo ln -s /opt/MacOSX10.15.sdk/System/Library/Frameworks/OpenGL.framework/Headers /usr/local/include/OpenGL
       displayName: 'SDK install and symlink'
 
   - template: conda-enable.yml@templates
