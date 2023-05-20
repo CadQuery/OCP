@@ -112,11 +112,10 @@ jobs:
       - bash: sudo apt-get update && sudo apt-get install ${{ parameters.CXX }} mesa-common-dev libgl1-mesa-dev libglu1-mesa-dev freeglut3-dev
         displayName: 'Install gl headers and the requested compiler'
 
-    - ${{ if contains(parameters.vmImage, 'mac') }}:
-      - bash: |
-          sudo find /Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk/System/Library/Frameworks/ && \
-          ln -s "$(xcrun --sdk macosx --show-sdk-path)/System/Library/Frameworks/OpenGL.framework/Headers" /usr/local/include/OpenGL
-        displayName: 'Search for GL'
+    #- ${{ if contains(parameters.vmImage, 'mac') }}:
+    #  - bash: |
+    #      ln -s "$(xcrun --sdk macosx --show-sdk-path)/System/Library/Frameworks/OpenGL.framework/Headers" /usr/local/include/OpenGL
+    #    displayName: 'Search for GL'
 
     - ${{ if contains(parameters.vmImage, 'win') }}:
       - bash: ls "C:/Program Files (x86)/Microsoft Visual Studio/2019/Enterprise/VC/Auxiliary/Build"
@@ -132,8 +131,8 @@ jobs:
         vmImage: ${{ parameters.vmImage }}
 
     - bash: |
-        sed -e s/python=.../python=${{ parameters.py_maj }}.${{ py_min }}/  ${{ parameters.conda_env_file }} > _env.yml && \
-        conda env create -f _env.yml
+        sed -e s/python=.../python=${{ parameters.py_maj }}.${{ py_min }}/  ${{ parameters.conda_env_file }} > _env.devenv.yml && \
+        mamba-devenv -f _env.devenv.yml
       displayName: 'Prepare conda environment'
 
     - bash: |
