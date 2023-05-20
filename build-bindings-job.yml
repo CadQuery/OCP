@@ -111,9 +111,6 @@ jobs:
         displayName: 'Install gl headers and the requested compiler'
 
     - ${{ if contains(parameters.vmImage, 'mac') }}:
-    #  - bash: |
-    #      ln -s "$(xcrun --sdk macosx --show-sdk-path)/System/Library/Frameworks/OpenGL.framework/Headers" /usr/local/include/OpenGL
-    #    displayName: 'Search for GL'
       - bash: |
           curl -L -O https://github.com/phracker/MacOSX-SDKs/releases/download/11.3/MacOSX10.15.sdk.tar.xz && \
           sudo mkdir -p /opt && \
