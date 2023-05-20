@@ -36,8 +36,6 @@ jobs:
         sudo mkdir -p /opt/usr/local/ && \
         sudo ln -s /opt/MacOSX10.15.sdk/usr/include /opt/usr/local/include && \
         sudo ln -s /opt/MacOSX10.15.sdk/System/Library/Frameworks/OpenGL.framework/Headers /usr/local/include/OpenGL && \
-        echo "Listing usr/local/include" && \
-        ls -l /opt/usr/local/
       displayName: 'SDK install and symlink'
 
   - template: conda-enable.yml@templates
@@ -112,10 +110,15 @@ jobs:
       - bash: sudo apt-get update && sudo apt-get install ${{ parameters.CXX }} mesa-common-dev libgl1-mesa-dev libglu1-mesa-dev freeglut3-dev
         displayName: 'Install gl headers and the requested compiler'
 
-    #- ${{ if contains(parameters.vmImage, 'mac') }}:
+    - ${{ if contains(parameters.vmImage, 'mac') }}:
     #  - bash: |
     #      ln -s "$(xcrun --sdk macosx --show-sdk-path)/System/Library/Frameworks/OpenGL.framework/Headers" /usr/local/include/OpenGL
     #    displayName: 'Search for GL'
+      - bash: |
+          curl -L -O https://github.com/phracker/MacOSX-SDKs/releases/download/11.3/MacOSX10.15.sdk.tar.xz && \
+          sudo mkdir -p /opt && \
+          sudo tar -xf MacOSX10.15.sdk.tar.xz -C /opt
+        displayName: 'SDK install'
 
     - ${{ if contains(parameters.vmImage, 'win') }}:
       - bash: ls "C:/Program Files (x86)/Microsoft Visual Studio/2019/Enterprise/VC/Auxiliary/Build"
@@ -135,23 +138,6 @@ jobs:
         mamba-devenv -f _env.devenv.yml
       displayName: 'Prepare conda environment'
 
-    - bash: |
-        source activate cpp-py-bindgen && \
-        conda info -a && \
-        conda list && \
-        which python && \
-        env
-      displayName: 'Conda env sanity checks'
-
-    - ${{ if contains(parameters.vmImage, 'mac') }}:
-      - bash: |
-          source activate cpp-py-bindgen && \
-          echo | clang -v -E -x c - && \
-          cd $CONDA_PREFIX && \
-          find . -name type_traits\* && \
-          sudo find /usr/local/ -name type_traits\*
-        displayName: 'Mac header check'
-
     - ${{ if contains(parameters.vmImage, 'Ubuntu') }}:
       - bash: |
           source activate cpp-py-bindgen && \
@@ -167,7 +153,7 @@ jobs:
           source activate cpp-py-bindgen && \
           cp -rf opencascade $CONDA_PREFIX/include && \
           cat $CONDA_PREFIX/include/opencascade/OpenGl_HaltonSampler.hxx  &&\
-          cmake -B build -S "../$(OCP_src)" -G Ninja -DCMAKE_BUILD_TYPE=Release && \
+          cmake -B build -S "../$(OCP_src)" -G Ninja -DCMAKE_BUILD_TYPE=Release -DCMAKE_OSX_SYSROOT=/opt/MacOSX10.15.sdk/ && \
           cmake --build build -j $(n_cores) -- -k 0 && \
           rm -rf build/CMakeFiles
         displayName: 'Compile'
