@@ -10,7 +10,7 @@ parameters:
   - 11
   config_file: 'ocp.toml'
   conda_bld: '3.16.3'
-  conda_env_file: 'env.yml'
+  conda_env_file: 'environment.devenv.yml'
   CXX: g++-8
 
 jobs:
@@ -30,16 +30,22 @@ jobs:
 
   - ${{ if contains(parameters.vmImage, 'mac') }}:
     - bash: |
-        ln -s "$(xcrun --sdk macosx --show-sdk-path)/System/Library/Frameworks/OpenGL.framework/Headers" /usr/local/include/OpenGL
-      displayName: 'Find GL headers'
+        curl -L -O https://github.com/phracker/MacOSX-SDKs/releases/download/11.3/MacOSX10.15.sdk.tar.xz && \
+        sudo mkdir -p /opt && \
+        sudo tar -xf MacOSX10.15.sdk.tar.xz -C /opt && \
+        sudo mkdir -p /opt/usr/local/ && \
+        sudo ln -s /opt/MacOSX10.15.sdk/usr/include /opt/usr/local/include && \
+        sudo ln -s /opt/MacOSX10.15.sdk/System/Library/Frameworks/OpenGL.framework/Headers /usr/local/include/OpenGL
+      displayName: 'SDK install and symlink'
 
   - template: conda-enable.yml@templates
     parameters:
       vmImage: ${{ parameters.vmImage }}
 
   - bash: |
-      conda env create -f ${{ parameters.conda_env_file }} && \
-      conda install -n cpp-py-bindgen -y python=${{ parameters.py_maj }}.${{ parameters.py_min }}
+      mamba-devenv -f ${{ parameters.conda_env_file }} --print && \
+      mamba-devenv -f ${{ parameters.conda_env_file }} && \
+      mamba install -n cpp-py-bindgen -y python=${{ parameters.py_maj }}.${{ parameters.py_min }}
     displayName: 'Prepare conda environment'
 
   - bash: |
@@ -55,6 +61,9 @@ jobs:
         source activate cpp-py-bindgen && \
         echo | clang -v -E -x c - && \
         cd $CONDA_PREFIX && \
+        cat /usr/local/miniconda/envs/cpp-py-bindgen/include/c++/v1/cstddef && \
+        cat /usr/local/miniconda/envs/cpp-py-bindgen/include/c++/v1/stddef.h && \ 
+        find . -iname \*.h\* && \
         find . -name type_traits\* && \
         sudo find /usr/local/ -name type_traits\*
       displayName: 'Mac header check'
@@ -103,9 +112,10 @@ jobs:
 
     - ${{ if contains(parameters.vmImage, 'mac') }}:
       - bash: |
-          sudo find /Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk/System/Library/Frameworks/ && \
-          ln -s "$(xcrun --sdk macosx --show-sdk-path)/System/Library/Frameworks/OpenGL.framework/Headers" /usr/local/include/OpenGL
-        displayName: 'Search for GL'
+          curl -L -O https://github.com/phracker/MacOSX-SDKs/releases/download/11.3/MacOSX10.15.sdk.tar.xz && \
+          sudo mkdir -p /opt && \
+          sudo tar -xf MacOSX10.15.sdk.tar.xz -C /opt
+        displayName: 'SDK install'
 
     - ${{ if contains(parameters.vmImage, 'win') }}:
       - bash: ls "C:/Program Files (x86)/Microsoft Visual Studio/2019/Enterprise/VC/Auxiliary/Build"
@@ -121,26 +131,9 @@ jobs:
         vmImage: ${{ parameters.vmImage }}
 
     - bash: |
-        sed -e s/python=.../python=${{ parameters.py_maj }}.${{ py_min }}/  ${{ parameters.conda_env_file }} > _env.yml && \
-        conda env create -f _env.yml
+        sed -e s/python=.../python=${{ parameters.py_maj }}.${{ py_min }}/  ${{ parameters.conda_env_file }} > _env.devenv.yml && \
+        mamba-devenv -f _env.devenv.yml
       displayName: 'Prepare conda environment'
-
-    - bash: |
-        source activate cpp-py-bindgen && \
-        conda info -a && \
-        conda list && \
-        which python && \
-        env
-      displayName: 'Conda env sanity checks'
-
-    - ${{ if contains(parameters.vmImage, 'mac') }}:
-      - bash: |
-          source activate cpp-py-bindgen && \
-          echo | clang -v -E -x c - && \
-          cd $CONDA_PREFIX && \
-          find . -name type_traits\* && \
-          sudo find /usr/local/ -name type_traits\*
-        displayName: 'Mac header check'
 
     - ${{ if contains(parameters.vmImage, 'Ubuntu') }}:
       - bash: |
@@ -157,7 +150,7 @@ jobs:
           source activate cpp-py-bindgen && \
           cp -rf opencascade $CONDA_PREFIX/include && \
           cat $CONDA_PREFIX/include/opencascade/OpenGl_HaltonSampler.hxx  &&\
-          cmake -B build -S "../$(OCP_src)" -G Ninja -DCMAKE_BUILD_TYPE=Release && \
+          cmake -B build -S "../$(OCP_src)" -G Ninja -DCMAKE_BUILD_TYPE=Release -DCMAKE_OSX_SYSROOT=/opt/MacOSX10.15.sdk/ && \
           cmake --build build -j $(n_cores) -- -k 0 && \
           rm -rf build/CMakeFiles
         displayName: 'Compile'

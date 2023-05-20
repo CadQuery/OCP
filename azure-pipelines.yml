@@ -18,7 +18,7 @@ jobs:
 - template: build-bindings-job.yml
   parameters:
     name: Linux
-    vmImage: 'ubuntu-18.04'
+    vmImage: 'ubuntu-20.04'
 - template: build-bindings-job.yml
   parameters:
     name: Windows
@@ -27,4 +27,4 @@ jobs:
 - template: build-bindings-job.yml
   parameters:
     name: OSX
-    vmImage: 'macOS-10.15'
+    vmImage: 'macOS-latest'

@@ -3,6 +3,7 @@ channels:
   - conda-forge
 dependencies:
   - clangdev=14.*
+  - libcxx=14.0.6  # [not win]
   - python-clang
   - boost=1.78.*
   - occt=7.7.0
@@ -16,7 +17,7 @@ dependencies:
   - click
   - jinja2
   - logzero
-  - pandas
+  - pandas <2
   - path
   - pyparsing
   - schema
