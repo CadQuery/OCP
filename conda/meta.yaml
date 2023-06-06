@@ -23,8 +23,8 @@ requirements:
     - occt={{ OCCT_VER }}
   run:
     - python {{ environ.get('PYTHON_VERSION') }}
-    - occt {{OCCT_VER}}
-    - {{ pin_compatible('vtk', max_pin='x.x') }}
+    - occt={{ OCCT_VER }}
+    #- {{ pin_compatible('vtk', max_pin='x.x') }}
 
 test:
   imports:
