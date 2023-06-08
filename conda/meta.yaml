@@ -1,5 +1,5 @@
-{% set OCCT_VER = "7.7.0" %}
-{% set OCP_TWEAK = "1" %}
+{% set OCCT_VER = "7.7.1" %}
+{% set OCP_TWEAK = "0" %}
 
 package:
   name: ocp
@@ -23,8 +23,7 @@ requirements:
     - occt={{ OCCT_VER }}
   run:
     - python {{ environ.get('PYTHON_VERSION') }}
-    - occt {{OCCT_VER}}
-    - {{ pin_compatible('vtk', max_pin='x.x') }}
+    - occt={{ OCCT_VER }}
 
 test:
   imports:

@@ -486,6 +486,8 @@ class Adaptor3d_Surface;
 
     [Modules.TopoDS]
 
+        include_header_pre = "#include <cstdint>"
+
         exclude_typedefs = ["TopoDS_ListOfShape"]
 
         [Modules.TopoDS.Classes.TopoDS_Shape.additional_methods.__bool__]
@@ -493,7 +495,12 @@ class Adaptor3d_Surface;
             body = "[]( const TopoDS_Shape & self){ return !self.IsNull();}"
             help = "Check if shape is not Null"
             arguments  = []
+        
+        [Modules.TopoDS.Classes.TopoDS_Shape.additional_methods._address]
 
+            body = "[]( const TopoDS_Shape & self){ return reinterpret_cast<uintptr_t>(&self);}"
+            help = "Get the instance address"
+            arguments  = []
 
     [Modules.IntPolyh]
 
@@ -522,7 +529,7 @@ class Adaptor3d_Surface;
 
     [Modules.BRepExtrema]
 
-        exclude_typedefs = ["BRepExtrema_MapOfIntegerPackedMapOfInteger"]
+        exclude_typedefs = ["BRepExtrema_MapOfIntegerPackedMapOfInteger", "BRepExtrema_CellFilter"]
 
      [Modules.MAT]
 
