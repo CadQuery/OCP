@@ -1,5 +1,5 @@
 {% set OCCT_VER = "7.7.1" %}
-{% set OCP_TWEAK = "0" %}
+{% set OCP_TWEAK = "1dev" %}
 
 package:
   name: ocp
