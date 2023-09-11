@@ -405,7 +405,7 @@ class Adaptor3d_Surface;
 
 [Attributes]
 
-    __version__ = "7.7.1.0"
+    __version__ = "7.7.1.1dev"
 
 [Modules]
 
@@ -492,15 +492,21 @@ class Adaptor3d_Surface;
 
         [Modules.TopoDS.Classes.TopoDS_Shape.additional_methods.__bool__]
 
-            body = "[]( const TopoDS_Shape & self){ return !self.IsNull();}"
+            body = "[]( const TopoDS_Shape & self ){ return !self.IsNull();}"
             help = "Check if shape is not Null"
             arguments  = []
         
         [Modules.TopoDS.Classes.TopoDS_Shape.additional_methods._address]
 
-            body = "[]( const TopoDS_Shape & self){ return reinterpret_cast<uintptr_t>(&self);}"
+            body = "[]( const TopoDS_Shape & self ){ return reinterpret_cast<uintptr_t>(&self);}"
             help = "Get the instance address"
             arguments  = []
+
+        [Modules.TopoDS.Classes.TopoDS_Shape.additional_static_methods._from_address]
+
+            body = "[]( const uintptr_t addr ){ return reinterpret_cast<TopoDS_Shape*>(addr);}"
+            help = "Cast an address to a shape"
+            arguments  = ["address"]
 
     [Modules.IntPolyh]
 
