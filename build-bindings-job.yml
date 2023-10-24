@@ -183,7 +183,7 @@ jobs:
     - bash: |
           conda create -n build -y python=3.6 conda-build=${{ parameters.conda_bld }} anaconda-client && \
           source activate build && \
-          conda build --token $TOKEN --user cadquery -c conda-forge -c conda-forge/label/occt_rc conda
+          conda build --token $TOKEN --user cadquery --label dev -c conda-forge -c conda-forge/label/occt_rc conda
       displayName: 'Build conda package'
       condition: ne(variables['Build.Reason'], 'PullRequest')
       env:
