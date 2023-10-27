@@ -5,7 +5,7 @@ dependencies:
   - clangdev=14.*
   - libcxx=14.0.6  # [not win]
   - python-clang
-  - boost=1.78.*
+  - boost=1.82.*
   - occt=7.7.2=all*
   - pybind11=2.10.*
   - python=3.9
