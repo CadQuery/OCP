@@ -6,13 +6,12 @@ dependencies:
   - libcxx=14.0.6  # [not win]
   - python-clang
   - boost=1.78.*
-  - occt=7.7.1
-  - vtk=9.2.*=qt*
+  - occt=7.7.2=all*
   - pybind11=2.10.*
   - python=3.9
   - joblib
   - toml
-  - cmake=3.24
+  - cmake >3.24
   - ninja
   - click
   - jinja2
