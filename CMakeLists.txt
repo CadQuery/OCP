@@ -9,7 +9,8 @@ find_package(RapidJSON REQUIRED )
 find_package( Clang REQUIRED )
 
 set( Python_FIND_VIRTUALENV FIRST )
-find_package( Python COMPONENTS Interpreter REQUIRED )
+find_package( Python 3.9 COMPONENTS Interpreter Development REQUIRED )
+
 
 get_target_property( LIBCLANG_PATH libclang IMPORTED_LOCATION_RELEASE )
 get_target_property( VTK_INCLUDE_DIR VTK::CommonCore INTERFACE_INCLUDE_DIRECTORIES )
