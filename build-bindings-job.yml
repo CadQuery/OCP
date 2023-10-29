@@ -80,7 +80,7 @@ jobs:
       source activate cpp-py-bindgen && \
       echo "find_package(Python COMPONENTS Development REQUIRED)" >> test.cmake && \
       cmake --debug-find -DPython_FIND_VIRTUALENV=ONLY -P test.cmake && \
-      cmake -DPython_ROOT_DIR=$CONDA_PREFIX -DPython_FIND_VIRTUALENV=ONLY -B new -S . -G Ninja
+      cmake -DPython_ROOT_DIR=$CONDA_PREFIX -DPython3_ROOT_DIR=$CONDA_PREFIX -DPython_FIND_VIRTUALENV=ONLY -DPython3_FIND_VIRTUALENV=ONLY -B new -S . -G Ninja
     displayName: 'CMake based pywrap call'
     name: 'Generate'
 
