@@ -188,7 +188,7 @@ jobs:
       condition: ne(variables['Build.Reason'], 'PullRequest')
       env:
         BUILD_STRING: "1"
-        PYTHON_VERSION: ${{ parameters.py_maj }}.${{ py_min_build }}
+        PYTHON_VERSION: ${{ parameters.py_maj }}.${{ py_min }}
         TOKEN: $(anaconda.TOKEN)
 
     - bash: |
@@ -199,5 +199,5 @@ jobs:
       condition: eq(variables['Build.Reason'], 'PullRequest')
       env:
         BUILD_STRING: "1"
-        PYTHON_VERSION: ${{ parameters.py_maj }}.${{ py_min_build }}
+        PYTHON_VERSION: ${{ parameters.py_maj }}.${{ py_min }}
         TOKEN: $(anaconda.TOKEN)
