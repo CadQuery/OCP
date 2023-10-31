@@ -2,12 +2,12 @@ parameters:
   name: 'Generate bindings'
   vmImage: 'ubuntu-latest'
   py_maj: '3'
-  py_min: '9'
+  py_min: '11'
   py_min_build:
-  - 8
   - 9
   - 10
   - 11
+  - 12
   config_file: 'ocp.toml'
   conda_bld: '3.27.0'
   conda_env_file: 'environment.devenv.yml'
@@ -181,9 +181,9 @@ jobs:
       displayName: 'Test'
 
     - bash: |
-          conda create -n build -y python=3.6 conda-build=${{ parameters.conda_bld }} anaconda-client && \
+          conda create -n build -y python=$PYTHON_VERSION conda-build=${{ parameters.conda_bld }} anaconda-client && \
           source activate build && \
-          conda build --token $TOKEN --user cadquery --label dev -c conda-forge -c conda-forge/label/occt_rc conda
+          conda build --token $TOKEN --user cadquery --label dev -c conda-forge --override-channels conda
       displayName: 'Build conda package'
       condition: ne(variables['Build.Reason'], 'PullRequest')
       env:
@@ -192,9 +192,9 @@ jobs:
         TOKEN: $(anaconda.TOKEN)
 
     - bash: |
-          conda create -n build -y -c conda-forge python=3.6 conda-build=${{ parameters.conda_bld }} anaconda-client && \
+          conda create -n build -y -c conda-forge python=$PYTHON_VERSION conda-build=${{ parameters.conda_bld }} anaconda-client && \
           source activate build && \
-          conda build -c conda-forge conda
+          conda build -c conda-forge --override-channels conda
       displayName: 'Build conda package'
       condition: eq(variables['Build.Reason'], 'PullRequest')
       env:
