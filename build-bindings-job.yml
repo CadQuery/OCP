@@ -54,18 +54,6 @@ jobs:
       env
     displayName: 'Conda env sanity checks'
 
-  - ${{ if contains(parameters.vmImage, 'mac') }}:
-    - bash: |
-        source activate cpp-py-bindgen && \
-        echo | clang -v -E -x c - && \
-        cd $CONDA_PREFIX && \
-        cat /usr/local/miniconda/envs/cpp-py-bindgen/include/c++/v1/cstddef && \
-        cat /usr/local/miniconda/envs/cpp-py-bindgen/include/c++/v1/stddef.h && \ 
-        find . -iname \*.h\* && \
-        find . -name type_traits\* && \
-        sudo find /usr/local/ -name type_traits\*
-      displayName: 'Mac header check'
-
   - bash: |
       source activate cpp-py-bindgen && \
       OUTPUT=`python -c'import toml; print(toml.load("${{ parameters.config_file }}")["output_folder"])'`  && \
@@ -76,8 +64,6 @@ jobs:
 
   - bash: |
       source activate cpp-py-bindgen && \
-      echo "find_package(Python COMPONENTS Development REQUIRED)" >> test.cmake && \
-      cmake --debug-find -DPython_FIND_VIRTUALENV=ONLY -P test.cmake && \
       cmake -DPython_ROOT_DIR=$CONDA_PREFIX -DPython3_ROOT_DIR=$CONDA_PREFIX -DPython_FIND_VIRTUALENV=ONLY -DPython3_FIND_VIRTUALENV=ONLY -B new -S . -G Ninja
     displayName: 'CMake based pywrap call'
     name: 'Generate'
