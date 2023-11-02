@@ -2,7 +2,8 @@ name: cpp-py-bindgen
 channels:
   - conda-forge
 dependencies:
-  - clangdev=14.*
+  - clangdev=16.*
+  - libcxx=16.* # [not win]
   - python-clang
   - boost=1.82.*
   - occt=7.7.2=all*
