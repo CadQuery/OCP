@@ -2,14 +2,13 @@ parameters:
   name: 'Generate bindings'
   vmImage: 'ubuntu-latest'
   py_maj: '3'
-  py_min: '9'
+  py_min: '11'
   py_min_build:
-  - 8
   - 9
   - 10
   - 11
   config_file: 'ocp.toml'
-  conda_bld: '3.16.3'
+  conda_bld: '3.27.0'
   conda_env_file: 'environment.devenv.yml'
   CXX: g++-8
 
@@ -30,12 +29,12 @@ jobs:
 
   - ${{ if contains(parameters.vmImage, 'mac') }}:
     - bash: |
-        curl -L -O https://github.com/phracker/MacOSX-SDKs/releases/download/11.3/MacOSX10.15.sdk.tar.xz && \
+        curl -L -O https://github.com/phracker/MacOSX-SDKs/releases/download/11.3/MacOSX11.3.sdk.tar.xz && \
         sudo mkdir -p /opt && \
-        sudo tar -xf MacOSX10.15.sdk.tar.xz -C /opt && \
+        sudo tar -xf MacOSX11.3.sdk.tar.xz -C /opt && \
         sudo mkdir -p /opt/usr/local/ && \
-        sudo ln -s /opt/MacOSX10.15.sdk/usr/include /opt/usr/local/include && \
-        sudo ln -s /opt/MacOSX10.15.sdk/System/Library/Frameworks/OpenGL.framework/Headers /usr/local/include/OpenGL
+        sudo ln -s /opt/MacOSX11.3.sdk/usr/include /opt/usr/local/include && \
+        sudo ln -s /opt/MacOSX11.3.sdk/System/Library/Frameworks/OpenGL.framework/Headers /usr/local/include/OpenGL
       displayName: 'SDK install and symlink'
 
   - template: conda-enable.yml@templates
@@ -44,8 +43,7 @@ jobs:
 
   - bash: |
       mamba-devenv -f ${{ parameters.conda_env_file }} --print && \
-      mamba-devenv -f ${{ parameters.conda_env_file }} && \
-      mamba install -n cpp-py-bindgen -y python=${{ parameters.py_maj }}.${{ parameters.py_min }}
+      mamba-devenv -f ${{ parameters.conda_env_file }}
     displayName: 'Prepare conda environment'
 
   - bash: |
@@ -55,18 +53,6 @@ jobs:
       which python && \
       env
     displayName: 'Conda env sanity checks'
-
-  - ${{ if contains(parameters.vmImage, 'mac') }}:
-    - bash: |
-        source activate cpp-py-bindgen && \
-        echo | clang -v -E -x c - && \
-        cd $CONDA_PREFIX && \
-        cat /usr/local/miniconda/envs/cpp-py-bindgen/include/c++/v1/cstddef && \
-        cat /usr/local/miniconda/envs/cpp-py-bindgen/include/c++/v1/stddef.h && \ 
-        find . -iname \*.h\* && \
-        find . -name type_traits\* && \
-        sudo find /usr/local/ -name type_traits\*
-      displayName: 'Mac header check'
 
   - bash: |
       source activate cpp-py-bindgen && \
@@ -78,9 +64,7 @@ jobs:
 
   - bash: |
       source activate cpp-py-bindgen && \
-      echo "find_package(Python3 COMPONENTS Development REQUIRED)" >> test.cmake && \
-      cmake --debug-find -DPython3_FIND_VIRTUALENV=only -P test.cmake && \
-      cmake -DPython3_ROOT_DIR=$CONDA_PREFIX -B new -S . -G Ninja
+      cmake -DPython_ROOT_DIR=$CONDA_PREFIX -DPython3_ROOT_DIR=$CONDA_PREFIX -DPython_FIND_VIRTUALENV=ONLY -DPython3_FIND_VIRTUALENV=ONLY -B new -S . -G Ninja
     displayName: 'CMake based pywrap call'
     name: 'Generate'
 
@@ -181,9 +165,9 @@ jobs:
       displayName: 'Test'
 
     - bash: |
-          conda create -n build -y python=3.6 conda-build=${{ parameters.conda_bld }} anaconda-client && \
+          conda create -n build -y -c conda-forge python=3.11 conda-build anaconda-client && \
           source activate build && \
-          conda build --token $TOKEN --user cadquery --label dev -c conda-forge -c conda-forge/label/occt_rc conda
+          conda build --token $TOKEN --user cadquery --label dev -c conda-forge --override-channels conda
       displayName: 'Build conda package'
       condition: ne(variables['Build.Reason'], 'PullRequest')
       env:
@@ -192,9 +176,9 @@ jobs:
         TOKEN: $(anaconda.TOKEN)
 
     - bash: |
-          conda create -n build -y python=3.6 conda-build=${{ parameters.conda_bld }} anaconda-client && \
+          conda create -n build -y -c conda-forge python=3.11 conda-build anaconda-client && \
           source activate build && \
-          conda build -c conda-forge -c conda-forge/label/occt_rc conda
+          conda build -c conda-forge --override-channels conda
       displayName: 'Build conda package'
       condition: eq(variables['Build.Reason'], 'PullRequest')
       env:

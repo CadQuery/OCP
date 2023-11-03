@@ -405,7 +405,7 @@ class Adaptor3d_Surface;
 
 [Attributes]
 
-    __version__ = "7.7.1.1dev"
+    __version__ = "7.7.2.0dev"
 
 [Modules]
 
@@ -495,7 +495,7 @@ class Adaptor3d_Surface;
             body = "[]( const TopoDS_Shape & self ){ return !self.IsNull();}"
             help = "Check if shape is not Null"
             arguments  = []
-        
+
         [Modules.TopoDS.Classes.TopoDS_Shape.additional_methods._address]
 
             body = "[]( const TopoDS_Shape & self ){ return reinterpret_cast<uintptr_t>(&self);}"
@@ -858,7 +858,7 @@ struct NSOpenGLContext {};"""
             body = "[]( TDF_Label & self , const Standard_GUID& anID, TDF_Attribute& anAttribute){ Handle(TDF_Attribute) dummy_attr; auto rv = self.FindAttribute(anID, dummy_attr); anAttribute.Restore(dummy_attr); return rv;}"
             help = "Finds an attributes according to an ID."
             arguments  = ["GUID","Attribute"]
-            
+
         [Modules.TDF.Classes.TDF_Label.additional_methods.__bool__]
 
             body = "[]( const TDF_Label & self){ return !self.IsNull();}"
@@ -994,7 +994,7 @@ using PolygonOnTriangulation = ShapePersistent_BRep::PolygonOnTriangulation;
         include_header_pre = """#include <ostream>
 using std::basic_ostream;"""
 
-        exclude_methods = ["Image_AlienPixMap::Load"]
+        exclude_methods = ["Image_AlienPixMap::Load", "Image_AlienPixMap::GetPalette"]
 
     [Modules.Prs3d]
 

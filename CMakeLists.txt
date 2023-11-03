@@ -3,13 +3,30 @@ project( OCP )
 
 set( N_PROC 2 CACHE STRING "Number of processes used for generating code")
 
-find_package(LLVM REQUIRED )
-find_package(VTK REQUIRED )
-find_package(RapidJSON REQUIRED )
+
+find_package( LLVM REQUIRED )
+find_package( VTK REQUIRED )
+find_package( RapidJSON REQUIRED )
 find_package( Clang REQUIRED )
 
 set( Python_FIND_VIRTUALENV FIRST )
-find_package( Python COMPONENTS Interpreter REQUIRED )
+find_package( Python 3.9 COMPONENTS Interpreter Development REQUIRED )
+
+# find OCCT and dump symbols
+find_package( OpenCASCADE REQUIRED )
+
+foreach(target ${OpenCASCADE_LIBRARIES} )
+    get_target_property(loc ${target} IMPORTED_LOCATION_RELEASE)
+    list( APPEND occt_libs ${loc} )
+endforeach()
+
+execute_process(
+    COMMAND
+    ${Python_EXECUTABLE}
+    dump_symbols.py
+    "${occt_libs}"
+    )
+
 
 get_target_property( LIBCLANG_PATH libclang IMPORTED_LOCATION_RELEASE )
 get_target_property( VTK_INCLUDE_DIR VTK::CommonCore INTERFACE_INCLUDE_DIRECTORIES )
@@ -19,7 +36,7 @@ message( STATUS "${CMAKE_CXX_IMPLICIT_INCLUDE_DIRECTORIES}")
 if(${CMAKE_SYSTEM_NAME} STREQUAL "Windows")
     set(PLATFORM Windows)
 elseif(${CMAKE_SYSTEM_NAME} STREQUAL "Darwin")
-    set(CXX_INCLUDES -i ${CLANG_INCLUDE_DIRS}/c++/v1/ -i /opt/usr/local/include/ )
+    set(CXX_INCLUDES   -i /opt/usr/local/include/c++/v1/ -i /opt/usr/local/include/ )
     set(PLATFORM OSX)
 else()
     set(PLATFORM Linux)
