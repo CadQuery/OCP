@@ -115,9 +115,11 @@ jobs:
         vmImage: ${{ parameters.vmImage }}
 
     - bash: |
-        sed -e s/python=.../python=${{ parameters.py_maj }}.${{ py_min }}/  ${{ parameters.conda_env_file }} > _env.devenv.yml && \
-        mamba-devenv -f _env.devenv.yml
+        mamba-devenv -f  ${{ parameters.conda_env_file }}
       displayName: 'Prepare conda environment'
+      env:
+        PYTHON_VERSION: ${{ parameters.py_maj }}.${{ py_min }}
+        STAGE: "compile"
 
     - ${{ if contains(parameters.vmImage, 'Ubuntu') }}:
       - bash: |
