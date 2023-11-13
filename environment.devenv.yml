@@ -22,4 +22,4 @@ dependencies:
   - schema
   - tqdm
   - toposort
-{{ "  - py-lief" if get_env("STAGE") == "compile" else "" }}
+{{ "  - py-lief" if get_env("STAGE", default="generate") == "generate" else "" }}
