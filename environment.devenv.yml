@@ -2,17 +2,18 @@ name: cpp-py-bindgen
 channels:
   - conda-forge
 dependencies:
-  - clangdev=15.*
-  - libcxx=15.* # [not win]
-  - python-clang
-  - boost=1.82.*
+  - boost-cpp=1.82.*
   - occt=7.7.2=all*
   - pybind11=2.10.*
   - python={{ get_env("PYTHON_VERSION", default="3.9") }}
+  - cmake >3.24
+  - ninja 
+  {% if  get_env("STAGE", default="generate") == "generate" %}
+  - clangdev=15.*
+  - libcxx=15.* # [not win]
+  - python-clang
   - joblib
   - toml
-  - cmake >3.24
-  - ninja
   - click
   - jinja2
   - logzero
@@ -22,4 +23,5 @@ dependencies:
   - schema
   - tqdm
   - toposort
-{{ "  - py-lief" if get_env("STAGE", default="generate") == "generate" else "" }}
+  - py-lief
+  {% endif %}
