@@ -154,6 +154,12 @@ jobs:
         env:
           CXX: "cl.exe"
 
+    - bash: |
+        source activate cpp-py-bindgen && \
+        cd build && \
+        pybind11-stubgen -o OCP-stubs OCP
+      displayName: 'Generate stubs'
+
     - task: PublishBuildArtifacts@1
       inputs:
         pathtoPublish: 'build'
