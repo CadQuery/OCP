@@ -43,7 +43,6 @@ jobs:
       vmImage: ${{ parameters.vmImage }}
 
   - bash: |
-      mamba-devenv -f ${{ parameters.conda_env_file }} --print && \
       mamba-devenv -f ${{ parameters.conda_env_file }}
     displayName: 'Prepare conda environment'
 
