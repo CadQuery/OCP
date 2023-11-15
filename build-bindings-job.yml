@@ -102,10 +102,6 @@ jobs:
         displayName: 'SDK install'
 
     - ${{ if contains(parameters.vmImage, 'win') }}:
-      - bash: ls "C:/Program Files (x86)/Microsoft Visual Studio/2019/Enterprise/VC/Auxiliary/Build"
-        displayName: 'Find vcvars64'
-
-    - ${{ if contains(parameters.vmImage, 'win') }}:
       - script: |
           choco install --accept-license -y Ninja llvm
         displayName: 'Install clang'
@@ -157,7 +153,7 @@ jobs:
     - bash: |
         source activate cpp-py-bindgen && \
         cd build && \
-        pybind11-stubgen -o OCP-stubs OCP
+        python -m pybind11_stubgen -o OCP-stubs OCP
       displayName: 'Generate stubs'
 
     - task: PublishBuildArtifacts@1
