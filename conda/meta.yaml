@@ -16,6 +16,7 @@ build:
     - cmake --build build
     {% endif %}
     - cmake --install build --prefix {{ environ.get('STDLIB_DIR') }}
+    - cmake -E copy_directory OCP-stubs/OCP {{ environ.get('STDLIB_DIR') }}/OCP-stubs
 
 requirements:
   build:
