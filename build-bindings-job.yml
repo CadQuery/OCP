@@ -7,6 +7,7 @@ parameters:
   - 9
   - 10
   - 11
+  - 12
   config_file: 'ocp.toml'
   conda_bld: '3.27.0'
   conda_env_file: 'environment.devenv.yml'
@@ -42,7 +43,6 @@ jobs:
       vmImage: ${{ parameters.vmImage }}
 
   - bash: |
-      mamba-devenv -f ${{ parameters.conda_env_file }} --print && \
       mamba-devenv -f ${{ parameters.conda_env_file }}
     displayName: 'Prepare conda environment'
 
@@ -102,10 +102,6 @@ jobs:
         displayName: 'SDK install'
 
     - ${{ if contains(parameters.vmImage, 'win') }}:
-      - bash: ls "C:/Program Files (x86)/Microsoft Visual Studio/2019/Enterprise/VC/Auxiliary/Build"
-        displayName: 'Find vcvars64'
-
-    - ${{ if contains(parameters.vmImage, 'win') }}:
       - script: |
           choco install --accept-license -y Ninja llvm
         displayName: 'Install clang'
@@ -115,9 +111,11 @@ jobs:
         vmImage: ${{ parameters.vmImage }}
 
     - bash: |
-        sed -e s/python=.../python=${{ parameters.py_maj }}.${{ py_min }}/  ${{ parameters.conda_env_file }} > _env.devenv.yml && \
-        mamba-devenv -f _env.devenv.yml
+        mamba-devenv -f  ${{ parameters.conda_env_file }}
       displayName: 'Prepare conda environment'
+      env:
+        PYTHON_VERSION: ${{ parameters.py_maj }}.${{ py_min }}
+        STAGE: "compile"
 
     - ${{ if contains(parameters.vmImage, 'Ubuntu') }}:
       - bash: |
@@ -151,6 +149,12 @@ jobs:
         displayName: 'Compile'
         env:
           CXX: "cl.exe"
+
+    - bash: |
+        source activate cpp-py-bindgen && \
+        cd build && \
+        python -m pybind11_stubgen -o OCP-stubs OCP
+      displayName: 'Generate stubs'
 
     - task: PublishBuildArtifacts@1
       inputs:
