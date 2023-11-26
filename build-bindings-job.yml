@@ -153,7 +153,8 @@ jobs:
     - bash: |
         source activate cpp-py-bindgen && \
         cd build && \
-        python -m pybind11_stubgen -o OCP-stubs OCP
+        python -m pybind11_stubgen -o . OCP && \
+        rm -rf OCP-stubs/setup.py OCP-stubs/__pycache__ OCP-stubs/MANIFEST.in
       displayName: 'Generate stubs'
 
     - task: PublishBuildArtifacts@1
