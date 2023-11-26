@@ -71,11 +71,14 @@ jobs:
   - task: CopyFiles@2
     inputs:
       contents: '*.pkl'
-      targetFolder: $(conf.OUTPUT)
+      targetFolder: $(conf.OUTPUT)_pkl
     displayName: 'Copy pkl outputs'
 
   - publish:  $(conf.OUTPUT)
     artifact: OCP_src_${{ parameters.vmImage }}
+
+  - publish:  $(conf.OUTPUT)_pkl
+    artifact: OCP_pkl_${{ parameters.vmImage }}
 
 - ${{ each py_min in parameters.py_min_build }}:
   - job: ${{ parameters.name }}_${{ parameters.py_maj }}_${{ py_min }}
@@ -156,6 +159,9 @@ jobs:
         python -m pybind11_stubgen -o . OCP && \
         rm -rf OCP-stubs/setup.py OCP-stubs/__pycache__ OCP-stubs/MANIFEST.in
       displayName: 'Generate stubs'
+
+    - publish:  OCP-stubs
+      artifact: OCP_src_${{ parameters.vmImage }}
 
     - task: PublishBuildArtifacts@1
       inputs:
