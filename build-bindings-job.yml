@@ -160,7 +160,7 @@ jobs:
         rm -rf OCP-stubs/setup.py OCP-stubs/__pycache__ OCP-stubs/MANIFEST.in
       displayName: 'Generate stubs'
 
-    - publish:  OCP-stubs
+    - publish:  build/OCP-stubs
       artifact: OCP_src_${{ parameters.vmImage }}
 
     - task: PublishBuildArtifacts@1
