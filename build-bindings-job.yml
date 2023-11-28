@@ -160,11 +160,14 @@ jobs:
         rm -rf OCP-stubs/setup.py OCP-stubs/__pycache__ OCP-stubs/MANIFEST.in && \
         mkdir ../upload && \
         cp -r OCP-stubs ../upload && \
-        cp -r "../../$(OCP_src)" ../upload
+        cp -r "../../$(OCP_src)/*" ../upload
       displayName: 'Generate stubs and prepare for upload'
 
-    - publish:  upload
-      artifact: OCP_src_stubs_${{ parameters.vmImage }}
+    - task: PublishBuildArtifacts@1
+      inputs:
+        pathtoPublish: 'upload'
+        artifactName: OCP_src_stubs_${{ parameters.vmImage }}
+      displayName: 'Publish stubs and sources together'
 
     - task: PublishBuildArtifacts@1
       inputs:
