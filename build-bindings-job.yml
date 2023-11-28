@@ -158,9 +158,8 @@ jobs:
         cd build && \
         python -m pybind11_stubgen -o . OCP && \
         rm -rf OCP-stubs/setup.py OCP-stubs/__pycache__ OCP-stubs/MANIFEST.in && \
-        mkdir ../upload && \
-        cp -r OCP-stubs ../upload && \
-        cp -r "../../$(OCP_src)/*" ../upload
+        cp -r "../../$(OCP_src)" ../upload && \
+        cp -r OCP-stubs ../upload
       displayName: 'Generate stubs and prepare for upload'
 
     - task: PublishBuildArtifacts@1
