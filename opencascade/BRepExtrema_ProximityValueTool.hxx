@@ -1,4 +1,4 @@
-﻿// Created on: 2022-08-08
+// Created on: 2022-08-08
 // Created by: Kseniya NOSULKO
 // Copyright (c) 2022 OPEN CASCADE SAS
 //
