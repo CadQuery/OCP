@@ -34,7 +34,7 @@ get_target_property( VTK_INCLUDE_DIR VTK::CommonCore INTERFACE_INCLUDE_DIRECTORI
 message( STATUS "Include dirs: ${CMAKE_CXX_IMPLICIT_INCLUDE_DIRECTORIES}")
 
 foreach( inc IN LISTS CMAKE_CXX_IMPLICIT_INCLUDE_DIRECTORIES)
-    string( APPEND CXX_INCLUDES "-i ${inc} ")
+    string( APPEND CXX_INCLUDES "-i ${inc}/\n")
 endforeach()
 
 if(${CMAKE_SYSTEM_NAME} STREQUAL "Windows")
