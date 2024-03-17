@@ -31,12 +31,16 @@ execute_process(
 get_target_property( LIBCLANG_PATH libclang IMPORTED_LOCATION_RELEASE )
 get_target_property( VTK_INCLUDE_DIR VTK::CommonCore INTERFACE_INCLUDE_DIRECTORIES )
 
-message( STATUS "${CMAKE_CXX_IMPLICIT_INCLUDE_DIRECTORIES}")
+message( STATUS "Include dirs: ${CMAKE_CXX_IMPLICIT_INCLUDE_DIRECTORIES}")
+
+forech( inc IN LISTS CMAKE_CXX_IMPLICIT_INCLUDE_DIRECTORIES)
+    string( APPEND CXX_INCLUDES "-i ${inc} ")
+endforeach()
 
 if(${CMAKE_SYSTEM_NAME} STREQUAL "Windows")
     set(PLATFORM Windows)
 elseif(${CMAKE_SYSTEM_NAME} STREQUAL "Darwin")
-    set(CXX_INCLUDES   -i /opt/usr/local/include/c++/v1/ -i /opt/usr/local/include/ )
+    string( APPEND CXX_INCLUDES   -i /opt/usr/local/include/c++/v1/ -i /opt/usr/local/include/ )
     set(PLATFORM OSX)
 else()
     set(PLATFORM Linux)
