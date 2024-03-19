@@ -33,14 +33,17 @@ get_target_property( VTK_INCLUDE_DIR VTK::CommonCore INTERFACE_INCLUDE_DIRECTORI
 
 message( STATUS "Include dirs: ${CMAKE_CXX_IMPLICIT_INCLUDE_DIRECTORIES}")
 
-foreach( inc IN LISTS CMAKE_CXX_IMPLICIT_INCLUDE_DIRECTORIES)
-    list( APPEND CXX_INCLUDES -i ${inc}/ )
-endforeach()
+if(NOT ${CMAKE_SYSTEM_NAME} STREQUAL "Darwin")
+    foreach( inc IN LISTS CMAKE_CXX_IMPLICIT_INCLUDE_DIRECTORIES)
+        list( APPEND CXX_INCLUDES -i ${inc}/ )
+    endforeach()
+else()
+    list( APPEND CXX_INCLUDES -i /opt/usr/local/include/c++/v1/ -i /opt/usr/local/include/ )
+endif()
 
 if(${CMAKE_SYSTEM_NAME} STREQUAL "Windows")
     set(PLATFORM Windows)
 elseif(${CMAKE_SYSTEM_NAME} STREQUAL "Darwin")
-    list( APPEND CXX_INCLUDES -i /opt/usr/local/include/c++/v1/ -i /opt/usr/local/include/ )
     set(PLATFORM OSX)
 else()
     set(PLATFORM Linux)
