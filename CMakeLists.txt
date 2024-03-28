@@ -5,7 +5,17 @@ set( N_PROC 2 CACHE STRING "Number of processes used for generating code")
 
 
 find_package( LLVM REQUIRED )
-find_package( VTK REQUIRED )
+find_package( VTK REQUIRED
+  COMPONENTS
+    CommonCore
+    WrappingPythonCore
+    RenderingCore
+    RenderingOpenGL2
+    CommonDataModel
+    CommonExecutionModel
+    freetype
+)
+message(STATUS "VTK ${VTK_VERSION} found")
 find_package( RapidJSON REQUIRED )
 find_package( Clang REQUIRED )
 
