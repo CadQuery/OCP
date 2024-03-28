@@ -123,6 +123,7 @@ jobs:
     - ${{ if contains(parameters.vmImage, 'Ubuntu') }}:
       - bash: |
           source activate cpp-py-bindgen && \
+          mamba list && \
           cmake -B build -S "../$(OCP_src)" -G Ninja -DCMAKE_BUILD_TYPE=Release && \
           cmake --build build -j $(n_cores) -- -k 0 && \
           rm -rf build/CMakeFiles
