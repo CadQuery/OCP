@@ -325,7 +325,8 @@ modules = ["Standard",
 "IVtkOCC",
 "IVtkTools",
 "IVtkVTK",
-"DE"]
+"DE",
+"IMeshTools"]
 
 exclude = ["Standard_Handle.hxx","Standard",
            "math_GaussPoints.hxx","NCollection_Shared.hxx","OSD_WNT.hxx",
