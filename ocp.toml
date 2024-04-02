@@ -325,7 +325,9 @@ modules = ["Standard",
 "IVtkOCC",
 "IVtkTools",
 "IVtkVTK",
-"DE"]
+"DE",
+"IMeshTools",
+"IMeshData"]
 
 exclude = ["Standard_Handle.hxx","Standard",
            "math_GaussPoints.hxx","NCollection_Shared.hxx","OSD_WNT.hxx",
@@ -1354,3 +1356,8 @@ using rapidjson::BasicOStreamWrapper;"""
         #include <IFSelect_ReturnStatus.hxx>
         #include <ostream>
         using std::basic_ostream;"""
+
+    [Modules.IMeshTools]
+
+        include_header_pre = """
+        #include <IMeshData_Face.hxx>"""
