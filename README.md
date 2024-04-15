@@ -19,13 +19,14 @@ The easiest way to get started is to use conda:
 ```
 conda install -c conda-forge -c cadquery ocp
 ```
-Building from sources is also possible using https://github.com/CadQuery/pywrap
+Generating and building from sources is also possible using https://github.com/CadQuery/pywrap , but not advised.
 ```
 pywrap all ocp.toml
 cmake -S OCP -B build
 cmake --build build
 ```
-but you might need to specify additional headers and libclang location for pywrap:
+To generate the bindings you'll need to use packages version specified in the `environment.devenv.yml` file and you might need to specify additional headers and libclang location for pywrap.
 ```
 pywrap -i path1/include -i path2/include -l path/to/libclang.so all ocp.toml
 ```
+Building from the released sources without the generation step is possible too. Note that this is how the conda-forge package is built.
