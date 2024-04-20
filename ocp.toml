@@ -327,7 +327,8 @@ modules = ["Standard",
 "IVtkVTK",
 "DE",
 "IMeshTools",
-"IMeshData"]
+"IMeshData",
+"APIHeaderSection"]
 
 exclude = ["Standard_Handle.hxx","Standard",
            "math_GaussPoints.hxx","NCollection_Shared.hxx","OSD_WNT.hxx",
