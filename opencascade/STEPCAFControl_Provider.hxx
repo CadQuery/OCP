@@ -135,16 +135,10 @@ public:
 
  private:
 
-   //! Initialize static variables
-   void initStatic(const Handle(DE_ConfigurationNode)& theNode);
-
-   //! Initialize static variables
-   void setStatic(const STEPCAFControl_ConfigurationNode::STEPCAFControl_InternalSection& theParameter);
-
-   //! Reset used interface static variables
-   void resetStatic();
-
-   STEPCAFControl_ConfigurationNode::STEPCAFControl_InternalSection myOldValues;
+  //! Personizes work session with current format.
+  //! Creates new temporary session if current session is null
+  //! @param[in] theWS current work session
+  void personizeWS(Handle(XSControl_WorkSession)& theWS);
 
 };
 

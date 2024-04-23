@@ -28,6 +28,7 @@
 class Transfer_Finder;
 class Transfer_Binder;
 class Transfer_FinderProcess;
+class StepData_Factors;
 class StepShape_ShapeDefinitionRepresentation;
 class StepGeom_Axis2Placement3d;
 class TopoDS_Shape;
@@ -59,6 +60,7 @@ public:
                     const Handle(StepShape_ShapeDefinitionRepresentation)& SDR,
                     Handle(StepGeom_Axis2Placement3d)& AX1, 
                     const Handle(Transfer_FinderProcess)& FP,
+                    const StepData_Factors& theLocalFactors,
                     const Handle(TopTools_HSequenceOfShape)& shapeGroup = NULL, 
                     const Standard_Boolean isManifold = Standard_True,
                     const Message_ProgressRange& theProgress = Message_ProgressRange());
@@ -67,6 +69,7 @@ public:
                    (const Handle(Transfer_Finder)& start,
                     const Handle(StepShape_ShapeDefinitionRepresentation)& SDR,
                     const Handle(Transfer_FinderProcess)& FP,
+                    const StepData_Factors& theLocalFactors,
                     const Handle(TopTools_HSequenceOfShape)& shapeGroup = NULL,
                     const Standard_Boolean isManifold = Standard_True,
                     const Message_ProgressRange& theProgress = Message_ProgressRange());
@@ -75,6 +78,7 @@ public:
                    (const Handle(Transfer_Finder)& start,
                     const Handle(StepShape_ShapeDefinitionRepresentation)& SDR,
                     const Handle(Transfer_FinderProcess)& FP,
+                    const StepData_Factors& theLocalFactors,
                     const Message_ProgressRange& theProgress = Message_ProgressRange());
   
   Standard_EXPORT void SetMode (const STEPControl_StepModelType M);
@@ -92,7 +96,8 @@ public:
   //! Default implementation uses flag GroupMode and analyses
   //! the shape itself
   //! NOTE: this method can modify shape
-  Standard_EXPORT virtual Standard_Boolean IsAssembly (TopoDS_Shape& S) const;
+  Standard_EXPORT virtual Standard_Boolean IsAssembly (const Handle(StepData_StepModel)& theModel,
+                                                       TopoDS_Shape& S) const;
 
 
 
