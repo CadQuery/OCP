@@ -850,13 +850,13 @@ struct NSOpenGLContext {};"""
 
     [Modules.TDF]
 
-        [Modules.TDF.parsing_headers]
-
-            "TDF_LabelIndexedMap.hxx" = "#include <TDF_Label.hxx>"
-
         exclude_typedefs = ["TDF_AttributeDataMap","TDF_AttributeDoubleMap"]
         exclude_classes = ["TDF_LabelNode"]
         exclude_methods = ["TDF_DerivedAttribute::Register", "TDF_Label::FindAttribute"]
+
+        [Modules.TDF.parsing_headers]
+
+            "TDF_LabelIndexedMap.hxx" = "#include <TDF_Label.hxx>"
 
         [Modules.TDF.Classes.TDF_Label.additional_methods.FindAttribute]
 
