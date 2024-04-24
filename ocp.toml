@@ -636,7 +636,6 @@ class Adaptor3d_Surface;
         [Modules.BOPDS.parsing_headers]
 
             "BOPDS_DataMapOfPaveBlockListOfInteger.hxx" = "#include <BOPDS_PaveBlock.hxx>"
-            "BOPDS_DataMapOfIntegerListOfPaveBlock.hxx" = "#include <TColStd_MapIntegerHasher.hxx>"
 
     [Modules.BRepMesh]
 
@@ -851,6 +850,10 @@ struct NSOpenGLContext {};"""
 
     [Modules.TDF]
 
+        [Modules.TDF.parsing_headers]
+
+            "TDF_LabelIndexedMap.hxx" = "#include <TDF_Label.hxx>"
+
         exclude_typedefs = ["TDF_AttributeDataMap","TDF_AttributeDoubleMap"]
         exclude_classes = ["TDF_LabelNode"]
         exclude_methods = ["TDF_DerivedAttribute::Register", "TDF_Label::FindAttribute"]
@@ -884,6 +887,7 @@ struct NSOpenGLContext {};"""
         [Modules.STEPConstruct.parsing_headers]
 
             "STEPConstruct_PointHasher.hxx" = "#include <gp_Pnt.hxx>"
+            "STEPConstruct_Styles.hxx" = "#include <StepData_StepModel.hxx>"
 
     [Modules.RWStl]
 
@@ -1335,6 +1339,12 @@ using rapidjson::BasicOStreamWrapper;"""
         [Modules.TopoDSToStep.parsing_headers]
 
         "TopoDSToStep_MakeTessellatedItem.hxx" = "class TopoDSToStep_Tool;"
+        "TopoDSToStep_MakeStepWire.hxx" = "#include <StepData_Factors.hxx>"
+        "TopoDSToStep_MakeShellBasedSurfaceModel.hxx" = "#include <StepData_Factors.hxx>"
+        "TopoDSToStep_MakeBrepWithVoids.hxx" = "#include <StepData_Factors.hxx>"
+        "TopoDSToStep_MakeStepVertex.hxx" = "#include <StepData_Factors.hxx>"
+        "TopoDSToStep_MakeGeometricCurveSet.hxx" = "#include <StepData_Factors.hxx>"
+        "TopoDSToStep_MakeFacetedBrepAndBrepWithVoids.hxx" = "#include <StepData_Factors.hxx>"
 
     [Modules.XCAFDoc]
 
@@ -1361,3 +1371,20 @@ using rapidjson::BasicOStreamWrapper;"""
 
         include_header_pre = """
         #include <IMeshData_Face.hxx>"""
+
+    [Modules.GeomToStep]
+
+         [Modules.GeomToStep.parsing_headers]
+         
+         "GeomToStep_MakeHyperbola.hxx" = "#include <StepData_Factors.hxx>"
+
+    [Modules.StepToTopoDS]
+
+        [Modules.StepToTopoDS.parsing_headers]
+
+        "StepToTopoDS_TranslateEdgeLoop.hxx" = "#include <StepData_Factors.hxx>"
+        "StepToTopoDS_TranslateShell.hxx" = "#include <StepData_Factors.hxx>"
+        "StepToTopoDS_TranslateSolid.hxx" = "#include <StepData_Factors.hxx>"
+        "StepToTopoDS_TranslateCurveBoundedSurface.hxx" = "#include <StepData_Factors.hxx>"
+        "StepToTopoDS_TranslateCompositeCurve.hxx" = "#include <StepData_Factors.hxx>"
+        "StepToTopoDS_Builder.hxx" = "#include <StepData_Factors.hxx>"
