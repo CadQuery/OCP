@@ -1351,6 +1351,7 @@ using rapidjson::BasicOStreamWrapper;"""
         [Modules.XCAFDoc.parsing_headers]
         "XCAFDoc_AssemblyTool.hxx" = "#include <TDF_Label.hxx>"
         "XCAFDoc_AssemblyIterator.hxx" = "#include <TDF_Label.hxx>"
+        "XCAFDoc_AssemblyGraph.hxx" = "#include <TDF_Label.hxx>"
 
     [Modules.DE]
 
