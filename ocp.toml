@@ -429,8 +429,25 @@ class Adaptor3d_Surface;
 
         include_header_pre_top = """#include <gp_XYZ.hxx>
 #include <gp_XY.hxx>"""
-        include_header_pre = "const size_t DefaultBlockSize = 24600;"
+        include_header_pre = """const size_t DefaultBlockSize = 24600;
+const size_t THE_DEFAULT_BLOCK_SIZE = DefaultBlockSize;"""
         exclude_classes = ["NCollection","NCollection_ListNode"]
+
+        include_body_template_post="""
+template <typename T>
+void preregister_template_NCollection_Vector(py::object &m, const char *name){
+    preregister_template_NCollection_DynamicArray<T>(m, name);
+};
+
+template <typename T>
+void register_template_NCollection_Vector(py::object &m, const char *name){
+    register_template_NCollection_DynamicArray<T>(m, name);
+};
+        """
+
+        [Modules.NCollection.Templates.NCollection_Array1]
+
+        exclude_constructors = [3]
 
         [Modules.NCollection.parsing_headers]
 
@@ -1376,7 +1393,7 @@ using rapidjson::BasicOStreamWrapper;"""
     [Modules.GeomToStep]
 
          [Modules.GeomToStep.parsing_headers]
-         
+
          "GeomToStep_MakeHyperbola.hxx" = "#include <StepData_Factors.hxx>"
 
     [Modules.StepToTopoDS]
