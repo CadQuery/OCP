@@ -1382,8 +1382,11 @@ using rapidjson::BasicOStreamWrapper;"""
 
         include_header_pre = """
         #include <IFSelect_ReturnStatus.hxx>
+        #include <istream>
         #include <ostream>
-        using std::basic_ostream;"""
+
+        using std::basic_ostream;
+        using std::basic_istream;"""
 
     [Modules.IMeshTools]
 
