@@ -128,8 +128,6 @@ jobs:
           cmake --build build -j $(n_cores) -- -k 0 && \
           rm -rf build/CMakeFiles
         displayName: 'Compile'
-        env:
-          CXX: ${{ parameters.CXX }}
 
     - ${{ if contains(parameters.vmImage, 'mac') }}:
       - bash: |
@@ -140,8 +138,7 @@ jobs:
           cmake --build build -j $(n_cores) -- -k 0 && \
           rm -rf build/CMakeFiles
         displayName: 'Compile'
-        env:
-          CXX: "clang++"
+
 
     - ${{ if contains(parameters.vmImage, 'win') }}:
       - script: |

@@ -11,6 +11,7 @@ dependencies:
   - python={{ get_env("PYTHON_VERSION", default="3.9") }}
   - cmake >3.24
   - ninja
+  - cxx-compiler # [not win]
   - pip:
     - git+https://github.com/CadQuery/pybind11-stubgen.git
   {% if  get_env("STAGE", default="generate") == "generate" %}
