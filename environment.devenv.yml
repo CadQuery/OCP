@@ -31,4 +31,5 @@ dependencies:
   - py-lief
   {% else %}
   - cxx-compiler # [not win]
+  - mesa-libgl-devel-cos6-x86_64 # [linux]
   {% endif %}
