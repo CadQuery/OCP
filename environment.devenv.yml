@@ -6,6 +6,7 @@ dependencies:
   - boost-cpp=1.82.* # [osx]
   - vtk=9.2.6=*220 # [not osx]
   - vtk=9.2.6=*218 # [osx]
+  - occt=7.8.1=all*
   - pybind11=2.10.*
   - python={{ get_env("PYTHON_VERSION", default="3.9") }}
   - cmake >3.24
@@ -29,7 +30,6 @@ dependencies:
   - toposort
   - py-lief
   {% else %}
-  - occt=7.8.1=all*
   - cxx-compiler # [not win]
   - mesa-libgl-devel-cos6-x86_64 # [linux]
   {% endif %}
