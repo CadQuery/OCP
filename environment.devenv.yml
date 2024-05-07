@@ -4,7 +4,6 @@ channels:
 dependencies:
   - boost-cpp=1.84.* # [not osx]
   - boost-cpp=1.82.* # [osx]
-  - occt=7.8.1=all*
   - vtk=9.2.6=*220 # [not osx]
   - vtk=9.2.6=*218 # [osx]
   - pybind11=2.10.*
@@ -30,6 +29,7 @@ dependencies:
   - toposort
   - py-lief
   {% else %}
+  - occt=7.8.1=all*
   - cxx-compiler # [not win]
   - mesa-libgl-devel-cos6-x86_64 # [linux]
   {% endif %}
