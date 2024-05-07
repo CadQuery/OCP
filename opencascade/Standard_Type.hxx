@@ -27,7 +27,7 @@
 // DEFINE_STANDARD_RTTI* macro is actually a base class.
 #if ! defined(OCCT_CHECK_BASE_CLASS)
 
-#if (defined(__GNUC__) && ((__GNUC__ == 4 && __GNUC_MINOR__ >= 7) || (__GNUC__ > 4)))
+#if (! defined(__clang__)  && defined(__GNUC__) && ((__GNUC__ == 4 && __GNUC_MINOR__ >= 7) || (__GNUC__ > 4)))
 
 // For GCC 4.7+, more strict check is possible -- ensuring that base class 
 // is direct base -- using non-standard C++ reflection functionality.
