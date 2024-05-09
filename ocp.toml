@@ -327,7 +327,8 @@ modules = ["Standard",
 "IVtkVTK",
 "DE",
 "IMeshTools",
-"IMeshData"]
+"IMeshData",
+"APIHeaderSection"]
 
 exclude = ["Standard_Handle.hxx","Standard",
            "math_GaussPoints.hxx","NCollection_Shared.hxx","OSD_WNT.hxx",
@@ -1361,3 +1362,10 @@ using rapidjson::BasicOStreamWrapper;"""
 
         include_header_pre = """
         #include <IMeshData_Face.hxx>"""
+
+    [Modules.APIHeaderSection]
+
+        include_header_pre = """
+        #include <HeaderSection_FileName.hxx>
+        #include <HeaderSection_FileSchema.hxx>
+        #include <HeaderSection_FileDescription.hxx>"""
