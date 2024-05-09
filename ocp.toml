@@ -1362,3 +1362,10 @@ using rapidjson::BasicOStreamWrapper;"""
 
         include_header_pre = """
         #include <IMeshData_Face.hxx>"""
+
+    [Modules.APIHeaderSection]
+
+        include_header_pre = """
+        #include <HeaderSection_FileName.hxx>
+        #include <HeaderSection_FileSchema.hxx>
+        #include <HeaderSection_FileDescription.hxx>"""
