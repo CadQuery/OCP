@@ -327,7 +327,8 @@ modules = ["Standard",
 "IVtkVTK",
 "DE",
 "IMeshTools",
-"IMeshData"]
+"IMeshData",
+"APIHeaderSection"]
 
 exclude = ["Standard_Handle.hxx","Standard", "Standard_MemoryUtils.hxx",
            "math_GaussPoints.hxx","NCollection_Shared.hxx","OSD_WNT.hxx",
@@ -407,7 +408,7 @@ class Adaptor3d_Surface;
 
 [Attributes]
 
-    __version__ = "7.7.2.0"
+    __version__ = "7.7.2.1"
 
 [Modules]
 
@@ -1409,3 +1410,10 @@ using rapidjson::BasicOStreamWrapper;"""
         "StepToTopoDS_TranslateCurveBoundedSurface.hxx" = "#include <StepData_Factors.hxx>"
         "StepToTopoDS_TranslateCompositeCurve.hxx" = "#include <StepData_Factors.hxx>"
         "StepToTopoDS_Builder.hxx" = "#include <StepData_Factors.hxx>"
+
+    [Modules.APIHeaderSection]
+
+        include_header_pre = """
+        #include <HeaderSection_FileName.hxx>
+        #include <HeaderSection_FileSchema.hxx>
+        #include <HeaderSection_FileDescription.hxx>"""
