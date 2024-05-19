@@ -21,12 +21,13 @@
 #include <Standard_OStream.hxx>
 
 #include <typeinfo>
+#include <typeindex>
 
 // Auxiliary tools to check at compile time that class declared as base in 
 // DEFINE_STANDARD_RTTI* macro is actually a base class.
 #if ! defined(OCCT_CHECK_BASE_CLASS)
 
-#if (defined(__GNUC__) && ((__GNUC__ == 4 && __GNUC_MINOR__ >= 7) || (__GNUC__ > 4)))
+#if (! defined(__clang__)  && defined(__GNUC__) && ((__GNUC__ == 4 && __GNUC_MINOR__ >= 7) || (__GNUC__ > 4)))
 
 // For GCC 4.7+, more strict check is possible -- ensuring that base class 
 // is direct base -- using non-standard C++ reflection functionality.
@@ -146,7 +147,7 @@ class Standard_Type : public Standard_Transient
 public:
 
   //! Returns the system type name of the class (typeinfo.name)
-  Standard_CString SystemName() const { return mySystemName; }
+  Standard_CString SystemName() const { return myInfo.name(); }
   
   //! Returns the given name of the class type (get_type_name)
   Standard_CString Name() const { return myName; }
@@ -181,14 +182,14 @@ public:
 
   //! Register a type; returns either new or existing descriptor.
   //!
-  //! @param theSystemName name of the class as returned by typeid(class).name()
+  //! @param theInfo object stores system name of the class
   //! @param theName name of the class to be stored in Name field
   //! @param theSize size of the class instance
   //! @param theParent base class in the Transient hierarchy
   //!
   //! Note that this function is intended for use by opencascade::type_instance only. 
   Standard_EXPORT static 
-    Standard_Type* Register (const char* theSystemName, const char* theName,
+    Standard_Type* Register (const std::type_info& theInfo, const char* theName,
                              Standard_Size theSize, const Handle(Standard_Type)& theParent);
 
   //! Destructor removes the type from the registry
@@ -200,11 +201,11 @@ public:
 private:
 
   //! Constructor is private
-  Standard_Type (const char* theSystemName, const char* theName,
+  Standard_Type (const std::type_info& theInfo, const char* theName,
                  Standard_Size theSize, const Handle(Standard_Type)& theParent);
 
 private:
-  Standard_CString mySystemName;  //!< System name of the class (typeinfo.name)
+  std::type_index myInfo;         //!< Object to store system name of the class
   Standard_CString myName;        //!< Given name of the class
   Standard_Size mySize;           //!< Size of the class instance, in bytes
   Handle(Standard_Type) myParent; //!< Type descriptor of parent class
@@ -252,7 +253,7 @@ namespace opencascade {
     // static variable inside function ensures that descriptors
     // are initialized in correct sequence
     static Handle(Standard_Type) anInstance =
-      Standard_Type::Register (typeid(T).name(), T::get_type_name(), sizeof(T), 
+      Standard_Type::Register (typeid(T), T::get_type_name(), sizeof(T), 
                                type_instance<typename T::base_type>::get());
     return anInstance;
   }

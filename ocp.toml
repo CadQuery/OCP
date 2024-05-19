@@ -330,7 +330,7 @@ modules = ["Standard",
 "IMeshData",
 "APIHeaderSection"]
 
-exclude = ["Standard_Handle.hxx","Standard",
+exclude = ["Standard_Handle.hxx","Standard", "Standard_MemoryUtils.hxx",
            "math_GaussPoints.hxx","NCollection_Shared.hxx","OSD_WNT.hxx",
            "Geom2dToIGES","BRepGProp_Gauss.hxx","BRepLib_CheckCurveOnSurface.hxx",
            "BVH_Types.hxx","BVH_RadixSorter.hxx","BVH_IndexedBoxSet.hxx",
@@ -430,8 +430,25 @@ class Adaptor3d_Surface;
 
         include_header_pre_top = """#include <gp_XYZ.hxx>
 #include <gp_XY.hxx>"""
-        include_header_pre = "const size_t DefaultBlockSize = 24600;"
+        include_header_pre = """const size_t DefaultBlockSize = 24600;
+const size_t THE_DEFAULT_BLOCK_SIZE = DefaultBlockSize;"""
         exclude_classes = ["NCollection","NCollection_ListNode"]
+
+        include_body_template_post="""
+template <typename T>
+void preregister_template_NCollection_Vector(py::object &m, const char *name){
+    preregister_template_NCollection_DynamicArray<T>(m, name);
+};
+
+template <typename T>
+void register_template_NCollection_Vector(py::object &m, const char *name){
+    register_template_NCollection_DynamicArray<T>(m, name);
+};
+        """
+
+        [Modules.NCollection.Templates.NCollection_Array1]
+
+        exclude_constructors = [3]
 
         [Modules.NCollection.parsing_headers]
 
@@ -637,7 +654,6 @@ class Adaptor3d_Surface;
         [Modules.BOPDS.parsing_headers]
 
             "BOPDS_DataMapOfPaveBlockListOfInteger.hxx" = "#include <BOPDS_PaveBlock.hxx>"
-            "BOPDS_DataMapOfIntegerListOfPaveBlock.hxx" = "#include <TColStd_MapIntegerHasher.hxx>"
 
     [Modules.BRepMesh]
 
@@ -856,6 +872,10 @@ struct NSOpenGLContext {};"""
         exclude_classes = ["TDF_LabelNode"]
         exclude_methods = ["TDF_DerivedAttribute::Register", "TDF_Label::FindAttribute"]
 
+        [Modules.TDF.parsing_headers]
+
+            "TDF_LabelIndexedMap.hxx" = "#include <TDF_Label.hxx>"
+
         [Modules.TDF.Classes.TDF_Label.additional_methods.FindAttribute]
 
             body = "[]( TDF_Label & self , const Standard_GUID& anID, TDF_Attribute& anAttribute){ Handle(TDF_Attribute) dummy_attr; auto rv = self.FindAttribute(anID, dummy_attr); anAttribute.Restore(dummy_attr); return rv;}"
@@ -885,6 +905,7 @@ struct NSOpenGLContext {};"""
         [Modules.STEPConstruct.parsing_headers]
 
             "STEPConstruct_PointHasher.hxx" = "#include <gp_Pnt.hxx>"
+            "STEPConstruct_Styles.hxx" = "#include <StepData_StepModel.hxx>"
 
     [Modules.RWStl]
 
@@ -1336,12 +1357,19 @@ using rapidjson::BasicOStreamWrapper;"""
         [Modules.TopoDSToStep.parsing_headers]
 
         "TopoDSToStep_MakeTessellatedItem.hxx" = "class TopoDSToStep_Tool;"
+        "TopoDSToStep_MakeStepWire.hxx" = "#include <StepData_Factors.hxx>"
+        "TopoDSToStep_MakeShellBasedSurfaceModel.hxx" = "#include <StepData_Factors.hxx>"
+        "TopoDSToStep_MakeBrepWithVoids.hxx" = "#include <StepData_Factors.hxx>"
+        "TopoDSToStep_MakeStepVertex.hxx" = "#include <StepData_Factors.hxx>"
+        "TopoDSToStep_MakeGeometricCurveSet.hxx" = "#include <StepData_Factors.hxx>"
+        "TopoDSToStep_MakeFacetedBrepAndBrepWithVoids.hxx" = "#include <StepData_Factors.hxx>"
 
     [Modules.XCAFDoc]
 
         [Modules.XCAFDoc.parsing_headers]
         "XCAFDoc_AssemblyTool.hxx" = "#include <TDF_Label.hxx>"
         "XCAFDoc_AssemblyIterator.hxx" = "#include <TDF_Label.hxx>"
+        "XCAFDoc_AssemblyGraph.hxx" = "#include <TDF_Label.hxx>"
 
     [Modules.DE]
 
@@ -1355,13 +1383,33 @@ using rapidjson::BasicOStreamWrapper;"""
 
         include_header_pre = """
         #include <IFSelect_ReturnStatus.hxx>
+        #include <istream>
         #include <ostream>
-        using std::basic_ostream;"""
+
+        using std::basic_ostream;
+        using std::basic_istream;"""
 
     [Modules.IMeshTools]
 
         include_header_pre = """
         #include <IMeshData_Face.hxx>"""
+
+    [Modules.GeomToStep]
+
+         [Modules.GeomToStep.parsing_headers]
+
+         "GeomToStep_MakeHyperbola.hxx" = "#include <StepData_Factors.hxx>"
+
+    [Modules.StepToTopoDS]
+
+        [Modules.StepToTopoDS.parsing_headers]
+
+        "StepToTopoDS_TranslateEdgeLoop.hxx" = "#include <StepData_Factors.hxx>"
+        "StepToTopoDS_TranslateShell.hxx" = "#include <StepData_Factors.hxx>"
+        "StepToTopoDS_TranslateSolid.hxx" = "#include <StepData_Factors.hxx>"
+        "StepToTopoDS_TranslateCurveBoundedSurface.hxx" = "#include <StepData_Factors.hxx>"
+        "StepToTopoDS_TranslateCompositeCurve.hxx" = "#include <StepData_Factors.hxx>"
+        "StepToTopoDS_Builder.hxx" = "#include <StepData_Factors.hxx>"
 
     [Modules.APIHeaderSection]
 
