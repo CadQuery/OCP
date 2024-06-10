@@ -671,7 +671,8 @@ void register_template_NCollection_Vector(py::object &m, const char *name){
         "BRepMesh_ConeRangeSplitter::GetSplitSteps",
         "BRepMesh_Delaun::FreeEdges","BRepMesh_Delaun::ProcessConstraints",
         "BRepMesh_DefaultRangeSplitter::computeTolerance","BRepMesh_DefaultRangeSplitter::computeDelta",
-        "BRepMesh_Delaun::Frontier","BRepMesh_GeomTool::CellsCount"]
+        "BRepMesh_Delaun::Frontier","BRepMesh_GeomTool::CellsCount", "BRepMesh_EdgeDiscret::operator()",
+        "BRepMesh_FaceChecker::operator()", "BRepMesh_ModelHealer::operator()"]
 
     [Modules.TopOpeBRepTool]
 
