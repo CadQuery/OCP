@@ -401,6 +401,7 @@ class Adaptor3d_Surface;
     "operator-=" = ["__isub__"]
     "operator^" = ["__pow__"]
     "operator^=" = ["__ipow__"]
+    "operator()" = ["__call__"]
 
 [Extras]
 
@@ -527,6 +528,12 @@ void register_template_NCollection_Vector(py::object &m, const char *name){
             body = "[]( const uintptr_t addr ){ return reinterpret_cast<TopoDS_Shape*>(addr);}"
             help = "Cast an address to a shape"
             arguments  = ["address"]
+
+        [Modules.TopoDS.Classes.TopoDS_Shape.additional_methods.__hash__]
+
+            body = "[]( const TopoDS_Shape & self ){ return std::hash<TopoDS_Shape>{}(self);}"
+            help = "Get the instance hash"
+            arguments  = []
 
     [Modules.IntPolyh]
 
@@ -664,7 +671,8 @@ void register_template_NCollection_Vector(py::object &m, const char *name){
         "BRepMesh_ConeRangeSplitter::GetSplitSteps",
         "BRepMesh_Delaun::FreeEdges","BRepMesh_Delaun::ProcessConstraints",
         "BRepMesh_DefaultRangeSplitter::computeTolerance","BRepMesh_DefaultRangeSplitter::computeDelta",
-        "BRepMesh_Delaun::Frontier","BRepMesh_GeomTool::CellsCount"]
+        "BRepMesh_Delaun::Frontier","BRepMesh_GeomTool::CellsCount", "BRepMesh_EdgeDiscret::operator()",
+        "BRepMesh_FaceChecker::operator()", "BRepMesh_ModelHealer::operator()"]
 
     [Modules.TopOpeBRepTool]
 
