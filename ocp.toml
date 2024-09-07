@@ -1024,7 +1024,8 @@ using PolygonOnTriangulation = ShapePersistent_BRep::PolygonOnTriangulation;
     [Modules.Image]
 
         include_header_pre = """#include <ostream>
-using std::basic_ostream;"""
+using std::basic_ostream;
+using std::char_traits;"""
 
         exclude_methods = ["Image_AlienPixMap::Load", "Image_AlienPixMap::GetPalette"]
 
@@ -1094,6 +1095,7 @@ struct __GLXFBConfigRec {};"""
 
         using std::basic_ostream;
         using std::basic_istream;
+        using std::char_traits;
 
         #include <DE_ConfigurationContext.hxx>
         #include <XCAFDoc_ShapeTool.hxx>"""
@@ -1145,12 +1147,14 @@ struct __GLXFBConfigRec {};"""
     [Modules.IFSelect]
 
         include_header_pre = """#include <istream>
-using std::basic_istream;"""
+using std::basic_istream;
+using std::char_traits;"""
 
     [Modules.XSControl]
 
         include_header_pre = """#include <istream>
-using std::basic_istream;"""
+using std::basic_istream;
+using std::char_traits;"""
 
     [Modules.Message]
 
@@ -1395,7 +1399,8 @@ using rapidjson::BasicOStreamWrapper;"""
         #include <ostream>
 
         using std::basic_ostream;
-        using std::basic_istream;"""
+        using std::basic_istream;
+        using std::char_traits;"""
 
     [Modules.IMeshTools]
 
