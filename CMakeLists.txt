@@ -35,6 +35,7 @@ execute_process(
     ${Python_EXECUTABLE}
     dump_symbols.py
     "${occt_libs}"
+    WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
     )
 
 
