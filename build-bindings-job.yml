@@ -47,7 +47,7 @@ jobs:
     displayName: 'Prepare conda environment'
 
   - bash: |
-      source activate cpp-py-bindgen && \
+      conda activate cpp-py-bindgen && \
       conda info -a && \
       conda list && \
       which python && \
@@ -55,7 +55,7 @@ jobs:
     displayName: 'Conda env sanity checks'
 
   - bash: |
-      source activate cpp-py-bindgen && \
+      conda activate cpp-py-bindgen && \
       OUTPUT=`python -c'import toml; print(toml.load("${{ parameters.config_file }}")["output_folder"])'`  && \
       echo $OUTPUT && \
       echo "##vso[task.setvariable variable=OUTPUT;isOutput=true]$OUTPUT"
@@ -63,7 +63,7 @@ jobs:
     name: 'conf'
 
   - bash: |
-      source activate cpp-py-bindgen && \
+      conda activate cpp-py-bindgen && \
       cmake -DPython_ROOT_DIR=$CONDA_PREFIX -DPython3_ROOT_DIR=$CONDA_PREFIX -DPython_FIND_VIRTUALENV=ONLY -DPython3_FIND_VIRTUALENV=ONLY -B new -S . -G Ninja
     displayName: 'CMake based pywrap call'
     name: 'Generate'
@@ -122,7 +122,7 @@ jobs:
 
     - ${{ if contains(parameters.vmImage, 'Ubuntu') }}:
       - bash: |
-          source activate cpp-py-bindgen && \
+          conda activate cpp-py-bindgen && \
           mamba list && \
           cmake -B build -S "../$(OCP_src)" -G Ninja -DCMAKE_BUILD_TYPE=Release && \
           cmake --build build -j $(n_cores) -- -k 0 && \
@@ -131,7 +131,7 @@ jobs:
 
     - ${{ if contains(parameters.vmImage, 'mac') }}:
       - bash: |
-          source activate cpp-py-bindgen && \
+          conda activate cpp-py-bindgen && \
           cp -rf opencascade $CONDA_PREFIX/include && \
           cat $CONDA_PREFIX/include/opencascade/OpenGl_HaltonSampler.hxx  &&\
           cmake -B build -S "../$(OCP_src)" -G Ninja -DCMAKE_BUILD_TYPE=Release -DCMAKE_OSX_SYSROOT=/opt/MacOSX10.15.sdk/ && \
@@ -152,7 +152,7 @@ jobs:
           CXX: "cl.exe"
 
     - bash: |
-        source activate cpp-py-bindgen && \
+        conda activate cpp-py-bindgen && \
         cd build && \
         python -m pybind11_stubgen -o . OCP && \
         rm -rf OCP-stubs/setup.py OCP-stubs/__pycache__ OCP-stubs/MANIFEST.in && \
@@ -173,14 +173,14 @@ jobs:
       displayName: 'Publish compilation result'
 
     - bash: |
-        source activate cpp-py-bindgen && \
+        conda activate cpp-py-bindgen && \
         cd build && \
         LD_DEBUG=libs python -c"import OCP"
       displayName: 'Test'
 
     - bash: |
           conda create -n build -y -c conda-forge python=3.11 conda-build anaconda-client && \
-          source activate build && \
+          conda activate build && \
           conda build --token $TOKEN --user cadquery --label dev -c conda-forge --override-channels conda
       displayName: 'Build conda package'
       condition: ne(variables['Build.Reason'], 'PullRequest')
@@ -191,7 +191,7 @@ jobs:
 
     - bash: |
           conda create -n build -y -c conda-forge python=3.11 conda-build anaconda-client && \
-          source activate build && \
+          conda activate build && \
           conda build -c conda-forge --override-channels conda
       displayName: 'Build conda package'
       condition: eq(variables['Build.Reason'], 'PullRequest')
