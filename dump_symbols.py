@@ -23,7 +23,7 @@ for lib in libs:
             exported_symbols.append(f'{s.name}\n')
     elif name=='mac':
         for s in p.symbols:
-            if s.type>1:
+            if s.raw_type>1:
                 exported_symbols.append(f'{s.name}\n')
     else:
         for s in p.exported_functions:
