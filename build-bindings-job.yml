@@ -43,28 +43,30 @@ jobs:
       vmImage: ${{ parameters.vmImage }}
 
   - bash: |
-      mamba run mamba-devenv -f ${{ parameters.conda_env_file }}
+      "${SHELL}" <(curl -L micro.mamba.pm/install.sh) && \
+      micromamba install conda-devenv
+    displayName: 'Install micromamba'
+  
+  - bash: |
+      micromamba run mamba-devenv -f ${{ parameters.conda_env_file }}
     displayName: 'Prepare conda environment'
 
   - bash: |
-      conda activate cpp-py-bindgen && \
-      conda info -a && \
-      conda list && \
-      which python && \
-      env
+      micromamba run -n cpp-py-bindgen conda info -a && \
+      micromamba run -n cpp-py-bindgen conda list && \
+      micromamba run -n cpp-py-bindgen which python && \
+      micromamba run -n cpp-py-bindgen env
     displayName: 'Conda env sanity checks'
 
   - bash: |
-      conda activate cpp-py-bindgen && \
-      OUTPUT=`python -c'import toml; print(toml.load("${{ parameters.config_file }}")["output_folder"])'`  && \
+      OUTPUT=`micromamba run -n cpp-py-bindgen python -c'import toml; print(toml.load("${{ parameters.config_file }}")["output_folder"])'`  && \
       echo $OUTPUT && \
       echo "##vso[task.setvariable variable=OUTPUT;isOutput=true]$OUTPUT"
     displayName: 'Read output dir from the config file'
     name: 'conf'
 
   - bash: |
-      conda activate cpp-py-bindgen && \
-      cmake -DPython_ROOT_DIR=$CONDA_PREFIX -DPython3_ROOT_DIR=$CONDA_PREFIX -DPython_FIND_VIRTUALENV=ONLY -DPython3_FIND_VIRTUALENV=ONLY -B new -S . -G Ninja
+      micromamba run -n cpp-py-bindgen cmake -DPython_ROOT_DIR=$CONDA_PREFIX -DPython3_ROOT_DIR=$CONDA_PREFIX -DPython_FIND_VIRTUALENV=ONLY -DPython3_FIND_VIRTUALENV=ONLY -B new -S . -G Ninja
     displayName: 'CMake based pywrap call'
     name: 'Generate'
 
