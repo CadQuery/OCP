@@ -5,7 +5,7 @@ dependencies:
   - boost-cpp=1.84.* # [not osx]
   - boost-cpp=1.82.* # [osx]
   - occt=7.8.1=all*
-  - pybind11=2.10.*
+  - pybind11=2.12.*
   - python={{ get_env("PYTHON_VERSION", default="3.9") }}
   - cmake >3.24
   - ninja
