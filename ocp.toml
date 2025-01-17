@@ -1431,3 +1431,7 @@ using rapidjson::BasicOStreamWrapper;"""
         #include <HeaderSection_FileName.hxx>
         #include <HeaderSection_FileSchema.hxx>
         #include <HeaderSection_FileDescription.hxx>"""
+
+    [Modules.IGESCAFControl]
+
+        include_header_pre = "#include <DE_ConfigurationContext.hxx>"
