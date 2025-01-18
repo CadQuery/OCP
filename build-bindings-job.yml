@@ -179,7 +179,7 @@ jobs:
       displayName: 'Test'
 
     - bash: |
-          conda create -n build -y -c conda-forge python=3.11 conda-build anaconda-client && \
+          conda create -n build -y -c conda-forge python=3.11 liblief=0.14.1 conda-build anaconda-client && \
           source activate build && \
           conda build --token $TOKEN --user cadquery --label dev -c conda-forge --override-channels conda
       displayName: 'Build conda package'
@@ -190,7 +190,7 @@ jobs:
         TOKEN: $(anaconda.TOKEN)
 
     - bash: |
-          conda create -n build -y -c conda-forge python=3.11 conda-build anaconda-client && \
+          conda create -n build -y -c conda-forge python=3.11 liblief=0.14.1 conda-build anaconda-client && \
           source activate build && \
           conda build -c conda-forge --override-channels conda
       displayName: 'Build conda package'
