@@ -329,7 +329,8 @@ modules = ["Standard",
 "DE",
 "IMeshTools",
 "IMeshData",
-"APIHeaderSection"]
+"APIHeaderSection",
+"UnitsMethods"]
 
 exclude = ["Standard_Handle.hxx","Standard", "Standard_MemoryUtils.hxx",
            "math_GaussPoints.hxx","NCollection_Shared.hxx","OSD_WNT.hxx",
