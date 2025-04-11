@@ -20,43 +20,23 @@
 #include <Standard.hxx>
 #include <Standard_DefineAlloc.hxx>
 #include <Standard_Handle.hxx>
+#include <StepData_Factors.hxx>
 
 #include <Standard_Boolean.hxx>
 
-
 //! This class implements the common services for
 //! all classes of GeomToStep which report error.
-class GeomToStep_Root 
+class GeomToStep_Root
 {
 public:
-
   DEFINE_STANDARD_ALLOC
 
-  
   Standard_EXPORT Standard_Boolean IsDone() const;
 
-
-
-
 protected:
-
-
-
   Standard_Boolean done;
 
-
 private:
-
-
-
-
-
 };
-
-
-
-
-
-
 
 #endif // _GeomToStep_Root_HeaderFile
