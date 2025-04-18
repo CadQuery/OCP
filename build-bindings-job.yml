@@ -48,6 +48,7 @@ jobs:
 
   - bash: |
       source activate cpp-py-bindgen && \
+      conda upgrade -c conda-forge --all && \
       conda info -a && \
       conda list && \
       which python && \
