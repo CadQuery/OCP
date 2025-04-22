@@ -14,7 +14,7 @@ dependencies:
   - pip:
     - git+https://github.com/CadQuery/pybind11-stubgen.git
   {% if  get_env("STAGE", default="generate") == "generate" %}
-  - clangdev=15.*
+  - clangdev
   - python-clang
   - joblib
   - toml
