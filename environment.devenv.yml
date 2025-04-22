@@ -8,7 +8,7 @@ dependencies:
   - vtk-base=9.3.1
   - occt=7.9.0=all*
   - pybind11=2.12.*
-  - python={{ get_env("PYTHON_VERSION", default="3.9") }}
+  - python={{ get_env("PYTHON_VERSION", default="3.11") }}
   - cmake >3.24
   - ninja
   - pip:
