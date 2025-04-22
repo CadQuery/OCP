@@ -4,7 +4,6 @@ parameters:
   py_maj: '3'
   py_min: '11'
   py_min_build:
-  - 9
   - 10
   - 11
   - 12
