@@ -18,12 +18,12 @@ jobs:
 - template: build-bindings-job.yml
   parameters:
     name: Linux
-    vmImage: 'ubuntu-20.04'
+    vmImage: 'ubuntu-latest'
 - template: build-bindings-job.yml
   parameters:
     name: Windows
     vmImage: 'windows-2019'
-    conda_bld: 3.17
+    # conda_bld: 3.17
 - template: build-bindings-job.yml
   parameters:
     name: OSX
