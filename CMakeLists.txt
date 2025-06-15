@@ -1,7 +1,7 @@
 cmake_minimum_required( VERSION 3.17 )
 project( OCP )
 
-set( N_PROC 2 CACHE STRING "Number of processes used for generating code")
+set( N_PROC 10 CACHE STRING "Number of processes used for generating code")
 
 
 find_package( LLVM REQUIRED )
@@ -35,12 +35,17 @@ execute_process(
     ${Python_EXECUTABLE}
     dump_symbols.py
     "${occt_libs}"
+    WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
     )
-
 
 get_target_property( LIBCLANG_PATH libclang IMPORTED_LOCATION_RELEASE )
 get_target_property( VTK_INCLUDE_DIR VTK::CommonCore INTERFACE_INCLUDE_DIRECTORIES )
 
+# for some reason I get multiple generator expressions
+string(REPLACE ">" ">;" VTK_INCLUDE_DIR ${VTK_INCLUDE_DIR})
+list(GET VTK_INCLUDE_DIR 0 VTK_INCLUDE_DIR)
+
+message( STATUS "Include dirs: ${VTK_INCLUDE_DIR}")
 message( STATUS "Include dirs: ${CMAKE_CXX_IMPLICIT_INCLUDE_DIRECTORIES}")
 
 if(NOT ${CMAKE_SYSTEM_NAME} STREQUAL "Darwin")
@@ -61,28 +66,23 @@ endif()
 
 set(ENV{PYTHONPATH} ${CMAKE_SOURCE_DIR}/pywrap )
 
-if( NOT EXISTS ${CMAKE_SOURCE_DIR}/OCP )
-    message( STATUS "Running pywrap")
-    execute_process(
-        COMMAND
-            ${Python_EXECUTABLE}
-            -m bindgen
-            -n ${N_PROC}
-            -l ${LIBCLANG_PATH}
-            -i ${CLANG_INCLUDE_DIRS}/
-            -i ${VTK_INCLUDE_DIR}/
-            -i ${CLANG_INSTALL_PREFIX}/lib/clang/${LLVM_VERSION}/include/
-            ${CXX_INCLUDES}
-            all ocp.toml ${PLATFORM}
-        WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
-        COMMAND_ECHO STDOUT
-        RESULT_VARIABLE PYWRAP_RESULT
-    )
+add_custom_command(
+    OUTPUT ${CMAKE_SOURCE_DIR}/OCP/CMakeLists.txt
+    COMMAND
+        ${CMAKE_COMMAND} -E env "PYTHONPATH=${CMAKE_SOURCE_DIR}/pywrap"
+        ${Python_EXECUTABLE}
+        -m bindgen
+        -n ${N_PROC}
+        -l ${LIBCLANG_PATH}
+        -i ${CLANG_INCLUDE_DIRS}/
+        -i ${VTK_INCLUDE_DIR}/
+        -i ${CLANG_INSTALL_PREFIX}/lib/clang/${LLVM_VERSION_MAJOR}/include/
+        ${CXX_INCLUDES}
+        all ocp.toml ${PLATFORM}
+    WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
+    DEPENDS ${CMAKE_SOURCE_DIR}/ocp.toml
+    USES_TERMINAL
+    COMMENT "Running pywrap"
+)
 
-    if( ${PYWRAP_RESULT} GREATER 0)
-        message(FATAL_ERROR "Pywrap call failed")
-    endif()
-
-endif()
-
-add_subdirectory( ${CMAKE_SOURCE_DIR}/OCP )
+add_custom_target(pywrap ALL DEPENDS ${CMAKE_SOURCE_DIR}/OCP/CMakeLists.txt)
