@@ -411,7 +411,7 @@ class Adaptor3d_Surface;
 
 [Attributes]
 
-    __version__ = "7.8.1.2"
+    __version__ = "7.9.0.0"
 
 [Modules]
 
@@ -675,6 +675,10 @@ void register_template_NCollection_Vector(py::object &m, const char *name){
         "BRepMesh_DefaultRangeSplitter::computeTolerance","BRepMesh_DefaultRangeSplitter::computeDelta",
         "BRepMesh_Delaun::Frontier","BRepMesh_GeomTool::CellsCount", "BRepMesh_EdgeDiscret::operator()",
         "BRepMesh_FaceChecker::operator()", "BRepMesh_ModelHealer::operator()"]
+        
+        [Modules.BRepMesh.parsing_headers]
+        
+        "BRepMesh_Triangle.hxx" = "#include <algorithm>"
 
     [Modules.TopOpeBRepTool]
 
@@ -916,6 +920,7 @@ struct NSOpenGLContext {};"""
 
             "STEPConstruct_PointHasher.hxx" = "#include <gp_Pnt.hxx>"
             "STEPConstruct_Styles.hxx" = "#include <StepData_StepModel.hxx>"
+            "STEPConstruct_ValidationProps.hxx" = "#include <StepData_Factors.hxx>"
 
     [Modules.RWStl]
 
@@ -1377,6 +1382,12 @@ using rapidjson::BasicOStreamWrapper;"""
         "TopoDSToStep_MakeStepVertex.hxx" = "#include <StepData_Factors.hxx>"
         "TopoDSToStep_MakeGeometricCurveSet.hxx" = "#include <StepData_Factors.hxx>"
         "TopoDSToStep_MakeFacetedBrepAndBrepWithVoids.hxx" = "#include <StepData_Factors.hxx>"
+        "TopoDSToStep_MakeStepEdge.hxx" = "#include <StepData_Factors.hxx>"
+        "TopoDSToStep_MakeStepFace.hxx" = "#include <StepData_Factors.hxx>"
+        "TopoDSToStep_MakeManifoldSolidBrep.hxx" = "#include <StepData_Factors.hxx>"
+        "TopoDSToStep_MakeFacetedBrep.hxx" = "#include <StepData_Factors.hxx>"
+        "TopoDSToStep_WireframeBuilder.hxx" = "#include <StepData_Factors.hxx>"
+        
 
     [Modules.XCAFDoc]
 
@@ -1425,6 +1436,12 @@ using rapidjson::BasicOStreamWrapper;"""
         "StepToTopoDS_TranslateCurveBoundedSurface.hxx" = "#include <StepData_Factors.hxx>"
         "StepToTopoDS_TranslateCompositeCurve.hxx" = "#include <StepData_Factors.hxx>"
         "StepToTopoDS_Builder.hxx" = "#include <StepData_Factors.hxx>"
+        "StepToTopoDS_MakeTransformed.hxx" = "#include <StepData_Factors.hxx>"
+        "StepToTopoDS_TranslateFace.hxx" = "#include <StepData_Factors.hxx>"
+        "StepToTopoDS_TranslateVertex.hxx" = "#include <StepData_Factors.hxx>"
+        "StepToTopoDS_TranslateEdge.hxx" = "#include <StepData_Factors.hxx>"
+        "StepToTopoDS_TranslatePolyLoop.hxx" = "#include <StepData_Factors.hxx>"
+        "StepToTopoDS_TranslateVertexLoop.hxx" = "#include <StepData_Factors.hxx>"
 
     [Modules.APIHeaderSection]
 
