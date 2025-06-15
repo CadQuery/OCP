@@ -23,50 +23,50 @@
 #include <Standard_Integer.hxx>
 #include <TopAbs_State.hxx>
 
-//! The Coincidence class is used in an Inteference to
+//! The Coincidence class is used in an Interference to
 //! store information on the "hiding" edge.
 //!
-//! 2D  Data : The  tangent  and the  curvature of the
-//! projection of the edge  at the intersection point.
-//! This is necesserary  when the intersection  is  at
+//! 2D Data: The tangent and the curvature of the
+//! projection of the edge at the intersection point.
+//! This is necesserary when the intersection is at
 //! the extremity of the edge.
 //!
-//! 3D   Data  :  The   state of  the   edge  near the
-//! intersection   with  the face (before  and after).
-//! This is necessary  when the  intersection is  "ON"
+//! 3D Data: The state of the edge near the
+//! intersection with the face (before and after).
+//! This is necessary when the intersection is "ON"
 //! the face.
 class HLRAlgo_Coincidence
 {
 public:
   DEFINE_STANDARD_ALLOC
 
-  HLRAlgo_Coincidence() :
-    myFE(0),
-    myParam(0.),
-    myStBef(TopAbs_IN),
-    myStAft(TopAbs_IN)
+  HLRAlgo_Coincidence()
+      : myFE(0),
+        myParam(0.),
+        myStBef(TopAbs_IN),
+        myStAft(TopAbs_IN)
   {
   }
 
-  void Set2D (const Standard_Integer FE, const Standard_Real Param)
+  void Set2D(const Standard_Integer FE, const Standard_Real Param)
   {
     myFE    = FE;
     myParam = Param;
   }
 
-  void SetState3D (const TopAbs_State stbef, const TopAbs_State staft)
+  void SetState3D(const TopAbs_State stbef, const TopAbs_State staft)
   {
     myStBef = stbef;
     myStAft = staft;
   }
 
-  void Value2D (Standard_Integer& FE, Standard_Real& Param) const
+  void Value2D(Standard_Integer& FE, Standard_Real& Param) const
   {
     FE    = myFE;
     Param = myParam;
   }
 
-  void State3D (TopAbs_State& stbef, TopAbs_State& staft) const
+  void State3D(TopAbs_State& stbef, TopAbs_State& staft) const
   {
     stbef = myStBef;
     staft = myStAft;
@@ -74,9 +74,9 @@ public:
 
 private:
   Standard_Integer myFE;
-  Standard_Real myParam;
-  TopAbs_State myStBef;
-  TopAbs_State myStAft;
+  Standard_Real    myParam;
+  TopAbs_State     myStBef;
+  TopAbs_State     myStAft;
 };
 
 #endif // _HLRAlgo_Coincidence_HeaderFile

@@ -25,7 +25,6 @@
 #include <Standard_Transient.hxx>
 #include <Standard_OStream.hxx>
 
-
 class Vrml_LOD;
 DEFINE_STANDARD_HANDLE(Vrml_LOD, Standard_Transient)
 
@@ -37,7 +36,7 @@ DEFINE_STANDARD_HANDLE(Vrml_LOD, Standard_Transient)
 //! of  Levels  Of  Detail  (LOD),  from  highest  detail  to  lowest.
 //!
 //! The  specified  center  point  of  the  LOD  is  transformed  by  current
-//! transformation  into  world  space,  and  yhe  distancefrom  the  transformed
+//! transformation  into  world  space,  and  the  distance from  the  transformed
 //! center  to  the  world-space  eye  point  is  calculated.
 //! If  thedistance  is  less  than  the  first  value  in  the  ranges  array,
 //! than  the  first  child  of  the  LOD  group  is  drawn.  If  between
@@ -54,46 +53,27 @@ class Vrml_LOD : public Standard_Transient
 {
 
 public:
-
-  
   Standard_EXPORT Vrml_LOD();
-  
+
   Standard_EXPORT Vrml_LOD(const Handle(TColStd_HArray1OfReal)& aRange, const gp_Vec& aCenter);
-  
-  Standard_EXPORT void SetRange (const Handle(TColStd_HArray1OfReal)& aRange);
-  
+
+  Standard_EXPORT void SetRange(const Handle(TColStd_HArray1OfReal)& aRange);
+
   Standard_EXPORT Handle(TColStd_HArray1OfReal) Range() const;
-  
-  Standard_EXPORT void SetCenter (const gp_Vec& aCenter);
-  
+
+  Standard_EXPORT void SetCenter(const gp_Vec& aCenter);
+
   Standard_EXPORT gp_Vec Center() const;
-  
-  Standard_EXPORT Standard_OStream& Print (Standard_OStream& anOStream) const;
 
+  Standard_EXPORT Standard_OStream& Print(Standard_OStream& anOStream) const;
 
-
-
-  DEFINE_STANDARD_RTTIEXT(Vrml_LOD,Standard_Transient)
+  DEFINE_STANDARD_RTTIEXT(Vrml_LOD, Standard_Transient)
 
 protected:
-
-
-
-
 private:
-
-
   Handle(TColStd_HArray1OfReal) myRange;
-  gp_Vec myCenter;
-  Standard_Boolean myRangeFlag;
-
-
+  gp_Vec                        myCenter;
+  Standard_Boolean              myRangeFlag;
 };
-
-
-
-
-
-
 
 #endif // _Vrml_LOD_HeaderFile

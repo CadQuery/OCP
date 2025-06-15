@@ -17,7 +17,8 @@
 #include <NCollection_Handle.hxx>
 #include <NCollection_Array1.hxx>
 
-template<typename T> class math_VectorBase;
+template <typename T>
+class math_VectorBase;
 using math_Vector = math_VectorBase<double>;
 
 //! Class performs computing of the global inertia properties
@@ -52,18 +53,21 @@ class BRepGProp_Gauss
     void Reset();
   };
 
-  typedef NCollection_Handle< NCollection_Array1<Inertia> > InertiaArray;
-  typedef Standard_Real(*BRepGProp_GaussFunc)(const Standard_Real, const Standard_Real);
+  typedef NCollection_Handle<NCollection_Array1<Inertia>> InertiaArray;
+  typedef Standard_Real (*BRepGProp_GaussFunc)(const Standard_Real, const Standard_Real);
 
 public: //! @name public API
-
   //! Describes types of geometric objects.
   //! - Vinert is 3D closed region of space delimited with:
   //! -- Surface;
   //! -- Point and Surface;
   //! -- Plane and Surface.
   //! - Sinert is face in 3D space.
-  typedef enum { Vinert = 0, Sinert } BRepGProp_GaussType;
+  typedef enum
+  {
+    Vinert = 0,
+    Sinert
+  } BRepGProp_GaussType;
 
   //! Constructor
   Standard_EXPORT explicit BRepGProp_Gauss(const BRepGProp_GaussType theType);
@@ -78,17 +82,16 @@ public: //! @name public API
   //! @param theLocation - location of the point or the plane;
   //! @param theCoeff - plane coefficients;
   //! @param theIsByPoint - flag of restricition (point/plane);
-  //! @param theOutMass[out] - mass (volume) of region;
-  //! @param theOutGravityCenter[out] - garvity center of region;
-  //! @param theOutInertia[out] - matrix of inertia;
-  Standard_EXPORT void Compute(
-    const BRepGProp_Face&  theSurface,
-    const gp_Pnt&          theLocation,
-    const Standard_Real    theCoeff[],
-    const Standard_Boolean theIsByPoint,
-    Standard_Real&         theOutMass,
-    gp_Pnt&                theOutGravityCenter,
-    gp_Mat&                theOutInertia);
+  //! @param[out] theOutMass - mass (volume) of region;
+  //! @param[out] theOutGravityCenter - garvity center of region;
+  //! @param[out] theOutInertia - matrix of inertia;
+  Standard_EXPORT void Compute(const BRepGProp_Face&  theSurface,
+                               const gp_Pnt&          theLocation,
+                               const Standard_Real    theCoeff[],
+                               const Standard_Boolean theIsByPoint,
+                               Standard_Real&         theOutMass,
+                               gp_Pnt&                theOutGravityCenter,
+                               gp_Mat&                theOutInertia);
 
   //! Computes the global properties of a surface. Surface can be closed.
   //! The method is quick and its precision is enough for many cases of analytical surfaces.
@@ -97,15 +100,14 @@ public: //! @name public API
   //! Error of the computation is not calculated.
   //! @param theSurface - bounding surface of the region;
   //! @param theLocation - surface location;
-  //! @param theOutMass[out] - mass (volume) of region;
-  //! @param theOutGravityCenter[out] - garvity center of region;
-  //! @param theOutInertia[out] - matrix of inertia;
-  Standard_EXPORT void Compute(
-    const BRepGProp_Face&  theSurface,
-    const gp_Pnt&          theLocation,
-    Standard_Real&         theOutMass,
-    gp_Pnt&                theOutGravityCenter,
-    gp_Mat&                theOutInertia);
+  //! @param[out] theOutMass - mass (volume) of region;
+  //! @param[out] theOutGravityCenter - garvity center of region;
+  //! @param[out] theOutInertia - matrix of inertia;
+  Standard_EXPORT void Compute(const BRepGProp_Face& theSurface,
+                               const gp_Pnt&         theLocation,
+                               Standard_Real&        theOutMass,
+                               gp_Pnt&               theOutGravityCenter,
+                               gp_Mat&               theOutInertia);
 
   //! Computes the global properties of a region of 3D space which can be
   //! delimited by the surface and point or surface and plane. Surface can be closed.
@@ -118,18 +120,17 @@ public: //! @name public API
   //! @param theLocation - location of the point or the plane;
   //! @param theCoeff - plane coefficients;
   //! @param theIsByPoint - flag of restricition (point/plane);
-  //! @param theOutMass[out] - mass (volume) of region;
-  //! @param theOutGravityCenter[out] - garvity center of region;
-  //! @param theOutInertia[out] - matrix of inertia;
-  Standard_EXPORT void Compute(
-    BRepGProp_Face&        theSurface,
-    BRepGProp_Domain&      theDomain,
-    const gp_Pnt&          theLocation,
-    const Standard_Real    theCoeff[],
-    const Standard_Boolean theIsByPoint,
-    Standard_Real&         theOutMass,
-    gp_Pnt&                theOutGravityCenter,
-    gp_Mat&                theOutInertia);
+  //! @param[out] theOutMass - mass (volume) of region;
+  //! @param[out] theOutGravityCenter - garvity center of region;
+  //! @param[out] theOutInertia - matrix of inertia;
+  Standard_EXPORT void Compute(BRepGProp_Face&        theSurface,
+                               BRepGProp_Domain&      theDomain,
+                               const gp_Pnt&          theLocation,
+                               const Standard_Real    theCoeff[],
+                               const Standard_Boolean theIsByPoint,
+                               Standard_Real&         theOutMass,
+                               gp_Pnt&                theOutGravityCenter,
+                               gp_Mat&                theOutInertia);
 
   //! Computes the global properties of a surface. Surface can be closed.
   //! The method is quick and its precision is enough for many cases of analytical surfaces.
@@ -139,16 +140,15 @@ public: //! @name public API
   //! @param theSurface - bounding surface of the region;
   //! @param theDomain - surface boundings;
   //! @param theLocation - surface location;
-  //! @param theOutMass[out] - mass (volume) of region;
-  //! @param theOutGravityCenter[out] - garvity center of region;
-  //! @param theOutInertia[out] - matrix of inertia;
-  Standard_EXPORT void Compute(
-    BRepGProp_Face&        theSurface,
-    BRepGProp_Domain&      theDomain,
-    const gp_Pnt&          theLocation,
-    Standard_Real&         theOutMass,
-    gp_Pnt&                theOutGravityCenter,
-    gp_Mat&                theOutInertia);
+  //! @param[out] theOutMass - mass (volume) of region;
+  //! @param[out] theOutGravityCenter - garvity center of region;
+  //! @param[out] theOutInertia - matrix of inertia;
+  Standard_EXPORT void Compute(BRepGProp_Face&   theSurface,
+                               BRepGProp_Domain& theDomain,
+                               const gp_Pnt&     theLocation,
+                               Standard_Real&    theOutMass,
+                               gp_Pnt&           theOutGravityCenter,
+                               gp_Mat&           theOutInertia);
 
   //! Computes the global properties of the region of 3D space which can be
   //! delimited by the surface and point or surface and plane.
@@ -160,22 +160,21 @@ public: //! @name public API
   //! @param theEps - maximal relative error of computed mass (volume) for face;
   //! @param theCoeff - plane coefficients;
   //! @param theIsByPoint - flag of restricition (point/plane);
-  //! @param theOutMass[out] - mass (volume) of region;
-  //! @param theOutGravityCenter[out] - garvity center of region;
-  //! @param theOutInertia[out] - matrix of inertia;
+  //! @param[out] theOutMass - mass (volume) of region;
+  //! @param[out] theOutGravityCenter - garvity center of region;
+  //! @param[out] theOutInertia - matrix of inertia;
   //! @return value of error which is calculated as
   //! Abs((M(i+1)-M(i))/M(i+1)), M(i+1) and M(i) are values
   //! for two successive steps of adaptive integration.
-  Standard_EXPORT Standard_Real Compute(
-    BRepGProp_Face&        theSurface,
-    BRepGProp_Domain&      theDomain,
-    const gp_Pnt&          theLocation,
-    const Standard_Real    theEps,
-    const Standard_Real    theCoeff[],
-    const Standard_Boolean theByPoint,
-    Standard_Real&         theOutMass,
-    gp_Pnt&                theOutGravityCenter,
-    gp_Mat&                theOutInertia);
+  Standard_EXPORT Standard_Real Compute(BRepGProp_Face&        theSurface,
+                                        BRepGProp_Domain&      theDomain,
+                                        const gp_Pnt&          theLocation,
+                                        const Standard_Real    theEps,
+                                        const Standard_Real    theCoeff[],
+                                        const Standard_Boolean theByPoint,
+                                        Standard_Real&         theOutMass,
+                                        gp_Pnt&                theOutGravityCenter,
+                                        gp_Mat&                theOutInertia);
 
   //! Computes the global properties of the face. Adaptive 2D Gauss integration is used.
   //! If Epsilon more than 0.001 then algorithm performs non-adaptive integration.
@@ -183,99 +182,84 @@ public: //! @name public API
   //! @param theDomain - surface boundings;
   //! @param theLocation - surface location;
   //! @param theEps - maximal relative error of computed mass (square) for face;
-  //! @param theOutMass[out] - mass (volume) of region;
-  //! @param theOutGravityCenter[out] - garvity center of region;
-  //! @param theOutInertia[out] - matrix of inertia;
+  //! @param[out] theOutMass - mass (volume) of region;
+  //! @param[out] theOutGravityCenter - garvity center of region;
+  //! @param[out] theOutInertia - matrix of inertia;
   //! @return value of error which is calculated as
   //! Abs((M(i+1)-M(i))/M(i+1)), M(i+1) and M(i) are values
   //! for two successive steps of adaptive integration.
-  Standard_EXPORT Standard_Real Compute(
-    BRepGProp_Face&        theSurface,
-    BRepGProp_Domain&      theDomain,
-    const gp_Pnt&          theLocation,
-    const Standard_Real    theEps,
-    Standard_Real&         theOutMass,
-    gp_Pnt&                theOutGravityCenter,
-    gp_Mat&                theOutInertia);
+  Standard_EXPORT Standard_Real Compute(BRepGProp_Face&     theSurface,
+                                        BRepGProp_Domain&   theDomain,
+                                        const gp_Pnt&       theLocation,
+                                        const Standard_Real theEps,
+                                        Standard_Real&      theOutMass,
+                                        gp_Pnt&             theOutGravityCenter,
+                                        gp_Mat&             theOutInertia);
 
 private: //! @name private methods
-
   BRepGProp_Gauss(BRepGProp_Gauss const&);
-  BRepGProp_Gauss& operator= (BRepGProp_Gauss const&);
+  BRepGProp_Gauss& operator=(BRepGProp_Gauss const&);
 
-  void computeVInertiaOfElementaryPart(
-    const gp_Pnt&             thePoint,
-    const gp_Vec&             theNormal,
-    const gp_Pnt&             theLocation,
-    const Standard_Real       theWeight,
-    const Standard_Real       theCoeff[],
-    const Standard_Boolean    theIsByPoint,
-    BRepGProp_Gauss::Inertia& theOutInertia);
+  void computeVInertiaOfElementaryPart(const gp_Pnt&             thePoint,
+                                       const gp_Vec&             theNormal,
+                                       const gp_Pnt&             theLocation,
+                                       const Standard_Real       theWeight,
+                                       const Standard_Real       theCoeff[],
+                                       const Standard_Boolean    theIsByPoint,
+                                       BRepGProp_Gauss::Inertia& theOutInertia);
 
-  void computeSInertiaOfElementaryPart(
-    const gp_Pnt&             thePoint,
-    const gp_Vec&             theNormal,
-    const gp_Pnt&             theLocation,
-    const Standard_Real       theWeight,
-    BRepGProp_Gauss::Inertia& theOutInertia);
+  void computeSInertiaOfElementaryPart(const gp_Pnt&             thePoint,
+                                       const gp_Vec&             theNormal,
+                                       const gp_Pnt&             theLocation,
+                                       const Standard_Real       theWeight,
+                                       BRepGProp_Gauss::Inertia& theOutInertia);
 
-  void checkBounds(
-    const Standard_Real theU1,
-    const Standard_Real theU2,
-    const Standard_Real theV1,
-    const Standard_Real theV2);
+  void checkBounds(const Standard_Real theU1,
+                   const Standard_Real theU2,
+                   const Standard_Real theV1,
+                   const Standard_Real theV2);
 
-  void addAndRestoreInertia(
-    const BRepGProp_Gauss::Inertia& theInInertia,
-    BRepGProp_Gauss::Inertia&       theOutInertia);
+  void addAndRestoreInertia(const BRepGProp_Gauss::Inertia& theInInertia,
+                            BRepGProp_Gauss::Inertia&       theOutInertia);
 
-  void multAndRestoreInertia(
-    const Standard_Real       theValue,
-    BRepGProp_Gauss::Inertia& theInertia);
+  void multAndRestoreInertia(const Standard_Real theValue, BRepGProp_Gauss::Inertia& theInertia);
 
-  void convert(
-    const BRepGProp_Gauss::Inertia& theInertia,
-    gp_Pnt&                         theOutGravityCenter,
-    gp_Mat&                         theOutMatrixOfInertia,
-    Standard_Real&                  theOutMass);
+  void convert(const BRepGProp_Gauss::Inertia& theInertia,
+               gp_Pnt&                         theOutGravityCenter,
+               gp_Mat&                         theOutMatrixOfInertia,
+               Standard_Real&                  theOutMass);
 
-  void convert(
-    const BRepGProp_Gauss::Inertia& theInertia,
-    const Standard_Real             theCoeff[],
-    const Standard_Boolean          theIsByPoint,
-    gp_Pnt&                         theOutGravityCenter,
-    gp_Mat&                         theOutMatrixOfInertia,
-    Standard_Real&                  theOutMass);
+  void convert(const BRepGProp_Gauss::Inertia& theInertia,
+               const Standard_Real             theCoeff[],
+               const Standard_Boolean          theIsByPoint,
+               gp_Pnt&                         theOutGravityCenter,
+               gp_Mat&                         theOutMatrixOfInertia,
+               Standard_Real&                  theOutMass);
 
-  static Standard_Integer MaxSubs(
-    const Standard_Integer theN,
-    const Standard_Integer theCoeff = 32);
+  static Standard_Integer MaxSubs(const Standard_Integer theN,
+                                  const Standard_Integer theCoeff = 32);
 
-  static void Init(
-    NCollection_Handle<math_Vector>&         theOutVec,
-    const Standard_Real    theValue,
-    const Standard_Integer theFirst = 0,
-    const Standard_Integer theLast  = 0);
+  static void Init(NCollection_Handle<math_Vector>& theOutVec,
+                   const Standard_Real              theValue,
+                   const Standard_Integer           theFirst = 0,
+                   const Standard_Integer           theLast  = 0);
 
-  static void InitMass(
-    const Standard_Real    theValue,
-    const Standard_Integer theFirst,
-    const Standard_Integer theLast,
-    InertiaArray&          theArray);
+  static void InitMass(const Standard_Real    theValue,
+                       const Standard_Integer theFirst,
+                       const Standard_Integer theLast,
+                       InertiaArray&          theArray);
 
-  static Standard_Integer FillIntervalBounds(
-    const Standard_Real         theA,
-    const Standard_Real         theB,
-    const TColStd_Array1OfReal& theKnots,
-    const Standard_Integer      theNumSubs,
-    InertiaArray&               theInerts,
-    NCollection_Handle<math_Vector>&              theParam1,
-    NCollection_Handle<math_Vector>&              theParam2,
-    NCollection_Handle<math_Vector>&              theError,
-    NCollection_Handle<math_Vector>&              theCommonError);
+  static Standard_Integer FillIntervalBounds(const Standard_Real              theA,
+                                             const Standard_Real              theB,
+                                             const TColStd_Array1OfReal&      theKnots,
+                                             const Standard_Integer           theNumSubs,
+                                             InertiaArray&                    theInerts,
+                                             NCollection_Handle<math_Vector>& theParam1,
+                                             NCollection_Handle<math_Vector>& theParam2,
+                                             NCollection_Handle<math_Vector>& theError,
+                                             NCollection_Handle<math_Vector>& theCommonError);
 
-private: //! @name private fields
-
+private:                      //! @name private fields
   BRepGProp_GaussType myType; //!< Type of geometric object
   BRepGProp_GaussFunc add;    //!< Pointer on the add function
   BRepGProp_GaussFunc mult;   //!< Pointer on the mult function
