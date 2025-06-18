@@ -40,10 +40,11 @@ jobs:
 
   - template: conda-enable.yml@templates
     parameters:
+      mamba: 1.5
       vmImage: ${{ parameters.vmImage }}
 
   - bash: |
-      conda run mamba-devenv -f ${{ parameters.conda_env_file }}
+      mamba run mamba-devenv -f ${{ parameters.conda_env_file }}
     displayName: 'Prepare conda environment'
 
   - bash: |
