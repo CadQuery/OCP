@@ -40,6 +40,8 @@ jobs:
 
   - template: conda-enable.yml@templates
     parameters:
+      python: 3.12
+      mamba: 1.5
       vmImage: ${{ parameters.vmImage }}
 
   - bash: |
@@ -112,6 +114,8 @@ jobs:
 
     - template: conda-enable.yml@templates
       parameters:
+        python: 3.12
+        mamba: 1.5
         vmImage: ${{ parameters.vmImage }}
 
     - bash: |
