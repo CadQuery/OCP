@@ -7,11 +7,13 @@ additional_files = ["pystreambuf.h","vtk_pybind.h"]
 
 pats = ["{}_*.hxx","{}.hxx"]
 
-modules = ["Standard",
+modules = [
+"NCollection",
+"AIS",
+"Standard",
 "gp",
 "math",
 "BVH",
-"NCollection",
 "TColgp",
 "OSD",
 "Quantity",
@@ -198,7 +200,6 @@ modules = ["Standard",
 "Prs3d",
 "PrsMgr",
 "SelectMgr",
-"AIS",
 "DsgPrs",
 "Select3D",
 "StdPrs",
@@ -330,7 +331,8 @@ modules = ["Standard",
 "IMeshTools",
 "IMeshData",
 "APIHeaderSection",
-"UnitsMethods"]
+"UnitsMethods",
+]
 
 exclude = ["Standard_Handle.hxx","Standard", "Standard_MemoryUtils.hxx",
            "math_GaussPoints.hxx","NCollection_Shared.hxx","OSD_WNT.hxx",
@@ -423,7 +425,7 @@ class Adaptor3d_Surface;
 
         exclude_functions = ["HashCode"]
         exclude_methods = ["Standard_Dump::DumpCharacterValues","Standard_Dump::DumpRealValues",
-            "Standard_CLocaleSentry::GetCLocale","Standard_Dump::InitRealValues"]
+            "Standard_CLocaleSentry::GetCLocale","Standard_Dump::InitRealValues", "Standard_ErrorHandler::Label"]
 
     [Modules.Resource]
 
@@ -436,6 +438,7 @@ class Adaptor3d_Surface;
         include_header_pre = """const size_t DefaultBlockSize = 24600;
 const size_t THE_DEFAULT_BLOCK_SIZE = DefaultBlockSize;"""
         exclude_classes = ["NCollection","NCollection_ListNode"]
+        exclude_class_template_methods = [".*::begin", ".*::end", ".*::cbegin", ".*::cend"]
 
         include_body_template_post="""
 template <typename T>
