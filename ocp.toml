@@ -942,6 +942,10 @@ struct NSOpenGLContext {};"""
 
     [Modules.Transfer]
 
+        include_header_pre_top = """
+        #include <XSAlgo_ShapeProcessor.hxx>
+        #include <DE_ShapeFixParameters.hxx>
+        """
         exclude_typedefs = ["Transfer_TransferMapOfProcessForFinder","Transfer_TransferMapOfProcessForTransient"]
 
     [Modules.ShapeFix]
@@ -1108,7 +1112,10 @@ struct __GLXFBConfigRec {};"""
         using std::char_traits;
 
         #include <DE_ConfigurationContext.hxx>
-        #include <XCAFDoc_ShapeTool.hxx>"""
+        #include <XCAFDoc_ShapeTool.hxx>
+        #include <XSAlgo_ShapeProcessor.hxx>
+        """
+
         exclude_typedefs = ["STEPCAFControl_DataMapOfShapePD","STEPCAFControl_DataMapOfShapePD",
             "STEPCAFControl_DataMapOfSDRExternFile","STEPCAFControl_DataMapOfSDRExternFile",
             "STEPCAFControl_DataMapOfPDExternFile","STEPCAFControl_DataMapOfLabelExternFile",
@@ -1164,7 +1171,10 @@ using std::char_traits;"""
 
         include_header_pre = """#include <istream>
 using std::basic_istream;
-using std::char_traits;"""
+using std::char_traits;
+#include <XSAlgo_ShapeProcessor.hxx>
+#include <DE_ShapeFixParameters.hxx>
+"""
 
     [Modules.Message]
 
@@ -1416,7 +1426,10 @@ using rapidjson::BasicOStreamWrapper;"""
 
         using std::basic_ostream;
         using std::basic_istream;
-        using std::char_traits;"""
+        using std::char_traits;
+
+        #include <XSAlgo_ShapeProcessor.hxx>
+        """
 
     [Modules.IMeshTools]
 
@@ -1430,6 +1443,8 @@ using rapidjson::BasicOStreamWrapper;"""
          "GeomToStep_MakeHyperbola.hxx" = "#include <StepData_Factors.hxx>"
 
     [Modules.StepToTopoDS]
+
+        include_header_pre_top = "#include <StepData_Factors.hxx>"
 
         [Modules.StepToTopoDS.parsing_headers]
 
@@ -1456,3 +1471,15 @@ using rapidjson::BasicOStreamWrapper;"""
     [Modules.IGESCAFControl]
 
         include_header_pre = "#include <DE_ConfigurationContext.hxx>"
+
+    [Modules.IGESToBRep]
+
+        include_header_pre_top = "#include <XSAlgo_ShapeProcessor.hxx>" 
+ 
+    [Modules.IGESControl]
+
+        include_header_pre_top = "#include <XSAlgo_ShapeProcessor.hxx>"
+
+    [Modules.StepAP214]
+
+        include_header_pre = "#include <Interface_InterfaceModel.hxx>"
