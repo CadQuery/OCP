@@ -1142,6 +1142,7 @@ struct __GLXFBConfigRec {};"""
 #include <windows.h>
 #endif
 """
+        exclude_classes = ["AdvApp2Var_MathBase"]
 
     [Modules.BOPAlgo]
 
