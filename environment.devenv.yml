@@ -2,11 +2,9 @@ name: cpp-py-bindgen
 channels:
   - conda-forge
 dependencies:
-  - boost-cpp=1.84.* # [not osx]
-  - boost-cpp=1.82.* # [osx]
   - occt=7.9.0=all*
   - pybind11=2.13.*
-  - python={{ get_env("PYTHON_VERSION", default="3.12") }}
+  - python={{ get_env("PYTHON_VERSION", default="3.13") }}
   - cmake >3.24
   - ninja
   - pip:
