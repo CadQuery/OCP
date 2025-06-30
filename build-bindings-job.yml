@@ -150,7 +150,7 @@ jobs:
           call "C:\\Program Files\\Microsoft Visual Studio\\2022\\Enterprise\\VC\\Auxiliary\\Build\\vcvars64.bat"
           call activate cpp-py-bindgen
           cmake -B build -S "../$(OCP_src)" -G Ninja -DCMAKE_BUILD_TYPE=Release -DPython3_FIND_STRATEGY=LOCATION -DPython3_ROOT_DIR=%CONDA_PREFIX% -DCMAKE_LINKER=lld-link.exe
-          cmake --build build -j $(n_cores) -- -v -k 0
+          cmake --build build -j 1 -- -v -k 0
           rmdir /S /Q build\CMakeFiles
         displayName: 'Compile'
         env:
