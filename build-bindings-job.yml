@@ -66,8 +66,8 @@ jobs:
 
   - bash: |
       source activate cpp-py-bindgen && \
-      cmake -DPython_ROOT_DIR=$CONDA_PREFIX -DPython3_ROOT_DIR=$CONDA_PREFIX -DPython_FIND_VIRTUALENV=ONLY -DPython3_FIND_VIRTUALENV=ONLY -B new -S . -G Ninja && \
-      cmake --build new
+      cmake -DPython_ROOT_DIR=$CONDA_PREFIX -DPython3_ROOT_DIR=$CONDA_PREFIX -DPython_FIND_VIRTUALENV=ONLY -DPython3_FIND_VIRTUALENV=ONLY -B . -S . -G Ninja && \
+      cmake --build .
     displayName: 'CMake based pywrap call'
     name: 'Generate'
 
