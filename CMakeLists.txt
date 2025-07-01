@@ -35,9 +35,9 @@ endforeach()
 execute_process(
     COMMAND
     ${Python_EXECUTABLE}
-    dump_symbols.py
+    ${CMAKE_SOURCE_DIR}/dump_symbols.py
     "${occt_libs}"
-    WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
+    WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
     )
 
 get_target_property( LIBCLANG_PATH libclang IMPORTED_LOCATION_RELEASE )
@@ -79,9 +79,10 @@ add_custom_command(
         -i ${CLANG_INCLUDE_DIRS}/
         -i ${VTK_INCLUDE_DIR}/
         -i ${CLANG_INSTALL_PREFIX}/lib/clang/${LLVM_VERSION_MAJOR}/include/
+        -p ${CMAKE_SOURCE_DIR}
         ${CXX_INCLUDES}
-        all ocp.toml ${PLATFORM}
-    WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
+        all ${CMAKE_SOURCE_DIR}/ocp.toml ${PLATFORM}
+        WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
     DEPENDS ${CMAKE_SOURCE_DIR}/ocp.toml
     USES_TERMINAL
     COMMENT "Running pywrap"
