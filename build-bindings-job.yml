@@ -129,7 +129,7 @@ jobs:
       - bash: |
           source activate cpp-py-bindgen && \
           mamba list && \
-          cmake -B build -S "../$(OCP_src)" -G Ninja -DCMAKE_BUILD_TYPE=Release && \
+          cmake -B build -S "../$(OCP_src)" -G Ninja -DCMAKE_BUILD_TYPE=Release  -DCMAKE_CXX_FLAGS="-isystem $CONDA_PREFIX/lib/gcc/x86_64-conda-linux-gnu/13.3.0/include/c++/ -isystem  $CONDA_PREFIX/lib/gcc/x86_64-conda-linux-gnu/13.3.0/include/c++/x86_64-conda-linux-gnu/ -isystem $CONDA_PREFIX/include/ -nostdinc++" && \
           cmake --build build -j $(n_cores) -- -k 0 && \
           rm -rf build/CMakeFiles
         displayName: 'Compile'
