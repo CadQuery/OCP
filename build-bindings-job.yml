@@ -11,7 +11,7 @@ parameters:
   config_file: 'ocp.toml'
   conda_bld: '3.27.0'
   conda_env_file: 'environment.devenv.yml'
-  CXX: g++-12
+  CXX: g++-13
 
 jobs:
 - job: ${{ parameters.name }}
@@ -26,7 +26,7 @@ jobs:
 
   - ${{ if contains(parameters.vmImage, 'Ubuntu') }}:
     - bash: sudo apt-get update && sudo apt-get install ${{ parameters.CXX }} mesa-common-dev libegl1-mesa-dev libgl1-mesa-dev libglu1-mesa-dev freeglut3-dev
-      displayName: 'Install gl headers and the requested compiler'
+      displayName: 'Install gl headers'
 
   - ${{ if contains(parameters.vmImage, 'mac') }}:
     - bash: |
