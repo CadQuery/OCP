@@ -25,6 +25,6 @@ dependencies:
   - toposort
   - py-lief
   {% else %}
-  - cxx-compiler # [not win]
+  - cxx-compiler
   - tbb-devel # [win]
   {% endif %}
