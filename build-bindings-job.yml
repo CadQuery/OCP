@@ -151,8 +151,7 @@ jobs:
     - bash: |
         source activate cpp-py-bindgen && \
         cd build && \
-        python -m pybind11_stubgen -o . OCP && \
-        rm -rf OCP-stubs/setup.py OCP-stubs/__pycache__ OCP-stubs/MANIFEST.in && \
+        python -m pybind11_stubgen OCP -o . --root-suffix "-stubs" && \
         cp -r "../../$(OCP_src)" ../upload && \
         cp -r OCP-stubs ../upload
       displayName: 'Generate stubs and prepare for upload'
