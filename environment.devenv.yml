@@ -7,8 +7,6 @@ dependencies:
   - python={{ get_env("PYTHON_VERSION", default="3.13") }}
   - cmake >3.24
   - ninja
-  - pip:
-    - git+https://github.com/CadQuery/pybind11-stubgen.git
   {% if  get_env("STAGE", default="generate") == "generate" %}
   - clangdev
   - python-clang=20.*
@@ -27,4 +25,5 @@ dependencies:
   {% else %}
   - cxx-compiler
   - tbb-devel # [win]
+  - pybind11-stubgen
   {% endif %}
