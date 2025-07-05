@@ -97,7 +97,7 @@ jobs:
       artifact: OCP_src_${{ parameters.vmImage }}
 
     - ${{ if contains(parameters.vmImage, 'Ubuntu') }}:
-      - bash: sudo apt-get update && sudo apt-get install ${{ parameters.CXX }} mesa-common-dev libgl1-mesa-dev libglu1-mesa-dev freeglut3-dev
+      - bash: sudo apt-get update && sudo apt-get install mesa-common-dev libgl1-mesa-dev libglu1-mesa-dev freeglut3-dev
         displayName: 'Install gl headers and the requested compiler'
 
     - ${{ if contains(parameters.vmImage, 'mac') }}:
@@ -106,11 +106,6 @@ jobs:
           sudo mkdir -p /opt && \
           sudo tar -xf MacOSX10.15.sdk.tar.xz -C /opt
         displayName: 'SDK install'
-
-    - ${{ if contains(parameters.vmImage, 'win') }}:
-      - script: |
-          choco install --accept-license -y Ninja llvm
-        displayName: 'Install clang'
 
     - template: conda-enable.yml@templates
       parameters:
@@ -137,8 +132,6 @@ jobs:
     - ${{ if contains(parameters.vmImage, 'mac') }}:
       - bash: |
           source activate cpp-py-bindgen && \
-          cp -rf opencascade $CONDA_PREFIX/include && \
-          cat $CONDA_PREFIX/include/opencascade/OpenGl_HaltonSampler.hxx  &&\
           cmake -B build -S "../$(OCP_src)" -G Ninja -DCMAKE_BUILD_TYPE=Release -DCMAKE_OSX_SYSROOT=/opt/MacOSX10.15.sdk/ && \
           cmake --build build -j $(n_cores) -- -k 0 && \
           rm -rf build/CMakeFiles
@@ -147,7 +140,6 @@ jobs:
 
     - ${{ if contains(parameters.vmImage, 'win') }}:
       - script: |
-          call "C:\\Program Files\\Microsoft Visual Studio\\2022\\Enterprise\\VC\\Auxiliary\\Build\\vcvars64.bat"
           call activate cpp-py-bindgen
           cmake -B build -S "../$(OCP_src)" -G Ninja -DCMAKE_BUILD_TYPE=Release -DPython3_FIND_STRATEGY=LOCATION -DPython3_ROOT_DIR=%CONDA_PREFIX% -DCMAKE_LINKER=lld-link.exe
           cmake --build build -j 1 -- -v -k 0
