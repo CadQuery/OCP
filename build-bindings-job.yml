@@ -153,7 +153,8 @@ jobs:
         cd build && \
         python -m pybind11_stubgen OCP -o . --root-suffix stubs && \
         cp -r "../../$(OCP_src)" ../upload && \
-        cp -r OCPstubs ../upload/OCP-stubs
+        mv OCPstubs OCP-stubs &&\
+        cp -r OCP-stubs ../upload/
       displayName: 'Generate stubs and prepare for upload'
 
     - task: PublishBuildArtifacts@1
