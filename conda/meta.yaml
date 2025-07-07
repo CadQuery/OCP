@@ -1,4 +1,4 @@
-{% set OCCT_VER = "7.8.1" %}
+{% set OCCT_VER = "7.9.0" %}
 {% set OCP_TWEAK = "0" %}
 
 package:
@@ -11,10 +11,10 @@ source:
 build:
   number: 0
   script:
-    {% if not os.path.exists('build') %}
-    - cmake -B build -S . -G Ninja -DCMAKE_BUILD_TYPE=Release
-    - cmake --build build
-    {% endif %}
+    #{% if not os.path.exists('build') %}
+    #- cmake -B build -S . -G Ninja -DCMAKE_BUILD_TYPE=Release
+    #- cmake --build build
+    #{% endif %}
     - cmake --install build --prefix {{ environ.get('STDLIB_DIR') }}
     - cmake -E copy_directory build/OCP-stubs {{ environ.get('SP_DIR') }}/OCP-stubs
 

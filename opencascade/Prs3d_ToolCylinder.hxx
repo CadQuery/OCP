@@ -22,49 +22,48 @@
 class Prs3d_ToolCylinder : public Prs3d_ToolQuadric
 {
 public:
-
   //! Generate primitives for 3D quadric surface and return a filled array.
-  //! @param theBottomRad [in] cylinder bottom radius
-  //! @param theTopRad    [in] cylinder top radius
-  //! @param theHeight    [in] cylinder height
-  //! @param theNbSlices  [in] number of slices within U parameter
-  //! @param theNbStacks  [in] number of stacks within V parameter
-  //! @param theTrsf      [in] optional transformation to apply
+  //! @param[in] theBottomRad  cylinder bottom radius
+  //! @param[in] theTopRad     cylinder top radius
+  //! @param[in] theHeight     cylinder height
+  //! @param[in] theNbSlices   number of slices within U parameter
+  //! @param[in] theNbStacks   number of stacks within V parameter
+  //! @param[in] theTrsf       optional transformation to apply
   //! @return generated triangulation
-  Standard_EXPORT static Handle(Graphic3d_ArrayOfTriangles) Create (const Standard_Real    theBottomRad,
-                                                                    const Standard_Real    theTopRad,
-                                                                    const Standard_Real    theHeight,
-                                                                    const Standard_Integer theNbSlices,
-                                                                    const Standard_Integer theNbStacks,
-                                                                    const gp_Trsf&         theTrsf);
-public:
+  Standard_EXPORT static Handle(Graphic3d_ArrayOfTriangles) Create(
+    const Standard_Real    theBottomRad,
+    const Standard_Real    theTopRad,
+    const Standard_Real    theHeight,
+    const Standard_Integer theNbSlices,
+    const Standard_Integer theNbStacks,
+    const gp_Trsf&         theTrsf);
 
+public:
   //! Initializes the algorithm creating a cylinder.
-  //! @param theBottomRad [in] cylinder bottom radius
-  //! @param theTopRad    [in] cylinder top radius
-  //! @param theHeight    [in] cylinder height
-  //! @param theNbSlices  [in] number of slices within U parameter
-  //! @param theNbStacks  [in] number of stacks within V parameter
-  Standard_EXPORT Prs3d_ToolCylinder (const Standard_Real    theBottomRad,
-                                      const Standard_Real    theTopRad,
-                                      const Standard_Real    theHeight,
-                                      const Standard_Integer theNbSlices,
-                                      const Standard_Integer theNbStacks);
+  //! @param[in] theBottomRad  cylinder bottom radius
+  //! @param[in] theTopRad     cylinder top radius
+  //! @param[in] theHeight     cylinder height
+  //! @param[in] theNbSlices   number of slices within U parameter
+  //! @param[in] theNbStacks   number of stacks within V parameter
+  Standard_EXPORT Prs3d_ToolCylinder(const Standard_Real    theBottomRad,
+                                     const Standard_Real    theTopRad,
+                                     const Standard_Real    theHeight,
+                                     const Standard_Integer theNbSlices,
+                                     const Standard_Integer theNbStacks);
 
 protected:
-
   //! Computes vertex at given parameter location of the surface.
-  Standard_EXPORT virtual gp_Pnt Vertex (const Standard_Real theU, const Standard_Real theV) const Standard_OVERRIDE;
+  Standard_EXPORT virtual gp_Pnt Vertex(const Standard_Real theU,
+                                        const Standard_Real theV) const Standard_OVERRIDE;
 
   //! Computes normal at given parameter location of the surface.
-  Standard_EXPORT virtual gp_Dir Normal (const Standard_Real theU, const Standard_Real theV) const Standard_OVERRIDE;
+  Standard_EXPORT virtual gp_Dir Normal(const Standard_Real theU,
+                                        const Standard_Real theV) const Standard_OVERRIDE;
 
 protected:
-
   Standard_Real myBottomRadius; //!< cylinder bottom radius
   Standard_Real myTopRadius;    //!< cylinder top radius
   Standard_Real myHeight;       //!< cylinder height
-
 };
 
 #endif // _Prs3d_ToolCylinder_HeaderFile

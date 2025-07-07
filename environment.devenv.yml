@@ -2,24 +2,20 @@ name: cpp-py-bindgen
 channels:
   - conda-forge
 dependencies:
-  - boost-cpp=1.84.* # [not osx]
-  - boost-cpp=1.82.* # [osx]
-  - occt=7.8.1=all*
-  - pybind11=2.12.*
-  - python={{ get_env("PYTHON_VERSION", default="3.9") }}
+  - occt=7.9.0=all*
+  - pybind11=2.13.*
+  - python={{ get_env("PYTHON_VERSION", default="3.13") }}
   - cmake >3.24
   - ninja
-  - pip:
-    - git+https://github.com/CadQuery/pybind11-stubgen.git
   {% if  get_env("STAGE", default="generate") == "generate" %}
-  - clangdev=15.*
-  - python-clang
+  - clangdev
+  - python-clang=20.*
   - joblib
   - toml
   - click
   - jinja2
   - logzero
-  - pandas <2
+  - pandas
   - path
   - pyparsing
   - schema
@@ -27,7 +23,7 @@ dependencies:
   - toposort
   - py-lief
   {% else %}
-  - cxx-compiler # [not win]
-  - mesa-libgl-devel-cos6-x86_64 # [linux]
+  - cxx-compiler
   - tbb-devel # [win]
+  - pybind11-stubgen
   {% endif %}

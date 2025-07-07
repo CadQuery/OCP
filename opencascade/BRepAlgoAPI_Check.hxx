@@ -26,7 +26,6 @@
 #include <TopoDS_Shape.hxx>
 #include <Message_ProgressRange.hxx>
 
-
 //! The class Check provides a diagnostic tool for checking the validity
 //! of the single shape or couple of shapes.
 //! The shapes are checked on:
@@ -48,66 +47,63 @@
 class BRepAlgoAPI_Check : public BOPAlgo_Options
 {
 public:
-
   DEFINE_STANDARD_ALLOC
 
-
 public: //! @name Constructors
-
   //! Empty constructor.
   Standard_EXPORT BRepAlgoAPI_Check();
   Standard_EXPORT virtual ~BRepAlgoAPI_Check();
 
   //! Constructor for checking single shape.
   //!
-  //! @param theS [in] - the shape to check;
-  //! @param bTestSE [in] - flag which specifies whether to check the shape
+  //! @param[in] theS  - the shape to check;
+  //! @param[in] bTestSE  - flag which specifies whether to check the shape
   //!                       on small edges or not; by default it is set to TRUE;
-  //! @param bTestSI [in] - flag which specifies whether to check the shape
+  //! @param[in] bTestSI  - flag which specifies whether to check the shape
   //!                       on self-interference or not; by default it is set to TRUE;
-  //! @param theRange [in] - parameter to use progress indicator
-  Standard_EXPORT BRepAlgoAPI_Check(const TopoDS_Shape& theS,
-                                    const Standard_Boolean bTestSE = Standard_True,
-                                    const Standard_Boolean bTestSI = Standard_True,
-                                    const Message_ProgressRange& theRange = Message_ProgressRange());
+  //! @param[in] theRange  - parameter to use progress indicator
+  Standard_EXPORT BRepAlgoAPI_Check(
+    const TopoDS_Shape&          theS,
+    const Standard_Boolean       bTestSE  = Standard_True,
+    const Standard_Boolean       bTestSI  = Standard_True,
+    const Message_ProgressRange& theRange = Message_ProgressRange());
 
   //! Constructor for checking the couple of shapes.
   //! Additionally to the validity checks of each given shape,
   //! the types of the given shapes will be checked on validity
   //! for Boolean operation of given type.
   //!
-  //! @param theS1 [in] - the first shape to check;
-  //! @param theS2 [in] - the second shape to check;
-  //! @param theOp [in] - the type of Boolean Operation for which the validity
+  //! @param[in] theS1  - the first shape to check;
+  //! @param[in] theS2  - the second shape to check;
+  //! @param[in] theOp  - the type of Boolean Operation for which the validity
   //!                     of given shapes should be checked.
-  //! @param bTestSE [in] - flag which specifies whether to check the shape
+  //! @param[in] bTestSE  - flag which specifies whether to check the shape
   //!                       on small edges or not; by default it is set to TRUE;
-  //! @param bTestSI [in] - flag which specifies whether to check the shape
+  //! @param[in] bTestSI  - flag which specifies whether to check the shape
   //!                       on self-interference or not; by default it is set to TRUE;
-  //! @param theRange [in] - parameter to use progress indicator
-  Standard_EXPORT BRepAlgoAPI_Check(const TopoDS_Shape& theS1,
-                                    const TopoDS_Shape& theS2,
-                                    const BOPAlgo_Operation theOp = BOPAlgo_UNKNOWN,
-                                    const Standard_Boolean bTestSE = Standard_True,
-                                    const Standard_Boolean bTestSI = Standard_True,
-                                    const Message_ProgressRange& theRange = Message_ProgressRange());
-
+  //! @param[in] theRange  - parameter to use progress indicator
+  Standard_EXPORT BRepAlgoAPI_Check(
+    const TopoDS_Shape&          theS1,
+    const TopoDS_Shape&          theS2,
+    const BOPAlgo_Operation      theOp    = BOPAlgo_UNKNOWN,
+    const Standard_Boolean       bTestSE  = Standard_True,
+    const Standard_Boolean       bTestSI  = Standard_True,
+    const Message_ProgressRange& theRange = Message_ProgressRange());
 
 public: //! @name Initializing the algorithm
-
   //! Initializes the algorithm with single shape.
   //!
-  //! @param theS [in] - the shape to check;
-  //! @param bTestSE [in] - flag which specifies whether to check the shape
+  //! @param[in] theS  - the shape to check;
+  //! @param[in] bTestSE  - flag which specifies whether to check the shape
   //!                       on small edges or not; by default it is set to TRUE;
-  //! @param bTestSI [in] - flag which specifies whether to check the shape
+  //! @param[in] bTestSI  - flag which specifies whether to check the shape
   //!                       on self-interference or not; by default it is set to TRUE;
-  void SetData(const TopoDS_Shape& theS,
+  void SetData(const TopoDS_Shape&    theS,
                const Standard_Boolean bTestSE = Standard_True,
                const Standard_Boolean bTestSI = Standard_True)
   {
-    myS1 = theS;
-    myS2 = TopoDS_Shape();
+    myS1     = theS;
+    myS2     = TopoDS_Shape();
     myTestSE = bTestSE;
     myTestSI = bTestSI;
     myFaultyShapes.Clear();
@@ -118,62 +114,51 @@ public: //! @name Initializing the algorithm
   //! the types of the given shapes will be checked on validity
   //! for Boolean operation of given type.
   //!
-  //! @param theS1 [in] - the first shape to check;
-  //! @param theS2 [in] - the second shape to check;
-  //! @param theOp [in] - the type of Boolean Operation for which the validity
+  //! @param[in] theS1  - the first shape to check;
+  //! @param[in] theS2  - the second shape to check;
+  //! @param[in] theOp  - the type of Boolean Operation for which the validity
   //!                     of given shapes should be checked.
-  //! @param bTestSE [in] - flag which specifies whether to check the shape
+  //! @param[in] bTestSE  - flag which specifies whether to check the shape
   //!                       on small edges or not; by default it is set to TRUE;
-  //! @param bTestSI [in] - flag which specifies whether to check the shape
+  //! @param[in] bTestSI  - flag which specifies whether to check the shape
   //!                       on self-interference or not; by default it is set to TRUE;
-  void SetData(const TopoDS_Shape& theS1,
-               const TopoDS_Shape& theS2,
-               const BOPAlgo_Operation theOp = BOPAlgo_UNKNOWN,
-               const Standard_Boolean bTestSE = Standard_True,
-               const Standard_Boolean bTestSI = Standard_True)
+  void SetData(const TopoDS_Shape&     theS1,
+               const TopoDS_Shape&     theS2,
+               const BOPAlgo_Operation theOp   = BOPAlgo_UNKNOWN,
+               const Standard_Boolean  bTestSE = Standard_True,
+               const Standard_Boolean  bTestSI = Standard_True)
   {
-    myS1 = theS1;
-    myS2 = theS2;
+    myS1        = theS1;
+    myS2        = theS2;
     myOperation = theOp;
-    myTestSE = bTestSE;
-    myTestSI = bTestSI;
+    myTestSE    = bTestSE;
+    myTestSI    = bTestSI;
     myFaultyShapes.Clear();
   }
 
-
 public: //! @name Performing the operation
-
   //! Performs the check.
   Standard_EXPORT void Perform(const Message_ProgressRange& theRange = Message_ProgressRange());
 
-
 public: //! @name Getting the results.
-
   //! Shows whether shape(s) valid or not.
-  Standard_Boolean IsValid()
-  {
-    return myFaultyShapes.IsEmpty();
-  }
+  Standard_Boolean IsValid() { return myFaultyShapes.IsEmpty(); }
 
   //! Returns faulty shapes.
-  const BOPAlgo_ListOfCheckResult& Result()
-  {
-    return myFaultyShapes;
-  }
-
+  const BOPAlgo_ListOfCheckResult& Result() { return myFaultyShapes; }
 
 protected: //! @name Fields
-
   // Inputs
-  TopoDS_Shape myS1;                        //!< The first shape
-  TopoDS_Shape myS2;                        //!< The second shape
+  TopoDS_Shape myS1;            //!< The first shape
+  TopoDS_Shape myS2;            //!< The second shape
+                                // clang-format off
   Standard_Boolean myTestSE;                //!< Flag defining whether to look for small edges in the given shapes or not
   Standard_Boolean myTestSI;                //!< Flag defining whether to check the input edges on self-interference or not
   BOPAlgo_Operation myOperation;            //!< Type of Boolean operation for which the validity of input shapes should be checked
+                                // clang-format on
 
   // Results
   BOPAlgo_ListOfCheckResult myFaultyShapes; //!< Found faulty shapes
-
 };
 
 #endif // _BRepAlgoAPI_Check_HeaderFile

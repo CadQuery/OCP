@@ -7,11 +7,13 @@ additional_files = ["pystreambuf.h","vtk_pybind.h"]
 
 pats = ["{}_*.hxx","{}.hxx"]
 
-modules = ["Standard",
+modules = [
+"NCollection",
+"AIS",
+"Standard",
 "gp",
 "math",
 "BVH",
-"NCollection",
 "TColgp",
 "OSD",
 "Quantity",
@@ -198,7 +200,6 @@ modules = ["Standard",
 "Prs3d",
 "PrsMgr",
 "SelectMgr",
-"AIS",
 "DsgPrs",
 "Select3D",
 "StdPrs",
@@ -330,7 +331,8 @@ modules = ["Standard",
 "IMeshTools",
 "IMeshData",
 "APIHeaderSection",
-"UnitsMethods"]
+"UnitsMethods",
+]
 
 exclude = ["Standard_Handle.hxx","Standard", "Standard_MemoryUtils.hxx",
            "math_GaussPoints.hxx","NCollection_Shared.hxx","OSD_WNT.hxx",
@@ -411,7 +413,7 @@ class Adaptor3d_Surface;
 
 [Attributes]
 
-    __version__ = "7.8.1.2"
+    __version__ = "7.9.0.0"
 
 [Modules]
 
@@ -423,7 +425,7 @@ class Adaptor3d_Surface;
 
         exclude_functions = ["HashCode"]
         exclude_methods = ["Standard_Dump::DumpCharacterValues","Standard_Dump::DumpRealValues",
-            "Standard_CLocaleSentry::GetCLocale","Standard_Dump::InitRealValues"]
+            "Standard_CLocaleSentry::GetCLocale","Standard_Dump::InitRealValues", "Standard_ErrorHandler::Label"]
 
     [Modules.Resource]
 
@@ -436,6 +438,7 @@ class Adaptor3d_Surface;
         include_header_pre = """const size_t DefaultBlockSize = 24600;
 const size_t THE_DEFAULT_BLOCK_SIZE = DefaultBlockSize;"""
         exclude_classes = ["NCollection","NCollection_ListNode"]
+        exclude_class_template_methods = [".*::begin", ".*::end", ".*::cbegin", ".*::cend"]
 
         include_body_template_post="""
 template <typename T>
@@ -675,6 +678,10 @@ void register_template_NCollection_Vector(py::object &m, const char *name){
         "BRepMesh_DefaultRangeSplitter::computeTolerance","BRepMesh_DefaultRangeSplitter::computeDelta",
         "BRepMesh_Delaun::Frontier","BRepMesh_GeomTool::CellsCount", "BRepMesh_EdgeDiscret::operator()",
         "BRepMesh_FaceChecker::operator()", "BRepMesh_ModelHealer::operator()"]
+        
+        [Modules.BRepMesh.parsing_headers]
+        
+        "BRepMesh_Triangle.hxx" = "#include <algorithm>"
 
     [Modules.TopOpeBRepTool]
 
@@ -916,6 +923,7 @@ struct NSOpenGLContext {};"""
 
             "STEPConstruct_PointHasher.hxx" = "#include <gp_Pnt.hxx>"
             "STEPConstruct_Styles.hxx" = "#include <StepData_StepModel.hxx>"
+            "STEPConstruct_ValidationProps.hxx" = "#include <StepData_Factors.hxx>"
 
     [Modules.RWStl]
 
@@ -934,6 +942,10 @@ struct NSOpenGLContext {};"""
 
     [Modules.Transfer]
 
+        include_header_pre_top = """
+        #include <XSAlgo_ShapeProcessor.hxx>
+        #include <DE_ShapeFixParameters.hxx>
+        """
         exclude_typedefs = ["Transfer_TransferMapOfProcessForFinder","Transfer_TransferMapOfProcessForTransient"]
 
     [Modules.ShapeFix]
@@ -1100,7 +1112,10 @@ struct __GLXFBConfigRec {};"""
         using std::char_traits;
 
         #include <DE_ConfigurationContext.hxx>
-        #include <XCAFDoc_ShapeTool.hxx>"""
+        #include <XCAFDoc_ShapeTool.hxx>
+        #include <XSAlgo_ShapeProcessor.hxx>
+        """
+
         exclude_typedefs = ["STEPCAFControl_DataMapOfShapePD","STEPCAFControl_DataMapOfShapePD",
             "STEPCAFControl_DataMapOfSDRExternFile","STEPCAFControl_DataMapOfSDRExternFile",
             "STEPCAFControl_DataMapOfPDExternFile","STEPCAFControl_DataMapOfLabelExternFile",
@@ -1127,6 +1142,7 @@ struct __GLXFBConfigRec {};"""
 #include <windows.h>
 #endif
 """
+        exclude_classes = ["AdvApp2Var_MathBase"]
 
     [Modules.BOPAlgo]
 
@@ -1156,7 +1172,10 @@ using std::char_traits;"""
 
         include_header_pre = """#include <istream>
 using std::basic_istream;
-using std::char_traits;"""
+using std::char_traits;
+#include <XSAlgo_ShapeProcessor.hxx>
+#include <DE_ShapeFixParameters.hxx>
+"""
 
     [Modules.Message]
 
@@ -1377,6 +1396,12 @@ using rapidjson::BasicOStreamWrapper;"""
         "TopoDSToStep_MakeStepVertex.hxx" = "#include <StepData_Factors.hxx>"
         "TopoDSToStep_MakeGeometricCurveSet.hxx" = "#include <StepData_Factors.hxx>"
         "TopoDSToStep_MakeFacetedBrepAndBrepWithVoids.hxx" = "#include <StepData_Factors.hxx>"
+        "TopoDSToStep_MakeStepEdge.hxx" = "#include <StepData_Factors.hxx>"
+        "TopoDSToStep_MakeStepFace.hxx" = "#include <StepData_Factors.hxx>"
+        "TopoDSToStep_MakeManifoldSolidBrep.hxx" = "#include <StepData_Factors.hxx>"
+        "TopoDSToStep_MakeFacetedBrep.hxx" = "#include <StepData_Factors.hxx>"
+        "TopoDSToStep_WireframeBuilder.hxx" = "#include <StepData_Factors.hxx>"
+        
 
     [Modules.XCAFDoc]
 
@@ -1402,7 +1427,10 @@ using rapidjson::BasicOStreamWrapper;"""
 
         using std::basic_ostream;
         using std::basic_istream;
-        using std::char_traits;"""
+        using std::char_traits;
+
+        #include <XSAlgo_ShapeProcessor.hxx>
+        """
 
     [Modules.IMeshTools]
 
@@ -1417,6 +1445,8 @@ using rapidjson::BasicOStreamWrapper;"""
 
     [Modules.StepToTopoDS]
 
+        include_header_pre_top = "#include <StepData_Factors.hxx>"
+
         [Modules.StepToTopoDS.parsing_headers]
 
         "StepToTopoDS_TranslateEdgeLoop.hxx" = "#include <StepData_Factors.hxx>"
@@ -1425,6 +1455,12 @@ using rapidjson::BasicOStreamWrapper;"""
         "StepToTopoDS_TranslateCurveBoundedSurface.hxx" = "#include <StepData_Factors.hxx>"
         "StepToTopoDS_TranslateCompositeCurve.hxx" = "#include <StepData_Factors.hxx>"
         "StepToTopoDS_Builder.hxx" = "#include <StepData_Factors.hxx>"
+        "StepToTopoDS_MakeTransformed.hxx" = "#include <StepData_Factors.hxx>"
+        "StepToTopoDS_TranslateFace.hxx" = "#include <StepData_Factors.hxx>"
+        "StepToTopoDS_TranslateVertex.hxx" = "#include <StepData_Factors.hxx>"
+        "StepToTopoDS_TranslateEdge.hxx" = "#include <StepData_Factors.hxx>"
+        "StepToTopoDS_TranslatePolyLoop.hxx" = "#include <StepData_Factors.hxx>"
+        "StepToTopoDS_TranslateVertexLoop.hxx" = "#include <StepData_Factors.hxx>"
 
     [Modules.APIHeaderSection]
 
@@ -1436,3 +1472,15 @@ using rapidjson::BasicOStreamWrapper;"""
     [Modules.IGESCAFControl]
 
         include_header_pre = "#include <DE_ConfigurationContext.hxx>"
+
+    [Modules.IGESToBRep]
+
+        include_header_pre_top = "#include <XSAlgo_ShapeProcessor.hxx>" 
+ 
+    [Modules.IGESControl]
+
+        include_header_pre_top = "#include <XSAlgo_ShapeProcessor.hxx>"
+
+    [Modules.StepAP214]
+
+        include_header_pre = "#include <Interface_InterfaceModel.hxx>"
