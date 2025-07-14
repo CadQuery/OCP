@@ -359,7 +359,7 @@ exceptions = ["Standard_Failure"]
 module_mapping = "lambda x: Path(x).splitpath()[-1].split('.')[0].split('_')[0]"
 
 byref_types = ["Standard_Real","Standard_Integer","Standard_Boolean"]
-byref_types_smart_ptr = ["opencascade::handle"]
+byref_types_smart_ptr = ["opencascade::handle", "handle", "Handle"]
 
 parsing_header = '''#pragma clang diagnostic ignored "-Wmacro-redefined"
 class Adaptor2d_Curve2d;
