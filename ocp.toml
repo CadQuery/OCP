@@ -7,7 +7,16 @@ additional_files = ["pystreambuf.h","vtk_pybind.h"]
 
 pats = ["{}_*.hxx","{}.hxx"]
 
-exclude_namespaces = ["std", "opencascade", "IMeshData", "IVtkTools", "BVH", "OpenGL"]
+exclude_namespaces = [
+"std",
+"opencascade",
+"IMeshData",
+"IVtkTools",
+"BVH",
+"OpenGL",
+"OpenGl_HashMapInitializer",
+"Graphic3d_TransformUtils"
+]
 
 modules = [
 "NCollection",
