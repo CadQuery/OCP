@@ -13,7 +13,7 @@ exclude_namespaces = [
 "IMeshData",
 "IVtkTools",
 "BVH",
-"OpenGL",
+"OpenGl",
 "OpenGl_HashMapInitializer",
 "Graphic3d_TransformUtils"
 ]
