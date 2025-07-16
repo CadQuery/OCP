@@ -115,7 +115,7 @@ jobs:
         vmImage: ${{ parameters.vmImage }}
 
     - bash: |
-        mamba-devenv -f  ${{ parameters.conda_env_file }}
+        micromamba run mamba-devenv -f  ${{ parameters.conda_env_file }}
       displayName: 'Prepare conda environment'
       env:
         PYTHON_VERSION: ${{ parameters.py_maj }}.${{ py_min }}
@@ -141,7 +141,7 @@ jobs:
 
     - ${{ if contains(parameters.vmImage, 'win') }}:
       - script: |
-          call activate cpp-py-bindgen
+          micromamba activate cpp-py-bindgen
           cmake -B build -S "../$(OCP_src)" -G Ninja -DCMAKE_BUILD_TYPE=Release -DPython3_FIND_STRATEGY=LOCATION -DPython3_ROOT_DIR=%CONDA_PREFIX% -DCMAKE_LINKER=lld-link.exe
           cmake --build build -j 1 -- -v -k 0
           rmdir /S /Q build\CMakeFiles
