@@ -51,7 +51,7 @@ jobs:
   - bash: |
       env && \ 
       micromamba activate cpp-py-bindgen && \
-      micromamba info -a && \
+      micromamba info && \
       micromamba list && \
       which python && \
       env
