@@ -38,14 +38,14 @@ jobs:
         sudo ln -s /opt/MacOSX11.3.sdk/System/Library/Frameworks/OpenGL.framework/Headers /usr/local/include/OpenGL
       displayName: 'SDK install and symlink'
 
-  - template: conda-enable.yml@templates
+  - template: micromamba-enable.yml@templates
     parameters:
       python: 3.12
       mamba: 1.5
       vmImage: ${{ parameters.vmImage }}
 
   - bash: |
-      mamba run mamba-devenv -f ${{ parameters.conda_env_file }}
+      micromamba run mamba-devenv -f ${{ parameters.conda_env_file }}
     displayName: 'Prepare conda environment'
 
   - bash: |
@@ -107,7 +107,7 @@ jobs:
           sudo tar -xf MacOSX10.15.sdk.tar.xz -C /opt
         displayName: 'SDK install'
 
-    - template: conda-enable.yml@templates
+    - template: micromamba-enable.yml@templates
       parameters:
         python: 3.12
         mamba: 1.5
