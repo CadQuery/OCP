@@ -76,6 +76,11 @@ else()
     endif()
 endif()
 
+# use local windows.h
+if(PLATFORM EQUAL "Windows")
+    list( APPEND CXX_INCLUDES -i ${CMAKE_SOURCE_DIR}/extern/include )
+endif()
+
 set(ENV{PYTHONPATH} ${CMAKE_SOURCE_DIR}/pywrap )
 
 add_custom_command(
