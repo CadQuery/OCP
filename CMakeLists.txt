@@ -62,7 +62,11 @@ else()
     list( APPEND CXX_INCLUDES -i /opt/usr/local/include/c++/v1/ -i /opt/usr/local/include/ )
 endif()
 
-if(NOT PLATFORM)
+if(PLATFORM)
+    message( STATUS "Requested platform: ${PLATFORM}")
+else()
+    message( STATUS "Platform not specified.")
+
     if(${CMAKE_SYSTEM_NAME} STREQUAL "Windows")
         set(PLATFORM Windows)
     elseif(${CMAKE_SYSTEM_NAME} STREQUAL "Darwin")
