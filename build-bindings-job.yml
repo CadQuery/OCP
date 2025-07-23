@@ -72,7 +72,7 @@ jobs:
     - bash: |
         micromamba create --yes --platform win-64 --no-deps --prefix ./occt  occt=7.9.0 && \ 
         micromamba activate cpp-py-bindgen && \
-        cmake -S . -B new -G Ninja --DPython_ROOT_DIR=$CONDA_PREFIX -DPython3_ROOT_DIR=$CONDA_PREFIX -DPython_FIND_VIRTUALENV=ONLY -DPython3_FIND_VIRTUALENV=ONLY -DOCCT_LIB_DIR=./occt/Library/bin/\*.dll -DPLATFORM=Windows
+        cmake -S . -B new -G Ninja -DPython_ROOT_DIR=$CONDA_PREFIX -DPython3_ROOT_DIR=$CONDA_PREFIX -DPython_FIND_VIRTUALENV=ONLY -DPython3_FIND_VIRTUALENV=ONLY -DOCCT_LIB_DIR=./occt/Library/bin/\*.dll -DPLATFORM=Windows
         cmake --build .
       displayName: 'CMake based pywrap call (linux to win)'
       name: 'Generate'
