@@ -76,11 +76,6 @@ else()
     endif()
 endif()
 
-# use local windows.h
-if(PLATFORM EQUAL "Windows")
-    list( APPEND CXX_INCLUDES -i ${CMAKE_SOURCE_DIR}/extern/include )
-endif()
-
 set(ENV{PYTHONPATH} ${CMAKE_SOURCE_DIR}/pywrap )
 
 add_custom_command(
@@ -96,6 +91,7 @@ add_custom_command(
         -i ${CLANG_INSTALL_PREFIX}/lib/clang/${LLVM_VERSION_MAJOR}/include/
         -p ${CMAKE_SOURCE_DIR}
         ${CXX_INCLUDES}
+        -i ${CMAKE_SOURCE_DIR}/extern/include
         all ${CMAKE_SOURCE_DIR}/ocp.toml ${PLATFORM}
         WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
     DEPENDS ${CMAKE_SOURCE_DIR}/ocp.toml
