@@ -153,7 +153,7 @@ jobs:
 
 
     - ${{ if contains(parameters.vmImage_compile, 'win') }}:
-      - script: |
+      - powershell: |
           micromamba run -n cpp-py-bindgen cmake -B build -S "../$(OCP_src)" -G Ninja -DCMAKE_BUILD_TYPE=Release -DPython3_FIND_STRATEGY=LOCATION -DPython3_ROOT_DIR=%CONDA_PREFIX% -DCMAKE_LINKER=lld-link.exe
           micromamba run -n cpp-py-bindgen cmake --build build -j 1 -- -v -k 0
           rmdir /S /Q build\CMakeFiles
