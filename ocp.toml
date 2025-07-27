@@ -424,7 +424,7 @@ class Adaptor3d_Surface;
 
 [Attributes]
 
-    __version__ = "7.9.0.0"
+    __version__ = "7.9.1.0"
 
 [Modules]
 

@@ -2,7 +2,7 @@ name: cpp-py-bindgen
 channels:
   - conda-forge
 dependencies:
-  - occt=7.9.0=all*
+  - occt=7.9.1=all*
   - pybind11=2.13.*
   - python={{ get_env("PYTHON_VERSION", default="3.13") }}
   - cmake >3.24

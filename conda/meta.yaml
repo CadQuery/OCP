@@ -1,4 +1,4 @@
-{% set OCCT_VER = "7.9.0" %}
+{% set OCCT_VER = "7.9.1" %}
 {% set OCP_TWEAK = "0" %}
 
 package:

@@ -1,4 +1,4 @@
-// Created on: 2025-05-29
+// Created on: 2025-07-02
 // Copyright (c) 2002-2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
@@ -38,7 +38,7 @@ major, minor, and patch number
 // Primary definitions
 #define OCC_VERSION_MAJOR 7
 #define OCC_VERSION_MINOR 9
-#define OCC_VERSION_MAINTENANCE 0
+#define OCC_VERSION_MAINTENANCE 1
 
 //! This macro must be commented in official release, and set to non-empty
 //! string in other situations, to identify specifics of the version, e.g.:
@@ -50,7 +50,7 @@ major, minor, and patch number
 // Derived (manually): version as real and string (major.minor)
 #define OCC_VERSION 7.9
 #define OCC_VERSION_STRING "7.9"
-#define OCC_VERSION_COMPLETE "7.9.0"
+#define OCC_VERSION_COMPLETE "7.9.1"
 
 //! Derived: extended version as string ("major.minor.maintenance.dev")
 #ifdef OCC_VERSION_DEVELOPMENT
