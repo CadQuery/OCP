@@ -25,12 +25,16 @@ set( Python_FIND_VIRTUALENV FIRST )
 find_package( Python 3.9 COMPONENTS Interpreter Development REQUIRED )
 
 # find OCCT and dump symbols
-find_package( OpenCASCADE REQUIRED )
+if(OCCT_LIB_DIR)
+    file(GLOB occt_libs LIST_DIRECTORIES false ${OCCT_LIB_DIR} )
+else()
+    find_package( OpenCASCADE REQUIRED )
 
-foreach(target ${OpenCASCADE_LIBRARIES} )
-    get_target_property(loc ${target} IMPORTED_LOCATION_RELEASE)
-    list( APPEND occt_libs ${loc} )
-endforeach()
+    foreach(target ${OpenCASCADE_LIBRARIES} )
+        get_target_property(loc ${target} IMPORTED_LOCATION_RELEASE)
+        list( APPEND occt_libs ${loc} )
+    endforeach()
+endif()
 
 execute_process(
     COMMAND
@@ -38,7 +42,7 @@ execute_process(
     ${CMAKE_SOURCE_DIR}/dump_symbols.py
     "${occt_libs}"
     WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
-    )
+)
 
 get_target_property( LIBCLANG_PATH libclang IMPORTED_LOCATION_RELEASE )
 get_target_property( VTK_INCLUDE_DIR VTK::CommonCore INTERFACE_INCLUDE_DIRECTORIES )
@@ -58,12 +62,18 @@ else()
     list( APPEND CXX_INCLUDES -i /opt/usr/local/include/c++/v1/ -i /opt/usr/local/include/ )
 endif()
 
-if(${CMAKE_SYSTEM_NAME} STREQUAL "Windows")
-    set(PLATFORM Windows)
-elseif(${CMAKE_SYSTEM_NAME} STREQUAL "Darwin")
-    set(PLATFORM OSX)
+if(PLATFORM)
+    message( STATUS "Requested platform: ${PLATFORM}")
 else()
-    set(PLATFORM Linux)
+    message( STATUS "Platform not specified.")
+
+    if(${CMAKE_SYSTEM_NAME} STREQUAL "Windows")
+        set(PLATFORM Windows)
+    elseif(${CMAKE_SYSTEM_NAME} STREQUAL "Darwin")
+        set(PLATFORM OSX)
+    else()
+        set(PLATFORM Linux)
+    endif()
 endif()
 
 set(ENV{PYTHONPATH} ${CMAKE_SOURCE_DIR}/pywrap )
@@ -81,6 +91,7 @@ add_custom_command(
         -i ${CLANG_INSTALL_PREFIX}/lib/clang/${LLVM_VERSION_MAJOR}/include/
         -p ${CMAKE_SOURCE_DIR}
         ${CXX_INCLUDES}
+        -i ${CMAKE_SOURCE_DIR}/extern/include
         all ${CMAKE_SOURCE_DIR}/ocp.toml ${PLATFORM}
         WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
     DEPENDS ${CMAKE_SOURCE_DIR}/ocp.toml

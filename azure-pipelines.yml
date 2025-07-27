@@ -19,12 +19,19 @@ jobs:
   parameters:
     name: Linux
     vmImage: 'ubuntu-22.04'
+    vmImage_compile: 'ubuntu-22.04'
+    platform: Linux
+
 - template: build-bindings-job.yml
   parameters:
     name: Windows
-    vmImage: 'windows-latest'
-    conda_bld: 3.17
+    vmImage: 'ubuntu-22.04'
+    vmImage_compile: 'windows-latest'
+    platform: Windows
+
 - template: build-bindings-job.yml
   parameters:
     name: OSX
-    vmImage: 'macOS-latest'
+    vmImage: 'macos-latest'
+    vmImage_compile: 'macos-latest' 
+    platform: OSX
