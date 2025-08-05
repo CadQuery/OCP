@@ -1,6 +1,8 @@
 parameters:
   name: 'Generate bindings'
   vmImage: 'ubuntu-latest'
+  vmImage_compile: 'ubuntu-latest'
+  platform: 'linux'
   py_maj: '3'
   py_min: '11'
   py_min_build:
@@ -65,12 +67,23 @@ jobs:
     displayName: 'Read output dir from the config file'
     name: 'conf'
 
-  - bash: |
-      micromamba activate cpp-py-bindgen && \
-      cmake -DPython_ROOT_DIR=$CONDA_PREFIX -DPython3_ROOT_DIR=$CONDA_PREFIX -DPython_FIND_VIRTUALENV=ONLY -DPython3_FIND_VIRTUALENV=ONLY -B . -S . -G Ninja && \
-      cmake --build .
-    displayName: 'CMake based pywrap call'
-    name: 'Generate'
+  
+  - ${{ if contains(parameters.platform, 'Windows') }}:
+    - bash: |
+        micromamba create --yes --platform win-64 --no-deps --prefix ./occt  occt=7.9.0 && \ 
+        micromamba activate cpp-py-bindgen && \
+        cmake -S . -B . -G Ninja -DPython_ROOT_DIR=$CONDA_PREFIX -DPython3_ROOT_DIR=$CONDA_PREFIX -DPython_FIND_VIRTUALENV=ONLY -DPython3_FIND_VIRTUALENV=ONLY -DOCCT_LIB_DIR=./occt/Library/bin/\*.dll -DPLATFORM=Windows && \
+        cmake --build . -- -v
+      displayName: 'CMake based pywrap call (linux to win)'
+      name: 'Generate'
+
+  - ${{ else }}:
+    - bash: |
+        micromamba activate cpp-py-bindgen && \
+        cmake -DPython_ROOT_DIR=$CONDA_PREFIX -DPython3_ROOT_DIR=$CONDA_PREFIX -DPython_FIND_VIRTUALENV=ONLY -DPython3_FIND_VIRTUALENV=ONLY -B . -S . -G Ninja && \
+        cmake --build .
+      displayName: 'CMake based pywrap call'
+      name: 'Generate'
 
   - task: CopyFiles@2
     inputs:
@@ -79,29 +92,29 @@ jobs:
     displayName: 'Copy pkl outputs'
 
   - publish:  $(conf.OUTPUT)
-    artifact: OCP_src_${{ parameters.vmImage }}
+    artifact: OCP_src_${{ parameters.platform }}
 
   - publish:  $(conf.OUTPUT)_pkl
-    artifact: OCP_pkl_${{ parameters.vmImage }}
+    artifact: OCP_pkl_${{ parameters.platform }}
 
 - ${{ each py_min in parameters.py_min_build }}:
   - job: ${{ parameters.name }}_${{ parameters.py_maj }}_${{ py_min }}
     timeoutInMinutes: 360
     dependsOn: ${{ parameters.name }}
     pool:
-      vmImage: ${{ parameters.vmImage }}
+      vmImage: ${{ parameters.vmImage_compile }}
     variables:
       n_cores: 2
-      OCP_src: OCP_src_${{ parameters.vmImage }}
+      OCP_src: OCP_src_${{ parameters.platform }}
     steps:
     - download: current
-      artifact: OCP_src_${{ parameters.vmImage }}
+      artifact: OCP_src_${{ parameters.platform }}
 
-    - ${{ if contains(parameters.vmImage, 'Ubuntu') }}:
+    - ${{ if contains(parameters.vmImage_compile, 'Ubuntu') }}:
       - bash: sudo apt-get update && sudo apt-get install mesa-common-dev libgl1-mesa-dev libglu1-mesa-dev freeglut3-dev
         displayName: 'Install gl headers and the requested compiler'
 
-    - ${{ if contains(parameters.vmImage, 'mac') }}:
+    - ${{ if contains(parameters.vmImage_compile, 'mac') }}:
       - bash: |
           curl -L -O https://github.com/phracker/MacOSX-SDKs/releases/download/11.3/MacOSX10.15.sdk.tar.xz && \
           sudo mkdir -p /opt && \
@@ -112,7 +125,7 @@ jobs:
       parameters:
         python: 3.12
         mamba: 1.5
-        vmImage: ${{ parameters.vmImage }}
+        vmImage: ${{ parameters.vmImage_compile }}
 
     - bash: |
         micromamba run mamba-devenv -f  ${{ parameters.conda_env_file }}
@@ -121,7 +134,7 @@ jobs:
         PYTHON_VERSION: ${{ parameters.py_maj }}.${{ py_min }}
         STAGE: "compile"
 
-    - ${{ if contains(parameters.vmImage, 'Ubuntu') }}:
+    - ${{ if contains(parameters.vmImage_compile, 'Ubuntu') }}:
       - bash: |
           micromamba activate cpp-py-bindgen && \
           micromamba list && \
@@ -130,7 +143,7 @@ jobs:
           rm -rf build/CMakeFiles
         displayName: 'Compile'
 
-    - ${{ if contains(parameters.vmImage, 'mac') }}:
+    - ${{ if contains(parameters.vmImage_compile, 'mac') }}:
       - bash: |
           micromamba activate cpp-py-bindgen && \
           cmake -B build -S "../$(OCP_src)" -G Ninja -DCMAKE_BUILD_TYPE=Release -DCMAKE_OSX_SYSROOT=/opt/MacOSX10.15.sdk/ && \
@@ -139,12 +152,11 @@ jobs:
         displayName: 'Compile'
 
 
-    - ${{ if contains(parameters.vmImage, 'win') }}:
-      - bash: |
-          micromamba activate cpp-py-bindgen && \
-          cmake -B build -S "../$(OCP_src)" -G Ninja -DCMAKE_BUILD_TYPE=Release -DPython3_FIND_STRATEGY=LOCATION -DPython3_ROOT_DIR=%CONDA_PREFIX% -DCMAKE_LINKER=lld-link.exe && \
-          cmake --build build -j 1 -- -v -k 0 && \
-          rmdir /S /Q build\CMakeFiles
+    - ${{ if contains(parameters.vmImage_compile, 'win') }}:
+      - powershell: |
+          micromamba run -n cpp-py-bindgen cmake -B build -S "../$(OCP_src)" -G Ninja -DCMAKE_BUILD_TYPE=Release -DPython3_FIND_STRATEGY=LOCATION -DPython3_ROOT_DIR=%CONDA_PREFIX% -DCMAKE_LINKER=lld-link.exe
+          micromamba run -n cpp-py-bindgen cmake --build build -j 1 -- -v -k 0
+          micromamba run -n cpp-py-bindgen cmake -E rm -rf build\CMakeFiles
         displayName: 'Compile'
         env:
           CXX: "cl.exe"
@@ -161,13 +173,13 @@ jobs:
     - task: PublishBuildArtifacts@1
       inputs:
         pathtoPublish: 'upload'
-        artifactName: OCP_src_stubs_${{ parameters.vmImage }}
+        artifactName: OCP_src_stubs_${{ parameters.platform }}
       displayName: 'Publish stubs and sources together'
 
     - task: PublishBuildArtifacts@1
       inputs:
         pathtoPublish: 'build'
-        artifactName: OCP_${{ parameters.vmImage }}
+        artifactName: OCP_${{ parameters.platform }}
       displayName: 'Publish compilation result'
 
     - bash: |
