@@ -14,6 +14,7 @@ find_package( VTK REQUIRED
     CommonDataModel
     CommonExecutionModel
     freetype
+    mpi
 )
 message(STATUS "VTK ${VTK_VERSION} found")
 find_package( RapidJSON REQUIRED )
