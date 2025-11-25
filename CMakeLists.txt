@@ -2,7 +2,8 @@ cmake_minimum_required( VERSION 3.17 )
 project( OCP )
 
 set( N_PROC 2 CACHE STRING "Number of processes used for generating code")
-
+set( DLL_EXT dll CACHE STRING "DLL suffix")
+set( MSVC_VER 16 CACHE STRING "MSVC version to download for win generation")
 
 find_package( LLVM REQUIRED )
 find_package( VTK REQUIRED
@@ -26,7 +27,8 @@ find_package( Python 3.9 COMPONENTS Interpreter Development REQUIRED )
 
 # find OCCT and dump symbols
 if(OCCT_LIB_DIR)
-    file(GLOB occt_libs LIST_DIRECTORIES false ${OCCT_LIB_DIR} )
+    file(GLOB occt_libs LIST_DIRECTORIES false ${OCCT_LIB_DIR}/*.${DLL_EXT} )
+    message(STATUS Found OCCT libs: ${occt_libs})
 else()
     find_package( OpenCASCADE REQUIRED )
 
@@ -54,12 +56,34 @@ list(GET VTK_INCLUDE_DIR 0 VTK_INCLUDE_DIR)
 message( STATUS "Include dirs: ${VTK_INCLUDE_DIR}")
 message( STATUS "Include dirs: ${CMAKE_CXX_IMPLICIT_INCLUDE_DIRECTORIES}")
 
-if(NOT ${CMAKE_SYSTEM_NAME} STREQUAL "Darwin")
+# Linux-like
+if(NOT ${CMAKE_SYSTEM_NAME} STREQUAL "Darwin" AND NOT ${PLATFORM} STREQUAL "Windows")
     foreach( inc IN LISTS CMAKE_CXX_IMPLICIT_INCLUDE_DIRECTORIES)
         list( APPEND CXX_INCLUDES -i ${inc}/ )
     endforeach()
-else()
+
+# OSX
+elseif(${CMAKE_SYSTEM_NAME} STREQUAL "Darwin")
     list( APPEND CXX_INCLUDES -i /opt/usr/local/include/c++/v1/ -i /opt/usr/local/include/ )
+
+# X-generation from Linux to Windows
+else()
+    # download part of msvc 16 and winsdk
+    execute_process(
+        COMMAND
+        ${Python_EXECUTABLE}
+        ${CMAKE_SOURCE_DIR}/extern/msvc-wine/vsdownload.py
+        --major ${MSVC_VER} 
+        --accept-license  
+        --dest msvc 
+        Win10SDK_10.0.19041
+        Microsoft.VisualCpp.CRT.Headers
+        WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
+    )
+
+    list( APPEND CXX_INCLUDES -i ${CMAKE_BINARY_DIR}/msvc/VC/Tools/MSVC/14.29.30133/include )
+    list( APPEND CXX_INCLUDES -i ${CMAKE_BINARY_DIR}/extern/include/ )
+    list( APPEND CXX_INCLUDES -i ${CMAKE_BINARY_DIR}/msvc/Windows\ Kits/10/Include/10.0.26100.0/ucrt/ )
 endif()
 
 if(PLATFORM)
@@ -100,3 +124,4 @@ add_custom_command(
 )
 
 add_custom_target(pywrap ALL DEPENDS ${CMAKE_SOURCE_DIR}/OCP/CMakeLists.txt)
+
