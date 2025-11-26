@@ -4,6 +4,7 @@ project( OCP )
 set( N_PROC 2 CACHE STRING "Number of processes used for generating code")
 set( DLL_EXT dll CACHE STRING "DLL suffix")
 set( MSVC_VER 16 CACHE STRING "MSVC version to download for win generation")
+set( OCCT_LIB_DIR  CACHE PATH "Location of OCCT sos/dlls")
 
 find_package( LLVM REQUIRED )
 find_package( VTK REQUIRED
@@ -69,21 +70,23 @@ elseif(${CMAKE_SYSTEM_NAME} STREQUAL "Darwin")
 # X-generation from Linux to Windows
 else()
     # download part of msvc 16 and winsdk
-    execute_process(
-        COMMAND
-        ${Python_EXECUTABLE}
-        ${CMAKE_SOURCE_DIR}/extern/msvc-wine/vsdownload.py
-        --major ${MSVC_VER} 
-        --accept-license  
-        --dest msvc 
-        Win10SDK_10.0.19041
-        Microsoft.VisualCpp.CRT.Headers
-        WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
-    )
+    if( NOT EXISTS ${CMAKE_BINARY_DIR}/msvc )
+        execute_process(
+            COMMAND
+            ${Python_EXECUTABLE}
+            ${CMAKE_SOURCE_DIR}/extern/msvc-wine/vsdownload.py
+            --major ${MSVC_VER}
+            --accept-license
+            --dest msvc
+            Win10SDK_10.0.19041
+            Microsoft.VisualCpp.CRT.Headers
+            WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
+        )
+    endif()
 
     list( APPEND CXX_INCLUDES -i ${CMAKE_BINARY_DIR}/msvc/VC/Tools/MSVC/14.29.30133/include )
-    list( APPEND CXX_INCLUDES -i ${CMAKE_BINARY_DIR}/extern/include/ )
-    list( APPEND CXX_INCLUDES -i ${CMAKE_BINARY_DIR}/msvc/Windows\ Kits/10/Include/10.0.26100.0/ucrt/ )
+    list( APPEND CXX_INCLUDES -i ${CMAKE_BINARY_DIR}/msvc/Windows\ Kits/10/Include/10.0.19041.0/ucrt/ )
+    list( APPEND CXX_INCLUDES -i ${CMAKE_SOURCE_DIR}/extern/include/ )
 endif()
 
 if(PLATFORM)
