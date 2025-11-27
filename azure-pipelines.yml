@@ -25,7 +25,7 @@ jobs:
 - template: build-bindings-job.yml
   parameters:
     name: Windows
-    vmImage: 'windows-latest'
+    vmImage: 'ubuntu-22.04'
     vmImage_compile: 'windows-latest'
     platform: Windows
 
