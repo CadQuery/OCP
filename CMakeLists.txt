@@ -62,7 +62,7 @@ if(${CMAKE_SYSTEM_NAME} STREQUAL "Darwin")
     list( APPEND CXX_INCLUDES -i /opt/usr/local/include/c++/v1/ -i /opt/usr/local/include/ )
 
 # Linux-like
-elseif(NOT ${PLATFORM} STREQUAL "Windows")
+elseif(NOT PLATFORM STREQUAL "Windows")
     foreach( inc IN LISTS CMAKE_CXX_IMPLICIT_INCLUDE_DIRECTORIES)
         list( APPEND CXX_INCLUDES -i ${inc}/ )
     endforeach()
