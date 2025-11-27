@@ -27,7 +27,7 @@ set( Python_FIND_VIRTUALENV FIRST )
 find_package( Python 3.9 COMPONENTS Interpreter Development REQUIRED )
 
 # find OCCT and dump symbols
-if( EXISTS OCCT_LIB_DIR)
+if( EXISTS ${OCCT_LIB_DIR})
     file(GLOB occt_libs LIST_DIRECTORIES false ${OCCT_LIB_DIR}/*.${DLL_EXT} )
     message(STATUS Found OCCT libs: ${occt_libs})
 else()
