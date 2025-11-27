@@ -22,6 +22,7 @@ dependencies:
   - tqdm
   - toposort
   - py-lief
+  - msitools # [linux]
   {% else %}
   - cxx-compiler
   - tbb-devel # [win]
