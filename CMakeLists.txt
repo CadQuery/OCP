@@ -27,7 +27,7 @@ set( Python_FIND_VIRTUALENV FIRST )
 find_package( Python 3.9 COMPONENTS Interpreter Development REQUIRED )
 
 # find OCCT and dump symbols
-if(OCCT_LIB_DIR)
+if( EXISTS OCCT_LIB_DIR)
     file(GLOB occt_libs LIST_DIRECTORIES false ${OCCT_LIB_DIR}/*.${DLL_EXT} )
     message(STATUS Found OCCT libs: ${occt_libs})
 else()
@@ -57,15 +57,15 @@ list(GET VTK_INCLUDE_DIR 0 VTK_INCLUDE_DIR)
 message( STATUS "Include dirs: ${VTK_INCLUDE_DIR}")
 message( STATUS "Include dirs: ${CMAKE_CXX_IMPLICIT_INCLUDE_DIRECTORIES}")
 
+# OSX
+if(${CMAKE_SYSTEM_NAME} STREQUAL "Darwin")
+    list( APPEND CXX_INCLUDES -i /opt/usr/local/include/c++/v1/ -i /opt/usr/local/include/ )
+
 # Linux-like
-if(NOT ${CMAKE_SYSTEM_NAME} STREQUAL "Darwin" AND NOT ${PLATFORM} STREQUAL "Windows")
+elseif(NOT ${PLATFORM} STREQUAL "Windows")
     foreach( inc IN LISTS CMAKE_CXX_IMPLICIT_INCLUDE_DIRECTORIES)
         list( APPEND CXX_INCLUDES -i ${inc}/ )
     endforeach()
-
-# OSX
-elseif(${CMAKE_SYSTEM_NAME} STREQUAL "Darwin")
-    list( APPEND CXX_INCLUDES -i /opt/usr/local/include/c++/v1/ -i /opt/usr/local/include/ )
 
 # X-generation from Linux to Windows
 else()
