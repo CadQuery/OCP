@@ -1,4 +1,4 @@
-cmake_minimum_required( VERSION 3.17 )
+cmake_minimum_required( VERSION 3.29 )
 project( OCP )
 
 set( N_PROC 2 CACHE STRING "Number of processes used for generating code")
@@ -6,6 +6,7 @@ set( DLL_EXT dll CACHE STRING "DLL suffix")
 set( MSVC_VER 16 CACHE STRING "MSVC version to download for win generation")
 set( OCCT_LIB_DIR  CACHE PATH "Location of OCCT sos/dlls")
 
+find_package( OpenGL REQUIRED )
 find_package( LLVM REQUIRED )
 find_package( VTK REQUIRED
   COMPONENTS
@@ -114,6 +115,7 @@ add_custom_command(
         -n ${N_PROC}
         -l ${LIBCLANG_PATH}
         -i ${VTK_INCLUDE_DIR}/
+        -i ${OPENGL_INCLUDE_DIRS}
         -i ${CLANG_INSTALL_PREFIX}/lib/clang/${LLVM_VERSION_MAJOR}/include/
         -p ${CMAKE_SOURCE_DIR}
         ${CXX_INCLUDES}
