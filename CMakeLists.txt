@@ -24,10 +24,10 @@ find_package( RapidJSON REQUIRED )
 find_package( Clang REQUIRED )
 
 set( Python_FIND_VIRTUALENV FIRST )
-find_package( Python 3.9 COMPONENTS Interpreter Development REQUIRED )
+find_package( Python COMPONENTS Interpreter Development REQUIRED )
 
 # find OCCT and dump symbols
-if( EXISTS OCCT_LIB_DIR)
+if( EXISTS ${OCCT_LIB_DIR})
     file(GLOB occt_libs LIST_DIRECTORIES false ${OCCT_LIB_DIR}/*.${DLL_EXT} )
     message(STATUS Found OCCT libs: ${occt_libs})
 else()
@@ -62,7 +62,7 @@ if(${CMAKE_SYSTEM_NAME} STREQUAL "Darwin")
     list( APPEND CXX_INCLUDES -i /opt/usr/local/include/c++/v1/ -i /opt/usr/local/include/ )
 
 # Linux-like
-elseif(NOT ${PLATFORM} STREQUAL "Windows")
+elseif(NOT PLATFORM STREQUAL "Windows")
     foreach( inc IN LISTS CMAKE_CXX_IMPLICIT_INCLUDE_DIRECTORIES)
         list( APPEND CXX_INCLUDES -i ${inc}/ )
     endforeach()
@@ -113,12 +113,10 @@ add_custom_command(
         -m bindgen
         -n ${N_PROC}
         -l ${LIBCLANG_PATH}
-        -i ${CLANG_INCLUDE_DIRS}/
         -i ${VTK_INCLUDE_DIR}/
         -i ${CLANG_INSTALL_PREFIX}/lib/clang/${LLVM_VERSION_MAJOR}/include/
         -p ${CMAKE_SOURCE_DIR}
         ${CXX_INCLUDES}
-        -i ${CMAKE_SOURCE_DIR}/extern/include
         all ${CMAKE_SOURCE_DIR}/ocp.toml ${PLATFORM}
         WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
     DEPENDS ${CMAKE_SOURCE_DIR}/ocp.toml
@@ -126,5 +124,5 @@ add_custom_command(
     COMMENT "Running pywrap"
 )
 
-add_custom_target(pywrap ALL DEPENDS ${CMAKE_SOURCE_DIR}/OCP/CMakeLists.txt)
+add_custom_target(pywrap ALL DEPENDS ${CMAKE_SOURCE_DIR}/ocp.toml)
 
