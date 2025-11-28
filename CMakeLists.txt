@@ -106,7 +106,7 @@ endif()
 set(ENV{PYTHONPATH} ${CMAKE_SOURCE_DIR}/pywrap )
 
 add_custom_command(
-    OUTPUT ${CMAKE_SOURCE_DIR}/OCP/CMakeLists.txt
+    OUTPUT ${CMAKE_BINARY_DIR}/OCP/CMakeLists.txt
     COMMAND
         ${CMAKE_COMMAND} -E env "PYTHONPATH=${CMAKE_SOURCE_DIR}/pywrap"
         ${Python_EXECUTABLE}
@@ -124,5 +124,5 @@ add_custom_command(
     COMMENT "Running pywrap"
 )
 
-add_custom_target(pywrap ALL DEPENDS ${CMAKE_SOURCE_DIR}/ocp.toml)
+add_custom_target(pywrap ALL DEPENDS ${CMAKE_BINARY_DIR}/OCP/CMakeLists.txt )
 
