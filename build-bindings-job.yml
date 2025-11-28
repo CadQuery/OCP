@@ -110,10 +110,6 @@ jobs:
     - download: current
       artifact: OCP_src_${{ parameters.platform }}
 
-    - ${{ if contains(parameters.vmImage_compile, 'Ubuntu') }}:
-      - bash: sudo apt-get update && sudo apt-get install mesa-common-dev libgl1-mesa-dev libglu1-mesa-dev freeglut3-dev
-        displayName: 'Install gl headers and the requested compiler'
-
     - ${{ if contains(parameters.vmImage_compile, 'mac') }}:
       - bash: |
           curl -L -O https://github.com/phracker/MacOSX-SDKs/releases/download/11.3/MacOSX10.15.sdk.tar.xz && \
