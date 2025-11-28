@@ -26,10 +26,6 @@ jobs:
   - checkout: self
     submodules: true
 
-  - ${{ if contains(parameters.vmImage, 'Ubuntu') }}:
-    - bash: sudo apt-get update && sudo apt-get install ${{ parameters.CXX }} mesa-common-dev libegl1-mesa-dev libgl1-mesa-dev libglu1-mesa-dev freeglut3-dev
-      displayName: 'Install gl headers'
-
   - ${{ if contains(parameters.vmImage, 'mac') }}:
     - bash: |
         curl -L -O https://github.com/phracker/MacOSX-SDKs/releases/download/11.3/MacOSX11.3.sdk.tar.xz && \
