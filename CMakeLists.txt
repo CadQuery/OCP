@@ -116,6 +116,7 @@ add_custom_command(
         -l ${LIBCLANG_PATH}
         -i ${VTK_INCLUDE_DIR}/
         -i ${OPENGL_INCLUDE_DIRS}
+        -i ${RapidJSON_INCLUDE_DIRS}
         -i ${CLANG_INSTALL_PREFIX}/lib/clang/${LLVM_VERSION_MAJOR}/include/
         -p ${CMAKE_SOURCE_DIR}
         ${CXX_INCLUDES}
