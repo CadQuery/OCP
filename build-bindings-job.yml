@@ -26,10 +26,6 @@ jobs:
   - checkout: self
     submodules: true
 
-  - ${{ if contains(parameters.vmImage, 'Ubuntu') }}:
-    - bash: sudo apt-get update && sudo apt-get install ${{ parameters.CXX }} mesa-common-dev libegl1-mesa-dev libgl1-mesa-dev libglu1-mesa-dev freeglut3-dev
-      displayName: 'Install gl headers'
-
   - ${{ if contains(parameters.vmImage, 'mac') }}:
     - bash: |
         curl -L -O https://github.com/phracker/MacOSX-SDKs/releases/download/11.3/MacOSX11.3.sdk.tar.xz && \
@@ -72,7 +68,7 @@ jobs:
     - bash: |
         micromamba create --yes --platform win-64 --no-deps --prefix ./occt  occt=7.9.0 && \ 
         micromamba activate cpp-py-bindgen && \
-        cmake -S . -B . -G Ninja -DPython_ROOT_DIR=$CONDA_PREFIX -DPython3_ROOT_DIR=$CONDA_PREFIX -DPython_FIND_VIRTUALENV=ONLY -DPython3_FIND_VIRTUALENV=ONLY -DOCCT_LIB_DIR=./occt/Library/bin/\*.dll -DPLATFORM=Windows && \
+        cmake -S . -B . -G Ninja -DPython_ROOT_DIR=$CONDA_PREFIX -DPython3_ROOT_DIR=$CONDA_PREFIX -DPython_FIND_VIRTUALENV=ONLY -DPython3_FIND_VIRTUALENV=ONLY -DOCCT_LIB_DIR=./occt/Library/bin/ -DPLATFORM=Windows && \
         cmake --build . -- -v
       displayName: 'CMake based pywrap call (linux to win)'
       name: 'Generate'
@@ -109,10 +105,6 @@ jobs:
     steps:
     - download: current
       artifact: OCP_src_${{ parameters.platform }}
-
-    - ${{ if contains(parameters.vmImage_compile, 'Ubuntu') }}:
-      - bash: sudo apt-get update && sudo apt-get install mesa-common-dev libgl1-mesa-dev libglu1-mesa-dev freeglut3-dev
-        displayName: 'Install gl headers and the requested compiler'
 
     - ${{ if contains(parameters.vmImage_compile, 'mac') }}:
       - bash: |

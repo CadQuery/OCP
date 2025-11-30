@@ -1,9 +1,12 @@
-cmake_minimum_required( VERSION 3.17 )
+cmake_minimum_required( VERSION 3.29 )
 project( OCP )
 
 set( N_PROC 2 CACHE STRING "Number of processes used for generating code")
+set( DLL_EXT dll CACHE STRING "DLL suffix")
+set( MSVC_VER 16 CACHE STRING "MSVC version to download for win generation")
+set( OCCT_LIB_DIR  CACHE PATH "Location of OCCT sos/dlls")
 
-
+find_package( OpenGL REQUIRED )
 find_package( LLVM REQUIRED )
 find_package( VTK REQUIRED
   COMPONENTS
@@ -22,11 +25,12 @@ find_package( RapidJSON REQUIRED )
 find_package( Clang REQUIRED )
 
 set( Python_FIND_VIRTUALENV FIRST )
-find_package( Python 3.9 COMPONENTS Interpreter Development REQUIRED )
+find_package( Python COMPONENTS Interpreter Development REQUIRED )
 
 # find OCCT and dump symbols
-if(OCCT_LIB_DIR)
-    file(GLOB occt_libs LIST_DIRECTORIES false ${OCCT_LIB_DIR} )
+if( EXISTS ${OCCT_LIB_DIR})
+    file(GLOB occt_libs LIST_DIRECTORIES false ${OCCT_LIB_DIR}/*.${DLL_EXT} )
+    message(STATUS Found OCCT libs: ${occt_libs})
 else()
     find_package( OpenCASCADE REQUIRED )
 
@@ -54,12 +58,36 @@ list(GET VTK_INCLUDE_DIR 0 VTK_INCLUDE_DIR)
 message( STATUS "Include dirs: ${VTK_INCLUDE_DIR}")
 message( STATUS "Include dirs: ${CMAKE_CXX_IMPLICIT_INCLUDE_DIRECTORIES}")
 
-if(NOT ${CMAKE_SYSTEM_NAME} STREQUAL "Darwin")
+# OSX
+if(${CMAKE_SYSTEM_NAME} STREQUAL "Darwin")
+    list( APPEND CXX_INCLUDES -i /opt/usr/local/include/c++/v1/ -i /opt/usr/local/include/ )
+
+# Linux-like
+elseif(NOT PLATFORM STREQUAL "Windows")
     foreach( inc IN LISTS CMAKE_CXX_IMPLICIT_INCLUDE_DIRECTORIES)
         list( APPEND CXX_INCLUDES -i ${inc}/ )
     endforeach()
+
+# X-generation from Linux to Windows
 else()
-    list( APPEND CXX_INCLUDES -i /opt/usr/local/include/c++/v1/ -i /opt/usr/local/include/ )
+    # download part of msvc 16 and winsdk
+    if( NOT EXISTS ${CMAKE_BINARY_DIR}/msvc )
+        execute_process(
+            COMMAND
+            ${Python_EXECUTABLE}
+            ${CMAKE_SOURCE_DIR}/extern/msvc-wine/vsdownload.py
+            --major ${MSVC_VER}
+            --accept-license
+            --dest msvc
+            Win10SDK_10.0.19041
+            Microsoft.VisualCpp.CRT.Headers
+            WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
+        )
+    endif()
+
+    list( APPEND CXX_INCLUDES -i ${CMAKE_BINARY_DIR}/msvc/VC/Tools/MSVC/14.29.30133/include )
+    list( APPEND CXX_INCLUDES -i ${CMAKE_BINARY_DIR}/msvc/Windows\ Kits/10/Include/10.0.19041.0/ucrt/ )
+    list( APPEND CXX_INCLUDES -i ${CMAKE_SOURCE_DIR}/extern/include/ )
 endif()
 
 if(PLATFORM)
@@ -79,19 +107,19 @@ endif()
 set(ENV{PYTHONPATH} ${CMAKE_SOURCE_DIR}/pywrap )
 
 add_custom_command(
-    OUTPUT ${CMAKE_SOURCE_DIR}/OCP/CMakeLists.txt
+    OUTPUT ${CMAKE_BINARY_DIR}/OCP/CMakeLists.txt
     COMMAND
         ${CMAKE_COMMAND} -E env "PYTHONPATH=${CMAKE_SOURCE_DIR}/pywrap"
         ${Python_EXECUTABLE}
         -m bindgen
         -n ${N_PROC}
         -l ${LIBCLANG_PATH}
-        -i ${CLANG_INCLUDE_DIRS}/
         -i ${VTK_INCLUDE_DIR}/
+        -i ${OPENGL_INCLUDE_DIRS}
+        -i ${RapidJSON_INCLUDE_DIRS}
         -i ${CLANG_INSTALL_PREFIX}/lib/clang/${LLVM_VERSION_MAJOR}/include/
         -p ${CMAKE_SOURCE_DIR}
         ${CXX_INCLUDES}
-        -i ${CMAKE_SOURCE_DIR}/extern/include
         all ${CMAKE_SOURCE_DIR}/ocp.toml ${PLATFORM}
         WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
     DEPENDS ${CMAKE_SOURCE_DIR}/ocp.toml
@@ -99,4 +127,5 @@ add_custom_command(
     COMMENT "Running pywrap"
 )
 
-add_custom_target(pywrap ALL DEPENDS ${CMAKE_SOURCE_DIR}/OCP/CMakeLists.txt)
+add_custom_target(pywrap ALL DEPENDS ${CMAKE_BINARY_DIR}/OCP/CMakeLists.txt )
+
