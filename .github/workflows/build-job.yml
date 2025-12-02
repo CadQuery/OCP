@@ -54,13 +54,13 @@ jobs:
           # cache-environment: true
           # Create a minimal environment with mamba-devenv
           create-args: >-
-            -c conda-forge python=3.12 conda-devenv
+            -c conda-forge python=3.12 conda-devenv mamba
 
       - name: Prepare conda environment (mamba-devenv)
         shell: bash -l {0}
         run: |
-          micromamba devenv -e mamba
-          micromamba devenv -f environment.devenv.yml
+          export CONDA_DEVENV_ENV_MANAGER=mamba
+          mamba devenv -f environment.devenv.yml
 
       - name: Read output dir
         id: conf
