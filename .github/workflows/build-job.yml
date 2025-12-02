@@ -59,8 +59,8 @@ jobs:
       - name: Prepare conda environment (mamba-devenv)
         shell: bash -l {0}
         run: |
-          micromamba activate placeholder
-          mamba-devenv -f environment.devenv.yml
+          mamba devenv -e mamba
+          mamba devenv -f environment.devenv.yml
 
       - name: Read output dir
         id: conf
