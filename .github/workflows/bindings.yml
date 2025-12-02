@@ -1,0 +1,40 @@
+name: Build Bindings
+
+on:
+  push:
+    branches: [ master ]
+    tags: [ '*' ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  Linux:
+    uses: ./.github/workflows/build-job.yml
+    with:
+      name: Linux
+      runner_generate: ubuntu-22.04
+      runner_compile: ubuntu-22.04
+      platform: Linux
+    secrets:
+      ANACONDA_TOKEN: ${{ secrets.ANACONDA_TOKEN }}
+
+  Windows:
+    uses: ./.github/workflows/build-job.yml
+    with:
+      name: Windows
+      # Note: As per your Azure setup, Windows generation runs on Linux first
+      runner_generate: ubuntu-22.04
+      runner_compile: windows-latest
+      platform: Windows
+    secrets:
+      ANACONDA_TOKEN: ${{ secrets.ANACONDA_TOKEN }}
+
+  OSX:
+    uses: ./.github/workflows/build-job.yml
+    with:
+      name: OSX
+      runner_generate: macos-15-intel # Using 13 for x86_64 compatibility or latest as needed
+      runner_compile: macos-15-intel
+      platform: OSX
+    secrets:
+      ANACONDA_TOKEN: ${{ secrets.ANACONDA_TOKEN }}
