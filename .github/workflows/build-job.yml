@@ -165,12 +165,13 @@ jobs:
           environment-name: placeholder
           # Create a minimal environment with mamba-devenv
           create-args: >-
-            -c conda-forge python=${{ env.PYTHON_VERSION }} conda-devenv
+            -c conda-forge python=${{ env.PYTHON_VERSION }} conda-devenv mamba
 
       - name: Prepare conda environment
         shell: bash -l {0}
         run: |
-          micromamba activate placeholder
+          export CONDA_DEVENV_ENV_MANAGER=mamba
+          mamba create -n cpp-py-bindgen
           mamba-devenv -f environment.devenv.yml
 
       # --- Compilation ---
