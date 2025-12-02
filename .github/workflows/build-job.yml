@@ -50,12 +50,12 @@ jobs:
       - uses: mamba-org/setup-micromamba@v1
         with:
           micromamba-version: '1.5.8-0'
-          environment-file: environment.devenv.yml
+          # REMOVE: environment-file: environment.devenv.yml
           environment-name: cpp-py-bindgen
           cache-environment: true
-          # We force a specific python version for the env creation as per your Azure setup
+          # Create a minimal environment with mamba-devenv
           create-args: >-
-            python=3.12
+            python=3.12 mamba-devenv
 
       - name: Prepare conda environment (mamba-devenv)
         shell: bash -l {0}
@@ -159,10 +159,11 @@ jobs:
       - uses: mamba-org/setup-micromamba@v1
         with:
           micromamba-version: '1.5.8-0'
-          environment-file: environment.devenv.yml
+          # REMOVE: environment-file: environment.devenv.yml
           environment-name: cpp-py-bindgen
+          # Create a minimal environment with mamba-devenv
           create-args: >-
-            python=${{ env.PYTHON_VERSION }}
+            python=${{ env.PYTHON_VERSION }} mamba-devenv
 
       - name: Prepare conda environment
         shell: bash -l {0}
