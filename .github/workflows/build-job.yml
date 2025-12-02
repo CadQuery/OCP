@@ -47,19 +47,18 @@ jobs:
           sudo ln -s /opt/MacOSX11.3.sdk/System/Library/Frameworks/OpenGL.framework/Headers /usr/local/include/OpenGL
 
       # --- Setup Environment ---
-      - uses: mamba-org/setup-micromamba@v1
+      - uses: mamba-org/setup-micromamba@v2
         with:
-          micromamba-version: '1.5.8-0'
           # REMOVE: environment-file: environment.devenv.yml
-          environment-name: cpp-py-bindgen
-          cache-environment: true
+          # environment-name: cpp-py-bindgen
+          # cache-environment: true
           # Create a minimal environment with mamba-devenv
           create-args: >-
-            -c conda-forge python=3.12 mamba-devenv
+            python=3.12
 
       - name: Prepare conda environment (mamba-devenv)
         shell: bash -l {0}
-        run: micromamba run -n cpp-py-bindgen mamba-devenv -f environment.devenv.yml
+        run: micromamba run -n mamba-devenv -f environment.devenv.yml
 
       - name: Read output dir
         id: conf
@@ -156,18 +155,18 @@ jobs:
           sudo tar -xf MacOSX10.15.sdk.tar.xz -C /opt
 
       # --- Setup Environment ---
-      - uses: mamba-org/setup-micromamba@v1
+      - uses: mamba-org/setup-micromamba@v2
         with:
-          micromamba-version: '1.5.8-0'
+          # micromamba-version: '1.5.8-0'
           # REMOVE: environment-file: environment.devenv.yml
-          environment-name: cpp-py-bindgen
+          # environment-name: cpp-py-bindgen
           # Create a minimal environment with mamba-devenv
           create-args: >-
-            -c conda-forge python=${{ env.PYTHON_VERSION }} mamba-devenv
+            python=${{ env.PYTHON_VERSION }}
 
       - name: Prepare conda environment
         shell: bash -l {0}
-        run: micromamba run -n cpp-py-bindgen mamba-devenv -f environment.devenv.yml
+        run: micromamba run -n mamba-devenv -f environment.devenv.yml
 
       # --- Compilation ---
       
