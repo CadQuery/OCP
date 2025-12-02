@@ -60,7 +60,7 @@ jobs:
         shell: bash -l {0}
         run: |
           export CONDA_DEVENV_ENV_MANAGER=mamba
-          mamba devenv -f environment.devenv.yml
+          mamba-devenv -f environment.devenv.yml
 
       - name: Read output dir
         id: conf
