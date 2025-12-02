@@ -50,7 +50,7 @@ jobs:
       - uses: mamba-org/setup-micromamba@v2
         with:
           # REMOVE: environment-file: environment.devenv.yml
-          # environment-name: mamba-devenv
+          environment-name: placeholder
           # cache-environment: true
           # Create a minimal environment with mamba-devenv
           create-args: >-
@@ -159,7 +159,7 @@ jobs:
         with:
           # micromamba-version: '1.5.8-0'
           # REMOVE: environment-file: environment.devenv.yml
-          # environment-name: mamba-devenv
+          environment-name: placeholder
           # Create a minimal environment with mamba-devenv
           create-args: >-
             -c conda-forge python=${{ env.PYTHON_VERSION }} conda-devenv
