@@ -58,7 +58,7 @@ jobs:
 
       - name: Prepare conda environment (mamba-devenv)
         shell: bash -l {0}
-        run: micromamba run mamba-devenv -f environment.devenv.yml
+        run: mamba-devenv -f environment.devenv.yml
 
       - name: Read output dir
         id: conf
@@ -166,7 +166,7 @@ jobs:
 
       - name: Prepare conda environment
         shell: bash -l {0}
-        run: micromamba run mamba-devenv -f environment.devenv.yml
+        run: mamba-devenv -f environment.devenv.yml
 
       # --- Compilation ---
       
