@@ -88,6 +88,7 @@ jobs:
             -DOCCT_LIB_DIR=./occt/Library/bin/ \
             -DPLATFORM=Windows
           cmake --build . -- -v
+          ls -lRht
 
       # Standard Case (Linux/Mac)
       - name: Generate (Standard)
@@ -101,6 +102,13 @@ jobs:
             -DPython_FIND_VIRTUALENV=ONLY \
             -DPython3_FIND_VIRTUALENV=ONLY
           cmake --build .
+          ls -lRht
+
+      - name: Copy pkl output
+        shell: bash -l {0}
+        run: |
+          mkdir -p ${{ steps.conf.outputs.OUTPUT }}_pkl
+          cp *.pkl ${{ steps.conf.outputs.OUTPUT }}_pkl/
 
       # --- Artifact Upload ---
       - name: Upload Sources
@@ -147,7 +155,7 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: OCP_src_${{ inputs.platform }}
-          path: ${{ env.OCP_src }}
+          path: ..
 
       # --- Mac SDK Hack (Compile Phase) ---
       - name: SDK install (Mac)
