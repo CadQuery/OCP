@@ -35,6 +35,13 @@ jobs:
         with:
           submodules: true
 
+      - name: Restore OCP_src cache
+        id: cache-ocp-src-restore
+        uses: actions/cache/restore@v4
+        with:
+          path: ${{ steps.conf.outputs.OUTPUT }}
+          key: OCP-src-${{ inputs.platform }}-
+
       # --- Mac SDK Hack ---
       - name: SDK install and symlink (Mac)
         if: contains(inputs.runner_generate, 'mac')
@@ -75,10 +82,10 @@ jobs:
       
       # Windows Special Case (Running on Linux targeting Windows)
       - name: Generate (Windows on Linux)
-        if: inputs.platform == 'Windows'
+        if: inputs.platform == 'Windows' && steps.cache-ocp-src-restore.outputs.cache-hit != 'true'
         shell: bash -l {0}
         run: |
-          micromamba create --yes --platform win-64 --no-deps --prefix ./occt occt=7.9.0
+          micromamba create --yes --platform win-64 --no-deps --prefix ./occt occt=7.9.2
           micromamba activate cpp-py-bindgen
           cmake -S . -B . -G Ninja \
             -DPython_ROOT_DIR=$CONDA_PREFIX \
@@ -92,7 +99,7 @@ jobs:
 
       # Standard Case (Linux/Mac)
       - name: Generate (Standard)
-        if: inputs.platform != 'Windows'
+        if: inputs.platform != 'Windows' && steps.cache-ocp-src-restore.outputs.cache-hit != 'true'
         shell: bash -l {0}
         run: |
           micromamba activate cpp-py-bindgen
@@ -103,6 +110,13 @@ jobs:
             -DPython3_FIND_VIRTUALENV=ONLY
           cmake --build .
           ls -lRht
+
+      - name: Cache OCP_src
+        id: cache-ocp-src-save
+        uses: actions/cache/save@v4
+        with:
+          path: ${{ steps.conf.outputs.OUTPUT }}
+          key: ${{ steps.cache-ocp-src-save.outputs.cache-primary-key }}
 
       - name: Copy pkl output
         shell: bash -l {0}
@@ -116,14 +130,12 @@ jobs:
         with:
           name: OCP_src_${{ inputs.platform }}
           path: ${{ steps.conf.outputs.OUTPUT }}
-          retention-days: 1
 
       - name: Upload Pickles
         uses: actions/upload-artifact@v4
         with:
           name: OCP_pkl_${{ inputs.platform }}
           path: ${{ steps.conf.outputs.OUTPUT }}_pkl
-          retention-days: 1
 
   # -----------------------------------------------------------------------------
   # PHASE 2: Compile (Matrix)
@@ -132,7 +144,7 @@ jobs:
     needs: generate
     name: Compile ${{ inputs.name }} (3.${{ matrix.py_min }})
     runs-on: ${{ inputs.runner_compile }}
-    timeout-minutes: 360
+    # timeout-minutes: 360
     strategy:
       fail-fast: false
       matrix:
