@@ -116,7 +116,7 @@ jobs:
         uses: actions/cache/save@v4
         with:
           path: ${{ steps.conf.outputs.OUTPUT }}
-          key: ${{ steps.cache-ocp-src-save.outputs.cache-primary-key }}
+          key: ${{ steps.cache-ocp-src-restore.outputs.cache-primary-key }}
 
       - name: Copy pkl output
         shell: bash -l {0}
