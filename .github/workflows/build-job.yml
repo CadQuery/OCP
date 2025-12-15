@@ -35,13 +35,6 @@ jobs:
         with:
           submodules: true
 
-      - name: Restore OCP_src cache
-        id: cache-ocp-src-restore
-        uses: actions/cache/restore@v4
-        with:
-          path: ${{ steps.conf.outputs.OUTPUT }}
-          key: OCP-src-${{ inputs.platform }}-
-
       # --- Mac SDK Hack ---
       - name: SDK install and symlink (Mac)
         if: contains(inputs.runner_generate, 'mac')
@@ -77,6 +70,13 @@ jobs:
           micromamba activate cpp-py-bindgen
           OUTPUT=`python -c'import toml; print(toml.load("ocp.toml")["output_folder"])'`
           echo "OUTPUT=$OUTPUT" >> $GITHUB_OUTPUT
+
+      - name: Restore OCP_src cache
+        id: cache-ocp-src-restore
+        uses: actions/cache/restore@v4
+        with:
+          path: ${{ steps.conf.outputs.OUTPUT }}
+          key: OCP-src-${{ inputs.platform }}-
 
       # --- Generation Logic ---
       
