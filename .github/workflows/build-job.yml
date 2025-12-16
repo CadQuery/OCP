@@ -251,9 +251,9 @@ jobs:
         run: |
           micromamba activate cpp-py-bindgen
           cd build
-          python -m pybind11_stubgen OCP -o . --root-suffix stubs
-          cp -r "../../${OCP_src}" ../upload
-          mv OCPstubs OCP-stubs
+          python -m pybind11_stubgen -o . OCP
+          rm -rf OCP-stubs/setup.py OCP-stubs/__pycache__ OCP-stubs/MANIFEST.in
+          cp -r "../../$(OCP_src)" ../upload
           cp -r OCP-stubs ../upload/
 
       - name: Upload Stubs Artifacts
