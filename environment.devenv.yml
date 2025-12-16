@@ -26,5 +26,6 @@ dependencies:
   {% else %}
   - cxx-compiler
   - tbb-devel # [win]
-  - pybind11-stubgen
+  - pip:
+      - git+https://github.com/CadQuery/pybind11-stubgen.git
   {% endif %}
