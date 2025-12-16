@@ -212,7 +212,7 @@ jobs:
         if: contains(inputs.runner_compile, 'ubuntu')
         shell: bash -l {0}
         run: |
-          ls -alR
+          ls -alR ../
           micromamba activate cpp-py-bindgen
           cmake -B build -S "../${OCP_src}" -G Ninja -DCMAKE_BUILD_TYPE=Release
           cmake --build build -j 2 -- -k 0
