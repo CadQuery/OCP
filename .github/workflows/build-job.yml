@@ -178,7 +178,7 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: OCP_src_${{ inputs.platform }}
-          path: ..
+          path: ../${{ env.OCP_src }}
 
       # --- Mac SDK Hack (Compile Phase) ---
       - name: SDK install (Mac)
@@ -234,7 +234,7 @@ jobs:
         if: contains(inputs.runner_compile, 'windows')
         shell: powershell
         run: |
-          Get-ChildItem -Force -Recurse
+          Get-ChildItem -Force -Recurse ../
           # Note: PowerShell interpolation of env vars is different
           micromamba run -n cpp-py-bindgen cmake -B build -S "../$env:OCP_src" -G Ninja -DCMAKE_BUILD_TYPE=Release -DPython3_FIND_STRATEGY=LOCATION -DPython3_ROOT_DIR=$env:CONDA_PREFIX -DCMAKE_LINKER=lld-link.exe
           micromamba run -n cpp-py-bindgen cmake --build build -j 1 -- -v -k 0
