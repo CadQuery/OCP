@@ -17,6 +17,8 @@ find_package( VTK REQUIRED
     CommonDataModel
     CommonExecutionModel
     freetype
+  OPTIONAL_COMPONENTS
+    mpi
 )
 
 message(STATUS "VTK ${VTK_VERSION} found")
