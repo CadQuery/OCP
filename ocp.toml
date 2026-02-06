@@ -30,7 +30,6 @@ modules = [
 "Quantity",
 "Storage",
 "FSD",
-"MMgt",
 "TCollection",
 "TColStd",
 "Message",
