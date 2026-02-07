@@ -334,10 +334,10 @@ modules = [
 "Vrml",
 "VrmlAPI",
 "RWGltf",
-"IVtk",
-"IVtkOCC",
-"IVtkTools",
-"IVtkVTK",
+# "IVtk",
+# "IVtkOCC",
+# "IVtkTools",
+# "IVtkVTK",
 "DE",
 "IMeshTools",
 "IMeshData",
@@ -360,7 +360,7 @@ exclude = ["Standard_Handle.hxx","Standard", "Standard_MemoryUtils.hxx",
            "BRepMesh_NURBSRangeSplitter.hxx","BRepMesh_SphereRangeSplitter.hxx",
            "BRepMesh_TorusRangeSplitter.hxx","BRepMesh_UVParamRangeSplitter.hxx","OpenGl_GLESExtensions.hxx",
            "IVtk_IShapePickerAlgo.hxx","ProjLib_HCompProjectedCurve.hxx","ProjLib_HProjectedCurve.hxx",
-           "OSD_StreamBuffer.hxx"
+           "OSD_StreamBuffer.hxx","IntSurf_Allocator.hxx","Extrema_GGenExtCC.hxx"
            ]
 #           "BVH_Box.hxx","BVH_tools.hxx"
 
@@ -369,7 +369,7 @@ exceptions = ["Standard_Failure"]
 
 module_mapping = "lambda x: Path(x).splitpath()[-1].split('.')[0].split('_')[0]"
 
-byref_types = ["Standard_Real","Standard_Integer","Standard_Boolean"]
+byref_types = ["Standard_Real","Standard_Integer","Standard_Boolean","int","double","bool"]
 byref_types_smart_ptr = ["opencascade::handle", "handle", "Handle"]
 
 parsing_header = '''#pragma clang diagnostic ignored "-Wmacro-redefined"
@@ -492,11 +492,65 @@ void register_template_NCollection_Vector(py::object &m, const char *name){
 
     [Modules.TCollection]
 
-        exclude_methods = ["TCollection_ExtendedString::ToUTF8CString"]
+        exclude_methods = ["TCollection_ExtendedString::ToUTF8CString",
+            "TCollection_AsciiString::operator+",
+            "TCollection_AsciiString::operator=",
+            "TCollection_AsciiString::operator==",
+            "TCollection_AsciiString::operator!=",
+            "TCollection_AsciiString::operator<",
+            "TCollection_AsciiString::operator>",
+            "TCollection_AsciiString::operator+=",
+            "TCollection_AsciiString::operator+", ] 
 
     [Modules.TColStd]
 
         exclude_typedefs = ["TColStd_DataMapOfIntegerTransient","TColStd","TColStd_DataMapOfTransientTransient","TColStd_IndexedDataMapOfTransientTransient"]
+
+        include_header_pre = """
+        #include  "NCollection_tmpl.hxx"
+        """
+
+        custom_deps = ["NCollection","TCollection"]
+
+        include_body_post="""
+        register_template_NCollection_Array1<TCollection_AsciiString>(m,"TColStd_Array1OfAsciiString");
+        register_template_NCollection_Array1<Standard_Boolean>(m,"TColStd_Array1OfBoolean");
+        register_template_NCollection_Array1<Standard_Byte>(m,"TColStd_Array1OfByte");
+        register_template_NCollection_Array1<Standard_Character>(m,"TColStd_Array1OfCharacter");
+        register_template_NCollection_Array1<TCollection_ExtendedString>(m,"TColStd_Array1OfExtendedString");
+        register_template_NCollection_Array1<Standard_Integer>(m,"TColStd_Array1OfInteger");
+        register_template_NCollection_Array1<Standard_Real>(m,"TColStd_Array1OfReal");
+        register_template_NCollection_Array2<Standard_Boolean>(m,"TColStd_Array2OfBoolean");
+        register_template_NCollection_Array2<Standard_Character>(m,"TColStd_Array2OfCharacter");
+        register_template_NCollection_Array2<Standard_Integer>(m,"TColStd_Array2OfInteger");
+        register_template_NCollection_Array2<Standard_Real>(m,"TColStd_Array2OfReal");
+
+        register_template_NCollection_List<TCollection_AsciiString>(m,"TColStd_ListOfAsciiString");
+        register_template_NCollection_List<Standard_Integer>(m,"TColStd_ListOfInteger");
+        register_template_NCollection_List<Standard_Real>(m,"TColStd_ListOfReal");
+
+        register_template_NCollection_DataMap<TCollection_AsciiString, TCollection_AsciiString>(m,"TColStd_DataMapOfStringString");
+        """
+
+        preregister_include_body_post="""
+        preregister_template_NCollection_Array1<TCollection_AsciiString>(m,"TColStd_Array1OfAsciiString");
+        preregister_template_NCollection_Array1<Standard_Boolean>(m,"TColStd_Array1OfBoolean");
+        preregister_template_NCollection_Array1<Standard_Byte>(m,"TColStd_Array1OfByte");
+        preregister_template_NCollection_Array1<Standard_Character>(m,"TColStd_Array1OfCharacter");
+        preregister_template_NCollection_Array1<TCollection_ExtendedString>(m,"TColStd_Array1OfExtendedString");
+        preregister_template_NCollection_Array1<Standard_Integer>(m,"TColStd_Array1OfInteger");
+        preregister_template_NCollection_Array1<Standard_Real>(m,"TColStd_Array1OfReal");
+        preregister_template_NCollection_Array2<Standard_Boolean>(m,"TColStd_Array2OfBoolean");
+        preregister_template_NCollection_Array2<Standard_Character>(m,"TColStd_Array2OfCharacter");
+        preregister_template_NCollection_Array2<Standard_Integer>(m,"TColStd_Array2OfInteger");
+        preregister_template_NCollection_Array2<Standard_Real>(m,"TColStd_Array2OfReal");
+
+        preregister_template_NCollection_List<TCollection_AsciiString>(m,"TColStd_ListOfAsciiString");
+        preregister_template_NCollection_List<Standard_Integer>(m,"TColStd_ListOfInteger");
+        preregister_template_NCollection_List<Standard_Real>(m,"TColStd_ListOfReal");
+
+        preregister_template_NCollection_DataMap<TCollection_AsciiString, TCollection_AsciiString>(m,"TColStd_DataMapOfStringString");
+        """
 
     [Modules.Plugin]
 
@@ -601,7 +655,8 @@ void register_template_NCollection_Vector(py::object &m, const char *name){
 
     [Modules.HLRBRep]
 
-        exclude_classes = ["HLRBRep_CLPropsATool",]
+        exclude_classes = ["HLRBRep_CLPropsATool","HLRBRep_TheCSFunctionOfInterCSurf"]
+        exclude_methods = ["HLRBRep_TheCSFunctionOfInterCSurf::AuxillarySurface"] # return as const pointer (i.e. ... * const)
 
         [Modules.HLRBRep.parsing_headers]
 
@@ -660,9 +715,9 @@ void register_template_NCollection_Vector(py::object &m, const char *name){
 
         [Modules.BRepFill.parsing_headers]
 
-            "BRepFill_Sweep.hxx" = "#include <TopTools_HArray1OfShape.hxx>"
             "BRepFill_TrimShellCorner.hxx" = """#include <TopoDS_Vertex.hxx>
 #include <gp_Pln.hxx>"""
+            "BRepFill_Sweep.hxx" = """#include <NCollection_HArray1.hxx>""" 
 
     [Modules.ChFi3d]
     #error: invalid use of incomplete type ‘class Geom_BSplineCurve’
@@ -773,6 +828,7 @@ struct NSOpenGLContext {};"""
 
     [Modules.AIS]
 
+        # exclude_methods = ["AIS_InteractiveContext::EntityOwners"]
         include_header_pre = """#include <Media_PlayerContext.hxx>
 #include <WNT_HIDSpaceMouse.hxx>
 auto OptionsForAttach = [](){return AIS_Manipulator::OptionsForAttach();};"""
@@ -794,6 +850,8 @@ auto OptionsForAttach = [](){return AIS_Manipulator::OptionsForAttach();};"""
     [Modules.Select3D]
 
         exclude_typedefs = ["Select3D_IndexedMapOfEntity","Graphic3d_Vec3d","Select3D_BndBox3d"]  #couldn't deduce template parameter ‘Hasher’
+
+        # exclude_methods = ["Select3D_SensitiveFace::GetPoints","Select3D_SensitivePoly::Points3D", "Select3D_InteriorSensitivePointSet::GetPoints"]
 
         [Modules.Select3D.Classes.Select3D_SensitiveCircle]
 
@@ -961,8 +1019,6 @@ struct NSOpenGLContext {};"""
 
     [Modules.ShapeFix]
 
-        include_header_pre_top = "#include <TColStd_HArray1OfReal.hxx>"
-
         [Modules.ShapeFix.parsing_headers]
 
             "ShapeFix_Solid.hxx" = "#include <Message_ProgressRange.hxx>"
@@ -1107,6 +1163,7 @@ struct __GLXFBConfigRec {};"""
     [Modules.ShapeAnalysis]
 
         exclude_classes = ["ShapeAnalysis_BoxBndTreeSelector"]
+        # exlcude_methods = ["ShapeAnalysis_FreeBounds::ConnectEdgesToWires", "ShapeAnalysis_FreeBounds::ConnectWiresToWires","ShapeAnalysis_FreeBounds::SplitWires"]
 
     [Modules.V3d]
 
@@ -1204,7 +1261,7 @@ using std::char_traits;
 using std::basic_istream;
 using rapidjson::BasicOStreamWrapper;"""
 
-        exclude_methods = ["RWGltf_GltfMaterialMap::AddGlbImages"]
+        exclude_methods = ["RWGltf_GltfMaterialMap::AddGlbImages", "RWGltf_GltfJsonParser::SetStream"]
         exclude_typedefs = ["RWGltf_GltfFaceList"]
 
         [Modules.RWGltf.parsing_headers]
@@ -1219,9 +1276,6 @@ using rapidjson::BasicOStreamWrapper;"""
             "BRepApprox_SurfaceTool.hxx" = "#include <BRepAdaptor_Surface.hxx>"
             "BRepApprox_TheMultiLineToolOfApprox.hxx" = """
             #include <Approx_Status.hxx>
-            #include <TColgp_Array1OfPnt2d.hxx>
-            #include <TColgp_Array1OfVec.hxx>
-            #include <TColgp_Array1OfVec2d.hxx>
             """
 
     [Modules.IntPatch]
@@ -1230,11 +1284,6 @@ using rapidjson::BasicOStreamWrapper;"""
 
             "IntPatch_PolyhedronTool.hxx" = "#include <IntPatch_Polyhedron.hxx>"
 
-    [Modules.ShapeConstruct]
-
-        [Modules.ShapeConstruct.parsing_headers]
-
-            "ShapeConstruct_ProjectCurveOnSurface.hxx" = "#include <TColStd_HArray1OfReal.hxx>"
 
     [Modules.HLRAlgo]
 
@@ -1274,6 +1323,8 @@ using rapidjson::BasicOStreamWrapper;"""
             "StdPrs_Point.hxx" = "#include <Prs3d_Presentation.hxx>"
 
     [Modules.Interface]
+
+        # exclude_methods = ["Interface_IntList::Internals", "Interface_STAT::Internals"]
 
         [Modules.Interface.parsing_headers]
 
@@ -1322,18 +1373,12 @@ using rapidjson::BasicOStreamWrapper;"""
         include_header_pre = """
         #include <Geom2d_BSplineCurve.hxx>
         #include <Approx_Status.hxx>
-        #include <TColgp_Array1OfPnt2d.hxx>
-        #include <TColgp_Array1OfVec.hxx>
-        #include <TColgp_Array1OfVec2d.hxx>
         """
 
         [Modules.GeomInt.parsing_headers]
 
         "GeomInt_TheMultiLineToolOfWLApprox.hxx" = """
         #include <Approx_Status.hxx>
-        #include <TColgp_Array1OfPnt2d.hxx>
-        #include <TColgp_Array1OfVec.hxx>
-        #include <TColgp_Array1OfVec2d.hxx>
         """
 
     [Modules.StepToGeom]
@@ -1353,6 +1398,8 @@ using rapidjson::BasicOStreamWrapper;"""
         include_header_pre = "#include <OSD_FileSystem.hxx>"
 
     [Modules.BRepTopAdaptor]
+
+        exclude_classes = ["BRepTopAdaptor_FClass2d"]
 
         [Modules.BRepTopAdaptor.parsing_headers]
 
@@ -1380,6 +1427,8 @@ using rapidjson::BasicOStreamWrapper;"""
 
     [Modules.IGESGeom]
 
+        # exclude_methods = ["IGESGeom_SplineSurface::Polynomials"]
+
         module_parsing_header = "#include <Standard_OStream.hxx>"
 
     [Modules.IGESGraph]
@@ -1391,6 +1440,8 @@ using rapidjson::BasicOStreamWrapper;"""
         module_parsing_header = "#include <Standard_OStream.hxx>"
 
     [Modules.GeomConvert]
+
+        # exclude_methods = ["GeomConvert::ConcatG1","GeomConvert::ConcatC1","GeomConvert::C0BSplineToC1BSplineCurve","GeomConvert::C0BSplineToArrayOfC1BSplineCurve",]
 
         [Modules.GeomConvert.parsing_headers]
 
@@ -1495,3 +1546,119 @@ using rapidjson::BasicOStreamWrapper;"""
     [Modules.StepAP214]
 
         include_header_pre = "#include <Interface_InterfaceModel.hxx>"
+    #
+    # [Modules.AppDef]
+    #
+    #     exclude_methods = ["AppDef_SmoothCriterion::GetCurve","AppDef_LinearCriteria::GetCurve"]
+    #
+    # [Modules.BRepGProp]
+    #
+    #     exclude_methods = ["BRepGProp_Face::GetUKnots", "BRepGProp_Face::GetTKnots", "BRepG_MeshCinert::PreparePolygon"]
+    #
+    # # [Modules.BSplCLib]
+    # #
+    # #     exclude_methods =["BSplCLib::MergeBSplineKnots"]
+    #
+    # [Modules.Convert]
+    #
+    #     exclude_methods = [
+    #         "Convert_CompPolynomialToPoles::Poles","Convert_CompPolynomialToPoles::Knots","Convert_CompPolynomialToPoles::Multiplicities",
+    #         "Convert_ConicToBSplineCurve::BuildCosAndSin"
+    #     ]
+    #     
+    # [Modules.FEmTool]
+    #
+    #     exclude_methods = ["FEmTool_Assembly::GetAssemblyTable"]
+    #
+    # [Modules.Geom2dConvert]
+    #
+    #     exclude_methods = ["Geom2dConvert::ConcatG1","Geom2dConvert::ConcatC1","Geom2dConvert::C0BSplineToC1BSplineCurve","Geom2dConvert::C0BSplineToArrayOfC1BSplineCurve",]
+    #
+    # [Modules.GeomLib]
+    #
+    #     exclude_methods = ["GeomLib::RemovePointsFromArray", "GeomLib::DensifyArray1OfReal"]
+    #
+    # [Modules.IntCurveSurface]
+    #
+    #     exclude_methods = ["IntCurveSurface_TheHCurveTool::SamplePars"]
+    #
+    # [Modules.Plate]
+    #
+    #     exclude_methods = ["Plate_Plate::CoefPol"]
+    #
+    #
+    # [Modules.ShapeExtend]
+    #
+    #     exclude_methods = ["ShapeExtend::DispatchList"]
+    #
+    #
+    [Modules.math]
+
+        exclude_methods = ["math_Matrix::operator="] # move assignemnt operator...
+
+    [Modules.TopTools]
+
+        include_header_pre = """
+        #include  "NCollection_tmpl.hxx"
+        #include  <Bnd_Box.hxx>
+        """
+
+        custom_deps = ["NCollection"]
+
+        include_body_post="""
+        //register_template_NCollection_Array1<TopTools_ListOfShape>(m,"TopTools_Array1OfListOfShape");
+        register_template_NCollection_Array1<TopoDS_Shape>(m,"TopTools_Array1OfShape");
+        register_template_NCollection_Array2<TopoDS_Shape>(m,"TopTools_Array2OfShape");
+        //register_template_NCollection_DataMap<Standard_Integer, TopTools_ListOfShape>(m,"TopTools_DataMapOfIntegerListOfShape");
+        register_template_NCollection_DataMap<Standard_Integer, TopoDS_Shape>(m,"TopTools_DataMapOfIntegerShape");
+        register_template_NCollection_DataMap<TopoDS_Shape, Standard_Integer>(m,"TopTools_DataMapOfOrientedShapeInteger");
+        register_template_NCollection_DataMap<TopoDS_Shape, TopoDS_Shape>(m,"TopTools_DataMapOfOrientedShapeShape");
+        register_template_NCollection_DataMap<TopoDS_Shape, Bnd_Box, TopTools_ShapeMapHasher>(m,"TopTools_DataMapOfShapeBox");
+        register_template_NCollection_DataMap<TopoDS_Shape, Standard_Integer, TopTools_ShapeMapHasher>(m,"TopTools_DataMapOfShapeInteger");
+        //register_template_NCollection_DataMap<TopoDS_Shape, TColStd_ListOfInteger, TopTools_ShapeMapHasher>(m,"TopTools_DataMapOfShapeListOfInteger");
+        register_template_NCollection_DataMap<TopoDS_Shape, NCollection_List<TopoDS_Shape>, TopTools_ShapeMapHasher>(m,"TopTools_DataMapOfShapeListOfShape");
+        //register_template_NCollection_DataMap<TopoDS_Shape, Standard_Real, TopTools_ShapeMapHasher>(m,"TopTools_DataMapOfShapeReal");
+        //register_template_NCollection_DataMap<TopoDS_Shape, TopTools_SequenceOfShape, TopTools_ShapeMapHasher>(m,"TopTools_DataMapOfShapeSequenceOfShape");
+        register_template_NCollection_DataMap<TopoDS_Shape, TopoDS_Shape, TopTools_ShapeMapHasher>(m,"TopTools_DataMapOfShapeShape");
+        //register_template_NCollection_IndexedDataMap<TopoDS_Shape, Standard_Address, TopTools_ShapeMapHasher>(m,"TopTools_IndexedDataMapOfShapeAddress");
+        //register_template_NCollection_IndexedDataMap<TopoDS_Shape, TopTools_ListOfShape, TopTools_ShapeMapHasher>(m,"TopTools_IndexedDataMapOfShapeListOfShape");
+        register_template_NCollection_IndexedDataMap<TopoDS_Shape, Standard_Real, TopTools_ShapeMapHasher>(m,"TopTools_IndexedDataMapOfShapeReal");
+        register_template_NCollection_IndexedDataMap<TopoDS_Shape, TopoDS_Shape, TopTools_ShapeMapHasher>(m,"TopTools_IndexedDataMapOfShapeShape");
+        register_template_NCollection_IndexedMap<TopoDS_Shape>(m,"TopTools_IndexedMapOfOrientedShape");
+        register_template_NCollection_IndexedMap<TopoDS_Shape, TopTools_ShapeMapHasher>(m,"TopTools_IndexedMapOfShape");
+        //register_template_NCollection_List<TopTools_ListOfShape>(m,"TopTools_ListOfListOfShape");
+        register_template_NCollection_List<TopoDS_Shape>(m,"TopTools_ListOfShape");
+        register_template_NCollection_Map<TopoDS_Shape>(m,"TopTools_MapOfOrientedShape");
+        register_template_NCollection_Map<TopoDS_Shape, TopTools_ShapeMapHasher>(m,"TopTools_MapOfShape");
+        register_template_NCollection_Sequence<TopoDS_Shape>(m,"TopTools_SequenceOfShape");
+        register_template_NCollection_HSequence<TopoDS_Shape>(m,"TopTools_HSequenceOfShape");
+        """
+
+        preregister_include_body_post="""
+        preregister_template_NCollection_Array1<TopoDS_Shape>(m,"TopTools_Array1OfShape");
+        preregister_template_NCollection_Array2<TopoDS_Shape>(m,"TopTools_Array2OfShape");
+        preregister_template_NCollection_DataMap<Standard_Integer, TopoDS_Shape>(m,"TopTools_DataMapOfIntegerShape");
+        preregister_template_NCollection_DataMap<TopoDS_Shape, Standard_Integer>(m,"TopTools_DataMapOfOrientedShapeInteger");
+        preregister_template_NCollection_DataMap<TopoDS_Shape, TopoDS_Shape>(m,"TopTools_DataMapOfOrientedShapeShape");
+        preregister_template_NCollection_DataMap<TopoDS_Shape, Bnd_Box, TopTools_ShapeMapHasher>(m,"TopTools_DataMapOfShapeBox");
+        preregister_template_NCollection_DataMap<TopoDS_Shape, Standard_Integer, TopTools_ShapeMapHasher>(m,"TopTools_DataMapOfShapeInteger");
+        //preregister_template_NCollection_DataMap<TopoDS_Shape, TColStd_ListOfInteger, TopTools_ShapeMapHasher>(m,"TopTools_DataMapOfShapeListOfInteger");
+        preregister_template_NCollection_DataMap<TopoDS_Shape, Standard_Real, TopTools_ShapeMapHasher>(m,"TopTools_DataMapOfShapeReal");
+        preregister_template_NCollection_DataMap<TopoDS_Shape, TopoDS_Shape, TopTools_ShapeMapHasher>(m,"TopTools_DataMapOfShapeShape");
+        preregister_template_NCollection_IndexedDataMap<TopoDS_Shape, Standard_Address, TopTools_ShapeMapHasher>(m,"TopTools_IndexedDataMapOfShapeAddress");
+        preregister_template_NCollection_IndexedDataMap<TopoDS_Shape, Standard_Real, TopTools_ShapeMapHasher>(m,"TopTools_IndexedDataMapOfShapeReal");
+        preregister_template_NCollection_IndexedDataMap<TopoDS_Shape, TopoDS_Shape, TopTools_ShapeMapHasher>(m,"TopTools_IndexedDataMapOfShapeShape");
+        preregister_template_NCollection_IndexedMap<TopoDS_Shape>(m,"TopTools_IndexedMapOfOrientedShape");
+        preregister_template_NCollection_IndexedMap<TopoDS_Shape, TopTools_ShapeMapHasher>(m,"TopTools_IndexedMapOfShape");
+        preregister_template_NCollection_List<TopoDS_Shape>(m,"TopTools_ListOfShape");
+        preregister_template_NCollection_Map<TopoDS_Shape>(m,"TopTools_MapOfOrientedShape");
+        preregister_template_NCollection_Map<TopoDS_Shape, TopTools_ShapeMapHasher>(m,"TopTools_MapOfShape");
+        preregister_template_NCollection_Sequence<TopoDS_Shape>(m,"TopTools_SequenceOfShape");
+        //preregister_template_NCollection_Array1<TopTools_ListOfShape>(m,"TopTools_Array1OfListOfShape");
+        //preregister_template_NCollection_DataMap<Standard_Integer, TopTools_ListOfShape>(m,"TopTools_DataMapOfIntegerListOfShape");
+        preregister_template_NCollection_DataMap<TopoDS_Shape, NCollection_List<TopoDS_Shape>, TopTools_ShapeMapHasher>(m,"TopTools_DataMapOfShapeListOfShape");
+        //preregister_template_NCollection_DataMap<TopoDS_Shape, TopTools_SequenceOfShape, TopTools_ShapeMapHasher>(m,"TopTools_DataMapOfShapeSequenceOfShape");
+        //preregister_template_NCollection_IndexedDataMap<TopoDS_Shape, TopTools_ListOfShape, TopTools_ShapeMapHasher>(m,"TopTools_IndexedDataMapOfShapeListOfShape");
+        //preregister_template_NCollection_List<TopTools_ListOfShape>(m,"TopTools_ListOfListOfShape");
+        preregister_template_NCollection_HSequence<TopoDS_Shape>(m,"TopTools_HSequenceOfShape");
+        """
