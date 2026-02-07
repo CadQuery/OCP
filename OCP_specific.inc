@@ -48,7 +48,7 @@ inline void copy_if_copy_constructible(T& t1, T& t2){
 };
 
 template <typename T> inline T cast_pyobject(const py::object &arg){
-  if(py::isinstance(ent, py::type::of<T>()))
+  if(py::isinstance(arg, py::type::of<T>()))
       return opencascade::handle(py::cast<T*>(arg));
   else
       throw py::value_error(fmt:format("Cannot convert the argument to the required type {}", typeid(T).name()));
