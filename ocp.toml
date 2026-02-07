@@ -1089,6 +1089,12 @@ struct __GLXFBConfigRec {};"""
 
         exclude_classes = ["StepData_EnumTool"]
 
+        [Modules.StepData.Classes.StepData_SelectType.additional_methods.SetValue]
+
+            body = "[](StepData_SelectType &self , py::object& ent){self.SetValue(cast_pyobject<Standard_Transient>(ent));}"
+            help = "SetValue supporting python objects"
+            arguments  = ["ent"]
+
     [Modules.LDOM]
 
         exclude_classes = ["LDOMString","LDOM_MemManager","LDOM_BasicText"]
@@ -1277,6 +1283,18 @@ using rapidjson::BasicOStreamWrapper;"""
         [Modules.Interface.parsing_headers]
 
             "Interface_ValueInterpret.hxx" = "#include <Interface_TypedValue.hxx>"
+
+        [Modules.Interface.Classes.Interface_InterfaceModel.additional_methods.AddEntity]
+
+            body = "[](Interface_InterfaceModel &self , py::object& ent){self.AddEntity(cast_pyobject<Standard_Transient>(ent));}"
+            help = "AddEntity supporting python objects"
+            arguments  = ["anent"]
+
+        [Modules.Interface.Classes.Interface_InterfaceModel.additional_methods.AddWithRefs]
+
+            body = "[](Interface_InterfaceModel &self , py::object& ent){self.AddWithRefs(cast_pyobject<Standard_Transient>(ent));}"
+            help = "AddWithRefs supporting python objects"
+            arguments  = ["anent"]
 
     [Modules.IVtkVTK]
 
