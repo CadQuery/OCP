@@ -40,8 +40,12 @@ inline void register_default_constructor(py::module m, const char* name){
 template <typename T>
 inline void copy_if_copy_constructible(T& t1, T& t2){
 
-    if constexpr (std::is_copy_constructible<T>::value){
-       t1 = t2;
+    if constexpr (std::is_assignable<T, T>::value){
+        t1 = t2;
+    }
+    else
+    {
+        throw py::type_error("Cannot assign, function wrapper not working properly.");
     }
 
 };
