@@ -13,6 +13,7 @@ message( STATUS "Python lib: ${Python_LIBRARIES}" )
 
 SET(PYTHON_SP_DIR "site-packages" CACHE PATH "Python site-packages directory (for installing)")
 
+find_package( fmt  REQUIRED )
 find_package( pybind11 REQUIRED )
 find_package( VTK REQUIRED
   COMPONENTS
@@ -34,7 +35,7 @@ add_library( {{ name }} MODULE ${CPP_FILES} )
 target_include_directories( {{ name }} PRIVATE ${OpenCASCADE_INCLUDE_DIR} )
 
 target_link_libraries( {{ name }} PRIVATE ${OpenCASCADE_LIBRARIES} )
-target_link_libraries( {{ name }} PRIVATE pybind11::pybind11 VTK::WrappingPythonCore VTK::RenderingCore VTK::CommonDataModel VTK::CommonExecutionModel)
+target_link_libraries( {{ name }} PRIVATE pybind11::pybind11 VTK::WrappingPythonCore VTK::RenderingCore VTK::CommonDataModel VTK::CommonExecutionModel fmt::fmt)
 
 set_target_properties( {{ name }}
                        PROPERTIES
