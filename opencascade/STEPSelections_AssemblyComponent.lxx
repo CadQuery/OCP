@@ -1,7 +1,4 @@
-// Created on: 1999-03-24
-// Created by: data exchange team
-// Copyright (c) 1999-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,41 +11,5 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-//=======================================================================
-// function : GetSDR
-// purpose  :
-//=======================================================================
-
-inline Handle(StepShape_ShapeDefinitionRepresentation) STEPSelections_AssemblyComponent::GetSDR()
-  const
-{
-  return mySDR;
-}
-
-//=======================================================================
-// function : GetList
-// purpose  :
-//=======================================================================
-
-inline Handle(STEPSelections_HSequenceOfAssemblyLink) STEPSelections_AssemblyComponent::GetList()
-  const
-{
-  return myList;
-}
-
-//=======================================================================
-// function : SetSDR
-// purpose  :
-//=======================================================================
-
-inline void STEPSelections_AssemblyComponent::SetSDR(
-  const Handle(StepShape_ShapeDefinitionRepresentation)& sdr)
-{
-  mySDR = sdr;
-}
-
-inline void STEPSelections_AssemblyComponent::SetList(
-  const Handle(STEPSelections_HSequenceOfAssemblyLink)& list)
-{
-  myList = list;
-}
+// clang-format off
+#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/DataExchange/TKDESTEP/STEPSelections/STEPSelections_AssemblyComponent.lxx"// clang-format on

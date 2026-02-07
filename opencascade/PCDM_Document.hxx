@@ -1,7 +1,4 @@
-// Created on: 1997-08-01
-// Created by: Jean-Louis Frenkel
-// Copyright (c) 1997-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,25 +11,5 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _PCDM_Document_HeaderFile
-#define _PCDM_Document_HeaderFile
-
-#include <Standard.hxx>
-#include <Standard_Type.hxx>
-
-#include <Standard_Persistent.hxx>
-
-class PCDM_Document;
-DEFINE_STANDARD_HANDLE(PCDM_Document, Standard_Persistent)
-
-class PCDM_Document : public Standard_Persistent
-{
-
-public:
-  DEFINE_STANDARD_RTTIEXT(PCDM_Document, Standard_Persistent)
-
-protected:
-private:
-};
-
-#endif // _PCDM_Document_HeaderFile
+// clang-format off
+#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ApplicationFramework/TKCDF/PCDM/PCDM_Document.hxx"// clang-format on

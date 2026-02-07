@@ -1,7 +1,4 @@
-// Created on: 1992-08-18
-// Created by: Remi Lequette
-// Copyright (c) 1992-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,15 +11,5 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _Hatch_LineForm_HeaderFile
-#define _Hatch_LineForm_HeaderFile
-
-//! Form of a trimmed line
-enum Hatch_LineForm
-{
-  Hatch_XLINE,
-  Hatch_YLINE,
-  Hatch_ANYLINE
-};
-
-#endif // _Hatch_LineForm_HeaderFile
+// clang-format off
+#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ModelingAlgorithms/TKGeomAlgo/Hatch/Hatch_LineForm.hxx"// clang-format on

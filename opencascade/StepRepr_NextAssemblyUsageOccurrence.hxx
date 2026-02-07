@@ -1,6 +1,4 @@
-// Created on: 2000-07-03
-// Created by: Andrey BETENEV
-// Copyright (c) 2000-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -13,28 +11,5 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _StepRepr_NextAssemblyUsageOccurrence_HeaderFile
-#define _StepRepr_NextAssemblyUsageOccurrence_HeaderFile
-
-#include <Standard.hxx>
-
-#include <StepRepr_AssemblyComponentUsage.hxx>
-
-class StepRepr_NextAssemblyUsageOccurrence;
-DEFINE_STANDARD_HANDLE(StepRepr_NextAssemblyUsageOccurrence, StepRepr_AssemblyComponentUsage)
-
-//! Representation of STEP entity NextAssemblyUsageOccurrence
-class StepRepr_NextAssemblyUsageOccurrence : public StepRepr_AssemblyComponentUsage
-{
-
-public:
-  //! Empty constructor
-  Standard_EXPORT StepRepr_NextAssemblyUsageOccurrence();
-
-  DEFINE_STANDARD_RTTIEXT(StepRepr_NextAssemblyUsageOccurrence, StepRepr_AssemblyComponentUsage)
-
-protected:
-private:
-};
-
-#endif // _StepRepr_NextAssemblyUsageOccurrence_HeaderFile
+// clang-format off
+#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/DataExchange/TKDESTEP/StepRepr/StepRepr_NextAssemblyUsageOccurrence.hxx"// clang-format on

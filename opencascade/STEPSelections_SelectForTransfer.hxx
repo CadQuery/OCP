@@ -1,6 +1,4 @@
-// Created on: 2003-06-02
-// Created by: Galina KULIKOVA
-// Copyright (c) 2003-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -13,35 +11,5 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _STEPSelections_SelectForTransfer_HeaderFile
-#define _STEPSelections_SelectForTransfer_HeaderFile
-
-#include <Standard.hxx>
-#include <Standard_Type.hxx>
-
-#include <XSControl_SelectForTransfer.hxx>
-class XSControl_TransferReader;
-class Interface_EntityIterator;
-class Interface_Graph;
-
-class STEPSelections_SelectForTransfer;
-DEFINE_STANDARD_HANDLE(STEPSelections_SelectForTransfer, XSControl_SelectForTransfer)
-
-class STEPSelections_SelectForTransfer : public XSControl_SelectForTransfer
-{
-
-public:
-  Standard_EXPORT STEPSelections_SelectForTransfer();
-
-  Standard_EXPORT STEPSelections_SelectForTransfer(const Handle(XSControl_TransferReader)& TR);
-
-  Standard_EXPORT virtual Interface_EntityIterator RootResult(const Interface_Graph& G) const
-    Standard_OVERRIDE;
-
-  DEFINE_STANDARD_RTTIEXT(STEPSelections_SelectForTransfer, XSControl_SelectForTransfer)
-
-protected:
-private:
-};
-
-#endif // _STEPSelections_SelectForTransfer_HeaderFile
+// clang-format off
+#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/DataExchange/TKDESTEP/STEPSelections/STEPSelections_SelectForTransfer.hxx"// clang-format on

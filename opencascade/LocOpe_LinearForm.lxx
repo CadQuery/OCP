@@ -1,7 +1,4 @@
-// Created on: 1997-09-15
-// Created by: Olga KOULECHOVA
-// Copyright (c) 1997-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,42 +11,5 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-//=======================================================================
-// function : LocOpe_LinearForm
-// purpose  :
-//=======================================================================
-
-inline LocOpe_LinearForm::LocOpe_LinearForm()
-    : myDone(Standard_False),
-      myIsTrans(Standard_False)
-{
-}
-
-//=======================================================================
-// function : LocOpe_LinearForm
-// purpose  :
-//=======================================================================
-
-inline LocOpe_LinearForm::LocOpe_LinearForm(const TopoDS_Shape& Base,
-                                            const gp_Vec&       V,
-                                            const gp_Pnt&       Pnt1,
-                                            const gp_Pnt&       Pnt2)
-
-{
-  Perform(Base, V, Pnt1, Pnt2);
-}
-
-//=======================================================================
-// function : LocOpe_LinearForm
-// purpose  :
-//=======================================================================
-
-inline LocOpe_LinearForm::LocOpe_LinearForm(const TopoDS_Shape& Base,
-                                            const gp_Vec&       V,
-                                            const gp_Vec&       Vectra,
-                                            const gp_Pnt&       Pnt1,
-                                            const gp_Pnt&       Pnt2)
-
-{
-  Perform(Base, V, Vectra, Pnt1, Pnt2);
-}
+// clang-format off
+#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ModelingAlgorithms/TKFeat/LocOpe/LocOpe_LinearForm.lxx"// clang-format on

@@ -1,6 +1,4 @@
-// Created on: 2012-01-16
-// Created by: ANNA MASALSKAYA
-// Copyright (c) 2012-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -13,14 +11,5 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#include <StepToTopoDS_TranslateCompositeCurve.hxx>
-
-//=======================================================================
-// function : IsInfiniteSegment
-// purpose  :
-//=======================================================================
-
-inline Standard_Boolean StepToTopoDS_TranslateCompositeCurve::IsInfiniteSegment() const
-{
-  return myInfiniteSegment;
-}
+// clang-format off
+#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/DataExchange/TKDESTEP/StepToTopoDS/StepToTopoDS_TranslateCompositeCurve.lxx"// clang-format on

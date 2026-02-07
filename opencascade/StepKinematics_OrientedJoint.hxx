@@ -1,7 +1,4 @@
-// Created on : Sat May 02 12:41:15 2020
-// Created by: Irina KRYLOVA
-// Generator:	Express (EXPRESS -> CASCADE/XSTEP Translator) V3.0
-// Copyright (c) Open CASCADE 2020
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,23 +11,5 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _StepKinematics_OrientedJoint_HeaderFile_
-#define _StepKinematics_OrientedJoint_HeaderFile_
-
-#include <Standard.hxx>
-#include <StepShape_OrientedEdge.hxx>
-
-#include <TCollection_HAsciiString.hxx>
-
-DEFINE_STANDARD_HANDLE(StepKinematics_OrientedJoint, StepShape_OrientedEdge)
-
-//! Representation of STEP entity OrientedJoint
-class StepKinematics_OrientedJoint : public StepShape_OrientedEdge
-{
-public:
-  //! default constructor
-  Standard_EXPORT StepKinematics_OrientedJoint();
-
-  DEFINE_STANDARD_RTTIEXT(StepKinematics_OrientedJoint, StepShape_OrientedEdge)
-};
-#endif // _StepKinematics_OrientedJoint_HeaderFile_
+// clang-format off
+#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/DataExchange/TKDESTEP/StepKinematics/StepKinematics_OrientedJoint.hxx"// clang-format on

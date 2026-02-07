@@ -1,4 +1,4 @@
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,64 +11,5 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#include <ShapeExtend.hxx>
-
-//=======================================================================
-// function : StatusWireGaps
-// purpose  :
-//=======================================================================
-
-inline Standard_Boolean ShapeFix_Wireframe::StatusWireGaps(const ShapeExtend_Status status) const
-{
-  return ShapeExtend::DecodeStatus(myStatusWireGaps, status);
-}
-
-//=======================================================================
-// function : StatusSmallEdges
-// purpose  :
-//=======================================================================
-
-inline Standard_Boolean ShapeFix_Wireframe::StatusSmallEdges(const ShapeExtend_Status status) const
-{
-  return ShapeExtend::DecodeStatus(myStatusSmallEdges, status);
-}
-
-//=======================================================================
-// function : Shape
-// purpose  :
-//=======================================================================
-
-inline TopoDS_Shape ShapeFix_Wireframe::Shape()
-{
-  return myShape;
-}
-
-//=======================================================================
-// function : ModeDropSmallEdges
-// purpose  :
-//=======================================================================
-
-inline Standard_Boolean& ShapeFix_Wireframe::ModeDropSmallEdges()
-{
-  return myModeDrop;
-}
-
-//=======================================================================
-// function : SetLimitAngle
-// purpose  :
-//=======================================================================
-
-inline void ShapeFix_Wireframe::SetLimitAngle(const Standard_Real theLimitAngle)
-{
-  myLimitAngle = theLimitAngle;
-}
-
-//=======================================================================
-// function : LimitAngle
-// purpose  :
-//=======================================================================
-
-inline Standard_Real ShapeFix_Wireframe::LimitAngle() const
-{
-  return myLimitAngle;
-}
+// clang-format off
+#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ModelingAlgorithms/TKShHealing/ShapeFix/ShapeFix_Wireframe.lxx"// clang-format on

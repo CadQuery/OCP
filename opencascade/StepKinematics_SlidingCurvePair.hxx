@@ -1,7 +1,4 @@
-// Created on : Sat May 02 12:41:16 2020
-// Created by: Irina KRYLOVA
-// Generator:	Express (EXPRESS -> CASCADE/XSTEP Translator) V3.0
-// Copyright (c) Open CASCADE 2020
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,24 +11,5 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _StepKinematics_SlidingCurvePair_HeaderFile_
-#define _StepKinematics_SlidingCurvePair_HeaderFile_
-
-#include <Standard.hxx>
-#include <StepKinematics_PlanarCurvePair.hxx>
-
-#include <TCollection_HAsciiString.hxx>
-#include <StepGeom_Curve.hxx>
-
-DEFINE_STANDARD_HANDLE(StepKinematics_SlidingCurvePair, StepKinematics_PlanarCurvePair)
-
-//! Representation of STEP entity SlidingCurvePair
-class StepKinematics_SlidingCurvePair : public StepKinematics_PlanarCurvePair
-{
-public:
-  //! default constructor
-  Standard_EXPORT StepKinematics_SlidingCurvePair();
-
-  DEFINE_STANDARD_RTTIEXT(StepKinematics_SlidingCurvePair, StepKinematics_PlanarCurvePair)
-};
-#endif // _StepKinematics_SlidingCurvePair_HeaderFile_
+// clang-format off
+#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/DataExchange/TKDESTEP/StepKinematics/StepKinematics_SlidingCurvePair.hxx"// clang-format on

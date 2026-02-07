@@ -1,7 +1,4 @@
-// Created on: 1999-03-24
-// Created by: data exchange team
-// Copyright (c) 1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,45 +11,5 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _STEPSelections_AssemblyComponent_HeaderFile
-#define _STEPSelections_AssemblyComponent_HeaderFile
-
-#include <Standard.hxx>
-#include <Standard_Type.hxx>
-
-#include <STEPSelections_HSequenceOfAssemblyLink.hxx>
-#include <Standard_Transient.hxx>
-class StepShape_ShapeDefinitionRepresentation;
-
-class STEPSelections_AssemblyComponent;
-DEFINE_STANDARD_HANDLE(STEPSelections_AssemblyComponent, Standard_Transient)
-
-class STEPSelections_AssemblyComponent : public Standard_Transient
-{
-
-public:
-  Standard_EXPORT STEPSelections_AssemblyComponent();
-
-  Standard_EXPORT STEPSelections_AssemblyComponent(
-    const Handle(StepShape_ShapeDefinitionRepresentation)& sdr,
-    const Handle(STEPSelections_HSequenceOfAssemblyLink)&  list);
-
-  Handle(StepShape_ShapeDefinitionRepresentation) GetSDR() const;
-
-  Handle(STEPSelections_HSequenceOfAssemblyLink) GetList() const;
-
-  void SetSDR(const Handle(StepShape_ShapeDefinitionRepresentation)& sdr);
-
-  void SetList(const Handle(STEPSelections_HSequenceOfAssemblyLink)& list);
-
-  DEFINE_STANDARD_RTTIEXT(STEPSelections_AssemblyComponent, Standard_Transient)
-
-protected:
-private:
-  Handle(StepShape_ShapeDefinitionRepresentation) mySDR;
-  Handle(STEPSelections_HSequenceOfAssemblyLink)  myList;
-};
-
-#include <STEPSelections_AssemblyComponent.lxx>
-
-#endif // _STEPSelections_AssemblyComponent_HeaderFile
+// clang-format off
+#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/DataExchange/TKDESTEP/STEPSelections/STEPSelections_AssemblyComponent.hxx"// clang-format on

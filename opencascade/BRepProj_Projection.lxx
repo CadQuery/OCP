@@ -1,5 +1,4 @@
-// Copyright (c) 1998-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -12,35 +11,5 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#include <TopoDS.hxx>
-#include <TopTools_HSequenceOfShape.hxx>
-
-inline Standard_Boolean BRepProj_Projection::IsDone() const
-{
-  return myIsDone;
-}
-
-inline TopoDS_Compound BRepProj_Projection::Shape() const
-{
-  return myShape;
-}
-
-inline void BRepProj_Projection::Init()
-{
-  myItr = 1;
-}
-
-inline Standard_Boolean BRepProj_Projection::More() const
-{
-  return myItr > 0 && !mySection.IsNull() && myItr <= mySection->Length();
-}
-
-inline void BRepProj_Projection::Next()
-{
-  myItr++;
-}
-
-inline TopoDS_Wire BRepProj_Projection::Current() const
-{
-  return TopoDS::Wire(mySection->Value(myItr));
-}
+// clang-format off
+#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ModelingAlgorithms/TKBool/BRepProj/BRepProj_Projection.lxx"// clang-format on

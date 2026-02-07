@@ -1,7 +1,4 @@
-// Created on: 1997-03-17
-// Created by: Yves FRICAUD
-// Copyright (c) 1997-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,24 +11,5 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _TNaming_NameType_HeaderFile
-#define _TNaming_NameType_HeaderFile
-
-//! to store naming characteristcs
-enum TNaming_NameType
-{
-  TNaming_UNKNOWN,
-  TNaming_IDENTITY,
-  TNaming_MODIFUNTIL,
-  TNaming_GENERATION,
-  TNaming_INTERSECTION,
-  TNaming_UNION,
-  TNaming_SUBSTRACTION,
-  TNaming_CONSTSHAPE,
-  TNaming_FILTERBYNEIGHBOURGS,
-  TNaming_ORIENTATION,
-  TNaming_WIREIN,
-  TNaming_SHELLIN
-};
-
-#endif // _TNaming_NameType_HeaderFile
+// clang-format off
+#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ApplicationFramework/TKCAF/TNaming/TNaming_NameType.hxx"// clang-format on

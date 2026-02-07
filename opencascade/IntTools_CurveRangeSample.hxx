@@ -1,6 +1,4 @@
-// Created on: 2005-10-05
-// Created by: Mikhail KLOKOV
-// Copyright (c) 2005-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -13,66 +11,5 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _IntTools_CurveRangeSample_HeaderFile
-#define _IntTools_CurveRangeSample_HeaderFile
-
-#include <Standard.hxx>
-#include <Standard_DefineAlloc.hxx>
-#include <Standard_Handle.hxx>
-
-#include <IntTools_BaseRangeSample.hxx>
-#include <Standard_HashUtils.hxx>
-#include <Standard_Boolean.hxx>
-#include <Standard_Real.hxx>
-
-class IntTools_Range;
-
-//! class for range index management of curve
-class IntTools_CurveRangeSample : public IntTools_BaseRangeSample
-{
-public:
-  DEFINE_STANDARD_ALLOC
-
-  Standard_EXPORT IntTools_CurveRangeSample();
-
-  Standard_EXPORT IntTools_CurveRangeSample(const Standard_Integer theIndex);
-
-  void SetRangeIndex(const Standard_Integer theIndex) { myIndex = theIndex; }
-
-  Standard_Integer GetRangeIndex() const { return myIndex; }
-
-  Standard_Boolean IsEqual(const IntTools_CurveRangeSample& Other) const
-  {
-    return ((myIndex == Other.myIndex) && (GetDepth() == Other.GetDepth()));
-  }
-
-  bool operator==(const IntTools_CurveRangeSample& Other) const { return IsEqual(Other); }
-
-  Standard_EXPORT IntTools_Range GetRange(const Standard_Real    theFirst,
-                                          const Standard_Real    theLast,
-                                          const Standard_Integer theNbSample) const;
-
-  Standard_Integer GetRangeIndexDeeper(const Standard_Integer theNbSample) const
-  {
-    return myIndex * theNbSample;
-  }
-
-private:
-  Standard_Integer myIndex;
-};
-
-namespace std
-{
-template <>
-struct hash<IntTools_CurveRangeSample>
-{
-  size_t operator()(const IntTools_CurveRangeSample& theCurveRangeSample) const noexcept
-  {
-    // Combine two int values into a single hash value.
-    int aCombination[2]{theCurveRangeSample.GetDepth(), theCurveRangeSample.GetRangeIndex()};
-    return opencascade::hashBytes(aCombination, sizeof(aCombination));
-  }
-};
-} // namespace std
-
-#endif // _IntTools_CurveRangeSample_HeaderFile
+// clang-format off
+#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ModelingAlgorithms/TKBO/IntTools/IntTools_CurveRangeSample.hxx"// clang-format on

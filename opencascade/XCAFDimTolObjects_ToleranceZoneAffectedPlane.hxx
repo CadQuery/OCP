@@ -1,6 +1,4 @@
-// Created on: 2017-11-21
-// Created by: Irina KRYLOVA
-// Copyright c 2017 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -13,15 +11,5 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _XCAFDimTolObjects_ToleranceZoneAffectedPlane_HeaderFile
-#define _XCAFDimTolObjects_ToleranceZoneAffectedPlane_HeaderFile
-
-//! Defines types of tolerance zone affected plane
-enum XCAFDimTolObjects_ToleranceZoneAffectedPlane
-{
-  XCAFDimTolObjects_ToleranceZoneAffectedPlane_None,
-  XCAFDimTolObjects_ToleranceZoneAffectedPlane_Intersection,
-  XCAFDimTolObjects_ToleranceZoneAffectedPlane_Orientation
-};
-
-#endif // _XCAFDimTolObjects_ToleranceZoneAffectedPlane_HeaderFile
+// clang-format off
+#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/DataExchange/TKXCAF/XCAFDimTolObjects/XCAFDimTolObjects_ToleranceZoneAffectedPlane.hxx"// clang-format on

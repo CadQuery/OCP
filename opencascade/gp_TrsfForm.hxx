@@ -1,7 +1,4 @@
-// Created on: 1993-04-13
-// Created by: JCV
-// Copyright (c) 1993-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,21 +11,5 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _gp_TrsfForm_HeaderFile
-#define _gp_TrsfForm_HeaderFile
-
-//! Identifies the type of a geometric transformation.
-enum gp_TrsfForm
-{
-  gp_Identity,     //!< No transformation (matrix is identity)
-  gp_Rotation,     //!< Rotation
-  gp_Translation,  //!< Translation
-  gp_PntMirror,    //!< Central symmetry
-  gp_Ax1Mirror,    //!< Rotational symmetry
-  gp_Ax2Mirror,    //!< Bilateral symmetry
-  gp_Scale,        //!< Scale
-  gp_CompoundTrsf, //!< Combination of the above transformations
-  gp_Other         //!< Transformation with not-orthogonal matrix
-};
-
-#endif // _gp_TrsfForm_HeaderFile
+// clang-format off
+#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/FoundationClasses/TKMath/gp/gp_TrsfForm.hxx"// clang-format on

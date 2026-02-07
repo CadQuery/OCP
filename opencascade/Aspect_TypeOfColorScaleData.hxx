@@ -1,6 +1,4 @@
-// Created by: NW,JPB,CAL
-// Copyright (c) 1991-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -13,14 +11,5 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _Aspect_TypeOfColorScaleData_HeaderFile
-#define _Aspect_TypeOfColorScaleData_HeaderFile
-
-//! Defines the using type of colors and labels
-enum Aspect_TypeOfColorScaleData
-{
-  Aspect_TOCSD_AUTO,
-  Aspect_TOCSD_USER
-};
-
-#endif // _Aspect_TypeOfColorScaleData_HeaderFile
+// clang-format off
+#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/Visualization/TKService/Aspect/Aspect_TypeOfColorScaleData.hxx"// clang-format on

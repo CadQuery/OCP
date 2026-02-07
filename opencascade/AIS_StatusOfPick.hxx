@@ -1,7 +1,4 @@
-// Created on: 1996-12-11
-// Created by: Robert COUBLANC
-// Copyright (c) 1996-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,16 +11,5 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _AIS_StatusOfPick_HeaderFile
-#define _AIS_StatusOfPick_HeaderFile
-
-enum AIS_StatusOfPick
-{
-  AIS_SOP_Error,
-  AIS_SOP_NothingSelected,
-  AIS_SOP_Removed,
-  AIS_SOP_OneSelected,
-  AIS_SOP_SeveralSelected
-};
-
-#endif // _AIS_StatusOfPick_HeaderFile
+// clang-format off
+#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/Visualization/TKV3d/AIS/AIS_StatusOfPick.hxx"// clang-format on

@@ -1,7 +1,4 @@
-// Created on: 1992-11-13
-// Created by: GG
-// Copyright (c) 1992-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,15 +11,5 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _V3d_TypeOfVisualization_HeaderFile
-#define _V3d_TypeOfVisualization_HeaderFile
-
-//! Determines the type of visualization in the view, either
-//! WIREFRAME or ZBUFFER (shading).
-enum V3d_TypeOfVisualization
-{
-  V3d_WIREFRAME,
-  V3d_ZBUFFER
-};
-
-#endif // _V3d_TypeOfVisualization_HeaderFile
+// clang-format off
+#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/Visualization/TKV3d/V3d/V3d_TypeOfVisualization.hxx"// clang-format on

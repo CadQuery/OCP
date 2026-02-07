@@ -1,4 +1,4 @@
-// Copyright (c) 2023 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,21 +11,5 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef NCollection_DefineHasher_HeaderFile
-#define NCollection_DefineHasher_HeaderFile
-
-#define DEFINE_HASHER(HasherName, TheKeyType, HashFunctor, EqualFunctor)                           \
-  struct HasherName : protected HashFunctor, EqualFunctor                                          \
-  {                                                                                                \
-    size_t operator()(const TheKeyType& theKey) const noexcept                                     \
-    {                                                                                              \
-      return HashFunctor::operator()(theKey);                                                      \
-    }                                                                                              \
-                                                                                                   \
-    bool operator()(const TheKeyType& theK1, const TheKeyType& theK2) const noexcept               \
-    {                                                                                              \
-      return EqualFunctor::operator()(theK1, theK2);                                               \
-    }                                                                                              \
-  };
-
-#endif
+// clang-format off
+#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/FoundationClasses/TKernel/NCollection/NCollection_DefineHasher.hxx"// clang-format on

@@ -1,4 +1,4 @@
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,65 +11,5 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#include <ShapeExtend.hxx>
-
-//=======================================================================
-// function : MinArea
-// purpose  :
-//=======================================================================
-
-inline Standard_Real& ShapeUpgrade_RemoveInternalWires::MinArea()
-{
-  return myMinArea;
-}
-
-//=======================================================================
-// function : RemoveFaceMode
-// purpose  :
-//=======================================================================
-
-inline Standard_Boolean& ShapeUpgrade_RemoveInternalWires::RemoveFaceMode()
-{
-  return myRemoveFacesMode;
-}
-
-//=======================================================================
-// function : RemovedFaces
-// purpose  :
-//=======================================================================
-
-inline const TopTools_SequenceOfShape& ShapeUpgrade_RemoveInternalWires::RemovedFaces() const
-{
-  return myRemovedFaces;
-}
-
-//=======================================================================
-// function : RemovedWires
-// purpose  :
-//=======================================================================
-
-inline const TopTools_SequenceOfShape& ShapeUpgrade_RemoveInternalWires::RemovedWires() const
-{
-  return myRemoveWires;
-}
-
-//=======================================================================
-// function : GetResult
-// purpose  :
-//=======================================================================
-
-inline TopoDS_Shape ShapeUpgrade_RemoveInternalWires::GetResult() const
-{
-  return myResult;
-}
-
-//=======================================================================
-// function : Status
-// purpose  :
-//=======================================================================
-
-inline Standard_Boolean ShapeUpgrade_RemoveInternalWires::Status(
-  const ShapeExtend_Status theStatus) const
-{
-  return ShapeExtend::DecodeStatus(myStatus, theStatus);
-}
+// clang-format off
+#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ModelingAlgorithms/TKShHealing/ShapeUpgrade/ShapeUpgrade_RemoveInternalWires.lxx"// clang-format on

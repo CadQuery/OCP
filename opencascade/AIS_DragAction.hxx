@@ -1,4 +1,4 @@
-// Copyright (c) 2018-2019 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,17 +11,5 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _AIS_DragAction_HeaderFile
-#define _AIS_DragAction_HeaderFile
-
-//! Dragging action.
-enum AIS_DragAction
-{
-  AIS_DragAction_Start,     //!< (try) start dragging object
-  AIS_DragAction_Confirmed, //!< dragging interaction is confirmed.
-  AIS_DragAction_Update,    //!< perform dragging (update position)
-  AIS_DragAction_Stop,      //!< stop dragging (save position)
-  AIS_DragAction_Abort,     //!< abort dragging (restore initial position)
-};
-
-#endif // _AIS_DragAction_HeaderFile
+// clang-format off
+#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/Visualization/TKV3d/AIS/AIS_DragAction.hxx"// clang-format on

@@ -1,7 +1,4 @@
-// Created on: 1997-08-07
-// Created by: Jean-Louis Frenkel
-// Copyright (c) 1997-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,14 +11,5 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _CDF_TypeOfActivation_HeaderFile
-#define _CDF_TypeOfActivation_HeaderFile
-
-enum CDF_TypeOfActivation
-{
-  CDF_TOA_New,
-  CDF_TOA_Modified,
-  CDF_TOA_Unchanged
-};
-
-#endif // _CDF_TypeOfActivation_HeaderFile
+// clang-format off
+#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ApplicationFramework/TKCDF/CDF/CDF_TypeOfActivation.hxx"// clang-format on

@@ -1,6 +1,4 @@
-// Created on: 2003-06-04
-// Created by: Galina KULIKOVA
-// Copyright (c) 2003-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -13,30 +11,5 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _StepDimTol_ParallelismTolerance_HeaderFile
-#define _StepDimTol_ParallelismTolerance_HeaderFile
-
-#include <Standard.hxx>
-
-#include <StepDimTol_GeometricToleranceWithDatumReference.hxx>
-
-class StepDimTol_ParallelismTolerance;
-DEFINE_STANDARD_HANDLE(StepDimTol_ParallelismTolerance,
-                       StepDimTol_GeometricToleranceWithDatumReference)
-
-//! Representation of STEP entity ParallelismTolerance
-class StepDimTol_ParallelismTolerance : public StepDimTol_GeometricToleranceWithDatumReference
-{
-
-public:
-  //! Empty constructor
-  Standard_EXPORT StepDimTol_ParallelismTolerance();
-
-  DEFINE_STANDARD_RTTIEXT(StepDimTol_ParallelismTolerance,
-                          StepDimTol_GeometricToleranceWithDatumReference)
-
-protected:
-private:
-};
-
-#endif // _StepDimTol_ParallelismTolerance_HeaderFile
+// clang-format off
+#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/DataExchange/TKDESTEP/StepDimTol/StepDimTol_ParallelismTolerance.hxx"// clang-format on

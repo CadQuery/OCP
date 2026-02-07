@@ -1,7 +1,4 @@
-// Created on: 1993-09-28
-// Created by: Bruno DUMORTIER
-// Copyright (c) 1993-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,44 +11,5 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _GeomFill_Filling_HeaderFile
-#define _GeomFill_Filling_HeaderFile
-
-#include <Standard.hxx>
-#include <Standard_DefineAlloc.hxx>
-#include <Standard_Handle.hxx>
-
-#include <Standard_Boolean.hxx>
-#include <TColgp_HArray2OfPnt.hxx>
-#include <TColStd_HArray2OfReal.hxx>
-#include <Standard_Integer.hxx>
-#include <TColgp_Array2OfPnt.hxx>
-#include <TColStd_Array2OfReal.hxx>
-
-//! Root class for Filling;
-class GeomFill_Filling
-{
-public:
-  DEFINE_STANDARD_ALLOC
-
-  Standard_EXPORT GeomFill_Filling();
-
-  Standard_EXPORT Standard_Integer NbUPoles() const;
-
-  Standard_EXPORT Standard_Integer NbVPoles() const;
-
-  Standard_EXPORT void Poles(TColgp_Array2OfPnt& Poles) const;
-
-  Standard_EXPORT Standard_Boolean isRational() const;
-
-  Standard_EXPORT void Weights(TColStd_Array2OfReal& Weights) const;
-
-protected:
-  Standard_Boolean              IsRational;
-  Handle(TColgp_HArray2OfPnt)   myPoles;
-  Handle(TColStd_HArray2OfReal) myWeights;
-
-private:
-};
-
-#endif // _GeomFill_Filling_HeaderFile
+// clang-format off
+#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ModelingAlgorithms/TKGeomAlgo/GeomFill/GeomFill_Filling.hxx"// clang-format on

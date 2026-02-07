@@ -1,6 +1,4 @@
-// Created on: 2003-01-28
-// Created by: data exchange team
-// Copyright (c) 2003-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -13,29 +11,5 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _StepBasic_DocumentProductEquivalence_HeaderFile
-#define _StepBasic_DocumentProductEquivalence_HeaderFile
-
-#include <Standard.hxx>
-
-#include <StepBasic_DocumentProductAssociation.hxx>
-
-class StepBasic_DocumentProductEquivalence;
-DEFINE_STANDARD_HANDLE(StepBasic_DocumentProductEquivalence, StepBasic_DocumentProductAssociation)
-
-//! Representation of STEP entity DocumentProductEquivalence
-class StepBasic_DocumentProductEquivalence : public StepBasic_DocumentProductAssociation
-{
-
-public:
-  //! Empty constructor
-  Standard_EXPORT StepBasic_DocumentProductEquivalence();
-
-  DEFINE_STANDARD_RTTIEXT(StepBasic_DocumentProductEquivalence,
-                          StepBasic_DocumentProductAssociation)
-
-protected:
-private:
-};
-
-#endif // _StepBasic_DocumentProductEquivalence_HeaderFile
+// clang-format off
+#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/DataExchange/TKDESTEP/StepBasic/StepBasic_DocumentProductEquivalence.hxx"// clang-format on

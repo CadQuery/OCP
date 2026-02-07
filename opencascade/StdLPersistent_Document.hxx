@@ -1,4 +1,4 @@
-// Copyright (c) 2015 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,32 +11,5 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _StdLPersistent_Document_HeaderFile
-#define _StdLPersistent_Document_HeaderFile
-
-#include <StdObjMgt_Persistent.hxx>
-
-class TDocStd_Document;
-class StdLPersistent_Data;
-
-class StdLPersistent_Document : public StdObjMgt_Persistent
-{
-public:
-  //! Read persistent data from a file.
-  Standard_EXPORT virtual void Read(StdObjMgt_ReadData& theReadData);
-  //! Read persistent data from a file.
-  Standard_EXPORT virtual void Write(StdObjMgt_WriteData& theWriteData) const;
-  //! Gets persistent child objects
-  Standard_EXPORT virtual void PChildren(StdObjMgt_Persistent::SequenceOfPersistent&) const;
-
-  //! Returns persistent type name
-  virtual Standard_CString PName() const { return "PDocStd_Document"; }
-
-  //! Import transient document from the persistent data.
-  Standard_EXPORT virtual void ImportDocument(const Handle(TDocStd_Document)& theDocument) const;
-
-private:
-  Handle(StdLPersistent_Data) myData;
-};
-
-#endif
+// clang-format off
+#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ApplicationFramework/TKStdL/StdLPersistent/StdLPersistent_Document.hxx"// clang-format on

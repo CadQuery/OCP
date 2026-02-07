@@ -1,6 +1,4 @@
-// Created on: 2015-05-07
-// Created by: Denis BOGOLEPOV
-// Copyright (c) 2015 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -13,36 +11,5 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _BRepExtrema_ElementFilter_HeaderFile
-#define _BRepExtrema_ElementFilter_HeaderFile
-
-#include <Standard_TypeDef.hxx>
-
-//! Filtering tool used to detect if two given mesh elements
-//! should be tested for overlapping/intersection or not.
-struct BRepExtrema_ElementFilter
-{
-  //! Result of filtering function.
-  enum FilterResult
-  {
-    NoCheck,
-    Overlap,
-    DoCheck
-  };
-
-  //! Releases resources of element filter.
-  virtual ~BRepExtrema_ElementFilter()
-  {
-    //
-  }
-
-  //! Checks if two mesh elements should be tested for overlapping/intersection
-  //! (used for detection correct/incorrect cases of shared edges and vertices).
-  virtual FilterResult PreCheckElements(const Standard_Integer /*theIndex1*/,
-                                        const Standard_Integer /*theIndex2*/)
-  {
-    return DoCheck;
-  }
-};
-
-#endif // _BRepExtrema_ElementFilter_HeaderFile
+// clang-format off
+#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ModelingAlgorithms/TKTopAlgo/BRepExtrema/BRepExtrema_ElementFilter.hxx"// clang-format on

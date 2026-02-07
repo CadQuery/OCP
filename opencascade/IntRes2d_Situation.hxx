@@ -1,7 +1,4 @@
-// Created on: 1992-04-03
-// Created by: Laurent BUCHARD
-// Copyright (c) 1992-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,14 +11,5 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _IntRes2d_Situation_HeaderFile
-#define _IntRes2d_Situation_HeaderFile
-
-enum IntRes2d_Situation
-{
-  IntRes2d_Inside,
-  IntRes2d_Outside,
-  IntRes2d_Unknown
-};
-
-#endif // _IntRes2d_Situation_HeaderFile
+// clang-format off
+#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ModelingAlgorithms/TKGeomAlgo/IntRes2d/IntRes2d_Situation.hxx"// clang-format on

@@ -1,6 +1,4 @@
-// Created on: 2016-04-07
-// Copyright (c) 2016 OPEN CASCADE SAS
-// Created by: Oleg AGASHIN
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -13,44 +11,5 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _IMeshData_TessellatedShape_HeaderFile
-#define _IMeshData_TessellatedShape_HeaderFile
-
-#include <IMeshData_Shape.hxx>
-#include <Standard_Type.hxx>
-#include <TopoDS_Shape.hxx>
-
-//! Interface class representing shaped model with deflection.
-class IMeshData_TessellatedShape : public IMeshData_Shape
-{
-public:
-  //! Destructor.
-  virtual ~IMeshData_TessellatedShape() {}
-
-  //! Gets deflection value for the discrete model.
-  Standard_Real GetDeflection() const { return myDeflection; }
-
-  //! Sets deflection value for the discrete model.
-  void SetDeflection(const Standard_Real theValue) { myDeflection = theValue; }
-
-  DEFINE_STANDARD_RTTIEXT(IMeshData_TessellatedShape, IMeshData_Shape)
-
-protected:
-  //! Constructor.
-  IMeshData_TessellatedShape()
-      : myDeflection(RealLast())
-  {
-  }
-
-  //! Constructor.
-  IMeshData_TessellatedShape(const TopoDS_Shape& theShape)
-      : IMeshData_Shape(theShape),
-        myDeflection(RealLast())
-  {
-  }
-
-private:
-  Standard_Real myDeflection;
-};
-
-#endif
+// clang-format off
+#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ModelingAlgorithms/TKMesh/IMeshData/IMeshData_TessellatedShape.hxx"// clang-format on

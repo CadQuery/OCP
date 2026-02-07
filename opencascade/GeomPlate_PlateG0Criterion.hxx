@@ -1,7 +1,4 @@
-// Created on: 1997-03-05
-// Created by: Joelle CHAUVET
-// Copyright (c) 1997-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,43 +11,5 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _GeomPlate_PlateG0Criterion_HeaderFile
-#define _GeomPlate_PlateG0Criterion_HeaderFile
-
-#include <Standard.hxx>
-#include <Standard_DefineAlloc.hxx>
-
-#include <TColgp_SequenceOfXY.hxx>
-#include <TColgp_SequenceOfXYZ.hxx>
-#include <AdvApp2Var_Criterion.hxx>
-#include <AdvApp2Var_CriterionType.hxx>
-#include <AdvApp2Var_CriterionRepartition.hxx>
-class AdvApp2Var_Patch;
-class AdvApp2Var_Context;
-
-//! this class contains a specific G0 criterion for GeomPlate_MakeApprox
-class GeomPlate_PlateG0Criterion : public AdvApp2Var_Criterion
-{
-public:
-  DEFINE_STANDARD_ALLOC
-
-  Standard_EXPORT GeomPlate_PlateG0Criterion(
-    const TColgp_SequenceOfXY&            Data,
-    const TColgp_SequenceOfXYZ&           G0Data,
-    const Standard_Real                   Maximum,
-    const AdvApp2Var_CriterionType        Type   = AdvApp2Var_Absolute,
-    const AdvApp2Var_CriterionRepartition Repart = AdvApp2Var_Regular);
-
-  Standard_EXPORT virtual void Value(AdvApp2Var_Patch&         P,
-                                     const AdvApp2Var_Context& C) const Standard_OVERRIDE;
-
-  Standard_EXPORT virtual Standard_Boolean IsSatisfied(const AdvApp2Var_Patch& P) const
-    Standard_OVERRIDE;
-
-protected:
-private:
-  TColgp_SequenceOfXY  myData;
-  TColgp_SequenceOfXYZ myXYZ;
-};
-
-#endif // _GeomPlate_PlateG0Criterion_HeaderFile
+// clang-format off
+#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ModelingAlgorithms/TKGeomAlgo/GeomPlate/GeomPlate_PlateG0Criterion.hxx"// clang-format on

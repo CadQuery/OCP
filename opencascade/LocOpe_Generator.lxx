@@ -1,7 +1,4 @@
-// Created on: 1996-01-09
-// Created by: Jacques GOUSSARD
-// Copyright (c) 1996-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,70 +11,5 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#include <StdFail_NotDone.hxx>
-
-//=======================================================================
-// function : LocOpe_Generator
-// purpose  :
-//=======================================================================
-
-inline LocOpe_Generator::LocOpe_Generator()
-    : myDone(Standard_False)
-{
-}
-
-//=======================================================================
-// function : LocOpe_Generator
-// purpose  :
-//=======================================================================
-
-inline LocOpe_Generator::LocOpe_Generator(const TopoDS_Shape& S)
-    : myShape(S),
-      myDone(Standard_False)
-{
-}
-
-//=======================================================================
-// function : Init
-// purpose  :
-//=======================================================================
-
-inline void LocOpe_Generator::Init(const TopoDS_Shape& S)
-{
-  myShape = S;
-  myDone  = Standard_False;
-}
-
-//=======================================================================
-// function : IsDone
-// purpose  :
-//=======================================================================
-
-inline Standard_Boolean LocOpe_Generator::IsDone() const
-{
-  return myDone;
-}
-
-//=======================================================================
-// function : Shape
-// purpose  :
-//=======================================================================
-
-inline const TopoDS_Shape& LocOpe_Generator::Shape() const
-{
-  return myShape;
-}
-
-//=======================================================================
-// function : ResultingShape
-// purpose  :
-//=======================================================================
-
-inline const TopoDS_Shape& LocOpe_Generator::ResultingShape() const
-{
-  if (!myDone)
-  {
-    throw StdFail_NotDone();
-  }
-  return myRes;
-}
+// clang-format off
+#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ModelingAlgorithms/TKFeat/LocOpe/LocOpe_Generator.lxx"// clang-format on

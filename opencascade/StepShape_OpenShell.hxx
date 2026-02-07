@@ -1,7 +1,4 @@
-// Created on: 1995-12-01
-// Created by: EXPRESS->CDL V0.2 Translator
-// Copyright (c) 1995-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,28 +11,5 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _StepShape_OpenShell_HeaderFile
-#define _StepShape_OpenShell_HeaderFile
-
-#include <Standard.hxx>
-#include <Standard_Type.hxx>
-
-#include <StepShape_ConnectedFaceSet.hxx>
-
-class StepShape_OpenShell;
-DEFINE_STANDARD_HANDLE(StepShape_OpenShell, StepShape_ConnectedFaceSet)
-
-class StepShape_OpenShell : public StepShape_ConnectedFaceSet
-{
-
-public:
-  //! Returns a OpenShell
-  Standard_EXPORT StepShape_OpenShell();
-
-  DEFINE_STANDARD_RTTIEXT(StepShape_OpenShell, StepShape_ConnectedFaceSet)
-
-protected:
-private:
-};
-
-#endif // _StepShape_OpenShell_HeaderFile
+// clang-format off
+#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/DataExchange/TKDESTEP/StepShape/StepShape_OpenShell.hxx"// clang-format on

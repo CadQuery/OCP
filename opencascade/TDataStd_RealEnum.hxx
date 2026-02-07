@@ -1,7 +1,4 @@
-// Created on: 1995-05-10
-// Created by: Denis PASCAL
-// Copyright (c) 1995-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,16 +11,5 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _TDataStd_RealEnum_HeaderFile
-#define _TDataStd_RealEnum_HeaderFile
-
-//! The terms of this enumeration define the
-//! semantics of a real number value.
-enum TDataStd_RealEnum
-{
-  TDataStd_SCALAR,
-  TDataStd_LENGTH,
-  TDataStd_ANGULAR
-};
-
-#endif // _TDataStd_RealEnum_HeaderFile
+// clang-format off
+#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ApplicationFramework/TKLCAF/TDataStd/TDataStd_RealEnum.hxx"// clang-format on

@@ -1,7 +1,4 @@
-// Created on: 1994-06-16
-// Created by: EXPRESS->CDL V0.2 Translator
-// Copyright (c) 1994-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,37 +11,5 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _RWHeaderSection_RWFileSchema_HeaderFile
-#define _RWHeaderSection_RWFileSchema_HeaderFile
-
-#include <Standard.hxx>
-#include <Standard_DefineAlloc.hxx>
-#include <Standard_Handle.hxx>
-
-#include <Standard_Integer.hxx>
-class StepData_StepReaderData;
-class Interface_Check;
-class HeaderSection_FileSchema;
-class StepData_StepWriter;
-
-//! Read & Write Module for FileSchema
-class RWHeaderSection_RWFileSchema
-{
-public:
-  DEFINE_STANDARD_ALLOC
-
-  Standard_EXPORT RWHeaderSection_RWFileSchema();
-
-  Standard_EXPORT void ReadStep(const Handle(StepData_StepReaderData)&  data,
-                                const Standard_Integer                  num,
-                                Handle(Interface_Check)&                ach,
-                                const Handle(HeaderSection_FileSchema)& ent) const;
-
-  Standard_EXPORT void WriteStep(StepData_StepWriter&                    SW,
-                                 const Handle(HeaderSection_FileSchema)& ent) const;
-
-protected:
-private:
-};
-
-#endif // _RWHeaderSection_RWFileSchema_HeaderFile
+// clang-format off
+#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/DataExchange/TKDESTEP/RWHeaderSection/RWHeaderSection_RWFileSchema.hxx"// clang-format on

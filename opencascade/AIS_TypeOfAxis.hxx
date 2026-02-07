@@ -1,7 +1,4 @@
-// Created on: 1996-12-11
-// Created by: Robert COUBLANC
-// Copyright (c) 1996-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,16 +11,5 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _AIS_TypeOfAxis_HeaderFile
-#define _AIS_TypeOfAxis_HeaderFile
-
-//! Declares the type of axis.
-enum AIS_TypeOfAxis
-{
-  AIS_TOAX_Unknown,
-  AIS_TOAX_XAxis,
-  AIS_TOAX_YAxis,
-  AIS_TOAX_ZAxis
-};
-
-#endif // _AIS_TypeOfAxis_HeaderFile
+// clang-format off
+#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/Visualization/TKV3d/AIS/AIS_TypeOfAxis.hxx"// clang-format on

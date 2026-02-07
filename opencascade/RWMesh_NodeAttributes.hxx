@@ -1,5 +1,4 @@
-// Author: Kirill Gavrilov
-// Copyright (c) 2016-2019 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -12,26 +11,5 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _RWMesh_NodeAttributes_HeaderFile
-#define _RWMesh_NodeAttributes_HeaderFile
-
-#include <NCollection_DataMap.hxx>
-#include <TCollection_AsciiString.hxx>
-#include <TopTools_ShapeMapHasher.hxx>
-#include <XCAFPrs_Style.hxx>
-
-class TDataStd_NamedData;
-
-//! Attributes of the node.
-struct RWMesh_NodeAttributes
-{
-  TCollection_AsciiString    Name;      //!< name for the user
-  TCollection_AsciiString    RawName;   //!< name within low-level format structure
-  Handle(TDataStd_NamedData) NamedData; //!< optional metadata
-  XCAFPrs_Style              Style;     //!< presentation style
-};
-
-typedef NCollection_DataMap<TopoDS_Shape, RWMesh_NodeAttributes, TopTools_ShapeMapHasher>
-  RWMesh_NodeAttributeMap;
-
-#endif // _RWMesh_NodeAttributes_HeaderFile
+// clang-format off
+#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/DataExchange/TKRWMesh/RWMesh/RWMesh_NodeAttributes.hxx"// clang-format on

@@ -1,6 +1,4 @@
-// Created on: 2001-04-24
-// Created by: Christian CAILLET
-// Copyright (c) 2001-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -13,36 +11,5 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _StepShape_PrecisionQualifier_HeaderFile
-#define _StepShape_PrecisionQualifier_HeaderFile
-
-#include <Standard.hxx>
-#include <Standard_Type.hxx>
-
-#include <Standard_Integer.hxx>
-#include <Standard_Transient.hxx>
-
-class StepShape_PrecisionQualifier;
-DEFINE_STANDARD_HANDLE(StepShape_PrecisionQualifier, Standard_Transient)
-
-//! Added for Dimensional Tolerances
-class StepShape_PrecisionQualifier : public Standard_Transient
-{
-
-public:
-  Standard_EXPORT StepShape_PrecisionQualifier();
-
-  Standard_EXPORT void Init(const Standard_Integer precision_value);
-
-  Standard_EXPORT Standard_Integer PrecisionValue() const;
-
-  Standard_EXPORT void SetPrecisionValue(const Standard_Integer precision_value);
-
-  DEFINE_STANDARD_RTTIEXT(StepShape_PrecisionQualifier, Standard_Transient)
-
-protected:
-private:
-  Standard_Integer thePrecisionValue;
-};
-
-#endif // _StepShape_PrecisionQualifier_HeaderFile
+// clang-format off
+#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/DataExchange/TKDESTEP/StepShape/StepShape_PrecisionQualifier.hxx"// clang-format on

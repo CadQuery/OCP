@@ -1,4 +1,4 @@
-// Copyright (c) 2020 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,25 +11,5 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _Image_CompressedFormat_HeaderFile
-#define _Image_CompressedFormat_HeaderFile
-
-#include <Image_Format.hxx>
-
-//! List of compressed pixel formats natively supported by various graphics hardware (e.g. for
-//! efficient decoding on-the-fly). It is defined as extension of Image_Format.
-enum Image_CompressedFormat
-{
-  Image_CompressedFormat_UNKNOWN       = Image_Format_UNKNOWN,
-  Image_CompressedFormat_RGB_S3TC_DXT1 = Image_Format_NB,
-  Image_CompressedFormat_RGBA_S3TC_DXT1,
-  Image_CompressedFormat_RGBA_S3TC_DXT3,
-  Image_CompressedFormat_RGBA_S3TC_DXT5
-};
-
-enum
-{
-  Image_CompressedFormat_NB = Image_CompressedFormat_RGBA_S3TC_DXT5 + 1
-};
-
-#endif // _Image_CompressedFormat_HeaderFile
+// clang-format off
+#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/Visualization/TKService/Image/Image_CompressedFormat.hxx"// clang-format on

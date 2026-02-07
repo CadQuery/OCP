@@ -1,4 +1,4 @@
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,61 +11,5 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#include <ShapeExtend.hxx>
-
-inline Standard_Boolean ShapeAnalysis_CheckSmallFace::Status(const ShapeExtend_Status status) const
-{
-  return ShapeExtend::DecodeStatus(myStatus, status);
-}
-
-inline void ShapeAnalysis_CheckSmallFace::SetTolerance(const Standard_Real tol)
-{
-  myPrecision = tol;
-}
-
-inline Standard_Real ShapeAnalysis_CheckSmallFace::Tolerance() const
-{
-  return myPrecision;
-}
-
-inline Standard_Boolean ShapeAnalysis_CheckSmallFace::StatusSpot(
-  const ShapeExtend_Status status) const
-{
-  return ShapeExtend::DecodeStatus(myStatusSpot, status);
-}
-
-inline Standard_Boolean ShapeAnalysis_CheckSmallFace::StatusStrip(
-  const ShapeExtend_Status status) const
-{
-  return ShapeExtend::DecodeStatus(myStatusStrip, status);
-}
-
-inline Standard_Boolean ShapeAnalysis_CheckSmallFace::StatusPin(
-  const ShapeExtend_Status status) const
-{
-  return ShapeExtend::DecodeStatus(myStatusPin, status);
-}
-
-inline Standard_Boolean ShapeAnalysis_CheckSmallFace::StatusTwisted(
-  const ShapeExtend_Status status) const
-{
-  return ShapeExtend::DecodeStatus(myStatusTwisted, status);
-}
-
-inline Standard_Boolean ShapeAnalysis_CheckSmallFace::StatusPinFace(
-  const ShapeExtend_Status status) const
-{
-  return ShapeExtend::DecodeStatus(myStatusPinFace, status);
-}
-
-inline Standard_Boolean ShapeAnalysis_CheckSmallFace::StatusPinEdges(
-  const ShapeExtend_Status status) const
-{
-  return ShapeExtend::DecodeStatus(myStatusPinEdges, status);
-}
-
-inline Standard_Boolean ShapeAnalysis_CheckSmallFace::StatusSplitVert(
-  const ShapeExtend_Status status) const
-{
-  return ShapeExtend::DecodeStatus(myStatusSplitVert, status);
-}
+// clang-format off
+#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ModelingAlgorithms/TKShHealing/ShapeAnalysis/ShapeAnalysis_CheckSmallFace.lxx"// clang-format on

@@ -1,6 +1,4 @@
-// Created on: 2001-09-12
-// Created by: Alexander GRIGORIEV
-// Copyright (c) 2001-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -13,61 +11,5 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef LDOM_CharacterData_HeaderFile
-#define LDOM_CharacterData_HeaderFile
-
-#include <LDOM_Node.hxx>
-
-class LDOM_BasicText;
-
-//  Class LDOM_CharacterData
-//
-
-class LDOM_CharacterData : public LDOM_Node
-{
-public:
-  // ---------- PUBLIC METHODS ----------
-
-  LDOM_CharacterData()
-      : myLength(-1)
-  {
-  }
-
-  // Empty constructor
-
-  LDOM_CharacterData(const LDOM_CharacterData& theOther)
-      : LDOM_Node(theOther),
-        myLength(-1)
-  {
-  }
-
-  // Copy constructor
-
-  Standard_EXPORT LDOM_CharacterData& operator=(const LDOM_NullPtr* aNull);
-  // Nullify
-
-  Standard_EXPORT LDOM_CharacterData& operator=(const LDOM_CharacterData& anOther);
-
-  // Assignment
-
-  LDOMString getData() const { return getNodeValue(); }
-
-  // Query data
-
-  Standard_EXPORT void setData(const LDOMString& aValue);
-  // Assign to data
-
-  Standard_EXPORT Standard_Integer getLength() const;
-  // Length of the string
-
-protected:
-  // ---------- PROTECTED METHODS ----------
-
-  LDOM_CharacterData(const LDOM_BasicText& aText, const Handle(LDOM_MemManager)& aDoc);
-
-private:
-  // ------------ PRIVATE FIELDS -----------
-  Standard_Integer myLength;
-};
-
-#endif
+// clang-format off
+#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ApplicationFramework/TKCDF/LDOM/LDOM_CharacterData.hxx"// clang-format on

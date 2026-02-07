@@ -1,7 +1,4 @@
-// Created on: 1995-12-01
-// Created by: EXPRESS->CDL V0.2 Translator
-// Copyright (c) 1995-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,56 +11,5 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _StepShape_RightCircularCone_HeaderFile
-#define _StepShape_RightCircularCone_HeaderFile
-
-#include <Standard.hxx>
-#include <Standard_Type.hxx>
-
-#include <StepGeom_GeometricRepresentationItem.hxx>
-class StepGeom_Axis1Placement;
-class TCollection_HAsciiString;
-
-class StepShape_RightCircularCone;
-DEFINE_STANDARD_HANDLE(StepShape_RightCircularCone, StepGeom_GeometricRepresentationItem)
-
-class StepShape_RightCircularCone : public StepGeom_GeometricRepresentationItem
-{
-
-public:
-  //! Returns a RightCircularCone
-  Standard_EXPORT StepShape_RightCircularCone();
-
-  Standard_EXPORT void Init(const Handle(TCollection_HAsciiString)& aName,
-                            const Handle(StepGeom_Axis1Placement)&  aPosition,
-                            const Standard_Real                     aHeight,
-                            const Standard_Real                     aRadius,
-                            const Standard_Real                     aSemiAngle);
-
-  Standard_EXPORT void SetPosition(const Handle(StepGeom_Axis1Placement)& aPosition);
-
-  Standard_EXPORT Handle(StepGeom_Axis1Placement) Position() const;
-
-  Standard_EXPORT void SetHeight(const Standard_Real aHeight);
-
-  Standard_EXPORT Standard_Real Height() const;
-
-  Standard_EXPORT void SetRadius(const Standard_Real aRadius);
-
-  Standard_EXPORT Standard_Real Radius() const;
-
-  Standard_EXPORT void SetSemiAngle(const Standard_Real aSemiAngle);
-
-  Standard_EXPORT Standard_Real SemiAngle() const;
-
-  DEFINE_STANDARD_RTTIEXT(StepShape_RightCircularCone, StepGeom_GeometricRepresentationItem)
-
-protected:
-private:
-  Handle(StepGeom_Axis1Placement) position;
-  Standard_Real                   height;
-  Standard_Real                   radius;
-  Standard_Real                   semiAngle;
-};
-
-#endif // _StepShape_RightCircularCone_HeaderFile
+// clang-format off
+#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/DataExchange/TKDESTEP/StepShape/StepShape_RightCircularCone.hxx"// clang-format on

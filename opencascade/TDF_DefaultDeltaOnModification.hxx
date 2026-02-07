@@ -1,6 +1,4 @@
-// Created by: DAUTRY Philippe
-// Copyright (c) 1997-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -13,35 +11,5 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _TDF_DefaultDeltaOnModification_HeaderFile
-#define _TDF_DefaultDeltaOnModification_HeaderFile
-
-#include <Standard.hxx>
-#include <Standard_Type.hxx>
-
-#include <TDF_DeltaOnModification.hxx>
-class TDF_Attribute;
-
-class TDF_DefaultDeltaOnModification;
-DEFINE_STANDARD_HANDLE(TDF_DefaultDeltaOnModification, TDF_DeltaOnModification)
-
-//! This class provides a default implementation of a
-//! TDF_DeltaOnModification.
-class TDF_DefaultDeltaOnModification : public TDF_DeltaOnModification
-{
-
-public:
-  //! Creates a TDF_DefaultDeltaOnModification.
-  //! <anAttribute> must be the backup copy.
-  Standard_EXPORT TDF_DefaultDeltaOnModification(const Handle(TDF_Attribute)& anAttribute);
-
-  //! Applies the delta to the attribute.
-  Standard_EXPORT virtual void Apply() Standard_OVERRIDE;
-
-  DEFINE_STANDARD_RTTIEXT(TDF_DefaultDeltaOnModification, TDF_DeltaOnModification)
-
-protected:
-private:
-};
-
-#endif // _TDF_DefaultDeltaOnModification_HeaderFile
+// clang-format off
+#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ApplicationFramework/TKLCAF/TDF/TDF_DefaultDeltaOnModification.hxx"// clang-format on

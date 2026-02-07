@@ -1,6 +1,4 @@
-// Created on: 2000-05-10
-// Created by: Andrey BETENEV
-// Copyright (c) 2000-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -13,28 +11,5 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _StepVisual_ExternallyDefinedCurveFont_HeaderFile
-#define _StepVisual_ExternallyDefinedCurveFont_HeaderFile
-
-#include <Standard.hxx>
-
-#include <StepBasic_ExternallyDefinedItem.hxx>
-
-class StepVisual_ExternallyDefinedCurveFont;
-DEFINE_STANDARD_HANDLE(StepVisual_ExternallyDefinedCurveFont, StepBasic_ExternallyDefinedItem)
-
-//! Representation of STEP entity ExternallyDefinedCurveFont
-class StepVisual_ExternallyDefinedCurveFont : public StepBasic_ExternallyDefinedItem
-{
-
-public:
-  //! Empty constructor
-  Standard_EXPORT StepVisual_ExternallyDefinedCurveFont();
-
-  DEFINE_STANDARD_RTTIEXT(StepVisual_ExternallyDefinedCurveFont, StepBasic_ExternallyDefinedItem)
-
-protected:
-private:
-};
-
-#endif // _StepVisual_ExternallyDefinedCurveFont_HeaderFile
+// clang-format off
+#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/DataExchange/TKDESTEP/StepVisual/StepVisual_ExternallyDefinedCurveFont.hxx"// clang-format on

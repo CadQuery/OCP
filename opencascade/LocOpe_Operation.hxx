@@ -1,7 +1,4 @@
-// Created on: 1995-04-25
-// Created by: Jacques GOUSSARD
-// Copyright (c) 1995-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,14 +11,5 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _LocOpe_Operation_HeaderFile
-#define _LocOpe_Operation_HeaderFile
-
-enum LocOpe_Operation
-{
-  LocOpe_FUSE,
-  LocOpe_CUT,
-  LocOpe_INVALID
-};
-
-#endif // _LocOpe_Operation_HeaderFile
+// clang-format off
+#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ModelingAlgorithms/TKFeat/LocOpe/LocOpe_Operation.hxx"// clang-format on

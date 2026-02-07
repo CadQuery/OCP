@@ -1,7 +1,4 @@
-// Created on: 1993-07-06
-// Created by: Remi LEQUETTE
-// Copyright (c) 1993-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,15 +11,5 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _BRepBuilderAPI_TransitionMode_HeaderFile
-#define _BRepBuilderAPI_TransitionMode_HeaderFile
-
-//! Option to manage  discontinuities in  Sweep
-enum BRepBuilderAPI_TransitionMode
-{
-  BRepBuilderAPI_Transformed,
-  BRepBuilderAPI_RightCorner,
-  BRepBuilderAPI_RoundCorner
-};
-
-#endif // _BRepBuilderAPI_TransitionMode_HeaderFile
+// clang-format off
+#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ModelingAlgorithms/TKTopAlgo/BRepBuilderAPI/BRepBuilderAPI_TransitionMode.hxx"// clang-format on

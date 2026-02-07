@@ -1,6 +1,4 @@
-// Created on: 2015-08-11
-// Created by: Irina KRYLOVA
-// Copyright (c) 2015 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -13,24 +11,5 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _StepRepr_CompShAspAndDatumFeatAndShAsp_HeaderFile
-#define _StepRepr_CompShAspAndDatumFeatAndShAsp_HeaderFile
-
-#include <Standard.hxx>
-#include <Standard_Type.hxx>
-
-#include <StepRepr_ShapeAspect.hxx>
-
-class StepRepr_CompShAspAndDatumFeatAndShAsp;
-DEFINE_STANDARD_HANDLE(StepRepr_CompShAspAndDatumFeatAndShAsp, StepRepr_ShapeAspect)
-
-//! Added for Dimensional Tolerances
-class StepRepr_CompShAspAndDatumFeatAndShAsp : public StepRepr_ShapeAspect
-{
-
-public:
-  Standard_EXPORT StepRepr_CompShAspAndDatumFeatAndShAsp();
-
-  DEFINE_STANDARD_RTTIEXT(StepRepr_CompShAspAndDatumFeatAndShAsp, StepRepr_ShapeAspect)
-};
-#endif // _StepRepr_CompShAspAndDatumFeatAndShAsp_HeaderFile
+// clang-format off
+#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/DataExchange/TKDESTEP/StepRepr/StepRepr_CompShAspAndDatumFeatAndShAsp.hxx"// clang-format on

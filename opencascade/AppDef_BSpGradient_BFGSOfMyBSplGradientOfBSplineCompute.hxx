@@ -1,7 +1,4 @@
-// Created on: 1991-12-02
-// Created by: Laurent PAINNOT
-// Copyright (c) 1991-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,42 +11,5 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _AppDef_BSpGradient_BFGSOfMyBSplGradientOfBSplineCompute_HeaderFile
-#define _AppDef_BSpGradient_BFGSOfMyBSplGradientOfBSplineCompute_HeaderFile
-
-#include <Standard.hxx>
-#include <Standard_DefineAlloc.hxx>
-#include <Standard_Handle.hxx>
-
-#include <math_BFGS.hxx>
-#include <math_Vector.hxx>
-class AppDef_MultiLine;
-class AppDef_MyLineTool;
-class AppDef_MyBSplGradientOfBSplineCompute;
-class AppDef_BSpParLeastSquareOfMyBSplGradientOfBSplineCompute;
-class AppDef_BSpParFunctionOfMyBSplGradientOfBSplineCompute;
-class math_MultipleVarFunctionWithGradient;
-
-class AppDef_BSpGradient_BFGSOfMyBSplGradientOfBSplineCompute : public math_BFGS
-{
-public:
-  DEFINE_STANDARD_ALLOC
-
-  Standard_EXPORT AppDef_BSpGradient_BFGSOfMyBSplGradientOfBSplineCompute(
-    math_MultipleVarFunctionWithGradient& F,
-    const math_Vector&                    StartingPoint,
-    const Standard_Real                   Tolerance3d,
-    const Standard_Real                   Tolerance2d,
-    const Standard_Real                   Eps,
-    const Standard_Integer                NbIterations = 200);
-
-  Standard_EXPORT virtual Standard_Boolean IsSolutionReached(
-    math_MultipleVarFunctionWithGradient& F) const Standard_OVERRIDE;
-
-protected:
-private:
-  Standard_Real myTol3d;
-  Standard_Real myTol2d;
-};
-
-#endif // _AppDef_BSpGradient_BFGSOfMyBSplGradientOfBSplineCompute_HeaderFile
+// clang-format off
+#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ModelingData/TKGeomBase/AppDef/AppDef_BSpGradient_BFGSOfMyBSplGradientOfBSplineCompute.hxx"// clang-format on

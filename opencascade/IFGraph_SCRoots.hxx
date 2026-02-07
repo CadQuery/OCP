@@ -1,7 +1,4 @@
-// Created on: 1992-09-23
-// Created by: Christian CAILLET
-// Copyright (c) 1992-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,34 +11,5 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _IFGraph_SCRoots_HeaderFile
-#define _IFGraph_SCRoots_HeaderFile
-
-#include <Standard.hxx>
-#include <Standard_DefineAlloc.hxx>
-
-#include <IFGraph_StrongComponants.hxx>
-class Interface_Graph;
-
-//! determines strong components in a graph which are Roots
-class IFGraph_SCRoots : public IFGraph_StrongComponants
-{
-public:
-  DEFINE_STANDARD_ALLOC
-
-  //! creates with a Graph, and will analyse :
-  //! whole True  : all the contents of the Model
-  //! whole False : sub-parts which will be given later
-  Standard_EXPORT IFGraph_SCRoots(const Interface_Graph& agraph, const Standard_Boolean whole);
-
-  //! creates from a StrongComponants which was already computed
-  Standard_EXPORT IFGraph_SCRoots(IFGraph_StrongComponants& subparts);
-
-  //! does the computation
-  Standard_EXPORT virtual void Evaluate() Standard_OVERRIDE;
-
-protected:
-private:
-};
-
-#endif // _IFGraph_SCRoots_HeaderFile
+// clang-format off
+#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/DataExchange/TKXSBase/IFGraph/IFGraph_SCRoots.hxx"// clang-format on

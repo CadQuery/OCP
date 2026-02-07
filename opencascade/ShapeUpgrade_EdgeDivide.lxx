@@ -1,6 +1,4 @@
-// Created on: 2000-05-24
-// Created by: data exchange team
-// Copyright (c) 2000-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -13,52 +11,5 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-//=======================================================================
-// function : SetFace
-// purpose  :
-//=======================================================================
-
-inline void ShapeUpgrade_EdgeDivide::SetFace(const TopoDS_Face& F)
-{
-  myFace = F;
-}
-
-//=======================================================================
-// function : HasCurve2d
-// purpose  :
-//=======================================================================
-
-inline Standard_Boolean ShapeUpgrade_EdgeDivide::HasCurve2d() const
-{
-  return myHasCurve2d;
-}
-
-//=======================================================================
-// function : HasCurve3d
-// purpose  :
-//=======================================================================
-
-inline Standard_Boolean ShapeUpgrade_EdgeDivide::HasCurve3d() const
-{
-  return myHasCurve3d;
-}
-
-//=======================================================================
-// function : Knots2d
-// purpose  :
-//=======================================================================
-
-inline Handle(TColStd_HSequenceOfReal) ShapeUpgrade_EdgeDivide::Knots2d() const
-{
-  return myKnots2d;
-}
-
-//=======================================================================
-// function : Knots3d
-// purpose  :
-//=======================================================================
-
-inline Handle(TColStd_HSequenceOfReal) ShapeUpgrade_EdgeDivide::Knots3d() const
-{
-  return myKnots3d;
-}
+// clang-format off
+#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ModelingAlgorithms/TKShHealing/ShapeUpgrade/ShapeUpgrade_EdgeDivide.lxx"// clang-format on

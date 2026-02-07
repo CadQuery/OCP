@@ -1,6 +1,4 @@
-// Created on: 2000-02-28
-// Created by: data exchange team
-// Copyright (c) 2000-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -13,15 +11,5 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef MoniTool_ValueInterpret_HeaderFile
-#define MoniTool_ValueInterpret_HeaderFile
-
-#include <TCollection_HAsciiString.hxx>
-
-class MoniTool_TypedValue;
-typedef Handle(TCollection_HAsciiString) (*MoniTool_ValueInterpret)(
-  const Handle(MoniTool_TypedValue)&      typval,
-  const Handle(TCollection_HAsciiString)& val,
-  const Standard_Boolean                  native);
-
-#endif
+// clang-format off
+#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/DataExchange/TKXSBase/MoniTool/MoniTool_ValueInterpret.hxx"// clang-format on

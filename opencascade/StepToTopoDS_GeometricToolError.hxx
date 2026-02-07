@@ -1,7 +1,4 @@
-// Created on: 1993-07-28
-// Created by: Martine LANGLOIS
-// Copyright (c) 1993-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,17 +11,5 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _StepToTopoDS_GeometricToolError_HeaderFile
-#define _StepToTopoDS_GeometricToolError_HeaderFile
-
-enum StepToTopoDS_GeometricToolError
-{
-  StepToTopoDS_GeometricToolDone,
-  StepToTopoDS_GeometricToolIsDegenerated,
-  StepToTopoDS_GeometricToolHasNoPCurve,
-  StepToTopoDS_GeometricToolWrong3dParameters,
-  StepToTopoDS_GeometricToolNoProjectiOnCurve,
-  StepToTopoDS_GeometricToolOther
-};
-
-#endif // _StepToTopoDS_GeometricToolError_HeaderFile
+// clang-format off
+#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/DataExchange/TKDESTEP/StepToTopoDS/StepToTopoDS_GeometricToolError.hxx"// clang-format on

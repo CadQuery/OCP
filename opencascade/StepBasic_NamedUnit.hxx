@@ -1,7 +1,4 @@
-// Created on: 1995-12-01
-// Created by: EXPRESS->CDL V0.2 Translator
-// Copyright (c) 1995-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,37 +11,5 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _StepBasic_NamedUnit_HeaderFile
-#define _StepBasic_NamedUnit_HeaderFile
-
-#include <Standard.hxx>
-#include <Standard_Type.hxx>
-
-#include <Standard_Transient.hxx>
-class StepBasic_DimensionalExponents;
-
-class StepBasic_NamedUnit;
-DEFINE_STANDARD_HANDLE(StepBasic_NamedUnit, Standard_Transient)
-
-class StepBasic_NamedUnit : public Standard_Transient
-{
-
-public:
-  //! Returns a NamedUnit
-  Standard_EXPORT StepBasic_NamedUnit();
-
-  Standard_EXPORT void Init(const Handle(StepBasic_DimensionalExponents)& aDimensions);
-
-  Standard_EXPORT virtual void SetDimensions(
-    const Handle(StepBasic_DimensionalExponents)& aDimensions);
-
-  Standard_EXPORT virtual Handle(StepBasic_DimensionalExponents) Dimensions() const;
-
-  DEFINE_STANDARD_RTTIEXT(StepBasic_NamedUnit, Standard_Transient)
-
-protected:
-private:
-  Handle(StepBasic_DimensionalExponents) dimensions;
-};
-
-#endif // _StepBasic_NamedUnit_HeaderFile
+// clang-format off
+#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/DataExchange/TKDESTEP/StepBasic/StepBasic_NamedUnit.hxx"// clang-format on

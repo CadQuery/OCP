@@ -1,7 +1,4 @@
-// Created on: 1995-12-01
-// Created by: EXPRESS->CDL V0.2 Translator
-// Copyright (c) 1995-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,44 +11,5 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _StepRepr_RepresentationMap_HeaderFile
-#define _StepRepr_RepresentationMap_HeaderFile
-
-#include <Standard.hxx>
-#include <Standard_Type.hxx>
-
-#include <Standard_Transient.hxx>
-class StepRepr_RepresentationItem;
-class StepRepr_Representation;
-
-class StepRepr_RepresentationMap;
-DEFINE_STANDARD_HANDLE(StepRepr_RepresentationMap, Standard_Transient)
-
-class StepRepr_RepresentationMap : public Standard_Transient
-{
-
-public:
-  //! Returns a RepresentationMap
-  Standard_EXPORT StepRepr_RepresentationMap();
-
-  Standard_EXPORT void Init(const Handle(StepRepr_RepresentationItem)& aMappingOrigin,
-                            const Handle(StepRepr_Representation)&     aMappedRepresentation);
-
-  Standard_EXPORT void SetMappingOrigin(const Handle(StepRepr_RepresentationItem)& aMappingOrigin);
-
-  Standard_EXPORT Handle(StepRepr_RepresentationItem) MappingOrigin() const;
-
-  Standard_EXPORT void SetMappedRepresentation(
-    const Handle(StepRepr_Representation)& aMappedRepresentation);
-
-  Standard_EXPORT Handle(StepRepr_Representation) MappedRepresentation() const;
-
-  DEFINE_STANDARD_RTTIEXT(StepRepr_RepresentationMap, Standard_Transient)
-
-protected:
-private:
-  Handle(StepRepr_RepresentationItem) mappingOrigin;
-  Handle(StepRepr_Representation)     mappedRepresentation;
-};
-
-#endif // _StepRepr_RepresentationMap_HeaderFile
+// clang-format off
+#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/DataExchange/TKDESTEP/StepRepr/StepRepr_RepresentationMap.hxx"// clang-format on

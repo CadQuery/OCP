@@ -1,5 +1,4 @@
-// Copyright (c) 1997-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -12,59 +11,5 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#include <StdFail_NotDone.hxx>
-#include <TColStd_SequenceOfReal.hxx>
-#include <TColStd_SequenceOfInteger.hxx>
-
-inline Standard_Boolean math_FunctionAllRoots::IsDone() const
-{
-  return done;
-}
-
-inline Standard_OStream& operator<<(Standard_OStream& o, const math_FunctionAllRoots& F)
-{
-  F.Dump(o);
-  return o;
-}
-
-inline Standard_Integer math_FunctionAllRoots::NbIntervals() const
-{
-  StdFail_NotDone_Raise_if(!done, " ");
-  return pdeb.Length();
-}
-
-inline void math_FunctionAllRoots::GetInterval(const Standard_Integer Index,
-                                               Standard_Real&         A,
-                                               Standard_Real&         B) const
-{
-  StdFail_NotDone_Raise_if(!done, " ");
-  A = pdeb.Value(Index);
-  B = pfin.Value(Index);
-}
-
-inline void math_FunctionAllRoots::GetIntervalState(const Standard_Integer Index,
-                                                    Standard_Integer&      IFirst,
-                                                    Standard_Integer&      ILast) const
-{
-  StdFail_NotDone_Raise_if(!done, " ");
-  IFirst = ideb.Value(Index);
-  ILast  = ifin.Value(Index);
-}
-
-inline Standard_Integer math_FunctionAllRoots::NbPoints() const
-{
-  StdFail_NotDone_Raise_if(!done, " ");
-  return piso.Length();
-}
-
-inline Standard_Real math_FunctionAllRoots::GetPoint(const Standard_Integer Index) const
-{
-  StdFail_NotDone_Raise_if(!done, " ");
-  return piso.Value(Index);
-}
-
-inline Standard_Integer math_FunctionAllRoots::GetPointState(const Standard_Integer Index) const
-{
-  StdFail_NotDone_Raise_if(!done, " ");
-  return iiso.Value(Index);
-}
+// clang-format off
+#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/FoundationClasses/TKMath/math/math_FunctionAllRoots.lxx"// clang-format on

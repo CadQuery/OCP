@@ -1,7 +1,4 @@
-// Created on: 1991-08-09
-// Created by: Jean Claude VAUTHIER
-// Copyright (c) 1991-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,25 +11,5 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _BSplCLib_MultDistribution_HeaderFile
-#define _BSplCLib_MultDistribution_HeaderFile
-
-//! This   enumeration describes the   form  of  the
-//! sequence of mutiplicities.  MultDistribution is :
-//!
-//! Constant if all the multiplicities have the same
-//! value.
-//!
-//! QuasiConstant if all the internal knots have the
-//! same multiplicity and if the first and last knot
-//! have  a different  multiplicity.
-//!
-//! NonConstant in other cases.
-enum BSplCLib_MultDistribution
-{
-  BSplCLib_NonConstant,
-  BSplCLib_Constant,
-  BSplCLib_QuasiConstant
-};
-
-#endif // _BSplCLib_MultDistribution_HeaderFile
+// clang-format off
+#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/FoundationClasses/TKMath/BSplCLib/BSplCLib_MultDistribution.hxx"// clang-format on

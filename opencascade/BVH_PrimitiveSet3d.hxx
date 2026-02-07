@@ -1,4 +1,4 @@
-// Copyright (c) 2017 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,11 +11,5 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _BVH_PrimitiveSet3d_Header
-#define _BVH_PrimitiveSet3d_Header
-
-#include <BVH_PrimitiveSet.hxx>
-
-typedef BVH_PrimitiveSet<Standard_Real, 3> BVH_PrimitiveSet3d;
-
-#endif // _BVH_PrimitiveSet3d_Header
+// clang-format off
+#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/FoundationClasses/TKMath/BVH/BVH_PrimitiveSet3d.hxx"// clang-format on

@@ -1,7 +1,4 @@
-// Created on: 1997-05-28
-// Created by: Xavier BENVENISTE
-// Copyright (c) 1997-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,7 +11,5 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-inline Standard_Boolean GeomLib_Check2dBSplineCurve::IsDone() const
-{
-  return myDone;
-}
+// clang-format off
+#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ModelingData/TKGeomBase/GeomLib/GeomLib_Check2dBSplineCurve.lxx"// clang-format on

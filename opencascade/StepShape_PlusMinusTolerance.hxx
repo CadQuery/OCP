@@ -1,6 +1,4 @@
-// Created on: 2001-04-24
-// Created by: Christian CAILLET
-// Copyright (c) 2001-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -13,43 +11,5 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _StepShape_PlusMinusTolerance_HeaderFile
-#define _StepShape_PlusMinusTolerance_HeaderFile
-
-#include <Standard.hxx>
-
-#include <StepShape_ToleranceMethodDefinition.hxx>
-#include <StepShape_DimensionalCharacteristic.hxx>
-#include <Standard_Transient.hxx>
-
-class StepShape_PlusMinusTolerance;
-DEFINE_STANDARD_HANDLE(StepShape_PlusMinusTolerance, Standard_Transient)
-
-//! Added for Dimensional Tolerances
-class StepShape_PlusMinusTolerance : public Standard_Transient
-{
-
-public:
-  Standard_EXPORT StepShape_PlusMinusTolerance();
-
-  Standard_EXPORT void Init(const StepShape_ToleranceMethodDefinition& range,
-                            const StepShape_DimensionalCharacteristic& toleranced_dimension);
-
-  Standard_EXPORT StepShape_ToleranceMethodDefinition Range() const;
-
-  Standard_EXPORT void SetRange(const StepShape_ToleranceMethodDefinition& range);
-
-  Standard_EXPORT StepShape_DimensionalCharacteristic TolerancedDimension() const;
-
-  Standard_EXPORT void SetTolerancedDimension(
-    const StepShape_DimensionalCharacteristic& toleranced_dimension);
-
-  DEFINE_STANDARD_RTTIEXT(StepShape_PlusMinusTolerance, Standard_Transient)
-
-protected:
-private:
-  StepShape_ToleranceMethodDefinition theRange;
-  StepShape_DimensionalCharacteristic theTolerancedDimension;
-};
-
-#endif // _StepShape_PlusMinusTolerance_HeaderFile
+// clang-format off
+#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/DataExchange/TKDESTEP/StepShape/StepShape_PlusMinusTolerance.hxx"// clang-format on

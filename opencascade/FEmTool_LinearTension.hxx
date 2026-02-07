@@ -1,7 +1,4 @@
-// Created on: 1997-09-18
-// Created by: Philippe MANGIN
-// Copyright (c) 1997-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,48 +11,5 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _FEmTool_LinearTension_HeaderFile
-#define _FEmTool_LinearTension_HeaderFile
-
-#include <Standard.hxx>
-#include <Standard_Type.hxx>
-
-#include <math_Matrix.hxx>
-#include <Standard_Integer.hxx>
-#include <FEmTool_ElementaryCriterion.hxx>
-#include <GeomAbs_Shape.hxx>
-#include <TColStd_HArray2OfInteger.hxx>
-#include <math_Vector.hxx>
-
-class FEmTool_LinearTension;
-DEFINE_STANDARD_HANDLE(FEmTool_LinearTension, FEmTool_ElementaryCriterion)
-
-//! Criterium of LinearTension To Hermit-Jacobi  elements
-class FEmTool_LinearTension : public FEmTool_ElementaryCriterion
-{
-
-public:
-  Standard_EXPORT FEmTool_LinearTension(const Standard_Integer WorkDegree,
-                                        const GeomAbs_Shape    ConstraintOrder);
-
-  Standard_EXPORT virtual Handle(TColStd_HArray2OfInteger) DependenceTable() const
-    Standard_OVERRIDE;
-
-  Standard_EXPORT virtual Standard_Real Value() Standard_OVERRIDE;
-
-  Standard_EXPORT virtual void Hessian(const Standard_Integer Dimension1,
-                                       const Standard_Integer Dimension2,
-                                       math_Matrix&           H) Standard_OVERRIDE;
-
-  Standard_EXPORT virtual void Gradient(const Standard_Integer Dimension,
-                                        math_Vector&           G) Standard_OVERRIDE;
-
-  DEFINE_STANDARD_RTTIEXT(FEmTool_LinearTension, FEmTool_ElementaryCriterion)
-
-protected:
-private:
-  math_Matrix      RefMatrix;
-  Standard_Integer myOrder;
-};
-
-#endif // _FEmTool_LinearTension_HeaderFile
+// clang-format off
+#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ModelingData/TKGeomBase/FEmTool/FEmTool_LinearTension.hxx"// clang-format on

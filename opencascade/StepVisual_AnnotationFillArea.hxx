@@ -1,6 +1,4 @@
-// Created on: 2016-12-28
-// Created by: Irina KRYLOVA
-// Copyright (c) 2016 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -13,24 +11,5 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _StepVisual_AnnotationFillArea_HeaderFile
-#define _StepVisual_AnnotationFillArea_HeaderFile
-
-#include <Standard.hxx>
-
-#include <StepShape_GeometricCurveSet.hxx>
-#include <Standard_Integer.hxx>
-
-class StepVisual_AnnotationFillArea;
-DEFINE_STANDARD_HANDLE(StepVisual_AnnotationFillArea, StepShape_GeometricCurveSet)
-
-class StepVisual_AnnotationFillArea : public StepShape_GeometricCurveSet
-{
-
-public:
-  //! Returns a AnnotationFillArea
-  Standard_EXPORT StepVisual_AnnotationFillArea();
-
-  DEFINE_STANDARD_RTTIEXT(StepVisual_AnnotationFillArea, StepShape_GeometricCurveSet)
-};
-#endif // _StepVisual_AnnotationFillArea_HeaderFile
+// clang-format off
+#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/DataExchange/TKDESTEP/StepVisual/StepVisual_AnnotationFillArea.hxx"// clang-format on

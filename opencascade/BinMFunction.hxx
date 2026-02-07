@@ -1,6 +1,4 @@
-// Created on: 2004-05-13
-// Created by: Sergey ZARITCHNY <szy@opencascade.com>
-// Copyright (c) 2004-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -13,25 +11,5 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _BinMFunction_HeaderFile
-#define _BinMFunction_HeaderFile
-
-#include <Standard.hxx>
-#include <Standard_DefineAlloc.hxx>
-#include <Standard_Handle.hxx>
-
-class BinMDF_ADriverTable;
-class Message_Messenger;
-
-//! Storage and Retrieval drivers for TFunction modelling attributes.
-class BinMFunction
-{
-public:
-  DEFINE_STANDARD_ALLOC
-
-  //! Adds the attribute drivers to <theDriverTable>.
-  Standard_EXPORT static void AddDrivers(const Handle(BinMDF_ADriverTable)& theDriverTable,
-                                         const Handle(Message_Messenger)&   aMsgDrv);
-};
-
-#endif // _BinMFunction_HeaderFile
+// clang-format off
+#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ApplicationFramework/TKBinL/BinMFunction/BinMFunction.hxx"// clang-format on

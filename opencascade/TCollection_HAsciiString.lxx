@@ -1,5 +1,4 @@
-// Copyright (c) 1998-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -12,66 +11,5 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// ---------------------------------------------------------------------------
-// AssignCat
-// ----------------------------------------------------------------------------
-inline void TCollection_HAsciiString::AssignCat(const Standard_CString other)
-{
-  myString.AssignCat(other);
-}
-
-// ---------------------------------------------------------------------------
-// AssignCat
-// ----------------------------------------------------------------------------
-inline void TCollection_HAsciiString::AssignCat(const Handle(TCollection_HAsciiString)& other)
-{
-  myString.AssignCat(other->String());
-}
-
-// ----------------------------------------------------------------------------
-// Length
-// ----------------------------------------------------------------------------
-inline Standard_Integer TCollection_HAsciiString::Length() const
-{
-  return myString.mylength;
-}
-
-// ----------------------------------------------------------------------------
-// String
-// ----------------------------------------------------------------------------
-inline const TCollection_AsciiString& TCollection_HAsciiString::String() const
-{
-  return myString;
-}
-
-// ----------------------------------------------------------------------------
-inline Standard_CString TCollection_HAsciiString::ToCString() const
-{
-  return myString.ToCString();
-}
-
-namespace std
-{
-template <>
-struct hash<Handle(TCollection_HAsciiString)>
-{
-  size_t operator()(const Handle(TCollection_HAsciiString)& theString) const
-  {
-    if (theString.IsNull())
-      return 0;
-    return std::hash<TCollection_AsciiString>{}(theString->String());
-  }
-};
-
-template <>
-struct equal_to<Handle(TCollection_HAsciiString)>
-{
-  bool operator()(const Handle(TCollection_HAsciiString)& theString1,
-                  const Handle(TCollection_HAsciiString)& theString2) const
-  {
-    return theString1 == theString2
-           || (!theString1.IsNull() && !theString2.IsNull()
-               && theString1->String() == theString2->String());
-  }
-};
-} // namespace std
+// clang-format off
+#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/FoundationClasses/TKernel/TCollection/TCollection_HAsciiString.lxx"// clang-format on

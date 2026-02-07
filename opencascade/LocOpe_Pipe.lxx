@@ -1,7 +1,4 @@
-// Created on: 1996-09-04
-// Created by: Jacques GOUSSARD
-// Copyright (c) 1996-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,42 +11,5 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-//=======================================================================
-// function : Spine
-// purpose  :
-//=======================================================================
-
-inline const TopoDS_Shape& LocOpe_Pipe::Spine() const
-{
-  return myPipe.Spine();
-}
-
-//=======================================================================
-// function : Profile
-// purpose  :
-//=======================================================================
-
-inline const TopoDS_Shape& LocOpe_Pipe::Profile() const
-{
-  return myPipe.Profile();
-}
-
-//=======================================================================
-// function : FirstShape
-// purpose  :
-//=======================================================================
-
-inline const TopoDS_Shape& LocOpe_Pipe::FirstShape() const
-{
-  return myPipe.FirstShape();
-}
-
-//=======================================================================
-// function : LastShape
-// purpose  :
-//=======================================================================
-
-inline const TopoDS_Shape& LocOpe_Pipe::LastShape() const
-{
-  return myPipe.LastShape();
-}
+// clang-format off
+#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ModelingAlgorithms/TKFeat/LocOpe/LocOpe_Pipe.lxx"// clang-format on

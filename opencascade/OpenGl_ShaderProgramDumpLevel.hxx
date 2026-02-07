@@ -1,6 +1,4 @@
-// Created on: 2018-10-04
-// Created by: Maxim NEVROV
-// Copyright (c) 2018 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -13,16 +11,5 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _OpenGl_ShaderProgramDumpLevel_H__
-#define _OpenGl_ShaderProgramDumpLevel_H__
-
-//! Definition of shader programs source code dump levels.
-enum OpenGl_ShaderProgramDumpLevel
-{
-  OpenGl_ShaderProgramDumpLevel_Off,   //!< Disable shader programs source code dump.
-  OpenGl_ShaderProgramDumpLevel_Short, //!< Shader programs source code dump in short format (except
-                                       //!< common declarations).
-  OpenGl_ShaderProgramDumpLevel_Full   //!< Shader programs source code dump in full format.
-};
-
-#endif // _OpenGl_ShaderProgramDumpLevel_H__
+// clang-format off
+#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/Visualization/TKOpenGl/OpenGl/OpenGl_ShaderProgramDumpLevel.hxx"// clang-format on

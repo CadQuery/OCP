@@ -1,7 +1,4 @@
-// Created on: 1998-02-04
-// Created by: Julia GERASIMOVA
-// Copyright (c) 1998-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,37 +11,5 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _AIS_C0RegularityFilter_HeaderFile
-#define _AIS_C0RegularityFilter_HeaderFile
-
-#include <Standard.hxx>
-
-#include <TopTools_MapOfShape.hxx>
-#include <SelectMgr_Filter.hxx>
-#include <TopAbs_ShapeEnum.hxx>
-class TopoDS_Shape;
-class SelectMgr_EntityOwner;
-
-class AIS_C0RegularityFilter;
-DEFINE_STANDARD_HANDLE(AIS_C0RegularityFilter, SelectMgr_Filter)
-
-class AIS_C0RegularityFilter : public SelectMgr_Filter
-{
-
-public:
-  Standard_EXPORT AIS_C0RegularityFilter(const TopoDS_Shape& aShape);
-
-  Standard_EXPORT virtual Standard_Boolean ActsOn(const TopAbs_ShapeEnum aType) const
-    Standard_OVERRIDE;
-
-  Standard_EXPORT virtual Standard_Boolean IsOk(const Handle(SelectMgr_EntityOwner)& EO) const
-    Standard_OVERRIDE;
-
-  DEFINE_STANDARD_RTTIEXT(AIS_C0RegularityFilter, SelectMgr_Filter)
-
-protected:
-private:
-  TopTools_MapOfShape myMapOfEdges;
-};
-
-#endif // _AIS_C0RegularityFilter_HeaderFile
+// clang-format off
+#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/Visualization/TKV3d/AIS/AIS_C0RegularityFilter.hxx"// clang-format on

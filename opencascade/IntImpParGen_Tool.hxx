@@ -1,7 +1,4 @@
-// Created on: 1992-06-10
-// Created by: Laurent BUCHARD
-// Copyright (c) 1992-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,28 +11,5 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef IntImpParGen_Tool_HeaderFile
-#define IntImpParGen_Tool_HeaderFile
-
-#include <IntRes2d_Domain.hxx>
-#include <IntRes2d_Transition.hxx>
-#include <gp_Pnt2d.hxx>
-
-Standard_Real NormalizeOnDomain(Standard_Real&, const IntRes2d_Domain&);
-
-void Determine_Position(IntRes2d_Position&,
-                        const IntRes2d_Domain&,
-                        const gp_Pnt2d&,
-                        const Standard_Real);
-
-void Determine_Transition(const IntRes2d_Position Pos1,
-                          gp_Vec2d&               Tan1,
-                          const gp_Vec2d&         Norm1,
-                          IntRes2d_Transition&    Trans1,
-                          const IntRes2d_Position Pos2,
-                          gp_Vec2d&               Tan2,
-                          const gp_Vec2d&         Norm2,
-                          IntRes2d_Transition&    Trans2,
-                          const Standard_Real     ToleranceAng);
-
-#endif
+// clang-format off
+#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ModelingAlgorithms/TKGeomAlgo/IntImpParGen/IntImpParGen_Tool.hxx"// clang-format on

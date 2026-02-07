@@ -1,5 +1,4 @@
-// Copyright (c) 1995-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -12,78 +11,5 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#include <StdFail_NotDone.hxx>
-#include <Standard_DomainError.hxx>
-#include <Standard_OutOfRange.hxx>
-
-inline Standard_Boolean IntAna_IntConicQuad::IsDone() const
-{
-  return (done);
-}
-
-inline Standard_Boolean IntAna_IntConicQuad::IsInQuadric() const
-{
-  if (!done)
-  {
-    throw StdFail_NotDone();
-  }
-  return (inquadric);
-}
-
-inline Standard_Boolean IntAna_IntConicQuad::IsParallel() const
-{
-  if (!done)
-  {
-    throw StdFail_NotDone();
-  }
-  return (parallel);
-}
-
-inline Standard_Integer IntAna_IntConicQuad::NbPoints() const
-{
-  if (!done)
-  {
-    throw StdFail_NotDone();
-  }
-  if (parallel || inquadric)
-  {
-    throw Standard_DomainError();
-  }
-  return (nbpts);
-}
-
-inline const gp_Pnt& IntAna_IntConicQuad::Point(const Standard_Integer i) const
-{
-
-  if (!done)
-  {
-    throw StdFail_NotDone();
-  }
-  if (parallel || inquadric)
-  {
-    throw Standard_DomainError();
-  }
-  if ((i > nbpts) || (i <= 0))
-  {
-    throw Standard_OutOfRange();
-  }
-  return (pnts[i - 1]);
-}
-
-inline Standard_Real IntAna_IntConicQuad::ParamOnConic(const Standard_Integer i) const
-{
-
-  if (!done)
-  {
-    throw StdFail_NotDone();
-  }
-  if (parallel || inquadric)
-  {
-    throw Standard_DomainError();
-  }
-  if ((i > nbpts) || (i <= 0))
-  {
-    throw Standard_OutOfRange();
-  }
-  return (paramonc[i - 1]);
-}
+// clang-format off
+#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ModelingData/TKGeomBase/IntAna/IntAna_IntConicQuad.lxx"// clang-format on

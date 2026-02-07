@@ -1,6 +1,4 @@
-// Created on: 2014-04-09
-// Created by: Varvara POSKONINA
-// Copyright (c) 2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -13,14 +11,5 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _Graphic3d_BndBox4f_HeaderFile
-#define _Graphic3d_BndBox4f_HeaderFile
-
-#include <BVH_Box.hxx>
-
-//! Redefines BVH_Box<Standard_ShortReal, 4> for AABB representation
-//! Describes rendering parameters and effects.
-
-typedef BVH_Box<Standard_ShortReal, 4> Graphic3d_BndBox4f;
-
-#endif // _Graphic3d_BndBox4f_HeaderFile
+// clang-format off
+#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/Visualization/TKService/Graphic3d/Graphic3d_BndBox4f.hxx"// clang-format on

@@ -1,4 +1,4 @@
-// Copyright (c) 2017 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,16 +11,5 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _AIS_TrihedronSelectionMode_HeaderFile
-#define _AIS_TrihedronSelectionMode_HeaderFile
-
-//! Enumeration defining selection modes supported by AIS_Trihedron.
-enum AIS_TrihedronSelectionMode
-{
-  AIS_TrihedronSelectionMode_EntireObject = 0, //!< select trihedron as whole
-  AIS_TrihedronSelectionMode_Origin       = 1, //!< origin
-  AIS_TrihedronSelectionMode_Axes         = 2, //!< axes
-  AIS_TrihedronSelectionMode_MainPlanes   = 3  //!< main planes
-};
-
-#endif // _AIS_TrihedronSelectionMode_HeaderFile
+// clang-format off
+#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/Visualization/TKV3d/AIS/AIS_TrihedronSelectionMode.hxx"// clang-format on

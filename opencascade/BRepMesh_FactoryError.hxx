@@ -1,4 +1,4 @@
-// Copyright (c) 2013 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,15 +11,5 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _BRepMesh_FactoryError_HeaderFile
-#define _BRepMesh_FactoryError_HeaderFile
-
-enum BRepMesh_FactoryError
-{
-  BRepMesh_FE_NOERROR,
-  BRepMesh_FE_LIBRARYNOTFOUND,
-  BRepMesh_FE_FUNCTIONNOTFOUND,
-  BRepMesh_FE_CANNOTCREATEALGO
-};
-
-#endif
+// clang-format off
+#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ModelingAlgorithms/TKMesh/BRepMesh/BRepMesh_FactoryError.hxx"// clang-format on

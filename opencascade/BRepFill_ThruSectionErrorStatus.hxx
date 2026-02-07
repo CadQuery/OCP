@@ -1,4 +1,4 @@
-// Copyright (c) 2022 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,20 +11,5 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _BRepFill_ThruSectionErrorStatus_HeaderFile
-#define _BRepFill_ThruSectionErrorStatus_HeaderFile
-
-//! Errors that can occur at thrusection algorithm.
-enum BRepFill_ThruSectionErrorStatus
-{
-  BRepFill_ThruSectionErrorStatus_Done,            //!< Thrusection algorithm is done
-  BRepFill_ThruSectionErrorStatus_NotDone,         //!< Thrusection algorithm is not done
-  BRepFill_ThruSectionErrorStatus_NotSameTopology, //!< All profiles have not same topology (they
-                                                   //!< should be all closed or all opened)
-  BRepFill_ThruSectionErrorStatus_ProfilesInconsistent, //!< Profiles are inconsistent
-  BRepFill_ThruSectionErrorStatus_WrongUsage,           //!< Wrong usage of punctual sections
-  BRepFill_ThruSectionErrorStatus_Null3DCurve,          //!< Null 3D curve in edge
-  BRepFill_ThruSectionErrorStatus_Failed                //!< Thrusection algorithm has failed
-};
-
-#endif // _BRepFill_ThruSectionErrorStatus_HeaderFile
+// clang-format off
+#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ModelingAlgorithms/TKBool/BRepFill/BRepFill_ThruSectionErrorStatus.hxx"// clang-format on

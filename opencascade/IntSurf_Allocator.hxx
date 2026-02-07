@@ -1,4 +1,4 @@
-// Copyright (c) 2013-2013 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,11 +11,5 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef IntSurf_Allocator_HeaderFile
-#define IntSurf_Allocator_HeaderFile
-
-#include <NCollection_BaseAllocator.hxx>
-
-typedef Handle(NCollection_BaseAllocator) IntSurf_Allocator;
-
-#endif
+// clang-format off
+#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ModelingAlgorithms/TKGeomAlgo/IntSurf/IntSurf_Allocator.hxx"// clang-format on

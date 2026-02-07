@@ -1,7 +1,4 @@
-// Created on: 1991-10-07
-// Created by: NW,JPB,CAL
-// Copyright (c) 1991-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,17 +11,5 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _Graphic3d_TypeOfVisualization_HeaderFile
-#define _Graphic3d_TypeOfVisualization_HeaderFile
-
-//! Modes of visualisation of objects in a view
-//!
-//! TOV_WIREFRAME   wireframe visualisation
-//! TOV_SHADING     shaded visualisation
-enum Graphic3d_TypeOfVisualization
-{
-  Graphic3d_TOV_WIREFRAME,
-  Graphic3d_TOV_SHADING
-};
-
-#endif // _Graphic3d_TypeOfVisualization_HeaderFile
+// clang-format off
+#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/Visualization/TKService/Graphic3d/Graphic3d_TypeOfVisualization.hxx"// clang-format on

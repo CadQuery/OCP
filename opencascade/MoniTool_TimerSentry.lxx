@@ -1,4 +1,4 @@
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,59 +11,5 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#include <MoniTool_Timer.hxx>
-
-//=======================================================================
-// function : MoniTool_TimerSentry
-// purpose  :
-//=======================================================================
-
-inline MoniTool_TimerSentry::MoniTool_TimerSentry(const Standard_CString cname)
-    : myTimer(MoniTool_Timer::Timer(cname))
-{
-  myTimer->Start();
-}
-
-//=======================================================================
-// function : MoniTool_TimerSentry
-// purpose  :
-//=======================================================================
-
-inline MoniTool_TimerSentry::MoniTool_TimerSentry(const Handle(MoniTool_Timer)& timer)
-{
-  myTimer = timer;
-  myTimer->Start();
-}
-
-//=======================================================================
-// function : Destructor
-// purpose  : make stop for corresponding timer before destroying
-//=======================================================================
-
-inline MoniTool_TimerSentry::~MoniTool_TimerSentry()
-{
-  if (!myTimer.IsNull())
-    myTimer->Stop();
-}
-
-//=======================================================================
-// function : Timer
-// purpose  :
-//=======================================================================
-
-inline Handle(MoniTool_Timer) MoniTool_TimerSentry::Timer() const
-{
-  return myTimer;
-}
-
-//=======================================================================
-// function : Stop
-// purpose  :
-//=======================================================================
-
-inline void MoniTool_TimerSentry::Stop()
-{
-  if (!myTimer.IsNull())
-    myTimer->Stop();
-  myTimer.Nullify();
-}
+// clang-format off
+#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/DataExchange/TKXSBase/MoniTool/MoniTool_TimerSentry.lxx"// clang-format on

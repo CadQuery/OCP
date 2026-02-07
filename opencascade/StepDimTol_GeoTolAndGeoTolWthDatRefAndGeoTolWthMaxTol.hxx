@@ -1,6 +1,4 @@
-// Created on: 2015-11-13
-// Created by: Irina KRYLOVA
-// Copyright (c) 2015 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -13,61 +11,5 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _StepDimTol_GeoTolAndGeoTolWthDatRefAndGeoTolWthMaxTol_HeaderFile
-#define _StepDimTol_GeoTolAndGeoTolWthDatRefAndGeoTolWthMaxTol_HeaderFile
-
-#include <Standard.hxx>
-#include <Standard_Type.hxx>
-
-#include <StepDimTol_GeoTolAndGeoTolWthDatRefAndGeoTolWthMod.hxx>
-#include <StepDimTol_GeometricToleranceType.hxx>
-class StepDimTol_GeometricToleranceTarget;
-class StepDimTol_GeometricToleranceWithDatumReference;
-class StepDimTol_GeometricToleranceWithModifiers;
-class TCollection_HAsciiString;
-class StepBasic_LengthMeasureWithUnit;
-class StepBasic_MeasureWithUnit;
-class StepRepr_ShapeAspect;
-
-DEFINE_STANDARD_HANDLE(StepDimTol_GeoTolAndGeoTolWthDatRefAndGeoTolWthMaxTol,
-                       StepDimTol_GeoTolAndGeoTolWthDatRefAndGeoTolWthMod)
-
-class StepDimTol_GeoTolAndGeoTolWthDatRefAndGeoTolWthMaxTol
-    : public StepDimTol_GeoTolAndGeoTolWthDatRefAndGeoTolWthMod
-{
-
-public:
-  Standard_EXPORT StepDimTol_GeoTolAndGeoTolWthDatRefAndGeoTolWthMaxTol();
-
-  Standard_EXPORT void Init(const Handle(TCollection_HAsciiString)&  theName,
-                            const Handle(TCollection_HAsciiString)&  theDescription,
-                            const Handle(StepBasic_MeasureWithUnit)& theMagnitude,
-                            const Handle(StepRepr_ShapeAspect)&      theTolerancedShapeAspect,
-                            const Handle(StepDimTol_GeometricToleranceWithDatumReference)& theGTWDR,
-                            const Handle(StepDimTol_GeometricToleranceWithModifiers)&      theGTWM,
-                            const Handle(StepBasic_LengthMeasureWithUnit)& theMaxTol,
-                            const StepDimTol_GeometricToleranceType        theType);
-
-  Standard_EXPORT void Init(const Handle(TCollection_HAsciiString)&    aName,
-                            const Handle(TCollection_HAsciiString)&    aDescription,
-                            const Handle(StepBasic_MeasureWithUnit)&   aMagnitude,
-                            const StepDimTol_GeometricToleranceTarget& aTolerancedShapeAspect,
-                            const Handle(StepDimTol_GeometricToleranceWithDatumReference)& aGTWDR,
-                            const Handle(StepDimTol_GeometricToleranceWithModifiers)&      aGTWM,
-                            const Handle(StepBasic_LengthMeasureWithUnit)& theMaxTol,
-                            const StepDimTol_GeometricToleranceType        theType);
-
-  inline void SetMaxTolerance(Handle(StepBasic_LengthMeasureWithUnit)& theMaxTol)
-  {
-    myMaxTol = theMaxTol;
-  }
-
-  inline Handle(StepBasic_LengthMeasureWithUnit) GetMaxTolerance() { return myMaxTol; }
-
-  DEFINE_STANDARD_RTTIEXT(StepDimTol_GeoTolAndGeoTolWthDatRefAndGeoTolWthMaxTol,
-                          StepDimTol_GeoTolAndGeoTolWthDatRefAndGeoTolWthMod)
-
-private:
-  Handle(StepBasic_LengthMeasureWithUnit) myMaxTol;
-};
-#endif // _StepDimTol_GeoTolAndGeoTolWthDatRefAndGeoTolWthMod_HeaderFile
+// clang-format off
+#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/DataExchange/TKDESTEP/StepDimTol/StepDimTol_GeoTolAndGeoTolWthDatRefAndGeoTolWthMaxTol.hxx"// clang-format on

@@ -1,4 +1,4 @@
-// Copyright (c) 2015 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,29 +11,5 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _StdDrivers_HeaderFile
-#define _StdDrivers_HeaderFile
-
-#include <Standard_Handle.hxx>
-
-class Standard_Transient;
-class Standard_GUID;
-class StdObjMgt_MapOfInstantiators;
-class TDocStd_Application;
-
-class StdDrivers
-{
-public:
-  //! Depending from the ID, returns a list of storage
-  //! or retrieval attribute drivers. Used for plugin
-  Standard_EXPORT static Handle(Standard_Transient) Factory(const Standard_GUID& aGUID);
-
-  //! Defines format "MDTV-Standard" and registers its retrieval driver
-  //! in the specified application
-  Standard_EXPORT static void DefineFormat(const Handle(TDocStd_Application)& theApp);
-
-  //! Register types.
-  Standard_EXPORT static void BindTypes(StdObjMgt_MapOfInstantiators& theMap);
-};
-
-#endif // _StdDrivers_HeaderFile
+// clang-format off
+#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ApplicationFramework/TKStd/StdDrivers/StdDrivers.hxx"// clang-format on

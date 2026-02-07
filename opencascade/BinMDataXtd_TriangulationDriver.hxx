@@ -1,6 +1,4 @@
-// Created on: 2016-11-10
-// Created by: Anton KOZULIN
-// Copyright (c) 2016 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -13,41 +11,5 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _BinMDataXtd_TriangulationDriver_HeaderFile
-#define _BinMDataXtd_TriangulationDriver_HeaderFile
-
-#include <Standard.hxx>
-
-#include <BinMDF_ADriver.hxx>
-#include <BinObjMgt_RRelocationTable.hxx>
-#include <BinObjMgt_SRelocationTable.hxx>
-class Message_Messenger;
-class TDF_Attribute;
-class BinObjMgt_Persistent;
-
-DEFINE_STANDARD_HANDLE(BinMDataXtd_TriangulationDriver, BinMDF_ADriver)
-
-//! TDataXtd_Triangulation attribute bin Driver.
-class BinMDataXtd_TriangulationDriver : public BinMDF_ADriver
-{
-
-public:
-  Standard_EXPORT BinMDataXtd_TriangulationDriver(
-    const Handle(Message_Messenger)& theMessageDriver);
-
-  Standard_EXPORT virtual Handle(TDF_Attribute) NewEmpty() const Standard_OVERRIDE;
-
-  Standard_EXPORT virtual Standard_Boolean Paste(const BinObjMgt_Persistent&  Source,
-                                                 const Handle(TDF_Attribute)& Target,
-                                                 BinObjMgt_RRelocationTable&  RelocTable) const
-    Standard_OVERRIDE;
-
-  Standard_EXPORT virtual void Paste(const Handle(TDF_Attribute)& Source,
-                                     BinObjMgt_Persistent&        Target,
-                                     BinObjMgt_SRelocationTable&  RelocTable) const
-    Standard_OVERRIDE;
-
-  DEFINE_STANDARD_RTTIEXT(BinMDataXtd_TriangulationDriver, BinMDF_ADriver)
-};
-
-#endif // _BinMDataXtd_TriangulationDriver_HeaderFile
+// clang-format off
+#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ApplicationFramework/TKBin/BinMDataXtd/BinMDataXtd_TriangulationDriver.hxx"// clang-format on

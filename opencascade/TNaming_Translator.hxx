@@ -1,7 +1,4 @@
-// Created on: 1999-06-30
-// Created by: Sergey ZARITCHNY
-// Copyright (c) 1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,43 +11,5 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _TNaming_Translator_HeaderFile
-#define _TNaming_Translator_HeaderFile
-
-#include <Standard.hxx>
-#include <Standard_DefineAlloc.hxx>
-
-#include <TColStd_IndexedDataMapOfTransientTransient.hxx>
-#include <TopTools_DataMapOfShapeShape.hxx>
-class TopoDS_Shape;
-
-//! only  for  Shape  Copy  test - to move in DNaming
-class TNaming_Translator
-{
-public:
-  DEFINE_STANDARD_ALLOC
-
-  Standard_EXPORT TNaming_Translator();
-
-  Standard_EXPORT void Add(const TopoDS_Shape& aShape);
-
-  Standard_EXPORT void Perform();
-
-  Standard_EXPORT Standard_Boolean IsDone() const;
-
-  //! returns copied  shape
-  Standard_EXPORT const TopoDS_Shape Copied(const TopoDS_Shape& aShape) const;
-
-  //! returns  DataMap  of  results;  (shape <-> copied  shape)
-  Standard_EXPORT const TopTools_DataMapOfShapeShape& Copied() const;
-
-  Standard_EXPORT void DumpMap(const Standard_Boolean isWrite = Standard_False) const;
-
-protected:
-private:
-  Standard_Boolean                           myIsDone;
-  TColStd_IndexedDataMapOfTransientTransient myMap;
-  TopTools_DataMapOfShapeShape               myDataMapOfResults;
-};
-
-#endif // _TNaming_Translator_HeaderFile
+// clang-format off
+#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ApplicationFramework/TKCAF/TNaming/TNaming_Translator.hxx"// clang-format on

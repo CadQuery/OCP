@@ -1,5 +1,4 @@
-// Copyright (c) 1995-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -12,62 +11,5 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#include <StdFail_NotDone.hxx>
-
-inline Standard_Boolean IntStart_SearchOnBoundaries::IsDone() const
-{
-
-  return done;
-}
-
-inline Standard_Boolean IntStart_SearchOnBoundaries::AllArcSolution() const
-{
-
-  if (!done)
-  {
-    throw StdFail_NotDone();
-  }
-  return all;
-}
-
-inline Standard_Integer IntStart_SearchOnBoundaries::NbPoints() const
-{
-
-  if (!done)
-  {
-    throw StdFail_NotDone();
-  }
-  return spnt.Length();
-}
-
-inline const IntStart_ThePathPoint& IntStart_SearchOnBoundaries::Point(
-  const Standard_Integer Index) const
-{
-
-  if (!done)
-  {
-    throw StdFail_NotDone();
-  }
-  return spnt.Value(Index);
-}
-
-inline Standard_Integer IntStart_SearchOnBoundaries::NbSegments() const
-{
-
-  if (!done)
-  {
-    throw StdFail_NotDone();
-  }
-  return sseg.Length();
-}
-
-inline const IntStart_TheSegment& IntStart_SearchOnBoundaries::Segment(
-  const Standard_Integer Index) const
-{
-
-  if (!done)
-  {
-    throw StdFail_NotDone();
-  }
-  return sseg.Value(Index);
-}
+// clang-format off
+#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ModelingAlgorithms/TKGeomAlgo/IntStart/IntStart_SearchOnBoundaries.lxx"// clang-format on

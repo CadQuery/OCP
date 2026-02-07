@@ -1,7 +1,4 @@
-// Created on: 1993-06-14
-// Created by: Martine LANGLOIS
-// Copyright (c) 1993-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,29 +11,5 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _GeomToStep_Root_HeaderFile
-#define _GeomToStep_Root_HeaderFile
-
-#include <Standard.hxx>
-#include <Standard_DefineAlloc.hxx>
-#include <Standard_Handle.hxx>
-#include <StepData_Factors.hxx>
-
-#include <Standard_Boolean.hxx>
-
-//! This class implements the common services for
-//! all classes of GeomToStep which report error.
-class GeomToStep_Root
-{
-public:
-  DEFINE_STANDARD_ALLOC
-
-  Standard_EXPORT Standard_Boolean IsDone() const;
-
-protected:
-  Standard_Boolean done;
-
-private:
-};
-
-#endif // _GeomToStep_Root_HeaderFile
+// clang-format off
+#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/DataExchange/TKDESTEP/GeomToStep/GeomToStep_Root.hxx"// clang-format on

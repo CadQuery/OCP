@@ -1,6 +1,4 @@
-// Created on: 2013-01-28
-// Created by: Kirill GAVRILOV
-// Copyright (c) 2013-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -13,11 +11,5 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef NCollection_String_HeaderFile
-#define NCollection_String_HeaderFile
-
-#include "NCollection_UtfString.hxx"
-
-typedef NCollection_Utf8String NCollection_String;
-
-#endif // _NCollection_String_H__
+// clang-format off
+#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/FoundationClasses/TKernel/NCollection/NCollection_String.hxx"// clang-format on

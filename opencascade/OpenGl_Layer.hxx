@@ -1,6 +1,4 @@
-// Created on: 2011-11-02
-// Created by: Sergey ZERCHANINOV
-// Copyright (c) 2011-2015 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -13,11 +11,5 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef OpenGl_Layer_HeaderFile
-#define OpenGl_Layer_HeaderFile
-
-#include <Graphic3d_Layer.hxx>
-
-typedef Graphic3d_Layer OpenGl_Layer;
-
-#endif //_OpenGl_Layer_Header
+// clang-format off
+#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/Visualization/TKOpenGl/OpenGl/OpenGl_Layer.hxx"// clang-format on

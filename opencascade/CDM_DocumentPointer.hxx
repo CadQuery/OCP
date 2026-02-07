@@ -1,7 +1,4 @@
-// Created on: 1997-05-06
-// Created by: Jean-Louis Frenkel, Remi Lequette
-// Copyright (c) 1997-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,10 +11,5 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _CDM_DocumentPointer_HeaderFile
-#define _CDM_DocumentPointer_HeaderFile
-
-class CDM_Document;
-typedef CDM_Document* CDM_DocumentPointer;
-
-#endif // _CDM_DocumentPointer_HeaderFile
+// clang-format off
+#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ApplicationFramework/TKCDF/CDM/CDM_DocumentPointer.hxx"// clang-format on

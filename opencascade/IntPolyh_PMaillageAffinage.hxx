@@ -1,7 +1,4 @@
-// Created on: 1999-03-03
-// Created by: Fabrice SERVANT
-// Copyright (c) 1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,10 +11,5 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _IntPolyh_PMaillageAffinage_HeaderFile
-#define _IntPolyh_PMaillageAffinage_HeaderFile
-
-class IntPolyh_MaillageAffinage;
-typedef IntPolyh_MaillageAffinage* IntPolyh_PMaillageAffinage;
-
-#endif // _IntPolyh_PMaillageAffinage_HeaderFile
+// clang-format off
+#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ModelingAlgorithms/TKGeomAlgo/IntPolyh/IntPolyh_PMaillageAffinage.hxx"// clang-format on

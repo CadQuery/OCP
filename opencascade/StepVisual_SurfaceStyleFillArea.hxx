@@ -1,7 +1,4 @@
-// Created on: 1995-12-01
-// Created by: EXPRESS->CDL V0.2 Translator
-// Copyright (c) 1995-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,36 +11,5 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _StepVisual_SurfaceStyleFillArea_HeaderFile
-#define _StepVisual_SurfaceStyleFillArea_HeaderFile
-
-#include <Standard.hxx>
-#include <Standard_Type.hxx>
-
-#include <Standard_Transient.hxx>
-class StepVisual_FillAreaStyle;
-
-class StepVisual_SurfaceStyleFillArea;
-DEFINE_STANDARD_HANDLE(StepVisual_SurfaceStyleFillArea, Standard_Transient)
-
-class StepVisual_SurfaceStyleFillArea : public Standard_Transient
-{
-
-public:
-  //! Returns a SurfaceStyleFillArea
-  Standard_EXPORT StepVisual_SurfaceStyleFillArea();
-
-  Standard_EXPORT void Init(const Handle(StepVisual_FillAreaStyle)& aFillArea);
-
-  Standard_EXPORT void SetFillArea(const Handle(StepVisual_FillAreaStyle)& aFillArea);
-
-  Standard_EXPORT Handle(StepVisual_FillAreaStyle) FillArea() const;
-
-  DEFINE_STANDARD_RTTIEXT(StepVisual_SurfaceStyleFillArea, Standard_Transient)
-
-protected:
-private:
-  Handle(StepVisual_FillAreaStyle) fillArea;
-};
-
-#endif // _StepVisual_SurfaceStyleFillArea_HeaderFile
+// clang-format off
+#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/DataExchange/TKDESTEP/StepVisual/StepVisual_SurfaceStyleFillArea.hxx"// clang-format on

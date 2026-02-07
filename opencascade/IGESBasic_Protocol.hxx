@@ -1,7 +1,4 @@
-// Created on: 1993-05-05
-// Created by: Christian CAILLET
-// Copyright (c) 1993-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,46 +11,5 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _IGESBasic_Protocol_HeaderFile
-#define _IGESBasic_Protocol_HeaderFile
-
-#include <Standard.hxx>
-#include <Standard_Type.hxx>
-
-#include <IGESData_Protocol.hxx>
-#include <Standard_Integer.hxx>
-class Interface_Protocol;
-
-class IGESBasic_Protocol;
-DEFINE_STANDARD_HANDLE(IGESBasic_Protocol, IGESData_Protocol)
-
-//! Description of Protocol for IGESBasic
-class IGESBasic_Protocol : public IGESData_Protocol
-{
-
-public:
-  Standard_EXPORT IGESBasic_Protocol();
-
-  //! Gives the count of Resource Protocol. Here, one
-  //! (Protocol from IGESData)
-  Standard_EXPORT virtual Standard_Integer NbResources() const Standard_OVERRIDE;
-
-  //! Returns a Resource, given a rank.
-  Standard_EXPORT virtual Handle(Interface_Protocol) Resource(const Standard_Integer num) const
-    Standard_OVERRIDE;
-
-  //! Returns a Case Number, specific of each recognized Type
-  //! This Case Number is then used in Libraries : the various
-  //! Modules attached to this class of Protocol must use them
-  //! in accordance (for a given value of TypeNumber, they must
-  //! consider the same Type as the Protocol defines)
-  Standard_EXPORT virtual Standard_Integer TypeNumber(const Handle(Standard_Type)& atype) const
-    Standard_OVERRIDE;
-
-  DEFINE_STANDARD_RTTIEXT(IGESBasic_Protocol, IGESData_Protocol)
-
-protected:
-private:
-};
-
-#endif // _IGESBasic_Protocol_HeaderFile
+// clang-format off
+#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/DataExchange/TKDEIGES/IGESBasic/IGESBasic_Protocol.hxx"// clang-format on

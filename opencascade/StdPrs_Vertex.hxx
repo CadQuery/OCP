@@ -1,4 +1,4 @@
-// Copyright (c) 2013-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,12 +11,5 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef StdPrs_Vertex_HeaderFile
-#define StdPrs_Vertex_HeaderFile
-
-#include <Prs3d_Point.hxx>
-#include <TopoDS_Vertex.hxx>
-#include <StdPrs_ToolVertex.hxx>
-
-typedef Prs3d_Point<TopoDS_Vertex, StdPrs_ToolVertex> StdPrs_Vertex;
-#endif
+// clang-format off
+#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/Visualization/TKV3d/StdPrs/StdPrs_Vertex.hxx"// clang-format on

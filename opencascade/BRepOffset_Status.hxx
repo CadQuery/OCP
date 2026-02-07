@@ -1,7 +1,4 @@
-// Created on: 1995-10-12
-// Created by: Bruno DUMORTIER
-// Copyright (c) 1995-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,20 +11,5 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _BRepOffset_Status_HeaderFile
-#define _BRepOffset_Status_HeaderFile
-
-//! status of an offset face
-//! Good :
-//! Reversed : e.g. Offset > Radius of a cylinder
-//! Degenerated : e.g. Offset = Radius of a cylinder
-//! Unknown : e.g. for a Beziersurf
-enum BRepOffset_Status
-{
-  BRepOffset_Good,
-  BRepOffset_Reversed,
-  BRepOffset_Degenerated,
-  BRepOffset_Unknown
-};
-
-#endif // _BRepOffset_Status_HeaderFile
+// clang-format off
+#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ModelingAlgorithms/TKOffset/BRepOffset/BRepOffset_Status.hxx"// clang-format on

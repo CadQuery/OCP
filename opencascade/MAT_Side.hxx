@@ -1,7 +1,4 @@
-// Created on: 1992-09-22
-// Created by: Gilles DEBARBOUILLE
-// Copyright (c) 1992-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,14 +11,5 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _MAT_Side_HeaderFile
-#define _MAT_Side_HeaderFile
-
-//! Definition on the Left and the Right on the Fig.
-enum MAT_Side
-{
-  MAT_Left,
-  MAT_Right
-};
-
-#endif // _MAT_Side_HeaderFile
+// clang-format off
+#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ModelingAlgorithms/TKTopAlgo/MAT/MAT_Side.hxx"// clang-format on

@@ -1,6 +1,4 @@
-// Created on: 2005-11-26
-// Created by: Alexander GRIGORIEV
-// Copyright (c) 2005-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -13,12 +11,5 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef TColStd_MapIteratorOfPackedMapOfInteger_HeaderFile
-#define TColStd_MapIteratorOfPackedMapOfInteger_HeaderFile
-
-#include <TColStd_PackedMapOfInteger.hxx>
-
-//! Iterator of class TColStd_PackedMapOfInteger.
-typedef TColStd_PackedMapOfInteger::Iterator TColStd_MapIteratorOfPackedMapOfInteger;
-
-#endif
+// clang-format off
+#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/FoundationClasses/TKernel/TColStd/TColStd_MapIteratorOfPackedMapOfInteger.hxx"// clang-format on

@@ -1,6 +1,4 @@
-// Created on: 2002-04-29
-// Created by: Alexander KARTOMIN (akm)
-// Copyright (c) 2002-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -13,14 +11,5 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef NCollection_HArray2_HeaderFile
-#define NCollection_HArray2_HeaderFile
-
-#include <NCollection_Array2.hxx>
-#include <NCollection_DefineHArray2.hxx>
-
-//      Declaration of Array2 class managed by Handle
-
-#define NCOLLECTION_HARRAY2(HClassName, Type) DEFINE_HARRAY2(HClassName, NCollection_Array2<Type>)
-
-#endif
+// clang-format off
+#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/FoundationClasses/TKernel/NCollection/NCollection_HArray2.hxx"// clang-format on

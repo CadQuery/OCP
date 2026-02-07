@@ -1,7 +1,4 @@
-// Created on: 1991-12-13
-// Created by: Christophe MARION
-// Copyright (c) 1991-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,24 +11,5 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _Intrv_Position_HeaderFile
-#define _Intrv_Position_HeaderFile
-
-enum Intrv_Position
-{
-  Intrv_Before,
-  Intrv_JustBefore,
-  Intrv_OverlappingAtStart,
-  Intrv_JustEnclosingAtEnd,
-  Intrv_Enclosing,
-  Intrv_JustOverlappingAtStart,
-  Intrv_Similar,
-  Intrv_JustEnclosingAtStart,
-  Intrv_Inside,
-  Intrv_JustOverlappingAtEnd,
-  Intrv_OverlappingAtEnd,
-  Intrv_JustAfter,
-  Intrv_After
-};
-
-#endif // _Intrv_Position_HeaderFile
+// clang-format off
+#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ModelingAlgorithms/TKHLR/Intrv/Intrv_Position.hxx"// clang-format on

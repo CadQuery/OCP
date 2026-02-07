@@ -1,5 +1,4 @@
-// Copyright (c) 1995-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -12,38 +11,5 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-inline const gp_Pnt& IntSurf_InteriorPoint::Value() const
-{
-
-  return point;
-}
-
-inline void IntSurf_InteriorPoint::Parameters(Standard_Real& U, Standard_Real& V) const
-{
-  U = paramu;
-  V = paramv;
-}
-
-inline Standard_Real IntSurf_InteriorPoint::UParameter() const
-{
-
-  return paramu;
-}
-
-inline Standard_Real IntSurf_InteriorPoint::VParameter() const
-{
-
-  return paramv;
-}
-
-inline const gp_Vec& IntSurf_InteriorPoint::Direction() const
-{
-
-  return direc;
-}
-
-inline const gp_Vec2d& IntSurf_InteriorPoint::Direction2d() const
-{
-
-  return direc2d;
-}
+// clang-format off
+#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ModelingAlgorithms/TKGeomAlgo/IntSurf/IntSurf_InteriorPoint.lxx"// clang-format on

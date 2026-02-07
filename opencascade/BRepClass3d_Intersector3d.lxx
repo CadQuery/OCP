@@ -1,7 +1,4 @@
-// Created on: 1994-03-10
-// Created by: Laurent BUCHARD
-// Copyright (c) 1994-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,58 +11,5 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-//============================================================================
-inline Standard_Boolean BRepClass3d_Intersector3d::IsDone() const
-{
-  return (done);
-}
-
-//============================================================================
-inline Standard_Boolean BRepClass3d_Intersector3d::HasAPoint() const
-{
-  return (hasapoint);
-}
-
-//============================================================================
-inline const gp_Pnt& BRepClass3d_Intersector3d::Pnt() const
-{
-  return (pnt);
-}
-
-//============================================================================
-inline Standard_Real BRepClass3d_Intersector3d::UParameter() const
-{
-  return (U);
-}
-
-//============================================================================
-inline Standard_Real BRepClass3d_Intersector3d::VParameter() const
-{
-  return (V);
-}
-
-//============================================================================
-inline Standard_Real BRepClass3d_Intersector3d::WParameter() const
-{
-  return (W);
-}
-
-//============================================================================
-inline IntCurveSurface_TransitionOnCurve BRepClass3d_Intersector3d::Transition() const
-{
-  return (transition);
-}
-
-//============================================================================
-inline TopAbs_State BRepClass3d_Intersector3d::State() const
-{
-  return (state);
-}
-
-//============================================================================
-inline const TopoDS_Face& BRepClass3d_Intersector3d::Face() const
-{
-  return (face);
-}
-
-//============================================================================
+// clang-format off
+#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ModelingAlgorithms/TKTopAlgo/BRepClass3d/BRepClass3d_Intersector3d.lxx"// clang-format on

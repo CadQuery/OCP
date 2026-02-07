@@ -1,7 +1,4 @@
-// Created on: 1999-08-11
-// Created by: Roman LYGIN
-// Copyright (c) 1999-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,82 +11,5 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-//=======================================================================
-// function : Result
-// purpose  :
-//=======================================================================
-
-inline Standard_Integer& TransferBRep_TransferResultInfo::Result()
-{
-  return myR;
-}
-
-//=======================================================================
-// function : ResultWarning
-// purpose  :
-//=======================================================================
-
-inline Standard_Integer& TransferBRep_TransferResultInfo::ResultWarning()
-{
-  return myRW;
-}
-
-//=======================================================================
-// function : ResultFail
-// purpose  :
-//=======================================================================
-
-inline Standard_Integer& TransferBRep_TransferResultInfo::ResultFail()
-{
-  return myRF;
-}
-
-//=======================================================================
-// function : ResultWarningFail
-// purpose  :
-//=======================================================================
-
-inline Standard_Integer& TransferBRep_TransferResultInfo::ResultWarningFail()
-{
-  return myRWF;
-}
-
-//=======================================================================
-// function : NoResult
-// purpose  :
-//=======================================================================
-
-inline Standard_Integer& TransferBRep_TransferResultInfo::NoResult()
-{
-  return myNR;
-}
-
-//=======================================================================
-// function : NoResultWarning
-// purpose  :
-//=======================================================================
-
-inline Standard_Integer& TransferBRep_TransferResultInfo::NoResultWarning()
-{
-  return myNRW;
-}
-
-//=======================================================================
-// function : NoResultFail
-// purpose  :
-//=======================================================================
-
-inline Standard_Integer& TransferBRep_TransferResultInfo::NoResultFail()
-{
-  return myNRF;
-}
-
-//=======================================================================
-// function : NoResultWarningFail
-// purpose  :
-//=======================================================================
-
-inline Standard_Integer& TransferBRep_TransferResultInfo::NoResultWarningFail()
-{
-  return myNRWF;
-}
+// clang-format off
+#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/DataExchange/TKXSBase/TransferBRep/TransferBRep_TransferResultInfo.lxx"// clang-format on

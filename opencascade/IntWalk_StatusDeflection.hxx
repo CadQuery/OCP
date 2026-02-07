@@ -1,7 +1,4 @@
-// Created on: 1991-03-28
-// Created by: Jacques GOUSSARD
-// Copyright (c) 1991-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,17 +11,5 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _IntWalk_StatusDeflection_HeaderFile
-#define _IntWalk_StatusDeflection_HeaderFile
-
-enum IntWalk_StatusDeflection
-{
-  IntWalk_PasTropGrand,
-  IntWalk_StepTooSmall,
-  IntWalk_PointConfondu,
-  IntWalk_ArretSurPointPrecedent,
-  IntWalk_ArretSurPoint,
-  IntWalk_OK
-};
-
-#endif // _IntWalk_StatusDeflection_HeaderFile
+// clang-format off
+#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ModelingAlgorithms/TKGeomAlgo/IntWalk/IntWalk_StatusDeflection.hxx"// clang-format on

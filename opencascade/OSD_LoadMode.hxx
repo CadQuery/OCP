@@ -1,5 +1,4 @@
-// Copyright (c) 1992-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -12,14 +11,5 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _OSD_LoadMode_HeaderFile
-#define _OSD_LoadMode_HeaderFile
-
-//! This enumeration is used to load shareable libraries.
-enum OSD_LoadMode
-{
-  OSD_RTLD_LAZY,
-  OSD_RTLD_NOW
-};
-
-#endif // _OSD_LoadMode_HeaderFile
+// clang-format off
+#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/FoundationClasses/TKernel/OSD/OSD_LoadMode.hxx"// clang-format on

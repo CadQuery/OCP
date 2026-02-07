@@ -1,6 +1,4 @@
-// Created on: 2012-02-10
-// Created by: Sergey ZERCHANINOV
-// Copyright (c) 2012-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -13,45 +11,5 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-//=======================================================================
-// function : Error
-// purpose  :
-//=======================================================================
-
-inline Standard_Real IntPatch_Polygo::Error() const
-{
-  return myError;
-}
-
-//=======================================================================
-// function : DeflectionOverEstimation
-// purpose  :
-//=======================================================================
-
-inline Standard_Real IntPatch_Polygo::DeflectionOverEstimation() const
-{
-  return myError;
-}
-
-//=======================================================================
-// function : NbSegments
-// purpose  :
-//=======================================================================
-
-inline Standard_Integer IntPatch_Polygo::NbSegments() const
-{
-  return NbPoints() - 1;
-}
-
-//=======================================================================
-// function : BeginOfSeg
-// purpose  :
-//=======================================================================
-
-inline void IntPatch_Polygo::Segment(const Standard_Integer theIndex,
-                                     gp_Pnt2d&              theBegin,
-                                     gp_Pnt2d&              theEnd) const
-{
-  theBegin = Point(theIndex);
-  theEnd   = Point(theIndex + 1);
-}
+// clang-format off
+#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ModelingAlgorithms/TKGeomAlgo/IntPatch/IntPatch_Polygo.lxx"// clang-format on

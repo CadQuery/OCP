@@ -1,6 +1,4 @@
-// Created on: 2000-06-23
-// Created by: Sergey MOZOKHIN
-// Copyright (c) 2000-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -13,23 +11,5 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _StlAPI_Reader_HeaderFile
-#define _StlAPI_Reader_HeaderFile
-
-#include <Standard_Handle.hxx>
-
-class TopoDS_Shape;
-
-//! Reading from stereolithography format.
-//! Reads STL file and creates a shape composed of triangular faces, one per facet.
-//! IMPORTANT: This approach is very inefficient, especially for large files.
-//! IMPORTANT: Consider reading STL file to Poly_Triangulation object instead (see class RWStl).
-class StlAPI_Reader
-{
-public:
-  //! Reads STL file to the TopoDS_Shape (each triangle is converted to the face).
-  //! @return True if reading is successful
-  Standard_EXPORT Standard_Boolean Read(TopoDS_Shape& theShape, const Standard_CString theFileName);
-};
-
-#endif // _StlAPI_Reader_HeaderFile
+// clang-format off
+#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/DataExchange/TKDESTL/StlAPI/StlAPI_Reader.hxx"// clang-format on

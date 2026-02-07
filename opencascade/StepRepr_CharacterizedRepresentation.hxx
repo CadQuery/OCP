@@ -1,6 +1,4 @@
-// Created on: 2016-08-25
-// Created by: Irina KRYLOVA
-// Copyright (c) 2016 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -13,41 +11,5 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _StepRepr_CharacterizedRepresentation_HeaderFile
-#define _StepRepr_CharacterizedRepresentation_HeaderFile
-
-#include <Standard.hxx>
-#include <Standard_Type.hxx>
-
-#include <StepRepr_Representation.hxx>
-class TCollection_HAsciiString;
-class StepRepr_RepresentationContext;
-
-class StepRepr_CharacterizedRepresentation;
-DEFINE_STANDARD_HANDLE(StepRepr_CharacterizedRepresentation, StepRepr_Representation)
-
-class StepRepr_CharacterizedRepresentation : public StepRepr_Representation
-{
-
-public:
-  Standard_EXPORT StepRepr_CharacterizedRepresentation();
-
-  //! Returns a CharacterizedRepresentation
-  Standard_EXPORT void Init(const Handle(TCollection_HAsciiString)&             theName,
-                            const Handle(TCollection_HAsciiString)&             theDescription,
-                            const Handle(StepRepr_HArray1OfRepresentationItem)& theItems,
-                            const Handle(StepRepr_RepresentationContext)&       theContextOfItems);
-
-  void SetDescription(const Handle(TCollection_HAsciiString)& theDescription)
-  {
-    myDescription = theDescription;
-  }
-
-  Handle(TCollection_HAsciiString) Description() const { return myDescription; }
-
-  DEFINE_STANDARD_RTTIEXT(StepRepr_CharacterizedRepresentation, StepRepr_Representation)
-
-private:
-  Handle(TCollection_HAsciiString) myDescription;
-};
-#endif // _StepRepr_CharacterizedRepresentation_HeaderFile
+// clang-format off
+#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/DataExchange/TKDESTEP/StepRepr/StepRepr_CharacterizedRepresentation.hxx"// clang-format on

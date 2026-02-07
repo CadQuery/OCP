@@ -1,7 +1,4 @@
-// Created on: 1995-03-17
-// Created by: Dieter THIEMANN
-// Copyright (c) 1995-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,36 +11,5 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _TopoDSToStep_MakeGeometricCurveSet_HeaderFile
-#define _TopoDSToStep_MakeGeometricCurveSet_HeaderFile
-
-#include <Standard.hxx>
-#include <Standard_DefineAlloc.hxx>
-#include <Standard_Handle.hxx>
-
-#include <TopoDSToStep_Root.hxx>
-class StepShape_GeometricCurveSet;
-class TopoDS_Shape;
-class Transfer_FinderProcess;
-
-//! This class implements the mapping between a Shape
-//! from TopoDS and a GeometricCurveSet from StepShape in order
-//! to create a GeometricallyBoundedWireframeRepresentation.
-class TopoDSToStep_MakeGeometricCurveSet : public TopoDSToStep_Root
-{
-public:
-  DEFINE_STANDARD_ALLOC
-
-  Standard_EXPORT TopoDSToStep_MakeGeometricCurveSet(
-    const TopoDS_Shape&                   SH,
-    const Handle(Transfer_FinderProcess)& FP,
-    const StepData_Factors&               theLocalFactors = StepData_Factors());
-
-  Standard_EXPORT const Handle(StepShape_GeometricCurveSet)& Value() const;
-
-protected:
-private:
-  Handle(StepShape_GeometricCurveSet) theGeometricCurveSet;
-};
-
-#endif // _TopoDSToStep_MakeGeometricCurveSet_HeaderFile
+// clang-format off
+#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/DataExchange/TKDESTEP/TopoDSToStep/TopoDSToStep_MakeGeometricCurveSet.hxx"// clang-format on

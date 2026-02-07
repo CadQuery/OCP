@@ -1,7 +1,4 @@
-// Created on: 1995-01-27
-// Created by: Jacques GOUSSARD
-// Copyright (c) 1995-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,42 +11,5 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _GeomInt_BSpGradient_BFGSOfMyBSplGradientOfTheComputeLineOfWLApprox_HeaderFile
-#define _GeomInt_BSpGradient_BFGSOfMyBSplGradientOfTheComputeLineOfWLApprox_HeaderFile
-
-#include <Standard.hxx>
-#include <Standard_DefineAlloc.hxx>
-#include <Standard_Handle.hxx>
-
-#include <math_BFGS.hxx>
-#include <math_Vector.hxx>
-class GeomInt_TheMultiLineOfWLApprox;
-class GeomInt_TheMultiLineToolOfWLApprox;
-class GeomInt_MyBSplGradientOfTheComputeLineOfWLApprox;
-class GeomInt_BSpParLeastSquareOfMyBSplGradientOfTheComputeLineOfWLApprox;
-class GeomInt_BSpParFunctionOfMyBSplGradientOfTheComputeLineOfWLApprox;
-class math_MultipleVarFunctionWithGradient;
-
-class GeomInt_BSpGradient_BFGSOfMyBSplGradientOfTheComputeLineOfWLApprox : public math_BFGS
-{
-public:
-  DEFINE_STANDARD_ALLOC
-
-  Standard_EXPORT GeomInt_BSpGradient_BFGSOfMyBSplGradientOfTheComputeLineOfWLApprox(
-    math_MultipleVarFunctionWithGradient& F,
-    const math_Vector&                    StartingPoint,
-    const Standard_Real                   Tolerance3d,
-    const Standard_Real                   Tolerance2d,
-    const Standard_Real                   Eps,
-    const Standard_Integer                NbIterations = 200);
-
-  Standard_EXPORT virtual Standard_Boolean IsSolutionReached(
-    math_MultipleVarFunctionWithGradient& F) const Standard_OVERRIDE;
-
-protected:
-private:
-  Standard_Real myTol3d;
-  Standard_Real myTol2d;
-};
-
-#endif // _GeomInt_BSpGradient_BFGSOfMyBSplGradientOfTheComputeLineOfWLApprox_HeaderFile
+// clang-format off
+#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ModelingAlgorithms/TKGeomAlgo/GeomInt/GeomInt_BSpGradient_BFGSOfMyBSplGradientOfTheComputeLineOfWLApprox.hxx"// clang-format on

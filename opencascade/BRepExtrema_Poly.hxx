@@ -1,4 +1,4 @@
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,23 +11,5 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _BRepExtrema_Poly_HeaderFile
-#define _BRepExtrema_Poly_HeaderFile
-
-#include <Standard.hxx>
-
-class TopoDS_Shape;
-class gp_Pnt;
-
-class BRepExtrema_Poly
-{
-public:
-  //! returns Standard_True if OK.
-  Standard_EXPORT static Standard_Boolean Distance(const TopoDS_Shape& S1,
-                                                   const TopoDS_Shape& S2,
-                                                   gp_Pnt&             P1,
-                                                   gp_Pnt&             P2,
-                                                   Standard_Real&      dist);
-};
-
-#endif
+// clang-format off
+#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ModelingAlgorithms/TKTopAlgo/BRepExtrema/BRepExtrema_Poly.hxx"// clang-format on

@@ -1,6 +1,4 @@
-// Created on: 2001-09-11
-// Created by: Julia DOROVSKIKH
-// Copyright (c) 2001-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -13,35 +11,5 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _XmlXCAFDrivers_DocumentStorageDriver_HeaderFile
-#define _XmlXCAFDrivers_DocumentStorageDriver_HeaderFile
-
-#include <Standard.hxx>
-#include <Standard_Type.hxx>
-
-#include <XmlDrivers_DocumentStorageDriver.hxx>
-class TCollection_ExtendedString;
-class XmlMDF_ADriverTable;
-class Message_Messenger;
-
-class XmlXCAFDrivers_DocumentStorageDriver;
-DEFINE_STANDARD_HANDLE(XmlXCAFDrivers_DocumentStorageDriver, XmlDrivers_DocumentStorageDriver)
-
-//! storage driver of a  XS document
-class XmlXCAFDrivers_DocumentStorageDriver : public XmlDrivers_DocumentStorageDriver
-{
-
-public:
-  Standard_EXPORT XmlXCAFDrivers_DocumentStorageDriver(
-    const TCollection_ExtendedString& theCopyright);
-
-  Standard_EXPORT virtual Handle(XmlMDF_ADriverTable) AttributeDrivers(
-    const Handle(Message_Messenger)& theMsgDriver) Standard_OVERRIDE;
-
-  DEFINE_STANDARD_RTTIEXT(XmlXCAFDrivers_DocumentStorageDriver, XmlDrivers_DocumentStorageDriver)
-
-protected:
-private:
-};
-
-#endif // _XmlXCAFDrivers_DocumentStorageDriver_HeaderFile
+// clang-format off
+#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/DataExchange/TKXmlXCAF/XmlXCAFDrivers/XmlXCAFDrivers_DocumentStorageDriver.hxx"// clang-format on

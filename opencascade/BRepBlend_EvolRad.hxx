@@ -1,7 +1,4 @@
-// Created on: 1993-12-06
-// Created by: Jacques GOUSSARD
-// Copyright (c) 1993-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,11 +11,5 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _BRepBlend_EvolRad_HeaderFile
-#define _BRepBlend_EvolRad_HeaderFile
-
-#include <BlendFunc_EvolRad.hxx>
-
-typedef BlendFunc_EvolRad BRepBlend_EvolRad;
-
-#endif // _BRepBlend_EvolRad_HeaderFile
+// clang-format off
+#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ModelingAlgorithms/TKFillet/BRepBlend/BRepBlend_EvolRad.hxx"// clang-format on

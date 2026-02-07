@@ -1,7 +1,4 @@
-// Created on: 1995-10-12
-// Created by: Bruno DUMORTIER
-// Copyright (c) 1995-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,17 +11,5 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _ChFiDS_TypeOfConcavity_HeaderFile
-#define _ChFiDS_TypeOfConcavity_HeaderFile
-
-enum ChFiDS_TypeOfConcavity
-{
-  ChFiDS_Concave,
-  ChFiDS_Convex,
-  ChFiDS_Tangential,
-  ChFiDS_FreeBound,
-  ChFiDS_Other,
-  ChFiDS_Mixed
-};
-
-#endif // _ChFiDS_TypeOfConcavity_HeaderFile
+// clang-format off
+#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ModelingAlgorithms/TKFillet/ChFiDS/ChFiDS_TypeOfConcavity.hxx"// clang-format on

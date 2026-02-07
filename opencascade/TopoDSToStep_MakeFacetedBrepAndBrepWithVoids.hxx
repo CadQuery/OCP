@@ -1,7 +1,4 @@
-// Created on: 1993-07-23
-// Created by: Martine LANGLOIS
-// Copyright (c) 1993-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,44 +11,5 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _TopoDSToStep_MakeFacetedBrepAndBrepWithVoids_HeaderFile
-#define _TopoDSToStep_MakeFacetedBrepAndBrepWithVoids_HeaderFile
-
-#include <Standard.hxx>
-#include <Standard_DefineAlloc.hxx>
-#include <Standard_Handle.hxx>
-
-#include <TopoDSToStep_Root.hxx>
-#include <Message_ProgressRange.hxx>
-
-class StepShape_FacetedBrepAndBrepWithVoids;
-class StepVisual_TessellatedItem;
-class TopoDS_Solid;
-class Transfer_FinderProcess;
-
-//! This class implements the mapping between classes
-//! Solid from TopoDS and FacetedBrepAndBrepWithVoids from
-//! StepShape. All the topology and geometry comprised
-//! into the shell or the solid are taken into account and
-//! translated.
-class TopoDSToStep_MakeFacetedBrepAndBrepWithVoids : public TopoDSToStep_Root
-{
-public:
-  DEFINE_STANDARD_ALLOC
-
-  Standard_EXPORT TopoDSToStep_MakeFacetedBrepAndBrepWithVoids(
-    const TopoDS_Solid&                   S,
-    const Handle(Transfer_FinderProcess)& FP,
-    const StepData_Factors&               theLocalFactors = StepData_Factors(),
-    const Message_ProgressRange&          theProgress     = Message_ProgressRange());
-
-  Standard_EXPORT const Handle(StepShape_FacetedBrepAndBrepWithVoids)& Value() const;
-  Standard_EXPORT const Handle(StepVisual_TessellatedItem)&            TessellatedValue() const;
-
-protected:
-private:
-  Handle(StepShape_FacetedBrepAndBrepWithVoids) theFacetedBrepAndBrepWithVoids;
-  Handle(StepVisual_TessellatedItem)            theTessellatedItem;
-};
-
-#endif // _TopoDSToStep_MakeFacetedBrepAndBrepWithVoids_HeaderFile
+// clang-format off
+#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/DataExchange/TKDESTEP/TopoDSToStep/TopoDSToStep_MakeFacetedBrepAndBrepWithVoids.hxx"// clang-format on

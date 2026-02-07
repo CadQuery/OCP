@@ -1,4 +1,4 @@
-// Copyright (c) 2015 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,20 +11,5 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _StdPersistent_HArray1_HeaderFile
-#define _StdPersistent_HArray1_HeaderFile
-
-#include <StdLPersistent_HArray1.hxx>
-#include <StdObject_Shape.hxx>
-
-#include <NCollection_DefineHArray1.hxx>
-
-DEFINE_HARRAY1(StdPersistent_HArray1OfShape1, NCollection_Array1<StdObject_Shape>)
-
-class StdPersistent_HArray1 : private StdLPersistent_HArray1
-{
-public:
-  typedef instance<StdPersistent_HArray1OfShape1> Shape1;
-};
-
-#endif
+// clang-format off
+#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ApplicationFramework/TKStd/StdPersistent/StdPersistent_HArray1.hxx"// clang-format on

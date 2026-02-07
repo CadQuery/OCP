@@ -1,4 +1,4 @@
-// Copyright (c) 2016 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,19 +11,5 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _Prs3d_TypeOfHighlight_HeaderFile
-#define _Prs3d_TypeOfHighlight_HeaderFile
-
-//! Type of highlighting to apply specific style.
-enum Prs3d_TypeOfHighlight
-{
-  Prs3d_TypeOfHighlight_None = 0,      //!< no highlighting
-  Prs3d_TypeOfHighlight_Selected,      //!< entire object is selected
-  Prs3d_TypeOfHighlight_Dynamic,       //!< entire object is dynamically highlighted
-  Prs3d_TypeOfHighlight_LocalSelected, //!< part of the object is selected
-  Prs3d_TypeOfHighlight_LocalDynamic,  //!< part of the object is dynamically highlighted
-  Prs3d_TypeOfHighlight_SubIntensity,  //!< sub-intensity style
-  Prs3d_TypeOfHighlight_NB
-};
-
-#endif // _Prs3d_TypeOfHighlight_HeaderFile
+// clang-format off
+#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/Visualization/TKV3d/Prs3d/Prs3d_TypeOfHighlight.hxx"// clang-format on

@@ -1,4 +1,4 @@
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,11 +11,5 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _XmlObjMgt_Element_HeaderFile
-#define _XmlObjMgt_Element_HeaderFile
-
-#include <LDOM_Element.hxx>
-
-typedef LDOM_Element XmlObjMgt_Element;
-
-#endif
+// clang-format off
+#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ApplicationFramework/TKXmlL/XmlObjMgt/XmlObjMgt_Element.hxx"// clang-format on

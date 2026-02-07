@@ -1,7 +1,4 @@
-// Created on: 1993-03-31
-// Created by: NW,JPB,CAL
-// Copyright (c) 1993-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,15 +11,5 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _Graphic3d_TypeOfMaterial_HeaderFile
-#define _Graphic3d_TypeOfMaterial_HeaderFile
-
-//! Types of materials specifies if a material can change color.
-enum Graphic3d_TypeOfMaterial
-{
-  Graphic3d_MATERIAL_ASPECT, //!< aspect   material definition with configurable color (like
-                             //!< plastic)
-  Graphic3d_MATERIAL_PHYSIC  //!< physical material definition with fixed color (like gold)
-};
-
-#endif // _Graphic3d_TypeOfMaterial_HeaderFile
+// clang-format off
+#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/Visualization/TKService/Graphic3d/Graphic3d_TypeOfMaterial.hxx"// clang-format on

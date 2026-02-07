@@ -1,5 +1,4 @@
-// Created by: Kirill GAVRILOV
-// Copyright (c) 2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -12,14 +11,5 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _OpenGl_VertexBufferCompat_HeaderFile
-#define _OpenGl_VertexBufferCompat_HeaderFile
-
-#include <OpenGl_BufferCompatT.hxx>
-#include <OpenGl_VertexBuffer.hxx>
-#include <OpenGl_IndexBuffer.hxx>
-
-typedef OpenGl_BufferCompatT<OpenGl_VertexBuffer> OpenGl_VertexBufferCompat;
-typedef OpenGl_BufferCompatT<OpenGl_IndexBuffer>  OpenGl_IndexBufferCompat;
-
-#endif // _OpenGl_VertexBufferCompat_HeaderFile
+// clang-format off
+#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/Visualization/TKOpenGl/OpenGl/OpenGl_VertexBufferCompat.hxx"// clang-format on

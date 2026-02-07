@@ -1,6 +1,4 @@
-// Created by: DAUTRY Philippe
-// Copyright (c) 1997-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -13,61 +11,5 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-//      	-----------------
-
-// Version:	0.0
-// Version	Date		Purpose
-//		0.0	Feb 14 1997	Creation
-
-enum
-{
-  TDF_AttributeValidMsk     = 1,
-  TDF_AttributeBackupMsk    = 2,
-  TDF_AttributeForgottenMsk = 4
-};
-
-inline Standard_Integer TDF_Attribute::Transaction() const
-{
-  return myTransaction;
-}
-
-// Validation
-inline void TDF_Attribute::Validate(const Standard_Boolean aStatus)
-{
-  myFlags = (aStatus) ? (myFlags | TDF_AttributeValidMsk) : (myFlags & ~TDF_AttributeValidMsk);
-}
-
-inline Standard_Boolean TDF_Attribute::IsValid() const
-{
-  return (myFlags & TDF_AttributeValidMsk) != 0;
-}
-
-// Backup
-inline void TDF_Attribute::Backup(const Standard_Boolean aStatus)
-{
-  myFlags = (aStatus) ? (myFlags | TDF_AttributeBackupMsk) : (myFlags & ~TDF_AttributeBackupMsk);
-  Validate(!aStatus);
-}
-
-inline Standard_Boolean TDF_Attribute::IsBackuped() const
-{
-  return (myFlags & TDF_AttributeBackupMsk) != 0;
-}
-
-// IsNew
-inline Standard_Boolean TDF_Attribute::IsNew() const
-{
-  return IsValid() && myBackup.IsNull();
-}
-
-// IsForgotten
-inline Standard_Boolean TDF_Attribute::IsForgotten() const
-{
-  return (myFlags & TDF_AttributeForgottenMsk) != 0;
-}
-
-// operator <<
-inline Standard_OStream& operator<<(Standard_OStream& anOS, const Handle(TDF_Attribute)& anAtt)
-{
-  return anAtt->Dump(anOS);
-}
+// clang-format off
+#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ApplicationFramework/TKLCAF/TDF/TDF_Attribute.lxx"// clang-format on

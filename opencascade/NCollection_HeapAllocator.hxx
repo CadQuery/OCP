@@ -1,6 +1,4 @@
-// Created on: 2009-12-30
-// Created by: Alexander GRIGORIEV
-// Copyright (c) 2009-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -13,41 +11,5 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef NCollection_HeapAllocator_HeaderFile
-#define NCollection_HeapAllocator_HeaderFile
-
-#include <NCollection_BaseAllocator.hxx>
-
-/**
- * Allocator that uses the global dynamic heap (malloc / free).
- */
-
-class NCollection_HeapAllocator : public NCollection_BaseAllocator
-{
-public:
-  // ---------- PUBLIC METHODS ----------
-  Standard_EXPORT virtual void* Allocate(const Standard_Size theSize) Standard_OVERRIDE;
-
-  void* AllocateOptimal(const Standard_Size theSize) Standard_OVERRIDE { return Allocate(theSize); }
-
-  Standard_EXPORT virtual void Free(void* anAddress) Standard_OVERRIDE;
-
-  Standard_EXPORT static const Handle(NCollection_HeapAllocator)& GlobalHeapAllocator();
-
-protected:
-  //! Constructor - prohibited
-  NCollection_HeapAllocator(void) {}
-
-private:
-  //! Copy constructor - prohibited
-  NCollection_HeapAllocator(const NCollection_HeapAllocator&);
-
-public:
-  // Declaration of CASCADE RTTI
-  DEFINE_STANDARD_RTTIEXT(NCollection_HeapAllocator, NCollection_BaseAllocator)
-};
-
-// Definition of HANDLE object using Standard_DefineHandle.hxx
-DEFINE_STANDARD_HANDLE(NCollection_HeapAllocator, NCollection_BaseAllocator)
-
-#endif
+// clang-format off
+#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/FoundationClasses/TKernel/NCollection/NCollection_HeapAllocator.hxx"// clang-format on

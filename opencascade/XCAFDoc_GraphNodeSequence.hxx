@@ -1,6 +1,4 @@
-// Created on: 2000-08-08
-// Created by: data exchange team
-// Copyright (c) 2000-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -13,12 +11,5 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef XCAFDoc_GraphNodeSequence_HeaderFile
-#define XCAFDoc_GraphNodeSequence_HeaderFile
-
-#include <NCollection_Sequence.hxx>
-
-class XCAFDoc_GraphNode;
-typedef NCollection_Sequence<Handle(XCAFDoc_GraphNode)> XCAFDoc_GraphNodeSequence;
-
-#endif
+// clang-format off
+#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/DataExchange/TKXCAF/XCAFDoc/XCAFDoc_GraphNodeSequence.hxx"// clang-format on

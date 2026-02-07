@@ -1,6 +1,4 @@
-// Created on: 2001-07-25
-// Created by: Julia DOROVSKIKH
-// Copyright (c) 2001-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -13,35 +11,5 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _XmlDrivers_DocumentStorageDriver_HeaderFile
-#define _XmlDrivers_DocumentStorageDriver_HeaderFile
-
-#include <Standard.hxx>
-#include <Standard_Type.hxx>
-
-#include <XmlLDrivers_DocumentStorageDriver.hxx>
-#include <XmlObjMgt_Element.hxx>
-class TCollection_ExtendedString;
-class XmlMDF_ADriverTable;
-class Message_Messenger;
-
-class XmlDrivers_DocumentStorageDriver;
-DEFINE_STANDARD_HANDLE(XmlDrivers_DocumentStorageDriver, XmlLDrivers_DocumentStorageDriver)
-
-class XmlDrivers_DocumentStorageDriver : public XmlLDrivers_DocumentStorageDriver
-{
-public:
-  Standard_EXPORT XmlDrivers_DocumentStorageDriver(const TCollection_ExtendedString& theCopyright);
-
-  Standard_EXPORT virtual Handle(XmlMDF_ADriverTable) AttributeDrivers(
-    const Handle(Message_Messenger)& theMsgDriver) Standard_OVERRIDE;
-
-  Standard_EXPORT virtual Standard_Boolean WriteShapeSection(
-    XmlObjMgt_Element&           thePDoc,
-    const TDocStd_FormatVersion  theStorageFormatVersion,
-    const Message_ProgressRange& theRange = Message_ProgressRange()) Standard_OVERRIDE;
-
-  DEFINE_STANDARD_RTTIEXT(XmlDrivers_DocumentStorageDriver, XmlLDrivers_DocumentStorageDriver)
-};
-
-#endif // _XmlDrivers_DocumentStorageDriver_HeaderFile
+// clang-format off
+#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ApplicationFramework/TKXml/XmlDrivers/XmlDrivers_DocumentStorageDriver.hxx"// clang-format on

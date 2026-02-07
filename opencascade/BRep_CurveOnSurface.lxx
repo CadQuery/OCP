@@ -1,7 +1,4 @@
-// Created on: 1993-11-18
-// Created by: Remi LEQUETTE
-// Copyright (c) 1993-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,24 +11,5 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-//=======================================================================
-// function : SetUVPoints
-// purpose  :
-//=======================================================================
-
-inline void BRep_CurveOnSurface::SetUVPoints(const gp_Pnt2d& P1, const gp_Pnt2d& P2)
-{
-  myUV1 = P1;
-  myUV2 = P2;
-}
-
-//=======================================================================
-// function : UVPoints
-// purpose  :
-//=======================================================================
-
-inline void BRep_CurveOnSurface::UVPoints(gp_Pnt2d& P1, gp_Pnt2d& P2) const
-{
-  P1 = myUV1;
-  P2 = myUV2;
-}
+// clang-format off
+#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ModelingData/TKBRep/BRep/BRep_CurveOnSurface.lxx"// clang-format on

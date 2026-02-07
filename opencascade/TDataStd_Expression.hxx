@@ -1,7 +1,4 @@
-// Created on: 1997-12-16
-// Created by: Denis PASCAL
-// Copyright (c) 1997-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,74 +11,5 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _TDataStd_Expression_HeaderFile
-#define _TDataStd_Expression_HeaderFile
-
-#include <Standard.hxx>
-
-#include <TCollection_ExtendedString.hxx>
-#include <TDF_AttributeList.hxx>
-#include <TDF_DerivedAttribute.hxx>
-#include <Standard_OStream.hxx>
-class Standard_GUID;
-class TDF_Label;
-class TDF_RelocationTable;
-
-class TDataStd_Expression;
-DEFINE_STANDARD_HANDLE(TDataStd_Expression, TDF_Attribute)
-
-//! Expression attribute.
-//! ====================
-//!
-//! * Data Structure  of the Expression   is stored in a
-//! string and references to variables used by the string
-//!
-//! Warning:  To be consistent,  each  Variable  referenced by  the
-//! expression must have its equivalent in the string
-class TDataStd_Expression : public TDF_Attribute
-{
-
-public:
-  //! class methods
-  //! =============
-  Standard_EXPORT static const Standard_GUID& GetID();
-
-  //! Find, or create, an Expression attribute.
-  //! Expressionmethods
-  //! ============
-  Standard_EXPORT static Handle(TDataStd_Expression) Set(const TDF_Label& label);
-
-  Standard_EXPORT TDataStd_Expression();
-
-  //! build and return the expression name
-  Standard_EXPORT TCollection_ExtendedString Name() const;
-
-  Standard_EXPORT void SetExpression(const TCollection_ExtendedString& E);
-
-  Standard_EXPORT const TCollection_ExtendedString& GetExpression() const;
-
-  Standard_EXPORT TDF_AttributeList& GetVariables();
-
-  Standard_EXPORT const Standard_GUID& ID() const Standard_OVERRIDE;
-
-  Standard_EXPORT void Restore(const Handle(TDF_Attribute)& With) Standard_OVERRIDE;
-
-  Standard_EXPORT Handle(TDF_Attribute) NewEmpty() const Standard_OVERRIDE;
-
-  Standard_EXPORT void Paste(const Handle(TDF_Attribute)&       Into,
-                             const Handle(TDF_RelocationTable)& RT) const Standard_OVERRIDE;
-
-  Standard_EXPORT virtual Standard_OStream& Dump(Standard_OStream& anOS) const Standard_OVERRIDE;
-
-  //! Dumps the content of me into the stream
-  Standard_EXPORT virtual void DumpJson(Standard_OStream& theOStream,
-                                        Standard_Integer  theDepth = -1) const Standard_OVERRIDE;
-
-  DEFINE_STANDARD_RTTIEXT(TDataStd_Expression, TDF_Attribute)
-
-protected:
-  TCollection_ExtendedString myExpression;
-  TDF_AttributeList          myVariables;
-};
-
-#endif // _TDataStd_Expression_HeaderFile
+// clang-format off
+#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ApplicationFramework/TKLCAF/TDataStd/TDataStd_Expression.hxx"// clang-format on

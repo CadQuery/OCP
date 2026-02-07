@@ -1,7 +1,4 @@
-// Created on: 1991-03-22
-// Created by: Philippe DAUTRY
-// Copyright (c) 1991-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,17 +11,5 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _GccInt_IType_HeaderFile
-#define _GccInt_IType_HeaderFile
-
-enum GccInt_IType
-{
-  GccInt_Lin,
-  GccInt_Cir,
-  GccInt_Ell,
-  GccInt_Par,
-  GccInt_Hpr,
-  GccInt_Pnt
-};
-
-#endif // _GccInt_IType_HeaderFile
+// clang-format off
+#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ModelingAlgorithms/TKGeomAlgo/GccInt/GccInt_IType.hxx"// clang-format on

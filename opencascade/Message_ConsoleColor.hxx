@@ -1,4 +1,4 @@
-// Copyright (c) 2019 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,21 +11,5 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _Message_ConsoleColor_HeaderFile
-#define _Message_ConsoleColor_HeaderFile
-
-//! Color definition for console/terminal output (limited palette).
-enum Message_ConsoleColor
-{
-  Message_ConsoleColor_Default, //!< default (white) color
-  Message_ConsoleColor_Black,   //!< black   color
-  Message_ConsoleColor_White,   //!< white   color
-  Message_ConsoleColor_Red,     //!< red     color
-  Message_ConsoleColor_Blue,    //!< blue    color
-  Message_ConsoleColor_Green,   //!< green   color
-  Message_ConsoleColor_Yellow,  //!< yellow  color
-  Message_ConsoleColor_Cyan,    //!< cyan    color
-  Message_ConsoleColor_Magenta, //!< magenta color
-};
-
-#endif // _Message_ConsoleColor_HeaderFile
+// clang-format off
+#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/FoundationClasses/TKernel/Message/Message_ConsoleColor.hxx"// clang-format on

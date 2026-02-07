@@ -1,7 +1,4 @@
-// Created on: 1995-12-01
-// Created by: EXPRESS->CDL V0.2 Translator
-// Copyright (c) 1995-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,27 +11,5 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _StepBasic_PlaneAngleMeasureWithUnit_HeaderFile
-#define _StepBasic_PlaneAngleMeasureWithUnit_HeaderFile
-
-#include <Standard.hxx>
-
-#include <StepBasic_MeasureWithUnit.hxx>
-
-class StepBasic_PlaneAngleMeasureWithUnit;
-DEFINE_STANDARD_HANDLE(StepBasic_PlaneAngleMeasureWithUnit, StepBasic_MeasureWithUnit)
-
-class StepBasic_PlaneAngleMeasureWithUnit : public StepBasic_MeasureWithUnit
-{
-
-public:
-  //! Returns a PlaneAngleMeasureWithUnit
-  Standard_EXPORT StepBasic_PlaneAngleMeasureWithUnit();
-
-  DEFINE_STANDARD_RTTIEXT(StepBasic_PlaneAngleMeasureWithUnit, StepBasic_MeasureWithUnit)
-
-protected:
-private:
-};
-
-#endif // _StepBasic_PlaneAngleMeasureWithUnit_HeaderFile
+// clang-format off
+#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/DataExchange/TKDESTEP/StepBasic/StepBasic_PlaneAngleMeasureWithUnit.hxx"// clang-format on

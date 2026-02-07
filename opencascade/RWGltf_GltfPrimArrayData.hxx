@@ -1,5 +1,4 @@
-// Author: Kirill Gavrilov
-// Copyright (c) 2018-2019 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -12,39 +11,5 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _RWGltf_GltfPrimArrayData_HeaderFile
-#define _RWGltf_GltfPrimArrayData_HeaderFile
-
-#include <NCollection_Buffer.hxx>
-#include <RWGltf_GltfAccessor.hxx>
-#include <RWGltf_GltfArrayType.hxx>
-#include <TCollection_AsciiString.hxx>
-
-//! An element within primitive array - vertex attribute or element indexes.
-class RWGltf_GltfPrimArrayData
-{
-public:
-  Handle(NCollection_Buffer) StreamData;
-  TCollection_AsciiString    StreamUri;
-  int64_t                    StreamOffset;
-  int64_t                    StreamLength;
-
-  RWGltf_GltfAccessor  Accessor;
-  RWGltf_GltfArrayType Type;
-
-  RWGltf_GltfPrimArrayData()
-      : StreamOffset(0),
-        StreamLength(0),
-        Type(RWGltf_GltfArrayType_UNKNOWN)
-  {
-  }
-
-  RWGltf_GltfPrimArrayData(RWGltf_GltfArrayType theType)
-      : StreamOffset(0),
-        StreamLength(0),
-        Type(theType)
-  {
-  }
-};
-
-#endif // _RWGltf_GltfPrimArrayData_HeaderFile
+// clang-format off
+#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/DataExchange/TKDEGLTF/RWGltf/RWGltf_GltfPrimArrayData.hxx"// clang-format on

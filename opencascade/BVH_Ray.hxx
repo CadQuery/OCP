@@ -1,6 +1,4 @@
-// Created by: Olga Suryaninova
-// Created on: 2019-11-25
-// Copyright (c) 2019 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -13,26 +11,5 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _BVH_Ray_Header
-#define _BVH_Ray_Header
-
-//! Describes a ray based on BVH vectors.
-template <class T, int N>
-class BVH_Ray
-{
-public:
-  typedef typename BVH::VectorType<T, N>::Type BVH_VecNt;
-
-public:
-  BVH_VecNt Origin;
-  BVH_VecNt Direct;
-
-public:
-  BVH_Ray(const BVH_VecNt& theOrigin, const BVH_VecNt& theDirect)
-      : Origin(theOrigin),
-        Direct(theDirect)
-  {
-  }
-};
-
-#endif // _BVH_Ray_Header
+// clang-format off
+#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/FoundationClasses/TKMath/BVH/BVH_Ray.hxx"// clang-format on

@@ -1,7 +1,4 @@
-// Created on: 1997-11-10
-// Created by: Jean Yves LEBEY
-// Copyright (c) 1997-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,20 +11,5 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _TopOpeBRep_define_HeaderFile
-#define _TopOpeBRep_define_HeaderFile
-
-#include <TopOpeBRepDS_define.hxx>
-
-#define MTPvpic TopOpeBRep_VPointInterClassifier
-#define MTPvpii TopOpeBRep_VPointInterIterator
-#define MTPvpi TopOpeBRep_VPointInter
-#define MTPli TopOpeBRep_LineInter
-#define MTPfi TopOpeBRep_FacesIntersector
-#define MTPei TopOpeBRep_EdgesIntersector
-#define MTPfei TopOpeBRep_FaceEdgeIntersector
-#define MTPff TopOpeBRep_FacesFiller
-#define MTPef TopOpeBRep_EdgesFiller
-#define MTPfef TopOpeBRep_FaceEdgeFiller
-#define MTPpgt TopOpeBRep_PointGeomTool
-#endif
+// clang-format off
+#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ModelingAlgorithms/TKBool/TopOpeBRep/TopOpeBRep_define.hxx"// clang-format on

@@ -1,4 +1,4 @@
-// Copyright (c) 2022 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,13 +11,5 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _StepToTopoDS_TranslateSolidError_HeaderFile
-#define _StepToTopoDS_TranslateSolidError_HeaderFile
-
-enum StepToTopoDS_TranslateSolidError
-{
-  StepToTopoDS_TranslateSolidDone,
-  StepToTopoDS_TranslateSolidOther
-};
-
-#endif // _StepToTopoDS_TranslateSolidError_HeaderFile
+// clang-format off
+#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/DataExchange/TKDESTEP/StepToTopoDS/StepToTopoDS_TranslateSolidError.hxx"// clang-format on

@@ -1,7 +1,4 @@
-// Created on: 1997-04-17
-// Created by: Christophe MARION
-// Copyright (c) 1997-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,33 +11,5 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _HLRBRep_EdgeIList_HeaderFile
-#define _HLRBRep_EdgeIList_HeaderFile
-
-#include <Standard.hxx>
-#include <Standard_DefineAlloc.hxx>
-#include <Standard_Handle.hxx>
-
-#include <HLRAlgo_InterferenceList.hxx>
-class HLRAlgo_Interference;
-class HLRBRep_EdgeInterferenceTool;
-
-class HLRBRep_EdgeIList
-{
-public:
-  DEFINE_STANDARD_ALLOC
-
-  //! Add the interference <I> to the list <IL>.
-  Standard_EXPORT static void AddInterference(HLRAlgo_InterferenceList&           IL,
-                                              const HLRAlgo_Interference&         I,
-                                              const HLRBRep_EdgeInterferenceTool& T);
-
-  //! Process complex transitions on the list IL.
-  Standard_EXPORT static void ProcessComplex(HLRAlgo_InterferenceList&           IL,
-                                             const HLRBRep_EdgeInterferenceTool& T);
-
-protected:
-private:
-};
-
-#endif // _HLRBRep_EdgeIList_HeaderFile
+// clang-format off
+#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ModelingAlgorithms/TKHLR/HLRBRep/HLRBRep_EdgeIList.hxx"// clang-format on

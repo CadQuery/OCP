@@ -1,7 +1,4 @@
-// Created on: 1997-02-28
-// Created by: Jean-Louis Frenkel
-// Copyright (c) 1997-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,22 +11,5 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _Plugin_HeaderFile
-#define _Plugin_HeaderFile
-
-#include <Standard.hxx>
-#include <Standard_DefineAlloc.hxx>
-#include <Standard_Handle.hxx>
-
-class Standard_Transient;
-class Standard_GUID;
-
-class Plugin
-{
-public:
-  Standard_EXPORT static Handle(Standard_Transient) Load(
-    const Standard_GUID&   aGUID,
-    const Standard_Boolean theVerbose = Standard_True);
-};
-
-#endif // _Plugin_HeaderFile
+// clang-format off
+#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/FoundationClasses/TKernel/Plugin/Plugin.hxx"// clang-format on

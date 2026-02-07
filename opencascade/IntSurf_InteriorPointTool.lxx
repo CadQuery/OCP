@@ -1,5 +1,4 @@
-// Copyright (c) 1995-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -12,32 +11,5 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#include <IntSurf_InteriorPoint.hxx>
-#include <gp_Pnt.hxx>
-#include <gp_Vec.hxx>
-#include <gp_Dir2d.hxx>
-
-inline gp_Pnt IntSurf_InteriorPointTool::Value3d(const IntSurf_InteriorPoint& PStart)
-{
-
-  return PStart.Value();
-}
-
-inline void IntSurf_InteriorPointTool::Value2d(const IntSurf_InteriorPoint& PStart,
-                                               Standard_Real&               U,
-                                               Standard_Real&               V)
-{
-  PStart.Parameters(U, V);
-}
-
-inline gp_Vec IntSurf_InteriorPointTool::Direction3d(const IntSurf_InteriorPoint& PStart)
-{
-
-  return PStart.Direction();
-}
-
-inline gp_Dir2d IntSurf_InteriorPointTool::Direction2d(const IntSurf_InteriorPoint& PStart)
-{
-
-  return PStart.Direction2d();
-}
+// clang-format off
+#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ModelingAlgorithms/TKGeomAlgo/IntSurf/IntSurf_InteriorPointTool.lxx"// clang-format on

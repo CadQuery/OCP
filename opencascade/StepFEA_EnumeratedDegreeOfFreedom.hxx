@@ -1,4 +1,4 @@
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,18 +11,5 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _StepFEA_EnumeratedDegreeOfFreedom_HeaderFile
-#define _StepFEA_EnumeratedDegreeOfFreedom_HeaderFile
-
-enum StepFEA_EnumeratedDegreeOfFreedom
-{
-  StepFEA_XTranslation,
-  StepFEA_YTranslation,
-  StepFEA_ZTranslation,
-  StepFEA_XRotation,
-  StepFEA_YRotation,
-  StepFEA_ZRotation,
-  StepFEA_Warp
-};
-
-#endif // _StepFEA_EnumeratedDegreeOfFreedom_HeaderFile
+// clang-format off
+#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/DataExchange/TKDESTEP/StepFEA/StepFEA_EnumeratedDegreeOfFreedom.hxx"// clang-format on

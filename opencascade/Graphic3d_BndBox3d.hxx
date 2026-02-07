@@ -1,4 +1,4 @@
-// Copyright (c) 2016 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,12 +11,5 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _Graphic3d_BndBox3d_Header
-#define _Graphic3d_BndBox3d_Header
-
-#include <BVH_Box.hxx>
-#include <BVH_Types.hxx>
-
-typedef BVH_Box<Standard_Real, 3> Graphic3d_BndBox3d;
-
-#endif // _Graphic3d_BndBox3d_Header
+// clang-format off
+#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/Visualization/TKService/Graphic3d/Graphic3d_BndBox3d.hxx"// clang-format on

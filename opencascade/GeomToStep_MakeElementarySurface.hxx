@@ -1,7 +1,4 @@
-// Created on: 1993-06-22
-// Created by: Martine LANGLOIS
-// Copyright (c) 1993-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,37 +11,5 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _GeomToStep_MakeElementarySurface_HeaderFile
-#define _GeomToStep_MakeElementarySurface_HeaderFile
-
-#include <Standard.hxx>
-#include <Standard_DefineAlloc.hxx>
-#include <Standard_Handle.hxx>
-
-#include <GeomToStep_Root.hxx>
-
-class StepGeom_ElementarySurface;
-class Geom_ElementarySurface;
-
-//! This class implements the mapping between classes
-//! ElementarySurface from Geom and the class ElementarySurface
-//! from StepGeom which describes a ElementarySurface from
-//! prostep. As ElementarySurface is an abstract Surface this
-//! class is an access to the sub-class required.
-class GeomToStep_MakeElementarySurface : public GeomToStep_Root
-{
-public:
-  DEFINE_STANDARD_ALLOC
-
-  Standard_EXPORT GeomToStep_MakeElementarySurface(
-    const Handle(Geom_ElementarySurface)& S,
-    const StepData_Factors&               theLocalFactors = StepData_Factors());
-
-  Standard_EXPORT const Handle(StepGeom_ElementarySurface)& Value() const;
-
-protected:
-private:
-  Handle(StepGeom_ElementarySurface) theElementarySurface;
-};
-
-#endif // _GeomToStep_MakeElementarySurface_HeaderFile
+// clang-format off
+#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/DataExchange/TKDESTEP/GeomToStep/GeomToStep_MakeElementarySurface.hxx"// clang-format on

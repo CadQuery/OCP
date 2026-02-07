@@ -1,6 +1,4 @@
-// Created on: 2000-02-07
-// Created by: data exchange team
-// Copyright (c) 2000-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -13,38 +11,5 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _IGESToBRep_AlgoContainer_HeaderFile
-#define _IGESToBRep_AlgoContainer_HeaderFile
-
-#include <Standard.hxx>
-#include <Standard_Type.hxx>
-
-#include <Standard_Transient.hxx>
-class IGESToBRep_ToolContainer;
-
-class IGESToBRep_AlgoContainer;
-DEFINE_STANDARD_HANDLE(IGESToBRep_AlgoContainer, Standard_Transient)
-
-class IGESToBRep_AlgoContainer : public Standard_Transient
-{
-
-public:
-  //! Empty constructor
-  Standard_EXPORT IGESToBRep_AlgoContainer();
-
-  //! Sets ToolContainer
-  void SetToolContainer(const Handle(IGESToBRep_ToolContainer)& TC);
-
-  //! Returns ToolContainer
-  Handle(IGESToBRep_ToolContainer) ToolContainer() const;
-
-  DEFINE_STANDARD_RTTIEXT(IGESToBRep_AlgoContainer, Standard_Transient)
-
-protected:
-private:
-  Handle(IGESToBRep_ToolContainer) myTC;
-};
-
-#include <IGESToBRep_AlgoContainer.lxx>
-
-#endif // _IGESToBRep_AlgoContainer_HeaderFile
+// clang-format off
+#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/DataExchange/TKDEIGES/IGESToBRep/IGESToBRep_AlgoContainer.hxx"// clang-format on

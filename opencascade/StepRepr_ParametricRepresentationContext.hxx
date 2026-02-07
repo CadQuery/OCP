@@ -1,7 +1,4 @@
-// Created on: 1995-12-01
-// Created by: EXPRESS->CDL V0.2 Translator
-// Copyright (c) 1995-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,28 +11,5 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _StepRepr_ParametricRepresentationContext_HeaderFile
-#define _StepRepr_ParametricRepresentationContext_HeaderFile
-
-#include <Standard.hxx>
-#include <Standard_Type.hxx>
-
-#include <StepRepr_RepresentationContext.hxx>
-
-class StepRepr_ParametricRepresentationContext;
-DEFINE_STANDARD_HANDLE(StepRepr_ParametricRepresentationContext, StepRepr_RepresentationContext)
-
-class StepRepr_ParametricRepresentationContext : public StepRepr_RepresentationContext
-{
-
-public:
-  //! Returns a ParametricRepresentationContext
-  Standard_EXPORT StepRepr_ParametricRepresentationContext();
-
-  DEFINE_STANDARD_RTTIEXT(StepRepr_ParametricRepresentationContext, StepRepr_RepresentationContext)
-
-protected:
-private:
-};
-
-#endif // _StepRepr_ParametricRepresentationContext_HeaderFile
+// clang-format off
+#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/DataExchange/TKDESTEP/StepRepr/StepRepr_ParametricRepresentationContext.hxx"// clang-format on

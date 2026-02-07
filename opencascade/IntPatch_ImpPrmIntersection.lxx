@@ -1,7 +1,4 @@
-// Created on: 1992-05-07
-// Created by: Jacques GOUSSARD
-// Copyright (c) 1992-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,56 +11,5 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#include <StdFail_NotDone.hxx>
-#include <IntPatch_Line.hxx>
-
-inline Standard_Boolean IntPatch_ImpPrmIntersection::IsDone() const
-{
-  return done;
-}
-
-inline Standard_Boolean IntPatch_ImpPrmIntersection::IsEmpty() const
-{
-  if (!done)
-  {
-    throw StdFail_NotDone();
-  }
-  return empt;
-}
-
-inline Standard_Integer IntPatch_ImpPrmIntersection::NbPnts() const
-{
-  if (!done)
-  {
-    throw StdFail_NotDone();
-  }
-  return spnt.Length();
-}
-
-inline const IntPatch_Point& IntPatch_ImpPrmIntersection::Point(const Standard_Integer Index) const
-{
-  if (!done)
-  {
-    throw StdFail_NotDone();
-  }
-  return spnt(Index);
-}
-
-inline Standard_Integer IntPatch_ImpPrmIntersection::NbLines() const
-{
-  if (!done)
-  {
-    throw StdFail_NotDone();
-  }
-  return slin.Length();
-}
-
-inline const Handle(IntPatch_Line)& IntPatch_ImpPrmIntersection::Line(
-  const Standard_Integer Index) const
-{
-  if (!done)
-  {
-    throw StdFail_NotDone();
-  }
-  return slin(Index);
-}
+// clang-format off
+#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ModelingAlgorithms/TKGeomAlgo/IntPatch/IntPatch_ImpPrmIntersection.lxx"// clang-format on

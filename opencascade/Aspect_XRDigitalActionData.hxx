@@ -1,4 +1,4 @@
-// Copyright (c) 2020 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,31 +11,5 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _Aspect_XRDigitalActionData_HeaderFile
-#define _Aspect_XRDigitalActionData_HeaderFile
-
-#include <Standard_TypeDef.hxx>
-
-//! Digital input XR action data.
-struct Aspect_XRDigitalActionData
-{
-  uint64_t ActiveOrigin; //!< The origin that caused this action's current state
-                         // clang-format off
-  float    UpdateTime;   //!< Time relative to now when this event happened. Will be negative to indicate a past time
-  bool     IsActive;     //!< whether or not this action is currently available to be bound in the active action set
-  bool     IsPressed;    //!< Aspect_InputActionType_Digital state - The current state of this action; will be true if currently pressed
-  bool     IsChanged;    //!< Aspect_InputActionType_Digital state - this is true if the state has changed since the last frame
-                         // clang-format on
-
-  //! Empty constructor.
-  Aspect_XRDigitalActionData()
-      : ActiveOrigin(0),
-        UpdateTime(0.0f),
-        IsActive(false),
-        IsPressed(false),
-        IsChanged(false)
-  {
-  }
-};
-
-#endif // _Aspect_XRDigitalActionData_HeaderFile
+// clang-format off
+#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/Visualization/TKService/Aspect/Aspect_XRDigitalActionData.hxx"// clang-format on

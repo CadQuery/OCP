@@ -1,6 +1,4 @@
-// Created on: 2014-08-11
-// Created by: duv
-// Copyright (c) 2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -13,16 +11,5 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _PrsMgr_ListOfPresentableObjects_HeaderFile
-#define _PrsMgr_ListOfPresentableObjects_HeaderFile
-
-#include <NCollection_List.hxx>
-
 // clang-format off
-class PrsMgr_PresentableObject; // use forward declaration since PrsMgr_PresentableObject.hxx uses PrsMgr_ListOfPresentableObjects
-// clang-format on
-typedef NCollection_List<Handle(PrsMgr_PresentableObject)> PrsMgr_ListOfPresentableObjects;
-typedef NCollection_List<Handle(PrsMgr_PresentableObject)>::Iterator
-  PrsMgr_ListOfPresentableObjectsIter;
-
-#endif // _PrsMgr_ListOfPresentableObjects_HeaderFile
+#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/Visualization/TKV3d/PrsMgr/PrsMgr_ListOfPresentableObjects.hxx"// clang-format on

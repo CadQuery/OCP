@@ -1,6 +1,4 @@
-// Created on: 2016-06-23
-// Copyright (c) 2016 OPEN CASCADE SAS
-// Created by: Oleg AGASHIN
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -13,45 +11,5 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _IMeshData_StatusOwner_HeaderFile
-#define _IMeshData_StatusOwner_HeaderFile
-
-#include <IMeshData_Status.hxx>
-
-//! Extension interface class providing status functionality.
-class IMeshData_StatusOwner
-{
-public:
-  //! Destructor.
-  virtual ~IMeshData_StatusOwner() {}
-
-  //! Returns true in case if status is strictly equal to the given value.
-  Standard_Boolean IsEqual(const IMeshData_Status theValue) const { return (myStatus == theValue); }
-
-  //! Returns true in case if status is set.
-  Standard_Boolean IsSet(const IMeshData_Status theValue) const
-  {
-    return (myStatus & theValue) != 0;
-  }
-
-  //! Adds status to status flags of a face.
-  void SetStatus(const IMeshData_Status theValue) { myStatus |= theValue; }
-
-  //! Adds status to status flags of a face.
-  void UnsetStatus(const IMeshData_Status theValue) { myStatus &= ~theValue; }
-
-  //! Returns complete status mask.
-  Standard_Integer GetStatusMask() const { return myStatus; }
-
-protected:
-  //! Constructor. Initializes default status.
-  IMeshData_StatusOwner()
-      : myStatus(IMeshData_NoError)
-  {
-  }
-
-private:
-  Standard_Integer myStatus;
-};
-
-#endif
+// clang-format off
+#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ModelingAlgorithms/TKMesh/IMeshData/IMeshData_StatusOwner.hxx"// clang-format on

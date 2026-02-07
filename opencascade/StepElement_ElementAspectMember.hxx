@@ -1,6 +1,4 @@
-// Created on: 2002-12-10
-// Created by: data exchange team
-// Copyright (c) 2002-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -13,44 +11,5 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _StepElement_ElementAspectMember_HeaderFile
-#define _StepElement_ElementAspectMember_HeaderFile
-
-#include <Standard.hxx>
-
-#include <Standard_Integer.hxx>
-#include <StepData_SelectNamed.hxx>
-#include <Standard_CString.hxx>
-
-class StepElement_ElementAspectMember;
-DEFINE_STANDARD_HANDLE(StepElement_ElementAspectMember, StepData_SelectNamed)
-
-//! Representation of member for  STEP SELECT type ElementAspect
-class StepElement_ElementAspectMember : public StepData_SelectNamed
-{
-
-public:
-  //! Empty constructor
-  Standard_EXPORT StepElement_ElementAspectMember();
-
-  //! Returns True if has name
-  Standard_EXPORT virtual Standard_Boolean HasName() const Standard_OVERRIDE;
-
-  //! Returns set name
-  Standard_EXPORT virtual Standard_CString Name() const Standard_OVERRIDE;
-
-  //! Set name
-  Standard_EXPORT virtual Standard_Boolean SetName(const Standard_CString name) Standard_OVERRIDE;
-
-  //! Tells if the name of a SelectMember matches a given one;
-  Standard_EXPORT virtual Standard_Boolean Matches(const Standard_CString name) const
-    Standard_OVERRIDE;
-
-  DEFINE_STANDARD_RTTIEXT(StepElement_ElementAspectMember, StepData_SelectNamed)
-
-protected:
-private:
-  Standard_Integer mycase;
-};
-
-#endif // _StepElement_ElementAspectMember_HeaderFile
+// clang-format off
+#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/DataExchange/TKDESTEP/StepElement/StepElement_ElementAspectMember.hxx"// clang-format on

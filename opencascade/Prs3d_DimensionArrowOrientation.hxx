@@ -1,7 +1,4 @@
-// Created on: 1992-08-26
-// Created by: Jean Louis FRENKEL
-// Copyright (c) 1992-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,19 +11,5 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _Prs3d_DimensionArrowOrientation_HeaderFile
-#define _Prs3d_DimensionArrowOrientation_HeaderFile
-
-//! Specifies dimension arrow location and orientation.
-//! DAO_Internal - arrows "inside", pointing outwards.
-//! DAO_External - arrows "outside", pointing inwards.
-//! DAO_Fit      - arrows oriented inside if value label with arrowtips fit the dimension line,
-//! otherwise - externally
-enum Prs3d_DimensionArrowOrientation
-{
-  Prs3d_DAO_Internal,
-  Prs3d_DAO_External,
-  Prs3d_DAO_Fit
-};
-
-#endif // _Prs3d_DimensionArrowOrientation_HeaderFile
+// clang-format off
+#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/Visualization/TKV3d/Prs3d/Prs3d_DimensionArrowOrientation.hxx"// clang-format on

@@ -1,6 +1,4 @@
-// Created on: 2005-12-21
-// Created by: Sergey KHROMOV
-// Copyright (c) 2005-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -13,53 +11,5 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-//=======================================================================
-// function : SetNbKronrodPoints
-// purpose  :
-//=======================================================================
-
-inline void BRepGProp_TFunction::SetNbKronrodPoints(const Standard_Integer theNbPoints)
-{
-  myNbPntOuter = (theNbPoints % 2 == 0) ? theNbPoints + 1 : theNbPoints;
-}
-
-//=======================================================================
-// function : SetValueType
-// purpose  :
-//=======================================================================
-
-inline void BRepGProp_TFunction::SetValueType(const GProp_ValueType theType)
-{
-  myValueType = theType;
-  myUFunction.SetValueType(myValueType);
-}
-
-//=======================================================================
-// function : SetTolerance
-// purpose  :
-//=======================================================================
-
-inline void BRepGProp_TFunction::SetTolerance(const Standard_Real theTolerance)
-{
-  myTolerance = theTolerance;
-}
-
-//=======================================================================
-// function : TolReached
-// purpose  :
-//=======================================================================
-
-inline Standard_Real BRepGProp_TFunction::ErrorReached() const
-{
-  return myErrReached;
-}
-
-//=======================================================================
-// function : ErrorReached
-// purpose  :
-//=======================================================================
-
-inline Standard_Real BRepGProp_TFunction::AbsolutError() const
-{
-  return myAbsError;
-}
+// clang-format off
+#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ModelingAlgorithms/TKTopAlgo/BRepGProp/BRepGProp_TFunction.lxx"// clang-format on

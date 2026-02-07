@@ -1,7 +1,4 @@
-// Created on: 1996-07-26
-// Created by: Maria PUMBORIOS
-// Copyright (c) 1996-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,17 +11,5 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _FilletSurf_ErrorTypeStatus_HeaderFile
-#define _FilletSurf_ErrorTypeStatus_HeaderFile
-
-enum FilletSurf_ErrorTypeStatus
-{
-  FilletSurf_EmptyList,
-  FilletSurf_EdgeNotG1,
-  FilletSurf_FacesNotG1,
-  FilletSurf_EdgeNotOnShape,
-  FilletSurf_NotSharpEdge,
-  FilletSurf_PbFilletCompute
-};
-
-#endif // _FilletSurf_ErrorTypeStatus_HeaderFile
+// clang-format off
+#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ModelingAlgorithms/TKFillet/FilletSurf/FilletSurf_ErrorTypeStatus.hxx"// clang-format on

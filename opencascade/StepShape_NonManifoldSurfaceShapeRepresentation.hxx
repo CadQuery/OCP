@@ -1,6 +1,4 @@
-// Created on: 2001-12-28
-// Created by: Andrey BETENEV
-// Copyright (c) 2001-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -13,31 +11,5 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _StepShape_NonManifoldSurfaceShapeRepresentation_HeaderFile
-#define _StepShape_NonManifoldSurfaceShapeRepresentation_HeaderFile
-
-#include <Standard.hxx>
-#include <Standard_Type.hxx>
-
-#include <StepShape_ShapeRepresentation.hxx>
-
-class StepShape_NonManifoldSurfaceShapeRepresentation;
-DEFINE_STANDARD_HANDLE(StepShape_NonManifoldSurfaceShapeRepresentation,
-                       StepShape_ShapeRepresentation)
-
-//! Representation of STEP entity NonManifoldSurfaceShapeRepresentation
-class StepShape_NonManifoldSurfaceShapeRepresentation : public StepShape_ShapeRepresentation
-{
-
-public:
-  //! Empty constructor
-  Standard_EXPORT StepShape_NonManifoldSurfaceShapeRepresentation();
-
-  DEFINE_STANDARD_RTTIEXT(StepShape_NonManifoldSurfaceShapeRepresentation,
-                          StepShape_ShapeRepresentation)
-
-protected:
-private:
-};
-
-#endif // _StepShape_NonManifoldSurfaceShapeRepresentation_HeaderFile
+// clang-format off
+#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/DataExchange/TKDESTEP/StepShape/StepShape_NonManifoldSurfaceShapeRepresentation.hxx"// clang-format on

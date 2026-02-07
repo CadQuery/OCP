@@ -1,6 +1,4 @@
-// Created on: 2002-04-29
-// Created by: Alexander KARTOMIN (akm)
-// Copyright (c) 2002-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -13,14 +11,5 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef NCollection_HArray1_HeaderFile
-#define NCollection_HArray1_HeaderFile
-
-#include <NCollection_Array1.hxx>
-#include <NCollection_DefineHArray1.hxx>
-
-//      Declaration of Array1 class managed by Handle
-
-#define NCOLLECTION_HARRAY1(HClassName, Type) DEFINE_HARRAY1(HClassName, NCollection_Array1<Type>)
-
-#endif
+// clang-format off
+#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/FoundationClasses/TKernel/NCollection/NCollection_HArray1.hxx"// clang-format on

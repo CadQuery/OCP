@@ -1,6 +1,4 @@
-// Created on: 2003-06-04
-// Created by: Galina KULIKOVA
-// Copyright (c) 2003-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -13,29 +11,5 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _StepDimTol_DatumFeature_HeaderFile
-#define _StepDimTol_DatumFeature_HeaderFile
-
-#include <Standard.hxx>
-#include <Standard_Type.hxx>
-
-#include <StepRepr_ShapeAspect.hxx>
-
-class StepDimTol_DatumFeature;
-DEFINE_STANDARD_HANDLE(StepDimTol_DatumFeature, StepRepr_ShapeAspect)
-
-//! Representation of STEP entity DatumFeature
-class StepDimTol_DatumFeature : public StepRepr_ShapeAspect
-{
-
-public:
-  //! Empty constructor
-  Standard_EXPORT StepDimTol_DatumFeature();
-
-  DEFINE_STANDARD_RTTIEXT(StepDimTol_DatumFeature, StepRepr_ShapeAspect)
-
-protected:
-private:
-};
-
-#endif // _StepDimTol_DatumFeature_HeaderFile
+// clang-format off
+#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/DataExchange/TKDESTEP/StepDimTol/StepDimTol_DatumFeature.hxx"// clang-format on

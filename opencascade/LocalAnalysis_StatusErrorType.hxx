@@ -1,7 +1,4 @@
-// Created on: 1996-07-24
-// Created by: Herve LOUESSARD
-// Copyright (c) 1996-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,16 +11,5 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _LocalAnalysis_StatusErrorType_HeaderFile
-#define _LocalAnalysis_StatusErrorType_HeaderFile
-
-enum LocalAnalysis_StatusErrorType
-{
-  LocalAnalysis_NullFirstDerivative,
-  LocalAnalysis_NullSecondDerivative,
-  LocalAnalysis_TangentNotDefined,
-  LocalAnalysis_NormalNotDefined,
-  LocalAnalysis_CurvatureNotDefined
-};
-
-#endif // _LocalAnalysis_StatusErrorType_HeaderFile
+// clang-format off
+#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ModelingAlgorithms/TKGeomAlgo/LocalAnalysis/LocalAnalysis_StatusErrorType.hxx"// clang-format on

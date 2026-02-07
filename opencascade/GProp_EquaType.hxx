@@ -1,7 +1,4 @@
-// Created on: 1991-03-12
-// Created by: Michel CHAUVAT
-// Copyright (c) 1991-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,16 +11,5 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _GProp_EquaType_HeaderFile
-#define _GProp_EquaType_HeaderFile
-
-enum GProp_EquaType
-{
-  GProp_Plane,
-  GProp_Line,
-  GProp_Point,
-  GProp_Space,
-  GProp_None
-};
-
-#endif // _GProp_EquaType_HeaderFile
+// clang-format off
+#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ModelingData/TKG3d/GProp/GProp_EquaType.hxx"// clang-format on

@@ -1,6 +1,4 @@
-// Created on: 2002-12-12
-// Created by: data exchange team
-// Copyright (c) 2002-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -13,29 +11,5 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _StepFEA_GeometricNode_HeaderFile
-#define _StepFEA_GeometricNode_HeaderFile
-
-#include <Standard.hxx>
-#include <Standard_Type.hxx>
-
-#include <StepFEA_NodeRepresentation.hxx>
-
-class StepFEA_GeometricNode;
-DEFINE_STANDARD_HANDLE(StepFEA_GeometricNode, StepFEA_NodeRepresentation)
-
-//! Representation of STEP entity GeometricNode
-class StepFEA_GeometricNode : public StepFEA_NodeRepresentation
-{
-
-public:
-  //! Empty constructor
-  Standard_EXPORT StepFEA_GeometricNode();
-
-  DEFINE_STANDARD_RTTIEXT(StepFEA_GeometricNode, StepFEA_NodeRepresentation)
-
-protected:
-private:
-};
-
-#endif // _StepFEA_GeometricNode_HeaderFile
+// clang-format off
+#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/DataExchange/TKDESTEP/StepFEA/StepFEA_GeometricNode.hxx"// clang-format on

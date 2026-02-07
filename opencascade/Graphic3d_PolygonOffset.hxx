@@ -1,4 +1,4 @@
-// Copyright (c) 2016 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,36 +11,5 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _Graphic3d_PolygonOffset_HeaderFile
-#define _Graphic3d_PolygonOffset_HeaderFile
-
-#include <Aspect_PolygonOffsetMode.hxx>
-#include <Standard_OStream.hxx>
-#include <Standard_Integer.hxx>
-
-//! Polygon offset parameters.
-struct Graphic3d_PolygonOffset
-{
-  Aspect_PolygonOffsetMode Mode;
-  Standard_ShortReal       Factor;
-  Standard_ShortReal       Units;
-
-  //! Empty constructor.
-  Graphic3d_PolygonOffset()
-      : Mode(Aspect_POM_Fill),
-        Factor(1.0f),
-        Units(1.0f)
-  {
-  }
-
-  //! Equality comparison.
-  bool operator==(const Graphic3d_PolygonOffset& theOther) const
-  {
-    return Mode == theOther.Mode && Factor == theOther.Factor && Units == theOther.Units;
-  }
-
-  //! Dumps the content of me into the stream
-  Standard_EXPORT void DumpJson(Standard_OStream& theOStream, Standard_Integer theDepth = -1) const;
-};
-
-#endif // _Graphic3d_PolygonOffset_HeaderFile
+// clang-format off
+#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/Visualization/TKService/Graphic3d/Graphic3d_PolygonOffset.hxx"// clang-format on

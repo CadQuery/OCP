@@ -1,6 +1,4 @@
-// Created on: 2001-06-28
-// Created by: Alexander GRIGORIEV
-// Copyright (c) 2001-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -13,19 +11,5 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef LDOM_DocumentType_HeaderFile
-#define LDOM_DocumentType_HeaderFile
-
-//  Block of comments describing class LDOM_DocumentType
-
-class LDOM_DocumentType
-{
-public:
-  // ---------- PUBLIC METHODS ----------
-
-  LDOM_DocumentType() {}
-
-  // Empty constructor
-};
-
-#endif
+// clang-format off
+#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ApplicationFramework/TKCDF/LDOM/LDOM_DocumentType.hxx"// clang-format on

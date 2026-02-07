@@ -1,7 +1,4 @@
-// Created on: 1996-09-16
-// Created by: Jacques GOUSSARD
-// Copyright (c) 1996-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,29 +11,5 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-//=======================================================================
-// function : LocOpe_BuildShape
-// purpose  :
-//=======================================================================
-
-inline LocOpe_BuildShape::LocOpe_BuildShape() {}
-
-//=======================================================================
-// function : LocOpe_BuildShape
-// purpose  :
-//=======================================================================
-
-inline LocOpe_BuildShape::LocOpe_BuildShape(const TopTools_ListOfShape& L)
-{
-  Perform(L);
-}
-
-//=======================================================================
-// function : Shape
-// purpose  :
-//=======================================================================
-
-inline const TopoDS_Shape& LocOpe_BuildShape::Shape() const
-{
-  return myRes;
-}
+// clang-format off
+#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ModelingAlgorithms/TKFeat/LocOpe/LocOpe_BuildShape.lxx"// clang-format on

@@ -1,7 +1,4 @@
-// Created on: 1994-08-25
-// Created by: Jacques GOUSSARD
-// Copyright (c) 1994-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,27 +11,5 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#include <Standard_NoSuchObject.hxx>
-
-//=======================================================================
-// function : ModifiedShape
-// purpose  :
-//=======================================================================
-
-inline const TopoDS_Shape& BRepTools_Modifier::ModifiedShape(const TopoDS_Shape& S) const
-{
-  if (!myMap.IsBound(S))
-  {
-    throw Standard_NoSuchObject();
-  }
-  return myMap(S);
-}
-
-//=======================================================================
-// function : IsDone
-// purpose  :
-//=======================================================================
-inline Standard_Boolean BRepTools_Modifier::IsDone() const
-{
-  return myDone;
-}
+// clang-format off
+#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ModelingData/TKBRep/BRepTools/BRepTools_Modifier.lxx"// clang-format on

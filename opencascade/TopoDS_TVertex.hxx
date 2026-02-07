@@ -1,7 +1,4 @@
-// Created on: 1990-12-13
-// Created by: Remi Lequette
-// Copyright (c) 1990-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,39 +11,5 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _TopoDS_TVertex_HeaderFile
-#define _TopoDS_TVertex_HeaderFile
-
-#include <Standard.hxx>
-#include <TopAbs_ShapeEnum.hxx>
-#include <TopoDS_TShape.hxx>
-
-// resolve name collisions with X11 headers
-#ifdef Convex
-  #undef Convex
-#endif
-
-class TopoDS_TVertex;
-DEFINE_STANDARD_HANDLE(TopoDS_TVertex, TopoDS_TShape)
-
-//! A  Vertex is a topological  point in  two or three
-//! dimensions.
-class TopoDS_TVertex : public TopoDS_TShape
-{
-public:
-  //! Returns VERTEX.
-  Standard_EXPORT TopAbs_ShapeEnum ShapeType() const Standard_OVERRIDE;
-
-  DEFINE_STANDARD_RTTIEXT(TopoDS_TVertex, TopoDS_TShape)
-
-protected:
-  //! Construct a vertex.
-  TopoDS_TVertex()
-      : TopoDS_TShape()
-  {
-    Closed(Standard_True);
-    Convex(Standard_True);
-  }
-};
-
-#endif // _TopoDS_TVertex_HeaderFile
+// clang-format off
+#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ModelingData/TKBRep/TopoDS/TopoDS_TVertex.hxx"// clang-format on

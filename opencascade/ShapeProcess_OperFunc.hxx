@@ -1,6 +1,4 @@
-// Created on: 2000-02-29
-// Created by: data exchange team
-// Copyright (c) 2000-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -13,14 +11,5 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef ShapeProcess_OperFunc_HeaderFile
-#define ShapeProcess_OperFunc_HeaderFile
-
-#include <ShapeProcess_Context.hxx>
-
-class Message_ProgressRange;
-
-typedef Standard_Boolean (*ShapeProcess_OperFunc)(const Handle(ShapeProcess_Context)& context,
-                                                  const Message_ProgressRange&        theProgress);
-
-#endif
+// clang-format off
+#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ModelingAlgorithms/TKShHealing/ShapeProcess/ShapeProcess_OperFunc.hxx"// clang-format on

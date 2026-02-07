@@ -1,7 +1,4 @@
-// Created on: 1993-02-22
-// Created by: Modelistation
-// Copyright (c) 1993-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,22 +11,5 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _GeomAbs_SurfaceType_HeaderFile
-#define _GeomAbs_SurfaceType_HeaderFile
-
-enum GeomAbs_SurfaceType
-{
-  GeomAbs_Plane,
-  GeomAbs_Cylinder,
-  GeomAbs_Cone,
-  GeomAbs_Sphere,
-  GeomAbs_Torus,
-  GeomAbs_BezierSurface,
-  GeomAbs_BSplineSurface,
-  GeomAbs_SurfaceOfRevolution,
-  GeomAbs_SurfaceOfExtrusion,
-  GeomAbs_OffsetSurface,
-  GeomAbs_OtherSurface
-};
-
-#endif // _GeomAbs_SurfaceType_HeaderFile
+// clang-format off
+#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/FoundationClasses/TKMath/GeomAbs/GeomAbs_SurfaceType.hxx"// clang-format on

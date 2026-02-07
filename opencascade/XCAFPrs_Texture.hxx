@@ -1,6 +1,4 @@
-// Created on: 2000-08-11
-// Created by: Andrey BETENEV
-// Copyright (c) 2000-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -13,35 +11,5 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _XCAFPrs_Texture_HeaderFile
-#define _XCAFPrs_Texture_HeaderFile
-
-#include <Graphic3d_Texture2Dmanual.hxx>
-#include <Graphic3d_TextureUnit.hxx>
-#include <Image_Texture.hxx>
-
-//! Texture holder.
-class XCAFPrs_Texture : public Graphic3d_Texture2D
-{
-  DEFINE_STANDARD_RTTIEXT(XCAFPrs_Texture, Graphic3d_Texture2D)
-public:
-  //! Constructor.
-  Standard_EXPORT XCAFPrs_Texture(const Handle(Image_Texture)& theImageSource,
-                                  const Graphic3d_TextureUnit  theUnit);
-
-  //! Image reader.
-  Standard_EXPORT virtual Handle(Image_CompressedPixMap) GetCompressedImage(
-    const Handle(Image_SupportedFormats)& theSupported) Standard_OVERRIDE;
-
-  //! Image reader.
-  Standard_EXPORT virtual Handle(Image_PixMap) GetImage(
-    const Handle(Image_SupportedFormats)& theSupported) Standard_OVERRIDE;
-
-  //! Return image source.
-  const Handle(Image_Texture)& GetImageSource() const { return myImageSource; }
-
-protected:
-  Handle(Image_Texture) myImageSource;
-};
-
-#endif // _XCAFPrs_Texture_HeaderFile
+// clang-format off
+#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/DataExchange/TKXCAF/XCAFPrs/XCAFPrs_Texture.hxx"// clang-format on

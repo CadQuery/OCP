@@ -1,6 +1,4 @@
-// Created on: 2001-07-17
-// Created by: Julia DOROVSKIKH <jfa@hotdox.nnov.matra-dtv.fr>
-// Copyright (c) 2001-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -13,55 +11,5 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _XmlObjMgt_Persistent_HeaderFile
-#define _XmlObjMgt_Persistent_HeaderFile
-
-#include <Standard.hxx>
-#include <Standard_DefineAlloc.hxx>
-
-#include <XmlObjMgt_Element.hxx>
-#include <Standard_Integer.hxx>
-#include <XmlObjMgt_DOMString.hxx>
-
-//! root for XML-persistence
-class XmlObjMgt_Persistent
-{
-public:
-  DEFINE_STANDARD_ALLOC
-
-  //! empty constructor
-  Standard_EXPORT XmlObjMgt_Persistent();
-
-  //! constructor
-  Standard_EXPORT XmlObjMgt_Persistent(const XmlObjMgt_Element& theElement);
-
-  //! constructor from sub-element of Element referenced by theRef
-  Standard_EXPORT XmlObjMgt_Persistent(const XmlObjMgt_Element&   theElement,
-                                       const XmlObjMgt_DOMString& theRef);
-
-  //! myElement := <theType id="theID"/>
-  Standard_EXPORT void CreateElement(XmlObjMgt_Element&         theParent,
-                                     const XmlObjMgt_DOMString& theType,
-                                     const Standard_Integer     theID);
-
-  Standard_EXPORT void SetId(const Standard_Integer theId);
-
-  //! return myElement
-  const XmlObjMgt_Element& Element() const;
-  inline                   operator const XmlObjMgt_Element&() const;
-
-  //! return myElement
-  XmlObjMgt_Element& Element();
-  inline             operator XmlObjMgt_Element&();
-
-  Standard_Integer Id() const;
-
-protected:
-private:
-  XmlObjMgt_Element myElement;
-  Standard_Integer  myID;
-};
-
-#include <XmlObjMgt_Persistent.lxx>
-
-#endif // _XmlObjMgt_Persistent_HeaderFile
+// clang-format off
+#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ApplicationFramework/TKXmlL/XmlObjMgt/XmlObjMgt_Persistent.hxx"// clang-format on

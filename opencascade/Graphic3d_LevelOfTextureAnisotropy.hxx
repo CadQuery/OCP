@@ -1,7 +1,4 @@
-// Created on: 1993-03-31
-// Created by: NW,JPB,CAL
-// Copyright (c) 1993-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,17 +11,5 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _Graphic3d_LevelOfTextureAnisotropy_HeaderFile
-#define _Graphic3d_LevelOfTextureAnisotropy_HeaderFile
-
-//! Level of anisotropy filter.
-//! Notice that actual quality depends on hardware capabilities!
-enum Graphic3d_LevelOfTextureAnisotropy
-{
-  Graphic3d_LOTA_OFF,
-  Graphic3d_LOTA_FAST,
-  Graphic3d_LOTA_MIDDLE,
-  Graphic3d_LOTA_QUALITY
-};
-
-#endif // _Graphic3d_LevelOfTextureAnisotropy_HeaderFile
+// clang-format off
+#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/Visualization/TKService/Graphic3d/Graphic3d_LevelOfTextureAnisotropy.hxx"// clang-format on

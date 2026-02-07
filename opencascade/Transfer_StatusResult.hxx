@@ -1,7 +1,4 @@
-// Created on: 1992-02-03
-// Created by: Christian CAILLET
-// Copyright (c) 1992-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,15 +11,5 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _Transfer_StatusResult_HeaderFile
-#define _Transfer_StatusResult_HeaderFile
-
-//! result status of transferring an entity (see Transcriptor)
-enum Transfer_StatusResult
-{
-  Transfer_StatusVoid,
-  Transfer_StatusDefined,
-  Transfer_StatusUsed
-};
-
-#endif // _Transfer_StatusResult_HeaderFile
+// clang-format off
+#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/DataExchange/TKXSBase/Transfer/Transfer_StatusResult.hxx"// clang-format on

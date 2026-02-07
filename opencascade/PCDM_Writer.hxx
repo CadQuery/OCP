@@ -1,7 +1,4 @@
-// Created on: 1997-12-18
-// Created by: Jean-Louis Frenkel
-// Copyright (c) 1997-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,37 +11,5 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _PCDM_Writer_HeaderFile
-#define _PCDM_Writer_HeaderFile
-
-#include <Standard.hxx>
-#include <Standard_Type.hxx>
-
-#include <Standard_Transient.hxx>
-
-#include <Message_ProgressIndicator.hxx>
-
-class CDM_Document;
-class TCollection_ExtendedString;
-
-class PCDM_Writer;
-DEFINE_STANDARD_HANDLE(PCDM_Writer, Standard_Transient)
-
-class PCDM_Writer : public Standard_Transient
-{
-public:
-  Standard_EXPORT virtual void Write(
-    const Handle(CDM_Document)&       aDocument,
-    const TCollection_ExtendedString& aFileName,
-    const Message_ProgressRange&      theRange = Message_ProgressRange()) = 0;
-
-  //! Write <theDocument> to theOStream
-  Standard_EXPORT virtual void Write(
-    const Handle(CDM_Document)&  theDocument,
-    Standard_OStream&            theOStream,
-    const Message_ProgressRange& theRange = Message_ProgressRange()) = 0;
-
-  DEFINE_STANDARD_RTTIEXT(PCDM_Writer, Standard_Transient)
-};
-
-#endif // _PCDM_Writer_HeaderFile
+// clang-format off
+#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ApplicationFramework/TKCDF/PCDM/PCDM_Writer.hxx"// clang-format on

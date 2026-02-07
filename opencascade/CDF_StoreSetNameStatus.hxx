@@ -1,7 +1,4 @@
-// Created on: 1997-08-07
-// Created by: Jean-Louis Frenkel
-// Copyright (c) 1997-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,14 +11,5 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _CDF_StoreSetNameStatus_HeaderFile
-#define _CDF_StoreSetNameStatus_HeaderFile
-
-enum CDF_StoreSetNameStatus
-{
-  CDF_SSNS_OK,
-  CDF_SSNS_ReplacingAnExistentDocument,
-  CDF_SSNS_OpenDocument
-};
-
-#endif // _CDF_StoreSetNameStatus_HeaderFile
+// clang-format off
+#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ApplicationFramework/TKCDF/CDF/CDF_StoreSetNameStatus.hxx"// clang-format on

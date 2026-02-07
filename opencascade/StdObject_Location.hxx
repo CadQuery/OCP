@@ -1,4 +1,4 @@
-// Copyright (c) 2015 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,50 +11,5 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _StdObject_Location_HeaderFile
-#define _StdObject_Location_HeaderFile
-
-#include <StdObjMgt_ReadData.hxx>
-#include <StdObjMgt_WriteData.hxx>
-#include <StdObjMgt_Persistent.hxx>
-#include <StdObjMgt_TransientPersistentMap.hxx>
-
-#include <TopLoc_Location.hxx>
-
-class StdObject_Location
-{
-public:
-  //! Gets persistent child objects
-  Standard_EXPORT void PChildren(StdObjMgt_Persistent::SequenceOfPersistent& theChildren) const;
-
-  //! Import transient object from the persistent data.
-  TopLoc_Location Import() const;
-
-  //! Creates a persistent wrapper object for a location
-  Standard_EXPORT static StdObject_Location Translate(const TopLoc_Location&            theLoc,
-                                                      StdObjMgt_TransientPersistentMap& theMap);
-
-private:
-  Handle(StdObjMgt_Persistent) myData;
-
-  friend StdObjMgt_ReadData&  operator>>(StdObjMgt_ReadData&, StdObject_Location&);
-  friend StdObjMgt_WriteData& operator<<(StdObjMgt_WriteData&, const StdObject_Location&);
-};
-
-//! Read persistent data from a file.
-inline StdObjMgt_ReadData& operator>>(StdObjMgt_ReadData& theReadData,
-                                      StdObject_Location& theLocation)
-{
-  StdObjMgt_ReadData::ObjectSentry aSentry(theReadData);
-  return theReadData >> theLocation.myData;
-}
-
-//! Write persistent data to a file.
-inline StdObjMgt_WriteData& operator<<(StdObjMgt_WriteData&      theWriteData,
-                                       const StdObject_Location& theLocation)
-{
-  StdObjMgt_WriteData::ObjectSentry aSentry(theWriteData);
-  return theWriteData << theLocation.myData;
-}
-
-#endif
+// clang-format off
+#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ApplicationFramework/TKStd/StdObject/StdObject_Location.hxx"// clang-format on

@@ -1,6 +1,4 @@
-// Created on: 2001-09-11
-// Created by: Julia DOROVSKIKH
-// Copyright (c) 2001-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -13,34 +11,5 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _XmlXCAFDrivers_DocumentRetrievalDriver_HeaderFile
-#define _XmlXCAFDrivers_DocumentRetrievalDriver_HeaderFile
-
-#include <Standard.hxx>
-#include <Standard_Type.hxx>
-
-#include <XmlDrivers_DocumentRetrievalDriver.hxx>
-class XmlMDF_ADriverTable;
-class Message_Messenger;
-
-class XmlXCAFDrivers_DocumentRetrievalDriver;
-DEFINE_STANDARD_HANDLE(XmlXCAFDrivers_DocumentRetrievalDriver, XmlDrivers_DocumentRetrievalDriver)
-
-//! retrieval driver of a XS document
-class XmlXCAFDrivers_DocumentRetrievalDriver : public XmlDrivers_DocumentRetrievalDriver
-{
-
-public:
-  Standard_EXPORT XmlXCAFDrivers_DocumentRetrievalDriver();
-
-  Standard_EXPORT virtual Handle(XmlMDF_ADriverTable) AttributeDrivers(
-    const Handle(Message_Messenger)& theMsgDriver) Standard_OVERRIDE;
-
-  DEFINE_STANDARD_RTTIEXT(XmlXCAFDrivers_DocumentRetrievalDriver,
-                          XmlDrivers_DocumentRetrievalDriver)
-
-protected:
-private:
-};
-
-#endif // _XmlXCAFDrivers_DocumentRetrievalDriver_HeaderFile
+// clang-format off
+#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/DataExchange/TKXmlXCAF/XmlXCAFDrivers/XmlXCAFDrivers_DocumentRetrievalDriver.hxx"// clang-format on

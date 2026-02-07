@@ -1,7 +1,4 @@
-// Created on: 1994-04-13
-// Created by: Eric BONNARDEL
-// Copyright (c) 1994-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,60 +11,5 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-//=======================================================================
-// function : const
-// purpose  :
-//=======================================================================
-
-inline const Handle(Geom_Surface)& GeomFill_Pipe::Surface() const
-{
-  return mySurface;
-}
-
-//=======================================================================
-// function : ExchangeUV
-// purpose  :
-//=======================================================================
-
-inline Standard_Boolean GeomFill_Pipe::ExchangeUV() const
-{
-  return myExchUV;
-}
-
-//=======================================================================
-// function : GenerateParticularCase
-// purpose  :
-//=======================================================================
-
-inline void GeomFill_Pipe::GenerateParticularCase(const Standard_Boolean B)
-{
-  myKPart = B;
-}
-
-//=======================================================================
-// function : GenerateParticularCase
-// purpose  :
-//=======================================================================
-
-inline Standard_Boolean GeomFill_Pipe::GenerateParticularCase() const
-{
-  return myKPart;
-}
-
-//=======================================================================
-// function :  ErrorOnSurf
-// purpose  :
-//=======================================================================
-inline Standard_Real GeomFill_Pipe::ErrorOnSurf() const
-{
-  return myError;
-}
-
-//=======================================================================
-// function :  IsDone
-// purpose  :
-//=======================================================================
-inline Standard_Boolean GeomFill_Pipe::IsDone() const
-{
-  return myStatus == GeomFill_PipeOk;
-}
+// clang-format off
+#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ModelingAlgorithms/TKGeomAlgo/GeomFill/GeomFill_Pipe.lxx"// clang-format on

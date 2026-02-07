@@ -1,4 +1,4 @@
-// Copyright (c) 2018-2019 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,30 +11,5 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _RWGltf_GltfSceneNodeMap_HeaderFile
-#define _RWGltf_GltfSceneNodeMap_HeaderFile
-
-#include <NCollection_IndexedMap.hxx>
-#include <XCAFPrs_DocumentExplorer.hxx>
-
-//! Indexed map of scene nodes with custom search algorithm.
-class RWGltf_GltfSceneNodeMap : public NCollection_IndexedMap<XCAFPrs_DocumentNode>
-{
-public:
-  //! Empty constructor.
-  RWGltf_GltfSceneNodeMap() {}
-
-  //! Find index from document node string identifier.
-  Standard_Integer FindIndex(const TCollection_AsciiString& theNodeId) const
-  {
-    if (IsEmpty())
-    {
-      return 0;
-    }
-    XCAFPrs_DocumentNode aDocNode;
-    aDocNode.Id = theNodeId;
-    return NCollection_IndexedMap<XCAFPrs_DocumentNode>::FindIndex(aDocNode);
-  }
-};
-
-#endif // _RWGltf_GltfSceneNodeMap_HeaderFile
+// clang-format off
+#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/DataExchange/TKDEGLTF/RWGltf/RWGltf_GltfSceneNodeMap.hxx"// clang-format on

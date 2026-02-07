@@ -1,7 +1,4 @@
-// Created on: 1992-02-03
-// Created by: Christian CAILLET
-// Copyright (c) 1992-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,17 +11,5 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _Transfer_StatusExec_HeaderFile
-#define _Transfer_StatusExec_HeaderFile
-
-//! execution status of an individual transfer (see Transcriptor)
-enum Transfer_StatusExec
-{
-  Transfer_StatusInitial,
-  Transfer_StatusRun,
-  Transfer_StatusDone,
-  Transfer_StatusError,
-  Transfer_StatusLoop
-};
-
-#endif // _Transfer_StatusExec_HeaderFile
+// clang-format off
+#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/DataExchange/TKXSBase/Transfer/Transfer_StatusExec.hxx"// clang-format on

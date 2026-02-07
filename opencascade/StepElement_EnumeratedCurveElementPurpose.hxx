@@ -1,4 +1,4 @@
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,18 +11,5 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _StepElement_EnumeratedCurveElementPurpose_HeaderFile
-#define _StepElement_EnumeratedCurveElementPurpose_HeaderFile
-
-enum StepElement_EnumeratedCurveElementPurpose
-{
-  StepElement_Axial,
-  StepElement_YYBending,
-  StepElement_ZZBending,
-  StepElement_Torsion,
-  StepElement_XYShear,
-  StepElement_XZShear,
-  StepElement_Warping
-};
-
-#endif // _StepElement_EnumeratedCurveElementPurpose_HeaderFile
+// clang-format off
+#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/DataExchange/TKDESTEP/StepElement/StepElement_EnumeratedCurveElementPurpose.hxx"// clang-format on

@@ -1,6 +1,4 @@
-// Created by: DAUTRY Philippe
-// Copyright (c) 1997-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -13,28 +11,5 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-//      	-------------------
-
-// Version:	0.0
-// Version	Date		Purpose
-//		0.0	Oct  1 1997	Creation
-
-inline Handle(TDF_Data) TDF_Transaction::Data() const
-{
-  return myDF;
-}
-
-inline Standard_Integer TDF_Transaction::Transaction() const
-{
-  return myUntilTransaction;
-}
-
-inline const TCollection_AsciiString& TDF_Transaction::Name() const
-{
-  return myName;
-}
-
-inline Standard_Boolean TDF_Transaction::IsOpen() const
-{
-  return myUntilTransaction > 0;
-}
+// clang-format off
+#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ApplicationFramework/TKLCAF/TDF/TDF_Transaction.lxx"// clang-format on

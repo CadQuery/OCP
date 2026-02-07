@@ -1,7 +1,4 @@
-// Created on: 1991-03-12
-// Created by: Michel CHAUVAT
-// Copyright (c) 1991-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,23 +11,5 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _GProp_ValueType_HeaderFile
-#define _GProp_ValueType_HeaderFile
-
-//! Algorithms:
-enum GProp_ValueType
-{
-  GProp_Mass,
-  GProp_CenterMassX,
-  GProp_CenterMassY,
-  GProp_CenterMassZ,
-  GProp_InertiaXX,
-  GProp_InertiaYY,
-  GProp_InertiaZZ,
-  GProp_InertiaXY,
-  GProp_InertiaXZ,
-  GProp_InertiaYZ,
-  GProp_Unknown
-};
-
-#endif // _GProp_ValueType_HeaderFile
+// clang-format off
+#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ModelingData/TKG3d/GProp/GProp_ValueType.hxx"// clang-format on

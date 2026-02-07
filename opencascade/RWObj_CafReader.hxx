@@ -1,4 +1,4 @@
-// Copyright (c) 2019 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,58 +11,5 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _RWObj_CafReader_HeaderFile
-#define _RWObj_CafReader_HeaderFile
-
-#include <RWMesh_CafReader.hxx>
-#include <RWObj_TriangulationReader.hxx>
-
-//! The OBJ mesh reader into XDE document.
-class RWObj_CafReader : public RWMesh_CafReader, protected RWObj_IShapeReceiver
-{
-  DEFINE_STANDARD_RTTIEXT(RWObj_CafReader, RWMesh_CafReader)
-public:
-  //! Empty constructor.
-  Standard_EXPORT RWObj_CafReader();
-
-  //! Return single precision flag for reading vertex data (coordinates); FALSE by default.
-  Standard_Boolean IsSinglePrecision() const { return myIsSinglePrecision; }
-
-  //! Setup single/double precision flag for reading vertex data (coordinates).
-  void SetSinglePrecision(Standard_Boolean theIsSinglePrecision)
-  {
-    myIsSinglePrecision = theIsSinglePrecision;
-  }
-
-protected:
-  //! Read the mesh from specified file.
-  Standard_EXPORT virtual Standard_Boolean performMesh(std::istream&                  theStream,
-                                                       const TCollection_AsciiString& theFile,
-                                                       const Message_ProgressRange&   theProgress,
-                                                       const Standard_Boolean         theToProbe)
-    Standard_OVERRIDE;
-
-protected:
-  //! Create reader context.
-  //! Can be overridden by sub-class to read triangulation into application-specific data structures
-  //! instead of Poly_Triangulation.
-  Standard_EXPORT virtual Handle(RWObj_TriangulationReader) createReaderContext();
-
-  //! @param theShape       shape to register
-  //! @param theName        shape name
-  //! @param theMaterial    shape material
-  //! @param theIsRootShape indicates that this is a root object (free shape)
-  Standard_EXPORT virtual void BindNamedShape(const TopoDS_Shape&            theShape,
-                                              const TCollection_AsciiString& theName,
-                                              const RWObj_Material*          theMaterial,
-                                              const Standard_Boolean         theIsRootShape)
-    Standard_OVERRIDE;
-
-protected:
-  NCollection_DataMap<TCollection_AsciiString, Handle(XCAFDoc_VisMaterial)> myObjMaterialMap;
-  // clang-format off
-  Standard_Boolean myIsSinglePrecision; //!< flag for reading vertex data with single or double floating point precision
-  // clang-format on
-};
-
-#endif // _RWObj_CafReader_HeaderFile
+// clang-format off
+#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/DataExchange/TKDEOBJ/RWObj/RWObj_CafReader.hxx"// clang-format on

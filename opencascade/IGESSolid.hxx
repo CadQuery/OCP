@@ -1,7 +1,4 @@
-// Created on: 1993-01-11
-// Created by: SIVA
-// Copyright (c) 1993-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,26 +11,5 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _IGESSolid_HeaderFile
-#define _IGESSolid_HeaderFile
-
-#include <Standard.hxx>
-#include <Standard_DefineAlloc.hxx>
-#include <Standard_Handle.hxx>
-
-class IGESSolid_Protocol;
-
-//! This package consists of B-Rep and CSG Solid entities
-class IGESSolid
-{
-public:
-  DEFINE_STANDARD_ALLOC
-
-  //! Prepares dynamic data (Protocol, Modules) for this package
-  Standard_EXPORT static void Init();
-
-  //! Returns the Protocol for this Package
-  Standard_EXPORT static Handle(IGESSolid_Protocol) Protocol();
-};
-
-#endif // _IGESSolid_HeaderFile
+// clang-format off
+#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/DataExchange/TKDEIGES/IGESSolid/IGESSolid.hxx"// clang-format on

@@ -1,6 +1,4 @@
-// Created on: 2001-09-05
-// Created by: Julia DOROVSKIKH
-// Copyright (c) 2001-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -13,25 +11,5 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _XmlMDocStd_HeaderFile
-#define _XmlMDocStd_HeaderFile
-
-#include <Standard.hxx>
-#include <Standard_DefineAlloc.hxx>
-#include <Standard_Handle.hxx>
-
-class XmlMDF_ADriverTable;
-class Message_Messenger;
-
-//! Driver for TDocStd_XLink
-class XmlMDocStd
-{
-public:
-  DEFINE_STANDARD_ALLOC
-
-  //! Adds the attribute drivers to <aDriverTable>.
-  Standard_EXPORT static void AddDrivers(const Handle(XmlMDF_ADriverTable)& aDriverTable,
-                                         const Handle(Message_Messenger)&   theMessageDriver);
-};
-
-#endif // _XmlMDocStd_HeaderFile
+// clang-format off
+#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ApplicationFramework/TKXmlL/XmlMDocStd/XmlMDocStd.hxx"// clang-format on

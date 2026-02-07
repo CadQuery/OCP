@@ -1,6 +1,4 @@
-// Created on: 2007-08-22
-// Created by: Sergey ZARITCHNY
-// Copyright (c) 2007-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -13,46 +11,5 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _XmlMDataStd_IntPackedMapDriver_HeaderFile
-#define _XmlMDataStd_IntPackedMapDriver_HeaderFile
-
-#include <Standard.hxx>
-#include <Standard_Type.hxx>
-
-#include <XmlMDF_ADriver.hxx>
-#include <XmlObjMgt_RRelocationTable.hxx>
-#include <XmlObjMgt_SRelocationTable.hxx>
-class Message_Messenger;
-class TDF_Attribute;
-class XmlObjMgt_Persistent;
-
-class XmlMDataStd_IntPackedMapDriver;
-DEFINE_STANDARD_HANDLE(XmlMDataStd_IntPackedMapDriver, XmlMDF_ADriver)
-
-//! TDataStd_IntPackedMap attribute Driver.
-class XmlMDataStd_IntPackedMapDriver : public XmlMDF_ADriver
-{
-
-public:
-  Standard_EXPORT XmlMDataStd_IntPackedMapDriver(const Handle(Message_Messenger)& theMessageDriver);
-
-  Standard_EXPORT Handle(TDF_Attribute) NewEmpty() const Standard_OVERRIDE;
-
-  //! persistent -> transient (retrieve)
-  Standard_EXPORT Standard_Boolean
-    Paste(const XmlObjMgt_Persistent&  Source,
-          const Handle(TDF_Attribute)& Target,
-          XmlObjMgt_RRelocationTable&  RelocTable) const Standard_OVERRIDE;
-
-  //! transient -> persistent (store)
-  Standard_EXPORT void Paste(const Handle(TDF_Attribute)& Source,
-                             XmlObjMgt_Persistent&        Target,
-                             XmlObjMgt_SRelocationTable&  RelocTable) const Standard_OVERRIDE;
-
-  DEFINE_STANDARD_RTTIEXT(XmlMDataStd_IntPackedMapDriver, XmlMDF_ADriver)
-
-protected:
-private:
-};
-
-#endif // _XmlMDataStd_IntPackedMapDriver_HeaderFile
+// clang-format off
+#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ApplicationFramework/TKXmlL/XmlMDataStd/XmlMDataStd_IntPackedMapDriver.hxx"// clang-format on

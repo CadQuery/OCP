@@ -1,7 +1,4 @@
-// Created on: 1994-11-25
-// Created by: Frederic MAUPAS
-// Copyright (c) 1994-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,13 +11,5 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _TopoDSToStep_MakeVertexError_HeaderFile
-#define _TopoDSToStep_MakeVertexError_HeaderFile
-
-enum TopoDSToStep_MakeVertexError
-{
-  TopoDSToStep_VertexDone,
-  TopoDSToStep_VertexOther
-};
-
-#endif // _TopoDSToStep_MakeVertexError_HeaderFile
+// clang-format off
+#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/DataExchange/TKDESTEP/TopoDSToStep/TopoDSToStep_MakeVertexError.hxx"// clang-format on

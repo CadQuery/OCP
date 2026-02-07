@@ -1,4 +1,4 @@
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,50 +11,5 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-//=======================================================================
-// function : GetResult
-// purpose  :
-//=======================================================================
-
-inline TopoDS_Shape ShapeUpgrade_RemoveLocations::GetResult() const
-{
-  return myShape;
-}
-
-//=======================================================================
-// function : SetRemoveLevel
-// purpose  :
-//=======================================================================
-
-inline void ShapeUpgrade_RemoveLocations::SetRemoveLevel(const TopAbs_ShapeEnum theLevel)
-{
-
-  if ((Standard_Integer)theLevel > TopAbs_FACE)
-    myLevelRemoving = TopAbs_FACE;
-  else
-    myLevelRemoving = theLevel;
-}
-
-//=======================================================================
-// function : RemoveLevel
-// purpose  :
-//=======================================================================
-
-inline TopAbs_ShapeEnum ShapeUpgrade_RemoveLocations::RemoveLevel() const
-{
-  return myLevelRemoving;
-}
-
-//=======================================================================
-// function : ModifiedShape
-// purpose  :
-//=======================================================================
-
-inline TopoDS_Shape ShapeUpgrade_RemoveLocations::ModifiedShape(
-  const TopoDS_Shape& theInitShape) const
-{
-  TopoDS_Shape aShape = theInitShape;
-  if (myMapNewShapes.IsBound(theInitShape))
-    aShape = myMapNewShapes.Find(theInitShape);
-  return aShape;
-}
+// clang-format off
+#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ModelingAlgorithms/TKShHealing/ShapeUpgrade/ShapeUpgrade_RemoveLocations.lxx"// clang-format on

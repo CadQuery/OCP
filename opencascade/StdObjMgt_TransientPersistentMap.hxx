@@ -1,4 +1,4 @@
-// Copyright (c) 2015 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,15 +11,5 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _StdObjMgt_TransientPersistentMap_HeaderFile
-#define _StdObjMgt_TransientPersistentMap_HeaderFile
-
-#include <NCollection_DataMap.hxx>
-
-class Standard_Transient;
-class StdObjMgt_Persistent;
-
-typedef NCollection_DataMap<Handle(Standard_Transient), Handle(StdObjMgt_Persistent)>
-  StdObjMgt_TransientPersistentMap;
-
-#endif // _StdObjMgt_TransientPersistentMap_HeaderFile
+// clang-format off
+#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ApplicationFramework/TKStdL/StdObjMgt/StdObjMgt_TransientPersistentMap.hxx"// clang-format on

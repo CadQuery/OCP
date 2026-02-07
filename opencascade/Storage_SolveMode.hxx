@@ -1,7 +1,4 @@
-// Created on: 1996-04-30
-// Created by: cle
-// Copyright (c) 1996-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,14 +11,5 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _Storage_SolveMode_HeaderFile
-#define _Storage_SolveMode_HeaderFile
-
-enum Storage_SolveMode
-{
-  Storage_AddSolve,
-  Storage_WriteSolve,
-  Storage_ReadSolve
-};
-
-#endif // _Storage_SolveMode_HeaderFile
+// clang-format off
+#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/FoundationClasses/TKernel/Storage/Storage_SolveMode.hxx"// clang-format on

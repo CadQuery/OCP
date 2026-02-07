@@ -1,7 +1,4 @@
-// Created on: 1995-08-23
-// Created by: Xavier BENVENISTE
-// Copyright (c) 1995-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,18 +11,5 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef Convert_CosAndSinEvalFunction_HeaderFile
-#define Convert_CosAndSinEvalFunction_HeaderFile
-
-#include <TColgp_Array1OfPnt2d.hxx>
-#include <TColStd_Array1OfReal.hxx>
-#include <TColStd_Array1OfInteger.hxx>
-
-typedef void Convert_CosAndSinEvalFunction(Standard_Real,
-                                           const Standard_Integer,
-                                           const TColgp_Array1OfPnt2d&,
-                                           const TColStd_Array1OfReal&,
-                                           const TColStd_Array1OfInteger*,
-                                           Standard_Real Result[2]);
-
-#endif
+// clang-format off
+#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/FoundationClasses/TKMath/Convert/Convert_CosAndSinEvalFunction.hxx"// clang-format on

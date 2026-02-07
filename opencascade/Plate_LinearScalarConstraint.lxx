@@ -1,7 +1,4 @@
-// Created on: 1998-05-25
-// Created by: Andre LIEUTIER
-// Copyright (c) 1998-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,15 +11,5 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#include <TColgp_HArray2OfXYZ.hxx>
-#include <Plate_HArray1OfPinpointConstraint.hxx>
-
-inline const Plate_Array1OfPinpointConstraint& Plate_LinearScalarConstraint::GetPPC() const
-{
-  return myPPC->Array1();
-}
-
-inline const TColgp_Array2OfXYZ& Plate_LinearScalarConstraint::Coeff() const
-{
-  return myCoef->Array2();
-}
+// clang-format off
+#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ModelingAlgorithms/TKGeomAlgo/Plate/Plate_LinearScalarConstraint.lxx"// clang-format on

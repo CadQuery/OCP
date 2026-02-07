@@ -1,7 +1,4 @@
-// Created on: 1993-06-17
-// Created by: Jean Yves LEBEY
-// Copyright (c) 1993-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,16 +11,5 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _TopOpeBRep_P2Dstatus_HeaderFile
-#define _TopOpeBRep_P2Dstatus_HeaderFile
-
-enum TopOpeBRep_P2Dstatus
-{
-  TopOpeBRep_P2DUNK,
-  TopOpeBRep_P2DINT,
-  TopOpeBRep_P2DSGF,
-  TopOpeBRep_P2DSGL,
-  TopOpeBRep_P2DNEW
-};
-
-#endif // _TopOpeBRep_P2Dstatus_HeaderFile
+// clang-format off
+#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ModelingAlgorithms/TKBool/TopOpeBRep/TopOpeBRep_P2Dstatus.hxx"// clang-format on

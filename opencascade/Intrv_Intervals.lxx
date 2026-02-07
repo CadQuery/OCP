@@ -1,7 +1,4 @@
-// Created on: 1991-12-13
-// Created by: Christophe MARION
-// Copyright (c) 1991-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,25 +11,5 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#include <Intrv_SequenceOfInterval.hxx>
-#include <Intrv_Interval.hxx>
-
-//=======================================================================
-// function : NbIntervals
-// purpose  : returns the number of Intervals
-//=======================================================================
-
-inline Standard_Integer Intrv_Intervals::NbIntervals() const
-{
-  return myInter.Length();
-}
-
-//=======================================================================
-// function : Value
-// purpose  : returns the Interval of rank Index
-//=======================================================================
-
-inline const Intrv_Interval& Intrv_Intervals::Value(const Standard_Integer Index) const
-{
-  return myInter(Index);
-}
+// clang-format off
+#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ModelingAlgorithms/TKHLR/Intrv/Intrv_Intervals.lxx"// clang-format on

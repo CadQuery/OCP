@@ -1,5 +1,4 @@
-// Created by: Peter KURNEV
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -12,23 +11,5 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _BOPAlgo_CheckStatus_HeaderFile
-#define _BOPAlgo_CheckStatus_HeaderFile
-
-enum BOPAlgo_CheckStatus
-{
-  BOPAlgo_CheckUnknown,
-  BOPAlgo_BadType,
-  BOPAlgo_SelfIntersect,
-  BOPAlgo_TooSmallEdge,
-  BOPAlgo_NonRecoverableFace,
-  BOPAlgo_IncompatibilityOfVertex,
-  BOPAlgo_IncompatibilityOfEdge,
-  BOPAlgo_IncompatibilityOfFace,
-  BOPAlgo_OperationAborted,
-  BOPAlgo_GeomAbs_C0,
-  BOPAlgo_InvalidCurveOnSurface,
-  BOPAlgo_NotValid
-};
-
-#endif // _BOPAlgo_CheckStatus_HeaderFile
+// clang-format off
+#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ModelingAlgorithms/TKBO/BOPAlgo/BOPAlgo_CheckStatus.hxx"// clang-format on

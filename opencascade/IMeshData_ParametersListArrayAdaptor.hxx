@@ -1,6 +1,4 @@
-// Created on: 2016-04-07
-// Copyright (c) 2016 OPEN CASCADE SAS
-// Created by: Oleg AGASHIN
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -13,45 +11,5 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _IMeshData_ParametersListArrayAdaptor_HeaderFile
-#define _IMeshData_ParametersListArrayAdaptor_HeaderFile
-
-#include <Standard_Transient.hxx>
-
-//! Auxiliary tool representing adaptor interface for child classes of
-//! IMeshData_ParametersList to be used in tools working on NCollection_Array structure.
-template <class ParametersListPtrType>
-class IMeshData_ParametersListArrayAdaptor : public Standard_Transient
-{
-public:
-  //! Constructor. Initializes tool by the given parameters.
-  IMeshData_ParametersListArrayAdaptor(const ParametersListPtrType& theParameters)
-      : myParameters(theParameters)
-  {
-  }
-
-  //! Destructor.
-  virtual ~IMeshData_ParametersListArrayAdaptor() {}
-
-  //! Returns lower index in parameters array.
-  Standard_Integer Lower() const { return 0; }
-
-  //! Returns upper index in parameters array.
-  Standard_Integer Upper() const { return myParameters->ParametersNb() - 1; }
-
-  //! Returns value of the given index.
-  Standard_Real Value(const Standard_Integer theIndex) const
-  {
-    return myParameters->GetParameter(theIndex);
-  }
-
-private:
-  IMeshData_ParametersListArrayAdaptor(
-    const IMeshData_ParametersListArrayAdaptor<ParametersListPtrType>& theOther);
-
-  void operator=(const IMeshData_ParametersListArrayAdaptor<ParametersListPtrType>& theOther);
-
-  const ParametersListPtrType myParameters;
-};
-
-#endif
+// clang-format off
+#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ModelingAlgorithms/TKMesh/IMeshData/IMeshData_ParametersListArrayAdaptor.hxx"// clang-format on

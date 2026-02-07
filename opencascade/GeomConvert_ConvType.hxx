@@ -1,4 +1,4 @@
-// Copyright (c) 2022 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,14 +11,5 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _GeomConvert_ConvType_HeaderFile
-#define _GeomConvert_ConvType_HeaderFile
-
-enum GeomConvert_ConvType
-{
-  GeomConvert_Target,
-  GeomConvert_Simplest,
-  GeomConvert_MinGap
-};
-
-#endif // _GeomConvert_ConvType_HeaderFile
+// clang-format off
+#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ModelingData/TKGeomBase/GeomConvert/GeomConvert_ConvType.hxx"// clang-format on

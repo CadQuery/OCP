@@ -1,7 +1,4 @@
-// Created on: 1995-12-01
-// Created by: EXPRESS->CDL V0.2 Translator
-// Copyright (c) 1995-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,27 +11,5 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _StepShape_GeometricCurveSet_HeaderFile
-#define _StepShape_GeometricCurveSet_HeaderFile
-
-#include <Standard.hxx>
-
-#include <StepShape_GeometricSet.hxx>
-
-class StepShape_GeometricCurveSet;
-DEFINE_STANDARD_HANDLE(StepShape_GeometricCurveSet, StepShape_GeometricSet)
-
-class StepShape_GeometricCurveSet : public StepShape_GeometricSet
-{
-
-public:
-  //! Returns a GeometricCurveSet
-  Standard_EXPORT StepShape_GeometricCurveSet();
-
-  DEFINE_STANDARD_RTTIEXT(StepShape_GeometricCurveSet, StepShape_GeometricSet)
-
-protected:
-private:
-};
-
-#endif // _StepShape_GeometricCurveSet_HeaderFile
+// clang-format off
+#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/DataExchange/TKDESTEP/StepShape/StepShape_GeometricCurveSet.hxx"// clang-format on

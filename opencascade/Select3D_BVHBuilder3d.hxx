@@ -1,4 +1,4 @@
-// Copyright (c) 2017 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,11 +11,5 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _Select3D_BVHBuilder3d_Header
-#define _Select3D_BVHBuilder3d_Header
-
-#include <BVH_Builder.hxx>
-
-typedef BVH_Builder<Standard_Real, 3> Select3D_BVHBuilder3d;
-
-#endif // _Select3D_BVHBuilder3d_Header
+// clang-format off
+#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/Visualization/TKV3d/Select3D/Select3D_BVHBuilder3d.hxx"// clang-format on

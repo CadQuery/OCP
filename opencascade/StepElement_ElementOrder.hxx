@@ -1,4 +1,4 @@
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,14 +11,5 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _StepElement_ElementOrder_HeaderFile
-#define _StepElement_ElementOrder_HeaderFile
-
-enum StepElement_ElementOrder
-{
-  StepElement_Linear,
-  StepElement_Quadratic,
-  StepElement_Cubic
-};
-
-#endif // _StepElement_ElementOrder_HeaderFile
+// clang-format off
+#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/DataExchange/TKDESTEP/StepElement/StepElement_ElementOrder.hxx"// clang-format on

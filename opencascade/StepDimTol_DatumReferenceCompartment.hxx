@@ -1,6 +1,4 @@
-// Created on: 2015-07-16
-// Created by: Irina KRYLOVA
-// Copyright (c) 2015 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -13,24 +11,5 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _StepDimTol_DatumReferenceCompartment_HeaderFile
-#define _StepDimTol_DatumReferenceCompartment_HeaderFile
-
-#include <Standard.hxx>
-
-#include <StepDimTol_GeneralDatumReference.hxx>
-
-class StepDimTol_DatumReferenceCompartment;
-DEFINE_STANDARD_HANDLE(StepDimTol_DatumReferenceCompartment, StepDimTol_GeneralDatumReference)
-
-//! Representation of STEP entity DatumReferenceCompartment
-class StepDimTol_DatumReferenceCompartment : public StepDimTol_GeneralDatumReference
-{
-
-public:
-  //! Empty constructor
-  Standard_EXPORT StepDimTol_DatumReferenceCompartment();
-
-  DEFINE_STANDARD_RTTIEXT(StepDimTol_DatumReferenceCompartment, StepDimTol_GeneralDatumReference)
-};
-#endif // _StepDimTol_DatumReferenceCompartment_HeaderFile
+// clang-format off
+#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/DataExchange/TKDESTEP/StepDimTol/StepDimTol_DatumReferenceCompartment.hxx"// clang-format on

@@ -1,4 +1,4 @@
-// Copyright (c) 2020 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,19 +11,5 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _IMeshTools_MeshAlgoType_HeaderFile
-#define _IMeshTools_MeshAlgoType_HeaderFile
-
-//! Enumerates built-in meshing algorithms factories implementing IMeshTools_MeshAlgoFactory
-//! interface.
-enum IMeshTools_MeshAlgoType
-{
-  IMeshTools_MeshAlgoType_DEFAULT =
-    -1, //!< use global default (IMeshTools_MeshAlgoType_Watson or CSF_MeshAlgo)
-  IMeshTools_MeshAlgoType_Watson =
-    0, //!< generate 2D Delaunay triangulation based on Watson algorithm (BRepMesh_MeshAlgoFactory)
-  IMeshTools_MeshAlgoType_Delabella, //!< generate 2D Delaunay triangulation based on Delabella
-                                     //!< algorithm (BRepMesh_DelabellaMeshAlgoFactory)
-};
-
-#endif
+// clang-format off
+#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ModelingAlgorithms/TKMesh/IMeshTools/IMeshTools_MeshAlgoType.hxx"// clang-format on

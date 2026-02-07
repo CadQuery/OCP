@@ -1,7 +1,4 @@
-// Created on: 1993-11-17
-// Created by: Isabelle GRIGNON
-// Copyright (c) 1993-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,14 +11,5 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _ChFiDS_ChamfMethod_HeaderFile
-#define _ChFiDS_ChamfMethod_HeaderFile
-
-enum ChFiDS_ChamfMethod
-{
-  ChFiDS_Sym,
-  ChFiDS_TwoDist,
-  ChFiDS_DistAngle
-};
-
-#endif // _ChFiDS_ChamfMethod_HeaderFile
+// clang-format off
+#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ModelingAlgorithms/TKFillet/ChFiDS/ChFiDS_ChamfMethod.hxx"// clang-format on

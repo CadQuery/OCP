@@ -1,4 +1,4 @@
-// Copyright (c) 2021 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,35 +11,5 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _GeomConvert_Units_HeaderFile
-#define _GeomConvert_Units_HeaderFile
-
-#include <Standard_Handle.hxx>
-class Geom2d_Curve;
-class Geom_Surface;
-
-//! Class contains conversion methods for 2d geom objects
-class GeomConvert_Units
-{
-public:
-  DEFINE_STANDARD_ALLOC
-
-  //! Convert 2d curve for change angle unit from radian to degree
-  Standard_EXPORT static Handle(Geom2d_Curve) RadianToDegree(
-    const Handle(Geom2d_Curve)& theCurve,
-    const Handle(Geom_Surface)& theSurface,
-    const Standard_Real         theLengthFactor,
-    const Standard_Real         theFactorRadianDegree);
-
-  //! Convert 2d curve for change angle unit from degree to radian
-  Standard_EXPORT static Handle(Geom2d_Curve) DegreeToRadian(
-    const Handle(Geom2d_Curve)& theCurve,
-    const Handle(Geom_Surface)& theSurface,
-    const Standard_Real         theLengthFactor,
-    const Standard_Real         theFactorRadianDegree);
-
-  //! return 2d curve as 'mirror' for given
-  Standard_EXPORT static Handle(Geom2d_Curve) MirrorPCurve(const Handle(Geom2d_Curve)& theCurve);
-};
-
-#endif // _GeomConvert_Units_HeaderFile
+// clang-format off
+#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ModelingData/TKGeomBase/GeomConvert/GeomConvert_Units.hxx"// clang-format on

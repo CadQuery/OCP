@@ -1,7 +1,4 @@
-// Created on: 1997-10-02
-// Created by: Xuan Trang PHAM PHU
-// Copyright (c) 1997-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,33 +11,5 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _TopOpeBRepBuild_ShellToSolid_HeaderFile
-#define _TopOpeBRepBuild_ShellToSolid_HeaderFile
-
-#include <Standard.hxx>
-#include <Standard_DefineAlloc.hxx>
-
-#include <TopTools_ListOfShape.hxx>
-class TopoDS_Shell;
-class TopoDS_Solid;
-
-//! This class builds solids from a set of shells SSh and a solid F.
-class TopOpeBRepBuild_ShellToSolid
-{
-public:
-  DEFINE_STANDARD_ALLOC
-
-  Standard_EXPORT TopOpeBRepBuild_ShellToSolid();
-
-  Standard_EXPORT void Init();
-
-  Standard_EXPORT void AddShell(const TopoDS_Shell& Sh);
-
-  Standard_EXPORT void MakeSolids(const TopoDS_Solid& So, TopTools_ListOfShape& LSo);
-
-protected:
-private:
-  TopTools_ListOfShape myLSh;
-};
-
-#endif // _TopOpeBRepBuild_ShellToSolid_HeaderFile
+// clang-format off
+#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ModelingAlgorithms/TKBool/TopOpeBRepBuild/TopOpeBRepBuild_ShellToSolid.hxx"// clang-format on

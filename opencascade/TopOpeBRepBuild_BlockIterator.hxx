@@ -1,7 +1,4 @@
-// Created on: 1993-02-25
-// Created by: Jean Yves LEBEY
-// Copyright (c) 1993-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,43 +11,5 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _TopOpeBRepBuild_BlockIterator_HeaderFile
-#define _TopOpeBRepBuild_BlockIterator_HeaderFile
-
-#include <Standard.hxx>
-#include <Standard_DefineAlloc.hxx>
-#include <Standard_Handle.hxx>
-
-#include <Standard_Boolean.hxx>
-
-//! Iterator on the elements of a block.
-class TopOpeBRepBuild_BlockIterator
-{
-public:
-  DEFINE_STANDARD_ALLOC
-
-  Standard_EXPORT TopOpeBRepBuild_BlockIterator();
-
-  Standard_EXPORT TopOpeBRepBuild_BlockIterator(const Standard_Integer Lower,
-                                                const Standard_Integer Upper);
-
-  void Initialize();
-
-  Standard_Boolean More() const;
-
-  void Next();
-
-  Standard_Integer Value() const;
-
-  Standard_Integer Extent() const;
-
-protected:
-private:
-  Standard_Integer myLower;
-  Standard_Integer myUpper;
-  Standard_Integer myValue;
-};
-
-#include <TopOpeBRepBuild_BlockIterator.lxx>
-
-#endif // _TopOpeBRepBuild_BlockIterator_HeaderFile
+// clang-format off
+#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ModelingAlgorithms/TKBool/TopOpeBRepBuild/TopOpeBRepBuild_BlockIterator.hxx"// clang-format on

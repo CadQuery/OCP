@@ -1,6 +1,4 @@
-// Created by: DAUTRY Philippe
-// Copyright (c) 1997-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -13,12 +11,5 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef TDF_AttributeIndexedMap_HeaderFile
-#define TDF_AttributeIndexedMap_HeaderFile
-
-#include <NCollection_IndexedMap.hxx>
-
-class TDF_Attribute;
-typedef NCollection_IndexedMap<Handle(TDF_Attribute)> TDF_AttributeIndexedMap;
-
-#endif
+// clang-format off
+#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ApplicationFramework/TKLCAF/TDF/TDF_AttributeIndexedMap.hxx"// clang-format on

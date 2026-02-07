@@ -1,7 +1,4 @@
-// Created on: 1991-02-26
-// Created by: Isabelle GRIGNON
-// Copyright (c) 1991-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,14 +11,5 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _Extrema_ExtFlag_HeaderFile
-#define _Extrema_ExtFlag_HeaderFile
-
-enum Extrema_ExtFlag
-{
-  Extrema_ExtFlag_MIN,
-  Extrema_ExtFlag_MAX,
-  Extrema_ExtFlag_MINMAX
-};
-
-#endif // _Extrema_ExtFlag_HeaderFile
+// clang-format off
+#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ModelingData/TKGeomBase/Extrema/Extrema_ExtFlag.hxx"// clang-format on

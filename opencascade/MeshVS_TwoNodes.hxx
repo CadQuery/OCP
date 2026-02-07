@@ -1,4 +1,4 @@
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,49 +11,5 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef MeshVS_TwoNodes_HeaderFile
-#define MeshVS_TwoNodes_HeaderFile
-
-#include <Standard.hxx>
-#include <Standard_Macro.hxx>
-#include <Standard_HashUtils.hxx>
-
-//! Structure containing two IDs (of nodes) for using as a key in a map
-//! (as representation of a mesh link)
-//!
-struct MeshVS_TwoNodes
-{
-  Standard_Integer First, Second;
-
-  MeshVS_TwoNodes(Standard_Integer aFirst = 0, Standard_Integer aSecond = 0)
-      : First(aFirst),
-        Second(aSecond)
-  {
-  }
-
-  bool operator==(const MeshVS_TwoNodes& theTwoNode) const
-  {
-    return ((First == theTwoNode.First) && (Second == theTwoNode.Second))
-           || ((First == theTwoNode.Second) && (Second == theTwoNode.First));
-  }
-};
-
-namespace std
-{
-template <>
-struct hash<MeshVS_TwoNodes>
-{
-  size_t operator()(const MeshVS_TwoNodes& theTwoNodes) const noexcept
-  {
-    // Combine two int values into a single hash value.
-    int aCombination[2]{theTwoNodes.First, theTwoNodes.Second};
-    if (aCombination[0] > aCombination[1])
-    {
-      std::swap(aCombination[0], aCombination[1]);
-    }
-    return opencascade::hashBytes(aCombination, sizeof(aCombination));
-  }
-};
-} // namespace std
-
-#endif
+// clang-format off
+#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/Visualization/TKMeshVS/MeshVS/MeshVS_TwoNodes.hxx"// clang-format on

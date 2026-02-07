@@ -1,7 +1,4 @@
-// Created on: 1993-06-14
-// Created by: Martine LANGLOIS
-// Copyright (c) 1993-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,35 +11,5 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _GeomToStep_MakeCylindricalSurface_HeaderFile
-#define _GeomToStep_MakeCylindricalSurface_HeaderFile
-
-#include <Standard.hxx>
-#include <Standard_DefineAlloc.hxx>
-#include <Standard_Handle.hxx>
-
-#include <GeomToStep_Root.hxx>
-class StepGeom_CylindricalSurface;
-class Geom_CylindricalSurface;
-
-//! This class implements the mapping between class
-//! CylindricalSurface from Geom and the class
-//! CylindricalSurface from StepGeom which describes a
-//! cylindrical_surface from Prostep
-class GeomToStep_MakeCylindricalSurface : public GeomToStep_Root
-{
-public:
-  DEFINE_STANDARD_ALLOC
-
-  Standard_EXPORT GeomToStep_MakeCylindricalSurface(
-    const Handle(Geom_CylindricalSurface)& CSurf,
-    const StepData_Factors&                theLocalFactors = StepData_Factors());
-
-  Standard_EXPORT const Handle(StepGeom_CylindricalSurface)& Value() const;
-
-protected:
-private:
-  Handle(StepGeom_CylindricalSurface) theCylindricalSurface;
-};
-
-#endif // _GeomToStep_MakeCylindricalSurface_HeaderFile
+// clang-format off
+#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/DataExchange/TKDESTEP/GeomToStep/GeomToStep_MakeCylindricalSurface.hxx"// clang-format on

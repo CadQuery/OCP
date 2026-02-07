@@ -1,7 +1,4 @@
-// Created on: 1990-12-17
-// Created by: Remi Lequette
-// Copyright (c) 1990-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,37 +11,5 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _TopoDS_Wire_HeaderFile
-#define _TopoDS_Wire_HeaderFile
-
-#include <TopoDS_Shape.hxx>
-
-//! Describes a wire which
-//! - references an underlying wire with the potential to
-//! be given a location and an orientation
-//! - has a location for the underlying wire, giving its
-//! placement in the local coordinate system
-//! - has an orientation for the underlying wire, in terms
-//! of its geometry (as opposed to orientation in relation to other shapes).
-class TopoDS_Wire : public TopoDS_Shape
-{
-public:
-  DEFINE_STANDARD_ALLOC
-
-  //! Undefined Wire.
-  TopoDS_Wire() {}
-};
-
-namespace std
-{
-template <>
-struct hash<TopoDS_Wire>
-{
-  size_t operator()(const TopoDS_Wire& theShape) const
-  {
-    return std::hash<TopoDS_Shape>{}(theShape);
-  }
-};
-} // namespace std
-
-#endif // _TopoDS_Wire_HeaderFile
+// clang-format off
+#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ModelingData/TKBRep/TopoDS/TopoDS_Wire.hxx"// clang-format on

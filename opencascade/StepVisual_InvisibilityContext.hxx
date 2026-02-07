@@ -1,7 +1,4 @@
-// Created on: 1995-12-01
-// Created by: EXPRESS->CDL V0.2 Translator
-// Copyright (c) 1995-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,46 +11,5 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _StepVisual_InvisibilityContext_HeaderFile
-#define _StepVisual_InvisibilityContext_HeaderFile
-
-#include <Standard.hxx>
-#include <Standard_DefineAlloc.hxx>
-#include <Standard_Handle.hxx>
-
-#include <StepData_SelectType.hxx>
-#include <Standard_Integer.hxx>
-class Standard_Transient;
-class StepVisual_DraughtingModel;
-class StepVisual_PresentationRepresentation;
-class StepVisual_PresentationSet;
-
-class StepVisual_InvisibilityContext : public StepData_SelectType
-{
-public:
-  DEFINE_STANDARD_ALLOC
-
-  //! Returns a InvisibilityContext SelectType
-  Standard_EXPORT StepVisual_InvisibilityContext();
-
-  //! Recognizes a InvisibilityContext Kind Entity that is :
-  //! 1 -> PresentationRepresentation
-  //! 2 -> PresentationSet
-  //! 2 -> DraughtingModel
-  //! 0 else
-  Standard_EXPORT Standard_Integer CaseNum(const Handle(Standard_Transient)& ent) const;
-
-  //! returns Value as a PresentationRepresentation (Null if another type)
-  Standard_EXPORT Handle(StepVisual_PresentationRepresentation) PresentationRepresentation() const;
-
-  //! returns Value as a PresentationSet (Null if another type)
-  Standard_EXPORT Handle(StepVisual_PresentationSet) PresentationSet() const;
-
-  //! returns Value as a PresentationSet (Null if another type)
-  Standard_EXPORT Handle(StepVisual_DraughtingModel) DraughtingModel() const;
-
-protected:
-private:
-};
-
-#endif // _StepVisual_InvisibilityContext_HeaderFile
+// clang-format off
+#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/DataExchange/TKDESTEP/StepVisual/StepVisual_InvisibilityContext.hxx"// clang-format on

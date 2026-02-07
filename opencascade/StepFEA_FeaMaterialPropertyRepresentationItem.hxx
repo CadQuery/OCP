@@ -1,6 +1,4 @@
-// Created on: 2002-12-12
-// Created by: data exchange team
-// Copyright (c) 2002-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -13,30 +11,5 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _StepFEA_FeaMaterialPropertyRepresentationItem_HeaderFile
-#define _StepFEA_FeaMaterialPropertyRepresentationItem_HeaderFile
-
-#include <Standard.hxx>
-#include <Standard_Type.hxx>
-
-#include <StepRepr_RepresentationItem.hxx>
-
-class StepFEA_FeaMaterialPropertyRepresentationItem;
-DEFINE_STANDARD_HANDLE(StepFEA_FeaMaterialPropertyRepresentationItem, StepRepr_RepresentationItem)
-
-//! Representation of STEP entity FeaMaterialPropertyRepresentationItem
-class StepFEA_FeaMaterialPropertyRepresentationItem : public StepRepr_RepresentationItem
-{
-
-public:
-  //! Empty constructor
-  Standard_EXPORT StepFEA_FeaMaterialPropertyRepresentationItem();
-
-  DEFINE_STANDARD_RTTIEXT(StepFEA_FeaMaterialPropertyRepresentationItem,
-                          StepRepr_RepresentationItem)
-
-protected:
-private:
-};
-
-#endif // _StepFEA_FeaMaterialPropertyRepresentationItem_HeaderFile
+// clang-format off
+#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/DataExchange/TKDESTEP/StepFEA/StepFEA_FeaMaterialPropertyRepresentationItem.hxx"// clang-format on

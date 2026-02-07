@@ -1,7 +1,4 @@
-// Created on: 1995-03-08
-// Created by: Mister rmi
-// Copyright (c) 1995-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,21 +11,5 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _StdSelect_TypeOfFace_HeaderFile
-#define _StdSelect_TypeOfFace_HeaderFile
-
-//! Provides values for different types of faces. These
-//! values are used to filter faces in frameworks inheriting
-//! StdSelect_FaceFilter.
-enum StdSelect_TypeOfFace
-{
-  StdSelect_AnyFace,
-  StdSelect_Plane,
-  StdSelect_Cylinder,
-  StdSelect_Sphere,
-  StdSelect_Torus,
-  StdSelect_Revol,
-  StdSelect_Cone
-};
-
-#endif // _StdSelect_TypeOfFace_HeaderFile
+// clang-format off
+#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/Visualization/TKV3d/StdSelect/StdSelect_TypeOfFace.hxx"// clang-format on

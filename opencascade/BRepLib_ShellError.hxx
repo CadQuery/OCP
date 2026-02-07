@@ -1,7 +1,4 @@
-// Created on: 1993-12-15
-// Created by: Remi LEQUETTE
-// Copyright (c) 1993-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,16 +11,5 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _BRepLib_ShellError_HeaderFile
-#define _BRepLib_ShellError_HeaderFile
-
-//! Errors that can occur at shell construction.
-enum BRepLib_ShellError
-{
-  BRepLib_ShellDone,
-  BRepLib_EmptyShell,
-  BRepLib_DisconnectedShell,
-  BRepLib_ShellParametersOutOfRange
-};
-
-#endif // _BRepLib_ShellError_HeaderFile
+// clang-format off
+#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ModelingAlgorithms/TKTopAlgo/BRepLib/BRepLib_ShellError.hxx"// clang-format on

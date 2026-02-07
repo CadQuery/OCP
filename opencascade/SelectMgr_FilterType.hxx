@@ -1,4 +1,4 @@
-// Copyright (c) 2020 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,14 +11,5 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _SelectMgr_FilterType_HeaderFile
-#define _SelectMgr_FilterType_HeaderFile
-
-//! Enumeration defines the filter type.
-enum SelectMgr_FilterType
-{
-  SelectMgr_FilterType_AND, //!< an object should be suitable for all filters.
-  SelectMgr_FilterType_OR   //!< an object should be suitable at least one filter.
-};
-
-#endif // _SelectMgr_FilterType_HeaderFile
+// clang-format off
+#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/Visualization/TKV3d/SelectMgr/SelectMgr_FilterType.hxx"// clang-format on

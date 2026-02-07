@@ -1,6 +1,4 @@
-// Created on: 2016-10-20
-// Created by: Irina KRYLOVA
-// Copyright (c) 2016 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -13,15 +11,5 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _XCAFView_ProjectionType_HeaderFile
-#define _XCAFView_ProjectionType_HeaderFile
-
-//! Defines projection types of view
-enum XCAFView_ProjectionType
-{
-  XCAFView_ProjectionType_NoCamera,
-  XCAFView_ProjectionType_Parallel,
-  XCAFView_ProjectionType_Central
-};
-
-#endif // _XCAFView_ProjectionType_HeaderFile
+// clang-format off
+#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/DataExchange/TKXCAF/XCAFView/XCAFView_ProjectionType.hxx"// clang-format on

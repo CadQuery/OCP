@@ -1,4 +1,4 @@
-// Copyright (c) 2018 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,22 +11,5 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _Graphic3d_FrameStatsTimer_HeaderFile
-#define _Graphic3d_FrameStatsTimer_HeaderFile
-
-//! Timers for collecting frame performance statistics.
-enum Graphic3d_FrameStatsTimer
-{
-  Graphic3d_FrameStatsTimer_ElapsedFrame,
-  Graphic3d_FrameStatsTimer_CpuFrame,
-  Graphic3d_FrameStatsTimer_CpuCulling,
-  Graphic3d_FrameStatsTimer_CpuPicking,
-  Graphic3d_FrameStatsTimer_CpuDynamics,
-};
-
-enum
-{
-  Graphic3d_FrameStatsTimer_NB = Graphic3d_FrameStatsTimer_CpuDynamics + 1
-};
-
-#endif // _Graphic3d_FrameStatsTimer_HeaderFile
+// clang-format off
+#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/Visualization/TKService/Graphic3d/Graphic3d_FrameStatsTimer.hxx"// clang-format on

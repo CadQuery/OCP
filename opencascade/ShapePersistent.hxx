@@ -1,4 +1,4 @@
-// Copyright (c) 2015 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,18 +11,5 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _ShapePersistent_HeaderFile
-#define _ShapePersistent_HeaderFile
-
-#include <Standard_Macro.hxx>
-
-class StdObjMgt_MapOfInstantiators;
-
-class ShapePersistent
-{
-public:
-  //! Register types.
-  Standard_EXPORT static void BindTypes(StdObjMgt_MapOfInstantiators& theMap);
-};
-
-#endif
+// clang-format off
+#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ApplicationFramework/TKStd/ShapePersistent/ShapePersistent.hxx"// clang-format on

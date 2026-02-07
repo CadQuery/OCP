@@ -1,6 +1,4 @@
-// Created on: 2013-09-25
-// Created by: Denis BOGOLEPOV
-// Copyright (c) 2013-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -13,48 +11,5 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// =======================================================================
-// function : As
-// purpose  : Returns variable value casted to specified type
-// =======================================================================
-template <class T>
-inline T& Graphic3d_ValueInterface::As()
-{
-  Graphic3d_UniformValue<T>* aPtr = dynamic_cast<Graphic3d_UniformValue<T>*>(this);
-  return aPtr->Value;
-}
-
-// =======================================================================
-// function : As
-// purpose  : Returns variable value casted to specified type
-// =======================================================================
-template <class T>
-inline const T& Graphic3d_ValueInterface::As() const
-{
-  const Graphic3d_UniformValue<T>* aPtr = dynamic_cast<const Graphic3d_UniformValue<T>*>(this);
-  return aPtr->Value;
-}
-
-// =======================================================================
-// function : TypeID
-// purpose  : Returns unique identifier of value type
-// =======================================================================
-template <class T>
-inline Standard_Size Graphic3d_UniformValue<T>::TypeID() const
-{
-  return Graphic3d_UniformValueTypeID<T>::ID;
-}
-
-// =======================================================================
-// function : Create
-// purpose  : Creates initialized shader variable
-// =======================================================================
-template <class T>
-inline Graphic3d_ShaderVariable* Graphic3d_ShaderVariable::Create(
-  const TCollection_AsciiString& theName,
-  const T&                       theValue)
-{
-  Graphic3d_ShaderVariable* theVariable = new Graphic3d_ShaderVariable(theName);
-  theVariable->myValue                  = new Graphic3d_UniformValue<T>(theValue);
-  return theVariable;
-}
+// clang-format off
+#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/Visualization/TKService/Graphic3d/Graphic3d_ShaderVariable.lxx"// clang-format on

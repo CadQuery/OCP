@@ -1,7 +1,4 @@
-// Created on: 1997-08-01
-// Created by: Jean-Louis Frenkel
-// Copyright (c) 1997-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,14 +11,5 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _PCDM_BaseDriverPointer_HeaderFile
-#define _PCDM_BaseDriverPointer_HeaderFile
-
-class Storage_BaseDriver;
-
-Standard_DEPRECATED(
-  "Typedef PCDM_BaseDriverPointer is kept for compatibility only, instead consider using "
-  "Handle(Storage_BaseDriver) explicitly")
-typedef Handle(Storage_BaseDriver) PCDM_BaseDriverPointer;
-
-#endif // _PCDM_BaseDriverPointer_HeaderFile
+// clang-format off
+#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ApplicationFramework/TKCDF/PCDM/PCDM_BaseDriverPointer.hxx"// clang-format on

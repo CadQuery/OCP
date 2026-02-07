@@ -1,7 +1,4 @@
-// Created on: 1998-07-22
-// Created by: Philippe MANGIN
-// Copyright (c) 1998-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,37 +11,5 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-inline const TopoDS_Shape& BRepFill_Section::OriginalShape() const
-{
-  return myOriginalShape;
-}
-
-inline const TopoDS_Wire& BRepFill_Section::Wire() const
-{
-  return wire;
-}
-
-inline const TopoDS_Vertex& BRepFill_Section::Vertex() const
-{
-  return vertex;
-}
-
-inline Standard_Boolean BRepFill_Section::IsLaw() const
-{
-  return islaw;
-}
-
-inline Standard_Boolean BRepFill_Section::IsPunctual() const
-{
-  return ispunctual;
-}
-
-inline Standard_Boolean BRepFill_Section::WithContact() const
-{
-  return contact;
-}
-
-inline Standard_Boolean BRepFill_Section::WithCorrection() const
-{
-  return correction;
-}
+// clang-format off
+#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ModelingAlgorithms/TKBool/BRepFill/BRepFill_Section.lxx"// clang-format on

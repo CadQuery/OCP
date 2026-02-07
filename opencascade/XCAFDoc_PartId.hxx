@@ -1,5 +1,4 @@
-// Copyright (c) 1998-1999 Matra Datavision
-// Copyright (c) 1999-2017 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -12,11 +11,5 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _XCAFDoc_PartId_HeaderFile
-#define _XCAFDoc_PartId_HeaderFile
-
-#include <TCollection_AsciiString.hxx>
-
-typedef TCollection_AsciiString XCAFDoc_PartId;
-
-#endif // _XCAFDoc_PartId_HeaderFile
+// clang-format off
+#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/DataExchange/TKXCAF/XCAFDoc/XCAFDoc_PartId.hxx"// clang-format on

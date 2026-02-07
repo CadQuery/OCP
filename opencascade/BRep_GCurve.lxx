@@ -1,7 +1,4 @@
-// Created on: 1995-03-15
-// Created by: Laurent PAINNOT
-// Copyright (c) 1995-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,67 +11,5 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-//=======================================================================
-// function : SetRange
-// purpose  :
-//=======================================================================
-
-inline void BRep_GCurve::SetRange(const Standard_Real First, const Standard_Real Last)
-{
-  myFirst = First;
-  myLast  = Last;
-  Update();
-}
-
-//=======================================================================
-// function : Range
-// purpose  :
-//=======================================================================
-
-inline void BRep_GCurve::Range(Standard_Real& First, Standard_Real& Last) const
-{
-  First = myFirst;
-  Last  = myLast;
-}
-
-//=======================================================================
-// function : First
-// purpose  :
-//=======================================================================
-
-inline Standard_Real BRep_GCurve::First() const
-{
-  return myFirst;
-}
-
-//=======================================================================
-// function : Last
-// purpose  :
-//=======================================================================
-
-inline Standard_Real BRep_GCurve::Last() const
-{
-  return myLast;
-}
-
-//=======================================================================
-// function : First
-// purpose  :
-//=======================================================================
-
-inline void BRep_GCurve::First(const Standard_Real F)
-{
-  myFirst = F;
-  Update();
-}
-
-//=======================================================================
-// function : Last
-// purpose  :
-//=======================================================================
-
-inline void BRep_GCurve::Last(const Standard_Real L)
-{
-  myLast = L;
-  Update();
-}
+// clang-format off
+#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ModelingData/TKBRep/BRep/BRep_GCurve.lxx"// clang-format on

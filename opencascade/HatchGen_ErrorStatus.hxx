@@ -1,7 +1,4 @@
-// Created on: 1993-10-25
-// Created by: Jean Marc LACHAUME
-// Copyright (c) 1993-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,17 +11,5 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _HatchGen_ErrorStatus_HeaderFile
-#define _HatchGen_ErrorStatus_HeaderFile
-
-//! Error status.
-enum HatchGen_ErrorStatus
-{
-  HatchGen_NoProblem,
-  HatchGen_TrimFailure,
-  HatchGen_TransitionFailure,
-  HatchGen_IncoherentParity,
-  HatchGen_IncompatibleStates
-};
-
-#endif // _HatchGen_ErrorStatus_HeaderFile
+// clang-format off
+#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ModelingAlgorithms/TKGeomAlgo/HatchGen/HatchGen_ErrorStatus.hxx"// clang-format on

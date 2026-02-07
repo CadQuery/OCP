@@ -1,7 +1,4 @@
-// Created on: 1999-09-28
-// Created by: Vladislav ROMASHKO
-// Copyright (c) 1999-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,12 +11,5 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-//=======================================================================
-// function : Label
-// purpose  : Returns the initialized label
-//=======================================================================
-
-inline TDF_Label TFunction_Driver::Label() const
-{
-  return myLabel;
-}
+// clang-format off
+#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ApplicationFramework/TKLCAF/TFunction/TFunction_Driver.lxx"// clang-format on

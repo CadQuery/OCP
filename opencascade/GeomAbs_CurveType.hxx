@@ -1,7 +1,4 @@
-// Created on: 1993-02-22
-// Created by: Modelistation
-// Copyright (c) 1993-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,21 +11,5 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _GeomAbs_CurveType_HeaderFile
-#define _GeomAbs_CurveType_HeaderFile
-
-//! Identifies the type of a curve.
-enum GeomAbs_CurveType
-{
-  GeomAbs_Line,
-  GeomAbs_Circle,
-  GeomAbs_Ellipse,
-  GeomAbs_Hyperbola,
-  GeomAbs_Parabola,
-  GeomAbs_BezierCurve,
-  GeomAbs_BSplineCurve,
-  GeomAbs_OffsetCurve,
-  GeomAbs_OtherCurve
-};
-
-#endif // _GeomAbs_CurveType_HeaderFile
+// clang-format off
+#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/FoundationClasses/TKMath/GeomAbs/GeomAbs_CurveType.hxx"// clang-format on

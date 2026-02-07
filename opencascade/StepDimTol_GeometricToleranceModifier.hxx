@@ -1,6 +1,4 @@
-// Created on: 2015-07-10
-// Created by: Irina KRYLOVA
-// Copyright (c) 2015 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -13,26 +11,5 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _StepDimTol_GeometricToleranceModifier_HeaderFile
-#define _StepDimTol_GeometricToleranceModifier_HeaderFile
-
-enum StepDimTol_GeometricToleranceModifier
-{
-  StepDimTol_GTMAnyCrossSection,
-  StepDimTol_GTMCommonZone,
-  StepDimTol_GTMEachRadialElement,
-  StepDimTol_GTMFreeState,
-  StepDimTol_GTMLeastMaterialRequirement,
-  StepDimTol_GTMLineElement,
-  StepDimTol_GTMMajorDiameter,
-  StepDimTol_GTMMaximumMaterialRequirement,
-  StepDimTol_GTMMinorDiameter,
-  StepDimTol_GTMNotConvex,
-  StepDimTol_GTMPitchDiameter,
-  StepDimTol_GTMReciprocityRequirement,
-  StepDimTol_GTMSeparateRequirement,
-  StepDimTol_GTMStatisticalTolerance,
-  StepDimTol_GTMTangentPlane
-};
-
-#endif
+// clang-format off
+#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/DataExchange/TKDESTEP/StepDimTol/StepDimTol_GeometricToleranceModifier.hxx"// clang-format on

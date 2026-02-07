@@ -1,7 +1,4 @@
-// Created on: 1995-12-01
-// Created by: EXPRESS->CDL V0.2 Translator
-// Copyright (c) 1995-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,28 +11,5 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _StepVisual_PreDefinedCurveFont_HeaderFile
-#define _StepVisual_PreDefinedCurveFont_HeaderFile
-
-#include <Standard.hxx>
-#include <Standard_Type.hxx>
-
-#include <StepVisual_PreDefinedItem.hxx>
-
-class StepVisual_PreDefinedCurveFont;
-DEFINE_STANDARD_HANDLE(StepVisual_PreDefinedCurveFont, StepVisual_PreDefinedItem)
-
-class StepVisual_PreDefinedCurveFont : public StepVisual_PreDefinedItem
-{
-
-public:
-  //! Returns a PreDefinedCurveFont
-  Standard_EXPORT StepVisual_PreDefinedCurveFont();
-
-  DEFINE_STANDARD_RTTIEXT(StepVisual_PreDefinedCurveFont, StepVisual_PreDefinedItem)
-
-protected:
-private:
-};
-
-#endif // _StepVisual_PreDefinedCurveFont_HeaderFile
+// clang-format off
+#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/DataExchange/TKDESTEP/StepVisual/StepVisual_PreDefinedCurveFont.hxx"// clang-format on

@@ -1,7 +1,4 @@
-// Created on: 1993-06-03
-// Created by: Laurent BUCHARD
-// Copyright (c) 1993-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,80 +11,5 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#include <Standard_OutOfRange.hxx>
-
-//======================================================================
-inline Standard_Real IntCurve_Polygon2dGen::DeflectionOverEstimation() const
-{
-  return (TheDeflection);
-} //======================================================================
-
-inline void IntCurve_Polygon2dGen::SetDeflectionOverEstimation(const Standard_Real x)
-{
-  TheDeflection = x;
-  myBox.Enlarge(TheDeflection);
-}
-
-//======================================================================
-inline void IntCurve_Polygon2dGen::Closed(const Standard_Boolean flag)
-{
-  ClosedPolygon = flag;
-}
-
-//======================================================================
-inline Standard_Integer IntCurve_Polygon2dGen::NbSegments(void) const
-{
-  return ((ClosedPolygon) ? NbPntIn : NbPntIn - 1);
-}
-
-//======================================================================
-inline Standard_Real IntCurve_Polygon2dGen::InfParameter() const
-{
-  return (TheParams.Value(TheIndex(1)));
-}
-
-//======================================================================
-inline Standard_Real IntCurve_Polygon2dGen::SupParameter() const
-{
-  return (TheParams.Value(TheIndex(NbPntIn)));
-}
-
-//======================================================================
-
-//======================================================================
-inline Standard_Integer IntCurve_Polygon2dGen::CalculRegion(const Standard_Real x,
-                                                            const Standard_Real y,
-                                                            const Standard_Real x1,
-                                                            const Standard_Real x2,
-                                                            const Standard_Real y1,
-                                                            const Standard_Real y2) const
-{
-  Standard_Integer r;
-  if (x < x1)
-  {
-    r = 1;
-  }
-  else
-  {
-    if (x > x2)
-    {
-      r = 2;
-    }
-    else
-    {
-      r = 0;
-    }
-  }
-  if (y < y1)
-  {
-    r |= 4;
-  }
-  else
-  {
-    if (y > y2)
-    {
-      r |= 8;
-    }
-  }
-  return (r);
-}
+// clang-format off
+#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ModelingAlgorithms/TKGeomAlgo/IntCurve/IntCurve_Polygon2dGen.lxx"// clang-format on

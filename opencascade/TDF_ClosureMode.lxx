@@ -1,6 +1,4 @@
-// Created by: DAUTRY Philippe
-// Copyright (c) 1997-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -13,33 +11,5 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-//      	-------------------
-
-// Version:	0.0
-// Version	Date		Purpose
-//		0.0	May 26 1997	Creation
-
-#define DescendantsFlag 1
-#define ReferencesFlag 2
-
-// #define DummyFlag      4
-
-inline void TDF_ClosureMode::Descendants(const Standard_Boolean aStatus)
-{
-  myFlags = (aStatus) ? (myFlags | DescendantsFlag) : (myFlags & ~DescendantsFlag);
-}
-
-inline Standard_Boolean TDF_ClosureMode::Descendants() const
-{
-  return (myFlags & DescendantsFlag) != 0;
-}
-
-inline void TDF_ClosureMode::References(const Standard_Boolean aStatus)
-{
-  myFlags = (aStatus) ? (myFlags | ReferencesFlag) : (myFlags & ~ReferencesFlag);
-}
-
-inline Standard_Boolean TDF_ClosureMode::References() const
-{
-  return (myFlags & ReferencesFlag) != 0;
-}
+// clang-format off
+#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ApplicationFramework/TKLCAF/TDF/TDF_ClosureMode.lxx"// clang-format on

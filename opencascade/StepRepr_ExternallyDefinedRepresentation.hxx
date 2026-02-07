@@ -1,7 +1,4 @@
-// Created on: 1998-06-30
-// Created by: Christian CAILLET
-// Copyright (c) 1998-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,27 +11,5 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _StepRepr_ExternallyDefinedRepresentation_HeaderFile
-#define _StepRepr_ExternallyDefinedRepresentation_HeaderFile
-
-#include <Standard.hxx>
-#include <Standard_Type.hxx>
-
-#include <StepRepr_Representation.hxx>
-
-class StepRepr_ExternallyDefinedRepresentation;
-DEFINE_STANDARD_HANDLE(StepRepr_ExternallyDefinedRepresentation, StepRepr_Representation)
-
-class StepRepr_ExternallyDefinedRepresentation : public StepRepr_Representation
-{
-
-public:
-  Standard_EXPORT StepRepr_ExternallyDefinedRepresentation();
-
-  DEFINE_STANDARD_RTTIEXT(StepRepr_ExternallyDefinedRepresentation, StepRepr_Representation)
-
-protected:
-private:
-};
-
-#endif // _StepRepr_ExternallyDefinedRepresentation_HeaderFile
+// clang-format off
+#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/DataExchange/TKDESTEP/StepRepr/StepRepr_ExternallyDefinedRepresentation.hxx"// clang-format on

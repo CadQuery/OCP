@@ -1,7 +1,4 @@
-// Created on: 1994-01-18
-// Created by: Isabelle GRIGNON
-// Copyright (c) 1994-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,22 +11,5 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-//=======================================================================
-// function : Extent
-// purpose  :
-//=======================================================================
-
-inline Standard_Integer ChFiDS_StripeMap::Extent() const
-{
-  return mymap.Extent();
-}
-
-//=======================================================================
-// function : FindKey
-// purpose  :
-//=======================================================================
-
-inline const TopoDS_Vertex& ChFiDS_StripeMap::FindKey(const Standard_Integer I) const
-{
-  return mymap.FindKey(I);
-}
+// clang-format off
+#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ModelingAlgorithms/TKFillet/ChFiDS/ChFiDS_StripeMap.lxx"// clang-format on

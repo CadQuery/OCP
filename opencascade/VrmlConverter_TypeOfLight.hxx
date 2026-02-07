@@ -1,7 +1,4 @@
-// Created on: 1997-02-18
-// Created by: Alexander BRIVIN
-// Copyright (c) 1997-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,15 +11,5 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _VrmlConverter_TypeOfLight_HeaderFile
-#define _VrmlConverter_TypeOfLight_HeaderFile
-
-enum VrmlConverter_TypeOfLight
-{
-  VrmlConverter_NoLight,
-  VrmlConverter_DirectionLight,
-  VrmlConverter_PointLight,
-  VrmlConverter_SpotLight
-};
-
-#endif // _VrmlConverter_TypeOfLight_HeaderFile
+// clang-format off
+#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/DataExchange/TKDEVRML/VrmlConverter/VrmlConverter_TypeOfLight.hxx"// clang-format on

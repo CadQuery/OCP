@@ -1,6 +1,4 @@
-// Created on: 2015-07-10
-// Created by: Irina KRYLOVA
-// Copyright (c) 2015 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -13,14 +11,5 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _StepDimTol_AreaUnitType_HeaderFile
-#define _StepDimTol_AreaUnitType_HeaderFile
-
-enum StepDimTol_AreaUnitType
-{
-  StepDimTol_Circular,
-  StepDimTol_Rectangular,
-  StepDimTol_Square
-};
-
-#endif
+// clang-format off
+#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/DataExchange/TKDESTEP/StepDimTol/StepDimTol_AreaUnitType.hxx"// clang-format on

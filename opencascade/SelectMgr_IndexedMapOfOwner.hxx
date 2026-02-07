@@ -1,6 +1,4 @@
-// Created on: 2015-05-14
-// Created by: Varvara POSKONINA
-// Copyright (c) 2005-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -13,15 +11,5 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _SelectMgr_IndexedMapOfOwner_HeaderFile
-#define _SelectMgr_IndexedMapOfOwner_HeaderFile
-
-#include <NCollection_IndexedMap.hxx>
-#include <NCollection_Shared.hxx>
-
-class SelectMgr_EntityOwner;
-
-typedef NCollection_Shared<NCollection_IndexedMap<Handle(SelectMgr_EntityOwner)>>
-  SelectMgr_IndexedMapOfOwner;
-
-#endif // _SelectMgr_IndexedMapOfOwner_HeaderFile
+// clang-format off
+#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/Visualization/TKV3d/SelectMgr/SelectMgr_IndexedMapOfOwner.hxx"// clang-format on

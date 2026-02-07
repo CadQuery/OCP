@@ -1,6 +1,4 @@
-// Created on: 2004-11-24
-// Created by: Michael SAZONOV
-// Copyright (c) 2004-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -13,46 +11,5 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// The original implementation Copyright: (C) RINA S.p.A
-
-#ifndef BinTObjDrivers_XYZDriver_HeaderFile
-#define BinTObjDrivers_XYZDriver_HeaderFile
-
-#include <BinMDF_ADriver.hxx>
-
-class BinTObjDrivers_XYZDriver : public BinMDF_ADriver
-{
-
-public:
-  Standard_EXPORT BinTObjDrivers_XYZDriver(const Handle(Message_Messenger)& theMessageDriver);
-  // constructor
-
-  Standard_EXPORT Handle(TDF_Attribute) NewEmpty() const Standard_OVERRIDE;
-  // Creates a new attribute
-
-  Standard_EXPORT Standard_Boolean
-    Paste(const BinObjMgt_Persistent&  theSource,
-          const Handle(TDF_Attribute)& theTarget,
-          BinObjMgt_RRelocationTable&  theRelocTable) const Standard_OVERRIDE;
-  // Translate the contents of <theSource> and put it
-  // into <theTarget>
-
-  Standard_EXPORT void Paste(const Handle(TDF_Attribute)& theSource,
-                             BinObjMgt_Persistent&        theTarget,
-                             BinObjMgt_SRelocationTable&  theRelocTable) const Standard_OVERRIDE;
-  // Translate the contents of <aSource> and put it
-  // into <aTarget>
-
-public:
-  // CASCADE RTTI
-  DEFINE_STANDARD_RTTIEXT(BinTObjDrivers_XYZDriver, BinMDF_ADriver)
-};
-
-// Define handle class
-DEFINE_STANDARD_HANDLE(BinTObjDrivers_XYZDriver, BinMDF_ADriver)
-
-#endif
-
-#ifdef _MSC_VER
-#pragma once
-#endif
+// clang-format off
+#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ApplicationFramework/TKBinTObj/BinTObjDrivers/BinTObjDrivers_XYZDriver.hxx"// clang-format on

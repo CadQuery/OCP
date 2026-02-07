@@ -1,7 +1,4 @@
-// Created on: 1995-07-24
-// Created by: Modelistation
-// Copyright (c) 1995-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,37 +11,5 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _StdPrs_WFDeflectionSurface_HeaderFile
-#define _StdPrs_WFDeflectionSurface_HeaderFile
-
-#include <Adaptor3d_Surface.hxx>
-#include <Prs3d_Root.hxx>
-#include <Prs3d_Drawer.hxx>
-
-//! Draws a surface by drawing the isoparametric curves with respect to
-//! a maximal chordial deviation.
-//! The number of isoparametric curves to be drawn and their color are
-//! controlled by the furnished Drawer.
-class StdPrs_WFDeflectionSurface : public Prs3d_Root
-{
-public:
-  DEFINE_STANDARD_ALLOC
-
-  //! Adds the surface aSurface to the presentation object
-  //! aPresentation, and defines its boundaries and isoparameters.
-  //! The shape's display attributes are set in the attribute
-  //! manager aDrawer. These include whether deflection
-  //! is absolute or relative to the size of the shape.
-  //! The surface aSurface is a surface object from
-  //! Adaptor, and provides data from a Geom surface.
-  //! This makes it possible to use the surface in a geometric algorithm.
-  //! Note that this surface object is manipulated by handles.
-  Standard_EXPORT static void Add(const Handle(Prs3d_Presentation)& aPresentation,
-                                  const Handle(Adaptor3d_Surface)&  aSurface,
-                                  const Handle(Prs3d_Drawer)&       aDrawer);
-
-protected:
-private:
-};
-
-#endif // _StdPrs_WFDeflectionSurface_HeaderFile
+// clang-format off
+#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/Visualization/TKV3d/StdPrs/StdPrs_WFDeflectionSurface.hxx"// clang-format on

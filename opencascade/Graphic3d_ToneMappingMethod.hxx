@@ -1,6 +1,4 @@
-// Created on: 2017-05-26
-// Created by: Andrey GOLODYAEV
-// Copyright (c) 2017 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -13,14 +11,5 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _Graphic3d_ToneMappingMethod_HeaderFile
-#define _Graphic3d_ToneMappingMethod_HeaderFile
-
-//! Enumerates tone mapping methods.
-enum Graphic3d_ToneMappingMethod
-{
-  Graphic3d_ToneMappingMethod_Disabled, //!< Don't use tone mapping
-  Graphic3d_ToneMappingMethod_Filmic    //!< Use filmic tone mapping
-};
-
-#endif // _Graphic3d_ToneMappingMethod_HeaderFile
+// clang-format off
+#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/Visualization/TKService/Graphic3d/Graphic3d_ToneMappingMethod.hxx"// clang-format on

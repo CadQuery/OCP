@@ -1,7 +1,4 @@
-// Created on: 1993-01-14
-// Created by: Remi LEQUETTE
-// Copyright (c) 1993-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,10 +11,5 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _TopTools_LocationSetPtr_HeaderFile
-#define _TopTools_LocationSetPtr_HeaderFile
-
-class TopTools_LocationSet;
-typedef TopTools_LocationSet* TopTools_LocationSetPtr;
-
-#endif // _TopTools_LocationSetPtr_HeaderFile
+// clang-format off
+#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ModelingData/TKBRep/TopTools/TopTools_LocationSetPtr.hxx"// clang-format on

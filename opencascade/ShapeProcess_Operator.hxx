@@ -1,6 +1,4 @@
-// Created on: 2000-08-22
-// Created by: Andrey BETENEV
-// Copyright (c) 2000-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -13,35 +11,5 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _ShapeProcess_Operator_HeaderFile
-#define _ShapeProcess_Operator_HeaderFile
-
-#include <Standard.hxx>
-#include <Standard_Type.hxx>
-
-#include <Standard_Transient.hxx>
-#include <Message_ProgressRange.hxx>
-
-class ShapeProcess_Context;
-class ShapeProcess_Operator;
-DEFINE_STANDARD_HANDLE(ShapeProcess_Operator, Standard_Transient)
-
-//! Abstract Operator class providing a tool to
-//! perform an operation on Context
-class ShapeProcess_Operator : public Standard_Transient
-{
-
-public:
-  //! Performs operation and eventually records
-  //! changes in the context
-  Standard_EXPORT virtual Standard_Boolean Perform(
-    const Handle(ShapeProcess_Context)& context,
-    const Message_ProgressRange&        theProgress = Message_ProgressRange()) = 0;
-
-  DEFINE_STANDARD_RTTIEXT(ShapeProcess_Operator, Standard_Transient)
-
-protected:
-private:
-};
-
-#endif // _ShapeProcess_Operator_HeaderFile
+// clang-format off
+#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ModelingAlgorithms/TKShHealing/ShapeProcess/ShapeProcess_Operator.hxx"// clang-format on

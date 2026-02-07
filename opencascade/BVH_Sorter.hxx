@@ -1,6 +1,4 @@
-// Created on: 2014-01-10
-// Created by: Denis BOGOLEPOV
-// Copyright (c) 2013-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -13,41 +11,5 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef BVH_Sorter_HeaderFile
-#define BVH_Sorter_HeaderFile
-
-#include <BVH_Set.hxx>
-
-//! Tool object to sort abstract primitive set.
-template <class T, int N>
-class BVH_Sorter
-{
-public:
-  //! Performs default initialization.
-  BVH_Sorter()
-      : myIsParallel(Standard_False)
-  {
-  }
-
-  //! Releases resources of BVH sorter.
-  virtual ~BVH_Sorter() {}
-
-  //! Sorts the set.
-  virtual void Perform(BVH_Set<T, N>* theSet) = 0;
-
-  //! Sorts the given (inclusive) range in the set.
-  virtual void Perform(BVH_Set<T, N>*         theSet,
-                       const Standard_Integer theStart,
-                       const Standard_Integer theFinal) = 0;
-
-  //! Returns parallel flag.
-  inline Standard_Boolean IsParallel() const { return myIsParallel; }
-
-  //! Set parallel flag controlling possibility of parallel execution.
-  inline void SetParallel(const Standard_Boolean isParallel) { myIsParallel = isParallel; }
-
-private:
-  Standard_Boolean myIsParallel;
-};
-
-#endif // _BVH_Sorter_Header
+// clang-format off
+#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/FoundationClasses/TKMath/BVH/BVH_Sorter.hxx"// clang-format on

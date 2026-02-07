@@ -1,6 +1,4 @@
-// Created on: 2016-07-07
-// Copyright (c) 2016 OPEN CASCADE SAS
-// Created by: Oleg AGASHIN
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -13,39 +11,5 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _BRepMesh_TorusRangeSplitter_HeaderFile
-#define _BRepMesh_TorusRangeSplitter_HeaderFile
-
-#include <BRepMesh_UVParamRangeSplitter.hxx>
-#include <IMeshTools_Parameters.hxx>
-
-//! Auxiliary class extending UV range splitter in order to generate
-//! internal nodes for NURBS surface.
-class BRepMesh_TorusRangeSplitter : public BRepMesh_UVParamRangeSplitter
-{
-public:
-  //! Constructor.
-  BRepMesh_TorusRangeSplitter() {}
-
-  //! Destructor.
-  virtual ~BRepMesh_TorusRangeSplitter() {}
-
-  //! Returns list of nodes generated using surface data and specified parameters.
-  Standard_EXPORT virtual Handle(IMeshData::ListOfPnt2d) GenerateSurfaceNodes(
-    const IMeshTools_Parameters& theParameters) const Standard_OVERRIDE;
-
-  //! Registers border point.
-  Standard_EXPORT virtual void AddPoint(const gp_Pnt2d& thePoint) Standard_OVERRIDE;
-
-private:
-  Handle(IMeshData::SequenceOfReal) fillParams(
-    const IMeshData::IMapOfReal&                   theParams,
-    const std::pair<Standard_Real, Standard_Real>& theRange,
-    const Standard_Integer                         theStepsNb,
-    const Standard_Real                            theScale,
-    const Handle(NCollection_IncAllocator)&        theAllocator) const;
-
-  Standard_Real FUN_CalcAverageDUV(TColStd_Array1OfReal& P, const Standard_Integer PLen) const;
-};
-
-#endif
+// clang-format off
+#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ModelingAlgorithms/TKMesh/BRepMesh/BRepMesh_TorusRangeSplitter.hxx"// clang-format on

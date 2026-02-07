@@ -1,7 +1,4 @@
-// Created on: 1991-02-22
-// Created by: Jean Claude Vauthier
-// Copyright (c) 1991-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,15 +11,5 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _GCPnts_DeflectionType_HeaderFile
-#define _GCPnts_DeflectionType_HeaderFile
-
-enum GCPnts_DeflectionType
-{
-  GCPnts_Linear,
-  GCPnts_Circular,
-  GCPnts_Curved,
-  GCPnts_DefComposite
-};
-
-#endif // _GCPnts_DeflectionType_HeaderFile
+// clang-format off
+#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ModelingData/TKGeomBase/GCPnts/GCPnts_DeflectionType.hxx"// clang-format on

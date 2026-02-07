@@ -1,7 +1,4 @@
-// Created on: 1993-01-09
-// Created by: CKY / Contract Toubro-Larsen (Arun MENON)
-// Copyright (c) 1993-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,26 +11,5 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _IGESBasic_HeaderFile
-#define _IGESBasic_HeaderFile
-
-#include <Standard.hxx>
-#include <Standard_DefineAlloc.hxx>
-#include <Standard_Handle.hxx>
-
-class IGESBasic_Protocol;
-
-//! This package represents basic entities from IGES
-class IGESBasic
-{
-public:
-  DEFINE_STANDARD_ALLOC
-
-  //! Prepares dynqmic data (Protocol, Modules) for this package
-  Standard_EXPORT static void Init();
-
-  //! Returns the Protocol for this Package
-  Standard_EXPORT static Handle(IGESBasic_Protocol) Protocol();
-};
-
-#endif // _IGESBasic_HeaderFile
+// clang-format off
+#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/DataExchange/TKDEIGES/IGESBasic/IGESBasic.hxx"// clang-format on

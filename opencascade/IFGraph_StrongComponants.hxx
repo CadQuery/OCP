@@ -1,7 +1,4 @@
-// Created on: 1992-09-23
-// Created by: Christian CAILLET
-// Copyright (c) 1992-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,35 +11,5 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _IFGraph_StrongComponants_HeaderFile
-#define _IFGraph_StrongComponants_HeaderFile
-
-#include <Standard.hxx>
-#include <Standard_DefineAlloc.hxx>
-#include <Standard_Handle.hxx>
-
-#include <IFGraph_SubPartsIterator.hxx>
-#include <Standard_Boolean.hxx>
-class Interface_Graph;
-
-//! determines strong components of a graph, that is
-//! isolated entities (single components) or loops
-class IFGraph_StrongComponants : public IFGraph_SubPartsIterator
-{
-public:
-  DEFINE_STANDARD_ALLOC
-
-  //! creates with a Graph, and will analyse :
-  //! whole True  : all the contents of the Model
-  //! whole False : sub-parts which will be given later
-  Standard_EXPORT IFGraph_StrongComponants(const Interface_Graph& agraph,
-                                           const Standard_Boolean whole);
-
-  //! does the computation
-  Standard_EXPORT virtual void Evaluate() Standard_OVERRIDE;
-
-protected:
-private:
-};
-
-#endif // _IFGraph_StrongComponants_HeaderFile
+// clang-format off
+#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/DataExchange/TKXSBase/IFGraph/IFGraph_StrongComponants.hxx"// clang-format on

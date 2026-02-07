@@ -1,4 +1,4 @@
-// Copyright (c) 2019 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,21 +11,5 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _AIS_SelectionScheme_HeaderFile
-#define _AIS_SelectionScheme_HeaderFile
-
-//! Sets selection schemes for interactive contexts.
-enum AIS_SelectionScheme
-{
-  AIS_SelectionScheme_UNKNOWN = -1, //!< undefined scheme
-  AIS_SelectionScheme_Replace = 0,  //!< clears current selection and select detected objects
-  AIS_SelectionScheme_Add,          //!< adds    detected object to current selection
-  AIS_SelectionScheme_Remove,       //!< removes detected object from the current selection
-  AIS_SelectionScheme_XOR,   //!< performs XOR for detected objects, other selected not touched
-  AIS_SelectionScheme_Clear, //!< clears current selection
-  AIS_SelectionScheme_ReplaceExtra, //!< replace with one difference: if result of replace is an
-                                    //!< empty, and current selection contains detected element, it
-                                    //!< will be selected
-};
-
-#endif // _AIS_SelectionScheme_HeaderFile
+// clang-format off
+#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/Visualization/TKV3d/AIS/AIS_SelectionScheme.hxx"// clang-format on

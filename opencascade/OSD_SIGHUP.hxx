@@ -1,5 +1,4 @@
-// Copyright (c) 1992-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -12,24 +11,5 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _OSD_SIGHUP_HeaderFile
-#define _OSD_SIGHUP_HeaderFile
-
-#include <Standard_Type.hxx>
-#include <Standard_SStream.hxx>
-#include <OSD_Signal.hxx>
-
-class OSD_SIGHUP;
-DEFINE_STANDARD_HANDLE(OSD_SIGHUP, OSD_Signal)
-
-#if !defined No_Exception && !defined No_OSD_SIGHUP
-  #define OSD_SIGHUP_Raise_if(CONDITION, MESSAGE)                                                  \
-    if (CONDITION)                                                                                 \
-      throw OSD_SIGHUP(MESSAGE);
-#else
-  #define OSD_SIGHUP_Raise_if(CONDITION, MESSAGE)
-#endif
-
-DEFINE_STANDARD_EXCEPTION(OSD_SIGHUP, OSD_Signal)
-
-#endif // _OSD_SIGHUP_HeaderFile
+// clang-format off
+#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/FoundationClasses/TKernel/OSD/OSD_SIGHUP.hxx"// clang-format on

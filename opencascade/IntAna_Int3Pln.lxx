@@ -1,5 +1,4 @@
-// Copyright (c) 1995-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -12,35 +11,5 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#include <StdFail_NotDone.hxx>
-#include <Standard_DomainError.hxx>
-
-inline Standard_Boolean IntAna_Int3Pln::IsDone() const
-{
-
-  return done;
-}
-
-inline Standard_Boolean IntAna_Int3Pln::IsEmpty() const
-{
-
-  if (!done)
-  {
-    throw StdFail_NotDone();
-  }
-  return empt;
-}
-
-inline const gp_Pnt& IntAna_Int3Pln::Value() const
-{
-
-  if (!done)
-  {
-    throw StdFail_NotDone();
-  }
-  if (empt)
-  {
-    throw Standard_DomainError();
-  }
-  return pnt;
-}
+// clang-format off
+#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ModelingData/TKGeomBase/IntAna/IntAna_Int3Pln.lxx"// clang-format on

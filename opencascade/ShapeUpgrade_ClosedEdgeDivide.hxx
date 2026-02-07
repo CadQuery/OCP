@@ -1,6 +1,4 @@
-// Created on: 2000-05-25
-// Created by: data exchange team
-// Copyright (c) 2000-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -13,31 +11,5 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _ShapeUpgrade_ClosedEdgeDivide_HeaderFile
-#define _ShapeUpgrade_ClosedEdgeDivide_HeaderFile
-
-#include <Standard.hxx>
-#include <Standard_Type.hxx>
-
-#include <ShapeUpgrade_EdgeDivide.hxx>
-class TopoDS_Edge;
-
-class ShapeUpgrade_ClosedEdgeDivide;
-DEFINE_STANDARD_HANDLE(ShapeUpgrade_ClosedEdgeDivide, ShapeUpgrade_EdgeDivide)
-
-class ShapeUpgrade_ClosedEdgeDivide : public ShapeUpgrade_EdgeDivide
-{
-
-public:
-  //! Empty constructor.
-  Standard_EXPORT ShapeUpgrade_ClosedEdgeDivide();
-
-  Standard_EXPORT virtual Standard_Boolean Compute(const TopoDS_Edge& anEdge) Standard_OVERRIDE;
-
-  DEFINE_STANDARD_RTTIEXT(ShapeUpgrade_ClosedEdgeDivide, ShapeUpgrade_EdgeDivide)
-
-protected:
-private:
-};
-
-#endif // _ShapeUpgrade_ClosedEdgeDivide_HeaderFile
+// clang-format off
+#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ModelingAlgorithms/TKShHealing/ShapeUpgrade/ShapeUpgrade_ClosedEdgeDivide.hxx"// clang-format on

@@ -1,7 +1,4 @@
-// Created on: 1991-01-21
-// Created by: Isabelle GRIGNON
-// Copyright (c) 1991-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,25 +11,5 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _math_SingularMatrix_HeaderFile
-#define _math_SingularMatrix_HeaderFile
-
-#include <Standard_Type.hxx>
-#include <Standard_DefineException.hxx>
-#include <Standard_SStream.hxx>
-#include <Standard_Failure.hxx>
-
-class math_SingularMatrix;
-DEFINE_STANDARD_HANDLE(math_SingularMatrix, Standard_Failure)
-
-#if !defined No_Exception && !defined No_math_SingularMatrix
-  #define math_SingularMatrix_Raise_if(CONDITION, MESSAGE)                                         \
-    if (CONDITION)                                                                                 \
-      throw math_SingularMatrix(MESSAGE);
-#else
-  #define math_SingularMatrix_Raise_if(CONDITION, MESSAGE)
-#endif
-
-DEFINE_STANDARD_EXCEPTION(math_SingularMatrix, Standard_Failure)
-
-#endif // _math_SingularMatrix_HeaderFile
+// clang-format off
+#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/FoundationClasses/TKMath/math/math_SingularMatrix.hxx"// clang-format on

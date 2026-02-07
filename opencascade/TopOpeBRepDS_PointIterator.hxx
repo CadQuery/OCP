@@ -1,7 +1,4 @@
-// Created on: 1993-06-17
-// Created by: Jean Yves LEBEY
-// Copyright (c) 1993-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,54 +11,5 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _TopOpeBRepDS_PointIterator_HeaderFile
-#define _TopOpeBRepDS_PointIterator_HeaderFile
-
-#include <Standard.hxx>
-#include <Standard_DefineAlloc.hxx>
-#include <Standard_Handle.hxx>
-
-#include <TopOpeBRepDS_InterferenceIterator.hxx>
-#include <TopOpeBRepDS_ListOfInterference.hxx>
-#include <Standard_Integer.hxx>
-#include <TopAbs_Orientation.hxx>
-#include <TopAbs_State.hxx>
-class TopOpeBRepDS_Interference;
-
-class TopOpeBRepDS_PointIterator : public TopOpeBRepDS_InterferenceIterator
-{
-public:
-  DEFINE_STANDARD_ALLOC
-
-  //! Creates an  iterator on the  points on curves
-  //! described by the interferences in <L>.
-  Standard_EXPORT TopOpeBRepDS_PointIterator(const TopOpeBRepDS_ListOfInterference& L);
-
-  //! Returns  True if the Interference <I>  has a
-  //! GeometryType() TopOpeBRepDS_POINT or TopOpeBRepDS_VERTEX
-  //! returns False else.
-  Standard_EXPORT virtual Standard_Boolean MatchInterference(
-    const Handle(TopOpeBRepDS_Interference)& I) const Standard_OVERRIDE;
-
-  //! Index of the point in the data structure.
-  Standard_EXPORT Standard_Integer Current() const;
-
-  Standard_EXPORT TopAbs_Orientation Orientation(const TopAbs_State S) const;
-
-  Standard_EXPORT Standard_Real Parameter() const;
-
-  Standard_EXPORT Standard_Boolean IsVertex() const;
-
-  Standard_EXPORT Standard_Boolean IsPoint() const;
-
-  Standard_EXPORT Standard_Boolean DiffOriented() const;
-
-  Standard_EXPORT Standard_Boolean SameOriented() const;
-
-  Standard_EXPORT Standard_Integer Support() const;
-
-protected:
-private:
-};
-
-#endif // _TopOpeBRepDS_PointIterator_HeaderFile
+// clang-format off
+#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ModelingAlgorithms/TKBool/TopOpeBRepDS/TopOpeBRepDS_PointIterator.hxx"// clang-format on

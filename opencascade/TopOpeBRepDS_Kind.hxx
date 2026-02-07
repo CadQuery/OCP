@@ -1,7 +1,4 @@
-// Created on: 1993-06-17
-// Created by: Jean Yves LEBEY
-// Copyright (c) 1993-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,24 +11,5 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _TopOpeBRepDS_Kind_HeaderFile
-#define _TopOpeBRepDS_Kind_HeaderFile
-
-//! different types of objects in DataStructure
-enum TopOpeBRepDS_Kind
-{
-  TopOpeBRepDS_POINT,
-  TopOpeBRepDS_CURVE,
-  TopOpeBRepDS_SURFACE,
-  TopOpeBRepDS_VERTEX,
-  TopOpeBRepDS_EDGE,
-  TopOpeBRepDS_WIRE,
-  TopOpeBRepDS_FACE,
-  TopOpeBRepDS_SHELL,
-  TopOpeBRepDS_SOLID,
-  TopOpeBRepDS_COMPSOLID,
-  TopOpeBRepDS_COMPOUND,
-  TopOpeBRepDS_UNKNOWN
-};
-
-#endif // _TopOpeBRepDS_Kind_HeaderFile
+// clang-format off
+#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ModelingAlgorithms/TKBool/TopOpeBRepDS/TopOpeBRepDS_Kind.hxx"// clang-format on

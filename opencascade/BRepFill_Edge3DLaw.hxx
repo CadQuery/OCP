@@ -1,7 +1,4 @@
-// Created on: 1998-07-27
-// Created by: Philippe MANGIN
-// Copyright (c) 1998-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,31 +11,5 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _BRepFill_Edge3DLaw_HeaderFile
-#define _BRepFill_Edge3DLaw_HeaderFile
-
-#include <Standard.hxx>
-#include <Standard_Type.hxx>
-
-#include <BRepFill_LocationLaw.hxx>
-class TopoDS_Wire;
-class GeomFill_LocationLaw;
-
-class BRepFill_Edge3DLaw;
-DEFINE_STANDARD_HANDLE(BRepFill_Edge3DLaw, BRepFill_LocationLaw)
-
-//! Build Location Law, with a  Wire.
-class BRepFill_Edge3DLaw : public BRepFill_LocationLaw
-{
-
-public:
-  Standard_EXPORT BRepFill_Edge3DLaw(const TopoDS_Wire&                  Path,
-                                     const Handle(GeomFill_LocationLaw)& Law);
-
-  DEFINE_STANDARD_RTTIEXT(BRepFill_Edge3DLaw, BRepFill_LocationLaw)
-
-protected:
-private:
-};
-
-#endif // _BRepFill_Edge3DLaw_HeaderFile
+// clang-format off
+#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ModelingAlgorithms/TKBool/BRepFill/BRepFill_Edge3DLaw.hxx"// clang-format on

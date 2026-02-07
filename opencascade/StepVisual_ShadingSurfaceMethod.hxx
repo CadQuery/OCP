@@ -1,7 +1,4 @@
-// Created on : Thu May 14 15:13:19 2020
-// Created by: Igor KHOZHANOV
-// Generator:	Express (EXPRESS -> CASCADE/XSTEP Translator) V2.0
-// Copyright (c) Open CASCADE 2020
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,14 +11,5 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _StepVisual_ShadingSurfaceMethod_HeaderFile
-#define _StepVisual_ShadingSurfaceMethod_HeaderFile
-
-enum StepVisual_ShadingSurfaceMethod
-{
-  StepVisual_ssmConstantShading,
-  StepVisual_ssmColourShading,
-  StepVisual_ssmDotShading,
-  StepVisual_ssmNormalShading
-};
-#endif // _StepVisual_ShadingSurfaceMethod_HeaderFile
+// clang-format off
+#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/DataExchange/TKDESTEP/StepVisual/StepVisual_ShadingSurfaceMethod.hxx"// clang-format on

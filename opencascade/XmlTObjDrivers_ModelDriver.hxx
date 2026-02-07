@@ -1,6 +1,4 @@
-// Created on: 2004-11-24
-// Created by: Edward AGAPOV
-// Copyright (c) 2004-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -13,51 +11,5 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// The original implementation Copyright: (C) RINA S.p.A
-
-#ifndef XmlTObjDrivers_ModelDriver_HeaderFile
-#define XmlTObjDrivers_ModelDriver_HeaderFile
-
-#include <XmlMDF_ADriver.hxx>
-
-class XmlTObjDrivers_ModelDriver : public XmlMDF_ADriver
-{
-
-public:
-  Standard_EXPORT XmlTObjDrivers_ModelDriver(const Handle(Message_Messenger)& theMessageDriver);
-  // constructor
-
-  Standard_EXPORT Handle(TDF_Attribute) NewEmpty() const Standard_OVERRIDE;
-  // Creates a new attribute
-
-  Standard_EXPORT Standard_Boolean
-    Paste(const XmlObjMgt_Persistent&  Source,
-          const Handle(TDF_Attribute)& Target,
-          XmlObjMgt_RRelocationTable&  RelocTable) const Standard_OVERRIDE;
-  // Translate the contents of <aSource> and put it
-  // into <aTarget>, using the relocation table
-  // <aRelocTable> to keep the sharings.
-  // Set CurrentModel of TObj_Persistence into Target TObj_TModel
-  // if its GUID and GUID stored in Source are same
-
-  Standard_EXPORT void Paste(const Handle(TDF_Attribute)& Source,
-                             XmlObjMgt_Persistent&        Target,
-                             XmlObjMgt_SRelocationTable&  RelocTable) const Standard_OVERRIDE;
-  // Translate the contents of <aSource> and put it
-  // into <aTarget>, using the relocation table
-  // <aRelocTable> to keep the sharings.
-  // a Model is stored as its GUID
-
-public:
-  // CASCADE RTTI
-  DEFINE_STANDARD_RTTIEXT(XmlTObjDrivers_ModelDriver, XmlMDF_ADriver)
-};
-
-// Define handle class
-DEFINE_STANDARD_HANDLE(XmlTObjDrivers_ModelDriver, XmlMDF_ADriver)
-
-#endif
-
-#ifdef _MSC_VER
-#pragma once
-#endif
+// clang-format off
+#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ApplicationFramework/TKXmlTObj/XmlTObjDrivers/XmlTObjDrivers_ModelDriver.hxx"// clang-format on

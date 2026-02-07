@@ -1,6 +1,4 @@
-// Created on: 2004-06-29
-// Created by: Eugeny NAPALKOV
-// Copyright (c) 2004-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -13,28 +11,5 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _AppStdL_Application_HeaderFile
-#define _AppStdL_Application_HeaderFile
-
-#include <Standard.hxx>
-
-#include <TDocStd_Application.hxx>
-
-class AppStdL_Application;
-DEFINE_STANDARD_HANDLE(AppStdL_Application, TDocStd_Application)
-
-//! Legacy class defining resources name for lite OCAF documents
-class AppStdL_Application : public TDocStd_Application
-{
-public:
-  //! returns   the file  name  which  contains  application
-  //! resources
-  Standard_EXPORT Standard_CString ResourcesName() Standard_OVERRIDE;
-
-  //! Dumps the content of me into the stream
-  Standard_EXPORT void DumpJson(Standard_OStream& theOStream, Standard_Integer theDepth = -1) const;
-
-  DEFINE_STANDARD_RTTIEXT(AppStdL_Application, TDocStd_Application)
-};
-
-#endif // _AppStdL_Application_HeaderFile
+// clang-format off
+#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ApplicationFramework/TKLCAF/AppStdL/AppStdL_Application.hxx"// clang-format on

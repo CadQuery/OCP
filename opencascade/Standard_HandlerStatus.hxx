@@ -1,7 +1,4 @@
-// Created on: 1991-09-05
-// Created by: J.P. TIRAUlt
-// Copyright (c) 1991-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,14 +11,5 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _Standard_HandlerStatus_HeaderFile
-#define _Standard_HandlerStatus_HeaderFile
-
-enum Standard_HandlerStatus
-{
-  Standard_HandlerVoid,
-  Standard_HandlerJumped,
-  Standard_HandlerProcessed
-};
-
-#endif // _Standard_HandlerStatus_HeaderFile
+// clang-format off
+#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/FoundationClasses/TKernel/Standard/Standard_HandlerStatus.hxx"// clang-format on

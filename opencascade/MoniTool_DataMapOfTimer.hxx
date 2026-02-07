@@ -1,7 +1,4 @@
-// Created on: 1998-04-01
-// Created by: Christian CAILLET
-// Copyright (c) 1998-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,17 +11,5 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef MoniTool_DataMapOfTimer_HeaderFile
-#define MoniTool_DataMapOfTimer_HeaderFile
-
-#include <Standard_CString.hxx>
-#include <Standard_CStringHasher.hxx>
-#include <NCollection_DataMap.hxx>
-
-class MoniTool_Timer;
-typedef NCollection_DataMap<Standard_CString, Handle(MoniTool_Timer), Standard_CStringHasher>
-  MoniTool_DataMapOfTimer;
-typedef NCollection_DataMap<Standard_CString, Handle(MoniTool_Timer), Standard_CStringHasher>::
-  Iterator MoniTool_DataMapIteratorOfDataMapOfTimer;
-
-#endif
+// clang-format off
+#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/DataExchange/TKXSBase/MoniTool/MoniTool_DataMapOfTimer.hxx"// clang-format on

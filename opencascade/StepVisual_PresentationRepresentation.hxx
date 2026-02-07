@@ -1,7 +1,4 @@
-// Created on: 1995-12-01
-// Created by: EXPRESS->CDL V0.2 Translator
-// Copyright (c) 1995-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,28 +11,5 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _StepVisual_PresentationRepresentation_HeaderFile
-#define _StepVisual_PresentationRepresentation_HeaderFile
-
-#include <Standard.hxx>
-#include <Standard_Type.hxx>
-
-#include <StepRepr_Representation.hxx>
-
-class StepVisual_PresentationRepresentation;
-DEFINE_STANDARD_HANDLE(StepVisual_PresentationRepresentation, StepRepr_Representation)
-
-class StepVisual_PresentationRepresentation : public StepRepr_Representation
-{
-
-public:
-  //! Returns a PresentationRepresentation
-  Standard_EXPORT StepVisual_PresentationRepresentation();
-
-  DEFINE_STANDARD_RTTIEXT(StepVisual_PresentationRepresentation, StepRepr_Representation)
-
-protected:
-private:
-};
-
-#endif // _StepVisual_PresentationRepresentation_HeaderFile
+// clang-format off
+#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/DataExchange/TKDESTEP/StepVisual/StepVisual_PresentationRepresentation.hxx"// clang-format on

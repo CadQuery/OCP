@@ -1,7 +1,4 @@
-// Created on: 1993-02-22
-// Created by: Modelistation
-// Copyright (c) 1993-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,17 +11,5 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _GeomAbs_JoinType_HeaderFile
-#define _GeomAbs_JoinType_HeaderFile
-
-//! Characterizes the type of a join, built by an algorithm for
-//! constructing parallel curves, between two consecutive
-//! arcs of a contour parallel to a given contour.
-enum GeomAbs_JoinType
-{
-  GeomAbs_Arc,
-  GeomAbs_Tangent,
-  GeomAbs_Intersection
-};
-
-#endif // _GeomAbs_JoinType_HeaderFile
+// clang-format off
+#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/FoundationClasses/TKMath/GeomAbs/GeomAbs_JoinType.hxx"// clang-format on

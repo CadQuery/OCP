@@ -1,7 +1,4 @@
-// Created on: 1990-12-17
-// Created by: Remi Lequette
-// Copyright (c) 1990-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,33 +11,5 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _TopoDS_TEdge_HeaderFile
-#define _TopoDS_TEdge_HeaderFile
-
-#include <Standard.hxx>
-
-#include <TopAbs_ShapeEnum.hxx>
-#include <TopoDS_TShape.hxx>
-
-class TopoDS_TEdge;
-DEFINE_STANDARD_HANDLE(TopoDS_TEdge, TopoDS_TShape)
-
-//! A topological part  of a  curve  in 2D or 3D,  the
-//! boundary    is   a   set  of oriented    Vertices.
-class TopoDS_TEdge : public TopoDS_TShape
-{
-public:
-  //! Returns  EDGE.
-  Standard_EXPORT TopAbs_ShapeEnum ShapeType() const Standard_OVERRIDE;
-
-  DEFINE_STANDARD_RTTIEXT(TopoDS_TEdge, TopoDS_TShape)
-
-protected:
-  //! Construct an edge.
-  TopoDS_TEdge()
-      : TopoDS_TShape()
-  {
-  }
-};
-
-#endif // _TopoDS_TEdge_HeaderFile
+// clang-format off
+#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ModelingData/TKBRep/TopoDS/TopoDS_TEdge.hxx"// clang-format on

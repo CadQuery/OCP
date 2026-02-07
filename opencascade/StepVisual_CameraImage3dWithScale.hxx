@@ -1,7 +1,4 @@
-// Created on: 1997-03-26
-// Created by: Administrateur Atelier XSTEP
-// Copyright (c) 1997-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,27 +11,5 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _StepVisual_CameraImage3dWithScale_HeaderFile
-#define _StepVisual_CameraImage3dWithScale_HeaderFile
-
-#include <Standard.hxx>
-#include <Standard_Type.hxx>
-
-#include <StepVisual_CameraImage.hxx>
-
-class StepVisual_CameraImage3dWithScale;
-DEFINE_STANDARD_HANDLE(StepVisual_CameraImage3dWithScale, StepVisual_CameraImage)
-
-class StepVisual_CameraImage3dWithScale : public StepVisual_CameraImage
-{
-
-public:
-  Standard_EXPORT StepVisual_CameraImage3dWithScale();
-
-  DEFINE_STANDARD_RTTIEXT(StepVisual_CameraImage3dWithScale, StepVisual_CameraImage)
-
-protected:
-private:
-};
-
-#endif // _StepVisual_CameraImage3dWithScale_HeaderFile
+// clang-format off
+#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/DataExchange/TKDESTEP/StepVisual/StepVisual_CameraImage3dWithScale.hxx"// clang-format on

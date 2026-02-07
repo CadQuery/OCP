@@ -1,7 +1,4 @@
-// Created on: 1997-04-17
-// Created by: Christophe MARION
-// Copyright (c) 1997-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,88 +11,5 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#include <HLRAlgo_Interference.hxx>
-
-//=======================================================================
-// function : InitVertices
-// purpose  :
-//=======================================================================
-
-inline void HLRBRep_EdgeInterferenceTool::InitVertices()
-{
-  cur = 0;
-}
-
-//=======================================================================
-// function : MoreVertices
-// purpose  :
-//=======================================================================
-
-inline Standard_Boolean HLRBRep_EdgeInterferenceTool::MoreVertices() const
-{
-  return cur < 2;
-}
-
-//=======================================================================
-// function : NextVertex
-// purpose  :
-//=======================================================================
-
-inline void HLRBRep_EdgeInterferenceTool::NextVertex()
-{
-  cur++;
-}
-
-//=======================================================================
-// function : CurrentVertex
-// purpose  :
-//=======================================================================
-
-inline const HLRAlgo_Intersection& HLRBRep_EdgeInterferenceTool::CurrentVertex() const
-{
-  return inter[cur];
-}
-
-//=======================================================================
-// function : CurrentOrientation
-// purpose  :
-//=======================================================================
-
-inline TopAbs_Orientation HLRBRep_EdgeInterferenceTool::CurrentOrientation() const
-{
-  if (cur == 0)
-    return TopAbs_FORWARD;
-  else
-    return TopAbs_REVERSED;
-}
-
-//=======================================================================
-// function : CurrentParameter
-// purpose  :
-//=======================================================================
-
-inline Standard_Real HLRBRep_EdgeInterferenceTool::CurrentParameter() const
-{
-  return inter[cur].Parameter();
-}
-
-//=======================================================================
-// function : IsPeriodic
-// purpose  :
-//=======================================================================
-
-inline Standard_Boolean HLRBRep_EdgeInterferenceTool::IsPeriodic() const
-{
-  return Standard_False;
-}
-
-//=======================================================================
-// function : ParameterOfInterference
-// purpose  :
-//=======================================================================
-
-inline Standard_Real HLRBRep_EdgeInterferenceTool::ParameterOfInterference(
-  const HLRAlgo_Interference& I) const
-{
-  return I.Intersection().Parameter();
-}
+// clang-format off
+#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ModelingAlgorithms/TKHLR/HLRBRep/HLRBRep_EdgeInterferenceTool.lxx"// clang-format on

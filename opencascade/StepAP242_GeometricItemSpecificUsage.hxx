@@ -1,6 +1,4 @@
-// Created on: 2015-07-10
-// Created by: Irina KRYLOVA
-// Copyright (c) 2015 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -13,27 +11,5 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _StepAP242_GeometricItemSpecificUsage_HeaderFile
-#define _StepAP242_GeometricItemSpecificUsage_HeaderFile
-
-#include <Standard.hxx>
-
-#include <StepAP242_ItemIdentifiedRepresentationUsage.hxx>
-
-class StepAP242_GeometricItemSpecificUsage;
-DEFINE_STANDARD_HANDLE(StepAP242_GeometricItemSpecificUsage,
-                       StepAP242_ItemIdentifiedRepresentationUsage)
-
-//! Added for Dimensional Tolerances
-class StepAP242_GeometricItemSpecificUsage : public StepAP242_ItemIdentifiedRepresentationUsage
-{
-
-public:
-  Standard_EXPORT StepAP242_GeometricItemSpecificUsage();
-
-  DEFINE_STANDARD_RTTIEXT(StepAP242_GeometricItemSpecificUsage,
-                          StepAP242_ItemIdentifiedRepresentationUsage)
-
-private:
-};
-#endif // _StepAP242_GeometricItemSpecificUsage_HeaderFile
+// clang-format off
+#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/DataExchange/TKDESTEP/StepAP242/StepAP242_GeometricItemSpecificUsage.hxx"// clang-format on

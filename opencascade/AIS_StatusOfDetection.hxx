@@ -1,7 +1,4 @@
-// Created on: 1996-12-11
-// Created by: Robert COUBLANC
-// Copyright (c) 1996-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,18 +11,5 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _AIS_StatusOfDetection_HeaderFile
-#define _AIS_StatusOfDetection_HeaderFile
-
-enum AIS_StatusOfDetection
-{
-  AIS_SOD_Error,
-  AIS_SOD_Nothing,
-  AIS_SOD_AllBad,
-  AIS_SOD_Selected,
-  AIS_SOD_OnlyOneDetected,
-  AIS_SOD_OnlyOneGood,
-  AIS_SOD_SeveralGood
-};
-
-#endif // _AIS_StatusOfDetection_HeaderFile
+// clang-format off
+#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/Visualization/TKV3d/AIS/AIS_StatusOfDetection.hxx"// clang-format on

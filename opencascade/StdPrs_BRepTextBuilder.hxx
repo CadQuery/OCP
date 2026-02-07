@@ -1,6 +1,4 @@
-// Created on: 2015-08-10
-// Created by: Ilya SEVRIKOV
-// Copyright (c) 2013-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -13,39 +11,5 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef StdPrs_BRepTextBuilder_Header
-#define StdPrs_BRepTextBuilder_Header
-
-#include <Font_BRepFont.hxx>
-#include <Font_TextFormatter.hxx>
-#include <gp_Ax3.hxx>
-
-//! Represents class for applying text formatting.
-class StdPrs_BRepTextBuilder
-{
-public:
-  //! Render text as BRep shape.
-  //! @param theFormatter formatter which defines aligned text
-  //! @param thePenLoc start position and orientation on the baseline
-  //! @return result shape with pen transformation applied as shape location
-  Standard_EXPORT TopoDS_Shape Perform(StdPrs_BRepFont&                  theFont,
-                                       const Handle(Font_TextFormatter)& theFormatter,
-                                       const gp_Ax3&                     thePenLoc = gp_Ax3());
-  //! Render text as BRep shape.
-  //! @param theString text in UTF-8 encoding
-  //! @param thePenLoc start position and orientation on the baseline
-  //! @param theHAlign horizontal alignment of the text
-  //! @param theVAlign vertical alignment of the text
-  //! @return result shape with pen transformation applied as shape location
-  Standard_EXPORT TopoDS_Shape
-    Perform(StdPrs_BRepFont&                        theFont,
-            const NCollection_String&               theString,
-            const gp_Ax3&                           thePenLoc = gp_Ax3(),
-            const Graphic3d_HorizontalTextAlignment theHAlign = Graphic3d_HTA_LEFT,
-            const Graphic3d_VerticalTextAlignment   theVAlign = Graphic3d_VTA_BOTTOM);
-
-protected:
-  BRep_Builder myBuilder;
-};
-
-#endif // StdPrs_BRepTextBuilder_Header
+// clang-format off
+#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/Visualization/TKV3d/StdPrs/StdPrs_BRepTextBuilder.hxx"// clang-format on

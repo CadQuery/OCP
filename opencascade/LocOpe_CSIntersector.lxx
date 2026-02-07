@@ -1,7 +1,4 @@
-// Created on: 1996-06-11
-// Created by: Jacques GOUSSARD
-// Copyright (c) 1996-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,39 +11,5 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#include <StdFail_NotDone.hxx>
-
-//=======================================================================
-// function : LocOpe_CSIntersector
-// purpose  :
-//=======================================================================
-
-inline LocOpe_CSIntersector::LocOpe_CSIntersector()
-    : myDone(Standard_False),
-      myPoints(NULL),
-      myNbelem(0)
-{
-}
-
-//=======================================================================
-// function : LocOpe_CSIntersector
-// purpose  :
-//=======================================================================
-
-inline LocOpe_CSIntersector::LocOpe_CSIntersector(const TopoDS_Shape& S)
-    : myDone(Standard_False),
-      myShape(S),
-      myPoints(NULL),
-      myNbelem(0)
-{
-}
-
-//=======================================================================
-// function : IsDone
-// purpose  :
-//=======================================================================
-
-inline Standard_Boolean LocOpe_CSIntersector::IsDone() const
-{
-  return myDone;
-}
+// clang-format off
+#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ModelingAlgorithms/TKFeat/LocOpe/LocOpe_CSIntersector.lxx"// clang-format on

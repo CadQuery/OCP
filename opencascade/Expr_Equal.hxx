@@ -1,7 +1,4 @@
-// Created on: 1991-01-14
-// Created by: Arnaud BOUZY
-// Copyright (c) 1991-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,48 +11,5 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _Expr_Equal_HeaderFile
-#define _Expr_Equal_HeaderFile
-
-#include <Standard.hxx>
-
-#include <Expr_SingleRelation.hxx>
-class Expr_GeneralExpression;
-class Expr_GeneralRelation;
-class TCollection_AsciiString;
-
-class Expr_Equal;
-DEFINE_STANDARD_HANDLE(Expr_Equal, Expr_SingleRelation)
-
-class Expr_Equal : public Expr_SingleRelation
-{
-
-public:
-  //! Creates the relation <exp1> = <exp2>.
-  Standard_EXPORT Expr_Equal(const Handle(Expr_GeneralExpression)& exp1,
-                             const Handle(Expr_GeneralExpression)& exp2);
-
-  Standard_EXPORT Standard_Boolean IsSatisfied() const Standard_OVERRIDE;
-
-  //! returns a GeneralRelation after replacement of
-  //! NamedUnknowns by an associated expression and after
-  //! values computation.
-  Standard_EXPORT Handle(Expr_GeneralRelation) Simplified() const Standard_OVERRIDE;
-
-  //! Replaces NamedUnknowns by an associated expressions
-  //! and computes values in <me>.
-  Standard_EXPORT void Simplify() Standard_OVERRIDE;
-
-  //! Returns a copy of <me> having the same unknowns and functions.
-  Standard_EXPORT Handle(Expr_GeneralRelation) Copy() const Standard_OVERRIDE;
-
-  //! returns a string representing <me> in a readable way.
-  Standard_EXPORT TCollection_AsciiString String() const Standard_OVERRIDE;
-
-  DEFINE_STANDARD_RTTIEXT(Expr_Equal, Expr_SingleRelation)
-
-protected:
-private:
-};
-
-#endif // _Expr_Equal_HeaderFile
+// clang-format off
+#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ModelingAlgorithms/TKExpress/Expr/Expr_Equal.hxx"// clang-format on

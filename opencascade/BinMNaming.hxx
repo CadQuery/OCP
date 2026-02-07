@@ -1,6 +1,4 @@
-// Created on: 2004-04-08
-// Created by: Sergey ZARITCHNY <szy@opencascade.com>
-// Copyright (c) 2004-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -13,26 +11,5 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _BinMNaming_HeaderFile
-#define _BinMNaming_HeaderFile
-
-#include <Standard.hxx>
-#include <Standard_DefineAlloc.hxx>
-#include <Standard_Handle.hxx>
-
-#include <Standard_Integer.hxx>
-class BinMDF_ADriverTable;
-class Message_Messenger;
-
-//! Storage/Retrieval drivers for TNaming attributes
-class BinMNaming
-{
-public:
-  DEFINE_STANDARD_ALLOC
-
-  //! Adds the attribute drivers to <theDriverTable>.
-  Standard_EXPORT static void AddDrivers(const Handle(BinMDF_ADriverTable)& theDriverTable,
-                                         const Handle(Message_Messenger)&   aMsgDrv);
-};
-
-#endif // _BinMNaming_HeaderFile
+// clang-format off
+#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ApplicationFramework/TKBin/BinMNaming/BinMNaming.hxx"// clang-format on

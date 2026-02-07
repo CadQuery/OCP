@@ -1,7 +1,4 @@
-// Created on: 1996-07-26
-// Created by: Maria PUMBORIOS
-// Copyright (c) 1996-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,14 +11,5 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _FilletSurf_StatusDone_HeaderFile
-#define _FilletSurf_StatusDone_HeaderFile
-
-enum FilletSurf_StatusDone
-{
-  FilletSurf_IsOk,
-  FilletSurf_IsNotOk,
-  FilletSurf_IsPartial
-};
-
-#endif // _FilletSurf_StatusDone_HeaderFile
+// clang-format off
+#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ModelingAlgorithms/TKFillet/FilletSurf/FilletSurf_StatusDone.hxx"// clang-format on

@@ -1,6 +1,4 @@
-// Created on: 2000-06-23
-// Created by: Sergey MOZOKHIN
-// Copyright (c) 2000-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -13,40 +11,5 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _StlAPI_Writer_HeaderFile
-#define _StlAPI_Writer_HeaderFile
-
-#include <Message_ProgressScope.hxx>
-#include <Message_ProgressIndicator.hxx>
-
-class TopoDS_Shape;
-
-//! This class creates and writes
-//! STL files from Open CASCADE shapes. An STL file can be written to an existing STL file or to a
-//! new one.
-class StlAPI_Writer
-{
-public:
-  DEFINE_STANDARD_ALLOC
-
-  //! Creates a writer object with default parameters: ASCIIMode.
-  Standard_EXPORT StlAPI_Writer();
-
-  //! Returns the address to the flag defining the mode for writing the file.
-  //! This address may be used to either read or change the flag.
-  //! If the mode returns True (default value) the generated file is an ASCII file.
-  //! If the mode returns False, the generated file is a binary file.
-  Standard_Boolean& ASCIIMode() { return myASCIIMode; }
-
-  //! Converts a given shape to STL format and writes it to file with a given filename.
-  //! \return the error state.
-  Standard_EXPORT Standard_Boolean
-    Write(const TopoDS_Shape&          theShape,
-          const Standard_CString       theFileName,
-          const Message_ProgressRange& theProgress = Message_ProgressRange());
-
-private:
-  Standard_Boolean myASCIIMode;
-};
-
-#endif // _StlAPI_Writer_HeaderFile
+// clang-format off
+#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/DataExchange/TKDESTL/StlAPI/StlAPI_Writer.hxx"// clang-format on

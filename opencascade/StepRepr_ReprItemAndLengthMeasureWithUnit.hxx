@@ -1,6 +1,4 @@
-// Created on: 2003-08-21
-// Created by: Sergey KUUL
-// Copyright (c) 2003-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -13,34 +11,5 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _StepRepr_ReprItemAndLengthMeasureWithUnit_HeaderFile
-#define _StepRepr_ReprItemAndLengthMeasureWithUnit_HeaderFile
-
-#include <Standard.hxx>
-#include <Standard_Type.hxx>
-
-#include <StepRepr_ReprItemAndMeasureWithUnit.hxx>
-class StepBasic_LengthMeasureWithUnit;
-
-class StepRepr_ReprItemAndLengthMeasureWithUnit;
-DEFINE_STANDARD_HANDLE(StepRepr_ReprItemAndLengthMeasureWithUnit,
-                       StepRepr_ReprItemAndMeasureWithUnit)
-
-class StepRepr_ReprItemAndLengthMeasureWithUnit : public StepRepr_ReprItemAndMeasureWithUnit
-{
-
-public:
-  Standard_EXPORT StepRepr_ReprItemAndLengthMeasureWithUnit();
-
-  Standard_EXPORT void SetLengthMeasureWithUnit(
-    const Handle(StepBasic_LengthMeasureWithUnit)& aLMWU);
-
-  Standard_EXPORT Handle(StepBasic_LengthMeasureWithUnit) GetLengthMeasureWithUnit() const;
-
-  DEFINE_STANDARD_RTTIEXT(StepRepr_ReprItemAndLengthMeasureWithUnit,
-                          StepRepr_ReprItemAndMeasureWithUnit)
-
-private:
-  Handle(StepBasic_LengthMeasureWithUnit) myLengthMeasureWithUnit;
-};
-#endif // _StepRepr_ReprItemAndLengthMeasureWithUnit_HeaderFile
+// clang-format off
+#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/DataExchange/TKDESTEP/StepRepr/StepRepr_ReprItemAndLengthMeasureWithUnit.hxx"// clang-format on

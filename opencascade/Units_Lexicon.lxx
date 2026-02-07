@@ -1,7 +1,4 @@
-// Created on: 1992-06-24
-// Created by: Gilles DEBARBOUILLE
-// Copyright (c) 1992-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,28 +11,5 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#include <Units_TokensSequence.hxx>
-#include <Units_Token.hxx>
-
-//=======================================================================
-// function : Sequence
-// purpose  :
-//=======================================================================
-
-inline Handle(Units_TokensSequence) Units_Lexicon::Sequence() const
-{
-  return thesequenceoftokens;
-}
-
-//=======================================================================
-// function : Dump
-// purpose  :
-//=======================================================================
-
-inline void Units_Lexicon::Dump() const
-{
-  Standard_Integer index;
-  std::cout << " LEXICON : " << std::endl;
-  for (index = 1; index <= thesequenceoftokens->Length(); index++)
-    thesequenceoftokens->Value(index)->Dump(1, 0);
-}
+// clang-format off
+#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/FoundationClasses/TKernel/Units/Units_Lexicon.lxx"// clang-format on

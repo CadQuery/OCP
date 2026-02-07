@@ -1,7 +1,4 @@
-// Created on: 1993-02-22
-// Created by: Modelistation
-// Copyright (c) 1993-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,18 +11,5 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _GeomAbs_BSplKnotDistribution_HeaderFile
-#define _GeomAbs_BSplKnotDistribution_HeaderFile
-
-//! This enumeration is used in the classes BSplineCurve and
-//! BSplineSurface to describe the repartition of set of knots.
-//! (comments in classes BSplineCurve and BSplineSurface)
-enum GeomAbs_BSplKnotDistribution
-{
-  GeomAbs_NonUniform,
-  GeomAbs_Uniform,
-  GeomAbs_QuasiUniform,
-  GeomAbs_PiecewiseBezier
-};
-
-#endif // _GeomAbs_BSplKnotDistribution_HeaderFile
+// clang-format off
+#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/FoundationClasses/TKMath/GeomAbs/GeomAbs_BSplKnotDistribution.hxx"// clang-format on

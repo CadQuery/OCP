@@ -1,6 +1,4 @@
-// Created on: 2016-11-14
-// Created by: Irina KRYLOVA
-// Copyright (c) 2016 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -13,45 +11,5 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _StepVisual_CameraModelD3MultiClippingIntersection_HeaderFile
-#define _StepVisual_CameraModelD3MultiClippingIntersection_HeaderFile
-
-#include <Standard.hxx>
-#include <Standard_Type.hxx>
-
-#include <StepGeom_GeometricRepresentationItem.hxx>
-class StepVisual_HArray1OfCameraModelD3MultiClippingInterectionSelect;
-class TCollection_HAsciiString;
-
-DEFINE_STANDARD_HANDLE(StepVisual_CameraModelD3MultiClippingIntersection,
-                       StepGeom_GeometricRepresentationItem)
-
-class StepVisual_CameraModelD3MultiClippingIntersection
-    : public StepGeom_GeometricRepresentationItem
-{
-public:
-  //! Returns a StepVisual_CameraModelD3MultiClippingIntersection
-  Standard_EXPORT StepVisual_CameraModelD3MultiClippingIntersection();
-
-  Standard_EXPORT void Init(
-    const Handle(TCollection_HAsciiString)& theName,
-    const Handle(StepVisual_HArray1OfCameraModelD3MultiClippingInterectionSelect)&
-      theShapeClipping);
-
-  void SetShapeClipping(
-    const Handle(StepVisual_HArray1OfCameraModelD3MultiClippingInterectionSelect)& theShapeClipping)
-  {
-    myShapeClipping = theShapeClipping;
-  }
-
-  const Handle(StepVisual_HArray1OfCameraModelD3MultiClippingInterectionSelect) ShapeClipping()
-  {
-    return myShapeClipping;
-  }
-  DEFINE_STANDARD_RTTIEXT(StepVisual_CameraModelD3MultiClippingIntersection,
-                          StepGeom_GeometricRepresentationItem)
-
-private:
-  Handle(StepVisual_HArray1OfCameraModelD3MultiClippingInterectionSelect) myShapeClipping;
-};
-#endif // _StepVisual_CameraModelD3MultiClippingIntersection_HeaderFile
+// clang-format off
+#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/DataExchange/TKDESTEP/StepVisual/StepVisual_CameraModelD3MultiClippingIntersection.hxx"// clang-format on

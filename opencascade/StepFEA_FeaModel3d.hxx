@@ -1,6 +1,4 @@
-// Created on: 2002-12-12
-// Created by: data exchange team
-// Copyright (c) 2002-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -13,28 +11,5 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _StepFEA_FeaModel3d_HeaderFile
-#define _StepFEA_FeaModel3d_HeaderFile
-
-#include <Standard.hxx>
-
-#include <StepFEA_FeaModel.hxx>
-
-class StepFEA_FeaModel3d;
-DEFINE_STANDARD_HANDLE(StepFEA_FeaModel3d, StepFEA_FeaModel)
-
-//! Representation of STEP entity FeaModel3d
-class StepFEA_FeaModel3d : public StepFEA_FeaModel
-{
-
-public:
-  //! Empty constructor
-  Standard_EXPORT StepFEA_FeaModel3d();
-
-  DEFINE_STANDARD_RTTIEXT(StepFEA_FeaModel3d, StepFEA_FeaModel)
-
-protected:
-private:
-};
-
-#endif // _StepFEA_FeaModel3d_HeaderFile
+// clang-format off
+#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/DataExchange/TKDESTEP/StepFEA/StepFEA_FeaModel3d.hxx"// clang-format on

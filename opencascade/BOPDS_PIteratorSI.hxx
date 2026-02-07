@@ -1,5 +1,4 @@
-// Created by: Peter KURNEV
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -12,10 +11,5 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _BOPDS_PIteratorSI_HeaderFile
-#define _BOPDS_PIteratorSI_HeaderFile
-
-class BOPDS_IteratorSI;
-typedef BOPDS_IteratorSI* BOPDS_PIteratorSI;
-
-#endif // _BOPDS_PIteratorSI_HeaderFile
+// clang-format off
+#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ModelingAlgorithms/TKBO/BOPDS/BOPDS_PIteratorSI.hxx"// clang-format on

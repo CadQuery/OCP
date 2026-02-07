@@ -1,6 +1,4 @@
-// Created on: 2005-12-21
-// Created by: Julia GERASIMOVA
-// Copyright (c) 2005-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -13,35 +11,5 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _math_ComputeKronrodPointsAndWeights_HeaderFile
-#define _math_ComputeKronrodPointsAndWeights_HeaderFile
-
-#include <Standard.hxx>
-#include <Standard_DefineAlloc.hxx>
-#include <Standard_Handle.hxx>
-
-#include <TColStd_HArray1OfReal.hxx>
-#include <Standard_Integer.hxx>
-#include <math_Vector.hxx>
-
-class math_ComputeKronrodPointsAndWeights
-{
-public:
-  DEFINE_STANDARD_ALLOC
-
-  Standard_EXPORT math_ComputeKronrodPointsAndWeights(const Standard_Integer Number);
-
-  Standard_EXPORT Standard_Boolean IsDone() const;
-
-  Standard_EXPORT math_Vector Points() const;
-
-  Standard_EXPORT math_Vector Weights() const;
-
-protected:
-private:
-  Handle(TColStd_HArray1OfReal) myPoints;
-  Handle(TColStd_HArray1OfReal) myWeights;
-  Standard_Boolean              myIsDone;
-};
-
-#endif // _math_ComputeKronrodPointsAndWeights_HeaderFile
+// clang-format off
+#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/FoundationClasses/TKMath/math/math_ComputeKronrodPointsAndWeights.hxx"// clang-format on

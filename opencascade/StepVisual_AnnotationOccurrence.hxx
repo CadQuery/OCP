@@ -1,7 +1,4 @@
-// Created on: 1995-12-01
-// Created by: EXPRESS->CDL V0.2 Translator
-// Copyright (c) 1995-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,27 +11,5 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _StepVisual_AnnotationOccurrence_HeaderFile
-#define _StepVisual_AnnotationOccurrence_HeaderFile
-
-#include <Standard.hxx>
-
-#include <StepVisual_StyledItem.hxx>
-
-class StepVisual_AnnotationOccurrence;
-DEFINE_STANDARD_HANDLE(StepVisual_AnnotationOccurrence, StepVisual_StyledItem)
-
-class StepVisual_AnnotationOccurrence : public StepVisual_StyledItem
-{
-
-public:
-  //! Returns a AnnotationOccurrence
-  Standard_EXPORT StepVisual_AnnotationOccurrence();
-
-  DEFINE_STANDARD_RTTIEXT(StepVisual_AnnotationOccurrence, StepVisual_StyledItem)
-
-protected:
-private:
-};
-
-#endif // _StepVisual_AnnotationOccurrence_HeaderFile
+// clang-format off
+#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/DataExchange/TKDESTEP/StepVisual/StepVisual_AnnotationOccurrence.hxx"// clang-format on

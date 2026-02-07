@@ -1,6 +1,4 @@
-// Created on: 2016-02-04
-// Created by: Anastasia BORISOVA
-// Copyright (c) 2016 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -13,65 +11,5 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _Prs3d_ToolDisk_HeaderFile
-#define _Prs3d_ToolDisk_HeaderFile
-
-#include <Prs3d_ToolQuadric.hxx>
-
-//! Standard presentation algorithm that outputs graphical primitives for disk surface.
-class Prs3d_ToolDisk : public Prs3d_ToolQuadric
-{
-public:
-  //! Generate primitives for 3D quadric surface.
-  //! @param[in] theInnerRadius  inner disc radius
-  //! @param[in] theOuterRadius  outer disc radius
-  //! @param[in] theNbSlices     number of slices within U parameter
-  //! @param[in] theNbStacks     number of stacks within V parameter
-  //! @param[in] theTrsf         optional transformation to apply
-  //! @return generated triangulation
-  Standard_EXPORT static Handle(Graphic3d_ArrayOfTriangles) Create(
-    const Standard_Real    theInnerRadius,
-    const Standard_Real    theOuterRadius,
-    const Standard_Integer theNbSlices,
-    const Standard_Integer theNbStacks,
-    const gp_Trsf&         theTrsf);
-
-public:
-  //! Initializes the algorithm creating a disk.
-  //! @param[in] theInnerRadius  inner disk radius
-  //! @param[in] theOuterRadius  outer disk radius
-  //! @param[in] theNbSlices     number of slices within U parameter
-  //! @param[in] theNbStacks     number of stacks within V parameter
-  Standard_EXPORT Prs3d_ToolDisk(const Standard_Real    theInnerRadius,
-                                 const Standard_Real    theOuterRadius,
-                                 const Standard_Integer theNbSlices,
-                                 const Standard_Integer theNbStacks);
-
-  //! Set angle range in radians [0, 2*PI] by default.
-  //! @param[in] theStartAngle  Start angle in counter clockwise order
-  //! @param[in] theEndAngle    End   angle in counter clockwise order
-  void SetAngleRange(Standard_Real theStartAngle, Standard_Real theEndAngle)
-  {
-    myStartAngle = theStartAngle;
-    myEndAngle   = theEndAngle;
-  }
-
-protected:
-  //! Computes vertex at given parameter location of the surface.
-  Standard_EXPORT virtual gp_Pnt Vertex(const Standard_Real theU,
-                                        const Standard_Real theV) const Standard_OVERRIDE;
-
-  //! Computes normal at given parameter location of the surface.
-  virtual gp_Dir Normal(const Standard_Real, const Standard_Real) const Standard_OVERRIDE
-  {
-    return gp_Dir(0.0, 0.0, -1.0);
-  }
-
-protected:
-  Standard_Real myInnerRadius; //!< Inner disk radius
-  Standard_Real myOuterRadius; //!< Outer disk radius
-  Standard_Real myStartAngle;  //!< Start angle in counter clockwise order
-  Standard_Real myEndAngle;    //!< End   angle in counter clockwise order
-};
-
-#endif
+// clang-format off
+#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/Visualization/TKV3d/Prs3d/Prs3d_ToolDisk.hxx"// clang-format on

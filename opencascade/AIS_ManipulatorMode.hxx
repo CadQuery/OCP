@@ -1,6 +1,4 @@
-// Created on: 2015-02-05
-// Created by: Anastasia BORISOVA
-// Copyright (c) 2015 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -13,17 +11,5 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _AIS_ManipulatorMode_HeaderFile
-#define _AIS_ManipulatorMode_HeaderFile
-
-//! Mode to make definite kind of transformations with AIS_Manipulator object.
-enum AIS_ManipulatorMode
-{
-  AIS_MM_None        = 0,
-  AIS_MM_Translation = 1,
-  AIS_MM_Rotation,
-  AIS_MM_Scaling,
-  AIS_MM_TranslationPlane
-};
-
-#endif
+// clang-format off
+#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/Visualization/TKV3d/AIS/AIS_ManipulatorMode.hxx"// clang-format on

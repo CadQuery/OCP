@@ -1,4 +1,4 @@
-// Copyright (c) 2020 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,14 +11,5 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _Aspect_ColorSpace_HeaderFile
-#define _Aspect_ColorSpace_HeaderFile
-
-//! Texture color spaces accepted by XR composer.
-enum Aspect_ColorSpace
-{
-  Aspect_ColorSpace_sRGB   = 0, //!< non-linear sRGB color space
-  Aspect_ColorSpace_Linear = 1, //!< linear RGB color space
-};
-
-#endif // _Aspect_ColorSpace_HeaderFile
+// clang-format off
+#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/Visualization/TKService/Aspect/Aspect_ColorSpace.hxx"// clang-format on

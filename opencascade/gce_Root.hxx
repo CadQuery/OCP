@@ -1,7 +1,4 @@
-// Created on: 1992-09-29
-// Created by: Remi GILET
-// Copyright (c) 1992-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,43 +11,5 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _gce_Root_HeaderFile
-#define _gce_Root_HeaderFile
-
-#include <Standard.hxx>
-#include <Standard_DefineAlloc.hxx>
-#include <Standard_Handle.hxx>
-
-#include <gce_ErrorType.hxx>
-#include <Standard_Boolean.hxx>
-
-// resolve name collisions with X11 headers
-#ifdef Status
-  #undef Status
-#endif
-
-//! This class implements the common services for
-//! all classes of gce which report error.
-class gce_Root
-{
-public:
-  DEFINE_STANDARD_ALLOC
-
-  //! Returns true if the construction is successful.
-  Standard_Boolean IsDone() const;
-
-  //! Returns the status of the construction:
-  //! -   gce_Done, if the construction is successful, or
-  //! -   another value of the gce_ErrorType enumeration
-  //! indicating why the construction failed.
-  gce_ErrorType Status() const;
-
-protected:
-  gce_ErrorType TheError;
-
-private:
-};
-
-#include <gce_Root.lxx>
-
-#endif // _gce_Root_HeaderFile
+// clang-format off
+#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ModelingData/TKGeomBase/gce/gce_Root.hxx"// clang-format on
