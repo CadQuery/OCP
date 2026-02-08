@@ -47,7 +47,7 @@ inline void copy_if_copy_constructible(T& t1, T& t2){
 
 };
 
-template <typename T> inline T cast_pyobject(const py::object &arg){
+template <typename T> inline opencascade::handle<T> cast_pyobject(const py::object &arg){
   if(py::isinstance(arg, py::type::of<T>()))
       return opencascade::handle(py::cast<T*>(arg));
   else
