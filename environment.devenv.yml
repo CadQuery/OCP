@@ -2,14 +2,14 @@ name: cpp-py-bindgen
 channels:
   - conda-forge
 dependencies:
-  - occt=7.9.2=all*
+  - occt=7.9.3=all*
   - pybind11=2.13.*
   - python={{ get_env("PYTHON_VERSION", default="3.13") }}
   - cmake >3.24
   - ninja
   {% if  get_env("STAGE", default="generate") == "generate" %}
   - clangdev
-  - python-clang=20.*
+  - python-clang=21.*
   - joblib
   - toml
   - click
