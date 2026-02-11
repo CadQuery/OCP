@@ -30,7 +30,6 @@ modules = [
 "Quantity",
 "Storage",
 "FSD",
-"MMgt",
 "TCollection",
 "TColStd",
 "Message",
@@ -269,6 +268,7 @@ modules = [
 "RWStepGeom",
 "RWStepRepr",
 "RWStepShape",
+"RWMesh",
 "StepBasic",
 "StepGeom",
 "StepRepr",
@@ -424,7 +424,7 @@ class Adaptor3d_Surface;
 
 [Attributes]
 
-    __version__ = "7.9.3.0"
+    __version__ = "7.9.3.1"
 
 [Modules]
 
@@ -493,6 +493,20 @@ void register_template_NCollection_Vector(py::object &m, const char *name){
     [Modules.TCollection]
 
         exclude_methods = ["TCollection_ExtendedString::ToUTF8CString"]
+        include_body_post = """py::implicitly_convertible<std::string, TCollection_HAsciiString>();
+py::implicitly_convertible<std::string, TCollection_AsciiString>();"""
+
+        [[Modules.TCollection.Classes.TCollection_HAsciiString.additional_constructors]]
+
+            body = "[](const std::string &s){ return TCollection_HAsciiString(s.c_str()); }"
+            help = "std::strings based constructor"
+            arguments  = ["aString"]
+
+        [[Modules.TCollection.Classes.TCollection_AsciiString.additional_constructors]]
+
+            body = "[](const std::string &s){ return TCollection_AsciiString(s.c_str()); }"
+            help = "std::strings based constructor"
+            arguments  = ["aString"]
 
     [Modules.TColStd]
 
@@ -1090,6 +1104,12 @@ struct __GLXFBConfigRec {};"""
 
         exclude_classes = ["StepData_EnumTool"]
 
+        [Modules.StepData.Classes.StepData_SelectType.additional_methods.SetValue]
+
+            body = "[](StepData_SelectType &self , py::object& ent){self.SetValue(cast_pyobject<Standard_Transient>(ent));}"
+            help = "SetValue supporting python objects"
+            arguments  = ["ent"]
+
     [Modules.LDOM]
 
         exclude_classes = ["LDOMString","LDOM_MemManager","LDOM_BasicText"]
@@ -1278,6 +1298,18 @@ using rapidjson::BasicOStreamWrapper;"""
         [Modules.Interface.parsing_headers]
 
             "Interface_ValueInterpret.hxx" = "#include <Interface_TypedValue.hxx>"
+
+        [Modules.Interface.Classes.Interface_InterfaceModel.additional_methods.AddEntity]
+
+            body = "[](Interface_InterfaceModel &self , py::object& ent){self.AddEntity(cast_pyobject<Standard_Transient>(ent));}"
+            help = "AddEntity supporting python objects"
+            arguments  = ["anent"]
+
+        [Modules.Interface.Classes.Interface_InterfaceModel.additional_methods.AddWithRefs]
+
+            body = "[](Interface_InterfaceModel &self , py::object& ent){self.AddWithRefs(cast_pyobject<Standard_Transient>(ent));}"
+            help = "AddWithRefs supporting python objects"
+            arguments  = ["anent"]
 
     [Modules.IVtkVTK]
 
@@ -1495,3 +1527,7 @@ using rapidjson::BasicOStreamWrapper;"""
     [Modules.StepAP214]
 
         include_header_pre = "#include <Interface_InterfaceModel.hxx>"
+
+    [Modules.RWMesh]
+
+        include_header_pre = "#include <OSD_FileSystem.hxx>"

@@ -2,6 +2,7 @@
 #include <Standard_Handle.hxx>
 #include <type_traits>
 #include <memory>
+#include <fmt/format.h>
 
 namespace py = pybind11;
 
@@ -44,6 +45,13 @@ inline void copy_if_copy_constructible(T& t1, T& t2){
        t1 = t2;
     }
 
+};
+
+template <typename T> inline opencascade::handle<T> cast_pyobject(const py::object &arg){
+  if(py::isinstance(arg, py::type::of<T>()))
+      return opencascade::handle(py::cast<T*>(arg));
+  else
+      throw py::value_error(fmt::format("Cannot convert the argument to the required type {}", typeid(T).name()));
 };
 
 template<typename T, template<typename> typename Deleter = std::default_delete>
