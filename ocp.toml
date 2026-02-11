@@ -1527,3 +1527,7 @@ using rapidjson::BasicOStreamWrapper;"""
     [Modules.StepAP214]
 
         include_header_pre = "#include <Interface_InterfaceModel.hxx>"
+
+    [Modules.RWMesh]
+
+        include_header_pre = "#include <OSD_FileSystem.hxx>"
