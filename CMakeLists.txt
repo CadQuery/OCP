@@ -32,7 +32,7 @@ if( EXISTS ${OCCT_LIB_DIR})
     file(GLOB occt_libs LIST_DIRECTORIES false ${OCCT_LIB_DIR}/*.${DLL_EXT} )
     message(STATUS Found OCCT libs: ${occt_libs})
 else()
-    find_package( OpenCASCADE REQUIRED )
+    find_package( OpenCASCADE REQUIRED PATHS c:/Users/adamj/cq/OCP/build8/lib/cmake/opencascade NO_DEFAULT_PATH)
 
     foreach(target ${OpenCASCADE_LIBRARIES} )
         get_target_property(loc ${target} IMPORTED_LOCATION_RELEASE)
@@ -107,6 +107,52 @@ endif()
 set(ENV{PYTHONPATH} ${CMAKE_SOURCE_DIR}/pywrap )
 
 add_custom_command(
+    OUTPUT ${CMAKE_BINARY_DIR}/tmp.pkl
+    COMMAND
+        ${CMAKE_COMMAND} -E env "PYTHONPATH=${CMAKE_SOURCE_DIR}/pywrap"
+        ${Python_EXECUTABLE}
+        -m bindgen
+        -n ${N_PROC}
+        -l ${LIBCLANG_PATH}
+        -i ${VTK_INCLUDE_DIR}/
+        # -i ${OPENGL_INCLUDE_DIRS}
+        -i ${RapidJSON_INCLUDE_DIRS}
+        -i ${CLANG_INSTALL_PREFIX}/lib/clang/${LLVM_VERSION_MAJOR}/include/
+        -p ${CMAKE_SOURCE_DIR}
+        ${CXX_INCLUDES}
+        parse ${CMAKE_SOURCE_DIR}/ocp.toml tmp.pkl ${PLATFORM}
+        WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
+    DEPENDS ${CMAKE_SOURCE_DIR}/ocp.toml
+    USES_TERMINAL
+    COMMENT "Running pywrap - parse"
+)
+
+add_custom_target(pywrap_parse ALL DEPENDS ${CMAKE_BINARY_DIR}/tmp.pkl )
+
+add_custom_command(
+    OUTPUT ${CMAKE_BINARY_DIR}/tmp_filtered.pkl
+    COMMAND
+        ${CMAKE_COMMAND} -E env "PYTHONPATH=${CMAKE_SOURCE_DIR}/pywrap"
+        ${Python_EXECUTABLE}
+        -m bindgen
+        -n ${N_PROC}
+        -l ${LIBCLANG_PATH}
+        -i ${VTK_INCLUDE_DIR}/
+        # -i ${OPENGL_INCLUDE_DIRS}
+        -i ${RapidJSON_INCLUDE_DIRS}
+        -i ${CLANG_INSTALL_PREFIX}/lib/clang/${LLVM_VERSION_MAJOR}/include/
+        -p ${CMAKE_SOURCE_DIR}
+        ${CXX_INCLUDES}
+        transform ${CMAKE_SOURCE_DIR}/ocp.toml ${PLATFORM} tmp.pkl tmp_filtered.pkl
+        WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
+    DEPENDS tmp.pkl
+    USES_TERMINAL
+    COMMENT "Running pywrap - transform"
+)
+
+add_custom_target(pywrap_transform ALL DEPENDS ${CMAKE_BINARY_DIR}/tmp_filtered.pkl )
+
+add_custom_command(
     OUTPUT ${CMAKE_BINARY_DIR}/OCP/CMakeLists.txt
     COMMAND
         ${CMAKE_COMMAND} -E env "PYTHONPATH=${CMAKE_SOURCE_DIR}/pywrap"
@@ -115,17 +161,17 @@ add_custom_command(
         -n ${N_PROC}
         -l ${LIBCLANG_PATH}
         -i ${VTK_INCLUDE_DIR}/
-        -i ${OPENGL_INCLUDE_DIRS}
+        # -i ${OPENGL_INCLUDE_DIRS}
         -i ${RapidJSON_INCLUDE_DIRS}
         -i ${CLANG_INSTALL_PREFIX}/lib/clang/${LLVM_VERSION_MAJOR}/include/
         -p ${CMAKE_SOURCE_DIR}
         ${CXX_INCLUDES}
-        all ${CMAKE_SOURCE_DIR}/ocp.toml ${PLATFORM}
+        generate ${CMAKE_SOURCE_DIR}/ocp.toml ${PLATFORM} tmp_filtered.pkl
         WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
-    DEPENDS ${CMAKE_SOURCE_DIR}/ocp.toml
+    DEPENDS tmp_filtered.pkl
     USES_TERMINAL
-    COMMENT "Running pywrap"
+    COMMENT "Running pywrap - generate"
 )
 
-add_custom_target(pywrap ALL DEPENDS ${CMAKE_BINARY_DIR}/OCP/CMakeLists.txt )
+add_custom_target(pywrap_generate ALL DEPENDS ${CMAKE_BINARY_DIR}/OCP/CMakeLists.txt )
 
