@@ -366,6 +366,21 @@ exclude = ["Standard_Handle.hxx","Standard", "Standard_MemoryUtils.hxx",
 
 exceptions = ["Standard_Failure"]
 
+exclude_collection = [
+"Shared_Map_constStandard_Transient",
+"Shared_IndexedMap_SelectMgr_EntityOwner",
+"List_BRepCheck_Status",
+"Sequence_constgp_Pnt2d",
+"Vec2_unsigned int",
+"HArray1_StepDimTol_GeometricToleranceModifier",
+"DataMap_TopoDS_Shape_RWMesh_NodeAttributes",
+"Map_Graphic3d_Structure",
+"Shared_Map_const Standard_Transient",
+"Shared_Map_const Standard_Transient",
+"Vec3_size_t",
+"Vec2_unsigned  int",
+"Sequence_const gp_Pnt2d",
+]
 
 module_mapping = "lambda x: Path(x).splitpath()[-1].split('.')[0].split('_')[0]"
 
@@ -424,7 +439,7 @@ class Adaptor3d_Surface;
 
 [Attributes]
 
-    __version__ = "7.9.3.0"
+    __version__ = "8.0.0.0RC3"
 
 [Modules]
 
@@ -466,6 +481,14 @@ void register_template_NCollection_Vector(py::object &m, const char *name){
         [Modules.NCollection.Templates.NCollection_Array1]
 
         exclude_constructors = [3]
+
+        [Modules.NCollection.Templates.NCollection_DataMap]
+
+        exclude_methods = ["Bound", "Seek", "ChangeSeek"]
+
+        [Modules.NCollection.Templates.NCollection_IndexedDataMap]
+
+        exclude_methods = ["Seek", "ChangeSeek"]
 
         [Modules.NCollection.parsing_headers]
 
@@ -532,25 +555,25 @@ void register_template_NCollection_Vector(py::object &m, const char *name){
         register_template_NCollection_DataMap<TCollection_AsciiString, TCollection_AsciiString>(m,"TColStd_DataMapOfStringString");
         """
 
-        preregister_include_body_post="""
-        preregister_template_NCollection_Array1<TCollection_AsciiString>(m,"TColStd_Array1OfAsciiString");
-        preregister_template_NCollection_Array1<Standard_Boolean>(m,"TColStd_Array1OfBoolean");
-        preregister_template_NCollection_Array1<Standard_Byte>(m,"TColStd_Array1OfByte");
-        preregister_template_NCollection_Array1<Standard_Character>(m,"TColStd_Array1OfCharacter");
-        preregister_template_NCollection_Array1<TCollection_ExtendedString>(m,"TColStd_Array1OfExtendedString");
-        preregister_template_NCollection_Array1<Standard_Integer>(m,"TColStd_Array1OfInteger");
-        preregister_template_NCollection_Array1<Standard_Real>(m,"TColStd_Array1OfReal");
-        preregister_template_NCollection_Array2<Standard_Boolean>(m,"TColStd_Array2OfBoolean");
-        preregister_template_NCollection_Array2<Standard_Character>(m,"TColStd_Array2OfCharacter");
-        preregister_template_NCollection_Array2<Standard_Integer>(m,"TColStd_Array2OfInteger");
-        preregister_template_NCollection_Array2<Standard_Real>(m,"TColStd_Array2OfReal");
-
-        preregister_template_NCollection_List<TCollection_AsciiString>(m,"TColStd_ListOfAsciiString");
-        preregister_template_NCollection_List<Standard_Integer>(m,"TColStd_ListOfInteger");
-        preregister_template_NCollection_List<Standard_Real>(m,"TColStd_ListOfReal");
-
-        preregister_template_NCollection_DataMap<TCollection_AsciiString, TCollection_AsciiString>(m,"TColStd_DataMapOfStringString");
-        """
+        # preregister_include_body_post="""
+        # preregister_template_NCollection_Array1<TCollection_AsciiString>(m,"TColStd_Array1OfAsciiString");
+        # preregister_template_NCollection_Array1<Standard_Boolean>(m,"TColStd_Array1OfBoolean");
+        # preregister_template_NCollection_Array1<Standard_Byte>(m,"TColStd_Array1OfByte");
+        # preregister_template_NCollection_Array1<Standard_Character>(m,"TColStd_Array1OfCharacter");
+        # preregister_template_NCollection_Array1<TCollection_ExtendedString>(m,"TColStd_Array1OfExtendedString");
+        # preregister_template_NCollection_Array1<Standard_Integer>(m,"TColStd_Array1OfInteger");
+        # preregister_template_NCollection_Array1<Standard_Real>(m,"TColStd_Array1OfReal");
+        # preregister_template_NCollection_Array2<Standard_Boolean>(m,"TColStd_Array2OfBoolean");
+        # preregister_template_NCollection_Array2<Standard_Character>(m,"TColStd_Array2OfCharacter");
+        # preregister_template_NCollection_Array2<Standard_Integer>(m,"TColStd_Array2OfInteger");
+        # preregister_template_NCollection_Array2<Standard_Real>(m,"TColStd_Array2OfReal");
+        #
+        # preregister_template_NCollection_List<TCollection_AsciiString>(m,"TColStd_ListOfAsciiString");
+        # preregister_template_NCollection_List<Standard_Integer>(m,"TColStd_ListOfInteger");
+        # preregister_template_NCollection_List<Standard_Real>(m,"TColStd_ListOfReal");
+        #
+        # preregister_template_NCollection_DataMap<TCollection_AsciiString, TCollection_AsciiString>(m,"TColStd_DataMapOfStringString");
+        # """
 
     [Modules.Plugin]
 
