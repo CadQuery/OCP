@@ -1,177 +1,170 @@
-cmake_minimum_required( VERSION 3.29 )
-project( OCP )
+cmake_minimum_required(VERSION 3.29)
+project(OCP)
 
-set( N_PROC 2 CACHE STRING "Number of processes used for generating code")
-set( DLL_EXT dll CACHE STRING "DLL suffix")
-set( MSVC_VER 16 CACHE STRING "MSVC version to download for win generation")
-set( OCCT_LIB_DIR  CACHE PATH "Location of OCCT sos/dlls")
+set(N_PROC
+    2
+    CACHE STRING "Number of processes used for generating code")
+set(DLL_EXT
+    dll
+    CACHE STRING "DLL suffix")
+set(MSVC_VER
+    16
+    CACHE STRING "MSVC version to download for win generation")
+set(OCCT_LIB_DIR CACHE PATH "Location of OCCT sos/dlls")
 
-find_package( OpenGL REQUIRED )
-find_package( LLVM REQUIRED )
-find_package( VTK REQUIRED
-  COMPONENTS
-    CommonCore
-    WrappingPythonCore
-    RenderingCore
-    RenderingOpenGL2
-    CommonDataModel
-    CommonExecutionModel
-    freetype
-)
+find_package(OpenGL REQUIRED)
+find_package(LLVM REQUIRED)
+find_package(
+  VTK REQUIRED
+  COMPONENTS CommonCore
+             WrappingPythonCore
+             RenderingCore
+             RenderingOpenGL2
+             CommonDataModel
+             CommonExecutionModel
+             freetype)
 
 message(STATUS "VTK ${VTK_VERSION} found")
 
-find_package( RapidJSON REQUIRED )
-find_package( Clang REQUIRED )
+find_package(RapidJSON REQUIRED)
+find_package(Clang REQUIRED)
 
-set( Python_FIND_VIRTUALENV FIRST )
-find_package( Python COMPONENTS Interpreter Development REQUIRED )
+set(Python_FIND_VIRTUALENV FIRST)
+find_package(
+  Python
+  COMPONENTS Interpreter Development
+  REQUIRED)
 
 # find OCCT and dump symbols
-if( EXISTS ${OCCT_LIB_DIR})
-    file(GLOB occt_libs LIST_DIRECTORIES false ${OCCT_LIB_DIR}/*.${DLL_EXT} )
-    message(STATUS Found OCCT libs: ${occt_libs})
+if(EXISTS ${OCCT_LIB_DIR})
+  file(
+    GLOB occt_libs
+    LIST_DIRECTORIES false
+    ${OCCT_LIB_DIR}/*.${DLL_EXT})
+  message(STATUS Found OCCT libs: ${occt_libs})
 else()
-    find_package( OpenCASCADE REQUIRED PATHS c:/Users/adamj/cq/OCP/build8/lib/cmake/opencascade NO_DEFAULT_PATH)
+  find_package(
+    OpenCASCADE REQUIRED 
+  )
 
-    foreach(target ${OpenCASCADE_LIBRARIES} )
-        get_target_property(loc ${target} IMPORTED_LOCATION_RELEASE)
-        list( APPEND occt_libs ${loc} )
-    endforeach()
+  foreach(target ${OpenCASCADE_LIBRARIES})
+    get_target_property(loc ${target} IMPORTED_LOCATION_RELEASE)
+    list(APPEND occt_libs ${loc})
+  endforeach()
 endif()
 
-execute_process(
-    COMMAND
-    ${Python_EXECUTABLE}
-    ${CMAKE_SOURCE_DIR}/dump_symbols.py
-    "${occt_libs}"
-    WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
-)
+execute_process(COMMAND ${Python_EXECUTABLE} ${CMAKE_SOURCE_DIR}/dump_symbols.py
+                        "${occt_libs}" WORKING_DIRECTORY ${CMAKE_BINARY_DIR})
 
-get_target_property( LIBCLANG_PATH libclang IMPORTED_LOCATION_RELEASE )
-get_target_property( VTK_INCLUDE_DIR VTK::CommonCore INTERFACE_INCLUDE_DIRECTORIES )
+get_target_property(LIBCLANG_PATH libclang IMPORTED_LOCATION_RELEASE)
+get_target_property(VTK_INCLUDE_DIR VTK::CommonCore
+                    INTERFACE_INCLUDE_DIRECTORIES)
 
 # for some reason I get multiple generator expressions
 string(REPLACE ">" ">;" VTK_INCLUDE_DIR ${VTK_INCLUDE_DIR})
 list(GET VTK_INCLUDE_DIR 0 VTK_INCLUDE_DIR)
 
-message( STATUS "Include dirs: ${VTK_INCLUDE_DIR}")
-message( STATUS "Include dirs: ${CMAKE_CXX_IMPLICIT_INCLUDE_DIRECTORIES}")
+message(STATUS "Include dirs: ${VTK_INCLUDE_DIR}")
+message(STATUS "Include dirs: ${CMAKE_CXX_IMPLICIT_INCLUDE_DIRECTORIES}")
 
 # OSX
 if(${CMAKE_SYSTEM_NAME} STREQUAL "Darwin")
-    list( APPEND CXX_INCLUDES -i /opt/usr/local/include/c++/v1/ -i /opt/usr/local/include/ )
+  list(APPEND CXX_INCLUDES -i /opt/usr/local/include/c++/v1/ -i
+       /opt/usr/local/include/)
 
-# Linux-like
+  # Linux-like
 elseif(NOT PLATFORM STREQUAL "Windows")
-    foreach( inc IN LISTS CMAKE_CXX_IMPLICIT_INCLUDE_DIRECTORIES)
-        list( APPEND CXX_INCLUDES -i ${inc}/ )
-    endforeach()
+  foreach(inc IN LISTS CMAKE_CXX_IMPLICIT_INCLUDE_DIRECTORIES)
+    list(APPEND CXX_INCLUDES -i ${inc}/)
+  endforeach()
 
-# X-generation from Linux to Windows
+  # X-generation from Linux to Windows
 else()
-    # download part of msvc 16 and winsdk
-    if( NOT EXISTS ${CMAKE_BINARY_DIR}/msvc )
-        execute_process(
-            COMMAND
-            ${Python_EXECUTABLE}
-            ${CMAKE_SOURCE_DIR}/extern/msvc-wine/vsdownload.py
-            --major ${MSVC_VER}
-            --accept-license
-            --dest msvc
-            Win10SDK_10.0.19041
-            Microsoft.VisualCpp.CRT.Headers
-            WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
-        )
-    endif()
+  # download part of msvc 16 and winsdk
+  if(NOT EXISTS ${CMAKE_BINARY_DIR}/msvc)
+    execute_process(
+      COMMAND
+        ${Python_EXECUTABLE} ${CMAKE_SOURCE_DIR}/extern/msvc-wine/vsdownload.py
+        --major ${MSVC_VER} --accept-license --dest msvc Win10SDK_10.0.19041
+        Microsoft.VisualCpp.CRT.Headers
+      WORKING_DIRECTORY ${CMAKE_BINARY_DIR})
+  endif()
 
-    list( APPEND CXX_INCLUDES -i ${CMAKE_BINARY_DIR}/msvc/VC/Tools/MSVC/14.29.30133/include )
-    list( APPEND CXX_INCLUDES -i ${CMAKE_BINARY_DIR}/msvc/Windows\ Kits/10/Include/10.0.19041.0/ucrt/ )
-    list( APPEND CXX_INCLUDES -i ${CMAKE_SOURCE_DIR}/extern/include/ )
+  list(APPEND CXX_INCLUDES -i
+       ${CMAKE_BINARY_DIR}/msvc/VC/Tools/MSVC/14.29.30133/include)
+  list(APPEND CXX_INCLUDES -i
+       ${CMAKE_BINARY_DIR}/msvc/Windows\ Kits/10/Include/10.0.19041.0/ucrt/)
+  list(APPEND CXX_INCLUDES -i ${CMAKE_SOURCE_DIR}/extern/include/)
 endif()
 
 if(PLATFORM)
-    message( STATUS "Requested platform: ${PLATFORM}")
+  message(STATUS "Requested platform: ${PLATFORM}")
 else()
-    message( STATUS "Platform not specified.")
+  message(STATUS "Platform not specified.")
 
-    if(${CMAKE_SYSTEM_NAME} STREQUAL "Windows")
-        set(PLATFORM Windows)
-    elseif(${CMAKE_SYSTEM_NAME} STREQUAL "Darwin")
-        set(PLATFORM OSX)
-    else()
-        set(PLATFORM Linux)
-    endif()
+  if(${CMAKE_SYSTEM_NAME} STREQUAL "Windows")
+    set(PLATFORM Windows)
+  elseif(${CMAKE_SYSTEM_NAME} STREQUAL "Darwin")
+    set(PLATFORM OSX)
+  else()
+    set(PLATFORM Linux)
+  endif()
 endif()
 
-set(ENV{PYTHONPATH} ${CMAKE_SOURCE_DIR}/pywrap )
+set(ENV{PYTHONPATH} ${CMAKE_SOURCE_DIR}/pywrap)
 
 add_custom_command(
-    OUTPUT ${CMAKE_BINARY_DIR}/tmp.pkl
-    COMMAND
-        ${CMAKE_COMMAND} -E env "PYTHONPATH=${CMAKE_SOURCE_DIR}/pywrap"
-        ${Python_EXECUTABLE}
-        -m bindgen
-        -n ${N_PROC}
-        -l ${LIBCLANG_PATH}
-        -i ${VTK_INCLUDE_DIR}/
-        # -i ${OPENGL_INCLUDE_DIRS}
-        -i ${RapidJSON_INCLUDE_DIRS}
-        -i ${CLANG_INSTALL_PREFIX}/lib/clang/${LLVM_VERSION_MAJOR}/include/
-        -p ${CMAKE_SOURCE_DIR}
-        ${CXX_INCLUDES}
-        parse ${CMAKE_SOURCE_DIR}/ocp.toml tmp.pkl ${PLATFORM}
-        WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
-    DEPENDS ${CMAKE_SOURCE_DIR}/ocp.toml
-    USES_TERMINAL
-    COMMENT "Running pywrap - parse"
-)
+  OUTPUT ${CMAKE_BINARY_DIR}/tmp.pkl
+  COMMAND
+    ${CMAKE_COMMAND} -E env "PYTHONPATH=${CMAKE_SOURCE_DIR}/pywrap"
+    ${Python_EXECUTABLE} -m bindgen -n ${N_PROC} -l ${LIBCLANG_PATH} -i
+    ${VTK_INCLUDE_DIR}/
+    # -i ${OPENGL_INCLUDE_DIRS}
+    -i ${RapidJSON_INCLUDE_DIRS} -i
+    ${CLANG_INSTALL_PREFIX}/lib/clang/${LLVM_VERSION_MAJOR}/include/ -p
+    ${CMAKE_SOURCE_DIR} ${CXX_INCLUDES} parse ${CMAKE_SOURCE_DIR}/ocp.toml
+    tmp.pkl ${PLATFORM}
+  WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
+  DEPENDS ${CMAKE_SOURCE_DIR}/ocp.toml
+  USES_TERMINAL
+  COMMENT "Running pywrap - parse")
 
-add_custom_target(pywrap_parse ALL DEPENDS ${CMAKE_BINARY_DIR}/tmp.pkl )
+add_custom_target(pywrap_parse ALL DEPENDS ${CMAKE_BINARY_DIR}/tmp.pkl)
 
 add_custom_command(
-    OUTPUT ${CMAKE_BINARY_DIR}/tmp_filtered.pkl
-    COMMAND
-        ${CMAKE_COMMAND} -E env "PYTHONPATH=${CMAKE_SOURCE_DIR}/pywrap"
-        ${Python_EXECUTABLE}
-        -m bindgen
-        -n ${N_PROC}
-        -l ${LIBCLANG_PATH}
-        -i ${VTK_INCLUDE_DIR}/
-        # -i ${OPENGL_INCLUDE_DIRS}
-        -i ${RapidJSON_INCLUDE_DIRS}
-        -i ${CLANG_INSTALL_PREFIX}/lib/clang/${LLVM_VERSION_MAJOR}/include/
-        -p ${CMAKE_SOURCE_DIR}
-        ${CXX_INCLUDES}
-        transform ${CMAKE_SOURCE_DIR}/ocp.toml ${PLATFORM} tmp.pkl tmp_filtered.pkl
-        WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
-    DEPENDS tmp.pkl
-    USES_TERMINAL
-    COMMENT "Running pywrap - transform"
-)
+  OUTPUT ${CMAKE_BINARY_DIR}/tmp_filtered.pkl
+  COMMAND
+    ${CMAKE_COMMAND} -E env "PYTHONPATH=${CMAKE_SOURCE_DIR}/pywrap"
+    ${Python_EXECUTABLE} -m bindgen -n ${N_PROC} -l ${LIBCLANG_PATH} -i
+    ${VTK_INCLUDE_DIR}/
+    # -i ${OPENGL_INCLUDE_DIRS}
+    -i ${RapidJSON_INCLUDE_DIRS} -i
+    ${CLANG_INSTALL_PREFIX}/lib/clang/${LLVM_VERSION_MAJOR}/include/ -p
+    ${CMAKE_SOURCE_DIR} ${CXX_INCLUDES} transform ${CMAKE_SOURCE_DIR}/ocp.toml
+    ${PLATFORM} tmp.pkl tmp_filtered.pkl
+  WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
+  DEPENDS ${CMAKE_BINARY_DIR}/tmp.pkl
+  USES_TERMINAL
+  COMMENT "Running pywrap - transform")
 
-add_custom_target(pywrap_transform ALL DEPENDS ${CMAKE_BINARY_DIR}/tmp_filtered.pkl )
+add_custom_target(pywrap_transform ALL
+                  DEPENDS ${CMAKE_BINARY_DIR}/tmp_filtered.pkl)
 
 add_custom_command(
-    OUTPUT ${CMAKE_BINARY_DIR}/OCP/CMakeLists.txt
-    COMMAND
-        ${CMAKE_COMMAND} -E env "PYTHONPATH=${CMAKE_SOURCE_DIR}/pywrap"
-        ${Python_EXECUTABLE}
-        -m bindgen
-        -n ${N_PROC}
-        -l ${LIBCLANG_PATH}
-        -i ${VTK_INCLUDE_DIR}/
-        # -i ${OPENGL_INCLUDE_DIRS}
-        -i ${RapidJSON_INCLUDE_DIRS}
-        -i ${CLANG_INSTALL_PREFIX}/lib/clang/${LLVM_VERSION_MAJOR}/include/
-        -p ${CMAKE_SOURCE_DIR}
-        ${CXX_INCLUDES}
-        generate ${CMAKE_SOURCE_DIR}/ocp.toml ${PLATFORM} tmp_filtered.pkl
-        WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
-    DEPENDS tmp_filtered.pkl
-    USES_TERMINAL
-    COMMENT "Running pywrap - generate"
-)
+  OUTPUT ${CMAKE_BINARY_DIR}/OCP/CMakeLists.txt
+  COMMAND
+    ${CMAKE_COMMAND} -E env "PYTHONPATH=${CMAKE_SOURCE_DIR}/pywrap"
+    ${Python_EXECUTABLE} -m bindgen -n ${N_PROC} -l ${LIBCLANG_PATH} -i
+    ${VTK_INCLUDE_DIR}/
+    # -i ${OPENGL_INCLUDE_DIRS}
+    -i ${RapidJSON_INCLUDE_DIRS} -i
+    ${CLANG_INSTALL_PREFIX}/lib/clang/${LLVM_VERSION_MAJOR}/include/ -p
+    ${CMAKE_SOURCE_DIR} ${CXX_INCLUDES} generate ${CMAKE_SOURCE_DIR}/ocp.toml
+    ${PLATFORM} tmp_filtered.pkl
+  WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
+  DEPENDS ${CMAKE_BINARY_DIR}/tmp_filtered.pkl
+  USES_TERMINAL
+  COMMENT "Running pywrap - generate")
 
-add_custom_target(pywrap_generate ALL DEPENDS ${CMAKE_BINARY_DIR}/OCP/CMakeLists.txt )
-
+add_custom_target(pywrap_generate ALL
+                  DEPENDS ${CMAKE_BINARY_DIR}/OCP/CMakeLists.txt)
