@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 1993-04-07
+// Created by: Laurent BUCHARD
+// Copyright (c) 1993-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,31 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ModelingAlgorithms/TKGeomAlgo/IntCurveSurface/IntCurveSurface_TransitionOnCurve.hxx"// clang-format on
+#ifndef _IntCurveSurface_TransitionOnCurve_HeaderFile
+#define _IntCurveSurface_TransitionOnCurve_HeaderFile
+
+//! \ Uo     ^        \ U1     ^
+//! \       | n       \       | n
+//! Surf  ====\======|===   ====\======|===
+//! \     .           \     .
+//! \    .            \    .
+//! U1  \   .          Uo \   .
+//!
+//! ( In )            ( Out )
+//!
+//! \           /
+//! \         /
+//! \       /
+//! \     /
+//! Surf =====-----=====
+//!
+//! ( Tangent )
+//! Crb and Surf are C1
+enum IntCurveSurface_TransitionOnCurve
+{
+  IntCurveSurface_Tangent,
+  IntCurveSurface_In,
+  IntCurveSurface_Out
+};
+
+#endif // _IntCurveSurface_TransitionOnCurve_HeaderFile

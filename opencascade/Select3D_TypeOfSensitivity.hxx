@@ -1,4 +1,4 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Copyright (c) 2015 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +11,16 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/Visualization/TKV3d/Select3D/Select3D_TypeOfSensitivity.hxx"// clang-format on
+#ifndef _Select3D_TypeOfSensitivity_HeaderFile
+#define _Select3D_TypeOfSensitivity_HeaderFile
+
+//! Provides values for type of sensitivity in 3D.
+//! These are used to specify whether it is the interior,
+//! the boundary, or the exterior of a 3D sensitive entity which is sensitive.
+enum Select3D_TypeOfSensitivity
+{
+  Select3D_TOS_INTERIOR,
+  Select3D_TOS_BOUNDARY
+};
+
+#endif // _Select3D_TypeOfSensitivity_HeaderFile

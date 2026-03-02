@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 1994-01-10
+// Created by: Yves FRICAUD
+// Copyright (c) 1994-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,62 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ModelingAlgorithms/TKTopAlgo/Bisector/Bisector_PointOnBis.hxx"// clang-format on
+#ifndef _Bisector_PointOnBis_HeaderFile
+#define _Bisector_PointOnBis_HeaderFile
+
+#include <Standard.hxx>
+#include <Standard_DefineAlloc.hxx>
+#include <Standard_Handle.hxx>
+
+#include <Standard_Boolean.hxx>
+#include <gp_Pnt2d.hxx>
+
+class Bisector_PointOnBis
+{
+public:
+  DEFINE_STANDARD_ALLOC
+
+  Standard_EXPORT Bisector_PointOnBis();
+
+  Standard_EXPORT Bisector_PointOnBis(const double    Param1,
+                                      const double    Param2,
+                                      const double    ParamBis,
+                                      const double    Distance,
+                                      const gp_Pnt2d& Point);
+
+  Standard_EXPORT void ParamOnC1(const double Param);
+
+  Standard_EXPORT void ParamOnC2(const double Param);
+
+  Standard_EXPORT void ParamOnBis(const double Param);
+
+  Standard_EXPORT void Distance(const double Distance);
+
+  Standard_EXPORT void IsInfinite(const bool Infinite);
+
+  Standard_EXPORT void Point(const gp_Pnt2d& P);
+
+  Standard_EXPORT double ParamOnC1() const;
+
+  Standard_EXPORT double ParamOnC2() const;
+
+  Standard_EXPORT double ParamOnBis() const;
+
+  Standard_EXPORT double Distance() const;
+
+  Standard_EXPORT gp_Pnt2d Point() const;
+
+  Standard_EXPORT bool IsInfinite() const;
+
+  Standard_EXPORT void Dump() const;
+
+private:
+  double   param1;
+  double   param2;
+  double   paramBis;
+  double   distance;
+  bool     infinite;
+  gp_Pnt2d point;
+};
+
+#endif // _Bisector_PointOnBis_HeaderFile

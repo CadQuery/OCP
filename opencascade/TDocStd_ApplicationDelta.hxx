@@ -1,4 +1,6 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 2002-11-19
+// Created by: Vladimir ANIKIN
+// Copyright (c) 2002-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +13,38 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ApplicationFramework/TKLCAF/TDocStd/TDocStd_ApplicationDelta.hxx"// clang-format on
+#ifndef _TDocStd_ApplicationDelta_HeaderFile
+#define _TDocStd_ApplicationDelta_HeaderFile
+
+#include <Standard.hxx>
+
+#include <TDocStd_Document.hxx>
+#include <NCollection_Sequence.hxx>
+#include <TCollection_ExtendedString.hxx>
+#include <Standard_Transient.hxx>
+#include <Standard_OStream.hxx>
+
+class TDocStd_ApplicationDelta : public Standard_Transient
+{
+
+public:
+  Standard_EXPORT TDocStd_ApplicationDelta();
+
+  NCollection_Sequence<occ::handle<TDocStd_Document>>& GetDocuments();
+
+  const TCollection_ExtendedString& GetName() const;
+
+  void SetName(const TCollection_ExtendedString& theName);
+
+  Standard_EXPORT void Dump(Standard_OStream& anOS) const;
+
+  DEFINE_STANDARD_RTTIEXT(TDocStd_ApplicationDelta, Standard_Transient)
+
+private:
+  NCollection_Sequence<occ::handle<TDocStd_Document>> myDocuments;
+  TCollection_ExtendedString                          myName;
+};
+
+#include <TDocStd_ApplicationDelta.lxx>
+
+#endif // _TDocStd_ApplicationDelta_HeaderFile

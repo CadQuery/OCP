@@ -1,4 +1,6 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 2002-12-12
+// Created by: data exchange team
+// Copyright (c) 2002-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +13,46 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/DataExchange/TKDESTEP/StepFEA/StepFEA_CurveElementEndCoordinateSystem.hxx"// clang-format on
+#ifndef _StepFEA_CurveElementEndCoordinateSystem_HeaderFile
+#define _StepFEA_CurveElementEndCoordinateSystem_HeaderFile
+
+#include <Standard.hxx>
+#include <Standard_DefineAlloc.hxx>
+#include <Standard_Handle.hxx>
+
+#include <StepData_SelectType.hxx>
+#include <Standard_Integer.hxx>
+class Standard_Transient;
+class StepFEA_FeaAxis2Placement3d;
+class StepFEA_AlignedCurve3dElementCoordinateSystem;
+class StepFEA_ParametricCurve3dElementCoordinateSystem;
+
+//! Representation of STEP SELECT type CurveElementEndCoordinateSystem
+class StepFEA_CurveElementEndCoordinateSystem : public StepData_SelectType
+{
+public:
+  DEFINE_STANDARD_ALLOC
+
+  //! Empty constructor
+  Standard_EXPORT StepFEA_CurveElementEndCoordinateSystem();
+
+  //! Recognizes a kind of CurveElementEndCoordinateSystem select type
+  //! 1 -> FeaAxis2Placement3d from StepFEA
+  //! 2 -> AlignedCurve3dElementCoordinateSystem from StepFEA
+  //! 3 -> ParametricCurve3dElementCoordinateSystem from StepFEA
+  //! 0 else
+  Standard_EXPORT int CaseNum(const occ::handle<Standard_Transient>& ent) const override;
+
+  //! Returns Value as FeaAxis2Placement3d (or Null if another type)
+  Standard_EXPORT occ::handle<StepFEA_FeaAxis2Placement3d> FeaAxis2Placement3d() const;
+
+  //! Returns Value as AlignedCurve3dElementCoordinateSystem (or Null if another type)
+  Standard_EXPORT occ::handle<StepFEA_AlignedCurve3dElementCoordinateSystem>
+                  AlignedCurve3dElementCoordinateSystem() const;
+
+  //! Returns Value as ParametricCurve3dElementCoordinateSystem (or Null if another type)
+  Standard_EXPORT occ::handle<StepFEA_ParametricCurve3dElementCoordinateSystem>
+                  ParametricCurve3dElementCoordinateSystem() const;
+};
+
+#endif // _StepFEA_CurveElementEndCoordinateSystem_HeaderFile

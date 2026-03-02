@@ -11,5 +11,13 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/DataExchange/TKDEIGES/TKDEIGES_pch.hxx"// clang-format on
+#ifndef TKDEIGES_PCH_H
+#define TKDEIGES_PCH_H
+
+#include <IGESData_IGESEntity.hxx>
+#include <NCollection_Array1.hxx>
+#include <NCollection_HArray1.hxx>
+#include <IGESData_IGESReaderData.hxx>
+#include <IGESData_ParamReader.hxx>
+
+#endif // TKDEIGES_PCH_H

@@ -1,4 +1,6 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 2001-07-25
+// Created by: Julia DOROVSKIKH
+// Copyright (c) 2001-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +13,35 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ApplicationFramework/TKXml/XmlDrivers/XmlDrivers_DocumentRetrievalDriver.hxx"// clang-format on
+#ifndef _XmlDrivers_DocumentRetrievalDriver_HeaderFile
+#define _XmlDrivers_DocumentRetrievalDriver_HeaderFile
+
+#include <Standard.hxx>
+#include <Standard_Type.hxx>
+
+#include <XmlLDrivers_DocumentRetrievalDriver.hxx>
+#include <XmlObjMgt_Element.hxx>
+#include <Standard_Integer.hxx>
+class XmlMDF_ADriverTable;
+class Message_Messenger;
+class XmlMDF_ADriver;
+
+class XmlDrivers_DocumentRetrievalDriver : public XmlLDrivers_DocumentRetrievalDriver
+{
+public:
+  Standard_EXPORT XmlDrivers_DocumentRetrievalDriver();
+
+  Standard_EXPORT occ::handle<XmlMDF_ADriverTable> AttributeDrivers(
+    const occ::handle<Message_Messenger>& theMsgDriver) override;
+
+  Standard_EXPORT occ::handle<XmlMDF_ADriver> ReadShapeSection(
+    const XmlObjMgt_Element&              thePDoc,
+    const occ::handle<Message_Messenger>& theMsgDriver,
+    const Message_ProgressRange&          theRange = Message_ProgressRange()) override;
+
+  Standard_EXPORT void ShapeSetCleaning(const occ::handle<XmlMDF_ADriver>& theDriver) override;
+
+  DEFINE_STANDARD_RTTIEXT(XmlDrivers_DocumentRetrievalDriver, XmlLDrivers_DocumentRetrievalDriver)
+};
+
+#endif // _XmlDrivers_DocumentRetrievalDriver_HeaderFile

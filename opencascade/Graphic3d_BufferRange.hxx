@@ -1,4 +1,4 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Copyright (c) 2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +11,71 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/Visualization/TKService/Graphic3d/Graphic3d_BufferRange.hxx"// clang-format on
+#ifndef _Graphic3d_BufferRange_HeaderFile
+#define _Graphic3d_BufferRange_HeaderFile
+
+#include <NCollection_Vec2.hxx>
+
+#include <Standard_TypeDef.hxx>
+
+#include <NCollection_Vec3.hxx>
+
+#include <NCollection_Vec4.hxx>
+
+#include <NCollection_Mat4.hxx>
+#include <Standard_Integer.hxx>
+
+//! Range of values defined as Start + Length pair.
+struct Graphic3d_BufferRange
+{
+  int Start;  //!< first element within the range
+  int Length; //!< number of elements within the range
+
+  //! Empty constructor.
+  Graphic3d_BufferRange()
+      : Start(0),
+        Length(0)
+  {
+  }
+
+  //! Constructor.
+  Graphic3d_BufferRange(int theStart, int theLength)
+      : Start(theStart),
+        Length(theLength)
+  {
+  }
+
+  //! Return TRUE if range is empty.
+  bool IsEmpty() const { return Length == 0; }
+
+  //! Return the Upper element within the range
+  int Upper() const { return Start + Length - 1; }
+
+  //! Clear the range.
+  void Clear()
+  {
+    Start  = 0;
+    Length = 0;
+  }
+
+  //! Add another range to this one.
+  void Unite(const Graphic3d_BufferRange& theRange)
+  {
+    if (IsEmpty())
+    {
+      *this = theRange;
+      return;
+    }
+    else if (theRange.IsEmpty())
+    {
+      return;
+    }
+
+    const int aStart = (std::min)(Start, theRange.Start);
+    const int aLast  = (std::max)(Upper(), theRange.Upper());
+    Start            = aStart;
+    Length           = aLast - aStart + 1;
+  }
+};
+
+#endif // _Graphic3d_BufferRange_HeaderFile

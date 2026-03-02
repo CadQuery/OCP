@@ -1,4 +1,4 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Copyright (c) 2019 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +11,21 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/Visualization/TKService/Graphic3d/Graphic3d_TextureSetBits.hxx"// clang-format on
+#ifndef _Graphic3d_TextureSetBits_HeaderFile
+#define _Graphic3d_TextureSetBits_HeaderFile
+
+#include <Graphic3d_TextureUnit.hxx>
+
+//! Standard texture units combination bits.
+enum Graphic3d_TextureSetBits
+{
+  Graphic3d_TextureSetBits_NONE      = 0,
+  Graphic3d_TextureSetBits_BaseColor = (unsigned int)(1 << int(Graphic3d_TextureUnit_BaseColor)),
+  Graphic3d_TextureSetBits_Emissive  = (unsigned int)(1 << int(Graphic3d_TextureUnit_Emissive)),
+  Graphic3d_TextureSetBits_Occlusion = (unsigned int)(1 << int(Graphic3d_TextureUnit_Occlusion)),
+  Graphic3d_TextureSetBits_Normal    = (unsigned int)(1 << int(Graphic3d_TextureUnit_Normal)),
+  Graphic3d_TextureSetBits_MetallicRoughness =
+    (unsigned int)(1 << int(Graphic3d_TextureUnit_MetallicRoughness)),
+};
+
+#endif // _Graphic3d_TextureSetBits_HeaderFile

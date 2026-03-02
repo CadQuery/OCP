@@ -1,4 +1,6 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 2001-07-25
+// Created by: Julia DOROVSKIKH
+// Copyright (c) 2001-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +13,32 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ApplicationFramework/TKXmlL/XmlLDrivers/XmlLDrivers.hxx"// clang-format on
+#ifndef _XmlLDrivers_HeaderFile
+#define _XmlLDrivers_HeaderFile
+
+#include <Standard_Handle.hxx>
+
+class Standard_Transient;
+class Standard_GUID;
+class TCollection_AsciiString;
+class XmlMDF_ADriverTable;
+class Message_Messenger;
+class TDocStd_Application;
+
+class XmlLDrivers
+{
+public:
+  Standard_EXPORT static const occ::handle<Standard_Transient>& Factory(
+    const Standard_GUID& theGUID);
+
+  Standard_EXPORT static TCollection_AsciiString CreationDate();
+
+  //! Defines format "XmlLOcaf" and registers its read and write drivers
+  //! in the specified application
+  Standard_EXPORT static void DefineFormat(const occ::handle<TDocStd_Application>& theApp);
+
+  Standard_EXPORT static occ::handle<XmlMDF_ADriverTable> AttributeDrivers(
+    const occ::handle<Message_Messenger>& theMsgDriver);
+};
+
+#endif // _XmlLDrivers_HeaderFile

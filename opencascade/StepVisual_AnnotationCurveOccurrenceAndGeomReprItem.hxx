@@ -1,4 +1,6 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 2017-02-06
+// Created by: Irina KRYLOVA
+// Copyright (c) 2017 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +13,24 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/DataExchange/TKDESTEP/StepVisual/StepVisual_AnnotationCurveOccurrenceAndGeomReprItem.hxx"// clang-format on
+#ifndef _StepVisual_AnnotationCurveOccurrenceAndGeomReprItem_HeaderFile
+#define _StepVisual_AnnotationCurveOccurrenceAndGeomReprItem_HeaderFile
+
+#include <Standard.hxx>
+
+#include <StepVisual_AnnotationCurveOccurrence.hxx>
+
+//! Added for Dimensional Tolerances
+//! Complex STEP entity AnnotationCurveOccurrence & AnnotationOccurrence &
+//! GeometricRepresentationItem & RepresentationItem & StyledItem
+class StepVisual_AnnotationCurveOccurrenceAndGeomReprItem
+    : public StepVisual_AnnotationCurveOccurrence
+{
+
+public:
+  Standard_EXPORT StepVisual_AnnotationCurveOccurrenceAndGeomReprItem();
+
+  DEFINE_STANDARD_RTTIEXT(StepVisual_AnnotationCurveOccurrenceAndGeomReprItem,
+                          StepVisual_AnnotationCurveOccurrence)
+};
+#endif // _StepVisual_AnnotationCurveOccurrenceAndGeomReprItem_HeaderFile

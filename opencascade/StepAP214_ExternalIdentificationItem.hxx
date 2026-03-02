@@ -1,4 +1,6 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 2000-05-10
+// Created by: Andrey BETENEV
+// Copyright (c) 2000-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +13,107 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/DataExchange/TKDESTEP/StepAP214/StepAP214_ExternalIdentificationItem.hxx"// clang-format on
+#ifndef _StepAP214_ExternalIdentificationItem_HeaderFile
+#define _StepAP214_ExternalIdentificationItem_HeaderFile
+
+#include <Standard.hxx>
+#include <Standard_DefineAlloc.hxx>
+#include <Standard_Handle.hxx>
+
+#include <StepData_SelectType.hxx>
+#include <Standard_Integer.hxx>
+class Standard_Transient;
+class StepBasic_DocumentFile;
+class StepAP214_AppliedOrganizationAssignment;
+class StepAP214_AppliedPersonAndOrganizationAssignment;
+class StepAP214_ExternallyDefinedClass;
+class StepAP214_ExternallyDefinedGeneralProperty;
+class StepBasic_Approval;
+class StepBasic_ApprovalStatus;
+class StepBasic_ExternalSource;
+class StepBasic_OrganizationalAddress;
+class StepBasic_ProductDefinition;
+class StepBasic_SecurityClassification;
+class StepBasic_VersionedActionRequest;
+class StepGeom_TrimmedCurve;
+class StepBasic_DateAndTimeAssignment;
+class StepBasic_DateAssignment;
+
+//! Representation of STEP SELECT type ExternalIdentificationItem
+class StepAP214_ExternalIdentificationItem : public StepData_SelectType
+{
+public:
+  DEFINE_STANDARD_ALLOC
+
+  //! Empty constructor
+  Standard_EXPORT StepAP214_ExternalIdentificationItem();
+
+  //! Recognizes a kind of ExternalIdentificationItem select type
+  //! 1 -> DocumentFile from StepBasic
+  //! 2 -> ExternallyDefinedClass from StepAP214
+  //! 3 -> ExternallyDefinedGeneralProperty from StepAP214
+  //! 4 -> ProductDefinition from StepBasic
+  //! 5 -> AppliedOrganizationAssignment from AP214
+  //! 6 -> AppliedPersonAndOrganizationAssignment from AP214
+  //! 7 -> Approval from StepBasic
+  //! 8 -> ApprovalStatus from StepBasic
+  //! 9 -> ExternalSource from StepBasic
+  //! 10 -> OrganizationalAddress from StepBasic
+  //! 11 -> SecurityClassification from StepBasic
+  //! 12 -> TrimmedCurve from StepGeom
+  //! 13 -> VersionedActionRequest from StepBasic
+  //! 14 -> DateAndTimeAssignment from StepBasic
+  //! 15 -> DateAssignment from StepBasic
+  //! 0 else
+  Standard_EXPORT int CaseNum(const occ::handle<Standard_Transient>& ent) const override;
+
+  //! Returns Value as DocumentFile (or Null if another type)
+  Standard_EXPORT occ::handle<StepBasic_DocumentFile> DocumentFile() const;
+
+  //! Returns Value as ExternallyDefinedClass (or Null if another type)
+  Standard_EXPORT occ::handle<StepAP214_ExternallyDefinedClass> ExternallyDefinedClass() const;
+
+  //! Returns Value as ExternallyDefinedGeneralProperty (or Null if another type)
+  Standard_EXPORT occ::handle<StepAP214_ExternallyDefinedGeneralProperty>
+                  ExternallyDefinedGeneralProperty() const;
+
+  //! Returns Value as ProductDefinition (or Null if another type)
+  Standard_EXPORT occ::handle<StepBasic_ProductDefinition> ProductDefinition() const;
+
+  //! Returns Value as AppliedOrganizationAssignment (or Null if another type)
+  Standard_EXPORT occ::handle<StepAP214_AppliedOrganizationAssignment>
+                  AppliedOrganizationAssignment() const;
+
+  //! Returns Value as AppliedPersonAndOrganizationAssignment (or Null if another type)
+  Standard_EXPORT occ::handle<StepAP214_AppliedPersonAndOrganizationAssignment>
+                  AppliedPersonAndOrganizationAssignment() const;
+
+  //! Returns Value as Approval (or Null if another type)
+  Standard_EXPORT occ::handle<StepBasic_Approval> Approval() const;
+
+  //! Returns Value as ApprovalStatus (or Null if another type)
+  Standard_EXPORT occ::handle<StepBasic_ApprovalStatus> ApprovalStatus() const;
+
+  //! Returns Value as ExternalSource (or Null if another type)
+  Standard_EXPORT occ::handle<StepBasic_ExternalSource> ExternalSource() const;
+
+  //! Returns Value as OrganizationalAddress (or Null if another type)
+  Standard_EXPORT occ::handle<StepBasic_OrganizationalAddress> OrganizationalAddress() const;
+
+  //! Returns Value as SecurityClassification (or Null if another type)
+  Standard_EXPORT occ::handle<StepBasic_SecurityClassification> SecurityClassification() const;
+
+  //! Returns Value as TrimmedCurve (or Null if another type)
+  Standard_EXPORT occ::handle<StepGeom_TrimmedCurve> TrimmedCurve() const;
+
+  //! Returns Value as VersionedActionRequest (or Null if another type)
+  Standard_EXPORT occ::handle<StepBasic_VersionedActionRequest> VersionedActionRequest() const;
+
+  //! Returns Value as DateAndTimeAssignment (or Null if another type)
+  Standard_EXPORT occ::handle<StepBasic_DateAndTimeAssignment> DateAndTimeAssignment() const;
+
+  //! Returns Value as DateAssignment (or Null if another type)
+  Standard_EXPORT occ::handle<StepBasic_DateAssignment> DateAssignment() const;
+};
+
+#endif // _StepAP214_ExternalIdentificationItem_HeaderFile

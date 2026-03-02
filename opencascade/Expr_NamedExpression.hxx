@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 1991-01-10
+// Created by: Arnaud BOUZY
+// Copyright (c) 1991-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,43 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ModelingAlgorithms/TKExpress/Expr/Expr_NamedExpression.hxx"// clang-format on
+#ifndef _Expr_NamedExpression_HeaderFile
+#define _Expr_NamedExpression_HeaderFile
+
+#include <Standard.hxx>
+
+#include <TCollection_AsciiString.hxx>
+#include <Expr_GeneralExpression.hxx>
+
+//! Describe an expression used by its name (as constants
+//! or variables). A single reference is made to a
+//! NamedExpression in every Expression (i.e. a
+//! NamedExpression is shared).
+class Expr_NamedExpression : public Expr_GeneralExpression
+{
+
+public:
+  Standard_EXPORT const TCollection_AsciiString& GetName() const;
+
+  Standard_EXPORT void SetName(const TCollection_AsciiString& name);
+
+  //! Tests if <me> can be shared by one or more expressions
+  //! or must be copied. This method redefines to a True
+  //! value the GeneralExpression method.
+  Standard_EXPORT bool IsShareable() const override;
+
+  //! Tests if <me> and <Other> define the same expression.
+  //! This method does not include any simplification before
+  //! testing.
+  Standard_EXPORT bool IsIdentical(const occ::handle<Expr_GeneralExpression>& Other) const override;
+
+  //! returns a string representing <me> in a readable way.
+  Standard_EXPORT TCollection_AsciiString String() const override;
+
+  DEFINE_STANDARD_RTTIEXT(Expr_NamedExpression, Expr_GeneralExpression)
+
+private:
+  TCollection_AsciiString myName;
+};
+
+#endif // _Expr_NamedExpression_HeaderFile

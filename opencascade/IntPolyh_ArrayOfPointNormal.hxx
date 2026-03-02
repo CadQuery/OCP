@@ -1,4 +1,5 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created by: Eugeny MALTCHIKOV
+// Copyright (c) 2017 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +12,21 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ModelingAlgorithms/TKGeomAlgo/IntPolyh/IntPolyh_ArrayOfPointNormal.hxx"// clang-format on
+#ifndef IntPolyh_ArrayOfPointNormal_HeaderFile
+#define IntPolyh_ArrayOfPointNormal_HeaderFile
+
+#include <IntPolyh_Array.hxx>
+#include <gp_Pnt.hxx>
+#include <gp_Vec.hxx>
+
+//! Auxiliary structure to represent pair of point and
+//! normal vector in this point on the surface.
+struct IntPolyh_PointNormal
+{
+  gp_Pnt Point;
+  gp_Vec Normal;
+};
+
+typedef IntPolyh_Array<IntPolyh_PointNormal> IntPolyh_ArrayOfPointNormal;
+
+#endif

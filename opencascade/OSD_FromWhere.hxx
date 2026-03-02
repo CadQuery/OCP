@@ -1,4 +1,5 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Copyright (c) 1992-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +12,15 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/FoundationClasses/TKernel/OSD/OSD_FromWhere.hxx"// clang-format on
+#ifndef _OSD_FromWhere_HeaderFile
+#define _OSD_FromWhere_HeaderFile
+
+//! Used by OSD_File in the method Seek.
+enum OSD_FromWhere
+{
+  OSD_FromBeginning,
+  OSD_FromHere,
+  OSD_FromEnd
+};
+
+#endif // _OSD_FromWhere_HeaderFile

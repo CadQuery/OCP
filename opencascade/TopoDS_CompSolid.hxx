@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 1990-12-17
+// Created by: Remi Lequette
+// Copyright (c) 1990-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,39 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ModelingData/TKBRep/TopoDS/TopoDS_CompSolid.hxx"// clang-format on
+#ifndef _TopoDS_CompSolid_HeaderFile
+#define _TopoDS_CompSolid_HeaderFile
+
+#include <TopoDS_Shape.hxx>
+
+//! Describes a composite solid which
+//! - references an underlying composite solid with the
+//! potential to be given a location and an orientation
+//! - has a location for the underlying composite solid,
+//! giving its placement in the local coordinate system
+//! - has an orientation for the underlying composite
+//! solid, in terms of its geometry (as opposed to
+//! orientation in relation to other shapes).
+//! Casts shape S to the more specialized return type, CompSolid.
+class TopoDS_CompSolid : public TopoDS_Shape
+{
+public:
+  DEFINE_STANDARD_ALLOC
+
+  //! Constructs an Undefined CompSolid.
+  TopoDS_CompSolid() = default;
+};
+
+namespace std
+{
+template <>
+struct hash<TopoDS_CompSolid>
+{
+  size_t operator()(const TopoDS_CompSolid& theShape) const
+  {
+    return std::hash<TopoDS_Shape>{}(theShape);
+  }
+};
+} // namespace std
+
+#endif // _TopoDS_CompSolid_HeaderFile

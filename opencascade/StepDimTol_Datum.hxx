@@ -1,4 +1,6 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 2003-06-04
+// Created by: Galina KULIKOVA
+// Copyright (c) 2003-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +13,44 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/DataExchange/TKDESTEP/StepDimTol/StepDimTol_Datum.hxx"// clang-format on
+#ifndef _StepDimTol_Datum_HeaderFile
+#define _StepDimTol_Datum_HeaderFile
+
+#include <Standard.hxx>
+#include <Standard_Type.hxx>
+
+#include <StepRepr_ShapeAspect.hxx>
+#include <StepData_Logical.hxx>
+class TCollection_HAsciiString;
+class StepRepr_ProductDefinitionShape;
+
+//! Representation of STEP entity Datum
+class StepDimTol_Datum : public StepRepr_ShapeAspect
+{
+
+public:
+  //! Empty constructor
+  Standard_EXPORT StepDimTol_Datum();
+
+  //! Initialize all fields (own and inherited)
+  Standard_EXPORT void Init(
+    const occ::handle<TCollection_HAsciiString>&        theShapeAspect_Name,
+    const occ::handle<TCollection_HAsciiString>&        theShapeAspect_Description,
+    const occ::handle<StepRepr_ProductDefinitionShape>& theShapeAspect_OfShape,
+    const StepData_Logical                              theShapeAspect_ProductDefinitional,
+    const occ::handle<TCollection_HAsciiString>&        theIdentification);
+
+  //! Returns field Identification
+  Standard_EXPORT occ::handle<TCollection_HAsciiString> Identification() const;
+
+  //! Set field Identification
+  Standard_EXPORT void SetIdentification(
+    const occ::handle<TCollection_HAsciiString>& theIdentification);
+
+  DEFINE_STANDARD_RTTIEXT(StepDimTol_Datum, StepRepr_ShapeAspect)
+
+private:
+  occ::handle<TCollection_HAsciiString> myIdentification;
+};
+
+#endif // _StepDimTol_Datum_HeaderFile

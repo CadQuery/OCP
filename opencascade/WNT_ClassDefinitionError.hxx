@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 1996-01-23
+// Created by: s:       LAVNIKOV Alexey, PLOTNIKOV Eugeny & CHABROVSKY Dmitry
+// Copyright (c) 1996-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,22 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/Visualization/TKService/WNT/WNT_ClassDefinitionError.hxx"// clang-format on
+#ifndef _WNT_ClassDefinitionError_HeaderFile
+#define _WNT_ClassDefinitionError_HeaderFile
+
+#include <Standard_Type.hxx>
+#include <Standard_DefineException.hxx>
+#include <Standard_SStream.hxx>
+#include <Standard_ConstructionError.hxx>
+
+#if !defined No_Exception && !defined No_WNT_ClassDefinitionError
+  #define WNT_ClassDefinitionError_Raise_if(CONDITION, MESSAGE)                                    \
+    if (CONDITION)                                                                                 \
+      throw WNT_ClassDefinitionError(MESSAGE);
+#else
+  #define WNT_ClassDefinitionError_Raise_if(CONDITION, MESSAGE)
+#endif
+
+DEFINE_STANDARD_EXCEPTION(WNT_ClassDefinitionError, Standard_ConstructionError)
+
+#endif // _WNT_ClassDefinitionError_HeaderFile

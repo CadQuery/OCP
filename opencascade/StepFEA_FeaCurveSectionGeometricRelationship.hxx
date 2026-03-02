@@ -1,4 +1,6 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 2003-01-22
+// Created by: data exchange team
+// Copyright (c) 2003-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +13,48 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/DataExchange/TKDESTEP/StepFEA/StepFEA_FeaCurveSectionGeometricRelationship.hxx"// clang-format on
+#ifndef _StepFEA_FeaCurveSectionGeometricRelationship_HeaderFile
+#define _StepFEA_FeaCurveSectionGeometricRelationship_HeaderFile
+
+#include <Standard.hxx>
+#include <Standard_Type.hxx>
+
+#include <Standard_Transient.hxx>
+class StepElement_CurveElementSectionDefinition;
+class StepElement_AnalysisItemWithinRepresentation;
+
+//! Representation of STEP entity FeaCurveSectionGeometricRelationship
+class StepFEA_FeaCurveSectionGeometricRelationship : public Standard_Transient
+{
+
+public:
+  //! Empty constructor
+  Standard_EXPORT StepFEA_FeaCurveSectionGeometricRelationship();
+
+  //! Initialize all fields (own and inherited)
+  Standard_EXPORT void Init(
+    const occ::handle<StepElement_CurveElementSectionDefinition>&    aSectionRef,
+    const occ::handle<StepElement_AnalysisItemWithinRepresentation>& aItem);
+
+  //! Returns field SectionRef
+  Standard_EXPORT occ::handle<StepElement_CurveElementSectionDefinition> SectionRef() const;
+
+  //! Set field SectionRef
+  Standard_EXPORT void SetSectionRef(
+    const occ::handle<StepElement_CurveElementSectionDefinition>& SectionRef);
+
+  //! Returns field Item
+  Standard_EXPORT occ::handle<StepElement_AnalysisItemWithinRepresentation> Item() const;
+
+  //! Set field Item
+  Standard_EXPORT void SetItem(
+    const occ::handle<StepElement_AnalysisItemWithinRepresentation>& Item);
+
+  DEFINE_STANDARD_RTTIEXT(StepFEA_FeaCurveSectionGeometricRelationship, Standard_Transient)
+
+private:
+  occ::handle<StepElement_CurveElementSectionDefinition>    theSectionRef;
+  occ::handle<StepElement_AnalysisItemWithinRepresentation> theItem;
+};
+
+#endif // _StepFEA_FeaCurveSectionGeometricRelationship_HeaderFile

@@ -1,4 +1,6 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 2015-05-29
+// Created by: Denis BOGOLEPOV
+// Copyright (c) 2013-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +13,57 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/FoundationClasses/TKMath/BVH/BVH_BuildThread.hxx"// clang-format on
+#ifndef _BVH_BuildThread_Header
+#define _BVH_BuildThread_Header
+
+#include <OSD_Thread.hxx>
+#include <BVH_BuildQueue.hxx>
+
+//! Tool object to call BVH builder subroutines.
+struct BVH_BuildTool
+{
+  //! Performs splitting of the given BVH node.
+  virtual void Perform(const int theNode) = 0;
+};
+
+//! Wrapper for BVH build thread.
+class BVH_BuildThread : public Standard_Transient
+{
+  template <class T, int N>
+  friend class BVH_QueueBuilder;
+
+public:
+  //! Creates new BVH build thread.
+  Standard_EXPORT BVH_BuildThread(BVH_BuildTool& theBuildTool, BVH_BuildQueue& theBuildQueue);
+
+  //! Starts execution of BVH build thread.
+  void Run() { myWorkThread.Run(this); }
+
+  //! Waits till the thread finishes execution.
+  void Wait() { myWorkThread.Wait(); }
+
+protected:
+  //! Executes BVH build thread.
+  Standard_EXPORT void execute();
+
+  //! Thread function for BVH build thread.
+  static void* threadFunction(void* theData);
+
+  //! Assignment operator (to remove VC compile warning).
+  BVH_BuildThread& operator=(const BVH_BuildThread&);
+
+protected:
+  //! Data needed to build the BVH.
+  BVH_BuildTool& myBuildTool;
+
+  //! Reference to BVH build queue.
+  BVH_BuildQueue& myBuildQueue;
+
+  //! Thread to execute work items.
+  OSD_Thread myWorkThread;
+
+public:
+  DEFINE_STANDARD_RTTIEXT(BVH_BuildThread, Standard_Transient)
+};
+
+#endif // _BVH_BuildThread_Header

@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 1992-06-22
+// Created by: Gilles DEBARBOUILLE
+// Copyright (c) 1992-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,22 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/FoundationClasses/TKernel/Units/Units_NoSuchUnit.hxx"// clang-format on
+#ifndef _Units_NoSuchUnit_HeaderFile
+#define _Units_NoSuchUnit_HeaderFile
+
+#include <Standard_Type.hxx>
+#include <Standard_DefineException.hxx>
+#include <Standard_SStream.hxx>
+#include <Standard_NoSuchObject.hxx>
+
+#if !defined No_Exception && !defined No_Units_NoSuchUnit
+  #define Units_NoSuchUnit_Raise_if(CONDITION, MESSAGE)                                            \
+    if (CONDITION)                                                                                 \
+      throw Units_NoSuchUnit(MESSAGE);
+#else
+  #define Units_NoSuchUnit_Raise_if(CONDITION, MESSAGE)
+#endif
+
+DEFINE_STANDARD_EXCEPTION(Units_NoSuchUnit, Standard_NoSuchObject)
+
+#endif // _Units_NoSuchUnit_HeaderFile

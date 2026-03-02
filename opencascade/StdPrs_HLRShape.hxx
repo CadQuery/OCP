@@ -1,4 +1,4 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Copyright (c) 2013-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +11,21 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/Visualization/TKV3d/StdPrs/StdPrs_HLRShape.hxx"// clang-format on
+#ifndef StdPrs_HLRShape_HeaderFile
+#define StdPrs_HLRShape_HeaderFile
+
+#include <StdPrs_HLRShapeI.hxx>
+
+//! Computes the presentation of objects with removal of their hidden lines for a specific
+//! projector. The exact algorithm is used.
+class StdPrs_HLRShape : public StdPrs_HLRShapeI
+{
+  DEFINE_STANDARD_RTTIEXT(StdPrs_HLRShape, StdPrs_HLRShapeI)
+public:
+  //! Compute presentation for specified shape.
+  Standard_EXPORT void ComputeHLR(const occ::handle<Prs3d_Presentation>& thePrs,
+                                  const TopoDS_Shape&                    theShape,
+                                  const occ::handle<Prs3d_Drawer>&       theDrawer,
+                                  const occ::handle<Graphic3d_Camera>& theProjector) const override;
+};
+#endif

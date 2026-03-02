@@ -1,4 +1,6 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 2004-11-23
+// Created by: Pavel TELKOV
+// Copyright (c) 2004-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +13,74 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ApplicationFramework/TKTObj/TObj/TObj_TModel.hxx"// clang-format on
+// The original implementation Copyright: (C) RINA S.p.A
+
+#ifndef TObj_TModel_HeaderFile
+#define TObj_TModel_HeaderFile
+
+#include <TDF_Attribute.hxx>
+
+class TObj_Model;
+
+/**
+ * Attribute to store OCAF-based models in OCAF tree
+ * The persistency mechanism of the TObj_TModel allows to save
+ * and restore various types of models without recompilation of the schema
+ */
+
+class TObj_TModel : public TDF_Attribute
+{
+public:
+  /**
+   * Standard methods of attribute
+   */
+
+  //! Empty constructor
+  Standard_EXPORT TObj_TModel();
+
+  //! This method is used in implementation of ID()
+  static Standard_EXPORT const Standard_GUID& GetID();
+
+  //! Returns the ID of TObj_TModel attribute.
+  Standard_EXPORT const Standard_GUID& ID() const override;
+
+public:
+  //! Methods for setting and obtaining the Model object
+
+  //! Sets the Model object
+  Standard_EXPORT void Set(const occ::handle<TObj_Model>& theModel);
+
+  //! Returns the Model object
+  Standard_EXPORT occ::handle<TObj_Model> Model() const;
+
+public:
+  //! Redefined OCAF abstract methods
+
+  //! Returns an new empty TObj_TModel attribute. It is used by the
+  //! copy algorithm.
+  Standard_EXPORT occ::handle<TDF_Attribute> NewEmpty() const override;
+
+  //! Restores the backuped contents from <theWith> into this one. It is used
+  //! when aborting a transaction.
+  Standard_EXPORT void Restore(const occ::handle<TDF_Attribute>& theWith) override;
+
+  //! This method is used when copying an attribute from a source structure
+  //! into a target structure.
+  Standard_EXPORT void Paste(const occ::handle<TDF_Attribute>&       theInto,
+                             const occ::handle<TDF_RelocationTable>& theRT) const override;
+
+private:
+  //! Fields
+  occ::handle<TObj_Model> myModel; //!< The Model object stored by the attribute
+
+public:
+  //! CASCADE RTTI
+  DEFINE_STANDARD_RTTIEXT(TObj_TModel, TDF_Attribute)
+};
+
+//! Define handle class for TObj_TModel
+#endif
+
+#ifdef _MSC_VER
+#pragma once
+#endif

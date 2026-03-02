@@ -1,4 +1,6 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 2015-06-05
+// Created by: Kirill Gavrilov
+// Copyright (c) 2015 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +13,26 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/Visualization/TKService/Graphic3d/Graphic3d_StereoMode.hxx"// clang-format on
+#ifndef _Graphic3d_StereoMode_HeaderFile
+#define _Graphic3d_StereoMode_HeaderFile
+
+//! This enumeration defines the list of stereoscopic output modes.
+enum Graphic3d_StereoMode
+{
+  Graphic3d_StereoMode_QuadBuffer, //!< OpenGL QuadBuffer
+  Graphic3d_StereoMode_Anaglyph,   //!< Anaglyph glasses, the type should be specified in addition
+  Graphic3d_StereoMode_RowInterlaced,    //!< Row-interlaced stereo
+  Graphic3d_StereoMode_ColumnInterlaced, //!< Column-interlaced stereo
+  Graphic3d_StereoMode_ChessBoard,       //!< chess-board stereo for DLP TVs
+  Graphic3d_StereoMode_SideBySide,       //!< horizontal pair
+  Graphic3d_StereoMode_OverUnder,        //!< vertical   pair
+  Graphic3d_StereoMode_SoftPageFlip, //!< software PageFlip for shutter glasses, should NOT be used!
+  Graphic3d_StereoMode_OpenVR,       //!< OpenVR (HMD)
+};
+
+enum
+{
+  Graphic3d_StereoMode_NB = Graphic3d_StereoMode_OpenVR + 1
+};
+
+#endif // _Graphic3d_StereoMode_HeaderFile

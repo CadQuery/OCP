@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 1995-12-01
+// Created by: EXPRESS->CDL V0.2 Translator
+// Copyright (c) 1995-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,36 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/DataExchange/TKDESTEP/StepGeom/StepGeom_SurfaceOfLinearExtrusion.hxx"// clang-format on
+#ifndef _StepGeom_SurfaceOfLinearExtrusion_HeaderFile
+#define _StepGeom_SurfaceOfLinearExtrusion_HeaderFile
+
+#include <Standard.hxx>
+#include <Standard_Type.hxx>
+
+#include <StepGeom_SweptSurface.hxx>
+class StepGeom_Vector;
+class TCollection_HAsciiString;
+class StepGeom_Curve;
+
+class StepGeom_SurfaceOfLinearExtrusion : public StepGeom_SweptSurface
+{
+
+public:
+  //! Returns a SurfaceOfLinearExtrusion
+  Standard_EXPORT StepGeom_SurfaceOfLinearExtrusion();
+
+  Standard_EXPORT void Init(const occ::handle<TCollection_HAsciiString>& aName,
+                            const occ::handle<StepGeom_Curve>&           aSweptCurve,
+                            const occ::handle<StepGeom_Vector>&          aExtrusionAxis);
+
+  Standard_EXPORT void SetExtrusionAxis(const occ::handle<StepGeom_Vector>& aExtrusionAxis);
+
+  Standard_EXPORT occ::handle<StepGeom_Vector> ExtrusionAxis() const;
+
+  DEFINE_STANDARD_RTTIEXT(StepGeom_SurfaceOfLinearExtrusion, StepGeom_SweptSurface)
+
+private:
+  occ::handle<StepGeom_Vector> extrusionAxis;
+};
+
+#endif // _StepGeom_SurfaceOfLinearExtrusion_HeaderFile

@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 1998-04-01
+// Created by: Jean Yves LEBEY
+// Copyright (c) 1998-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,22 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ModelingAlgorithms/TKBool/TopOpeBRepTool/TopOpeBRepTool_SC.hxx"// clang-format on
+#ifndef _TopOpeBRepTool_SC_HeaderFile
+#define _TopOpeBRepTool_SC_HeaderFile
+
+#include <TopOpeBRepTool_ShapeClassifier.hxx>
+
+Standard_EXPORT TopOpeBRepTool_ShapeClassifier& FSC_GetPSC();
+Standard_EXPORT TopOpeBRepTool_ShapeClassifier& FSC_GetPSC(const TopoDS_Shape& S);
+// ----------------------------------------------------------------------
+//  state point <P> on/in shapes (edge <E>,face <F>)
+// ----------------------------------------------------------------------
+Standard_EXPORT TopAbs_State FSC_StatePonFace(const gp_Pnt&                   P,
+                                              const TopoDS_Shape&             F,
+                                              TopOpeBRepTool_ShapeClassifier& PSC);
+Standard_EXPORT TopAbs_State FSC_StateEonFace(const TopoDS_Shape&             E,
+                                              const double                    t,
+                                              const TopoDS_Shape&             F,
+                                              TopOpeBRepTool_ShapeClassifier& PSC);
+
+#endif

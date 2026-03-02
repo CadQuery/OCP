@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 1992-02-03
+// Created by: Christian CAILLET
+// Copyright (c) 1992-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,45 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/DataExchange/TKXSBase/Interface/Interface_NodeOfReaderLib.hxx"// clang-format on
+#ifndef _Interface_NodeOfReaderLib_HeaderFile
+#define _Interface_NodeOfReaderLib_HeaderFile
+
+#include <Standard.hxx>
+#include <Standard_Type.hxx>
+
+#include <Standard_Transient.hxx>
+class Interface_GlobalNodeOfReaderLib;
+class Standard_Transient;
+class Interface_ReaderModule;
+class Interface_Protocol;
+class Interface_ReaderLib;
+
+class Interface_NodeOfReaderLib : public Standard_Transient
+{
+
+public:
+  //! Creates an empty Node, with no Next
+  Standard_EXPORT Interface_NodeOfReaderLib();
+
+  //! Adds a couple (Module,Protocol), that is, stores it into
+  //! itself if not yet done, else creates a Next Node to do it
+  Standard_EXPORT void AddNode(const occ::handle<Interface_GlobalNodeOfReaderLib>& anode);
+
+  //! Returns the Module designated by a precise Node
+  Standard_EXPORT const occ::handle<Interface_ReaderModule>& Module() const;
+
+  //! Returns the Protocol designated by a precise Node
+  Standard_EXPORT const occ::handle<Interface_Protocol>& Protocol() const;
+
+  //! Returns the Next Node. If none was defined, returned value
+  //! is a Null Handle
+  Standard_EXPORT const occ::handle<Interface_NodeOfReaderLib>& Next() const;
+
+  DEFINE_STANDARD_RTTI_INLINE(Interface_NodeOfReaderLib, Standard_Transient)
+
+private:
+  occ::handle<Interface_GlobalNodeOfReaderLib> thenode;
+  occ::handle<Interface_NodeOfReaderLib>       thenext;
+};
+
+#endif // _Interface_NodeOfReaderLib_HeaderFile

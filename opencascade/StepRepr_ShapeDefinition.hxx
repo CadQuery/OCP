@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 1995-12-01
+// Created by: EXPRESS->CDL V0.2 Translator
+// Copyright (c) 1995-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,43 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/DataExchange/TKDESTEP/StepRepr/StepRepr_ShapeDefinition.hxx"// clang-format on
+#ifndef _StepRepr_ShapeDefinition_HeaderFile
+#define _StepRepr_ShapeDefinition_HeaderFile
+
+#include <Standard.hxx>
+#include <Standard_DefineAlloc.hxx>
+#include <Standard_Handle.hxx>
+
+#include <StepData_SelectType.hxx>
+#include <Standard_Integer.hxx>
+class Standard_Transient;
+class StepRepr_ProductDefinitionShape;
+class StepRepr_ShapeAspect;
+class StepRepr_ShapeAspectRelationship;
+
+class StepRepr_ShapeDefinition : public StepData_SelectType
+{
+public:
+  DEFINE_STANDARD_ALLOC
+
+  //! Returns a ShapeDefinition SelectType
+  Standard_EXPORT StepRepr_ShapeDefinition();
+
+  //! Recognizes a ShapeDefinition Kind Entity that is :
+  //! 1 -> ProductDefinitionShape
+  //! 2 -> ShapeAspect
+  //! 3 -> ShapeAspectRelationship
+  //! 0 else
+  Standard_EXPORT int CaseNum(const occ::handle<Standard_Transient>& ent) const override;
+
+  //! returns Value as a ProductDefinitionShape (Null if another type)
+  Standard_EXPORT occ::handle<StepRepr_ProductDefinitionShape> ProductDefinitionShape() const;
+
+  //! returns Value as a ShapeAspect (Null if another type)
+  Standard_EXPORT occ::handle<StepRepr_ShapeAspect> ShapeAspect() const;
+
+  //! returns Value as a ShapeAspectRelationship (Null if another type)
+  Standard_EXPORT occ::handle<StepRepr_ShapeAspectRelationship> ShapeAspectRelationship() const;
+};
+
+#endif // _StepRepr_ShapeDefinition_HeaderFile

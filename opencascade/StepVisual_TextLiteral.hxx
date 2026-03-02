@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 1995-12-01
+// Created by: EXPRESS->CDL V0.2 Translator
+// Copyright (c) 1995-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,59 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/DataExchange/TKDESTEP/StepVisual/StepVisual_TextLiteral.hxx"// clang-format on
+#ifndef _StepVisual_TextLiteral_HeaderFile
+#define _StepVisual_TextLiteral_HeaderFile
+
+#include <Standard.hxx>
+
+#include <StepGeom_Axis2Placement.hxx>
+#include <StepVisual_TextPath.hxx>
+#include <StepVisual_FontSelect.hxx>
+#include <StepGeom_GeometricRepresentationItem.hxx>
+class TCollection_HAsciiString;
+
+class StepVisual_TextLiteral : public StepGeom_GeometricRepresentationItem
+{
+
+public:
+  //! Returns a TextLiteral
+  Standard_EXPORT StepVisual_TextLiteral();
+
+  Standard_EXPORT void Init(const occ::handle<TCollection_HAsciiString>& aName,
+                            const occ::handle<TCollection_HAsciiString>& aLiteral,
+                            const StepGeom_Axis2Placement&               aPlacement,
+                            const occ::handle<TCollection_HAsciiString>& aAlignment,
+                            const StepVisual_TextPath                    aPath,
+                            const StepVisual_FontSelect&                 aFont);
+
+  Standard_EXPORT void SetLiteral(const occ::handle<TCollection_HAsciiString>& aLiteral);
+
+  Standard_EXPORT occ::handle<TCollection_HAsciiString> Literal() const;
+
+  Standard_EXPORT void SetPlacement(const StepGeom_Axis2Placement& aPlacement);
+
+  Standard_EXPORT StepGeom_Axis2Placement Placement() const;
+
+  Standard_EXPORT void SetAlignment(const occ::handle<TCollection_HAsciiString>& aAlignment);
+
+  Standard_EXPORT occ::handle<TCollection_HAsciiString> Alignment() const;
+
+  Standard_EXPORT void SetPath(const StepVisual_TextPath aPath);
+
+  Standard_EXPORT StepVisual_TextPath Path() const;
+
+  Standard_EXPORT void SetFont(const StepVisual_FontSelect& aFont);
+
+  Standard_EXPORT StepVisual_FontSelect Font() const;
+
+  DEFINE_STANDARD_RTTIEXT(StepVisual_TextLiteral, StepGeom_GeometricRepresentationItem)
+
+private:
+  occ::handle<TCollection_HAsciiString> literal;
+  StepGeom_Axis2Placement               placement;
+  occ::handle<TCollection_HAsciiString> alignment;
+  StepVisual_TextPath                   path;
+  StepVisual_FontSelect                 font;
+};
+
+#endif // _StepVisual_TextLiteral_HeaderFile

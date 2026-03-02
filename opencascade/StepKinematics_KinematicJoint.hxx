@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on : Sat May 02 12:41:15 2020
+// Created by: Irina KRYLOVA
+// Generator:	Express (EXPRESS -> CASCADE/XSTEP Translator) V3.0
+// Copyright (c) Open CASCADE 2020
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,21 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/DataExchange/TKDESTEP/StepKinematics/StepKinematics_KinematicJoint.hxx"// clang-format on
+#ifndef _StepKinematics_KinematicJoint_HeaderFile_
+#define _StepKinematics_KinematicJoint_HeaderFile_
+
+#include <Standard.hxx>
+#include <StepShape_Edge.hxx>
+
+#include <TCollection_HAsciiString.hxx>
+
+//! Representation of STEP entity KinematicJoint
+class StepKinematics_KinematicJoint : public StepShape_Edge
+{
+public:
+  //! default constructor
+  Standard_EXPORT StepKinematics_KinematicJoint();
+
+  DEFINE_STANDARD_RTTIEXT(StepKinematics_KinematicJoint, StepShape_Edge)
+};
+#endif // _StepKinematics_KinematicJoint_HeaderFile_

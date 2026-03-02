@@ -1,4 +1,6 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 2013-0603
+// Created by: Roman LYGIN
+// Copyright (c) 2013-2013 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +13,14 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ModelingAlgorithms/TKGeomAlgo/IntWalk/IntWalk_VectorOfInteger.hxx"// clang-format on
+#ifndef IntWalk_VectorOfInteger_HeaderFile
+#define IntWalk_VectorOfInteger_HeaderFile
+
+#include <vector>
+#include <NCollection_OccAllocator.hxx>
+
+// Defines a dynamic vector of integer.
+
+typedef std::vector<int, NCollection_OccAllocator<int>> IntWalk_VectorOfInteger;
+
+#endif

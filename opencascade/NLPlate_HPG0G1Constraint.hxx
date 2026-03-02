@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 1998-04-17
+// Created by: Andre LIEUTIER
+// Copyright (c) 1998-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,40 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ModelingAlgorithms/TKGeomAlgo/NLPlate/NLPlate_HPG0G1Constraint.hxx"// clang-format on
+#ifndef _NLPlate_HPG0G1Constraint_HeaderFile
+#define _NLPlate_HPG0G1Constraint_HeaderFile
+
+#include <Standard.hxx>
+
+#include <Plate_D1.hxx>
+#include <Standard_Integer.hxx>
+#include <NLPlate_HPG0Constraint.hxx>
+class gp_XY;
+class gp_XYZ;
+
+//! define a PinPoint G0+G1 Constraint used to load a Non Linear
+//! Plate
+class NLPlate_HPG0G1Constraint : public NLPlate_HPG0Constraint
+{
+
+public:
+  Standard_EXPORT NLPlate_HPG0G1Constraint(const gp_XY&    UV,
+                                           const gp_XYZ&   Value,
+                                           const Plate_D1& D1T);
+
+  Standard_EXPORT void SetOrientation(const int Orient = 0) override;
+
+  Standard_EXPORT int ActiveOrder() const override;
+
+  Standard_EXPORT int Orientation() override;
+
+  Standard_EXPORT const Plate_D1& G1Target() const override;
+
+  DEFINE_STANDARD_RTTIEXT(NLPlate_HPG0G1Constraint, NLPlate_HPG0Constraint)
+
+private:
+  Plate_D1 myG1Target;
+  int      myOrientation;
+};
+
+#endif // _NLPlate_HPG0G1Constraint_HeaderFile

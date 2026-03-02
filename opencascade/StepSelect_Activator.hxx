@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 1995-04-20
+// Created by: Christian CAILLET
+// Copyright (c) 1995-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,33 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/DataExchange/TKDESTEP/StepSelect/StepSelect_Activator.hxx"// clang-format on
+#ifndef _StepSelect_Activator_HeaderFile
+#define _StepSelect_Activator_HeaderFile
+
+#include <Standard.hxx>
+#include <Standard_Type.hxx>
+
+#include <IFSelect_Activator.hxx>
+#include <IFSelect_ReturnStatus.hxx>
+#include <Standard_Integer.hxx>
+class IFSelect_SessionPilot;
+
+//! Performs Actions specific to StepSelect, i.e. creation of
+//! Step Selections and Counters, plus dumping specific to Step
+class StepSelect_Activator : public IFSelect_Activator
+{
+
+public:
+  Standard_EXPORT StepSelect_Activator();
+
+  //! Executes a Command Line for StepSelect
+  Standard_EXPORT IFSelect_ReturnStatus
+    Do(const int number, const occ::handle<IFSelect_SessionPilot>& pilot) override;
+
+  //! Sends a short help message for StepSelect commands
+  Standard_EXPORT const char* Help(const int number) const override;
+
+  DEFINE_STANDARD_RTTIEXT(StepSelect_Activator, IFSelect_Activator)
+};
+
+#endif // _StepSelect_Activator_HeaderFile

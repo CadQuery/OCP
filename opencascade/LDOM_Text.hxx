@@ -1,4 +1,6 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 2001-07-26
+// Created by: Alexander GRIGORIEV
+// Copyright (c) 2001-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +13,51 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ApplicationFramework/TKCDF/LDOM/LDOM_Text.hxx"// clang-format on
+#ifndef LDOM_Text_HeaderFile
+#define LDOM_Text_HeaderFile
+
+#include <LDOM_CharacterData.hxx>
+
+//  Class LDOM_Text
+
+class LDOM_Text : public LDOM_CharacterData
+{
+public:
+  // ---------- PUBLIC METHODS ----------
+
+  LDOM_Text() = default;
+
+  // Empty constructor
+
+  LDOM_Text(const LDOM_Text& anOther)
+
+    = default;
+
+  // Copy constructor
+
+  LDOM_Text& operator=(const LDOM_NullPtr* theNull)
+  {
+    return (LDOM_Text&)LDOM_CharacterData::operator=(theNull);
+  }
+
+  // Nullify
+
+  LDOM_Text& operator=(const LDOM_Text& theOther)
+  {
+    return (LDOM_Text&)LDOM_CharacterData::operator=(theOther);
+  }
+
+  // Assignment
+
+protected:
+  friend class LDOM_Document;
+
+  // ---------- PROTECTED METHODS ----------
+
+  LDOM_Text(const LDOM_BasicText& theText, const occ::handle<LDOM_MemManager>& theDoc)
+      : LDOM_CharacterData(theText, theDoc)
+  {
+  }
+};
+
+#endif

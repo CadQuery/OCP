@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 1994-10-28
+// Created by: Jean Yves LEBEY
+// Copyright (c) 1994-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,31 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ModelingAlgorithms/TKBool/TopOpeBRepDS/TopOpeBRepDS_FaceEdgeInterference.hxx"// clang-format on
+#ifndef _TopOpeBRepDS_FaceEdgeInterference_HeaderFile
+#define _TopOpeBRepDS_FaceEdgeInterference_HeaderFile
+
+#include <Standard.hxx>
+
+#include <TopOpeBRepDS_ShapeShapeInterference.hxx>
+#include <Standard_Integer.hxx>
+#include <Standard_Boolean.hxx>
+#include <TopOpeBRepDS_Config.hxx>
+#include <Standard_OStream.hxx>
+class TopOpeBRepDS_Transition;
+
+//! ShapeShapeInterference
+class TopOpeBRepDS_FaceEdgeInterference : public TopOpeBRepDS_ShapeShapeInterference
+{
+
+public:
+  //! Create an interference of EDGE <G> on FACE <S>.
+  Standard_EXPORT TopOpeBRepDS_FaceEdgeInterference(const TopOpeBRepDS_Transition& T,
+                                                    const int                      S,
+                                                    const int                      G,
+                                                    const bool                     GIsBound,
+                                                    const TopOpeBRepDS_Config      C);
+
+  DEFINE_STANDARD_RTTIEXT(TopOpeBRepDS_FaceEdgeInterference, TopOpeBRepDS_ShapeShapeInterference)
+};
+
+#endif // _TopOpeBRepDS_FaceEdgeInterference_HeaderFile

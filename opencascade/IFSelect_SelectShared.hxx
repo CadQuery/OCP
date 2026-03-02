@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 1992-11-18
+// Created by: Christian CAILLET
+// Copyright (c) 1992-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,34 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/DataExchange/TKXSBase/IFSelect/IFSelect_SelectShared.hxx"// clang-format on
+#ifndef _IFSelect_SelectShared_HeaderFile
+#define _IFSelect_SelectShared_HeaderFile
+
+#include <Standard.hxx>
+#include <Standard_Type.hxx>
+
+#include <IFSelect_SelectDeduct.hxx>
+class Interface_EntityIterator;
+class Interface_Graph;
+class TCollection_AsciiString;
+
+//! A SelectShared selects Entities which are directly Shared
+//! by the Entities of the Input list
+class IFSelect_SelectShared : public IFSelect_SelectDeduct
+{
+
+public:
+  //! Creates a SelectShared;
+  Standard_EXPORT IFSelect_SelectShared();
+
+  //! Returns the list of selected entities (list of entities
+  //! shared by those of input list)
+  Standard_EXPORT Interface_EntityIterator RootResult(const Interface_Graph& G) const override;
+
+  //! Returns a text defining the criterium : "Shared (one level)"
+  Standard_EXPORT TCollection_AsciiString Label() const override;
+
+  DEFINE_STANDARD_RTTIEXT(IFSelect_SelectShared, IFSelect_SelectDeduct)
+};
+
+#endif // _IFSelect_SelectShared_HeaderFile

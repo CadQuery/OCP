@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 1997-08-07
+// Created by: Jean-Louis Frenkel
+// Copyright (c) 1997-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,15 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ApplicationFramework/TKCDF/CDF/CDF_TryStoreStatus.hxx"// clang-format on
+#ifndef _CDF_TryStoreStatus_HeaderFile
+#define _CDF_TryStoreStatus_HeaderFile
+
+enum CDF_TryStoreStatus
+{
+  CDF_TS_OK,
+  CDF_TS_NoCurrentDocument,
+  CDF_TS_NoDriver,
+  CDF_TS_NoSubComponentDriver
+};
+
+#endif // _CDF_TryStoreStatus_HeaderFile

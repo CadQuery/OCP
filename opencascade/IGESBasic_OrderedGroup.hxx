@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 1993-01-09
+// Created by: CKY / Contract Toubro-Larsen ( Arun MENON )
+// Copyright (c) 1993-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,27 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/DataExchange/TKDEIGES/IGESBasic/IGESBasic_OrderedGroup.hxx"// clang-format on
+#ifndef _IGESBasic_OrderedGroup_HeaderFile
+#define _IGESBasic_OrderedGroup_HeaderFile
+
+#include <Standard.hxx>
+
+#include <IGESBasic_Group.hxx>
+
+//! defines OrderedGroup, Type <402> Form <14>
+//! in package IGESBasic
+//! this class defines an Ordered Group with back pointers
+//! Allows a collection of a set of entities to be
+//! maintained as a single entity, but the group is
+//! ordered.
+//! It inherits from Group
+class IGESBasic_OrderedGroup : public IGESBasic_Group
+{
+
+public:
+  Standard_EXPORT IGESBasic_OrderedGroup();
+
+  DEFINE_STANDARD_RTTIEXT(IGESBasic_OrderedGroup, IGESBasic_Group)
+};
+
+#endif // _IGESBasic_OrderedGroup_HeaderFile

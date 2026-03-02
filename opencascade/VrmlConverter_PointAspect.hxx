@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 1997-04-23
+// Created by: Alexander BRIVIN
+// Copyright (c) 1997-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,45 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/DataExchange/TKDEVRML/VrmlConverter/VrmlConverter_PointAspect.hxx"// clang-format on
+#ifndef _VrmlConverter_PointAspect_HeaderFile
+#define _VrmlConverter_PointAspect_HeaderFile
+
+#include <Standard.hxx>
+#include <Standard_Type.hxx>
+
+#include <Standard_Transient.hxx>
+class Vrml_Material;
+
+//! qualifies the aspect properties for
+//! the VRML conversation of a Point Set.
+class VrmlConverter_PointAspect : public Standard_Transient
+{
+
+public:
+  //! create a default PointAspect.
+  //! Default value: HasMaterial = False - a line hasn't own material (color)
+  Standard_EXPORT VrmlConverter_PointAspect();
+
+  Standard_EXPORT VrmlConverter_PointAspect(const occ::handle<Vrml_Material>& aMaterial,
+                                            const bool                        OnOff);
+
+  Standard_EXPORT void SetMaterial(const occ::handle<Vrml_Material>& aMaterial);
+
+  Standard_EXPORT occ::handle<Vrml_Material> Material() const;
+
+  //! defines the necessary of writing own Material from Vrml into output OStream.
+  //! By default False - the material is not writing into OStream,
+  //! True - the material is writing.
+  Standard_EXPORT void SetHasMaterial(const bool OnOff);
+
+  //! returns True if the materials is writing into OStream.
+  Standard_EXPORT bool HasMaterial() const;
+
+  DEFINE_STANDARD_RTTIEXT(VrmlConverter_PointAspect, Standard_Transient)
+
+private:
+  occ::handle<Vrml_Material> myMaterial;
+  bool                       myHasMaterial;
+};
+
+#endif // _VrmlConverter_PointAspect_HeaderFile

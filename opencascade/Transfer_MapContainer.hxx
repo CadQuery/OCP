@@ -1,4 +1,6 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 2001-09-10
+// Created by: Sergey KUUL
+// Copyright (c) 2001-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +13,35 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/DataExchange/TKXSBase/Transfer/Transfer_MapContainer.hxx"// clang-format on
+#ifndef _Transfer_MapContainer_HeaderFile
+#define _Transfer_MapContainer_HeaderFile
+
+#include <Standard.hxx>
+#include <Standard_Type.hxx>
+
+#include <Standard_Transient.hxx>
+#include <NCollection_DataMap.hxx>
+
+class Transfer_MapContainer : public Standard_Transient
+{
+
+public:
+  Standard_EXPORT Transfer_MapContainer();
+
+  //! Set map already translated geometry objects.
+  Standard_EXPORT void SetMapObjects(
+    NCollection_DataMap<occ::handle<Standard_Transient>, occ::handle<Standard_Transient>>&
+      theMapObjects);
+
+  //! Get map already translated geometry objects.
+  Standard_EXPORT NCollection_DataMap<occ::handle<Standard_Transient>,
+                                      occ::handle<Standard_Transient>>&
+                  GetMapObjects();
+
+  DEFINE_STANDARD_RTTIEXT(Transfer_MapContainer, Standard_Transient)
+
+private:
+  NCollection_DataMap<occ::handle<Standard_Transient>, occ::handle<Standard_Transient>> myMapObj;
+};
+
+#endif // _Transfer_MapContainer_HeaderFile

@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 1992-04-03
+// Created by: Laurent BUCHARD
+// Copyright (c) 1992-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,14 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ModelingAlgorithms/TKGeomAlgo/IntRes2d/IntRes2d_Position.hxx"// clang-format on
+#ifndef _IntRes2d_Position_HeaderFile
+#define _IntRes2d_Position_HeaderFile
+
+enum IntRes2d_Position
+{
+  IntRes2d_Head,
+  IntRes2d_Middle,
+  IntRes2d_End
+};
+
+#endif // _IntRes2d_Position_HeaderFile

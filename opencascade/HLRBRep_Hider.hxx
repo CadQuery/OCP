@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 1997-04-17
+// Created by: Christophe MARION
+// Copyright (c) 1997-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,41 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ModelingAlgorithms/TKHLR/HLRBRep/HLRBRep_Hider.hxx"// clang-format on
+#ifndef _HLRBRep_Hider_HeaderFile
+#define _HLRBRep_Hider_HeaderFile
+
+#include <Standard.hxx>
+#include <Standard_DefineAlloc.hxx>
+#include <Standard_Handle.hxx>
+
+#include <Standard_Integer.hxx>
+#include <TopoDS_Shape.hxx>
+#include <BRepTopAdaptor_Tool.hxx>
+#include <TopTools_ShapeMapHasher.hxx>
+#include <NCollection_DataMap.hxx>
+class HLRBRep_Data;
+
+class HLRBRep_Hider
+{
+public:
+  DEFINE_STANDARD_ALLOC
+
+  //! Creates a Hider processing the set of Edges and
+  //! hiding faces described by <DS>. Stores the hidden
+  //! parts in <DS>.
+  Standard_EXPORT HLRBRep_Hider(const occ::handle<HLRBRep_Data>& DS);
+
+  //! own hiding the side face number <FI>.
+  Standard_EXPORT void OwnHiding(const int FI);
+
+  //! Removes from the edges, the parts hidden by the
+  //! hiding face number <FI>.
+  Standard_EXPORT void Hide(
+    const int                                                                        FI,
+    NCollection_DataMap<TopoDS_Shape, BRepTopAdaptor_Tool, TopTools_ShapeMapHasher>& MST);
+
+private:
+  occ::handle<HLRBRep_Data> myDS;
+};
+
+#endif // _HLRBRep_Hider_HeaderFile

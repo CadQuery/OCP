@@ -1,4 +1,5 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Copyright (c) 1997-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +12,33 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/FoundationClasses/TKMath/math/math_Crout.lxx"// clang-format on
+#include <StdFail_NotDone.hxx>
+
+inline bool math_Crout::IsDone() const
+{
+  return Done;
+}
+
+inline Standard_OStream& operator<<(Standard_OStream& o, const math_Crout& C)
+{
+  C.Dump(o);
+  return o;
+}
+
+inline double math_Crout::Determinant() const
+{
+  StdFail_NotDone_Raise_if(!Done, " ");
+  return Det;
+}
+
+inline const math_Matrix& math_Crout::Inverse() const
+{
+  StdFail_NotDone_Raise_if(!Done, " ");
+  return InvA;
+}
+
+inline void math_Crout::Invert(math_Matrix& Inv) const
+{
+  StdFail_NotDone_Raise_if(!Done, " ");
+  Inv = InvA;
+}

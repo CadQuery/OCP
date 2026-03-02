@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 1992-09-30
+// Created by: Jacques GOUSSARD
+// Copyright (c) 1992-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,48 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ModelingAlgorithms/TKGeomAlgo/IntSurf/IntSurf_QuadricTool.hxx"// clang-format on
+#ifndef _IntSurf_QuadricTool_HeaderFile
+#define _IntSurf_QuadricTool_HeaderFile
+
+#include <Standard.hxx>
+#include <Standard_DefineAlloc.hxx>
+#include <Standard_Handle.hxx>
+
+#include <Standard_Real.hxx>
+class IntSurf_Quadric;
+class gp_Vec;
+
+//! This class provides a tool on a quadric that can be
+//! used to instantiates the Walking algorithms (see
+//! package IntWalk) with a Quadric from IntSurf
+//! as implicit surface.
+class IntSurf_QuadricTool
+{
+public:
+  DEFINE_STANDARD_ALLOC
+
+  //! Returns the value of the function.
+  static double Value(const IntSurf_Quadric& Quad, const double X, const double Y, const double Z);
+
+  //! Returns the gradient of the function.
+  static void Gradient(const IntSurf_Quadric& Quad,
+                       const double           X,
+                       const double           Y,
+                       const double           Z,
+                       gp_Vec&                V);
+
+  //! Returns the value and the gradient.
+  static void ValueAndGradient(const IntSurf_Quadric& Quad,
+                               const double           X,
+                               const double           Y,
+                               const double           Z,
+                               double&                Val,
+                               gp_Vec&                Grad);
+
+  //! returns the tolerance of the zero of the implicit function
+  Standard_EXPORT static double Tolerance(const IntSurf_Quadric& Quad);
+};
+
+#include <IntSurf_QuadricTool.lxx>
+
+#endif // _IntSurf_QuadricTool_HeaderFile

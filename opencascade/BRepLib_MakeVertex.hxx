@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 1993-07-06
+// Created by: Remi LEQUETTE
+// Copyright (c) 1993-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,26 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ModelingAlgorithms/TKTopAlgo/BRepLib/BRepLib_MakeVertex.hxx"// clang-format on
+#ifndef _BRepLib_MakeVertex_HeaderFile
+#define _BRepLib_MakeVertex_HeaderFile
+
+#include <Standard.hxx>
+#include <Standard_DefineAlloc.hxx>
+
+#include <BRepLib_MakeShape.hxx>
+class gp_Pnt;
+class TopoDS_Vertex;
+
+//! Provides methods to build vertices.
+class BRepLib_MakeVertex : public BRepLib_MakeShape
+{
+public:
+  DEFINE_STANDARD_ALLOC
+
+  Standard_EXPORT BRepLib_MakeVertex(const gp_Pnt& P);
+
+  Standard_EXPORT const TopoDS_Vertex& Vertex();
+  Standard_EXPORT                      operator TopoDS_Vertex();
+};
+
+#endif // _BRepLib_MakeVertex_HeaderFile

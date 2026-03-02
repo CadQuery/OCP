@@ -1,4 +1,6 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 2005-12-08
+// Created by: Sergey KHROMOV
+// Copyright (c) 2005-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +13,67 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/FoundationClasses/TKMath/math/math_KronrodSingleIntegration.lxx"// clang-format on
+#include <StdFail_NotDone.hxx>
+
+//==========================================================================
+// function : IsDone
+//           Returns true if computation is performed successfully.
+//==========================================================================
+
+inline bool math_KronrodSingleIntegration::IsDone() const
+{
+  return myIsDone;
+}
+
+//==========================================================================
+// function : Value
+//           Returns the value of the integral.
+//==========================================================================
+
+inline double math_KronrodSingleIntegration::Value() const
+{
+  StdFail_NotDone_Raise_if(!myIsDone, "math_KronrodSingleIntegration");
+  return myValue;
+}
+
+//==========================================================================
+// function : ErrorReached
+//           Returns the value of the relative error reached.
+//==========================================================================
+
+inline double math_KronrodSingleIntegration::ErrorReached() const
+{
+  StdFail_NotDone_Raise_if(!myIsDone, "math_KronrodSingleIntegration");
+  return myErrorReached;
+}
+
+//=================================================================================================
+
+inline double math_KronrodSingleIntegration::AbsolutError() const
+{
+  StdFail_NotDone_Raise_if(!myIsDone, "math_KronrodSingleIntegration");
+  return myAbsolutError;
+}
+
+//==========================================================================
+// function : OrderReached
+//           Returns the number of Kronrod points for which the result
+//           is computed.
+//==========================================================================
+
+inline int math_KronrodSingleIntegration::OrderReached() const
+{
+  StdFail_NotDone_Raise_if(!myIsDone, "math_KronrodSingleIntegration");
+  return myNbPntsReached;
+}
+
+//==========================================================================
+// function : NbIterReached
+//           Returns the number of iterations that were made to compute result.
+//==========================================================================
+
+inline int math_KronrodSingleIntegration::NbIterReached() const
+{
+  StdFail_NotDone_Raise_if(!myIsDone, "math_KronrodSingleIntegration");
+  return myNbIterReached;
+}

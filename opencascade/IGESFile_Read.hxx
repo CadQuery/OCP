@@ -1,4 +1,4 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +11,27 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/DataExchange/TKDEIGES/IGESFile/IGESFile_Read.hxx"// clang-format on
+//  Include to use for calling IGESFile_Read
+
+#ifndef IGESFile_Read_HeaderFile
+#define IGESFile_Read_HeaderFile
+
+#include <IGESData_IGESModel.hxx>
+#include <IGESData_Protocol.hxx>
+#include <IGESData_FileRecognizer.hxx>
+
+Standard_EXPORT int IGESFile_Read(char*                                  nomfic,
+                                  const occ::handle<IGESData_IGESModel>& amodel,
+                                  const occ::handle<IGESData_Protocol>&  protocol);
+
+Standard_EXPORT int IGESFile_ReadFNES(char*                                  nomfic,
+                                      const occ::handle<IGESData_IGESModel>& amodel,
+                                      const occ::handle<IGESData_Protocol>&  protocol);
+
+Standard_EXPORT int IGESFile_Read(char*                                       nomfic,
+                                  const occ::handle<IGESData_IGESModel>&      amodel,
+                                  const occ::handle<IGESData_Protocol>&       protocol,
+                                  const occ::handle<IGESData_FileRecognizer>& reco,
+                                  const bool                                  modefnes = false);
+
+#endif

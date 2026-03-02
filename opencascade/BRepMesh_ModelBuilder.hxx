@@ -1,4 +1,6 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 2016-04-07
+// Copyright (c) 2016 OPEN CASCADE SAS
+// Created by: Oleg AGASHIN
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +13,36 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ModelingAlgorithms/TKMesh/BRepMesh/BRepMesh_ModelBuilder.hxx"// clang-format on
+#ifndef _BRepMesh_ModelBuilder_HeaderFile
+#define _BRepMesh_ModelBuilder_HeaderFile
+
+#include <IMeshTools_ModelBuilder.hxx>
+#include <Standard_Type.hxx>
+#include <TopoDS_Shape.hxx>
+
+//! Class implements interface representing tool for discrete model building.
+//!
+//! The following statuses should be used by default:
+//! Message_Done1 - model has been successfully built.
+//! Message_Fail1 - empty shape.
+//! Message_Fail2 - model has not been build due to unexpected reason.
+class BRepMesh_ModelBuilder : public IMeshTools_ModelBuilder
+{
+public:
+  //! Constructor.
+  Standard_EXPORT BRepMesh_ModelBuilder();
+
+  //! Destructor.
+  Standard_EXPORT ~BRepMesh_ModelBuilder() override;
+
+  DEFINE_STANDARD_RTTIEXT(BRepMesh_ModelBuilder, IMeshTools_ModelBuilder)
+
+protected:
+  //! Creates discrete model for the given shape.
+  //! Returns nullptr in case of failure.
+  Standard_EXPORT occ::handle<IMeshData_Model> performInternal(
+    const TopoDS_Shape&          theShape,
+    const IMeshTools_Parameters& theParameters) override;
+};
+
+#endif

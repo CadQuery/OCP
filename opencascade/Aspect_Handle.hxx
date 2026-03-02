@@ -1,4 +1,4 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +11,21 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/Visualization/TKService/Aspect/Aspect_Handle.hxx"// clang-format on
+/*============================================================================*/
+/*==== Title: Aspect_Handle.hxx                                               */
+/*==== Role : The header file of primitive type "Handle" from packages        */
+/*==== "Xw" & "WNT"                                                           */
+/*==== Implementation:  This is a primitive type implemented with typedef     */
+/*============================================================================*/
+
+#ifndef _Aspect_Handle_HeaderFile
+#define _Aspect_Handle_HeaderFile
+
+#ifdef _WIN32
+typedef void*  HANDLE;
+typedef HANDLE Aspect_Handle;
+#else
+typedef unsigned long Aspect_Handle;
+#endif /* _WIN32 */
+
+#endif /* _Aspect_Handle_HeaderFile */

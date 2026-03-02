@@ -1,4 +1,6 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 2008-01-23
+// Created by: Sergey ZARITCHNY
+// Copyright (c) 2008-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +13,33 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ApplicationFramework/TKLCAF/TDataStd/TDataStd_DeltaOnModificationOfIntPackedMap.hxx"// clang-format on
+#ifndef _TDataStd_DeltaOnModificationOfIntPackedMap_HeaderFile
+#define _TDataStd_DeltaOnModificationOfIntPackedMap_HeaderFile
+
+#include <Standard.hxx>
+
+#include <TDF_DeltaOnModification.hxx>
+class TColStd_HPackedMapOfInteger;
+class TDataStd_IntPackedMap;
+
+//! This class provides default services for an
+//! AttributeDelta on a MODIFICATION action.
+class TDataStd_DeltaOnModificationOfIntPackedMap : public TDF_DeltaOnModification
+{
+
+public:
+  //! Initializes a TDF_DeltaOnModification.
+  Standard_EXPORT TDataStd_DeltaOnModificationOfIntPackedMap(
+    const occ::handle<TDataStd_IntPackedMap>& Arr);
+
+  //! Applies the delta to the attribute.
+  Standard_EXPORT void Apply() override;
+
+  DEFINE_STANDARD_RTTIEXT(TDataStd_DeltaOnModificationOfIntPackedMap, TDF_DeltaOnModification)
+
+private:
+  occ::handle<TColStd_HPackedMapOfInteger> myAddition;
+  occ::handle<TColStd_HPackedMapOfInteger> myDeletion;
+};
+
+#endif // _TDataStd_DeltaOnModificationOfIntPackedMap_HeaderFile

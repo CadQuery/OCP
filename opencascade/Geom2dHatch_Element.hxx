@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 1993-11-10
+// Created by: Jean Marc LACHAUME
+// Copyright (c) 1993-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,42 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ModelingAlgorithms/TKGeomAlgo/Geom2dHatch/Geom2dHatch_Element.hxx"// clang-format on
+#ifndef _Geom2dHatch_Element_HeaderFile
+#define _Geom2dHatch_Element_HeaderFile
+
+#include <Standard.hxx>
+#include <Standard_DefineAlloc.hxx>
+#include <Standard_Handle.hxx>
+
+#include <Geom2dAdaptor_Curve.hxx>
+#include <TopAbs_Orientation.hxx>
+
+class Geom2dHatch_Element
+{
+public:
+  DEFINE_STANDARD_ALLOC
+
+  Standard_EXPORT Geom2dHatch_Element();
+
+  //! Creates an element.
+  Standard_EXPORT Geom2dHatch_Element(const Geom2dAdaptor_Curve& Curve,
+                                      const TopAbs_Orientation   Orientation = TopAbs_FORWARD);
+
+  //! Returns the curve associated to the element.
+  Standard_EXPORT const Geom2dAdaptor_Curve& Curve() const;
+
+  //! Returns the curve associated to the element.
+  Standard_EXPORT Geom2dAdaptor_Curve& ChangeCurve();
+
+  //! Sets the orientation of the element.
+  Standard_EXPORT void Orientation(const TopAbs_Orientation Orientation);
+
+  //! Returns the orientation of the element.
+  Standard_EXPORT TopAbs_Orientation Orientation() const;
+
+private:
+  Geom2dAdaptor_Curve myCurve;
+  TopAbs_Orientation  myOrientation;
+};
+
+#endif // _Geom2dHatch_Element_HeaderFile

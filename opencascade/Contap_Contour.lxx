@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 1993-02-05
+// Created by: Jacques GOUSSARD
+// Copyright (c) 1993-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,41 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ModelingAlgorithms/TKHLR/Contap/Contap_Contour.lxx"// clang-format on
+#include <StdFail_NotDone.hxx>
+
+inline bool Contap_Contour::IsDone() const
+{
+  return done;
+}
+
+inline bool Contap_Contour::IsEmpty() const
+{
+  return NbLines() == 0;
+}
+
+inline int Contap_Contour::NbLines() const
+{
+  if (!done)
+  {
+    throw StdFail_NotDone();
+  }
+  return slin.Length();
+}
+
+inline const Contap_Line& Contap_Contour::Line(const int Index) const
+{
+  if (!done)
+  {
+    throw StdFail_NotDone();
+  }
+  return slin(Index);
+}
+
+inline Contap_SurfFunction& Contap_Contour::SurfaceFunction()
+{
+  if (!done)
+  {
+    throw StdFail_NotDone();
+  }
+  return mySFunc;
+}

@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 1994-03-03
+// Created by: Joelle CHAUVET
+// Copyright (c) 1994-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,14 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ModelingAlgorithms/TKBool/BRepFill/BRepFill_TransitionStyle.hxx"// clang-format on
+#ifndef _BRepFill_TransitionStyle_HeaderFile
+#define _BRepFill_TransitionStyle_HeaderFile
+
+enum BRepFill_TransitionStyle
+{
+  BRepFill_Modified,
+  BRepFill_Right,
+  BRepFill_Round
+};
+
+#endif // _BRepFill_TransitionStyle_HeaderFile

@@ -1,4 +1,6 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 2000-02-29
+// Created by: data exchange team
+// Copyright (c) 2000-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +13,12 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/DataExchange/TKXSBase/IFSelect/IFSelect_ActFunc.hxx"// clang-format on
+#ifndef _IFSelect_ActFunc_HeaderFile
+#define _IFSelect_ActFunc_HeaderFile
+
+#include <IFSelect_SessionPilot.hxx>
+#include <IFSelect_ReturnStatus.hxx>
+
+typedef IFSelect_ReturnStatus (*IFSelect_ActFunc)(const occ::handle<IFSelect_SessionPilot>&);
+
+#endif

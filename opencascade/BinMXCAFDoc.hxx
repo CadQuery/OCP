@@ -1,4 +1,6 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 2005-04-18
+// Created by: Eugeny NAPALKOV <eugeny.napalkov@opencascade.com>
+// Copyright (c) 2005-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +13,24 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/DataExchange/TKBinXCAF/BinMXCAFDoc/BinMXCAFDoc.hxx"// clang-format on
+#ifndef _BinMXCAFDoc_HeaderFile
+#define _BinMXCAFDoc_HeaderFile
+
+#include <Standard.hxx>
+#include <Standard_DefineAlloc.hxx>
+#include <Standard_Handle.hxx>
+
+class BinMDF_ADriverTable;
+class Message_Messenger;
+
+class BinMXCAFDoc
+{
+public:
+  DEFINE_STANDARD_ALLOC
+
+  //! Adds the attribute drivers to <theDriverTable>.
+  Standard_EXPORT static void AddDrivers(const occ::handle<BinMDF_ADriverTable>& theDriverTable,
+                                         const occ::handle<Message_Messenger>&   theMsgDrv);
+};
+
+#endif // _BinMXCAFDoc_HeaderFile

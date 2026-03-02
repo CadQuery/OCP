@@ -1,4 +1,4 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Copyright (c) 2015 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +11,20 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ApplicationFramework/TKStd/StdDrivers/StdDrivers_DocumentRetrievalDriver.hxx"// clang-format on
+#ifndef _StdDrivers_DocumentRetrievalDriver_HeaderFile
+#define _StdDrivers_DocumentRetrievalDriver_HeaderFile
+
+#include <StdLDrivers_DocumentRetrievalDriver.hxx>
+
+//! retrieval driver of a Part document
+class StdDrivers_DocumentRetrievalDriver : public StdLDrivers_DocumentRetrievalDriver
+{
+public:
+  DEFINE_STANDARD_RTTIEXT(StdDrivers_DocumentRetrievalDriver, StdLDrivers_DocumentRetrievalDriver)
+
+protected:
+  //! Register types.
+  Standard_EXPORT void bindTypes(StdObjMgt_MapOfInstantiators& theMap) override;
+};
+
+#endif // _StdDrivers_DocumentRetrievalDriver_HeaderFile

@@ -1,4 +1,6 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 2000-02-07
+// Created by: data exchange team
+// Copyright (c) 2000-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +13,31 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ModelingAlgorithms/TKShHealing/ShapeAlgo/ShapeAlgo_ToolContainer.hxx"// clang-format on
+#ifndef _ShapeAlgo_ToolContainer_HeaderFile
+#define _ShapeAlgo_ToolContainer_HeaderFile
+
+#include <Standard.hxx>
+#include <Standard_Type.hxx>
+
+#include <Standard_Transient.hxx>
+class ShapeFix_Shape;
+class ShapeFix_EdgeProjAux;
+
+//! Returns tools used by AlgoContainer
+class ShapeAlgo_ToolContainer : public Standard_Transient
+{
+
+public:
+  //! Empty constructor
+  Standard_EXPORT ShapeAlgo_ToolContainer();
+
+  //! Returns ShapeFix_Shape
+  Standard_EXPORT virtual occ::handle<ShapeFix_Shape> FixShape() const;
+
+  //! Returns ShapeFix_EdgeProjAux
+  Standard_EXPORT virtual occ::handle<ShapeFix_EdgeProjAux> EdgeProjAux() const;
+
+  DEFINE_STANDARD_RTTIEXT(ShapeAlgo_ToolContainer, Standard_Transient)
+};
+
+#endif // _ShapeAlgo_ToolContainer_HeaderFile

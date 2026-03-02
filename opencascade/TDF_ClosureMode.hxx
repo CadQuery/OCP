@@ -1,4 +1,6 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created by: DAUTRY Philippe
+// Copyright (c) 1997-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +13,49 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ApplicationFramework/TKLCAF/TDF/TDF_ClosureMode.hxx"// clang-format on
+#ifndef _TDF_ClosureMode_HeaderFile
+#define _TDF_ClosureMode_HeaderFile
+
+#include <Standard.hxx>
+#include <Standard_DefineAlloc.hxx>
+#include <Standard_Handle.hxx>
+
+#include <Standard_Boolean.hxx>
+
+//! This class provides options closure management.
+class TDF_ClosureMode
+{
+public:
+  DEFINE_STANDARD_ALLOC
+
+  //! Creates an object with all modes set to <aMode>.
+  Standard_EXPORT TDF_ClosureMode(const bool aMode = true);
+
+  //! Sets the mode "Descendants" to <aStatus>.
+  //!
+  //! "Descendants" mode means we add to the data set
+  //! the children labels of each USER GIVEN label. We
+  //! do not do that with the labels found applying
+  //! UpToFirstLevel option.
+  void Descendants(const bool aStatus);
+
+  //! Returns true if the mode "Descendants" is set.
+  bool Descendants() const;
+
+  //! Sets the mode "References" to <aStatus>.
+  //!
+  //! "References" mode means we add to the data set
+  //! the descendants of an attribute, by calling the
+  //! attribute method Descendants().
+  void References(const bool aStatus);
+
+  //! Returns true if the mode "References" is set.
+  bool References() const;
+
+private:
+  int myFlags;
+};
+
+#include <TDF_ClosureMode.lxx>
+
+#endif // _TDF_ClosureMode_HeaderFile

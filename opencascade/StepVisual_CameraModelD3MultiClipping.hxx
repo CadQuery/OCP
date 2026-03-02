@@ -1,4 +1,6 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 2016-10-25
+// Created by: Irina KRYLOVA
+// Copyright (c) 2016 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +13,49 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/DataExchange/TKDESTEP/StepVisual/StepVisual_CameraModelD3MultiClipping.hxx"// clang-format on
+#ifndef _StepVisual_CameraModelD3MultiClipping_HeaderFile
+#define _StepVisual_CameraModelD3MultiClipping_HeaderFile
+
+#include <Standard.hxx>
+#include <Standard_Type.hxx>
+
+#include <StepVisual_CameraModelD3.hxx>
+#include <StepVisual_CameraModelD3MultiClippingInterectionSelect.hxx>
+#include <NCollection_Array1.hxx>
+#include <NCollection_HArray1.hxx>
+class StepGeom_Axis2Placement3d;
+class StepVisual_ViewVolume;
+class TCollection_HAsciiString;
+
+class StepVisual_CameraModelD3MultiClipping : public StepVisual_CameraModelD3
+{
+public:
+  //! Returns a CameraModelD3MultiClipping
+  Standard_EXPORT StepVisual_CameraModelD3MultiClipping();
+
+  Standard_EXPORT void Init(
+    const occ::handle<TCollection_HAsciiString>&  theName,
+    const occ::handle<StepGeom_Axis2Placement3d>& theViewReferenceSystem,
+    const occ::handle<StepVisual_ViewVolume>&     thePerspectiveOfVolume,
+    const occ::handle<NCollection_HArray1<StepVisual_CameraModelD3MultiClippingInterectionSelect>>&
+      theShapeClipping);
+
+  void SetShapeClipping(
+    const occ::handle<NCollection_HArray1<StepVisual_CameraModelD3MultiClippingInterectionSelect>>&
+      theShapeClipping)
+  {
+    myShapeClipping = theShapeClipping;
+  }
+
+  const occ::handle<NCollection_HArray1<StepVisual_CameraModelD3MultiClippingInterectionSelect>>
+    ShapeClipping()
+  {
+    return myShapeClipping;
+  }
+  DEFINE_STANDARD_RTTIEXT(StepVisual_CameraModelD3MultiClipping, StepVisual_CameraModelD3)
+
+private:
+  occ::handle<NCollection_HArray1<StepVisual_CameraModelD3MultiClippingInterectionSelect>>
+    myShapeClipping;
+};
+#endif // _StepVisual_CameraModelD3MultiClipping_HeaderFile

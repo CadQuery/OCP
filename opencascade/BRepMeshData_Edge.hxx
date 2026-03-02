@@ -1,4 +1,6 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 2016-04-07
+// Copyright (c) 2016 OPEN CASCADE SAS
+// Created by: Oleg AGASHIN
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +13,52 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ModelingAlgorithms/TKMesh/BRepMeshData/BRepMeshData_Edge.hxx"// clang-format on
+#ifndef _BRepMeshData_Edge_HeaderFile
+#define _BRepMeshData_Edge_HeaderFile
+
+#include <IMeshData_Edge.hxx>
+#include <NCollection_IncAllocator.hxx>
+#include <IMeshData_Types.hxx>
+
+//! Default implementation of edge data model entity.
+class BRepMeshData_Edge : public IMeshData_Edge
+{
+public:
+  DEFINE_INC_ALLOC
+
+  //! Constructor.
+  Standard_EXPORT BRepMeshData_Edge(const TopoDS_Edge&                           theEdge,
+                                    const occ::handle<NCollection_IncAllocator>& theAllocator);
+
+  //! Destructor.
+  Standard_EXPORT ~BRepMeshData_Edge() override;
+
+  //! Returns number of pcurves assigned to current edge.
+  Standard_EXPORT int PCurvesNb() const override;
+
+  //! Adds discrete pcurve for the specified discrete face.
+  Standard_EXPORT const IMeshData::IPCurveHandle& AddPCurve(
+    const IMeshData::IFacePtr& theDFace,
+    const TopAbs_Orientation   theOrientation) override;
+
+  //! Returns pcurve for the specified discrete face.
+  Standard_EXPORT const IMeshData::IPCurveHandle& GetPCurve(
+    const IMeshData::IFacePtr& theDFace,
+    const TopAbs_Orientation   theOrientation) const override;
+
+  //! Returns pcurve with the given index.
+  Standard_EXPORT const IMeshData::IPCurveHandle& GetPCurve(const int theIndex) const override;
+
+  //! Returns an array of pcurves indices for the specified discrete face.
+  Standard_EXPORT const IMeshData::ListOfInteger& GetPCurves(
+    const IMeshData::IFacePtr& theDFace) const override;
+
+  DEFINE_STANDARD_RTTIEXT(BRepMeshData_Edge, IMeshData_Edge)
+
+private:
+  occ::handle<NCollection_IncAllocator>   myAllocator;
+  IMeshData::VectorOfIPCurveHandles       myPCurves;
+  IMeshData::DMapOfIFacePtrsListOfInteger myPCurvesMap;
+};
+
+#endif

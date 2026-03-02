@@ -1,4 +1,6 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 2001-04-24
+// Created by: Christian CAILLET
+// Copyright (c) 2001-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +13,37 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/DataExchange/TKDESTEP/StepShape/StepShape_ToleranceMethodDefinition.hxx"// clang-format on
+#ifndef _StepShape_ToleranceMethodDefinition_HeaderFile
+#define _StepShape_ToleranceMethodDefinition_HeaderFile
+
+#include <Standard.hxx>
+#include <Standard_DefineAlloc.hxx>
+#include <Standard_Handle.hxx>
+
+#include <StepData_SelectType.hxx>
+#include <Standard_Integer.hxx>
+class Standard_Transient;
+class StepShape_ToleranceValue;
+class StepShape_LimitsAndFits;
+
+//! Added for Dimensional Tolerances
+class StepShape_ToleranceMethodDefinition : public StepData_SelectType
+{
+public:
+  DEFINE_STANDARD_ALLOC
+
+  Standard_EXPORT StepShape_ToleranceMethodDefinition();
+
+  //! Recognizes a kind of ValueQualifier Select Type :
+  //! 1 -> ToleranceValue from StepShape
+  //! 2 -> LimitsAndFits from StepShape
+  Standard_EXPORT int CaseNum(const occ::handle<Standard_Transient>& ent) const override;
+
+  //! Returns Value as ToleranceValue
+  Standard_EXPORT occ::handle<StepShape_ToleranceValue> ToleranceValue() const;
+
+  //! Returns Value as LimitsAndFits
+  Standard_EXPORT occ::handle<StepShape_LimitsAndFits> LimitsAndFits() const;
+};
+
+#endif // _StepShape_ToleranceMethodDefinition_HeaderFile

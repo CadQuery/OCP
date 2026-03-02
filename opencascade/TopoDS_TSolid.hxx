@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 1990-12-17
+// Created by: Remi Lequette
+// Copyright (c) 1990-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,29 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ModelingData/TKBRep/TopoDS/TopoDS_TSolid.hxx"// clang-format on
+#ifndef _TopoDS_TSolid_HeaderFile
+#define _TopoDS_TSolid_HeaderFile
+
+#include <Standard.hxx>
+#include <Standard_Type.hxx>
+#include <TopAbs_ShapeEnum.hxx>
+#include <TopoDS_TShape.hxx>
+
+//! A Topological part of 3D space, bounded by shells,
+//! edges and vertices.
+class TopoDS_TSolid : public TopoDS_TShape
+{
+public:
+  //! Creates an empty TSolid.
+  TopoDS_TSolid() { Orientable(false); }
+
+  //! returns SOLID.
+  Standard_EXPORT TopAbs_ShapeEnum ShapeType() const override;
+
+  //! Returns an empty TSolid.
+  Standard_EXPORT occ::handle<TopoDS_TShape> EmptyCopy() const override;
+
+  DEFINE_STANDARD_RTTIEXT(TopoDS_TSolid, TopoDS_TShape)
+};
+
+#endif // _TopoDS_TSolid_HeaderFile

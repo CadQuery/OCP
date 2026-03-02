@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on : Thu Mar 24 18:30:12 2022
+// Created by: snn
+// Generator: Express (EXPRESS -> CASCADE/XSTEP Translator) V2.0
+// Copyright (c) Open CASCADE 2022
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,38 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/DataExchange/TKDESTEP/StepVisual/StepVisual_PathOrCompositeCurve.hxx"// clang-format on
+#ifndef _StepVisual_PathOrCompositeCurve_HeaderFile
+#define _StepVisual_PathOrCompositeCurve_HeaderFile
+
+#include <Standard.hxx>
+#include <Standard_DefineAlloc.hxx>
+#include <Standard_Handle.hxx>
+#include <StepData_SelectType.hxx>
+#include <Standard_Integer.hxx>
+
+class Standard_Transient;
+class StepGeom_CompositeCurve;
+class StepShape_Path;
+
+//! Representation of STEP SELECT type PathOrCompositeCurve
+class StepVisual_PathOrCompositeCurve : public StepData_SelectType
+{
+
+public:
+  DEFINE_STANDARD_ALLOC
+
+  //! Empty constructor
+  Standard_EXPORT StepVisual_PathOrCompositeCurve();
+
+  //! Recognizes a kind of PathOrCompositeCurve select type
+  //! -- 1 -> CompositeCurve
+  //! -- 2 -> Path
+  Standard_EXPORT int CaseNum(const occ::handle<Standard_Transient>& ent) const override;
+
+  //! Returns Value as CompositeCurve (or Null if another type)
+  Standard_EXPORT occ::handle<StepGeom_CompositeCurve> CompositeCurve() const;
+
+  //! Returns Value as Path (or Null if another type)
+  Standard_EXPORT occ::handle<StepShape_Path> Path() const;
+};
+#endif // _StepVisual_PathOrCompositeCurve_HeaderFile

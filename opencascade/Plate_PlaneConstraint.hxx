@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 1998-05-06
+// Created by: Andre LIEUTIER
+// Copyright (c) 1998-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,34 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ModelingAlgorithms/TKGeomAlgo/Plate/Plate_PlaneConstraint.hxx"// clang-format on
+#ifndef _Plate_PlaneConstraint_HeaderFile
+#define _Plate_PlaneConstraint_HeaderFile
+
+#include <Standard.hxx>
+#include <Standard_DefineAlloc.hxx>
+
+#include <Plate_LinearScalarConstraint.hxx>
+#include <Standard_Integer.hxx>
+class gp_XY;
+class gp_Pln;
+
+//! constraint a point to belong to a Plane
+class Plate_PlaneConstraint
+{
+public:
+  DEFINE_STANDARD_ALLOC
+
+  Standard_EXPORT Plate_PlaneConstraint(const gp_XY&  point2d,
+                                        const gp_Pln& pln,
+                                        const int     iu = 0,
+                                        const int     iv = 0);
+
+  const Plate_LinearScalarConstraint& LSC() const;
+
+private:
+  Plate_LinearScalarConstraint myLSC;
+};
+
+#include <Plate_PlaneConstraint.lxx>
+
+#endif // _Plate_PlaneConstraint_HeaderFile

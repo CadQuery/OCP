@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 1993-03-03
+// Created by: Jean Yves LEBEY
+// Copyright (c) 1993-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,27 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ModelingAlgorithms/TKBool/TopOpeBRepBuild/TopOpeBRepBuild_LoopClassifier.hxx"// clang-format on
+#ifndef _TopOpeBRepBuild_LoopClassifier_HeaderFile
+#define _TopOpeBRepBuild_LoopClassifier_HeaderFile
+
+#include <Standard.hxx>
+#include <Standard_DefineAlloc.hxx>
+#include <Standard_Handle.hxx>
+
+#include <TopAbs_State.hxx>
+class TopOpeBRepBuild_Loop;
+
+//! classify loops in order to build Areas
+class TopOpeBRepBuild_LoopClassifier
+{
+public:
+  DEFINE_STANDARD_ALLOC
+
+  Standard_EXPORT virtual ~TopOpeBRepBuild_LoopClassifier();
+
+  //! Returns the state of loop <L1> compared with loop <L2>.
+  Standard_EXPORT virtual TopAbs_State Compare(const occ::handle<TopOpeBRepBuild_Loop>& L1,
+                                               const occ::handle<TopOpeBRepBuild_Loop>& L2) = 0;
+};
+
+#endif // _TopOpeBRepBuild_LoopClassifier_HeaderFile

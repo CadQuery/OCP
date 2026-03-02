@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 1995-12-01
+// Created by: EXPRESS->CDL V0.2 Translator
+// Copyright (c) 1995-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,21 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/DataExchange/TKDESTEP/StepBasic/StepBasic_SolidAngleMeasureWithUnit.hxx"// clang-format on
+#ifndef _StepBasic_SolidAngleMeasureWithUnit_HeaderFile
+#define _StepBasic_SolidAngleMeasureWithUnit_HeaderFile
+
+#include <Standard.hxx>
+
+#include <StepBasic_MeasureWithUnit.hxx>
+
+class StepBasic_SolidAngleMeasureWithUnit : public StepBasic_MeasureWithUnit
+{
+
+public:
+  //! Returns a SolidAngleMeasureWithUnit
+  Standard_EXPORT StepBasic_SolidAngleMeasureWithUnit();
+
+  DEFINE_STANDARD_RTTIEXT(StepBasic_SolidAngleMeasureWithUnit, StepBasic_MeasureWithUnit)
+};
+
+#endif // _StepBasic_SolidAngleMeasureWithUnit_HeaderFile

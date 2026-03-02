@@ -1,4 +1,6 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 2016-02-25
+// Created by: Kirill Gavrilov
+// Copyright (c) 2016 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +13,78 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/Visualization/TKV3d/Select3D/Select3D_BVHIndexBuffer.hxx"// clang-format on
+#ifndef _Select3D_BVHIndexBuffer_Header
+#define _Select3D_BVHIndexBuffer_Header
+
+#include <Graphic3d_Buffer.hxx>
+
+//! Index buffer for BVH tree.
+class Select3D_BVHIndexBuffer : public Graphic3d_Buffer
+{
+public:
+  //! Empty constructor.
+  Select3D_BVHIndexBuffer(const occ::handle<NCollection_BaseAllocator>& theAlloc)
+      : Graphic3d_Buffer(theAlloc),
+        myHasPatches(false)
+  {
+  }
+
+  bool HasPatches() const { return myHasPatches; }
+
+  //! Allocates new empty index array
+  bool Init(const int theNbElems, const bool theHasPatches)
+  {
+    release();
+    Stride       = sizeof(unsigned int);
+    myHasPatches = theHasPatches;
+    if (theHasPatches)
+    {
+      Stride += sizeof(unsigned int);
+    }
+
+    NbElements   = theNbElems;
+    NbAttributes = 0;
+    if (NbElements != 0 && !Allocate(size_t(Stride) * size_t(NbElements)))
+    {
+      release();
+      return false;
+    }
+    return true;
+  }
+
+  //! Access index at specified position
+  int Index(const int theIndex) const
+  {
+    return int(*reinterpret_cast<const unsigned int*>(value(theIndex)));
+  }
+
+  //! Access index at specified position
+  int PatchSize(const int theIndex) const
+  {
+    return myHasPatches
+             ? int(*reinterpret_cast<const unsigned int*>(value(theIndex) + sizeof(unsigned int)))
+             : 1;
+  }
+
+  //! Change index at specified position
+  void SetIndex(const int theIndex, const int theValue)
+  {
+    *reinterpret_cast<unsigned int*>(changeValue(theIndex)) = (unsigned int)theValue;
+  }
+
+  //! Change index at specified position
+  void SetIndex(const int theIndex, const int theValue, const int thePatchSize)
+  {
+    *reinterpret_cast<unsigned int*>(changeValue(theIndex)) = (unsigned int)theValue;
+    *reinterpret_cast<unsigned int*>(changeValue(theIndex) + sizeof(unsigned int)) =
+      (unsigned int)thePatchSize;
+  }
+
+private:
+  bool myHasPatches;
+
+public:
+  DEFINE_STANDARD_RTTI_INLINE(Select3D_BVHIndexBuffer, Graphic3d_Buffer)
+};
+
+#endif // _Select3D_BVHIndexBuffer_Header

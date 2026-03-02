@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 1992-10-14
+// Created by: Christophe MARION
+// Copyright (c) 1992-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,23 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ModelingAlgorithms/TKHLR/HLRBRep/HLRBRep_TheLocateExtPCOfTheProjPCurOfCInter.hxx"// clang-format on
+#ifndef _HLRBRep_TheLocateExtPCOfTheProjPCurOfCInter_HeaderFile
+#define _HLRBRep_TheLocateExtPCOfTheProjPCurOfCInter_HeaderFile
+
+#include <Extrema_GenLocateExtPC.hxx>
+#include <Extrema_POnCurv2d.hxx>
+#include <HLRBRep_TypeDef.hxx>
+#include <gp_Pnt2d.hxx>
+#include <HLRBRep_CurveTool.hxx>
+#include <HLRBRep_PCLocFOfTheLocateExtPCOfTheProjPCurOfCInter.hxx>
+#include <Standard_TypeDef.hxx>
+
+//! Type alias for HLRBRep local extremum search.
+using HLRBRep_TheLocateExtPCOfTheProjPCurOfCInter =
+  Extrema_GenLocateExtPC<HLRBRep_CurvePtr,
+                         HLRBRep_CurveTool,
+                         Extrema_POnCurv2d,
+                         gp_Pnt2d,
+                         HLRBRep_PCLocFOfTheLocateExtPCOfTheProjPCurOfCInter>;
+
+#endif // _HLRBRep_TheLocateExtPCOfTheProjPCurOfCInter_HeaderFile

@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 1995-12-01
+// Created by: EXPRESS->CDL V0.2 Translator
+// Copyright (c) 1995-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,56 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/DataExchange/TKDESTEP/StepShape/StepShape_OrientedOpenShell.hxx"// clang-format on
+#ifndef _StepShape_OrientedOpenShell_HeaderFile
+#define _StepShape_OrientedOpenShell_HeaderFile
+
+#include <Standard.hxx>
+#include <Standard_Type.hxx>
+
+#include <Standard_Boolean.hxx>
+#include <StepShape_OpenShell.hxx>
+#include <StepShape_Face.hxx>
+#include <NCollection_Array1.hxx>
+#include <NCollection_HArray1.hxx>
+#include <Standard_Integer.hxx>
+class TCollection_HAsciiString;
+class StepShape_Face;
+
+class StepShape_OrientedOpenShell : public StepShape_OpenShell
+{
+
+public:
+  //! Returns a OrientedOpenShell
+  Standard_EXPORT StepShape_OrientedOpenShell();
+
+  Standard_EXPORT void Init(const occ::handle<TCollection_HAsciiString>& aName,
+                            const occ::handle<StepShape_OpenShell>&      aOpenShellElement,
+                            const bool                                   aOrientation);
+
+  Standard_EXPORT void SetOpenShellElement(
+    const occ::handle<StepShape_OpenShell>& aOpenShellElement);
+
+  Standard_EXPORT occ::handle<StepShape_OpenShell> OpenShellElement() const;
+
+  Standard_EXPORT void SetOrientation(const bool aOrientation);
+
+  Standard_EXPORT bool Orientation() const;
+
+  Standard_EXPORT void SetCfsFaces(
+    const occ::handle<NCollection_HArray1<occ::handle<StepShape_Face>>>& aCfsFaces) override;
+
+  Standard_EXPORT occ::handle<NCollection_HArray1<occ::handle<StepShape_Face>>> CfsFaces()
+    const override;
+
+  Standard_EXPORT occ::handle<StepShape_Face> CfsFacesValue(const int num) const override;
+
+  Standard_EXPORT int NbCfsFaces() const override;
+
+  DEFINE_STANDARD_RTTIEXT(StepShape_OrientedOpenShell, StepShape_OpenShell)
+
+private:
+  occ::handle<StepShape_OpenShell> openShellElement;
+  bool                             orientation;
+};
+
+#endif // _StepShape_OrientedOpenShell_HeaderFile

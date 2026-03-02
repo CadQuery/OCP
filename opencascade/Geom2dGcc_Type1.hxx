@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 1992-06-29
+// Created by: Remi GILET
+// Copyright (c) 1992-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,17 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ModelingAlgorithms/TKGeomAlgo/Geom2dGcc/Geom2dGcc_Type1.hxx"// clang-format on
+#ifndef _Geom2dGcc_Type1_HeaderFile
+#define _Geom2dGcc_Type1_HeaderFile
+
+enum Geom2dGcc_Type1
+{
+  Geom2dGcc_CuCuCu,
+  Geom2dGcc_CiCuCu,
+  Geom2dGcc_CiCiCu,
+  Geom2dGcc_CiLiCu,
+  Geom2dGcc_LiLiCu,
+  Geom2dGcc_LiCuCu
+};
+
+#endif // _Geom2dGcc_Type1_HeaderFile

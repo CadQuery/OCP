@@ -1,4 +1,6 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 2015-03-20
+// Created by: Denis BOGOLEPOV
+// Copyright (c) 2012-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +13,18 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/Visualization/TKOpenGl/OpenGl/OpenGl_LayerFilter.hxx"// clang-format on
+#ifndef _OpenGl_LayerFilter_H__
+#define _OpenGl_LayerFilter_H__
+
+//! Tool object to specify processed OpenGL layers
+//! for intermixed rendering of raytracable and non-raytracable layers.
+enum OpenGl_LayerFilter
+{
+  OpenGl_LF_All,        //!< process all layers
+  OpenGl_LF_Upper,      //!< process only top non-raytracable layers
+  OpenGl_LF_Bottom,     //!< process only Graphic3d_ZLayerId_BotOSD
+  OpenGl_LF_Single,     //!< process single layer
+  OpenGl_LF_RayTracable //!< process only normal raytracable layers (save the bottom layer)
+};
+
+#endif //_OpenGl_LayerFilter_H__

@@ -1,4 +1,6 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 2010-12-03
+// Created by: Artem SHAL
+// Copyright (c) 2010-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +13,88 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/FoundationClasses/TKMath/Bnd/Bnd_Sphere.hxx"// clang-format on
+#ifndef _Bnd_Sphere_HeaderFile
+#define _Bnd_Sphere_HeaderFile
+
+#include <Standard.hxx>
+#include <Standard_DefineAlloc.hxx>
+#include <Standard_Handle.hxx>
+
+#include <gp_XYZ.hxx>
+#include <Standard_Real.hxx>
+#include <Standard_Boolean.hxx>
+
+//! This class represents a bounding sphere of a geometric entity
+//! (triangle, segment of line or whatever else).
+class Bnd_Sphere
+{
+public:
+  DEFINE_STANDARD_ALLOC
+
+  //! Empty constructor
+  Standard_EXPORT Bnd_Sphere();
+
+  //! Constructor of a definite sphere
+  Standard_EXPORT Bnd_Sphere(const gp_XYZ& theCntr,
+                             const double  theRad,
+                             const int     theU,
+                             const int     theV);
+
+  //! Returns the U parameter on shape
+  int U() const;
+
+  //! Returns the V parameter on shape
+  int V() const;
+
+  //! Returns validity status, indicating that this
+  //! sphere corresponds to a real entity
+  bool IsValid() const;
+
+  void SetValid(const bool isValid);
+
+  //! Returns center of sphere object
+  const gp_XYZ& Center() const;
+
+  //! Returns the radius value
+  double Radius() const;
+
+  //! Calculate and return minimal and maximal distance to sphere.
+  //! NOTE: This function is tightly optimized; any modifications
+  //! may affect performance!
+  Standard_EXPORT void Distances(const gp_XYZ& theXYZ, double& theMin, double& theMax) const;
+
+  //! Calculate and return minimal and maximal distance to sphere.
+  //! NOTE: This function is tightly optimized; any modifications
+  //! may affect performance!
+  Standard_EXPORT void SquareDistances(const gp_XYZ& theXYZ, double& theMin, double& theMax) const;
+
+  //! Projects a point on entity.
+  //! Returns true if success
+  Standard_EXPORT bool Project(const gp_XYZ& theNode,
+                               gp_XYZ&       theProjNode,
+                               double&       theDist,
+                               bool&         theInside) const;
+
+  Standard_EXPORT double Distance(const gp_XYZ& theNode) const;
+
+  Standard_EXPORT double SquareDistance(const gp_XYZ& theNode) const;
+
+  Standard_EXPORT void Add(const Bnd_Sphere& theOther);
+
+  Standard_EXPORT bool IsOut(const Bnd_Sphere& theOther) const;
+
+  Standard_EXPORT bool IsOut(const gp_XYZ& thePnt, double& theMaxDist) const;
+
+  Standard_EXPORT double SquareExtent() const;
+
+private:
+  gp_XYZ myCenter;
+  double myRadius;
+  bool   myIsValid;
+  int    myU;
+  int    myV;
+};
+
+#include <Bnd_Sphere.lxx>
+
+#endif // _Bnd_Sphere_HeaderFile

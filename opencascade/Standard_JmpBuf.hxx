@@ -1,4 +1,4 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +11,19 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/FoundationClasses/TKernel/Standard/Standard_JmpBuf.hxx"// clang-format on
+#ifndef _Standard_JmpBuf_HeaderFile
+#define _Standard_JmpBuf_HeaderFile
+
+#include <setjmp.h>
+
+typedef
+#ifdef SOLARIS
+  sigjmp_buf
+#elif defined(IRIX)
+  sigjmp_buf
+#else
+  jmp_buf
+#endif
+    Standard_JmpBuf;
+
+#endif

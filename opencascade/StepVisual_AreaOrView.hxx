@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 1995-12-01
+// Created by: EXPRESS->CDL V0.2 Translator
+// Copyright (c) 1995-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,38 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/DataExchange/TKDESTEP/StepVisual/StepVisual_AreaOrView.hxx"// clang-format on
+#ifndef _StepVisual_AreaOrView_HeaderFile
+#define _StepVisual_AreaOrView_HeaderFile
+
+#include <Standard.hxx>
+#include <Standard_DefineAlloc.hxx>
+#include <Standard_Handle.hxx>
+
+#include <StepData_SelectType.hxx>
+#include <Standard_Integer.hxx>
+class Standard_Transient;
+class StepVisual_PresentationArea;
+class StepVisual_PresentationView;
+
+class StepVisual_AreaOrView : public StepData_SelectType
+{
+public:
+  DEFINE_STANDARD_ALLOC
+
+  //! Returns a AreaOrView SelectType
+  Standard_EXPORT StepVisual_AreaOrView();
+
+  //! Recognizes a AreaOrView Kind Entity that is :
+  //! 1 -> PresentationArea
+  //! 2 -> PresentationView
+  //! 0 else
+  Standard_EXPORT int CaseNum(const occ::handle<Standard_Transient>& ent) const override;
+
+  //! returns Value as a PresentationArea (Null if another type)
+  Standard_EXPORT occ::handle<StepVisual_PresentationArea> PresentationArea() const;
+
+  //! returns Value as a PresentationView (Null if another type)
+  Standard_EXPORT occ::handle<StepVisual_PresentationView> PresentationView() const;
+};
+
+#endif // _StepVisual_AreaOrView_HeaderFile

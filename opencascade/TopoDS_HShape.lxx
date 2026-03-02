@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 1995-06-28
+// Created by: Modelistation
+// Copyright (c) 1995-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,34 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ModelingData/TKBRep/TopoDS/TopoDS_HShape.lxx"// clang-format on
+//=================================================================================================
+
+inline TopoDS_HShape::TopoDS_HShape() = default;
+
+//=================================================================================================
+
+inline TopoDS_HShape::TopoDS_HShape(const TopoDS_Shape& aShape)
+    : myShape(aShape)
+{
+}
+
+//=================================================================================================
+
+inline void TopoDS_HShape::Shape(const TopoDS_Shape& aShape)
+{
+  myShape = aShape;
+}
+
+//=================================================================================================
+
+inline const TopoDS_Shape& TopoDS_HShape::Shape() const
+{
+  return myShape;
+}
+
+//=================================================================================================
+
+inline TopoDS_Shape& TopoDS_HShape::ChangeShape()
+{
+  return myShape;
+}

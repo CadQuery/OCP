@@ -1,4 +1,6 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 2003-03-24
+// Created by: Michael SAZONOV
+// Copyright (c) 2003-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +13,11 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ApplicationFramework/TKBinL/BinObjMgt/BinObjMgt_PReal.hxx"// clang-format on
+#ifndef BinObjMgt_PReal_HeaderFile
+#define BinObjMgt_PReal_HeaderFile
+
+#include <Standard_TypeDef.hxx>
+
+typedef double* BinObjMgt_PReal;
+
+#endif

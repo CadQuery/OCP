@@ -1,4 +1,6 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 2016-07-07
+// Copyright (c) 2016 OPEN CASCADE SAS
+// Created by: Oleg AGASHIN
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +13,33 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ModelingAlgorithms/TKMesh/BRepMesh/BRepMesh_BoundaryParamsRangeSplitter.hxx"// clang-format on
+#ifndef _BRepMesh_BoundaryParamsRangeSplitter_HeaderFile
+#define _BRepMesh_BoundaryParamsRangeSplitter_HeaderFile
+
+#include <BRepMesh_NURBSRangeSplitter.hxx>
+
+//! Auxiliary class extending UV range splitter in order to generate
+//! internal nodes for NURBS surface.
+class BRepMesh_BoundaryParamsRangeSplitter : public BRepMesh_NURBSRangeSplitter
+{
+public:
+  //! Constructor.
+  BRepMesh_BoundaryParamsRangeSplitter() = default;
+
+  //! Destructor.
+  ~BRepMesh_BoundaryParamsRangeSplitter() override = default;
+
+  //! Registers border point.
+  void AddPoint(const gp_Pnt2d& thePoint) override
+  {
+    BRepMesh_NURBSRangeSplitter::AddPoint(thePoint);
+    GetParametersU().Add(thePoint.X());
+    GetParametersV().Add(thePoint.Y());
+  }
+
+protected:
+  //! Initializes U and V parameters lists using CN continuity intervals.
+  bool initParameters() const override { return true; }
+};
+
+#endif

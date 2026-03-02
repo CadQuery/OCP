@@ -1,4 +1,4 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Copyright (c) 2017-2019 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +11,22 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
+#ifndef _RWGltf_WriterTrsfFormat_HeaderFile
+#define _RWGltf_WriterTrsfFormat_HeaderFile
+
+//! Transformation format.
+enum RWGltf_WriterTrsfFormat
+{
+  RWGltf_WriterTrsfFormat_Compact =
+    0, //!< automatically choose most compact representation between Mat4 and TRS
+  RWGltf_WriterTrsfFormat_Mat4 = 1, //!< 4x4 transformation Matrix
+  RWGltf_WriterTrsfFormat_TRS  = 2, //!< transformation decomposed into Translation vector, Rotation
+                                    //!< quaternion and Scale factor (T * R * S)
+};
+
 // clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/DataExchange/TKDEGLTF/RWGltf/RWGltf_WriterTrsfFormat.hxx"// clang-format on
+enum { RWGltf_WriterTrsfFormat_LOWER = 0, RWGltf_WriterTrsfFormat_UPPER = RWGltf_WriterTrsfFormat_TRS }; // aliases
+
+// clang-format on
+
+#endif // _RWGltf_WriterTrsfFormat_HeaderFile

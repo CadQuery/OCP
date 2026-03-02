@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 1996-01-30
+// Created by: Jacques GOUSSARD
+// Copyright (c) 1996-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,72 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ModelingAlgorithms/TKFeat/LocOpe/LocOpe_Gluer.hxx"// clang-format on
+#ifndef _LocOpe_Gluer_HeaderFile
+#define _LocOpe_Gluer_HeaderFile
+
+#include <Standard.hxx>
+#include <Standard_DefineAlloc.hxx>
+
+#include <TopoDS_Shape.hxx>
+#include <TopAbs_Orientation.hxx>
+#include <LocOpe_Operation.hxx>
+#include <TopTools_ShapeMapHasher.hxx>
+#include <NCollection_IndexedDataMap.hxx>
+#include <NCollection_DataMap.hxx>
+#include <NCollection_List.hxx>
+class TopoDS_Face;
+class TopoDS_Edge;
+
+class LocOpe_Gluer
+{
+public:
+  DEFINE_STANDARD_ALLOC
+
+  LocOpe_Gluer();
+
+  LocOpe_Gluer(const TopoDS_Shape& Sbase, const TopoDS_Shape& Snew);
+
+  Standard_EXPORT void Init(const TopoDS_Shape& Sbase, const TopoDS_Shape& Snew);
+
+  Standard_EXPORT void Bind(const TopoDS_Face& Fnew, const TopoDS_Face& Fbase);
+
+  Standard_EXPORT void Bind(const TopoDS_Edge& Enew, const TopoDS_Edge& Ebase);
+
+  LocOpe_Operation OpeType() const;
+
+  Standard_EXPORT void Perform();
+
+  bool IsDone() const;
+
+  const TopoDS_Shape& ResultingShape() const;
+
+  Standard_EXPORT const NCollection_List<TopoDS_Shape>& DescendantFaces(const TopoDS_Face& F) const;
+
+  const TopoDS_Shape& BasisShape() const;
+
+  const TopoDS_Shape& GluedShape() const;
+
+  const NCollection_List<TopoDS_Shape>& Edges() const;
+
+  const NCollection_List<TopoDS_Shape>& TgtEdges() const;
+
+private:
+  Standard_EXPORT void AddEdges();
+
+  bool                                                                            myDone;
+  TopoDS_Shape                                                                    mySb;
+  TopoDS_Shape                                                                    mySn;
+  TopoDS_Shape                                                                    myRes;
+  TopAbs_Orientation                                                              myOri;
+  LocOpe_Operation                                                                myOpe;
+  NCollection_IndexedDataMap<TopoDS_Shape, TopoDS_Shape, TopTools_ShapeMapHasher> myMapEF;
+  NCollection_DataMap<TopoDS_Shape, TopoDS_Shape, TopTools_ShapeMapHasher>        myMapEE;
+  NCollection_DataMap<TopoDS_Shape, NCollection_List<TopoDS_Shape>, TopTools_ShapeMapHasher>
+                                 myDescF;
+  NCollection_List<TopoDS_Shape> myEdges;
+  NCollection_List<TopoDS_Shape> myTgtEdges;
+};
+
+#include <LocOpe_Gluer.lxx>
+
+#endif // _LocOpe_Gluer_HeaderFile

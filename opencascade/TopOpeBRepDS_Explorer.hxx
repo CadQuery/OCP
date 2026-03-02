@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 1999-01-05
+// Created by: Jean Yves LEBEY
+// Copyright (c) 1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,61 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ModelingAlgorithms/TKBool/TopOpeBRepDS/TopOpeBRepDS_Explorer.hxx"// clang-format on
+#ifndef _TopOpeBRepDS_Explorer_HeaderFile
+#define _TopOpeBRepDS_Explorer_HeaderFile
+
+#include <Standard.hxx>
+#include <Standard_DefineAlloc.hxx>
+#include <Standard_Handle.hxx>
+
+#include <TopAbs_ShapeEnum.hxx>
+#include <Standard_Integer.hxx>
+class TopOpeBRepDS_HDataStructure;
+class TopoDS_Shape;
+class TopoDS_Face;
+class TopoDS_Edge;
+class TopoDS_Vertex;
+
+class TopOpeBRepDS_Explorer
+{
+public:
+  DEFINE_STANDARD_ALLOC
+
+  Standard_EXPORT TopOpeBRepDS_Explorer();
+
+  Standard_EXPORT TopOpeBRepDS_Explorer(const occ::handle<TopOpeBRepDS_HDataStructure>& HDS,
+                                        const TopAbs_ShapeEnum T        = TopAbs_SHAPE,
+                                        const bool             findkeep = true);
+
+  Standard_EXPORT void Init(const occ::handle<TopOpeBRepDS_HDataStructure>& HDS,
+                            const TopAbs_ShapeEnum                          T        = TopAbs_SHAPE,
+                            const bool                                      findkeep = true);
+
+  Standard_EXPORT TopAbs_ShapeEnum Type() const;
+
+  Standard_EXPORT bool More() const;
+
+  Standard_EXPORT void Next();
+
+  Standard_EXPORT const TopoDS_Shape& Current() const;
+
+  Standard_EXPORT int Index() const;
+
+  Standard_EXPORT const TopoDS_Face& Face() const;
+
+  Standard_EXPORT const TopoDS_Edge& Edge() const;
+
+  Standard_EXPORT const TopoDS_Vertex& Vertex() const;
+
+private:
+  Standard_EXPORT void Find();
+
+  occ::handle<TopOpeBRepDS_HDataStructure> myHDS;
+  TopAbs_ShapeEnum                         myT;
+  int                                      myI;
+  int                                      myN;
+  bool                                     myB;
+  bool                                     myFK;
+};
+
+#endif // _TopOpeBRepDS_Explorer_HeaderFile

@@ -1,4 +1,6 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created by: NW,JPB,CAL
+// Copyright (c) 1991-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +13,23 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/Visualization/TKService/Aspect/Aspect_WidthOfLine.hxx"// clang-format on
+#ifndef _Aspect_WidthOfLine_HeaderFile
+#define _Aspect_WidthOfLine_HeaderFile
+
+//! Definition of line types
+//!
+//! WOL_THIN            thin line (1 pixel width)
+//! WOL_MEDIUM          medium width of 0.5 MM
+//! WOL_THICK           thick width of 0.7 MM
+//! WOL_VERYTHICK       very thick width of 1.5 MM
+//! WOL_USERDEFINED     defined by Users
+enum Aspect_WidthOfLine
+{
+  Aspect_WOL_THIN,
+  Aspect_WOL_MEDIUM,
+  Aspect_WOL_THICK,
+  Aspect_WOL_VERYTHICK,
+  Aspect_WOL_USERDEFINED
+};
+
+#endif // _Aspect_WidthOfLine_HeaderFile

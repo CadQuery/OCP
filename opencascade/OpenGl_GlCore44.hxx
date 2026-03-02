@@ -1,4 +1,6 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 2014-03-17
+// Created by: Kirill GAVRILOV
+// Copyright (c) 2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +13,27 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/Visualization/TKOpenGl/OpenGl/OpenGl_GlCore44.hxx"// clang-format on
+#ifndef OpenGl_GlCore44_HeaderFile
+#define OpenGl_GlCore44_HeaderFile
+
+#include <OpenGl_GlCore43.hxx>
+
+//! OpenGL 4.4 definition.
+struct OpenGl_GlCore44 : public OpenGl_GlCore43
+{
+private:
+  typedef OpenGl_GlCore43 theBaseClass_t;
+
+public: //! @name OpenGL 4.4 additives to 4.3
+  using theBaseClass_t::glBindBuffersBase;
+  using theBaseClass_t::glBindBuffersRange;
+  using theBaseClass_t::glBindImageTextures;
+  using theBaseClass_t::glBindSamplers;
+  using theBaseClass_t::glBindTextures;
+  using theBaseClass_t::glBindVertexBuffers;
+  using theBaseClass_t::glBufferStorage;
+  using theBaseClass_t::glClearTexImage;
+  using theBaseClass_t::glClearTexSubImage;
+};
+
+#endif // _OpenGl_GlCore44_Header

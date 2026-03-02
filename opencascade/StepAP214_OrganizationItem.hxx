@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 1999-03-10
+// Created by: data exchange team
+// Copyright (c) 1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,41 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/DataExchange/TKDESTEP/StepAP214/StepAP214_OrganizationItem.hxx"// clang-format on
+#ifndef _StepAP214_OrganizationItem_HeaderFile
+#define _StepAP214_OrganizationItem_HeaderFile
+
+#include <Standard.hxx>
+#include <Standard_DefineAlloc.hxx>
+#include <Standard_Handle.hxx>
+
+#include <StepAP214_ApprovalItem.hxx>
+#include <Standard_Integer.hxx>
+class Standard_Transient;
+class StepAP214_AppliedOrganizationAssignment;
+class StepBasic_Approval;
+class StepAP214_AppliedSecurityClassificationAssignment;
+
+class StepAP214_OrganizationItem : public StepAP214_ApprovalItem
+{
+public:
+  DEFINE_STANDARD_ALLOC
+
+  //! Returns a OrganizationItem SelectType
+  Standard_EXPORT StepAP214_OrganizationItem();
+
+  //! Recognizes a OrganizationItem Kind Entity that is :
+  Standard_EXPORT int CaseNum(const occ::handle<Standard_Transient>& ent) const override;
+
+  //! returns Value as a AppliedOrganizationAssignment (Null if another type)
+  Standard_EXPORT occ::handle<StepAP214_AppliedOrganizationAssignment>
+                  AppliedOrganizationAssignment() const;
+
+  //! returns Value as a Approval (Null if another type)
+  Standard_EXPORT occ::handle<StepBasic_Approval> Approval() const;
+
+  //! returns Value as a AppliedSecurityClassificationAssignment (Null if another type)
+  Standard_EXPORT occ::handle<StepAP214_AppliedSecurityClassificationAssignment>
+                  AppliedSecurityClassificationAssignment() const;
+};
+
+#endif // _StepAP214_OrganizationItem_HeaderFile

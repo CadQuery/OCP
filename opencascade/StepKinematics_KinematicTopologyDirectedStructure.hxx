@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on : Sat May 02 12:41:15 2020
+// Created by: Irina KRYLOVA
+// Generator:	Express (EXPRESS -> CASCADE/XSTEP Translator) V3.0
+// Copyright (c) Open CASCADE 2020
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,39 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/DataExchange/TKDESTEP/StepKinematics/StepKinematics_KinematicTopologyDirectedStructure.hxx"// clang-format on
+#ifndef _StepKinematics_KinematicTopologyDirectedStructure_HeaderFile_
+#define _StepKinematics_KinematicTopologyDirectedStructure_HeaderFile_
+
+#include <Standard.hxx>
+
+#include <StepRepr_RepresentationContext.hxx>
+#include <StepKinematics_KinematicTopologyStructure.hxx>
+
+//! Representation of STEP entity KinematicTopologyDirectedStructure
+class StepKinematics_KinematicTopologyDirectedStructure : public StepRepr_Representation
+{
+public:
+  //! default constructor
+  Standard_EXPORT StepKinematics_KinematicTopologyDirectedStructure();
+
+  //! Initialize all fields (own and inherited)
+  Standard_EXPORT void Init(
+    const occ::handle<TCollection_HAsciiString>& theRepresentation_Name,
+    const occ::handle<NCollection_HArray1<occ::handle<StepRepr_RepresentationItem>>>&
+                                                                  theRepresentation_Items,
+    const occ::handle<StepRepr_RepresentationContext>&            theRepresentation_ContextOfItems,
+    const occ::handle<StepKinematics_KinematicTopologyStructure>& theParent);
+
+  //! Returns field Parent
+  Standard_EXPORT occ::handle<StepKinematics_KinematicTopologyStructure> Parent() const;
+  //! Sets field Parent
+  Standard_EXPORT void SetParent(
+    const occ::handle<StepKinematics_KinematicTopologyStructure>& theParent);
+
+  DEFINE_STANDARD_RTTIEXT(StepKinematics_KinematicTopologyDirectedStructure,
+                          StepRepr_Representation)
+
+private:
+  occ::handle<StepKinematics_KinematicTopologyStructure> myParent;
+};
+#endif // _StepKinematics_KinematicTopologyDirectedStructure_HeaderFile_

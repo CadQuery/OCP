@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 1998-10-02
+// Created by: Julia GERASIMOVA
+// Copyright (c) 1998-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,34 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ModelingAlgorithms/TKBool/BRepFill/BRepFill_EdgeFaceAndOrder.hxx"// clang-format on
+#ifndef _BRepFill_EdgeFaceAndOrder_HeaderFile
+#define _BRepFill_EdgeFaceAndOrder_HeaderFile
+
+#include <Standard.hxx>
+#include <Standard_DefineAlloc.hxx>
+#include <Standard_Handle.hxx>
+
+#include <TopoDS_Edge.hxx>
+#include <TopoDS_Face.hxx>
+#include <GeomAbs_Shape.hxx>
+
+class BRepFill_EdgeFaceAndOrder
+{
+public:
+  DEFINE_STANDARD_ALLOC
+
+  Standard_EXPORT BRepFill_EdgeFaceAndOrder();
+
+  Standard_EXPORT BRepFill_EdgeFaceAndOrder(const TopoDS_Edge&  anEdge,
+                                            const TopoDS_Face&  aFace,
+                                            const GeomAbs_Shape anOrder);
+
+  friend class BRepFill_Filling;
+
+private:
+  TopoDS_Edge   myEdge;
+  TopoDS_Face   myFace;
+  GeomAbs_Shape myOrder;
+};
+
+#endif // _BRepFill_EdgeFaceAndOrder_HeaderFile

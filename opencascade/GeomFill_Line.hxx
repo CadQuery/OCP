@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 1994-02-18
+// Created by: Bruno DUMORTIER
+// Copyright (c) 1994-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,34 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ModelingAlgorithms/TKGeomAlgo/GeomFill/GeomFill_Line.hxx"// clang-format on
+#ifndef _GeomFill_Line_HeaderFile
+#define _GeomFill_Line_HeaderFile
+
+#include <Standard.hxx>
+#include <Standard_Type.hxx>
+
+#include <Standard_Integer.hxx>
+#include <Standard_Transient.hxx>
+
+//! class for instantiation of AppBlend
+class GeomFill_Line : public Standard_Transient
+{
+
+public:
+  Standard_EXPORT GeomFill_Line();
+
+  Standard_EXPORT GeomFill_Line(const int NbPoints);
+
+  int NbPoints() const;
+
+  int Point(const int Index) const;
+
+  DEFINE_STANDARD_RTTIEXT(GeomFill_Line, Standard_Transient)
+
+private:
+  int myNbPoints;
+};
+
+#include <GeomFill_Line.lxx>
+
+#endif // _GeomFill_Line_HeaderFile

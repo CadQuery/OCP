@@ -1,4 +1,6 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created by: NW,JPB,CAL
+// Copyright (c) 1991-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +13,16 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/Visualization/TKService/Aspect/Aspect_TypeOfColorScaleOrientation.hxx"// clang-format on
+#ifndef _Aspect_TypeOfColorScaleOrientation_HeaderFile
+#define _Aspect_TypeOfColorScaleOrientation_HeaderFile
+
+//! Defines the type of color scale orientation
+enum Aspect_TypeOfColorScaleOrientation
+{
+  Aspect_TOCSO_NONE,
+  Aspect_TOCSO_LEFT,
+  Aspect_TOCSO_RIGHT,
+  Aspect_TOCSO_CENTER
+};
+
+#endif // _Aspect_TypeOfColorScaleOrientation_HeaderFile

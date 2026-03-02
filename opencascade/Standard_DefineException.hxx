@@ -1,4 +1,4 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +11,62 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/FoundationClasses/TKernel/Standard/Standard_DefineException.hxx"// clang-format on
+#ifndef _Standard_DefineException_HeaderFile
+#define _Standard_DefineException_HeaderFile
+
+#include <Standard_Type.hxx>
+
+//! Defines an exception class \a C1 that inherits an exception class \a C2.
+/*! \a C2 must be Standard_Failure or its ancestor.
+    The macro defines empty constructor, copy constructor and static methods Raise() and
+   NewInstance(). Since Standard_Failure implements class manipulated by handle,
+   DEFINE_STANDARD_RTTI macro is also added to enable RTTI.
+
+    When using DEFINE_STANDARD_EXCEPTION in your code make sure you also insert a macro
+    DEFINE_STANDARD_HANDLE(C1,C2) before it.
+*/
+
+#define DEFINE_STANDARD_EXCEPTION(C1, C2)                                                          \
+                                                                                                   \
+  class C1 : public C2                                                                             \
+  {                                                                                                \
+    void Throw() const override                                                                    \
+    {                                                                                              \
+      throw *this;                                                                                 \
+    }                                                                                              \
+                                                                                                   \
+  public:                                                                                          \
+    C1() {}                                                                                        \
+    C1(const char* theMessage)                                                                     \
+        : C2(theMessage)                                                                           \
+    {                                                                                              \
+    }                                                                                              \
+    C1(const char* theMessage, const char* theStackTrace)                                          \
+        : C2(theMessage, theStackTrace)                                                            \
+    {                                                                                              \
+    }                                                                                              \
+    static void Raise(const char* theMessage = "")                                                 \
+    {                                                                                              \
+      occ::handle<C1> _E = new C1;                                                                 \
+      _E->Reraise(theMessage);                                                                     \
+    }                                                                                              \
+    static void Raise(Standard_SStream& theMessage)                                                \
+    {                                                                                              \
+      occ::handle<C1> _E = new C1;                                                                 \
+      _E->Reraise(theMessage);                                                                     \
+    }                                                                                              \
+    static occ::handle<C1> NewInstance(const char* theMessage = "")                                \
+    {                                                                                              \
+      return new C1(theMessage);                                                                   \
+    }                                                                                              \
+    static occ::handle<C1> NewInstance(const char* theMessage, const char* theStackTrace)          \
+    {                                                                                              \
+      return new C1(theMessage, theStackTrace);                                                    \
+    }                                                                                              \
+    DEFINE_STANDARD_RTTI_INLINE(C1, C2)                                                            \
+  };
+
+//! Obsolete macro, kept for compatibility with old code
+#define IMPLEMENT_STANDARD_EXCEPTION(C1)
+
+#endif

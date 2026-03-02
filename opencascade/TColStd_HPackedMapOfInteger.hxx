@@ -1,4 +1,6 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 2006-12-05
+// Created by: Sergey  KOCHETKOV
+// Copyright (c) 2006-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +13,34 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/FoundationClasses/TKernel/TColStd/TColStd_HPackedMapOfInteger.hxx"// clang-format on
+#ifndef _TColStd_HPackedMapOfInteger_HeaderFile
+#define _TColStd_HPackedMapOfInteger_HeaderFile
+
+#include <Standard.hxx>
+
+#include <TColStd_PackedMapOfInteger.hxx>
+#include <Standard_Transient.hxx>
+#include <Standard_Integer.hxx>
+
+//! Extension of TColStd_PackedMapOfInteger class to be manipulated by handle.
+class TColStd_HPackedMapOfInteger : public Standard_Transient
+{
+
+public:
+  Standard_EXPORT TColStd_HPackedMapOfInteger(const int NbBuckets = 1);
+
+  Standard_EXPORT TColStd_HPackedMapOfInteger(const TColStd_PackedMapOfInteger& theOther);
+
+  const TColStd_PackedMapOfInteger& Map() const;
+
+  TColStd_PackedMapOfInteger& ChangeMap();
+
+  DEFINE_STANDARD_RTTIEXT(TColStd_HPackedMapOfInteger, Standard_Transient)
+
+private:
+  TColStd_PackedMapOfInteger myMap;
+};
+
+#include <TColStd_HPackedMapOfInteger.lxx>
+
+#endif // _TColStd_HPackedMapOfInteger_HeaderFile

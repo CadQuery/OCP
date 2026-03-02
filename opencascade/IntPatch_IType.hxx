@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 1992-05-06
+// Created by: Jacques GOUSSARD
+// Copyright (c) 1992-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,19 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ModelingAlgorithms/TKGeomAlgo/IntPatch/IntPatch_IType.hxx"// clang-format on
+#ifndef _IntPatch_IType_HeaderFile
+#define _IntPatch_IType_HeaderFile
+
+enum IntPatch_IType
+{
+  IntPatch_Lin,
+  IntPatch_Circle,
+  IntPatch_Ellipse,
+  IntPatch_Parabola,
+  IntPatch_Hyperbola,
+  IntPatch_Analytic,
+  IntPatch_Walking,
+  IntPatch_Restriction
+};
+
+#endif // _IntPatch_IType_HeaderFile

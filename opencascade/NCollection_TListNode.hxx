@@ -1,4 +1,6 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 2002-04-23
+// Created by: Alexander KARTOMIN (akm)
+// Copyright (c) 2002-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +13,48 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/FoundationClasses/TKernel/NCollection/NCollection_TListNode.hxx"// clang-format on
+#ifndef NCollection_TListNode_HeaderFile
+#define NCollection_TListNode_HeaderFile
+
+#include <NCollection_ListNode.hxx>
+#include <utility>
+
+/**
+ * Purpose:     Abstract list node class. Used by BaseList
+ * Remark:      Internal class
+ */
+template <class TheItemType>
+class NCollection_TListNode : public NCollection_ListNode
+{
+public:
+  //! Constructor
+  NCollection_TListNode(const TheItemType& theItem, NCollection_ListNode* theNext = nullptr)
+      : NCollection_ListNode(theNext),
+        myValue(theItem)
+  {
+  }
+
+  NCollection_TListNode(TheItemType&& theItem, NCollection_ListNode* theNext = nullptr)
+      : NCollection_ListNode(theNext),
+        myValue(std::forward<TheItemType>(theItem))
+  {
+  }
+
+  //! Constant value access
+  const TheItemType& Value() const noexcept { return myValue; }
+
+  //! Variable value access
+  TheItemType& ChangeValue() noexcept { return myValue; }
+
+  //! Static deleter to be passed to BaseList
+  static void delNode(NCollection_ListNode* theNode, occ::handle<NCollection_BaseAllocator>& theAl)
+  {
+    ((NCollection_TListNode*)theNode)->myValue.~TheItemType();
+    theAl->Free(theNode);
+  }
+
+protected:
+  TheItemType myValue; //!< The item stored in the node
+};
+
+#endif

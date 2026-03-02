@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 1999-09-08
+// Created by: Andrey BETENEV
+// Copyright (c) 1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,38 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/DataExchange/TKDESTEP/StepBasic/StepBasic_Unit.hxx"// clang-format on
+#ifndef _StepBasic_Unit_HeaderFile
+#define _StepBasic_Unit_HeaderFile
+
+#include <Standard.hxx>
+#include <Standard_DefineAlloc.hxx>
+#include <Standard_Handle.hxx>
+
+#include <StepData_SelectType.hxx>
+#include <Standard_Integer.hxx>
+class Standard_Transient;
+class StepBasic_NamedUnit;
+class StepBasic_DerivedUnit;
+
+//! Implements a select type unit (NamedUnit or DerivedUnit)
+class StepBasic_Unit : public StepData_SelectType
+{
+public:
+  DEFINE_STANDARD_ALLOC
+
+  //! Creates empty object
+  Standard_EXPORT StepBasic_Unit();
+
+  //! Recognizes a type of Unit Entity
+  //! 1 -> NamedUnit
+  //! 2 -> DerivedUnit
+  Standard_EXPORT int CaseNum(const occ::handle<Standard_Transient>& ent) const override;
+
+  //! returns Value as a NamedUnit (Null if another type)
+  Standard_EXPORT occ::handle<StepBasic_NamedUnit> NamedUnit() const;
+
+  //! returns Value as a DerivedUnit (Null if another type)
+  Standard_EXPORT occ::handle<StepBasic_DerivedUnit> DerivedUnit() const;
+};
+
+#endif // _StepBasic_Unit_HeaderFile

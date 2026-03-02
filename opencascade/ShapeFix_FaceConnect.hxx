@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 1999-06-18
+// Created by: Sergei ZERTCHANINOV
+// Copyright (c) 1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,45 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ModelingAlgorithms/TKShHealing/ShapeFix/ShapeFix_FaceConnect.hxx"// clang-format on
+#ifndef _ShapeFix_FaceConnect_HeaderFile
+#define _ShapeFix_FaceConnect_HeaderFile
+
+#include <Standard.hxx>
+#include <Standard_DefineAlloc.hxx>
+
+#include <TopoDS_Shape.hxx>
+#include <NCollection_List.hxx>
+#include <TopTools_ShapeMapHasher.hxx>
+#include <NCollection_DataMap.hxx>
+class TopoDS_Face;
+class TopoDS_Shell;
+
+//! Rebuilds connectivity between faces in shell
+class ShapeFix_FaceConnect
+{
+public:
+  DEFINE_STANDARD_ALLOC
+
+  Standard_EXPORT ShapeFix_FaceConnect();
+
+  Standard_EXPORT bool Add(const TopoDS_Face& aFirst, const TopoDS_Face& aSecond);
+
+  Standard_EXPORT TopoDS_Shell Build(const TopoDS_Shell& shell,
+                                     const double        sewtoler,
+                                     const double        fixtoler);
+
+  //! Clears internal data structure
+  Standard_EXPORT void Clear();
+
+private:
+  NCollection_DataMap<TopoDS_Shape, NCollection_List<TopoDS_Shape>, TopTools_ShapeMapHasher>
+    myConnected;
+  NCollection_DataMap<TopoDS_Shape, NCollection_List<TopoDS_Shape>, TopTools_ShapeMapHasher>
+    myOriFreeEdges;
+  NCollection_DataMap<TopoDS_Shape, NCollection_List<TopoDS_Shape>, TopTools_ShapeMapHasher>
+    myResFreeEdges;
+  NCollection_DataMap<TopoDS_Shape, NCollection_List<TopoDS_Shape>, TopTools_ShapeMapHasher>
+    myResSharEdges;
+};
+
+#endif // _ShapeFix_FaceConnect_HeaderFile

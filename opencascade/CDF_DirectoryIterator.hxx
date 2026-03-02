@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 1997-08-13
+// Created by: Jean-Louis Frenkel
+// Copyright (c) 1997-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,42 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ApplicationFramework/TKCDF/CDF/CDF_DirectoryIterator.hxx"// clang-format on
+#ifndef _CDF_DirectoryIterator_HeaderFile
+#define _CDF_DirectoryIterator_HeaderFile
+
+#include <Standard.hxx>
+#include <Standard_DefineAlloc.hxx>
+#include <Standard_Handle.hxx>
+
+#include <CDM_Document.hxx>
+
+#include <NCollection_List.hxx>
+class CDF_Directory;
+class CDM_Document;
+
+class CDF_DirectoryIterator
+{
+public:
+  DEFINE_STANDARD_ALLOC
+
+  //! creates an Iterator with the directory
+  //! of the current CDF.
+  Standard_EXPORT CDF_DirectoryIterator();
+
+  Standard_EXPORT CDF_DirectoryIterator(const occ::handle<CDF_Directory>& aDirectory);
+
+  //! Returns True if there are more entries to return
+  Standard_EXPORT bool MoreDocument();
+
+  //! Go to the next entry
+  //! (if there is not, Value will raise an exception)
+  Standard_EXPORT void NextDocument();
+
+  //! Returns item value of current entry
+  Standard_EXPORT occ::handle<CDM_Document> Document();
+
+private:
+  NCollection_List<occ::handle<CDM_Document>>::Iterator myIterator;
+};
+
+#endif // _CDF_DirectoryIterator_HeaderFile

@@ -1,4 +1,6 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 2007-12-04
+// Created by: Sergey ZARITCHNY
+// Copyright (c) 2007-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +13,38 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ApplicationFramework/TKLCAF/TDataStd/TDataStd_DeltaOnModificationOfExtStringArray.hxx"// clang-format on
+#ifndef _TDataStd_DeltaOnModificationOfExtStringArray_HeaderFile
+#define _TDataStd_DeltaOnModificationOfExtStringArray_HeaderFile
+
+#include <Standard.hxx>
+
+#include <Standard_Integer.hxx>
+#include <NCollection_Array1.hxx>
+#include <NCollection_HArray1.hxx>
+#include <TCollection_ExtendedString.hxx>
+#include <TDF_DeltaOnModification.hxx>
+class TDataStd_ExtStringArray;
+
+//! This class provides default services for an
+//! AttributeDelta on a MODIFICATION action.
+class TDataStd_DeltaOnModificationOfExtStringArray : public TDF_DeltaOnModification
+{
+
+public:
+  //! Initializes a TDF_DeltaOnModification.
+  Standard_EXPORT TDataStd_DeltaOnModificationOfExtStringArray(
+    const occ::handle<TDataStd_ExtStringArray>& Arr);
+
+  //! Applies the delta to the attribute.
+  Standard_EXPORT void Apply() override;
+
+  DEFINE_STANDARD_RTTIEXT(TDataStd_DeltaOnModificationOfExtStringArray, TDF_DeltaOnModification)
+
+private:
+  occ::handle<NCollection_HArray1<int>>                        myIndxes;
+  occ::handle<NCollection_HArray1<TCollection_ExtendedString>> myValues;
+  int                                                          myUp1;
+  int                                                          myUp2;
+};
+
+#endif // _TDataStd_DeltaOnModificationOfExtStringArray_HeaderFile

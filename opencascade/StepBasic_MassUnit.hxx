@@ -1,4 +1,6 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 2002-12-12
+// Created by: data exchange team
+// Copyright (c) 2002-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +13,23 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/DataExchange/TKDESTEP/StepBasic/StepBasic_MassUnit.hxx"// clang-format on
+#ifndef _StepBasic_MassUnit_HeaderFile
+#define _StepBasic_MassUnit_HeaderFile
+
+#include <Standard.hxx>
+#include <Standard_Type.hxx>
+
+#include <StepBasic_NamedUnit.hxx>
+
+//! Representation of STEP entity MassUnit
+class StepBasic_MassUnit : public StepBasic_NamedUnit
+{
+
+public:
+  //! Empty constructor
+  Standard_EXPORT StepBasic_MassUnit();
+
+  DEFINE_STANDARD_RTTIEXT(StepBasic_MassUnit, StepBasic_NamedUnit)
+};
+
+#endif // _StepBasic_MassUnit_HeaderFile

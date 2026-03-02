@@ -1,4 +1,6 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 2001-09-12
+// Created by: Alexander GRIGORIEV
+// Copyright (c) 2001-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +13,49 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ApplicationFramework/TKCDF/LDOM/LDOM_CDATASection.hxx"// clang-format on
+#ifndef LDOM_CDATASection_HeaderFile
+#define LDOM_CDATASection_HeaderFile
+
+#include <LDOM_Text.hxx>
+
+//  Class LDOM_CDATASection
+
+class LDOM_CDATASection : public LDOM_Text
+{
+public:
+  // ---------- PUBLIC METHODS ----------
+
+  LDOM_CDATASection() = default;
+
+  // Empty constructor
+
+  LDOM_CDATASection(const LDOM_CDATASection& theOther)
+
+    = default;
+
+  // Copy constructor
+
+  LDOM_CDATASection& operator=(const LDOM_NullPtr* theNull)
+  {
+    return (LDOM_CDATASection&)LDOM_CharacterData::operator=(theNull);
+  }
+
+  // Nullify
+
+  LDOM_CDATASection& operator=(const LDOM_CDATASection& theOther)
+  {
+    return (LDOM_CDATASection&)LDOM_CharacterData::operator=(theOther);
+  }
+
+  // Assignment
+
+protected:
+  friend class LDOM_Document;
+
+  LDOM_CDATASection(const LDOM_BasicText& theText, const occ::handle<LDOM_MemManager>& theDoc)
+      : LDOM_Text(theText, theDoc)
+  {
+  }
+};
+
+#endif

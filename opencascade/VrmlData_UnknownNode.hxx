@@ -1,4 +1,6 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 2006-10-08
+// Created by: Alexander GRIGORIEV
+// Copyright (c) 2006-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +13,63 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/DataExchange/TKDEVRML/VrmlData/VrmlData_UnknownNode.hxx"// clang-format on
+#ifndef VrmlData_UnknownNode_HeaderFile
+#define VrmlData_UnknownNode_HeaderFile
+
+#include <VrmlData_Node.hxx>
+#include <TCollection_AsciiString.hxx>
+
+/**
+ * Definition of UnknownNode -- placeholder for node types that
+ * are not processed now.
+ */
+
+class VrmlData_UnknownNode : public VrmlData_Node
+{
+public:
+  // ---------- PUBLIC METHODS ----------
+
+  /**
+   * Empty Constructor.
+   */
+  inline VrmlData_UnknownNode() = default;
+
+  /**
+   * Constructor.
+   */
+  inline VrmlData_UnknownNode(const VrmlData_Scene& theScene,
+                              const char*           theName  = nullptr,
+                              const char*           theTitle = nullptr)
+      : VrmlData_Node(theScene, theName)
+  {
+    if (theTitle)
+      myTitle = (const char*)theTitle;
+  }
+
+  /**
+   * Read the unknown node, till the last closing brace of it.
+   */
+  Standard_EXPORT VrmlData_ErrorStatus Read(VrmlData_InBuffer& theBuffer) override;
+
+  /**
+   * Query the title of the unknown node.
+   */
+  inline const TCollection_AsciiString& GetTitle() const { return myTitle; }
+
+  /**
+   * Check if the Node is non-writeable -- always returns true.
+   */
+  Standard_EXPORT bool IsDefault() const override;
+
+private:
+  // ---------- PRIVATE FIELDS ----------
+
+  TCollection_AsciiString myTitle;
+
+public:
+  // Declaration of CASCADE RTTI
+  DEFINE_STANDARD_RTTI_INLINE(VrmlData_UnknownNode, VrmlData_Node)
+};
+
+// Definition of HANDLE object using Standard_DefineHandle.hxx
+#endif

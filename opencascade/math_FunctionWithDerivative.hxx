@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 1991-05-13
+// Created by: Laurent Painnot
+// Copyright (c) 1991-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,42 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/FoundationClasses/TKMath/math/math_FunctionWithDerivative.hxx"// clang-format on
+#ifndef _math_FunctionWithDerivative_HeaderFile
+#define _math_FunctionWithDerivative_HeaderFile
+
+#include <Standard.hxx>
+#include <Standard_DefineAlloc.hxx>
+#include <Standard_Handle.hxx>
+
+#include <math_Function.hxx>
+#include <Standard_Boolean.hxx>
+#include <Standard_Real.hxx>
+
+//! This abstract class describes the virtual functions associated with
+//! a function of a single variable for which the first derivative is
+//! available.
+class math_FunctionWithDerivative : public math_Function
+{
+public:
+  DEFINE_STANDARD_ALLOC
+
+  //! Computes the value <F>of the function for the variable <X>.
+  //! Returns True if the calculation were successfully done,
+  //! False otherwise.
+  Standard_EXPORT bool Value(const double X, double& F) override = 0;
+
+  //! Computes the derivative <D> of the function
+  //! for the variable <X>.
+  //! Returns True if the calculation were successfully done,
+  //! False otherwise.
+  Standard_EXPORT virtual bool Derivative(const double X, double& D) = 0;
+
+  //! Computes the value <F> and the derivative <D> of the
+  //! function for the variable <X>.
+  //! Returns True if the calculation were successfully done,
+  //! False otherwise.
+  Standard_EXPORT virtual bool Values(const double X, double& F, double& D) = 0;
+  Standard_EXPORT ~math_FunctionWithDerivative() override;
+};
+
+#endif // _math_FunctionWithDerivative_HeaderFile

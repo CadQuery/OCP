@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 1997-02-21
+// Created by: Alexander BRIVIN
+// Copyright (c) 1997-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,41 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/DataExchange/TKDEVRML/VrmlConverter/VrmlConverter_HLRShape.hxx"// clang-format on
+#ifndef _VrmlConverter_HLRShape_HeaderFile
+#define _VrmlConverter_HLRShape_HeaderFile
+
+#include <Standard.hxx>
+#include <Standard_DefineAlloc.hxx>
+#include <Standard_Handle.hxx>
+
+#include <Standard_OStream.hxx>
+class TopoDS_Shape;
+class VrmlConverter_Drawer;
+class VrmlConverter_Projector;
+
+//! HLRShape - computes the presentation of objects
+//! with removal of their hidden lines for a specific
+//! projector, converts them into VRML objects and
+//! writes (adds) them into anOStream. All requested
+//! properties of the representation are specify in
+//! aDrawer of Drawer class. This kind of the presentation
+//! is converted into IndexedLineSet and if they are defined
+//! in Projector info:
+//! PerspectiveCamera,
+//! OrthographicCamera,
+//! DirectionLight,
+//! PointLight,
+//! SpotLight
+//! from Vrml package.
+class VrmlConverter_HLRShape
+{
+public:
+  DEFINE_STANDARD_ALLOC
+
+  Standard_EXPORT static void Add(Standard_OStream&                           anOStream,
+                                  const TopoDS_Shape&                         aShape,
+                                  const occ::handle<VrmlConverter_Drawer>&    aDrawer,
+                                  const occ::handle<VrmlConverter_Projector>& aProjector);
+};
+
+#endif // _VrmlConverter_HLRShape_HeaderFile

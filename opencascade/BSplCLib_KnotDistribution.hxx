@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 1991-08-09
+// Created by: Jean Claude VAUTHIER
+// Copyright (c) 1991-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,18 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/FoundationClasses/TKMath/BSplCLib/BSplCLib_KnotDistribution.hxx"// clang-format on
+#ifndef _BSplCLib_KnotDistribution_HeaderFile
+#define _BSplCLib_KnotDistribution_HeaderFile
+
+//! This enumeration describes the repartition of the
+//! knots sequence. If all the knots differ by the
+//! same positive constant from the preceding knot the
+//! "KnotDistribution" is <Uniform> else it is
+//! <NonUniform>
+enum BSplCLib_KnotDistribution
+{
+  BSplCLib_NonUniform,
+  BSplCLib_Uniform
+};
+
+#endif // _BSplCLib_KnotDistribution_HeaderFile

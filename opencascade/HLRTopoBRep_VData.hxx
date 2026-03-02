@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 1995-03-22
+// Created by: Christophe MARION
+// Copyright (c) 1995-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,33 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ModelingAlgorithms/TKHLR/HLRTopoBRep/HLRTopoBRep_VData.hxx"// clang-format on
+#ifndef _HLRTopoBRep_VData_HeaderFile
+#define _HLRTopoBRep_VData_HeaderFile
+
+#include <Standard.hxx>
+#include <Standard_DefineAlloc.hxx>
+#include <Standard_Handle.hxx>
+
+#include <TopoDS_Shape.hxx>
+
+class HLRTopoBRep_VData
+{
+public:
+  DEFINE_STANDARD_ALLOC
+
+  HLRTopoBRep_VData();
+
+  Standard_EXPORT HLRTopoBRep_VData(const double P, const TopoDS_Shape& V);
+
+  double Parameter() const;
+
+  const TopoDS_Shape& Vertex() const;
+
+private:
+  double       myParameter;
+  TopoDS_Shape myVertex;
+};
+
+#include <HLRTopoBRep_VData.lxx>
+
+#endif // _HLRTopoBRep_VData_HeaderFile

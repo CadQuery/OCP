@@ -1,4 +1,5 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Copyright (c) 1992-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +12,21 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/FoundationClasses/TKernel/OSD/OSD_SIGKILL.hxx"// clang-format on
+#ifndef _OSD_SIGKILL_HeaderFile
+#define _OSD_SIGKILL_HeaderFile
+
+#include <Standard_Type.hxx>
+#include <Standard_SStream.hxx>
+#include <OSD_Signal.hxx>
+
+#if !defined No_Exception && !defined No_OSD_SIGKILL
+  #define OSD_SIGKILL_Raise_if(CONDITION, MESSAGE)                                                 \
+    if (CONDITION)                                                                                 \
+      throw OSD_SIGKILL(MESSAGE);
+#else
+  #define OSD_SIGKILL_Raise_if(CONDITION, MESSAGE)
+#endif
+
+DEFINE_STANDARD_EXCEPTION(OSD_SIGKILL, OSD_Signal)
+
+#endif // _OSD_SIGKILL_HeaderFile

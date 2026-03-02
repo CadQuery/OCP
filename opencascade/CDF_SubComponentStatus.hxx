@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 1997-08-07
+// Created by: Jean-Louis Frenkel
+// Copyright (c) 1997-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,15 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ApplicationFramework/TKCDF/CDF/CDF_SubComponentStatus.hxx"// clang-format on
+#ifndef _CDF_SubComponentStatus_HeaderFile
+#define _CDF_SubComponentStatus_HeaderFile
+
+enum CDF_SubComponentStatus
+{
+  CDF_SCS_Consistent,
+  CDF_SCS_Unconsistent,
+  CDF_SCS_Stored,
+  CDF_SCS_Modified
+};
+
+#endif // _CDF_SubComponentStatus_HeaderFile

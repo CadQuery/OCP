@@ -1,4 +1,4 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Copyright (c) 2020 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +11,36 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/FoundationClasses/TKernel/Message/Message_AttributeObject.hxx"// clang-format on
+#ifndef _Message_AttributeObject_HeaderFile
+#define _Message_AttributeObject_HeaderFile
+
+#include <Message_Attribute.hxx>
+#include <TCollection_AsciiString.hxx>
+#include <NCollection_DefineAlloc.hxx>
+
+//! Alert object storing a transient object
+class Message_AttributeObject : public Message_Attribute
+{
+  DEFINE_STANDARD_RTTIEXT(Message_AttributeObject, Message_Attribute)
+public:
+  //! Constructor with string argument
+  Standard_EXPORT Message_AttributeObject(
+    const occ::handle<Standard_Transient>& theObject,
+    const TCollection_AsciiString&         theName = TCollection_AsciiString::EmptyString());
+
+  //! Returns object
+  //! @return the object instance
+  const occ::handle<Standard_Transient>& Object() const { return myObject; }
+
+  //! Sets the object
+  //! @param theObject an instance
+  void SetObject(const occ::handle<Standard_Transient>& theObject) { myObject = theObject; }
+
+  //! Dumps the content of me into the stream
+  Standard_EXPORT void DumpJson(Standard_OStream& theOStream, int theDepth = -1) const override;
+
+private:
+  occ::handle<Standard_Transient> myObject; //!< alert object
+};
+
+#endif // _Message_AttributeObject_HeaderFile

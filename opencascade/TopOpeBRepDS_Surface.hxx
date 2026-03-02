@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 1993-06-23
+// Created by: Jean Yves LEBEY
+// Copyright (c) 1993-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,48 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ModelingAlgorithms/TKBool/TopOpeBRepDS/TopOpeBRepDS_Surface.hxx"// clang-format on
+#ifndef _TopOpeBRepDS_Surface_HeaderFile
+#define _TopOpeBRepDS_Surface_HeaderFile
+
+#include <Standard.hxx>
+#include <Standard_DefineAlloc.hxx>
+#include <Standard_Handle.hxx>
+
+#include <Standard_Real.hxx>
+#include <Standard_Boolean.hxx>
+class Geom_Surface;
+
+//! A Geom surface and a tolerance.
+class TopOpeBRepDS_Surface
+{
+public:
+  DEFINE_STANDARD_ALLOC
+
+  Standard_EXPORT TopOpeBRepDS_Surface();
+
+  Standard_EXPORT TopOpeBRepDS_Surface(const occ::handle<Geom_Surface>& P, const double T);
+
+  Standard_EXPORT TopOpeBRepDS_Surface(const TopOpeBRepDS_Surface& Other);
+
+  Standard_EXPORT void Assign(const TopOpeBRepDS_Surface& Other);
+
+  void operator=(const TopOpeBRepDS_Surface& Other) { Assign(Other); }
+
+  const occ::handle<Geom_Surface>& Surface() const { return mySurface; }
+
+  double Tolerance() const { return myTolerance; }
+
+  //! Update the tolerance
+  void Tolerance(double theTol) { myTolerance = theTol; }
+
+  bool Keep() const { return myKeep; }
+
+  void ChangeKeep(bool theToKeep) { myKeep = theToKeep; }
+
+private:
+  occ::handle<Geom_Surface> mySurface;
+  double                    myTolerance;
+  bool                      myKeep;
+};
+
+#endif // _TopOpeBRepDS_Surface_HeaderFile

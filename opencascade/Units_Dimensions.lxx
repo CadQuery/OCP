@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 1992-06-24
+// Created by: Gilles DEBARBOUILLE
+// Copyright (c) 1992-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,65 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/FoundationClasses/TKernel/Units/Units_Dimensions.lxx"// clang-format on
+//=================================================================================================
+
+inline double Units_Dimensions::Mass() const
+{
+  return themass;
+}
+
+//=================================================================================================
+
+inline double Units_Dimensions::Length() const
+{
+  return thelength;
+}
+
+//=================================================================================================
+
+inline double Units_Dimensions::Time() const
+{
+  return thetime;
+}
+
+//=================================================================================================
+
+inline double Units_Dimensions::ElectricCurrent() const
+{
+  return theelectriccurrent;
+}
+
+//=================================================================================================
+
+inline double Units_Dimensions::ThermodynamicTemperature() const
+{
+  return thethermodynamictemperature;
+}
+
+//=================================================================================================
+
+inline double Units_Dimensions::AmountOfSubstance() const
+{
+  return theamountofsubstance;
+}
+
+//=================================================================================================
+
+inline double Units_Dimensions::LuminousIntensity() const
+{
+  return theluminousintensity;
+}
+
+//=================================================================================================
+
+inline double Units_Dimensions::PlaneAngle() const
+{
+  return theplaneangle;
+}
+
+//=================================================================================================
+
+inline double Units_Dimensions::SolidAngle() const
+{
+  return thesolidangle;
+}

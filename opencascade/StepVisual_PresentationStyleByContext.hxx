@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 1995-12-01
+// Created by: EXPRESS->CDL V0.2 Translator
+// Copyright (c) 1995-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,37 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/DataExchange/TKDESTEP/StepVisual/StepVisual_PresentationStyleByContext.hxx"// clang-format on
+#ifndef _StepVisual_PresentationStyleByContext_HeaderFile
+#define _StepVisual_PresentationStyleByContext_HeaderFile
+
+#include <Standard.hxx>
+
+#include <StepVisual_StyleContextSelect.hxx>
+#include <StepVisual_PresentationStyleAssignment.hxx>
+#include <StepVisual_PresentationStyleSelect.hxx>
+#include <NCollection_Array1.hxx>
+#include <NCollection_HArray1.hxx>
+
+class StepVisual_PresentationStyleByContext : public StepVisual_PresentationStyleAssignment
+{
+
+public:
+  //! Returns a PresentationStyleByContext
+  Standard_EXPORT StepVisual_PresentationStyleByContext();
+
+  Standard_EXPORT void Init(
+    const occ::handle<NCollection_HArray1<StepVisual_PresentationStyleSelect>>& aStyles,
+    const StepVisual_StyleContextSelect&                                        aStyleContext);
+
+  Standard_EXPORT void SetStyleContext(const StepVisual_StyleContextSelect& aStyleContext);
+
+  Standard_EXPORT StepVisual_StyleContextSelect StyleContext() const;
+
+  DEFINE_STANDARD_RTTIEXT(StepVisual_PresentationStyleByContext,
+                          StepVisual_PresentationStyleAssignment)
+
+private:
+  StepVisual_StyleContextSelect styleContext;
+};
+
+#endif // _StepVisual_PresentationStyleByContext_HeaderFile

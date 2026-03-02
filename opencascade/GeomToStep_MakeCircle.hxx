@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 1993-06-14
+// Created by: Martine LANGLOIS
+// Copyright (c) 1993-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,45 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/DataExchange/TKDESTEP/GeomToStep/GeomToStep_MakeCircle.hxx"// clang-format on
+#ifndef _GeomToStep_MakeCircle_HeaderFile
+#define _GeomToStep_MakeCircle_HeaderFile
+
+#include <Standard.hxx>
+#include <Standard_DefineAlloc.hxx>
+#include <Standard_Handle.hxx>
+
+#include <GeomToStep_Root.hxx>
+
+class StepGeom_Circle;
+class gp_Circ;
+class Geom_Circle;
+class Geom2d_Circle;
+
+//! This class implements the mapping between classes
+//! Circle from Geom, and Circ from gp, and the class
+//! Circle from StepGeom which describes a circle from
+//! Prostep.
+class GeomToStep_MakeCircle : public GeomToStep_Root
+{
+public:
+  DEFINE_STANDARD_ALLOC
+
+  Standard_EXPORT GeomToStep_MakeCircle(
+    const gp_Circ&          C,
+    const StepData_Factors& theLocalFactors = StepData_Factors());
+
+  Standard_EXPORT GeomToStep_MakeCircle(
+    const occ::handle<Geom_Circle>& C,
+    const StepData_Factors&         theLocalFactors = StepData_Factors());
+
+  Standard_EXPORT GeomToStep_MakeCircle(
+    const occ::handle<Geom2d_Circle>& C,
+    const StepData_Factors&           theLocalFactors = StepData_Factors());
+
+  Standard_EXPORT const occ::handle<StepGeom_Circle>& Value() const;
+
+private:
+  occ::handle<StepGeom_Circle> theCircle;
+};
+
+#endif // _GeomToStep_MakeCircle_HeaderFile

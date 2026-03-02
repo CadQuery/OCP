@@ -1,4 +1,6 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 2003-12-11
+// Created by: Alexander SOLOVYOV
+// Copyright (c) 2003-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +13,20 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/Visualization/TKMeshVS/MeshVS/MeshVS_BuilderPriority.hxx"// clang-format on
+#ifndef MeshVS_BuilderPriority_HeaderFile
+#define MeshVS_BuilderPriority_HeaderFile
+
+typedef int MeshVS_BuilderPriority;
+
+enum
+{
+  MeshVS_BP_Mesh       = 5,
+  MeshVS_BP_NodalColor = 10,
+  MeshVS_BP_ElemColor  = 15,
+  MeshVS_BP_Text       = 20,
+  MeshVS_BP_Vector     = 25,
+  MeshVS_BP_User       = 30,
+  MeshVS_BP_Default    = MeshVS_BP_User
+};
+
+#endif

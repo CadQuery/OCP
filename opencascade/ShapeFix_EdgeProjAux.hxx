@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 1998-06-03
+// Created by: data exchange team
+// Copyright (c) 1998-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,56 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ModelingAlgorithms/TKShHealing/ShapeFix/ShapeFix_EdgeProjAux.hxx"// clang-format on
+#ifndef _ShapeFix_EdgeProjAux_HeaderFile
+#define _ShapeFix_EdgeProjAux_HeaderFile
+
+#include <Standard.hxx>
+
+#include <TopoDS_Face.hxx>
+#include <TopoDS_Edge.hxx>
+#include <Standard_Real.hxx>
+#include <Standard_Transient.hxx>
+class Geom2d_Curve;
+
+//! Project 3D point (vertex) on pcurves to find Vertex Parameter
+//! on parametric representation of an edge
+class ShapeFix_EdgeProjAux : public Standard_Transient
+{
+
+public:
+  Standard_EXPORT ShapeFix_EdgeProjAux();
+
+  Standard_EXPORT ShapeFix_EdgeProjAux(const TopoDS_Face& F, const TopoDS_Edge& E);
+
+  Standard_EXPORT void Init(const TopoDS_Face& F, const TopoDS_Edge& E);
+
+  Standard_EXPORT void Compute(const double preci);
+
+  Standard_EXPORT bool IsFirstDone() const;
+
+  Standard_EXPORT bool IsLastDone() const;
+
+  Standard_EXPORT double FirstParam() const;
+
+  Standard_EXPORT double LastParam() const;
+
+  Standard_EXPORT bool IsIso(const occ::handle<Geom2d_Curve>& C);
+
+  DEFINE_STANDARD_RTTIEXT(ShapeFix_EdgeProjAux, Standard_Transient)
+
+protected:
+  Standard_EXPORT void Init2d(const double preci);
+
+  Standard_EXPORT void Init3d(const double preci);
+
+  Standard_EXPORT void UpdateParam2d(const occ::handle<Geom2d_Curve>& C);
+
+  TopoDS_Face myFace;
+  TopoDS_Edge myEdge;
+  double      myFirstParam;
+  double      myLastParam;
+  bool        myFirstDone;
+  bool        myLastDone;
+};
+
+#endif // _ShapeFix_EdgeProjAux_HeaderFile

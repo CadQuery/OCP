@@ -1,4 +1,6 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 2015-10-29
+// Created by: Galina Kulikova
+// Copyright (c) 2015 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +13,43 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/DataExchange/TKDESTEP/StepVisual/StepVisual_TessellatedCurveSet.hxx"// clang-format on
+#ifndef _StepVisual_TessellatedCurveSet_HeaderFile
+#define _StepVisual_TessellatedCurveSet_HeaderFile
+#include <Standard.hxx>
+#include <Standard_DefineAlloc.hxx>
+#include <Standard_Handle.hxx>
+#include <StepVisual_CoordinatesList.hxx>
+#include <StepVisual_TessellatedItem.hxx>
+
+#include <NCollection_Vector.hxx>
+#include <NCollection_Handle.hxx>
+#include <Standard_Integer.hxx>
+#include <NCollection_Sequence.hxx>
+#include <NCollection_HSequence.hxx>
+
+class StepVisual_TessellatedCurveSet : public StepVisual_TessellatedItem
+{
+public:
+  DEFINE_STANDARD_ALLOC
+
+  //! Returns a DraughtingCalloutElement select type
+  Standard_EXPORT StepVisual_TessellatedCurveSet();
+
+  Standard_EXPORT void Init(
+    const occ::handle<TCollection_HAsciiString>&   theName,
+    const occ::handle<StepVisual_CoordinatesList>& theCoordList,
+    const NCollection_Handle<NCollection_Vector<occ::handle<NCollection_HSequence<int>>>>&
+      theCurves);
+
+  Standard_EXPORT occ::handle<StepVisual_CoordinatesList> CoordList() const;
+  Standard_EXPORT NCollection_Handle<NCollection_Vector<occ::handle<NCollection_HSequence<int>>>>
+                  Curves() const;
+
+private:
+  occ::handle<StepVisual_CoordinatesList>                                         myCoordList;
+  NCollection_Handle<NCollection_Vector<occ::handle<NCollection_HSequence<int>>>> myCurves;
+
+public:
+  DEFINE_STANDARD_RTTIEXT(StepVisual_TessellatedCurveSet, StepVisual_TessellatedItem)
+};
+#endif // StepVisual_TessellatedCurveSet

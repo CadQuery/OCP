@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 1995-12-01
+// Created by: EXPRESS->CDL V0.2 Translator
+// Copyright (c) 1995-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,14 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/DataExchange/TKDESTEP/StepVisual/StepVisual_SurfaceSide.hxx"// clang-format on
+#ifndef _StepVisual_SurfaceSide_HeaderFile
+#define _StepVisual_SurfaceSide_HeaderFile
+
+enum StepVisual_SurfaceSide
+{
+  StepVisual_ssNegative,
+  StepVisual_ssPositive,
+  StepVisual_ssBoth
+};
+
+#endif // _StepVisual_SurfaceSide_HeaderFile

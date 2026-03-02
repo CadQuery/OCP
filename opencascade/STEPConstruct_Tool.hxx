@@ -1,4 +1,6 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 2000-09-29
+// Created by: Andrey BETENEV
+// Copyright (c) 2000-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +13,70 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/DataExchange/TKDESTEP/STEPConstruct/STEPConstruct_Tool.hxx"// clang-format on
+#ifndef _STEPConstruct_Tool_HeaderFile
+#define _STEPConstruct_Tool_HeaderFile
+
+#include <Standard.hxx>
+#include <Standard_DefineAlloc.hxx>
+#include <Standard_Handle.hxx>
+
+#include <Standard_Boolean.hxx>
+class XSControl_WorkSession;
+class Transfer_FinderProcess;
+class Transfer_TransientProcess;
+class Interface_HGraph;
+class Interface_InterfaceModel;
+class Interface_Graph;
+
+//! Provides basic functionalities for tools which are intended
+//! for encoding/decoding specific STEP constructs
+//!
+//! It is initialized by WorkSession and allows easy access to
+//! its fields and internal data such as Model, TP and FP
+//!
+//! NOTE: Call to method Graph() with True (or for a first time,
+//! if you have updated the model since last computation of model)
+//! can take a time, so it is recommended to avoid creation of
+//! this (and derived) tool multiple times
+class STEPConstruct_Tool
+{
+public:
+  DEFINE_STANDARD_ALLOC
+
+  //! Creates an empty tool
+  Standard_EXPORT STEPConstruct_Tool();
+
+  //! Creates a tool and loads it with worksession
+  Standard_EXPORT STEPConstruct_Tool(const occ::handle<XSControl_WorkSession>& WS);
+
+  //! Returns currently loaded WorkSession
+  const occ::handle<XSControl_WorkSession>& WS() const;
+
+  //! Returns current model (Null if not loaded)
+  occ::handle<Interface_InterfaceModel> Model() const;
+
+  //! Returns current graph (recomputing if necessary)
+  const Interface_Graph& Graph(const bool recompute = false) const;
+
+  //! Returns TransientProcess (reading; Null if not loaded)
+  const occ::handle<Transfer_TransientProcess>& TransientProcess() const;
+
+  //! Returns FinderProcess (writing; Null if not loaded)
+  const occ::handle<Transfer_FinderProcess>& FinderProcess() const;
+
+protected:
+  //! Load worksession; returns True if succeeded
+  //! Returns False if either FinderProcess of TransientProcess
+  //! cannot be obtained or are Null
+  Standard_EXPORT bool SetWS(const occ::handle<XSControl_WorkSession>& WS);
+
+private:
+  occ::handle<XSControl_WorkSession>     myWS;
+  occ::handle<Transfer_FinderProcess>    myFinderProcess;
+  occ::handle<Transfer_TransientProcess> myTransientProcess;
+  occ::handle<Interface_HGraph>          myHGraph;
+};
+
+#include <STEPConstruct_Tool.lxx>
+
+#endif // _STEPConstruct_Tool_HeaderFile

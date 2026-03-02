@@ -1,4 +1,6 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 2016-10-19
+// Created by: Irina KRYLOVA
+// Copyright (c) 2016 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +13,43 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/DataExchange/TKXCAF/XCAFDoc/XCAFDoc_View.hxx"// clang-format on
+#ifndef _XCAFDoc_View_HeaderFile
+#define _XCAFDoc_View_HeaderFile
+
+#include <Standard.hxx>
+#include <Standard_Type.hxx>
+
+#include <TDataStd_GenericEmpty.hxx>
+class Standard_GUID;
+class TDF_Label;
+class XCAFView_Object;
+
+// resolve name collisions with WinAPI headers
+#ifdef GetObject
+  #undef GetObject
+#endif
+
+//! Attribute to store view
+class XCAFDoc_View : public TDataStd_GenericEmpty
+{
+
+public:
+  Standard_EXPORT XCAFDoc_View();
+
+  Standard_EXPORT static const Standard_GUID& GetID();
+
+  Standard_EXPORT static occ::handle<XCAFDoc_View> Set(const TDF_Label& theLabel);
+
+  Standard_EXPORT const Standard_GUID& ID() const override;
+
+  //! Updates parent's label and its sub-labels with data taken from theViewObject.
+  //! Old data associated with the label will be lost.
+  Standard_EXPORT void SetObject(const occ::handle<XCAFView_Object>& theViewObject);
+
+  //! Returns view object data taken from the paren's label and its sub-labels.
+  Standard_EXPORT occ::handle<XCAFView_Object> GetObject() const;
+
+  DEFINE_DERIVED_ATTRIBUTE(XCAFDoc_View, TDataStd_GenericEmpty)
+};
+
+#endif

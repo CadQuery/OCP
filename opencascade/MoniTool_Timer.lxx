@@ -1,4 +1,4 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +11,100 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/DataExchange/TKXSBase/MoniTool/MoniTool_Timer.lxx"// clang-format on
+//=================================================================================================
+
+inline MoniTool_Timer::MoniTool_Timer()
+    : myCount(0),
+      myNesting(0),
+      myAmend(0)
+{
+}
+
+//=================================================================================================
+
+inline OSD_Timer& MoniTool_Timer::Timer()
+{
+  return myTimer;
+}
+
+//=================================================================================================
+
+inline const OSD_Timer& MoniTool_Timer::Timer() const
+{
+  return myTimer;
+}
+
+//=================================================================================================
+
+inline void MoniTool_Timer::Start()
+{
+  //  AmendStart();
+  if (!myNesting)
+    myTimer.Start();
+  myCount++;
+  myNesting++;
+}
+
+//=================================================================================================
+
+inline void MoniTool_Timer::Stop()
+{
+  myNesting--;
+  if (!myNesting)
+    myTimer.Stop();
+  //  AmendStop();
+}
+
+//=================================================================================================
+
+inline void MoniTool_Timer::Reset()
+{
+  myTimer.Reset();
+  myCount = myNesting = 0;
+  myAmend             = 0;
+}
+
+//=================================================================================================
+
+inline int MoniTool_Timer::Count() const
+{
+  return myCount;
+}
+
+//=================================================================================================
+
+inline int MoniTool_Timer::IsRunning() const
+{
+  return myNesting;
+}
+
+//=================================================================================================
+
+inline double MoniTool_Timer::Amend() const
+{
+  return myAmend;
+}
+
+//=================================================================================================
+
+inline double MoniTool_Timer::CPU()
+{
+  int    minutes, hours;
+  double seconds, cpu;
+  myTimer.Show(seconds, minutes, hours, cpu);
+  return cpu - myAmend;
+}
+
+//=================================================================================================
+
+inline void MoniTool_Timer::Start(const char* name)
+{
+  Timer(name)->Start();
+}
+
+//=================================================================================================
+
+inline void MoniTool_Timer::Stop(const char* name)
+{
+  Timer(name)->Stop();
+}

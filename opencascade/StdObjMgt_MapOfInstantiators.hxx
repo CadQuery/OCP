@@ -1,4 +1,4 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Copyright (c) 2015 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +11,26 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ApplicationFramework/TKStdL/StdObjMgt/StdObjMgt_MapOfInstantiators.hxx"// clang-format on
+#ifndef _StdObjMgt_MapOfInstantiators_HeaderFile
+#define _StdObjMgt_MapOfInstantiators_HeaderFile
+
+#include <StdObjMgt_Persistent.hxx>
+#include <NCollection_DataMap.hxx>
+#include <TCollection_AsciiString.hxx>
+
+class StdObjMgt_MapOfInstantiators
+    : public NCollection_DataMap<TCollection_AsciiString, StdObjMgt_Persistent::Instantiator>
+{
+public:
+  template <class Persistent>
+  void Bind(const TCollection_AsciiString& theTypeName)
+  {
+    NCollection_DataMap<TCollection_AsciiString, StdObjMgt_Persistent::Instantiator>::Bind(
+      theTypeName,
+      Persistent::template Instantiate<Persistent>);
+  }
+
+  DEFINE_STANDARD_ALLOC
+};
+
+#endif // _StdObjMgt_MapOfInstantiators_HeaderFile

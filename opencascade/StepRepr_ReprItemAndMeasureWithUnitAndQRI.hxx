@@ -1,4 +1,6 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 2015-07-22
+// Created by: Irina KRYLOVA
+// Copyright (c) 2015 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +13,38 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/DataExchange/TKDESTEP/StepRepr/StepRepr_ReprItemAndMeasureWithUnitAndQRI.hxx"// clang-format on
+#ifndef _StepRepr_ReprItemAndMeasureWithUnitAndQRI_HeaderFile
+#define _StepRepr_ReprItemAndMeasureWithUnitAndQRI_HeaderFile
+
+#include <Standard.hxx>
+#include <Standard_Type.hxx>
+
+#include <StepRepr_ReprItemAndMeasureWithUnit.hxx>
+class StepShape_QualifiedRepresentationItem;
+
+//! Base class for complex types (MEASURE_REPRESENTATION_ITEM, MEASURE_WITH_UNIT,
+//! QUALIFIED_REPRESENTATION_ITEM REPRESENTATION_ITEM,
+//! LENGTH_MEASURE_WITH_UNIT/PLANE_ANGLE_MEASURE_WITH_UNIT).
+class StepRepr_ReprItemAndMeasureWithUnitAndQRI : public StepRepr_ReprItemAndMeasureWithUnit
+{
+
+public:
+  Standard_EXPORT StepRepr_ReprItemAndMeasureWithUnitAndQRI();
+
+  Standard_EXPORT void Init(const occ::handle<StepBasic_MeasureWithUnit>&             aMWU,
+                            const occ::handle<StepRepr_RepresentationItem>&           aRI,
+                            const occ::handle<StepShape_QualifiedRepresentationItem>& aQRI);
+
+  Standard_EXPORT void SetQualifiedRepresentationItem(
+    const occ::handle<StepShape_QualifiedRepresentationItem>& aQRI);
+
+  Standard_EXPORT occ::handle<StepShape_QualifiedRepresentationItem>
+                  GetQualifiedRepresentationItem() const;
+
+  DEFINE_STANDARD_RTTIEXT(StepRepr_ReprItemAndMeasureWithUnitAndQRI,
+                          StepRepr_ReprItemAndMeasureWithUnit)
+
+private:
+  occ::handle<StepShape_QualifiedRepresentationItem> myQualifiedRepresentationItem;
+};
+#endif // _StepRepr_ReprItemAndMeasureWithUnitAndQRI_HeaderFile

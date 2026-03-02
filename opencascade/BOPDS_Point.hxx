@@ -1,4 +1,5 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created by: Peter KURNEV
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +12,68 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ModelingAlgorithms/TKBO/BOPDS/BOPDS_Point.hxx"// clang-format on
+#ifndef _BOPDS_Point_HeaderFile
+#define _BOPDS_Point_HeaderFile
+
+#include <Standard.hxx>
+#include <Standard_DefineAlloc.hxx>
+
+#include <gp_Pnt.hxx>
+#include <gp_Pnt2d.hxx>
+#include <Standard_Integer.hxx>
+class gp_Pnt;
+class gp_Pnt2d;
+
+//! The class BOPDS_Point is to store
+//! the information about intersection point
+class BOPDS_Point
+{
+public:
+  DEFINE_STANDARD_ALLOC
+
+  //! Empty constructor
+  BOPDS_Point();
+  virtual ~BOPDS_Point();
+
+  //! Modifier
+  //! Sets 3D point <thePnt>
+  void SetPnt(const gp_Pnt& thePnt);
+
+  //! Selector
+  //! Returns 3D point
+  const gp_Pnt& Pnt() const;
+
+  //! Modifier
+  //! Sets 2D point on the first face <thePnt>
+  void SetPnt2D1(const gp_Pnt2d& thePnt);
+
+  //! Selector
+  //! Returns 2D point on the first face <thePnt>
+  const gp_Pnt2d& Pnt2D1() const;
+
+  //! Modifier
+  //! Sets 2D point on the second face <thePnt>
+  void SetPnt2D2(const gp_Pnt2d& thePnt);
+
+  //! Selector
+  //! Returns 2D point on the second face <thePnt>
+  const gp_Pnt2d& Pnt2D2() const;
+
+  //! Modifier
+  //! Sets the index of the vertex <theIndex>
+  void SetIndex(const int theIndex);
+
+  //! Selector
+  //! Returns index of the vertex
+  int Index() const;
+
+protected:
+  gp_Pnt   myPnt;
+  gp_Pnt2d myPnt2D1;
+  gp_Pnt2d myPnt2D2;
+  int      myIndex;
+};
+
+#include <BOPDS_Point.lxx>
+
+#endif // _BOPDS_Point_HeaderFile

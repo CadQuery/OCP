@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 1998-06-30
+// Created by: Christian CAILLET
+// Copyright (c) 1998-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,44 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/DataExchange/TKDESTEP/StepBasic/StepBasic_DocumentUsageConstraint.hxx"// clang-format on
+#ifndef _StepBasic_DocumentUsageConstraint_HeaderFile
+#define _StepBasic_DocumentUsageConstraint_HeaderFile
+
+#include <Standard.hxx>
+#include <Standard_Type.hxx>
+
+#include <Standard_Transient.hxx>
+class StepBasic_Document;
+class TCollection_HAsciiString;
+
+class StepBasic_DocumentUsageConstraint : public Standard_Transient
+{
+
+public:
+  Standard_EXPORT StepBasic_DocumentUsageConstraint();
+
+  Standard_EXPORT void Init(const occ::handle<StepBasic_Document>&       aSource,
+                            const occ::handle<TCollection_HAsciiString>& ase,
+                            const occ::handle<TCollection_HAsciiString>& asev);
+
+  Standard_EXPORT occ::handle<StepBasic_Document> Source() const;
+
+  Standard_EXPORT void SetSource(const occ::handle<StepBasic_Document>& aSource);
+
+  Standard_EXPORT occ::handle<TCollection_HAsciiString> SubjectElement() const;
+
+  Standard_EXPORT void SetSubjectElement(const occ::handle<TCollection_HAsciiString>& ase);
+
+  Standard_EXPORT occ::handle<TCollection_HAsciiString> SubjectElementValue() const;
+
+  Standard_EXPORT void SetSubjectElementValue(const occ::handle<TCollection_HAsciiString>& asev);
+
+  DEFINE_STANDARD_RTTIEXT(StepBasic_DocumentUsageConstraint, Standard_Transient)
+
+private:
+  occ::handle<StepBasic_Document>       theSource;
+  occ::handle<TCollection_HAsciiString> theSE;
+  occ::handle<TCollection_HAsciiString> theSEV;
+};
+
+#endif // _StepBasic_DocumentUsageConstraint_HeaderFile

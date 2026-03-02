@@ -1,4 +1,5 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Copyright (c) 1997-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +12,46 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/FoundationClasses/TKMath/math/math_Powell.lxx"// clang-format on
+#include <StdFail_NotDone.hxx>
+#include <math_Vector.hxx>
+
+inline bool math_Powell::IsSolutionReached(math_MultipleVarFunction&)
+{
+  return 2.0 * fabs(PreviousMinimum - TheMinimum)
+         <= XTol * (fabs(PreviousMinimum) + fabs(TheMinimum) + EPSZ);
+}
+
+inline bool math_Powell::IsDone() const
+{
+  return Done;
+}
+
+inline Standard_OStream& operator<<(Standard_OStream& o, const math_Powell& P)
+{
+  P.Dump(o);
+  return o;
+}
+
+inline const math_Vector& math_Powell::Location() const
+{
+  StdFail_NotDone_Raise_if(!Done, " ");
+  return TheLocation;
+}
+
+inline void math_Powell::Location(math_Vector& Loc) const
+{
+  StdFail_NotDone_Raise_if(!Done, " ");
+  Loc = TheLocation;
+}
+
+inline double math_Powell::Minimum() const
+{
+  StdFail_NotDone_Raise_if(!Done, " ");
+  return TheMinimum;
+}
+
+inline int math_Powell::NbIterations() const
+{
+  StdFail_NotDone_Raise_if(!Done, " ");
+  return Iter;
+}

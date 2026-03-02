@@ -1,4 +1,5 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created by: Sergey RUIN
+// Copyright (c) 2001-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +12,29 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ApplicationFramework/TKLCAF/TDocStd/TDocStd_CompoundDelta.hxx"// clang-format on
+#ifndef _TDocStd_CompoundDelta_HeaderFile
+#define _TDocStd_CompoundDelta_HeaderFile
+
+#include <Standard.hxx>
+
+#include <TDF_Delta.hxx>
+
+//! A delta set is available at <aSourceTime>. If
+//! applied, it restores the TDF_Data in the state it
+//! was at <aTargetTime>.
+class TDocStd_CompoundDelta : public TDF_Delta
+{
+
+public:
+  //! Creates a compound delta.
+  //! Validates <me> at <aBeginTime>. If applied, it
+  //! restores the TDF_Data in the state it was at
+  //! <anEndTime>. Reserved to TDF_Data.
+  Standard_EXPORT TDocStd_CompoundDelta();
+
+  friend class TDocStd_Document;
+
+  DEFINE_STANDARD_RTTIEXT(TDocStd_CompoundDelta, TDF_Delta)
+};
+
+#endif // _TDocStd_CompoundDelta_HeaderFile

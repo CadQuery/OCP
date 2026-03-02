@@ -1,4 +1,6 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 2002-12-12
+// Created by: data exchange team
+// Copyright (c) 2002-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +13,39 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/DataExchange/TKDESTEP/StepFEA/StepFEA_FeaGroup.hxx"// clang-format on
+#ifndef _StepFEA_FeaGroup_HeaderFile
+#define _StepFEA_FeaGroup_HeaderFile
+
+#include <Standard.hxx>
+#include <Standard_Type.hxx>
+
+#include <StepBasic_Group.hxx>
+class StepFEA_FeaModel;
+class TCollection_HAsciiString;
+
+//! Representation of STEP entity FeaGroup
+class StepFEA_FeaGroup : public StepBasic_Group
+{
+
+public:
+  //! Empty constructor
+  Standard_EXPORT StepFEA_FeaGroup();
+
+  //! Initialize all fields (own and inherited)
+  Standard_EXPORT void Init(const occ::handle<TCollection_HAsciiString>& aGroup_Name,
+                            const occ::handle<TCollection_HAsciiString>& aGroup_Description,
+                            const occ::handle<StepFEA_FeaModel>&         aModelRef);
+
+  //! Returns field ModelRef
+  Standard_EXPORT occ::handle<StepFEA_FeaModel> ModelRef() const;
+
+  //! Set field ModelRef
+  Standard_EXPORT void SetModelRef(const occ::handle<StepFEA_FeaModel>& ModelRef);
+
+  DEFINE_STANDARD_RTTIEXT(StepFEA_FeaGroup, StepBasic_Group)
+
+private:
+  occ::handle<StepFEA_FeaModel> theModelRef;
+};
+
+#endif // _StepFEA_FeaGroup_HeaderFile

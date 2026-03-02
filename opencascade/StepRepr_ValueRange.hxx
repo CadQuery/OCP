@@ -1,4 +1,6 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 2001-04-24
+// Created by: Christian CAILLET
+// Copyright (c) 2001-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +13,22 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/DataExchange/TKDESTEP/StepRepr/StepRepr_ValueRange.hxx"// clang-format on
+#ifndef _StepRepr_ValueRange_HeaderFile
+#define _StepRepr_ValueRange_HeaderFile
+
+#include <Standard.hxx>
+#include <Standard_Type.hxx>
+
+#include <StepRepr_CompoundRepresentationItem.hxx>
+
+//! Added for Dimensional Tolerances
+class StepRepr_ValueRange : public StepRepr_CompoundRepresentationItem
+{
+
+public:
+  Standard_EXPORT StepRepr_ValueRange();
+
+  DEFINE_STANDARD_RTTIEXT(StepRepr_ValueRange, StepRepr_CompoundRepresentationItem)
+};
+
+#endif // _StepRepr_ValueRange_HeaderFile

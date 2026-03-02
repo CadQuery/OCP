@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 1996-01-22
+// Created by: Philippe MANGIN
+// Copyright (c) 1996-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,17 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ModelingAlgorithms/TKGeomAlgo/FairCurve/FairCurve_Energy.lxx"// clang-format on
+inline int FairCurve_Energy::NbVariables() const
+{
+  return MyNbVar;
+}
+
+inline const occ::handle<NCollection_HArray1<gp_Pnt2d>>& FairCurve_Energy::Poles() const
+{
+  return MyPoles;
+}
+
+inline int FairCurve_Energy::Indice(const int i, const int j) const
+{
+  return MyNbValues + j + i * (i - 1) / 2;
+}

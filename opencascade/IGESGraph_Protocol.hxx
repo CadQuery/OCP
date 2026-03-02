@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 1993-05-05
+// Created by: Christian CAILLET
+// Copyright (c) 1993-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,38 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/DataExchange/TKDEIGES/IGESGraph/IGESGraph_Protocol.hxx"// clang-format on
+#ifndef _IGESGraph_Protocol_HeaderFile
+#define _IGESGraph_Protocol_HeaderFile
+
+#include <Standard.hxx>
+#include <Standard_Type.hxx>
+
+#include <IGESData_Protocol.hxx>
+#include <Standard_Integer.hxx>
+class Interface_Protocol;
+
+//! Description of Protocol for IGESGraph
+class IGESGraph_Protocol : public IGESData_Protocol
+{
+
+public:
+  Standard_EXPORT IGESGraph_Protocol();
+
+  //! Gives the count of Resource Protocol. Here, one
+  //! (Protocol from IGESBasic)
+  Standard_EXPORT int NbResources() const override;
+
+  //! Returns a Resource, given a rank.
+  Standard_EXPORT occ::handle<Interface_Protocol> Resource(const int num) const override;
+
+  //! Returns a Case Number, specific of each recognized Type
+  //! This Case Number is then used in Libraries : the various
+  //! Modules attached to this class of Protocol must use them
+  //! in accordance (for a given value of TypeNumber, they must
+  //! consider the same Type as the Protocol defines)
+  Standard_EXPORT int TypeNumber(const occ::handle<Standard_Type>& atype) const override;
+
+  DEFINE_STANDARD_RTTIEXT(IGESGraph_Protocol, IGESData_Protocol)
+};
+
+#endif // _IGESGraph_Protocol_HeaderFile

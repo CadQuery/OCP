@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 1992-11-18
+// Created by: Christian CAILLET
+// Copyright (c) 1992-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,35 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/DataExchange/TKXSBase/IFSelect/IFSelect_SelectAnyType.hxx"// clang-format on
+#ifndef _IFSelect_SelectAnyType_HeaderFile
+#define _IFSelect_SelectAnyType_HeaderFile
+
+#include <Standard.hxx>
+#include <Standard_Type.hxx>
+
+#include <IFSelect_SelectExtract.hxx>
+#include <Standard_Integer.hxx>
+class Standard_Transient;
+class Interface_InterfaceModel;
+
+//! A SelectAnyType sorts the Entities of which the Type is Kind
+//! of a given Type : this Type for Match is specific of each
+//! class of SelectAnyType
+class IFSelect_SelectAnyType : public IFSelect_SelectExtract
+{
+
+public:
+  //! Returns the Type which has to be matched for select
+  Standard_EXPORT virtual occ::handle<Standard_Type> TypeForMatch() const = 0;
+
+  //! Returns True for an Entity (model->Value(num)) which is kind
+  //! of the chosen type, given by the method TypeForMatch.
+  //! Criterium is IsKind.
+  Standard_EXPORT bool Sort(const int                                    rank,
+                            const occ::handle<Standard_Transient>&       ent,
+                            const occ::handle<Interface_InterfaceModel>& model) const override;
+
+  DEFINE_STANDARD_RTTIEXT(IFSelect_SelectAnyType, IFSelect_SelectExtract)
+};
+
+#endif // _IFSelect_SelectAnyType_HeaderFile

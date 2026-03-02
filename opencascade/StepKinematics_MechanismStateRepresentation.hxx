@@ -1,4 +1,6 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 2020-06-18
+// Created by: PASUKHIN DMITRY
+// Copyright (c) 2020 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +13,37 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/DataExchange/TKDESTEP/StepKinematics/StepKinematics_MechanismStateRepresentation.hxx"// clang-format on
+#ifndef _StepKinematics_MechanismStateRepresentation_HeaderFile
+#define _StepKinematics_MechanismStateRepresentation_HeaderFile
+
+#include <Standard.hxx>
+#include <Standard_Type.hxx>
+
+#include <StepRepr_Representation.hxx>
+
+class StepKinematics_MechanismRepresentation;
+
+class StepKinematics_MechanismStateRepresentation : public StepRepr_Representation
+{
+public:
+  //! Returns a MechanismStateRepresentation
+  Standard_EXPORT StepKinematics_MechanismStateRepresentation();
+
+  Standard_EXPORT void Init(
+    const occ::handle<TCollection_HAsciiString>&                                      theName,
+    const occ::handle<NCollection_HArray1<occ::handle<StepRepr_RepresentationItem>>>& theItems,
+    const occ::handle<StepRepr_RepresentationContext>&         theContextOfItems,
+    const occ::handle<StepKinematics_MechanismRepresentation>& theMechanism);
+
+  Standard_EXPORT void SetMechanism(
+    const occ::handle<StepKinematics_MechanismRepresentation>& theMechanism);
+
+  Standard_EXPORT occ::handle<StepKinematics_MechanismRepresentation> Mechanism() const;
+
+private:
+  occ::handle<StepKinematics_MechanismRepresentation> myRepresentedMechanism;
+
+  DEFINE_STANDARD_RTTIEXT(StepKinematics_MechanismStateRepresentation, StepRepr_Representation)
+};
+
+#endif // _StepKinematics_MechanismStateRepresentation_HeaderFile

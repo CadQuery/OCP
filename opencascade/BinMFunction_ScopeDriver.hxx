@@ -1,4 +1,6 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 2008-05-11
+// Created by: Vlad ROMASHKO <vladislav.romashko@opencascade.com>
+// Copyright (c) 2008-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +13,39 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ApplicationFramework/TKBinL/BinMFunction/BinMFunction_ScopeDriver.hxx"// clang-format on
+#ifndef _BinMFunction_ScopeDriver_HeaderFile
+#define _BinMFunction_ScopeDriver_HeaderFile
+
+#include <Standard.hxx>
+#include <Standard_Type.hxx>
+
+#include <BinMDF_ADriver.hxx>
+#include <BinObjMgt_RRelocationTable.hxx>
+#include <Standard_Transient.hxx>
+#include <NCollection_IndexedMap.hxx>
+class Message_Messenger;
+class TDF_Attribute;
+class BinObjMgt_Persistent;
+
+//! Scope attribute Driver.
+class BinMFunction_ScopeDriver : public BinMDF_ADriver
+{
+
+public:
+  Standard_EXPORT BinMFunction_ScopeDriver(const occ::handle<Message_Messenger>& theMessageDriver);
+
+  Standard_EXPORT occ::handle<TDF_Attribute> NewEmpty() const override;
+
+  Standard_EXPORT bool Paste(const BinObjMgt_Persistent&       Source,
+                             const occ::handle<TDF_Attribute>& Target,
+                             BinObjMgt_RRelocationTable&       RelocTable) const override;
+
+  Standard_EXPORT void Paste(
+    const occ::handle<TDF_Attribute>&                        Source,
+    BinObjMgt_Persistent&                                    Target,
+    NCollection_IndexedMap<occ::handle<Standard_Transient>>& RelocTable) const override;
+
+  DEFINE_STANDARD_RTTIEXT(BinMFunction_ScopeDriver, BinMDF_ADriver)
+};
+
+#endif // _BinMFunction_ScopeDriver_HeaderFile

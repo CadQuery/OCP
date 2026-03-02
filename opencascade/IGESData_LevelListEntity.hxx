@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 1992-04-07
+// Created by: Christian CAILLET
+// Copyright (c) 1992-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,31 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/DataExchange/TKDEIGES/IGESData/IGESData_LevelListEntity.hxx"// clang-format on
+#ifndef _IGESData_LevelListEntity_HeaderFile
+#define _IGESData_LevelListEntity_HeaderFile
+
+#include <Standard.hxx>
+
+#include <IGESData_IGESEntity.hxx>
+#include <Standard_Integer.hxx>
+
+//! defines required type for LevelList in directory part
+//! an effective LevelList entity must inherits it
+class IGESData_LevelListEntity : public IGESData_IGESEntity
+{
+
+public:
+  //! Must return the count of levels
+  Standard_EXPORT virtual int NbLevelNumbers() const = 0;
+
+  //! returns the Level Number of <me>, indicated by <num>
+  //! raises an exception if num is out of range
+  Standard_EXPORT virtual int LevelNumber(const int num) const = 0;
+
+  //! returns True if <level> is in the list
+  Standard_EXPORT bool HasLevelNumber(const int level) const;
+
+  DEFINE_STANDARD_RTTIEXT(IGESData_LevelListEntity, IGESData_IGESEntity)
+};
+
+#endif // _IGESData_LevelListEntity_HeaderFile

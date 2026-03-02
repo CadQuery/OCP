@@ -1,15 +1,25 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created: 2009-01-09
 //
-// This file is part of Open CASCADE Technology software library.
+// Copyright (c) 2009-2013 OPEN CASCADE SAS
 //
-// This library is free software; you can redistribute it and/or modify it under
-// the terms of the GNU Lesser General Public License version 2.1 as published
-// by the Free Software Foundation, with special exception defined in the file
-// OCCT_LGPL_EXCEPTION.txt. Consult the file LICENSE_LGPL_21.txt included in OCCT
-// distribution for complete text of the license and disclaimer of any warranty.
+// This file is part of commercial software by OPEN CASCADE SAS,
+// furnished in accordance with the terms and conditions of the contract
+// and with the inclusion of this copyright notice.
+// This file or any part thereof may not be provided or otherwise
+// made available to any third party.
 //
-// Alternatively, this file may be used under the terms of Open CASCADE
-// commercial license or contractual agreement.
+// No ownership title to the software is transferred hereby.
+//
+// OPEN CASCADE SAS makes no representation or warranties with respect to the
+// performance of this software, and specifically disclaims any responsibility
+// for any damages, special or consequential, connected with its use.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ModelingData/TKGeomBase/Geom2dConvert/Geom2dConvert_SequenceOfPPoint.hxx"// clang-format on
+#ifndef _Geom2dConvert_SequenceOfPPoint_HeaderFile
+#define _Geom2dConvert_SequenceOfPPoint_HeaderFile
+
+#include <NCollection_Sequence.hxx>
+class Geom2dConvert_PPoint;
+
+typedef NCollection_Sequence<Geom2dConvert_PPoint> Geom2dConvert_SequenceOfPPoint;
+
+#endif

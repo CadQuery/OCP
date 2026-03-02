@@ -1,4 +1,6 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 2002-10-31
+// Created by: Michael SAZONOV
+// Copyright (c) 2002-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +13,15 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ApplicationFramework/TKBinL/BinLDrivers/BinLDrivers_Marker.hxx"// clang-format on
+#ifndef BinLDrivers_Marker_HeaderFile
+#define BinLDrivers_Marker_HeaderFile
+
+// The markers used in binary file
+
+enum BinLDrivers_Marker
+{
+  BinLDrivers_ENDATTRLIST = -1, // the end of attributes list
+  BinLDrivers_ENDLABEL    = -2  // the end of label
+};
+
+#endif

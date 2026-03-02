@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 1995-12-01
+// Created by: EXPRESS->CDL V0.2 Translator
+// Copyright (c) 1995-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,35 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/DataExchange/TKDESTEP/StepGeom/StepGeom_Parabola.hxx"// clang-format on
+#ifndef _StepGeom_Parabola_HeaderFile
+#define _StepGeom_Parabola_HeaderFile
+
+#include <Standard.hxx>
+
+#include <Standard_Real.hxx>
+#include <StepGeom_Conic.hxx>
+class TCollection_HAsciiString;
+class StepGeom_Axis2Placement;
+
+class StepGeom_Parabola : public StepGeom_Conic
+{
+
+public:
+  //! Returns a Parabola
+  Standard_EXPORT StepGeom_Parabola();
+
+  Standard_EXPORT void Init(const occ::handle<TCollection_HAsciiString>& aName,
+                            const StepGeom_Axis2Placement&               aPosition,
+                            const double                                 aFocalDist);
+
+  Standard_EXPORT void SetFocalDist(const double aFocalDist);
+
+  Standard_EXPORT double FocalDist() const;
+
+  DEFINE_STANDARD_RTTIEXT(StepGeom_Parabola, StepGeom_Conic)
+
+private:
+  double focalDist;
+};
+
+#endif // _StepGeom_Parabola_HeaderFile

@@ -1,4 +1,4 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Copyright (c) 2015 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +11,44 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ApplicationFramework/TKStdL/StdLPersistent/StdLPersistent_TreeNode.hxx"// clang-format on
+#ifndef _StdLPersistent_TreeNode_HeaderFile
+#define _StdLPersistent_TreeNode_HeaderFile
+
+#include <StdObjMgt_Attribute.hxx>
+
+#include <TDataStd_TreeNode.hxx>
+#include <Standard_GUID.hxx>
+
+class StdLPersistent_TreeNode : public StdObjMgt_Attribute<TDataStd_TreeNode>::Static
+{
+public:
+  //! Read persistent data from a file.
+  Standard_EXPORT void Read(StdObjMgt_ReadData& theReadData) override;
+
+  //! Write persistent data to a file.
+  Standard_EXPORT void Write(StdObjMgt_WriteData& theWriteData) const override;
+
+  //! Gets persistent child objects
+  Standard_EXPORT void PChildren(StdObjMgt_Persistent::SequenceOfPersistent&) const override;
+
+  //! Returns persistent type name
+  const char* PName() const override { return "PDataStd_TreeNode"; }
+
+  //! Create an empty transient attribute
+  Standard_EXPORT occ::handle<TDF_Attribute> CreateAttribute() override;
+
+  //! Import transient attribute from the persistent data.
+  Standard_EXPORT void ImportAttribute() override;
+
+private:
+  struct dynamic : public Standard_Transient
+  {
+    occ::handle<StdLPersistent_TreeNode> First;
+    Standard_GUID                        TreeID;
+  };
+
+  Handle(dynamic)                      myDynamicData;
+  occ::handle<StdLPersistent_TreeNode> myNext;
+};
+
+#endif

@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 1995-12-01
+// Created by: EXPRESS->CDL V0.2 Translator
+// Copyright (c) 1995-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,52 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/DataExchange/TKDESTEP/StepGeom/StepGeom_CompositeCurve.hxx"// clang-format on
+#ifndef _StepGeom_CompositeCurve_HeaderFile
+#define _StepGeom_CompositeCurve_HeaderFile
+
+#include <Standard.hxx>
+#include <Standard_Type.hxx>
+
+#include <StepGeom_CompositeCurveSegment.hxx>
+#include <NCollection_Array1.hxx>
+#include <NCollection_HArray1.hxx>
+#include <StepData_Logical.hxx>
+#include <StepGeom_BoundedCurve.hxx>
+#include <Standard_Integer.hxx>
+class TCollection_HAsciiString;
+class StepGeom_CompositeCurveSegment;
+
+class StepGeom_CompositeCurve : public StepGeom_BoundedCurve
+{
+
+public:
+  //! Returns a CompositeCurve
+  Standard_EXPORT StepGeom_CompositeCurve();
+
+  Standard_EXPORT void Init(
+    const occ::handle<TCollection_HAsciiString>&                                         aName,
+    const occ::handle<NCollection_HArray1<occ::handle<StepGeom_CompositeCurveSegment>>>& aSegments,
+    const StepData_Logical aSelfIntersect);
+
+  Standard_EXPORT void SetSegments(
+    const occ::handle<NCollection_HArray1<occ::handle<StepGeom_CompositeCurveSegment>>>& aSegments);
+
+  Standard_EXPORT occ::handle<NCollection_HArray1<occ::handle<StepGeom_CompositeCurveSegment>>>
+                  Segments() const;
+
+  Standard_EXPORT occ::handle<StepGeom_CompositeCurveSegment> SegmentsValue(const int num) const;
+
+  Standard_EXPORT int NbSegments() const;
+
+  Standard_EXPORT void SetSelfIntersect(const StepData_Logical aSelfIntersect);
+
+  Standard_EXPORT StepData_Logical SelfIntersect() const;
+
+  DEFINE_STANDARD_RTTIEXT(StepGeom_CompositeCurve, StepGeom_BoundedCurve)
+
+private:
+  occ::handle<NCollection_HArray1<occ::handle<StepGeom_CompositeCurveSegment>>> segments;
+  StepData_Logical                                                              selfIntersect;
+};
+
+#endif // _StepGeom_CompositeCurve_HeaderFile

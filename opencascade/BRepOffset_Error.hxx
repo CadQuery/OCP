@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 1995-10-12
+// Created by: Bruno DUMORTIER
+// Copyright (c) 1995-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,23 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ModelingAlgorithms/TKOffset/BRepOffset/BRepOffset_Error.hxx"// clang-format on
+#ifndef _BRepOffset_Error_HeaderFile
+#define _BRepOffset_Error_HeaderFile
+
+enum BRepOffset_Error
+{
+  BRepOffset_NoError,
+  BRepOffset_UnknownError,
+  BRepOffset_BadNormalsOnGeometry,
+  BRepOffset_C0Geometry,
+  BRepOffset_NullOffset,
+  BRepOffset_NotConnectedShell,
+  BRepOffset_CannotTrimEdges,    //!< exception while trim edges
+  BRepOffset_CannotFuseVertices, //!< exception while fuse vertices
+  BRepOffset_CannotExtentEdge,   //!< exception while extent edges
+  BRepOffset_UserBreak,          //!< user break
+  BRepOffset_MixedConnectivity   //!< Different connectivity of faces along edge: partially C0 and
+                                 //!< tangent
+};
+
+#endif // _BRepOffset_Error_HeaderFile

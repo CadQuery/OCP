@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 1995-12-01
+// Created by: EXPRESS->CDL V0.2 Translator
+// Copyright (c) 1995-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,74 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/DataExchange/TKDESTEP/StepGeom/StepGeom_QuasiUniformCurveAndRationalBSplineCurve.hxx"// clang-format on
+#ifndef _StepGeom_QuasiUniformCurveAndRationalBSplineCurve_HeaderFile
+#define _StepGeom_QuasiUniformCurveAndRationalBSplineCurve_HeaderFile
+
+#include <Standard.hxx>
+#include <Standard_Type.hxx>
+
+#include <StepGeom_BSplineCurve.hxx>
+#include <Standard_Integer.hxx>
+#include <StepGeom_CartesianPoint.hxx>
+#include <NCollection_Array1.hxx>
+#include <NCollection_HArray1.hxx>
+#include <StepGeom_BSplineCurveForm.hxx>
+#include <StepData_Logical.hxx>
+class StepGeom_QuasiUniformCurve;
+class StepGeom_RationalBSplineCurve;
+class TCollection_HAsciiString;
+
+class StepGeom_QuasiUniformCurveAndRationalBSplineCurve : public StepGeom_BSplineCurve
+{
+
+public:
+  //! Returns a QuasiUniformCurveAndRationalBSplineCurve
+  Standard_EXPORT StepGeom_QuasiUniformCurveAndRationalBSplineCurve();
+
+  Standard_EXPORT void Init(
+    const occ::handle<TCollection_HAsciiString>& aName,
+    const int                                    aDegree,
+    const occ::handle<NCollection_HArray1<occ::handle<StepGeom_CartesianPoint>>>&
+                                                      aControlPointsList,
+    const StepGeom_BSplineCurveForm                   aCurveForm,
+    const StepData_Logical                            aClosedCurve,
+    const StepData_Logical                            aSelfIntersect,
+    const occ::handle<StepGeom_QuasiUniformCurve>&    aQuasiUniformCurve,
+    const occ::handle<StepGeom_RationalBSplineCurve>& aRationalBSplineCurve);
+
+  Standard_EXPORT void Init(
+    const occ::handle<TCollection_HAsciiString>& aName,
+    const int                                    aDegree,
+    const occ::handle<NCollection_HArray1<occ::handle<StepGeom_CartesianPoint>>>&
+                                                    aControlPointsList,
+    const StepGeom_BSplineCurveForm                 aCurveForm,
+    const StepData_Logical                          aClosedCurve,
+    const StepData_Logical                          aSelfIntersect,
+    const occ::handle<NCollection_HArray1<double>>& aWeightsData);
+
+  Standard_EXPORT void SetQuasiUniformCurve(
+    const occ::handle<StepGeom_QuasiUniformCurve>& aQuasiUniformCurve);
+
+  Standard_EXPORT occ::handle<StepGeom_QuasiUniformCurve> QuasiUniformCurve() const;
+
+  Standard_EXPORT void SetRationalBSplineCurve(
+    const occ::handle<StepGeom_RationalBSplineCurve>& aRationalBSplineCurve);
+
+  Standard_EXPORT occ::handle<StepGeom_RationalBSplineCurve> RationalBSplineCurve() const;
+
+  Standard_EXPORT void SetWeightsData(const occ::handle<NCollection_HArray1<double>>& aWeightsData);
+
+  Standard_EXPORT occ::handle<NCollection_HArray1<double>> WeightsData() const;
+
+  Standard_EXPORT double WeightsDataValue(const int num) const;
+
+  Standard_EXPORT int NbWeightsData() const;
+
+  DEFINE_STANDARD_RTTIEXT(StepGeom_QuasiUniformCurveAndRationalBSplineCurve, StepGeom_BSplineCurve)
+
+private:
+  occ::handle<StepGeom_QuasiUniformCurve>    quasiUniformCurve;
+  occ::handle<StepGeom_RationalBSplineCurve> rationalBSplineCurve;
+};
+
+#endif // _StepGeom_QuasiUniformCurveAndRationalBSplineCurve_HeaderFile

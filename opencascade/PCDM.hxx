@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 1997-08-01
+// Created by: Jean-Louis Frenkel
+// Copyright (c) 1997-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,26 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ApplicationFramework/TKCDF/PCDM/PCDM.hxx"// clang-format on
+#ifndef _PCDM_HeaderFile
+#define _PCDM_HeaderFile
+
+#include <Storage_BaseDriver.hxx>
+#include <PCDM_TypeOfFileDriver.hxx>
+
+class TCollection_AsciiString;
+
+class PCDM
+{
+public:
+  Standard_EXPORT static PCDM_TypeOfFileDriver FileDriverType(
+    const TCollection_AsciiString&   aFileName,
+    occ::handle<Storage_BaseDriver>& aBaseDriver);
+
+  Standard_EXPORT static PCDM_TypeOfFileDriver FileDriverType(
+    Standard_IStream&                theIStream,
+    occ::handle<Storage_BaseDriver>& theBaseDriver);
+
+  DEFINE_STANDARD_ALLOC
+};
+
+#endif // _PCDM_HeaderFile

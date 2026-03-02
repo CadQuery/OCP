@@ -1,4 +1,6 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created by: NW,JPB,CAL
+// Copyright (c) 1991-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +13,19 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/Visualization/TKService/Aspect/Aspect_TypeOfHighlightMethod.hxx"// clang-format on
+#ifndef _Aspect_TypeOfHighlightMethod_HeaderFile
+#define _Aspect_TypeOfHighlightMethod_HeaderFile
+
+//! Definition of a highlight method
+//!
+//! TOHM_COLOR          drawn in the highlight color
+//! (default white)
+//! TOHM_BOUNDBOX       enclosed by the boundary box
+//! (default white)
+enum Aspect_TypeOfHighlightMethod
+{
+  Aspect_TOHM_COLOR,
+  Aspect_TOHM_BOUNDBOX
+};
+
+#endif // _Aspect_TypeOfHighlightMethod_HeaderFile

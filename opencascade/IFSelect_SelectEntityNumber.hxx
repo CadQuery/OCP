@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 1992-11-18
+// Created by: Christian CAILLET
+// Copyright (c) 1992-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,47 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/DataExchange/TKXSBase/IFSelect/IFSelect_SelectEntityNumber.hxx"// clang-format on
+#ifndef _IFSelect_SelectEntityNumber_HeaderFile
+#define _IFSelect_SelectEntityNumber_HeaderFile
+
+#include <Standard.hxx>
+#include <Standard_Type.hxx>
+
+#include <IFSelect_SelectBase.hxx>
+class IFSelect_IntParam;
+class Interface_EntityIterator;
+class Interface_Graph;
+class TCollection_AsciiString;
+
+//! A SelectEntityNumber gets in an InterfaceModel (through a
+//! Graph), the Entity which has a specified Number (its rank of
+//! adding into the Model) : there can be zero (if none) or one.
+//! The Number is not directly defined as an Integer, but as a
+//! Parameter, which can be externally controlled
+class IFSelect_SelectEntityNumber : public IFSelect_SelectBase
+{
+
+public:
+  //! Creates a SelectEntityNumber, initially with no specified Number
+  Standard_EXPORT IFSelect_SelectEntityNumber();
+
+  //! Sets Entity Number to be taken (initially, none is set : 0)
+  Standard_EXPORT void SetNumber(const occ::handle<IFSelect_IntParam>& num);
+
+  //! Returns specified Number (as a Parameter)
+  Standard_EXPORT occ::handle<IFSelect_IntParam> Number() const;
+
+  //! Returns the list of selected entities : the Entity having the
+  //! specified Number (this result assures naturally uniqueness)
+  Standard_EXPORT Interface_EntityIterator RootResult(const Interface_Graph& G) const override;
+
+  //! Returns a text defining the criterium : "Entity Number ..."
+  Standard_EXPORT TCollection_AsciiString Label() const override;
+
+  DEFINE_STANDARD_RTTIEXT(IFSelect_SelectEntityNumber, IFSelect_SelectBase)
+
+private:
+  occ::handle<IFSelect_IntParam> thenum;
+};
+
+#endif // _IFSelect_SelectEntityNumber_HeaderFile

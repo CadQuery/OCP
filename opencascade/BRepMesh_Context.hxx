@@ -1,4 +1,6 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 2016-04-07
+// Copyright (c) 2016 OPEN CASCADE SAS
+// Created by: Oleg AGASHIN
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +13,24 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ModelingAlgorithms/TKMesh/BRepMesh/BRepMesh_Context.hxx"// clang-format on
+#ifndef _BRepMesh_Context_HeaderFile
+#define _BRepMesh_Context_HeaderFile
+
+#include <IMeshTools_Context.hxx>
+
+//! Class implementing default context of BRepMesh algorithm.
+//! Initializes context by default algorithms.
+class BRepMesh_Context : public IMeshTools_Context
+{
+public:
+  //! Constructor.
+  Standard_EXPORT BRepMesh_Context(
+    IMeshTools_MeshAlgoType theMeshType = IMeshTools_MeshAlgoType_DEFAULT);
+
+  //! Destructor.
+  Standard_EXPORT ~BRepMesh_Context() override;
+
+  DEFINE_STANDARD_RTTIEXT(BRepMesh_Context, IMeshTools_Context)
+};
+
+#endif

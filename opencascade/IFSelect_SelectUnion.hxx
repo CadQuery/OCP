@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 1993-01-11
+// Created by: Christian CAILLET
+// Copyright (c) 1993-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,34 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/DataExchange/TKXSBase/IFSelect/IFSelect_SelectUnion.hxx"// clang-format on
+#ifndef _IFSelect_SelectUnion_HeaderFile
+#define _IFSelect_SelectUnion_HeaderFile
+
+#include <Standard.hxx>
+#include <Standard_Type.hxx>
+
+#include <IFSelect_SelectCombine.hxx>
+class Interface_EntityIterator;
+class Interface_Graph;
+class TCollection_AsciiString;
+
+//! A SelectUnion cumulates the Entities issued from several other
+//! Selections (union of results : "OR" operator)
+class IFSelect_SelectUnion : public IFSelect_SelectCombine
+{
+
+public:
+  //! Creates an empty SelectUnion
+  Standard_EXPORT IFSelect_SelectUnion();
+
+  //! Returns the list of selected Entities, which is the addition
+  //! result from all input selections. Uniqueness is guaranteed.
+  Standard_EXPORT Interface_EntityIterator RootResult(const Interface_Graph& G) const override;
+
+  //! Returns a text defining the criterium : "Union (OR)"
+  Standard_EXPORT TCollection_AsciiString Label() const override;
+
+  DEFINE_STANDARD_RTTIEXT(IFSelect_SelectUnion, IFSelect_SelectCombine)
+};
+
+#endif // _IFSelect_SelectUnion_HeaderFile

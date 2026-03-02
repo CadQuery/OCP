@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 1993-11-19
+// Created by: Yves FRICAUD
+// Copyright (c) 1993-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,53 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ModelingAlgorithms/TKTopAlgo/MAT2d/MAT2d_BiInt.hxx"// clang-format on
+#ifndef _MAT2d_BiInt_HeaderFile
+#define _MAT2d_BiInt_HeaderFile
+
+#include <Standard.hxx>
+#include <Standard_DefineAlloc.hxx>
+#include <Standard_Handle.hxx>
+
+#include <Standard_Boolean.hxx>
+#include <Standard_HashUtils.hxx>
+
+//! BiInt is a set of two integers.
+class MAT2d_BiInt
+{
+public:
+  DEFINE_STANDARD_ALLOC
+
+  Standard_EXPORT MAT2d_BiInt(const int I1, const int I2);
+
+  Standard_EXPORT int FirstIndex() const;
+
+  Standard_EXPORT int SecondIndex() const;
+
+  Standard_EXPORT void FirstIndex(const int I1);
+
+  Standard_EXPORT void SecondIndex(const int I2);
+
+  Standard_EXPORT bool IsEqual(const MAT2d_BiInt& B) const;
+
+  bool operator==(const MAT2d_BiInt& B) const { return IsEqual(B); }
+
+private:
+  int i1;
+  int i2;
+};
+
+namespace std
+{
+template <>
+struct hash<MAT2d_BiInt>
+{
+  size_t operator()(const MAT2d_BiInt& theBiInt) const noexcept
+  {
+    // Combine two int values into a single hash value.
+    int aCombination[2]{theBiInt.FirstIndex(), theBiInt.SecondIndex()};
+    return opencascade::hashBytes(aCombination, sizeof(aCombination));
+  }
+};
+} // namespace std
+
+#endif // _MAT2d_BiInt_HeaderFile

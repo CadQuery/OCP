@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 1998-06-30
+// Created by: Christian CAILLET
+// Copyright (c) 1998-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,37 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/DataExchange/TKDESTEP/StepBasic/StepBasic_DocumentReference.hxx"// clang-format on
+#ifndef _StepBasic_DocumentReference_HeaderFile
+#define _StepBasic_DocumentReference_HeaderFile
+
+#include <Standard.hxx>
+#include <Standard_Type.hxx>
+
+#include <Standard_Transient.hxx>
+class StepBasic_Document;
+class TCollection_HAsciiString;
+
+class StepBasic_DocumentReference : public Standard_Transient
+{
+
+public:
+  Standard_EXPORT void Init0(const occ::handle<StepBasic_Document>&       aAssignedDocument,
+                             const occ::handle<TCollection_HAsciiString>& aSource);
+
+  Standard_EXPORT occ::handle<StepBasic_Document> AssignedDocument() const;
+
+  Standard_EXPORT void SetAssignedDocument(
+    const occ::handle<StepBasic_Document>& aAssignedDocument);
+
+  Standard_EXPORT occ::handle<TCollection_HAsciiString> Source() const;
+
+  Standard_EXPORT void SetSource(const occ::handle<TCollection_HAsciiString>& aSource);
+
+  DEFINE_STANDARD_RTTIEXT(StepBasic_DocumentReference, Standard_Transient)
+
+private:
+  occ::handle<StepBasic_Document>       theAssignedDocument;
+  occ::handle<TCollection_HAsciiString> theSource;
+};
+
+#endif // _StepBasic_DocumentReference_HeaderFile

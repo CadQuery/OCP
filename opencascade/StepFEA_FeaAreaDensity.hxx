@@ -1,4 +1,6 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 2002-12-12
+// Created by: data exchange team
+// Copyright (c) 2002-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +13,38 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/DataExchange/TKDESTEP/StepFEA/StepFEA_FeaAreaDensity.hxx"// clang-format on
+#ifndef _StepFEA_FeaAreaDensity_HeaderFile
+#define _StepFEA_FeaAreaDensity_HeaderFile
+
+#include <Standard.hxx>
+#include <Standard_Type.hxx>
+
+#include <Standard_Real.hxx>
+#include <StepFEA_FeaMaterialPropertyRepresentationItem.hxx>
+class TCollection_HAsciiString;
+
+//! Representation of STEP entity FeaAreaDensity
+class StepFEA_FeaAreaDensity : public StepFEA_FeaMaterialPropertyRepresentationItem
+{
+
+public:
+  //! Empty constructor
+  Standard_EXPORT StepFEA_FeaAreaDensity();
+
+  //! Initialize all fields (own and inherited)
+  Standard_EXPORT void Init(const occ::handle<TCollection_HAsciiString>& aRepresentationItem_Name,
+                            const double                                 aFeaConstant);
+
+  //! Returns field FeaConstant
+  Standard_EXPORT double FeaConstant() const;
+
+  //! Set field FeaConstant
+  Standard_EXPORT void SetFeaConstant(const double FeaConstant);
+
+  DEFINE_STANDARD_RTTIEXT(StepFEA_FeaAreaDensity, StepFEA_FeaMaterialPropertyRepresentationItem)
+
+private:
+  double theFeaConstant;
+};
+
+#endif // _StepFEA_FeaAreaDensity_HeaderFile

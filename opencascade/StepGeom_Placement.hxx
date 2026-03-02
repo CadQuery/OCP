@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 1995-12-01
+// Created by: EXPRESS->CDL V0.2 Translator
+// Copyright (c) 1995-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,34 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/DataExchange/TKDESTEP/StepGeom/StepGeom_Placement.hxx"// clang-format on
+#ifndef _StepGeom_Placement_HeaderFile
+#define _StepGeom_Placement_HeaderFile
+
+#include <Standard.hxx>
+#include <Standard_Type.hxx>
+
+#include <StepGeom_GeometricRepresentationItem.hxx>
+class StepGeom_CartesianPoint;
+class TCollection_HAsciiString;
+
+class StepGeom_Placement : public StepGeom_GeometricRepresentationItem
+{
+
+public:
+  //! Returns a Placement
+  Standard_EXPORT StepGeom_Placement();
+
+  Standard_EXPORT void Init(const occ::handle<TCollection_HAsciiString>& aName,
+                            const occ::handle<StepGeom_CartesianPoint>&  aLocation);
+
+  Standard_EXPORT void SetLocation(const occ::handle<StepGeom_CartesianPoint>& aLocation);
+
+  Standard_EXPORT occ::handle<StepGeom_CartesianPoint> Location() const;
+
+  DEFINE_STANDARD_RTTIEXT(StepGeom_Placement, StepGeom_GeometricRepresentationItem)
+
+private:
+  occ::handle<StepGeom_CartesianPoint> location;
+};
+
+#endif // _StepGeom_Placement_HeaderFile

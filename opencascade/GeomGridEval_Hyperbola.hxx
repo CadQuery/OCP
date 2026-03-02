@@ -11,5 +11,85 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ModelingData/TKG3d/GeomGridEval/GeomGridEval_Hyperbola.hxx"// clang-format on
+#ifndef _GeomGridEval_Hyperbola_HeaderFile
+#define _GeomGridEval_Hyperbola_HeaderFile
+
+#include <Geom_Hyperbola.hxx>
+#include <GeomGridEval.hxx>
+#include <NCollection_Array1.hxx>
+#include <Standard.hxx>
+#include <Standard_DefineAlloc.hxx>
+
+//! @brief Efficient batch evaluator for hyperbola grid points.
+//!
+//! Uses analytical formula:
+//! P(u) = Center + MajorRadius * cosh(u) * XDir + MinorRadius * sinh(u) * YDir
+//!
+//! Usage:
+//! @code
+//!   GeomGridEval_Hyperbola anEvaluator(myGeomHyperbola);
+//!   NCollection_Array1<gp_Pnt> aGrid = anEvaluator.EvaluateGrid(myParams);
+//! @endcode
+class GeomGridEval_Hyperbola
+{
+public:
+  DEFINE_STANDARD_ALLOC
+
+  //! Constructor with geometry.
+  //! @param theHyperbola the hyperbola geometry to evaluate
+  GeomGridEval_Hyperbola(const occ::handle<Geom_Hyperbola>& theHyperbola)
+      : myGeom(theHyperbola)
+  {
+  }
+
+  //! Non-copyable and non-movable.
+  GeomGridEval_Hyperbola(const GeomGridEval_Hyperbola&)            = delete;
+  GeomGridEval_Hyperbola& operator=(const GeomGridEval_Hyperbola&) = delete;
+  GeomGridEval_Hyperbola(GeomGridEval_Hyperbola&&)                 = delete;
+  GeomGridEval_Hyperbola& operator=(GeomGridEval_Hyperbola&&)      = delete;
+
+  //! Returns the geometry handle.
+  const occ::handle<Geom_Hyperbola>& Geometry() const { return myGeom; }
+
+  //! Evaluate all grid points.
+  //! @param theParams array of parameter values
+  //! @return array of evaluated points (1-based indexing),
+  //!         or empty array if geometry is null or no parameters
+  Standard_EXPORT NCollection_Array1<gp_Pnt> EvaluateGrid(
+    const NCollection_Array1<double>& theParams) const;
+
+  //! Evaluate all grid points with first derivative.
+  //! @param theParams array of parameter values
+  //! @return array of CurveD1 (1-based indexing)
+  Standard_EXPORT NCollection_Array1<GeomGridEval::CurveD1> EvaluateGridD1(
+    const NCollection_Array1<double>& theParams) const;
+
+  //! Evaluate all grid points with first and second derivatives.
+  //! @param theParams array of parameter values
+  //! @return array of CurveD2 (1-based indexing)
+  Standard_EXPORT NCollection_Array1<GeomGridEval::CurveD2> EvaluateGridD2(
+    const NCollection_Array1<double>& theParams) const;
+
+  //! Evaluate all grid points with first, second, and third derivatives.
+  //! @param theParams array of parameter values
+  //! @return array of CurveD3 (1-based indexing)
+  Standard_EXPORT NCollection_Array1<GeomGridEval::CurveD3> EvaluateGridD3(
+    const NCollection_Array1<double>& theParams) const;
+
+  //! Evaluate Nth derivative at all grid points.
+  //! Hyperbola has cyclic derivatives with period 2:
+  //! D1 = MajR * sinh(u) * X + MinR * cosh(u) * Y
+  //! D2 = MajR * cosh(u) * X + MinR * sinh(u) * Y = D0
+  //! D3 = D1, D4 = D0, etc.
+  //! @param theParams array of parameter values
+  //! @param theN derivative order (N >= 1)
+  //! @return array of derivative vectors (1-based indexing)
+  Standard_EXPORT NCollection_Array1<gp_Vec> EvaluateGridDN(
+    const NCollection_Array1<double>& theParams,
+    int                               theN) const;
+
+private:
+  occ::handle<Geom_Hyperbola> myGeom;
+};
+
+#endif // _GeomGridEval_Hyperbola_HeaderFile

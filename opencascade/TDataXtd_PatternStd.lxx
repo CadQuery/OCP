@@ -1,4 +1,6 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 2009-04-06
+// Created by: Sergey ZARITCHNY
+// Copyright (c) 2009-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +13,72 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ApplicationFramework/TKCAF/TDataXtd/TDataXtd_PatternStd.lxx"// clang-format on
+//=================================================================================================
+
+inline int TDataXtd_PatternStd::Signature() const
+{
+  return mySignature;
+}
+
+//=================================================================================================
+
+inline occ::handle<TNaming_NamedShape> TDataXtd_PatternStd::Axis1() const
+{
+  return myAxis1;
+}
+
+//=================================================================================================
+
+inline occ::handle<TNaming_NamedShape> TDataXtd_PatternStd::Axis2() const
+{
+  return myAxis2;
+}
+
+//=================================================================================================
+
+inline bool TDataXtd_PatternStd::Axis1Reversed() const
+{
+  return myAxis1Reversed;
+}
+
+//=================================================================================================
+
+inline bool TDataXtd_PatternStd::Axis2Reversed() const
+{
+  return myAxis2Reversed;
+}
+
+//=================================================================================================
+
+inline occ::handle<TDataStd_Real> TDataXtd_PatternStd::Value1() const
+{
+  return myValue1;
+}
+
+//=================================================================================================
+
+inline occ::handle<TDataStd_Real> TDataXtd_PatternStd::Value2() const
+{
+  return myValue2;
+}
+
+//=================================================================================================
+
+inline occ::handle<TDataStd_Integer> TDataXtd_PatternStd::NbInstances1() const
+{
+  return myNb1;
+}
+
+//=================================================================================================
+
+inline occ::handle<TDataStd_Integer> TDataXtd_PatternStd::NbInstances2() const
+{
+  return myNb2;
+}
+
+//=================================================================================================
+
+inline occ::handle<TNaming_NamedShape> TDataXtd_PatternStd::Mirror() const
+{
+  return myMirror;
+}

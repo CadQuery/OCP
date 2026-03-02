@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on : Fri May 08 19:02:07 2020
+// Created by: Irina KRYLOVA
+// Generator:	Express (EXPRESS -> CASCADE/XSTEP Translator) V3.0
+// Copyright (c) Open CASCADE 2020
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,26 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/DataExchange/TKDESTEP/StepKinematics/StepKinematics_LinearFlexibleLinkRepresentation.hxx"// clang-format on
+#ifndef _StepKinematics_LinearFlexibleLinkRepresentation_HeaderFile_
+#define _StepKinematics_LinearFlexibleLinkRepresentation_HeaderFile_
+
+#include <Standard.hxx>
+#include <StepKinematics_KinematicLinkRepresentation.hxx>
+
+#include <TCollection_HAsciiString.hxx>
+#include <StepRepr_RepresentationItem.hxx>
+#include <NCollection_Array1.hxx>
+#include <NCollection_HArray1.hxx>
+
+//! Representation of STEP entity LinearFlexibleLinkRepresentation
+class StepKinematics_LinearFlexibleLinkRepresentation
+    : public StepKinematics_KinematicLinkRepresentation
+{
+public:
+  //! default constructor
+  Standard_EXPORT StepKinematics_LinearFlexibleLinkRepresentation();
+
+  DEFINE_STANDARD_RTTIEXT(StepKinematics_LinearFlexibleLinkRepresentation,
+                          StepKinematics_KinematicLinkRepresentation)
+};
+#endif // _StepKinematics_LinearFlexibleLinkRepresentation_HeaderFile_

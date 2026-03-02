@@ -1,4 +1,6 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created by: Modelization
+// Copyright (c) 1995-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +13,78 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ModelingAlgorithms/TKGeomAlgo/IntPatch/IntPatch_Intersection.lxx"// clang-format on
+#include <StdFail_NotDone.hxx>
+#include <Standard_DomainError.hxx>
+#include <IntPatch_Line.hxx>
+
+inline bool IntPatch_Intersection::IsDone() const
+{
+  return done;
+}
+
+inline bool IntPatch_Intersection::IsEmpty() const
+{
+  if (!done)
+  {
+    throw StdFail_NotDone();
+  }
+  return empt;
+}
+
+inline bool IntPatch_Intersection::TangentFaces() const
+{
+  if (!done)
+  {
+    throw StdFail_NotDone();
+  }
+  return tgte;
+}
+
+inline bool IntPatch_Intersection::OppositeFaces() const
+{
+  if (!done)
+  {
+    throw StdFail_NotDone();
+  }
+  if (!tgte)
+  {
+    throw Standard_DomainError();
+  }
+  return oppo;
+}
+
+inline int IntPatch_Intersection::NbPnts() const
+{
+  if (!done)
+  {
+    throw StdFail_NotDone();
+  }
+  return spnt.Length();
+}
+
+inline const IntPatch_Point& IntPatch_Intersection::Point(const int Index) const
+{
+  if (!done)
+  {
+    throw StdFail_NotDone();
+  }
+  return spnt(Index);
+}
+
+inline int IntPatch_Intersection::NbLines() const
+{
+  if (!done)
+  {
+    throw StdFail_NotDone();
+  }
+  return slin.Length();
+}
+
+inline const occ::handle<IntPatch_Line>& IntPatch_Intersection::Line(const int Index) const
+{
+  if (!done)
+  {
+    throw StdFail_NotDone();
+  }
+  return slin(Index);
+}

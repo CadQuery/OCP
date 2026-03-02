@@ -1,4 +1,6 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 2000-04-18
+// Created by: Andrey BETENEV
+// Copyright (c) 2000-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +13,44 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/DataExchange/TKDESTEP/StepShape/StepShape_AngularLocation.hxx"// clang-format on
+#ifndef _StepShape_AngularLocation_HeaderFile
+#define _StepShape_AngularLocation_HeaderFile
+
+#include <Standard.hxx>
+#include <Standard_Type.hxx>
+
+#include <StepShape_AngleRelator.hxx>
+#include <StepShape_DimensionalLocation.hxx>
+class TCollection_HAsciiString;
+class StepRepr_ShapeAspect;
+
+//! Representation of STEP entity AngularLocation
+class StepShape_AngularLocation : public StepShape_DimensionalLocation
+{
+
+public:
+  //! Empty constructor
+  Standard_EXPORT StepShape_AngularLocation();
+
+  //! Initialize all fields (own and inherited)
+  Standard_EXPORT void Init(
+    const occ::handle<TCollection_HAsciiString>& aShapeAspectRelationship_Name,
+    const bool                                   hasShapeAspectRelationship_Description,
+    const occ::handle<TCollection_HAsciiString>& aShapeAspectRelationship_Description,
+    const occ::handle<StepRepr_ShapeAspect>&     aShapeAspectRelationship_RelatingShapeAspect,
+    const occ::handle<StepRepr_ShapeAspect>&     aShapeAspectRelationship_RelatedShapeAspect,
+    const StepShape_AngleRelator                 aAngleSelection);
+
+  //! Returns field AngleSelection
+  Standard_EXPORT StepShape_AngleRelator AngleSelection() const;
+
+  //! Set field AngleSelection
+  Standard_EXPORT void SetAngleSelection(const StepShape_AngleRelator AngleSelection);
+
+  DEFINE_STANDARD_RTTIEXT(StepShape_AngularLocation, StepShape_DimensionalLocation)
+
+private:
+  StepShape_AngleRelator theAngleSelection;
+};
+
+#endif // _StepShape_AngularLocation_HeaderFile

@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 1998-06-03
+// Created by: data exchange team
+// Copyright (c) 1998-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,63 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ModelingAlgorithms/TKShHealing/ShapeCustom/ShapeCustom_Surface.hxx"// clang-format on
+#ifndef _ShapeCustom_Surface_HeaderFile
+#define _ShapeCustom_Surface_HeaderFile
+
+#include <Standard.hxx>
+#include <Standard_DefineAlloc.hxx>
+#include <Standard_Handle.hxx>
+
+#include <Standard_Real.hxx>
+#include <Standard_Boolean.hxx>
+class Geom_Surface;
+
+//! Converts a surface to the analytical form with given
+//! precision. Conversion is done only the surface is bspline
+//! of bezier and this can be approximated by some analytical
+//! surface with that precision.
+class ShapeCustom_Surface
+{
+public:
+  DEFINE_STANDARD_ALLOC
+
+  Standard_EXPORT ShapeCustom_Surface();
+
+  Standard_EXPORT ShapeCustom_Surface(const occ::handle<Geom_Surface>& S);
+
+  Standard_EXPORT void Init(const occ::handle<Geom_Surface>& S);
+
+  //! Returns maximal deviation of converted surface from the original
+  //! one computed by last call to ConvertToAnalytical
+  double Gap() const;
+
+  //! Tries to convert the Surface to an Analytic form
+  //! Returns the result
+  //! Works only if the Surface is BSpline or Bezier.
+  //! Else, or in case of failure, returns a Null Handle
+  //!
+  //! If <substitute> is True, the new surface replaces the actual
+  //! one in <me>
+  //!
+  //! It works by analysing the case which can apply, creating the
+  //! corresponding analytic surface, then checking coincidence
+  //! Warning: Parameter laws are not kept, hence PCurves should be redone
+  Standard_EXPORT occ::handle<Geom_Surface> ConvertToAnalytical(const double tol,
+                                                                const bool   substitute);
+
+  //! Tries to convert the Surface to the Periodic form
+  //! Returns the resulting surface
+  //! Works only if the Surface is BSpline and is closed with
+  //! Precision::Confusion()
+  //! Else, or in case of failure, returns a Null Handle
+  Standard_EXPORT occ::handle<Geom_Surface> ConvertToPeriodic(const bool   substitute,
+                                                              const double preci = -1);
+
+private:
+  occ::handle<Geom_Surface> mySurf;
+  double                    myGap;
+};
+
+#include <ShapeCustom_Surface.lxx>
+
+#endif // _ShapeCustom_Surface_HeaderFile

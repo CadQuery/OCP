@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 1991-10-04
+// Created by: Remi GILET
+// Copyright (c) 1991-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,34 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ModelingAlgorithms/TKGeomAlgo/GccInt/GccInt_BParab.hxx"// clang-format on
+#ifndef _GccInt_BParab_HeaderFile
+#define _GccInt_BParab_HeaderFile
+
+#include <Standard.hxx>
+
+#include <gp_Parab2d.hxx>
+#include <GccInt_Bisec.hxx>
+#include <GccInt_IType.hxx>
+
+//! Describes a parabola as a bisecting curve between two
+//! 2D geometric objects (such as lines, circles or points).
+class GccInt_BParab : public GccInt_Bisec
+{
+
+public:
+  //! Constructs a bisecting curve whose geometry is the 2D parabola Parab.
+  Standard_EXPORT GccInt_BParab(const gp_Parab2d& Parab);
+
+  //! Returns a 2D parabola which is the geometry of this bisecting curve.
+  Standard_EXPORT gp_Parab2d Parabola() const override;
+
+  //! Returns GccInt_Par, which is the type of any GccInt_BParab bisecting curve.
+  Standard_EXPORT GccInt_IType ArcType() const override;
+
+  DEFINE_STANDARD_RTTIEXT(GccInt_BParab, GccInt_Bisec)
+
+private:
+  gp_Parab2d par;
+};
+
+#endif // _GccInt_BParab_HeaderFile

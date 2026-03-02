@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 1993-06-07
+// Created by: Jacques GOUSSARD
+// Copyright (c) 1993-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,45 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ModelingAlgorithms/TKGeomAlgo/IntPatch/IntPatch_ArcFunction.lxx"// clang-format on
+inline const gp_Pnt& IntPatch_ArcFunction::Valpoint(const int Index) const
+{
+  return seqpt(Index);
+}
+
+inline void IntPatch_ArcFunction::Set(const occ::handle<Adaptor2d_Curve2d>& A)
+{
+  myArc = A;
+  seqpt.Clear();
+}
+
+inline void IntPatch_ArcFunction::Set(const occ::handle<Adaptor3d_Surface>& S)
+{
+  mySurf = S;
+  seqpt.Clear();
+}
+
+inline void IntPatch_ArcFunction::SetQuadric(const IntSurf_Quadric& Q)
+{
+  myQuad = Q;
+  seqpt.Clear();
+}
+
+inline const IntSurf_Quadric& IntPatch_ArcFunction::Quadric() const
+{
+  return (myQuad);
+}
+
+inline const occ::handle<Adaptor2d_Curve2d>& IntPatch_ArcFunction::Arc() const
+{
+  return (myArc);
+}
+
+inline const occ::handle<Adaptor3d_Surface>& IntPatch_ArcFunction::Surface() const
+{
+  return (mySurf);
+}
+
+inline const gp_Pnt& IntPatch_ArcFunction::LastComputedPoint() const
+{
+  return ptsol;
+}

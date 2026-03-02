@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on : Sat May 02 12:41:15 2020
+// Created by: Irina KRYLOVA
+// Generator:	Express (EXPRESS -> CASCADE/XSTEP Translator) V3.0
+// Copyright (c) Open CASCADE 2020
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,36 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/DataExchange/TKDESTEP/StepKinematics/StepKinematics_GearPairValue.hxx"// clang-format on
+#ifndef _StepKinematics_GearPairValue_HeaderFile_
+#define _StepKinematics_GearPairValue_HeaderFile_
+
+#include <Standard.hxx>
+#include <StepKinematics_PairValue.hxx>
+
+#include <TCollection_HAsciiString.hxx>
+#include <StepKinematics_KinematicPair.hxx>
+
+//! Representation of STEP entity GearPairValue
+class StepKinematics_GearPairValue : public StepKinematics_PairValue
+{
+public:
+  //! default constructor
+  Standard_EXPORT StepKinematics_GearPairValue();
+
+  //! Initialize all fields (own and inherited)
+  Standard_EXPORT void Init(
+    const occ::handle<TCollection_HAsciiString>&     theRepresentationItem_Name,
+    const occ::handle<StepKinematics_KinematicPair>& thePairValue_AppliesToPair,
+    const double                                     theActualRotation1);
+
+  //! Returns field ActualRotation1
+  Standard_EXPORT double ActualRotation1() const;
+  //! Sets field ActualRotation1
+  Standard_EXPORT void SetActualRotation1(const double theActualRotation1);
+
+  DEFINE_STANDARD_RTTIEXT(StepKinematics_GearPairValue, StepKinematics_PairValue)
+
+private:
+  double myActualRotation1;
+};
+#endif // _StepKinematics_GearPairValue_HeaderFile_

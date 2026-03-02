@@ -1,4 +1,6 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 2002-12-12
+// Created by: data exchange team
+// Copyright (c) 2002-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +13,40 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/DataExchange/TKDESTEP/StepFEA/StepFEA_AlignedCurve3dElementCoordinateSystem.hxx"// clang-format on
+#ifndef _StepFEA_AlignedCurve3dElementCoordinateSystem_HeaderFile
+#define _StepFEA_AlignedCurve3dElementCoordinateSystem_HeaderFile
+
+#include <Standard.hxx>
+#include <Standard_Type.hxx>
+
+#include <StepFEA_FeaRepresentationItem.hxx>
+class StepFEA_FeaAxis2Placement3d;
+class TCollection_HAsciiString;
+
+//! Representation of STEP entity AlignedCurve3dElementCoordinateSystem
+class StepFEA_AlignedCurve3dElementCoordinateSystem : public StepFEA_FeaRepresentationItem
+{
+
+public:
+  //! Empty constructor
+  Standard_EXPORT StepFEA_AlignedCurve3dElementCoordinateSystem();
+
+  //! Initialize all fields (own and inherited)
+  Standard_EXPORT void Init(const occ::handle<TCollection_HAsciiString>& aRepresentationItem_Name,
+                            const occ::handle<StepFEA_FeaAxis2Placement3d>& aCoordinateSystem);
+
+  //! Returns field CoordinateSystem
+  Standard_EXPORT occ::handle<StepFEA_FeaAxis2Placement3d> CoordinateSystem() const;
+
+  //! Set field CoordinateSystem
+  Standard_EXPORT void SetCoordinateSystem(
+    const occ::handle<StepFEA_FeaAxis2Placement3d>& CoordinateSystem);
+
+  DEFINE_STANDARD_RTTIEXT(StepFEA_AlignedCurve3dElementCoordinateSystem,
+                          StepFEA_FeaRepresentationItem)
+
+private:
+  occ::handle<StepFEA_FeaAxis2Placement3d> theCoordinateSystem;
+};
+
+#endif // _StepFEA_AlignedCurve3dElementCoordinateSystem_HeaderFile

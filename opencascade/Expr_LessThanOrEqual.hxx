@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 1991-01-14
+// Created by: Arnaud BOUZY
+// Copyright (c) 1991-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,43 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ModelingAlgorithms/TKExpress/Expr/Expr_LessThanOrEqual.hxx"// clang-format on
+#ifndef _Expr_LessThanOrEqual_HeaderFile
+#define _Expr_LessThanOrEqual_HeaderFile
+
+#include <Standard.hxx>
+#include <Standard_Type.hxx>
+
+#include <Expr_SingleRelation.hxx>
+class Expr_GeneralExpression;
+class Expr_GeneralRelation;
+class TCollection_AsciiString;
+
+class Expr_LessThanOrEqual : public Expr_SingleRelation
+{
+
+public:
+  //! Creates the relation <exp1> <= <exp2>.
+  Standard_EXPORT Expr_LessThanOrEqual(const occ::handle<Expr_GeneralExpression>& exp1,
+                                       const occ::handle<Expr_GeneralExpression>& exp2);
+
+  Standard_EXPORT bool IsSatisfied() const override;
+
+  //! Returns a GeneralRelation after replacement of
+  //! NamedUnknowns by an associated expression, and after
+  //! values computation.
+  Standard_EXPORT occ::handle<Expr_GeneralRelation> Simplified() const override;
+
+  //! Replaces NamedUnknowns by associated expressions,
+  //! and computes values in <me>.
+  Standard_EXPORT void Simplify() override;
+
+  //! Returns a copy of <me> having the same unknowns and functions.
+  Standard_EXPORT occ::handle<Expr_GeneralRelation> Copy() const override;
+
+  //! returns a string representing <me> in a readable way.
+  Standard_EXPORT TCollection_AsciiString String() const override;
+
+  DEFINE_STANDARD_RTTIEXT(Expr_LessThanOrEqual, Expr_SingleRelation)
+};
+
+#endif // _Expr_LessThanOrEqual_HeaderFile

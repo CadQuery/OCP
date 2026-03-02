@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 1992-08-26
+// Created by: Jean Louis FRENKEL
+// Copyright (c) 1992-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,21 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/Visualization/TKV3d/Prs3d/Prs3d_DimensionTextHorizontalPosition.hxx"// clang-format on
+#ifndef _Prs3d_DimensionTextHorizontalPosition_HeaderFile
+#define _Prs3d_DimensionTextHorizontalPosition_HeaderFile
+
+//! Specifies options for positioning dimension value label in horizontal direction.
+//! DTHP_Left   - value label located at left side on dimension extension.
+//! DTHP_Right  - value label located at right side on dimension extension.
+//! DTHP_Center - value label located at center of dimension line.
+//! DTHP_Fit    - value label located automatically at left side if does not fits
+//! the dimension space, otherwise the value label is placed at center.
+enum Prs3d_DimensionTextHorizontalPosition
+{
+  Prs3d_DTHP_Left,
+  Prs3d_DTHP_Right,
+  Prs3d_DTHP_Center,
+  Prs3d_DTHP_Fit
+};
+
+#endif // _Prs3d_DimensionTextHorizontalPosition_HeaderFile

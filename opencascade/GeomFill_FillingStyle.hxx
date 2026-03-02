@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 1993-09-28
+// Created by: Bruno DUMORTIER
+// Copyright (c) 1993-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,19 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ModelingAlgorithms/TKGeomAlgo/GeomFill/GeomFill_FillingStyle.hxx"// clang-format on
+#ifndef _GeomFill_FillingStyle_HeaderFile
+#define _GeomFill_FillingStyle_HeaderFile
+
+//! Defines the three filling styles used in this package
+//! -   GeomFill_Stretch - the style with the flattest patches
+//! -   GeomFill_Coons - a rounded style of patch with
+//! less depth than those of Curved
+//! -   GeomFill_Curved - the style with the most rounded patches.
+enum GeomFill_FillingStyle
+{
+  GeomFill_StretchStyle,
+  GeomFill_CoonsStyle,
+  GeomFill_CurvedStyle
+};
+
+#endif // _GeomFill_FillingStyle_HeaderFile

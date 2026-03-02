@@ -1,4 +1,6 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 2002-12-15
+// Created by: data exchange team
+// Copyright (c) 2002-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +13,22 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/DataExchange/TKDESTEP/StepRepr/StepRepr_StructuralResponseProperty.hxx"// clang-format on
+#ifndef _StepRepr_StructuralResponseProperty_HeaderFile
+#define _StepRepr_StructuralResponseProperty_HeaderFile
+
+#include <Standard.hxx>
+
+#include <StepRepr_PropertyDefinition.hxx>
+
+//! Representation of STEP entity StructuralResponseProperty
+class StepRepr_StructuralResponseProperty : public StepRepr_PropertyDefinition
+{
+
+public:
+  //! Empty constructor
+  Standard_EXPORT StepRepr_StructuralResponseProperty();
+
+  DEFINE_STANDARD_RTTIEXT(StepRepr_StructuralResponseProperty, StepRepr_PropertyDefinition)
+};
+
+#endif // _StepRepr_StructuralResponseProperty_HeaderFile

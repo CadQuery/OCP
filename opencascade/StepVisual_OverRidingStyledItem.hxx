@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 1995-12-01
+// Created by: EXPRESS->CDL V0.2 Translator
+// Copyright (c) 1995-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,40 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/DataExchange/TKDESTEP/StepVisual/StepVisual_OverRidingStyledItem.hxx"// clang-format on
+#ifndef _StepVisual_OverRidingStyledItem_HeaderFile
+#define _StepVisual_OverRidingStyledItem_HeaderFile
+
+#include <Standard.hxx>
+
+#include <StepVisual_StyledItem.hxx>
+#include <StepVisual_PresentationStyleAssignment.hxx>
+#include <NCollection_Array1.hxx>
+#include <NCollection_HArray1.hxx>
+class TCollection_HAsciiString;
+
+class StepVisual_OverRidingStyledItem : public StepVisual_StyledItem
+{
+
+public:
+  //! Returns a OverRidingStyledItem
+  Standard_EXPORT StepVisual_OverRidingStyledItem();
+
+  Standard_EXPORT void Init(
+    const occ::handle<TCollection_HAsciiString>& aName,
+    const occ::handle<NCollection_HArray1<occ::handle<StepVisual_PresentationStyleAssignment>>>&
+                                              aStyles,
+    const occ::handle<Standard_Transient>&    aItem,
+    const occ::handle<StepVisual_StyledItem>& aOverRiddenStyle);
+
+  Standard_EXPORT void SetOverRiddenStyle(
+    const occ::handle<StepVisual_StyledItem>& aOverRiddenStyle);
+
+  Standard_EXPORT occ::handle<StepVisual_StyledItem> OverRiddenStyle() const;
+
+  DEFINE_STANDARD_RTTIEXT(StepVisual_OverRidingStyledItem, StepVisual_StyledItem)
+
+private:
+  occ::handle<StepVisual_StyledItem> overRiddenStyle;
+};
+
+#endif // _StepVisual_OverRidingStyledItem_HeaderFile

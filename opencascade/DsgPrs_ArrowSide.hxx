@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 1994-10-03
+// Created by: Arnaud BOUZY
+// Copyright (c) 1994-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,22 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/Visualization/TKV3d/DsgPrs/DsgPrs_ArrowSide.hxx"// clang-format on
+#ifndef _DsgPrs_ArrowSide_HeaderFile
+#define _DsgPrs_ArrowSide_HeaderFile
+
+//! Designates how many arrows will be displayed and
+//! where they will be displayed in presenting a length.
+enum DsgPrs_ArrowSide
+{
+  DsgPrs_AS_NONE,
+  DsgPrs_AS_FIRSTAR,
+  DsgPrs_AS_LASTAR,
+  DsgPrs_AS_BOTHAR,
+  DsgPrs_AS_FIRSTPT,
+  DsgPrs_AS_LASTPT,
+  DsgPrs_AS_BOTHPT,
+  DsgPrs_AS_FIRSTAR_LASTPT,
+  DsgPrs_AS_FIRSTPT_LASTAR
+};
+
+#endif // _DsgPrs_ArrowSide_HeaderFile

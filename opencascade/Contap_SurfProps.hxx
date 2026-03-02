@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 1995-02-24
+// Created by: Jacques GOUSSARD
+// Copyright (c) 1995-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,48 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ModelingAlgorithms/TKHLR/Contap/Contap_SurfProps.hxx"// clang-format on
+#ifndef _Contap_SurfProps_HeaderFile
+#define _Contap_SurfProps_HeaderFile
+
+#include <Adaptor3d_Surface.hxx>
+
+class gp_Pnt;
+class gp_Vec;
+
+//! Internal tool used to compute the normal and its
+//! derivatives.
+class Contap_SurfProps
+{
+public:
+  DEFINE_STANDARD_ALLOC
+
+  //! Computes the point <P>, and normal vector <N> on
+  //! <S> at parameters U,V.
+  Standard_EXPORT static void Normale(const occ::handle<Adaptor3d_Surface>& S,
+                                      const double                          U,
+                                      const double                          V,
+                                      gp_Pnt&                               P,
+                                      gp_Vec&                               N);
+
+  //! Computes the point <P>, and normal vector <N> on
+  //! <S> at parameters U,V.
+  Standard_EXPORT static void DerivAndNorm(const occ::handle<Adaptor3d_Surface>& S,
+                                           const double                          U,
+                                           const double                          V,
+                                           gp_Pnt&                               P,
+                                           gp_Vec&                               d1u,
+                                           gp_Vec&                               d1v,
+                                           gp_Vec&                               N);
+
+  //! Computes the point <P>, normal vector <N>, and its
+  //! derivatives <Dnu> and <Dnv> on <S> at parameters U,V.
+  Standard_EXPORT static void NormAndDn(const occ::handle<Adaptor3d_Surface>& S,
+                                        const double                          U,
+                                        const double                          V,
+                                        gp_Pnt&                               P,
+                                        gp_Vec&                               N,
+                                        gp_Vec&                               Dnu,
+                                        gp_Vec&                               Dnv);
+};
+
+#endif // _Contap_SurfProps_HeaderFile

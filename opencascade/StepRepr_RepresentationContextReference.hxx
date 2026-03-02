@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on : Sat May 02 12:41:14 2020
+// Created by: Irina KRYLOVA
+// Generator:	Express (EXPRESS -> CASCADE/XSTEP Translator) V3.0
+// Copyright (c) Open CASCADE 2020
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,33 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/DataExchange/TKDESTEP/StepRepr/StepRepr_RepresentationContextReference.hxx"// clang-format on
+#ifndef _StepRepr_RepresentationContextReference_HeaderFile_
+#define _StepRepr_RepresentationContextReference_HeaderFile_
+
+#include <Standard.hxx>
+#include <Standard_Transient.hxx>
+
+#include <TCollection_HAsciiString.hxx>
+
+//! Representation of STEP entity RepresentationContextReference
+class StepRepr_RepresentationContextReference : public Standard_Transient
+{
+public:
+  //! default constructor
+  Standard_EXPORT StepRepr_RepresentationContextReference();
+
+  //! Initialize all fields (own and inherited)
+  Standard_EXPORT void Init(const occ::handle<TCollection_HAsciiString>& theContextIdentifier);
+
+  //! Returns field ContextIdentifier
+  Standard_EXPORT occ::handle<TCollection_HAsciiString> ContextIdentifier() const;
+  //! Sets field ContextIdentifier
+  Standard_EXPORT void SetContextIdentifier(
+    const occ::handle<TCollection_HAsciiString>& theContextIdentifier);
+
+  DEFINE_STANDARD_RTTIEXT(StepRepr_RepresentationContextReference, Standard_Transient)
+
+private:
+  occ::handle<TCollection_HAsciiString> myContextIdentifier;
+};
+#endif // _StepRepr_RepresentationContextReference_HeaderFile_

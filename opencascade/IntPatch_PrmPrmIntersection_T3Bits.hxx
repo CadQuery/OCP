@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 1993-01-28
+// Created by: Laurent BUCHARD
+// Copyright (c) 1993-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,35 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ModelingAlgorithms/TKGeomAlgo/IntPatch/IntPatch_PrmPrmIntersection_T3Bits.hxx"// clang-format on
+#ifndef _IntPatch_PrmPrmIntersection_T3Bits_HeaderFile
+#define _IntPatch_PrmPrmIntersection_T3Bits_HeaderFile
+
+#include <Standard.hxx>
+#include <Standard_DefineAlloc.hxx>
+#include <Standard_Handle.hxx>
+
+class IntPatch_PrmPrmIntersection_T3Bits
+{
+public:
+  DEFINE_STANDARD_ALLOC
+
+  Standard_EXPORT IntPatch_PrmPrmIntersection_T3Bits(const int size);
+
+  Standard_EXPORT ~IntPatch_PrmPrmIntersection_T3Bits();
+
+  void Add(const int t) { p[t >> 5] |= (1 << (((unsigned int)t) & 31)); }
+
+  int Val(const int t) const { return (p[t >> 5] & (1 << (((unsigned int)t) & 31))); }
+
+  void Raz(const int t) { p[t >> 5] &= ~(1 << (((unsigned int)t) & 31)); }
+
+  Standard_EXPORT void ResetAnd();
+
+  Standard_EXPORT int And(IntPatch_PrmPrmIntersection_T3Bits& Oth, int& indiceprecedent);
+
+private:
+  int* p;
+  int  Isize;
+};
+
+#endif // _IntPatch_PrmPrmIntersection_T3Bits_HeaderFile

@@ -1,4 +1,4 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Copyright (c) 2013 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +11,19 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ModelingAlgorithms/TKMesh/BRepMesh/BRepMesh_FastDiscret.hxx"// clang-format on
+#ifndef _BRepMesh_FastDiscret_HeaderFile
+#define _BRepMesh_FastDiscret_HeaderFile
+
+#include <IMeshTools_Parameters.hxx>
+
+class Standard_DEPRECATED(
+  "The class BRepMesh_FastDiscret is deprecated. Please use IMeshTools package")
+  BRepMesh_FastDiscret
+{
+public:
+  Standard_DEPRECATED("The class BRepMesh_FastDiscret is deprecated. Please use IMeshTools "
+                      "package")
+  typedef IMeshTools_Parameters Parameters;
+};
+
+#endif

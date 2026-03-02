@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 1995-05-30
+// Created by: Jacques GOUSSARD
+// Copyright (c) 1995-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,38 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ModelingAlgorithms/TKFeat/BRepFeat/BRepFeat_MakeCylindricalHole.lxx"// clang-format on
+// Modified by jag, Tue May 30 09:47:02 1995
+
+//=================================================================================================
+
+inline BRepFeat_MakeCylindricalHole::BRepFeat_MakeCylindricalHole()
+    : myAxDef(false),
+      myStatus(BRepFeat_NoError),
+      myIsBlind(false),
+      myValidate(false)
+{
+}
+
+//=================================================================================================
+
+inline void BRepFeat_MakeCylindricalHole::Init(const gp_Ax1& Axis)
+{
+  myAxis  = Axis;
+  myAxDef = true;
+}
+
+//=================================================================================================
+
+inline void BRepFeat_MakeCylindricalHole::Init(const TopoDS_Shape& S, const gp_Ax1& Axis)
+{
+  BRepFeat_Builder::Init(S);
+  myAxis  = Axis;
+  myAxDef = true;
+}
+
+//=================================================================================================
+
+inline BRepFeat_Status BRepFeat_MakeCylindricalHole::Status() const
+{
+  return myStatus;
+}

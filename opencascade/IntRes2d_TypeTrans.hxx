@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 1992-04-03
+// Created by: Laurent BUCHARD
+// Copyright (c) 1992-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,15 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ModelingAlgorithms/TKGeomAlgo/IntRes2d/IntRes2d_TypeTrans.hxx"// clang-format on
+#ifndef _IntRes2d_TypeTrans_HeaderFile
+#define _IntRes2d_TypeTrans_HeaderFile
+
+enum IntRes2d_TypeTrans
+{
+  IntRes2d_In,
+  IntRes2d_Out,
+  IntRes2d_Touch,
+  IntRes2d_Undecided
+};
+
+#endif // _IntRes2d_TypeTrans_HeaderFile

@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 1994-08-31
+// Created by: Jacques GOUSSARD
+// Copyright (c) 1994-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,54 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ModelingAlgorithms/TKOffset/Draft/Draft_FaceInfo.hxx"// clang-format on
+#ifndef _Draft_FaceInfo_HeaderFile
+#define _Draft_FaceInfo_HeaderFile
+
+#include <Standard.hxx>
+#include <Standard_DefineAlloc.hxx>
+#include <Standard_Handle.hxx>
+
+#include <Standard_Boolean.hxx>
+#include <TopoDS_Face.hxx>
+class Geom_Surface;
+class Geom_Curve;
+
+class Draft_FaceInfo
+{
+public:
+  DEFINE_STANDARD_ALLOC
+
+  Standard_EXPORT Draft_FaceInfo();
+
+  Standard_EXPORT Draft_FaceInfo(const occ::handle<Geom_Surface>& S, const bool HasNewGeometry);
+
+  Standard_EXPORT void RootFace(const TopoDS_Face& F);
+
+  Standard_EXPORT bool NewGeometry() const;
+
+  Standard_EXPORT void Add(const TopoDS_Face& F);
+
+  Standard_EXPORT const TopoDS_Face& FirstFace() const;
+
+  Standard_EXPORT const TopoDS_Face& SecondFace() const;
+
+  Standard_EXPORT const occ::handle<Geom_Surface>& Geometry() const;
+
+  Standard_EXPORT occ::handle<Geom_Surface>& ChangeGeometry();
+
+  Standard_EXPORT const TopoDS_Face& RootFace() const;
+
+  Standard_EXPORT occ::handle<Geom_Curve>& ChangeCurve();
+
+  Standard_EXPORT const occ::handle<Geom_Curve>& Curve() const;
+
+private:
+  bool                      myNewGeom;
+  occ::handle<Geom_Surface> myGeom;
+  TopoDS_Face               myRootFace;
+  TopoDS_Face               myF1;
+  TopoDS_Face               myF2;
+  occ::handle<Geom_Curve>   myCurv;
+};
+
+#endif // _Draft_FaceInfo_HeaderFile

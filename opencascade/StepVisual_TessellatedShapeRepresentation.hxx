@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on : Thu Mar 24 18:30:12 2022
+// Created by: snn
+// Generator: Express (EXPRESS -> CASCADE/XSTEP Translator) V2.0
+// Copyright (c) Open CASCADE 2022
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,22 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/DataExchange/TKDESTEP/StepVisual/StepVisual_TessellatedShapeRepresentation.hxx"// clang-format on
+#ifndef _StepVisual_TessellatedShapeRepresentation_HeaderFile_
+#define _StepVisual_TessellatedShapeRepresentation_HeaderFile_
+
+#include <Standard.hxx>
+#include <Standard_Type.hxx>
+#include <StepShape_ShapeRepresentation.hxx>
+
+//! Representation of STEP entity TessellatedShapeRepresentation
+class StepVisual_TessellatedShapeRepresentation : public StepShape_ShapeRepresentation
+{
+
+public:
+  //! default constructor
+  Standard_EXPORT StepVisual_TessellatedShapeRepresentation();
+
+  DEFINE_STANDARD_RTTIEXT(StepVisual_TessellatedShapeRepresentation, StepShape_ShapeRepresentation)
+};
+
+#endif // _StepVisual_TessellatedShapeRepresentation_HeaderFile_

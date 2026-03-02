@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 1998-12-04
+// Created by: DUSUZEAU Louis
+// Copyright (c) 1998-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,26 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/FoundationClasses/TKernel/Resource/Resource_LexicalCompare.hxx"// clang-format on
+#ifndef _Resource_LexicalCompare_HeaderFile
+#define _Resource_LexicalCompare_HeaderFile
+
+#include <Standard.hxx>
+#include <Standard_DefineAlloc.hxx>
+#include <Standard_Handle.hxx>
+
+#include <Standard_Boolean.hxx>
+class TCollection_AsciiString;
+
+class Resource_LexicalCompare
+{
+public:
+  DEFINE_STANDARD_ALLOC
+
+  Standard_EXPORT Resource_LexicalCompare();
+
+  //! Returns True if <Left> is lower than <Right>.
+  Standard_EXPORT bool IsLower(const TCollection_AsciiString& Left,
+                               const TCollection_AsciiString& Right) const;
+};
+
+#endif // _Resource_LexicalCompare_HeaderFile

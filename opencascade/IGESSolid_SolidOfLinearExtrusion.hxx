@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 1993-01-09
+// Created by: CKY / Contract Toubro-Larsen ( SIVA )
+// Copyright (c) 1993-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,54 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/DataExchange/TKDEIGES/IGESSolid/IGESSolid_SolidOfLinearExtrusion.hxx"// clang-format on
+#ifndef _IGESSolid_SolidOfLinearExtrusion_HeaderFile
+#define _IGESSolid_SolidOfLinearExtrusion_HeaderFile
+
+#include <Standard.hxx>
+#include <Standard_Type.hxx>
+
+#include <gp_XYZ.hxx>
+#include <IGESData_IGESEntity.hxx>
+class gp_Dir;
+
+//! defines SolidOfLinearExtrusion, Type <164> Form Number <0>
+//! in package IGESSolid
+//! Solid of linear extrusion is defined by translating an
+//! area determined by a planar curve
+class IGESSolid_SolidOfLinearExtrusion : public IGESData_IGESEntity
+{
+
+public:
+  Standard_EXPORT IGESSolid_SolidOfLinearExtrusion();
+
+  //! This method is used to set the fields of the class
+  //! SolidOfLinearExtrusion
+  //! - aCurve     : the planar curve that is to be translated
+  //! - aLength    : the length of extrusion
+  //! - aDirection : the vector specifying the direction of extrusion
+  //! default (0,0,1)
+  Standard_EXPORT void Init(const occ::handle<IGESData_IGESEntity>& aCurve,
+                            const double                            aLength,
+                            const gp_XYZ&                           aDirection);
+
+  //! returns the planar curve that is to be translated
+  Standard_EXPORT occ::handle<IGESData_IGESEntity> Curve() const;
+
+  //! returns the Extrusion Length
+  Standard_EXPORT double ExtrusionLength() const;
+
+  //! returns the Extrusion direction
+  Standard_EXPORT gp_Dir ExtrusionDirection() const;
+
+  //! returns ExtrusionDirection after applying TransformationMatrix
+  Standard_EXPORT gp_Dir TransformedExtrusionDirection() const;
+
+  DEFINE_STANDARD_RTTIEXT(IGESSolid_SolidOfLinearExtrusion, IGESData_IGESEntity)
+
+private:
+  occ::handle<IGESData_IGESEntity> theCurve;
+  double                           theLength;
+  gp_XYZ                           theDirection;
+};
+
+#endif // _IGESSolid_SolidOfLinearExtrusion_HeaderFile

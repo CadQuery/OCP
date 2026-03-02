@@ -1,4 +1,6 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 2003-09-29
+// Created by: Alexander SOLOVYOV and Sergey LITONIN
+// Copyright (c) 2003-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +13,20 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/Visualization/TKMeshVS/MeshVS/MeshVS_SensitiveSegment.hxx"// clang-format on
+#ifndef _MeshVS_SensitiveSegment_HeaderFile
+#define _MeshVS_SensitiveSegment_HeaderFile
+
+#include <Select3D_SensitiveSegment.hxx>
+
+//! This class provides custom sensitive face, which will be selected if it center is in rectangle.
+class MeshVS_SensitiveSegment : public Select3D_SensitiveSegment
+{
+public:
+  Standard_EXPORT MeshVS_SensitiveSegment(const occ::handle<SelectMgr_EntityOwner>& theOwner,
+                                          const gp_Pnt&                             theFirstPnt,
+                                          const gp_Pnt&                             theLastPnt);
+
+  DEFINE_STANDARD_RTTIEXT(MeshVS_SensitiveSegment, Select3D_SensitiveSegment)
+};
+
+#endif // _MeshVS_SensitiveSegment_HeaderFile

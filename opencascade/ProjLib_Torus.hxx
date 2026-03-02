@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 1993-08-24
+// Created by: Bruno DUMORTIER
+// Copyright (c) 1993-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,49 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ModelingData/TKGeomBase/ProjLib/ProjLib_Torus.hxx"// clang-format on
+#ifndef _ProjLib_Torus_HeaderFile
+#define _ProjLib_Torus_HeaderFile
+
+#include <Standard.hxx>
+#include <Standard_DefineAlloc.hxx>
+
+#include <gp_Torus.hxx>
+#include <ProjLib_Projector.hxx>
+class gp_Circ;
+class gp_Lin;
+class gp_Elips;
+class gp_Parab;
+class gp_Hypr;
+
+//! Projects elementary curves on a torus.
+class ProjLib_Torus : public ProjLib_Projector
+{
+public:
+  DEFINE_STANDARD_ALLOC
+
+  //! Undefined projection.
+  Standard_EXPORT ProjLib_Torus();
+
+  //! Projection on the torus <To>.
+  Standard_EXPORT ProjLib_Torus(const gp_Torus& To);
+
+  //! Projection of the circle <C> on the torus <To>.
+  Standard_EXPORT ProjLib_Torus(const gp_Torus& To, const gp_Circ& C);
+
+  Standard_EXPORT void Init(const gp_Torus& To);
+
+  Standard_EXPORT void Project(const gp_Lin& L) override;
+
+  Standard_EXPORT void Project(const gp_Circ& C) override;
+
+  Standard_EXPORT void Project(const gp_Elips& E) override;
+
+  Standard_EXPORT void Project(const gp_Parab& P) override;
+
+  Standard_EXPORT void Project(const gp_Hypr& H) override;
+
+private:
+  gp_Torus myTorus;
+};
+
+#endif // _ProjLib_Torus_HeaderFile

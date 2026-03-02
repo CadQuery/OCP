@@ -1,4 +1,6 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 2009-04-06
+// Created by: Sergey ZARITCHNY
+// Copyright (c) 2009-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +13,33 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ApplicationFramework/TKCAF/TDataXtd/TDataXtd_Placement.hxx"// clang-format on
+#ifndef _TDataXtd_Placement_HeaderFile
+#define _TDataXtd_Placement_HeaderFile
+
+#include <TDataStd_GenericEmpty.hxx>
+class TDF_Label;
+
+class TDataXtd_Placement : public TDataStd_GenericEmpty
+{
+
+public:
+  //! class methods
+  //! =============
+  Standard_EXPORT static const Standard_GUID& GetID();
+
+  //! Find, or create, a Placement attribute.
+  //! Placement attribute is returned.
+  //! Placement methods
+  //! =================
+  Standard_EXPORT static occ::handle<TDataXtd_Placement> Set(const TDF_Label& label);
+
+  Standard_EXPORT TDataXtd_Placement();
+
+  Standard_EXPORT const Standard_GUID& ID() const override;
+
+  Standard_EXPORT Standard_OStream& Dump(Standard_OStream& anOS) const override;
+
+  DEFINE_DERIVED_ATTRIBUTE(TDataXtd_Placement, TDataStd_GenericEmpty)
+};
+
+#endif // _TDataXtd_Placement_HeaderFile

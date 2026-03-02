@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 1990-12-11
+// Created by: Remi Lequette
+// Copyright (c) 1990-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,12 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ModelingData/TKBRep/TopoDS/TopoDS_ListOfShape.hxx"// clang-format on
+#ifndef TopoDS_ListOfShape_HeaderFile
+#define TopoDS_ListOfShape_HeaderFile
+
+#include <NCollection_List.hxx>
+
+class TopoDS_Shape;
+typedef NCollection_List<TopoDS_Shape> TopoDS_ListOfShape;
+
+#endif

@@ -1,4 +1,5 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Author: Kirill Gavrilov
+// Copyright (c) 2015-2019 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +12,18 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/DataExchange/TKDEOBJ/RWObj/RWObj_SubMesh.hxx"// clang-format on
+#ifndef _RWObj_SubMesh_HeaderFile
+#define _RWObj_SubMesh_HeaderFile
+
+#include <TCollection_AsciiString.hxx>
+
+//! Sub-mesh definition for OBJ reader.
+struct RWObj_SubMesh
+{
+  TCollection_AsciiString Object;      //!< name of active object
+  TCollection_AsciiString Group;       //!< name of active group
+  TCollection_AsciiString SmoothGroup; //!< name of active smoothing group
+  TCollection_AsciiString Material;    //!< name of active material
+};
+
+#endif // _RWObj_SubMesh_HeaderFile

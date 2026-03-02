@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 1993-11-03
+// Created by: Christian CAILLET
+// Copyright (c) 1993-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,36 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/DataExchange/TKXSBase/IFSelect/IFSelect_SelectSharing.hxx"// clang-format on
+#ifndef _IFSelect_SelectSharing_HeaderFile
+#define _IFSelect_SelectSharing_HeaderFile
+
+#include <Standard.hxx>
+#include <Standard_Type.hxx>
+
+#include <IFSelect_SelectDeduct.hxx>
+class Interface_EntityIterator;
+class Interface_Graph;
+class TCollection_AsciiString;
+
+//! A SelectSharing selects Entities which directly Share (Level
+//! One) the Entities of the Input list
+//! Remark : if an Entity of the Input List directly shares
+//! another one, it is of course present in the Result List
+class IFSelect_SelectSharing : public IFSelect_SelectDeduct
+{
+
+public:
+  //! Creates a SelectSharing;
+  Standard_EXPORT IFSelect_SelectSharing();
+
+  //! Returns the list of selected entities (list of entities
+  //! which share (level one) those of input list)
+  Standard_EXPORT Interface_EntityIterator RootResult(const Interface_Graph& G) const override;
+
+  //! Returns a text defining the criterium : "Sharing (one level)"
+  Standard_EXPORT TCollection_AsciiString Label() const override;
+
+  DEFINE_STANDARD_RTTIEXT(IFSelect_SelectSharing, IFSelect_SelectDeduct)
+};
+
+#endif // _IFSelect_SelectSharing_HeaderFile

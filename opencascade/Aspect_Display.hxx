@@ -1,4 +1,4 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +11,17 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/Visualization/TKService/Aspect/Aspect_Display.hxx"// clang-format on
+/*============================================================================*/
+/*==== Title: Aspect_Display.hxx                                               */
+/*==== Role : The header file of primitive type "Display" from package        */
+/*==== "V3d"                                                           */
+/*==== Implementation:  This is a primitive type implemented with typedef     */
+/*============================================================================*/
+// To manage Display
+
+#ifndef _Aspect_Display_HeaderFile
+#define _Aspect_Display_HeaderFile
+
+typedef void* Aspect_Display; /* Display* under UNIX */
+
+#endif /* _Aspect_Display_HeaderFile */

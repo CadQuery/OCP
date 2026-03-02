@@ -1,4 +1,6 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 2016-07-07
+// Copyright (c) 2016 OPEN CASCADE SAS
+// Created by: Oleg AGASHIN
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +13,31 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ModelingAlgorithms/TKMesh/BRepMesh/BRepMesh_ConeRangeSplitter.hxx"// clang-format on
+#ifndef _BRepMesh_ConeRangeSplitter_HeaderFile
+#define _BRepMesh_ConeRangeSplitter_HeaderFile
+
+#include <BRepMesh_DefaultRangeSplitter.hxx>
+
+//! Auxiliary class extending default range splitter in
+//! order to generate internal nodes for conical surface.
+class BRepMesh_ConeRangeSplitter : public BRepMesh_DefaultRangeSplitter
+{
+public:
+  //! Constructor.
+  BRepMesh_ConeRangeSplitter() = default;
+
+  //! Destructor.
+  ~BRepMesh_ConeRangeSplitter() override = default;
+
+  //! Returns split intervals along U and V direction.
+  //! @param theParameters meshing parameters.
+  //! @param[out] theStepsNb number of steps along corresponding direction.
+  std::pair<double, double> GetSplitSteps(const IMeshTools_Parameters& theParameters,
+                                          std::pair<int, int>&         theStepsNb) const;
+
+  //! Returns list of nodes generated using surface data and specified parameters.
+  Standard_EXPORT Handle(IMeshData::ListOfPnt2d) GenerateSurfaceNodes(
+    const IMeshTools_Parameters& theParameters) const override;
+};
+
+#endif

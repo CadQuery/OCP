@@ -1,4 +1,4 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Copyright (c) 2021 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +11,16 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/Visualization/TKV3d/SelectMgr/SelectMgr_SelectionType.hxx"// clang-format on
+#ifndef _SelectMgr_SelectionType_HeaderFile
+#define _SelectMgr_SelectionType_HeaderFile
+
+//! Possible selection types
+enum SelectMgr_SelectionType
+{
+  SelectMgr_SelectionType_Unknown = -1, //!< undefined selection type
+  SelectMgr_SelectionType_Point,   //!< selection by point (frustum with some tolerance or axis)
+  SelectMgr_SelectionType_Box,     //!< rectangle selection
+  SelectMgr_SelectionType_Polyline //!< polygonal selection
+};
+
+#endif // _SelectMgr_SelectionType_HeaderFile

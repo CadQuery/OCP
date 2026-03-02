@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 1996-12-23
+// Created by: Alexander BRIVIN and Dmitry TARASOV
+// Copyright (c) 1996-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,14 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/DataExchange/TKDEVRML/Vrml/Vrml_FontStyleStyle.hxx"// clang-format on
+#ifndef _Vrml_FontStyleStyle_HeaderFile
+#define _Vrml_FontStyleStyle_HeaderFile
+
+enum Vrml_FontStyleStyle
+{
+  Vrml_NONE,
+  Vrml_BOLD,
+  Vrml_ITALIC
+};
+
+#endif // _Vrml_FontStyleStyle_HeaderFile

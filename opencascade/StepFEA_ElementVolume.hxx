@@ -1,4 +1,4 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +11,12 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/DataExchange/TKDESTEP/StepFEA/StepFEA_ElementVolume.hxx"// clang-format on
+#ifndef _StepFEA_ElementVolume_HeaderFile
+#define _StepFEA_ElementVolume_HeaderFile
+
+enum StepFEA_ElementVolume
+{
+  StepFEA_Volume
+};
+
+#endif // _StepFEA_ElementVolume_HeaderFile

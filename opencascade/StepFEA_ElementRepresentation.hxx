@@ -1,4 +1,6 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 2002-12-12
+// Created by: data exchange team
+// Copyright (c) 2002-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +13,48 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/DataExchange/TKDESTEP/StepFEA/StepFEA_ElementRepresentation.hxx"// clang-format on
+#ifndef _StepFEA_ElementRepresentation_HeaderFile
+#define _StepFEA_ElementRepresentation_HeaderFile
+
+#include <Standard.hxx>
+#include <Standard_Type.hxx>
+
+#include <StepFEA_NodeRepresentation.hxx>
+#include <NCollection_Array1.hxx>
+#include <NCollection_HArray1.hxx>
+#include <StepRepr_Representation.hxx>
+#include <StepRepr_RepresentationItem.hxx>
+class TCollection_HAsciiString;
+class StepRepr_RepresentationContext;
+
+//! Representation of STEP entity ElementRepresentation
+class StepFEA_ElementRepresentation : public StepRepr_Representation
+{
+
+public:
+  //! Empty constructor
+  Standard_EXPORT StepFEA_ElementRepresentation();
+
+  //! Initialize all fields (own and inherited)
+  Standard_EXPORT void Init(
+    const occ::handle<TCollection_HAsciiString>& aRepresentation_Name,
+    const occ::handle<NCollection_HArray1<occ::handle<StepRepr_RepresentationItem>>>&
+                                                       aRepresentation_Items,
+    const occ::handle<StepRepr_RepresentationContext>& aRepresentation_ContextOfItems,
+    const occ::handle<NCollection_HArray1<occ::handle<StepFEA_NodeRepresentation>>>& aNodeList);
+
+  //! Returns field NodeList
+  Standard_EXPORT occ::handle<NCollection_HArray1<occ::handle<StepFEA_NodeRepresentation>>>
+                  NodeList() const;
+
+  //! Set field NodeList
+  Standard_EXPORT void SetNodeList(
+    const occ::handle<NCollection_HArray1<occ::handle<StepFEA_NodeRepresentation>>>& NodeList);
+
+  DEFINE_STANDARD_RTTIEXT(StepFEA_ElementRepresentation, StepRepr_Representation)
+
+private:
+  occ::handle<NCollection_HArray1<occ::handle<StepFEA_NodeRepresentation>>> theNodeList;
+};
+
+#endif // _StepFEA_ElementRepresentation_HeaderFile

@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 1993-12-15
+// Created by: Remi LEQUETTE
+// Copyright (c) 1993-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,19 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ModelingAlgorithms/TKTopAlgo/BRepLib/BRepLib_FaceError.hxx"// clang-format on
+#ifndef _BRepLib_FaceError_HeaderFile
+#define _BRepLib_FaceError_HeaderFile
+
+//! Errors that can occur at face construction.
+//! no error
+//! not initialised
+enum BRepLib_FaceError
+{
+  BRepLib_FaceDone,
+  BRepLib_NoFace,
+  BRepLib_NotPlanar,
+  BRepLib_CurveProjectionFailed,
+  BRepLib_ParametersOutOfRange
+};
+
+#endif // _BRepLib_FaceError_HeaderFile

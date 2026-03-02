@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 1995-12-01
+// Created by: EXPRESS->CDL V0.2 Translator
+// Copyright (c) 1995-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,42 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/DataExchange/TKDESTEP/StepRepr/StepRepr_MappedItem.hxx"// clang-format on
+#ifndef _StepRepr_MappedItem_HeaderFile
+#define _StepRepr_MappedItem_HeaderFile
+
+#include <Standard.hxx>
+#include <Standard_Type.hxx>
+
+#include <StepRepr_RepresentationItem.hxx>
+class StepRepr_RepresentationMap;
+class TCollection_HAsciiString;
+
+class StepRepr_MappedItem : public StepRepr_RepresentationItem
+{
+
+public:
+  //! Returns a MappedItem
+  Standard_EXPORT StepRepr_MappedItem();
+
+  Standard_EXPORT void Init(const occ::handle<TCollection_HAsciiString>&    aName,
+                            const occ::handle<StepRepr_RepresentationMap>&  aMappingSource,
+                            const occ::handle<StepRepr_RepresentationItem>& aMappingTarget);
+
+  Standard_EXPORT void SetMappingSource(
+    const occ::handle<StepRepr_RepresentationMap>& aMappingSource);
+
+  Standard_EXPORT occ::handle<StepRepr_RepresentationMap> MappingSource() const;
+
+  Standard_EXPORT void SetMappingTarget(
+    const occ::handle<StepRepr_RepresentationItem>& aMappingTarget);
+
+  Standard_EXPORT occ::handle<StepRepr_RepresentationItem> MappingTarget() const;
+
+  DEFINE_STANDARD_RTTIEXT(StepRepr_MappedItem, StepRepr_RepresentationItem)
+
+private:
+  occ::handle<StepRepr_RepresentationMap>  mappingSource;
+  occ::handle<StepRepr_RepresentationItem> mappingTarget;
+};
+
+#endif // _StepRepr_MappedItem_HeaderFile

@@ -11,5 +11,43 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/DataExchange/TKDESTEP/GeomToStep/GeomToStep_MakeCartesianTransformationOperator.hxx"// clang-format on
+#ifndef _GeomToStep_MakeCartesianTransformationOperator_HeaderFile
+#define _GeomToStep_MakeCartesianTransformationOperator_HeaderFile
+
+#include <Standard.hxx>
+#include <Standard_DefineAlloc.hxx>
+#include <Standard_Handle.hxx>
+
+#include <GeomToStep_Root.hxx>
+#include <StepData_StepModel.hxx>
+#include <StepGeom_CartesianTransformationOperator3d.hxx>
+
+class gp_Trsf;
+
+//! This class creates a cartesian_transformation_operator from gp_Trsf.
+//! This entity is used in OCCT to implement a transformation with scaling.
+//! In case of other inputs without scaling use Axis2Placement3d.
+class GeomToStep_MakeCartesianTransformationOperator : public GeomToStep_Root
+{
+public:
+  DEFINE_STANDARD_ALLOC
+
+  //! Main constructor.
+  //! @param[in] theTrsf Transformation to create the operator from it.
+  //! @param[in] theLocalFactors Unit scale factors
+  Standard_EXPORT GeomToStep_MakeCartesianTransformationOperator(
+    const gp_Trsf&          theTrsf,
+    const StepData_Factors& theLocalFactors = StepData_Factors());
+
+  //! Returns the created entity.
+  //! @return The created value.
+  inline const occ::handle<StepGeom_CartesianTransformationOperator3d>& Value() const
+  {
+    return myTrsfOp;
+  }
+
+private:
+  occ::handle<StepGeom_CartesianTransformationOperator3d> myTrsfOp;
+};
+
+#endif // _GeomToStep_MakeCartesianTransformationOperator_HeaderFile

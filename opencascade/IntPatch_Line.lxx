@@ -1,4 +1,5 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Copyright (c) 1995-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +12,82 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ModelingAlgorithms/TKGeomAlgo/IntPatch/IntPatch_Line.lxx"// clang-format on
+#include <Standard_DomainError.hxx>
+
+inline void IntPatch_Line::SetValue(const bool Uiso1,
+                                    const bool Viso1,
+                                    const bool Uiso2,
+                                    const bool Viso2)
+{
+  uS1 = Uiso1;
+  vS1 = Viso1;
+  uS2 = Uiso2;
+  vS2 = Viso2;
+}
+
+inline IntPatch_IType IntPatch_Line::ArcType() const
+{
+  return typ;
+}
+
+inline bool IntPatch_Line::IsTangent() const
+{
+
+  return tg;
+}
+
+inline IntSurf_TypeTrans IntPatch_Line::TransitionOnS1() const
+{
+
+  return tS1;
+}
+
+inline IntSurf_TypeTrans IntPatch_Line::TransitionOnS2() const
+{
+
+  return tS2;
+}
+
+inline IntSurf_Situation IntPatch_Line::SituationS1() const
+{
+
+  if (tS1 != IntSurf_Touch)
+  {
+    throw Standard_DomainError();
+  }
+  return sit1;
+}
+
+inline IntSurf_Situation IntPatch_Line::SituationS2() const
+{
+
+  if (tS2 != IntSurf_Touch)
+  {
+    throw Standard_DomainError();
+  }
+  return sit2;
+}
+
+inline bool IntPatch_Line::IsUIsoOnS1() const
+{
+
+  return uS1;
+}
+
+inline bool IntPatch_Line::IsVIsoOnS1() const
+{
+
+  return vS1;
+}
+
+inline bool IntPatch_Line::IsUIsoOnS2() const
+{
+
+  return uS2;
+}
+
+inline bool IntPatch_Line::IsVIsoOnS2() const
+{
+
+  return vS2;
+}

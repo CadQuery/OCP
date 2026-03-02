@@ -1,4 +1,6 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 2000-02-07
+// Created by: data exchange team
+// Copyright (c) 2000-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +13,30 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ModelingAlgorithms/TKShHealing/ShapeAlgo/ShapeAlgo.hxx"// clang-format on
+#ifndef _ShapeAlgo_HeaderFile
+#define _ShapeAlgo_HeaderFile
+
+#include <Standard.hxx>
+#include <Standard_DefineAlloc.hxx>
+#include <Standard_Handle.hxx>
+
+class ShapeAlgo_AlgoContainer;
+
+class ShapeAlgo
+{
+public:
+  DEFINE_STANDARD_ALLOC
+
+  //! Provides initerface to the algorithms from Shape Healing.
+  //! Creates and initializes default AlgoContainer.
+  Standard_EXPORT static void Init();
+
+  //! Sets default AlgoContainer
+  Standard_EXPORT static void SetAlgoContainer(
+    const occ::handle<ShapeAlgo_AlgoContainer>& aContainer);
+
+  //! Returns default AlgoContainer
+  Standard_EXPORT static occ::handle<ShapeAlgo_AlgoContainer> AlgoContainer();
+};
+
+#endif // _ShapeAlgo_HeaderFile

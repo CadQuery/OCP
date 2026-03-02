@@ -1,4 +1,6 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 2004-11-24
+// Created by: Michael SAZONOV
+// Copyright (c) 2004-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +13,35 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ApplicationFramework/TKXmlTObj/XmlTObjDrivers/XmlTObjDrivers.hxx"// clang-format on
+// The original implementation Copyright: (C) RINA S.p.A
+
+#ifndef XmlTObjDrivers_HeaderFile
+#define XmlTObjDrivers_HeaderFile
+
+#include <Standard_GUID.hxx>
+
+class XmlMDF_ADriverTable;
+class Message_Messenger;
+class TDocStd_Application;
+
+//! Class for registering storage/retrieval drivers for TObj XML persistence
+
+class XmlTObjDrivers
+{
+public:
+  //! Returns a driver corresponding to <aGUID>. Used for plugin.
+  Standard_EXPORT static const occ::handle<Standard_Transient>& Factory(const Standard_GUID& aGUID);
+
+  //! Defines format "TObjXml" and registers its read and write drivers
+  //! in the specified application
+  Standard_EXPORT static void DefineFormat(const occ::handle<TDocStd_Application>& theApp);
+
+  Standard_EXPORT static void AddDrivers(const occ::handle<XmlMDF_ADriverTable>& aDriverTable,
+                                         const occ::handle<Message_Messenger>&   anMsgDrv);
+};
+
+#endif
+
+#ifdef _MSC_VER
+#pragma once
+#endif

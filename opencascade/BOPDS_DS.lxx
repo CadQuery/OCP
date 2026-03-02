@@ -1,4 +1,5 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created by: Peter KURNEV
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +12,114 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ModelingAlgorithms/TKBO/BOPDS/BOPDS_DS.lxx"// clang-format on
+#include <BOPDS_Pair.hxx>
+
+//=================================================================================================
+
+inline NCollection_Vector<BOPDS_InterfVV>& BOPDS_DS::InterfVV()
+{
+  return myInterfVV;
+}
+
+//=================================================================================================
+
+inline NCollection_Vector<BOPDS_InterfVE>& BOPDS_DS::InterfVE()
+{
+  return myInterfVE;
+}
+
+//=================================================================================================
+
+inline NCollection_Vector<BOPDS_InterfVF>& BOPDS_DS::InterfVF()
+{
+  return myInterfVF;
+} //=================================================================================================
+
+inline NCollection_Vector<BOPDS_InterfEE>& BOPDS_DS::InterfEE()
+{
+  return myInterfEE;
+}
+
+//=================================================================================================
+
+inline NCollection_Vector<BOPDS_InterfEF>& BOPDS_DS::InterfEF()
+{
+  return myInterfEF;
+}
+
+//=================================================================================================
+
+inline NCollection_Vector<BOPDS_InterfFF>& BOPDS_DS::InterfFF()
+{
+  return myInterfFF;
+}
+
+//=================================================================================================
+
+inline NCollection_Vector<BOPDS_InterfVZ>& BOPDS_DS::InterfVZ()
+{
+  return myInterfVZ;
+}
+
+//=================================================================================================
+
+inline NCollection_Vector<BOPDS_InterfEZ>& BOPDS_DS::InterfEZ()
+{
+  return myInterfEZ;
+}
+
+//=================================================================================================
+
+inline NCollection_Vector<BOPDS_InterfFZ>& BOPDS_DS::InterfFZ()
+{
+  return myInterfFZ;
+}
+
+//=================================================================================================
+
+inline NCollection_Vector<BOPDS_InterfZZ>& BOPDS_DS::InterfZZ()
+{
+  return myInterfZZ;
+}
+
+//=================================================================================================
+
+inline int BOPDS_DS::NbInterfTypes()
+{
+  return 10;
+}
+
+//=================================================================================================
+
+inline bool BOPDS_DS::AddInterf(const int theI1, const int theI2)
+{
+  if (myInterfTB.Add(BOPDS_Pair(theI1, theI2)))
+  {
+    myInterfered.Add(theI1);
+    myInterfered.Add(theI2);
+    return true;
+  }
+  return false;
+}
+
+//=================================================================================================
+
+inline bool BOPDS_DS::HasInterf(const int theI) const
+{
+  return myInterfered.Contains(theI);
+}
+
+//=================================================================================================
+
+inline bool BOPDS_DS::HasInterf(const int theI1, const int theI2) const
+{
+  BOPDS_Pair aPK(theI1, theI2);
+  return myInterfTB.Contains(aPK);
+}
+
+//=================================================================================================
+
+inline const NCollection_Map<BOPDS_Pair>& BOPDS_DS::Interferences() const
+{
+  return myInterfTB;
+}

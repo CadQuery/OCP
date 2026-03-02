@@ -1,4 +1,6 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 2008-03-04
+// Created by: Vlad ROMASHKO
+// Copyright (c) 2008-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +13,37 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ApplicationFramework/TKXmlL/XmlMFunction/XmlMFunction_ScopeDriver.hxx"// clang-format on
+#ifndef _XmlMFunction_ScopeDriver_HeaderFile
+#define _XmlMFunction_ScopeDriver_HeaderFile
+
+#include <Standard.hxx>
+#include <Standard_Type.hxx>
+
+#include <XmlMDF_ADriver.hxx>
+#include <XmlObjMgt_RRelocationTable.hxx>
+#include <XmlObjMgt_SRelocationTable.hxx>
+class Message_Messenger;
+class TDF_Attribute;
+class XmlObjMgt_Persistent;
+
+//! XML persistence driver for a scope of functions.
+class XmlMFunction_ScopeDriver : public XmlMDF_ADriver
+{
+
+public:
+  Standard_EXPORT XmlMFunction_ScopeDriver(const occ::handle<Message_Messenger>& theMessageDriver);
+
+  Standard_EXPORT occ::handle<TDF_Attribute> NewEmpty() const override;
+
+  Standard_EXPORT bool Paste(const XmlObjMgt_Persistent&       Source,
+                             const occ::handle<TDF_Attribute>& Target,
+                             XmlObjMgt_RRelocationTable&       RelocTable) const override;
+
+  Standard_EXPORT void Paste(const occ::handle<TDF_Attribute>& Source,
+                             XmlObjMgt_Persistent&             Target,
+                             XmlObjMgt_SRelocationTable&       RelocTable) const override;
+
+  DEFINE_STANDARD_RTTIEXT(XmlMFunction_ScopeDriver, XmlMDF_ADriver)
+};
+
+#endif // _XmlMFunction_ScopeDriver_HeaderFile

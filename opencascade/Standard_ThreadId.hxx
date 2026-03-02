@@ -1,4 +1,6 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 2006-03-10
+// Created by: data exchange team
+// Copyright (c) 2006-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +13,10 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/FoundationClasses/TKernel/Standard/Standard_ThreadId.hxx"// clang-format on
+#ifndef Standard_ThreadId_HeaderFile
+#define Standard_ThreadId_HeaderFile
+
+// Platform-independent definition of the thread identifier type
+typedef size_t Standard_ThreadId;
+
+#endif

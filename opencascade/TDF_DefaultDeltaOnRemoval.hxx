@@ -1,4 +1,6 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created by: DAUTRY Philippe
+// Copyright (c) 1997-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +13,27 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ApplicationFramework/TKLCAF/TDF/TDF_DefaultDeltaOnRemoval.hxx"// clang-format on
+#ifndef _TDF_DefaultDeltaOnRemoval_HeaderFile
+#define _TDF_DefaultDeltaOnRemoval_HeaderFile
+
+#include <Standard.hxx>
+
+#include <TDF_DeltaOnRemoval.hxx>
+class TDF_Attribute;
+
+//! This class provides a default implementation of a
+//! TDF_DeltaOnRemoval.
+class TDF_DefaultDeltaOnRemoval : public TDF_DeltaOnRemoval
+{
+
+public:
+  //! Creates a TDF_DefaultDeltaOnRemoval.
+  Standard_EXPORT TDF_DefaultDeltaOnRemoval(const occ::handle<TDF_Attribute>& anAttribute);
+
+  //! Applies the delta to the attribute.
+  Standard_EXPORT void Apply() override;
+
+  DEFINE_STANDARD_RTTIEXT(TDF_DefaultDeltaOnRemoval, TDF_DeltaOnRemoval)
+};
+
+#endif // _TDF_DefaultDeltaOnRemoval_HeaderFile

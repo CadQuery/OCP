@@ -1,4 +1,6 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 2003-09-29
+// Created by: Alexander SOLOVYOV
+// Copyright (c) 2003-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +13,21 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/Visualization/TKMeshVS/MeshVS/MeshVS_EntityType.hxx"// clang-format on
+#ifndef MeshVS_EntityType_HeaderFile
+#define MeshVS_EntityType_HeaderFile
+
+typedef enum
+{
+  MeshVS_ET_NONE   = 0x00,
+  MeshVS_ET_Node   = 0x01,
+  MeshVS_ET_0D     = 0x02,
+  MeshVS_ET_Link   = 0x04,
+  MeshVS_ET_Face   = 0x08,
+  MeshVS_ET_Volume = 0x10,
+
+  MeshVS_ET_Element = MeshVS_ET_0D | MeshVS_ET_Link | MeshVS_ET_Face | MeshVS_ET_Volume,
+  MeshVS_ET_All     = MeshVS_ET_Element | MeshVS_ET_Node
+
+} MeshVS_EntityType;
+
+#endif

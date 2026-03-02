@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 1995-07-20
+// Created by: Modelistation
+// Copyright (c) 1995-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,43 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ModelingAlgorithms/TKTopAlgo/BRepApprox/BRepApprox_ApproxLine.hxx"// clang-format on
+#ifndef _BRepApprox_ApproxLine_HeaderFile
+#define _BRepApprox_ApproxLine_HeaderFile
+
+#include <Standard.hxx>
+#include <Standard_Type.hxx>
+
+#include <Standard_Transient.hxx>
+#include <Standard_Integer.hxx>
+class Geom_BSplineCurve;
+class Geom2d_BSplineCurve;
+class IntSurf_LineOn2S;
+class IntSurf_PntOn2S;
+
+class BRepApprox_ApproxLine : public Standard_Transient
+{
+
+public:
+  Standard_EXPORT BRepApprox_ApproxLine(const occ::handle<Geom_BSplineCurve>&   CurveXYZ,
+                                        const occ::handle<Geom2d_BSplineCurve>& CurveUV1,
+                                        const occ::handle<Geom2d_BSplineCurve>& CurveUV2);
+
+  //! theTang variable has been entered only for compatibility with
+  //! the alias IntPatch_WLine. They are not used in this class.
+  Standard_EXPORT BRepApprox_ApproxLine(const occ::handle<IntSurf_LineOn2S>& lin,
+                                        const bool                           theTang = false);
+
+  Standard_EXPORT int NbPnts() const;
+
+  Standard_EXPORT IntSurf_PntOn2S Point(const int Index);
+
+  DEFINE_STANDARD_RTTIEXT(BRepApprox_ApproxLine, Standard_Transient)
+
+private:
+  occ::handle<Geom_BSplineCurve>   myCurveXYZ;
+  occ::handle<Geom2d_BSplineCurve> myCurveUV1;
+  occ::handle<Geom2d_BSplineCurve> myCurveUV2;
+  occ::handle<IntSurf_LineOn2S>    myLineOn2S;
+};
+
+#endif // _BRepApprox_ApproxLine_HeaderFile

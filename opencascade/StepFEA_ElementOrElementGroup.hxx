@@ -1,4 +1,6 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 2003-02-04
+// Created by: data exchange team
+// Copyright (c) 2003-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +13,39 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/DataExchange/TKDESTEP/StepFEA/StepFEA_ElementOrElementGroup.hxx"// clang-format on
+#ifndef _StepFEA_ElementOrElementGroup_HeaderFile
+#define _StepFEA_ElementOrElementGroup_HeaderFile
+
+#include <Standard.hxx>
+#include <Standard_DefineAlloc.hxx>
+#include <Standard_Handle.hxx>
+
+#include <StepData_SelectType.hxx>
+#include <Standard_Integer.hxx>
+class Standard_Transient;
+class StepFEA_ElementRepresentation;
+class StepFEA_ElementGroup;
+
+//! Representation of STEP SELECT type ElementOrElementGroup
+class StepFEA_ElementOrElementGroup : public StepData_SelectType
+{
+public:
+  DEFINE_STANDARD_ALLOC
+
+  //! Empty constructor
+  Standard_EXPORT StepFEA_ElementOrElementGroup();
+
+  //! Recognizes a kind of ElementOrElementGroup select type
+  //! 1 -> ElementRepresentation from StepFEA
+  //! 2 -> ElementGroup from StepFEA
+  //! 0 else
+  Standard_EXPORT int CaseNum(const occ::handle<Standard_Transient>& ent) const override;
+
+  //! Returns Value as ElementRepresentation (or Null if another type)
+  Standard_EXPORT occ::handle<StepFEA_ElementRepresentation> ElementRepresentation() const;
+
+  //! Returns Value as ElementGroup (or Null if another type)
+  Standard_EXPORT occ::handle<StepFEA_ElementGroup> ElementGroup() const;
+};
+
+#endif // _StepFEA_ElementOrElementGroup_HeaderFile

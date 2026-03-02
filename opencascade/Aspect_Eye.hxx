@@ -1,4 +1,4 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Copyright (c) 2020 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +11,14 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/Visualization/TKService/Aspect/Aspect_Eye.hxx"// clang-format on
+#ifndef _Aspect_Eye_HeaderFile
+#define _Aspect_Eye_HeaderFile
+
+//! Camera eye index within stereoscopic pair.
+enum Aspect_Eye
+{
+  Aspect_Eye_Left,
+  Aspect_Eye_Right
+};
+
+#endif // _Aspect_Eye_HeaderFile

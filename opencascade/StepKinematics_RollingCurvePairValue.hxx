@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on : Sat May 02 12:41:16 2020
+// Created by: Irina KRYLOVA
+// Generator:	Express (EXPRESS -> CASCADE/XSTEP Translator) V3.0
+// Copyright (c) Open CASCADE 2020
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,38 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/DataExchange/TKDESTEP/StepKinematics/StepKinematics_RollingCurvePairValue.hxx"// clang-format on
+#ifndef _StepKinematics_RollingCurvePairValue_HeaderFile_
+#define _StepKinematics_RollingCurvePairValue_HeaderFile_
+
+#include <Standard.hxx>
+#include <StepKinematics_PairValue.hxx>
+
+#include <TCollection_HAsciiString.hxx>
+#include <StepKinematics_KinematicPair.hxx>
+#include <StepGeom_PointOnCurve.hxx>
+
+//! Representation of STEP entity RollingCurvePairValue
+class StepKinematics_RollingCurvePairValue : public StepKinematics_PairValue
+{
+public:
+  //! default constructor
+  Standard_EXPORT StepKinematics_RollingCurvePairValue();
+
+  //! Initialize all fields (own and inherited)
+  Standard_EXPORT void Init(
+    const occ::handle<TCollection_HAsciiString>&     theRepresentationItem_Name,
+    const occ::handle<StepKinematics_KinematicPair>& thePairValue_AppliesToPair,
+    const occ::handle<StepGeom_PointOnCurve>&        theActualPointOnCurve1);
+
+  //! Returns field ActualPointOnCurve1
+  Standard_EXPORT occ::handle<StepGeom_PointOnCurve> ActualPointOnCurve1() const;
+  //! Sets field ActualPointOnCurve1
+  Standard_EXPORT void SetActualPointOnCurve1(
+    const occ::handle<StepGeom_PointOnCurve>& theActualPointOnCurve1);
+
+  DEFINE_STANDARD_RTTIEXT(StepKinematics_RollingCurvePairValue, StepKinematics_PairValue)
+
+private:
+  occ::handle<StepGeom_PointOnCurve> myActualPointOnCurve1;
+};
+#endif // _StepKinematics_RollingCurvePairValue_HeaderFile_

@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 1993-01-09
+// Created by: CKY / Contract Toubro-Larsen ( Deepak PRABHU )
+// Copyright (c) 1993-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,28 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/DataExchange/TKDEIGES/IGESDimen/IGESDimen.hxx"// clang-format on
+#ifndef _IGESDimen_HeaderFile
+#define _IGESDimen_HeaderFile
+
+#include <Standard.hxx>
+#include <Standard_DefineAlloc.hxx>
+#include <Standard_Handle.hxx>
+
+class IGESDimen_Protocol;
+
+//! This package represents Entities applied to Dimensions
+//! ie. Annotation Entities and attached Properties and
+//! Associativities.
+class IGESDimen
+{
+public:
+  DEFINE_STANDARD_ALLOC
+
+  //! Prepares dynamic data (Protocol, Modules) for this package
+  Standard_EXPORT static void Init();
+
+  //! Returns the Protocol for this Package
+  Standard_EXPORT static occ::handle<IGESDimen_Protocol> Protocol();
+};
+
+#endif // _IGESDimen_HeaderFile

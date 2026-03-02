@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 1997-05-13
+// Created by: Stagiaire Francois DUMONT
+// Copyright (c) 1997-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,53 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ModelingData/TKGeomBase/GeomLib/GeomLib_DenominatorMultiplier.hxx"// clang-format on
+#ifndef _GeomLib_DenominatorMultiplier_HeaderFile
+#define _GeomLib_DenominatorMultiplier_HeaderFile
+
+#include <Standard.hxx>
+#include <Standard_DefineAlloc.hxx>
+#include <Standard_Handle.hxx>
+
+#include <NCollection_Array1.hxx>
+#include <Standard_Real.hxx>
+class Geom_BSplineSurface;
+
+//! this defines an evaluator for a function of 2 variables
+//! that will be used by CancelDenominatorDerivative in one
+//! direction.
+class GeomLib_DenominatorMultiplier
+{
+public:
+  DEFINE_STANDARD_ALLOC
+
+  //! if the surface is rational this will define the evaluator
+  //! of a real function of 2 variables a(u,v) such that
+  //! if we define a new surface by :
+  //! a(u,v) * N(u,v)
+  //! NewF(u,v) = ----------------
+  //! a(u,v) * D(u,v)
+  Standard_EXPORT GeomLib_DenominatorMultiplier(const occ::handle<Geom_BSplineSurface>& Surface,
+                                                const NCollection_Array1<double>&       KnotVector);
+
+  //! Returns the value of
+  //! a(UParameter,VParameter)=
+  //!
+  //! H0(UParameter)/Denominator(Umin,Vparameter)
+  //!
+  //! D Denominator(Umin,Vparameter)
+  //! - ------------------------------[H1(u)]/(Denominator(Umin,Vparameter)^2)
+  //! D U
+  //!
+  //! + H3(UParameter)/Denominator(Umax,Vparameter)
+  //!
+  //! D Denominator(Umax,Vparameter)
+  //! - ------------------------------[H2(u)]/(Denominator(Umax,Vparameter)^2)
+  //! D U
+  Standard_EXPORT double Value(const double UParameter, const double VParameter) const;
+
+private:
+  occ::handle<Geom_BSplineSurface> mySurface;
+  NCollection_Array1<double>       myKnotFlatVector;
+};
+
+#endif // _GeomLib_DenominatorMultiplier_HeaderFile

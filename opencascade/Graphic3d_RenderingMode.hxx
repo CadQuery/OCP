@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 1993-03-31
+// Created by: NW,JPB,CAL
+// Copyright (c) 1993-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,16 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/Visualization/TKService/Graphic3d/Graphic3d_RenderingMode.hxx"// clang-format on
+#ifndef _Graphic3d_RenderingMode_HeaderFile
+#define _Graphic3d_RenderingMode_HeaderFile
+
+//! Describes rendering modes.
+//! - RM_RASTERIZATION: enables OpenGL rasterization mode;
+//! - RM_RAYTRACING: enables GPU ray-tracing mode.
+enum Graphic3d_RenderingMode
+{
+  Graphic3d_RM_RASTERIZATION,
+  Graphic3d_RM_RAYTRACING
+};
+
+#endif // _Graphic3d_RenderingMode_HeaderFile

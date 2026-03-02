@@ -1,4 +1,6 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 2016-04-19
+// Copyright (c) 2016 OPEN CASCADE SAS
+// Created by: Oleg AGASHIN
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +13,50 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ModelingAlgorithms/TKMesh/IMeshTools/IMeshTools_ModelAlgo.hxx"// clang-format on
+#ifndef _IMeshTools_ModelAlgo_HeaderFile
+#define _IMeshTools_ModelAlgo_HeaderFile
+
+#include <Standard_Transient.hxx>
+#include <Standard_ErrorHandler.hxx>
+#include <Message_ProgressRange.hxx>
+
+class IMeshData_Model;
+struct IMeshTools_Parameters;
+
+//! Interface class providing API for algorithms intended to update or modify discrete model.
+class IMeshTools_ModelAlgo : public Standard_Transient
+{
+public:
+  //! Destructor.
+  ~IMeshTools_ModelAlgo() override = default;
+
+  //! Exceptions protected processing of the given model.
+  bool Perform(const occ::handle<IMeshData_Model>& theModel,
+               const IMeshTools_Parameters&        theParameters,
+               const Message_ProgressRange&        theRange)
+  {
+    try
+    {
+      OCC_CATCH_SIGNALS
+
+      return performInternal(theModel, theParameters, theRange);
+    }
+    catch (Standard_Failure const&)
+    {
+      return false;
+    }
+  }
+
+  DEFINE_STANDARD_RTTIEXT(IMeshTools_ModelAlgo, Standard_Transient)
+
+protected:
+  //! Constructor.
+  IMeshTools_ModelAlgo() {}
+
+  //! Performs processing of the given model.
+  Standard_EXPORT virtual bool performInternal(const occ::handle<IMeshData_Model>& theModel,
+                                               const IMeshTools_Parameters&        theParameters,
+                                               const Message_ProgressRange&        theRange) = 0;
+};
+
+#endif

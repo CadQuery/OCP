@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 1999-02-15
+// Created by: Andrey BETENEV
+// Copyright (c) 1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,31 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/DataExchange/TKDESTEP/StepGeom/StepGeom_SurfaceCurveAndBoundedCurve.hxx"// clang-format on
+#ifndef _StepGeom_SurfaceCurveAndBoundedCurve_HeaderFile
+#define _StepGeom_SurfaceCurveAndBoundedCurve_HeaderFile
+
+#include <Standard.hxx>
+#include <Standard_Type.hxx>
+
+#include <StepGeom_SurfaceCurve.hxx>
+class StepGeom_BoundedCurve;
+
+//! complex type: bounded_curve + surface_curve
+//! needed for curve_bounded_surfaces (S4132)
+class StepGeom_SurfaceCurveAndBoundedCurve : public StepGeom_SurfaceCurve
+{
+
+public:
+  //! creates empty object
+  Standard_EXPORT StepGeom_SurfaceCurveAndBoundedCurve();
+
+  //! returns field BoundedCurve
+  Standard_EXPORT occ::handle<StepGeom_BoundedCurve>& BoundedCurve();
+
+  DEFINE_STANDARD_RTTIEXT(StepGeom_SurfaceCurveAndBoundedCurve, StepGeom_SurfaceCurve)
+
+private:
+  occ::handle<StepGeom_BoundedCurve> myBoundedCurve;
+};
+
+#endif // _StepGeom_SurfaceCurveAndBoundedCurve_HeaderFile

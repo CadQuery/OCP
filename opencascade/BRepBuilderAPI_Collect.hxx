@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 1996-04-09
+// Created by: Yves FRICAUD
+// Copyright (c) 1996-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,50 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ModelingAlgorithms/TKTopAlgo/BRepBuilderAPI/BRepBuilderAPI_Collect.hxx"// clang-format on
+#ifndef _BRepBuilderAPI_Collect_HeaderFile
+#define _BRepBuilderAPI_Collect_HeaderFile
+
+#include <Standard.hxx>
+#include <Standard_DefineAlloc.hxx>
+#include <Standard_Handle.hxx>
+
+#include <TopoDS_Shape.hxx>
+#include <TopTools_ShapeMapHasher.hxx>
+#include <NCollection_Map.hxx>
+#include <NCollection_List.hxx>
+#include <NCollection_DataMap.hxx>
+class BRepBuilderAPI_MakeShape;
+
+class BRepBuilderAPI_Collect
+{
+public:
+  DEFINE_STANDARD_ALLOC
+
+  Standard_EXPORT BRepBuilderAPI_Collect();
+
+  Standard_EXPORT void Add(const TopoDS_Shape& SI, BRepBuilderAPI_MakeShape& MKS);
+
+  Standard_EXPORT void AddGenerated(const TopoDS_Shape& S, const TopoDS_Shape& Gen);
+
+  Standard_EXPORT void AddModif(const TopoDS_Shape& S, const TopoDS_Shape& Mod);
+
+  Standard_EXPORT void Filter(const TopoDS_Shape& SF);
+
+  Standard_EXPORT const NCollection_DataMap<TopoDS_Shape,
+                                            NCollection_List<TopoDS_Shape>,
+                                            TopTools_ShapeMapHasher>&
+                        Modification() const;
+
+  Standard_EXPORT const NCollection_DataMap<TopoDS_Shape,
+                                            NCollection_List<TopoDS_Shape>,
+                                            TopTools_ShapeMapHasher>&
+                        Generated() const;
+
+private:
+  TopoDS_Shape                                           myInitialShape;
+  NCollection_Map<TopoDS_Shape, TopTools_ShapeMapHasher> myDeleted;
+  NCollection_DataMap<TopoDS_Shape, NCollection_List<TopoDS_Shape>, TopTools_ShapeMapHasher> myMod;
+  NCollection_DataMap<TopoDS_Shape, NCollection_List<TopoDS_Shape>, TopTools_ShapeMapHasher> myGen;
+};
+
+#endif // _BRepBuilderAPI_Collect_HeaderFile

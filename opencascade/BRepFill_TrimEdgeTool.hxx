@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 1995-04-24
+// Created by: Bruno DUMORTIER
+// Copyright (c) 1995-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,65 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ModelingAlgorithms/TKBool/BRepFill/BRepFill_TrimEdgeTool.hxx"// clang-format on
+#ifndef _BRepFill_TrimEdgeTool_HeaderFile
+#define _BRepFill_TrimEdgeTool_HeaderFile
+
+#include <Standard.hxx>
+#include <Standard_DefineAlloc.hxx>
+#include <Standard_Handle.hxx>
+
+#include <gp_Pnt2d.hxx>
+#include <Bisector_Bisec.hxx>
+#include <Geom2dAdaptor_Curve.hxx>
+#include <GeomAbs_JoinType.hxx>
+#include <gp_Pnt.hxx>
+#include <NCollection_Sequence.hxx>
+class Geom2d_Curve;
+class Geom2d_Geometry;
+class TopoDS_Edge;
+class TopoDS_Shape;
+class TopoDS_Vertex;
+
+//! Geometric Tool using to construct Offset Wires.
+class BRepFill_TrimEdgeTool
+{
+public:
+  DEFINE_STANDARD_ALLOC
+
+  Standard_EXPORT BRepFill_TrimEdgeTool();
+
+  Standard_EXPORT BRepFill_TrimEdgeTool(const Bisector_Bisec&               Bisec,
+                                        const occ::handle<Geom2d_Geometry>& S1,
+                                        const occ::handle<Geom2d_Geometry>& S2,
+                                        const double                        Offset);
+
+  Standard_EXPORT void IntersectWith(const TopoDS_Edge&            Edge1,
+                                     const TopoDS_Edge&            Edge2,
+                                     const TopoDS_Shape&           InitShape1,
+                                     const TopoDS_Shape&           InitShape2,
+                                     const TopoDS_Vertex&          End1,
+                                     const TopoDS_Vertex&          End2,
+                                     const GeomAbs_JoinType        theJoinType,
+                                     const bool                    IsOpenResult,
+                                     NCollection_Sequence<gp_Pnt>& Params);
+
+  Standard_EXPORT void AddOrConfuse(const bool                    Start,
+                                    const TopoDS_Edge&            Edge1,
+                                    const TopoDS_Edge&            Edge2,
+                                    NCollection_Sequence<gp_Pnt>& Params) const;
+
+  Standard_EXPORT bool IsInside(const gp_Pnt2d& P) const;
+
+private:
+  bool                      isPoint1;
+  bool                      isPoint2;
+  gp_Pnt2d                  myP1;
+  gp_Pnt2d                  myP2;
+  occ::handle<Geom2d_Curve> myC1;
+  occ::handle<Geom2d_Curve> myC2;
+  double                    myOffset;
+  Bisector_Bisec            myBisec;
+  Geom2dAdaptor_Curve       myBis;
+};
+
+#endif // _BRepFill_TrimEdgeTool_HeaderFile

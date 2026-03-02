@@ -1,4 +1,5 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Copyright (c) 1992-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +12,30 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/FoundationClasses/TKernel/OSD/OSD_SysType.hxx"// clang-format on
+#ifndef _OSD_SysType_HeaderFile
+#define _OSD_SysType_HeaderFile
+
+//! Thisd is a set of possible system types.
+//! 'Default' means SysType of machine operating this process.
+//! This can be used with the Path class.
+//! All UNIX-like are grouped under "UnixBSD" or "UnixSystemV".
+//! Such systems are Solaris, NexTOS ...
+//! A category of systems accept MSDOS-like path such as
+//! WindowsNT and OS2.
+enum OSD_SysType
+{
+  OSD_Unknown,
+  OSD_Default,
+  OSD_UnixBSD,
+  OSD_UnixSystemV,
+  OSD_VMS,
+  OSD_OS2,
+  OSD_OSF,
+  OSD_MacOs,
+  OSD_Taligent,
+  OSD_WindowsNT,
+  OSD_LinuxREDHAT,
+  OSD_Aix
+};
+
+#endif // _OSD_SysType_HeaderFile

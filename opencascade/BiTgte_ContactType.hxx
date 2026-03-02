@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 1996-12-16
+// Created by: Bruno DUMORTIER
+// Copyright (c) 1996-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,17 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ModelingAlgorithms/TKOffset/BiTgte/BiTgte_ContactType.hxx"// clang-format on
+#ifndef _BiTgte_ContactType_HeaderFile
+#define _BiTgte_ContactType_HeaderFile
+
+enum BiTgte_ContactType
+{
+  BiTgte_FaceFace,
+  BiTgte_FaceEdge,
+  BiTgte_FaceVertex,
+  BiTgte_EdgeEdge,
+  BiTgte_EdgeVertex,
+  BiTgte_VertexVertex
+};
+
+#endif // _BiTgte_ContactType_HeaderFile

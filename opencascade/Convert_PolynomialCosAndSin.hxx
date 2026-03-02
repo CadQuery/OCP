@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 1995-10-10
+// Created by: Jacques GOUSSARD
+// Copyright (c) 1995-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,18 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/FoundationClasses/TKMath/Convert/Convert_PolynomialCosAndSin.hxx"// clang-format on
+#ifndef Convert_PolynomialCosAndSin_HeaderFile
+#define Convert_PolynomialCosAndSin_HeaderFile
+
+#include <NCollection_Array1.hxx>
+#include <NCollection_HArray1.hxx>
+#include <Standard_Integer.hxx>
+
+void BuildPolynomialCosAndSin(const double,
+                              const double,
+                              const int,
+                              occ::handle<NCollection_HArray1<double>>&,
+                              occ::handle<NCollection_HArray1<double>>&,
+                              occ::handle<NCollection_HArray1<double>>&);
+
+#endif

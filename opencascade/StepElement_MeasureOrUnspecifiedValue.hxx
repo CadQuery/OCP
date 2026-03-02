@@ -1,4 +1,6 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 2002-12-10
+// Created by: data exchange team
+// Copyright (c) 2002-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +13,52 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/DataExchange/TKDESTEP/StepElement/StepElement_MeasureOrUnspecifiedValue.hxx"// clang-format on
+#ifndef _StepElement_MeasureOrUnspecifiedValue_HeaderFile
+#define _StepElement_MeasureOrUnspecifiedValue_HeaderFile
+
+#include <Standard.hxx>
+#include <Standard_DefineAlloc.hxx>
+#include <Standard_Handle.hxx>
+
+#include <StepData_SelectType.hxx>
+#include <Standard_Integer.hxx>
+#include <StepElement_UnspecifiedValue.hxx>
+class Standard_Transient;
+class StepData_SelectMember;
+
+//! Representation of STEP SELECT type MeasureOrUnspecifiedValue
+class StepElement_MeasureOrUnspecifiedValue : public StepData_SelectType
+{
+public:
+  DEFINE_STANDARD_ALLOC
+
+  //! Empty constructor
+  Standard_EXPORT StepElement_MeasureOrUnspecifiedValue();
+
+  //! Recognizes a kind of MeasureOrUnspecifiedValue select type
+  //! return 0
+  Standard_EXPORT int CaseNum(const occ::handle<Standard_Transient>& ent) const override;
+
+  //! Recognizes a items of select member MeasureOrUnspecifiedValueMember
+  //! 1 -> ContextDependentMeasure
+  //! 2 -> UnspecifiedValue
+  //! 0 else
+  Standard_EXPORT int CaseMem(const occ::handle<StepData_SelectMember>& ent) const override;
+
+  //! Returns a new select member the type MeasureOrUnspecifiedValueMember
+  Standard_EXPORT occ::handle<StepData_SelectMember> NewMember() const override;
+
+  //! Set Value for ContextDependentMeasure
+  Standard_EXPORT void SetContextDependentMeasure(const double aVal);
+
+  //! Returns Value as ContextDependentMeasure (or Null if another type)
+  Standard_EXPORT double ContextDependentMeasure() const;
+
+  //! Set Value for UnspecifiedValue
+  Standard_EXPORT void SetUnspecifiedValue(const StepElement_UnspecifiedValue aVal);
+
+  //! Returns Value as UnspecifiedValue (or Null if another type)
+  Standard_EXPORT StepElement_UnspecifiedValue UnspecifiedValue() const;
+};
+
+#endif // _StepElement_MeasureOrUnspecifiedValue_HeaderFile

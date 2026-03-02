@@ -1,4 +1,6 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 2015-07-13
+// Created by: Irina KRYLOVA
+// Copyright (c) 2015 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +13,34 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/DataExchange/TKDESTEP/StepDimTol/StepDimTol_ToleranceZoneForm.hxx"// clang-format on
+#ifndef _StepDimTol_ToleranceZoneForm_HeaderFile
+#define _StepDimTol_ToleranceZoneForm_HeaderFile
+
+#include <Standard_Transient.hxx>
+#include <Standard.hxx>
+#include <TCollection_HAsciiString.hxx>
+
+class TCollection_HAsciiString;
+
+//! Added for Dimensional Tolerances
+class StepDimTol_ToleranceZoneForm : public Standard_Transient
+{
+
+public:
+  Standard_EXPORT StepDimTol_ToleranceZoneForm();
+
+  //! Init all field own and inherited
+  Standard_EXPORT void Init(const occ::handle<TCollection_HAsciiString>& theName);
+
+  //! Returns field Name
+  inline occ::handle<TCollection_HAsciiString> Name() { return myName; }
+
+  //! Set field Name
+  inline void SetName(const occ::handle<TCollection_HAsciiString>& theName) { myName = theName; }
+
+  DEFINE_STANDARD_RTTIEXT(StepDimTol_ToleranceZoneForm, Standard_Transient)
+
+private:
+  occ::handle<TCollection_HAsciiString> myName;
+};
+#endif // _StepDimTol_ToleranceZoneForm_HeaderFile

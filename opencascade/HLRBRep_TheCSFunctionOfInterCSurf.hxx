@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 1992-10-14
+// Created by: Christophe MARION
+// Copyright (c) 1992-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,55 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ModelingAlgorithms/TKHLR/HLRBRep/HLRBRep_TheCSFunctionOfInterCSurf.hxx"// clang-format on
+#ifndef _HLRBRep_TheCSFunctionOfInterCSurf_HeaderFile
+#define _HLRBRep_TheCSFunctionOfInterCSurf_HeaderFile
+
+#include <Standard.hxx>
+#include <Standard_DefineAlloc.hxx>
+#include <Standard_Handle.hxx>
+
+#include <gp_Lin.hxx>
+#include <gp_Pnt.hxx>
+#include <math_FunctionSetWithDerivatives.hxx>
+#include <Standard_Boolean.hxx>
+#include <math_Vector.hxx>
+class HLRBRep_Surface;
+class HLRBRep_SurfaceTool;
+class gp_Lin;
+class HLRBRep_LineTool;
+class math_Matrix;
+class gp_Pnt;
+
+class HLRBRep_TheCSFunctionOfInterCSurf : public math_FunctionSetWithDerivatives
+{
+public:
+  DEFINE_STANDARD_ALLOC
+
+  Standard_EXPORT HLRBRep_TheCSFunctionOfInterCSurf(HLRBRep_Surface* const& S, const gp_Lin& C);
+
+  Standard_EXPORT int NbVariables() const override;
+
+  Standard_EXPORT int NbEquations() const override;
+
+  Standard_EXPORT bool Value(const math_Vector& X, math_Vector& F) override;
+
+  Standard_EXPORT bool Derivatives(const math_Vector& X, math_Matrix& D) override;
+
+  Standard_EXPORT bool Values(const math_Vector& X, math_Vector& F, math_Matrix& D) override;
+
+  Standard_EXPORT const gp_Pnt& Point() const;
+
+  Standard_EXPORT double Root() const;
+
+  Standard_EXPORT HLRBRep_Surface* const& AuxillarSurface() const;
+
+  Standard_EXPORT const gp_Lin& AuxillarCurve() const;
+
+private:
+  HLRBRep_Surface* surface;
+  gp_Lin           curve;
+  gp_Pnt           p;
+  double           f;
+};
+
+#endif // _HLRBRep_TheCSFunctionOfInterCSurf_HeaderFile

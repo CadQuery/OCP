@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 1992-10-14
+// Created by: Christophe MARION
+// Copyright (c) 1992-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,18 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ModelingAlgorithms/TKHLR/HLRBRep/HLRBRep_TheCurveLocatorOfTheProjPCurOfCInter.hxx"// clang-format on
+#ifndef _HLRBRep_TheCurveLocatorOfTheProjPCurOfCInter_HeaderFile
+#define _HLRBRep_TheCurveLocatorOfTheProjPCurOfCInter_HeaderFile
+
+#include <Extrema_GCurveLocator.hxx>
+#include <Extrema_POnCurv2d.hxx>
+#include <HLRBRep_TypeDef.hxx>
+#include <gp_Pnt2d.hxx>
+#include <HLRBRep_CurveTool.hxx>
+#include <Standard_TypeDef.hxx>
+
+//! Type alias for curve locator using HLRBRep_CurveTool.
+using HLRBRep_TheCurveLocatorOfTheProjPCurOfCInter =
+  Extrema_GCurveLocator<HLRBRep_CurvePtr, HLRBRep_CurveTool, Extrema_POnCurv2d, gp_Pnt2d>;
+
+#endif // _HLRBRep_TheCurveLocatorOfTheProjPCurOfCInter_HeaderFile

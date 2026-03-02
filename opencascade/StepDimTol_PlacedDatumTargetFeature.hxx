@@ -1,4 +1,6 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 2003-06-04
+// Created by: Galina KULIKOVA
+// Copyright (c) 2003-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +13,23 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/DataExchange/TKDESTEP/StepDimTol/StepDimTol_PlacedDatumTargetFeature.hxx"// clang-format on
+#ifndef _StepDimTol_PlacedDatumTargetFeature_HeaderFile
+#define _StepDimTol_PlacedDatumTargetFeature_HeaderFile
+
+#include <Standard.hxx>
+#include <Standard_Type.hxx>
+
+#include <StepDimTol_DatumTarget.hxx>
+
+//! Representation of STEP entity PlacedDatumTargetFeature
+class StepDimTol_PlacedDatumTargetFeature : public StepDimTol_DatumTarget
+{
+
+public:
+  //! Empty constructor
+  Standard_EXPORT StepDimTol_PlacedDatumTargetFeature();
+
+  DEFINE_STANDARD_RTTIEXT(StepDimTol_PlacedDatumTargetFeature, StepDimTol_DatumTarget)
+};
+
+#endif // _StepDimTol_PlacedDatumTargetFeature_HeaderFile

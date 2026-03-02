@@ -1,4 +1,4 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Copyright (c) 2015 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +11,67 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ApplicationFramework/TKStd/StdObject/StdObject_Shape.hxx"// clang-format on
+#ifndef _StdObject_Shape_HeaderFile
+#define _StdObject_Shape_HeaderFile
+
+#include <StdObject_Location.hxx>
+#include <StdPersistent_TopoDS.hxx>
+
+#include <TopoDS_Shape.hxx>
+
+class StdObject_Shape
+{
+  friend class ShapePersistent_TopoDS;
+
+public:
+  //! Empty constructor.
+  StdObject_Shape()
+      : myOrient(0)
+  {
+  }
+
+  //! Import transient object from the persistent data.
+  Standard_EXPORT TopoDS_Shape Import() const;
+
+  Standard_EXPORT void PChildren(StdObjMgt_Persistent::SequenceOfPersistent& theChildren) const;
+
+protected:
+  //! Read persistent data from a file.
+  inline void read(StdObjMgt_ReadData& theReadData)
+  {
+    theReadData >> myTShape >> myLocation >> myOrient;
+  }
+
+  //! Write persistent data to a file.
+  inline void write(StdObjMgt_WriteData& theWriteData) const
+  {
+    theWriteData << myTShape << myLocation << myOrient;
+  }
+
+protected:
+  Handle(StdPersistent_TopoDS::TShape) myTShape;
+  StdObject_Location                   myLocation;
+  int                                  myOrient;
+
+  friend StdObjMgt_ReadData&  operator>>(StdObjMgt_ReadData&, StdObject_Shape&);
+  friend StdObjMgt_WriteData& operator<<(StdObjMgt_WriteData&, const StdObject_Shape&);
+};
+
+//! Read persistent data from a file.
+inline StdObjMgt_ReadData& operator>>(StdObjMgt_ReadData& theReadData, StdObject_Shape& theShape)
+{
+  StdObjMgt_ReadData::ObjectSentry aSentry(theReadData);
+  theShape.read(theReadData);
+  return theReadData;
+}
+
+//! Write persistent data to a file.
+inline StdObjMgt_WriteData& operator<<(StdObjMgt_WriteData&   theWriteData,
+                                       const StdObject_Shape& theShape)
+{
+  StdObjMgt_WriteData::ObjectSentry aSentry(theWriteData);
+  theShape.write(theWriteData);
+  return theWriteData;
+}
+
+#endif

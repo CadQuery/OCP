@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 1999-11-26
+// Created by: Andrey BETENEV
+// Copyright (c) 1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,42 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/DataExchange/TKDESTEP/StepAP203/StepAP203_StartRequest.hxx"// clang-format on
+#ifndef _StepAP203_StartRequest_HeaderFile
+#define _StepAP203_StartRequest_HeaderFile
+
+#include <Standard.hxx>
+
+#include <StepAP203_StartRequestItem.hxx>
+#include <NCollection_Array1.hxx>
+#include <NCollection_HArray1.hxx>
+#include <StepBasic_ActionRequestAssignment.hxx>
+class StepBasic_VersionedActionRequest;
+
+//! Representation of STEP entity StartRequest
+class StepAP203_StartRequest : public StepBasic_ActionRequestAssignment
+{
+
+public:
+  //! Empty constructor
+  Standard_EXPORT StepAP203_StartRequest();
+
+  //! Initialize all fields (own and inherited)
+  Standard_EXPORT void Init(
+    const occ::handle<StepBasic_VersionedActionRequest>&
+      aActionRequestAssignment_AssignedActionRequest,
+    const occ::handle<NCollection_HArray1<StepAP203_StartRequestItem>>& aItems);
+
+  //! Returns field Items
+  Standard_EXPORT occ::handle<NCollection_HArray1<StepAP203_StartRequestItem>> Items() const;
+
+  //! Set field Items
+  Standard_EXPORT void SetItems(
+    const occ::handle<NCollection_HArray1<StepAP203_StartRequestItem>>& Items);
+
+  DEFINE_STANDARD_RTTIEXT(StepAP203_StartRequest, StepBasic_ActionRequestAssignment)
+
+private:
+  occ::handle<NCollection_HArray1<StepAP203_StartRequestItem>> theItems;
+};
+
+#endif // _StepAP203_StartRequest_HeaderFile

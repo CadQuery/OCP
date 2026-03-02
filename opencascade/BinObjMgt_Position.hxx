@@ -1,4 +1,4 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Copyright (c) 2021 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +11,31 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ApplicationFramework/TKBinL/BinObjMgt/BinObjMgt_Position.hxx"// clang-format on
+#ifndef _BinObjMgt_Position_HeaderFile
+#define _BinObjMgt_Position_HeaderFile
+
+#include <Standard_Type.hxx>
+
+//! Stores and manipulates position in the stream.
+class BinObjMgt_Position : public Standard_Transient
+{
+public:
+  DEFINE_STANDARD_ALLOC
+
+  //! Creates position using the current stream position.
+  Standard_EXPORT BinObjMgt_Position(Standard_OStream& theStream);
+
+  //! Stores the difference between the current position and the stored one.
+  Standard_EXPORT void StoreSize(Standard_OStream& theStream);
+  //! Writes stored size at the stored position. Changes the current stream position.
+  //! If theDummy is true, is writes to the current position zero size.
+  Standard_EXPORT void WriteSize(Standard_OStream& theStream, const bool theDummy = false);
+
+  DEFINE_STANDARD_RTTIEXT(BinObjMgt_Position, Standard_Transient)
+
+private:
+  std::streampos myPosition;
+  uint64_t       mySize;
+};
+
+#endif // _BinObjMgt_Position_HeaderFile

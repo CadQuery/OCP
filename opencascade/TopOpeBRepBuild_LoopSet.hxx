@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 1993-03-23
+// Created by: Jean Yves LEBEY
+// Copyright (c) 1993-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,43 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ModelingAlgorithms/TKBool/TopOpeBRepBuild/TopOpeBRepBuild_LoopSet.hxx"// clang-format on
+#ifndef _TopOpeBRepBuild_LoopSet_HeaderFile
+#define _TopOpeBRepBuild_LoopSet_HeaderFile
+
+#include <Standard.hxx>
+#include <Standard_DefineAlloc.hxx>
+#include <Standard_Handle.hxx>
+
+#include <TopOpeBRepBuild_Loop.hxx>
+#include <NCollection_List.hxx>
+#include <Standard_Integer.hxx>
+#include <Standard_Boolean.hxx>
+class TopOpeBRepBuild_Loop;
+
+class TopOpeBRepBuild_LoopSet
+{
+public:
+  DEFINE_STANDARD_ALLOC
+
+  Standard_EXPORT TopOpeBRepBuild_LoopSet();
+
+  Standard_EXPORT virtual ~TopOpeBRepBuild_LoopSet();
+
+  Standard_EXPORT NCollection_List<occ::handle<TopOpeBRepBuild_Loop>>& ChangeListOfLoop();
+
+  Standard_EXPORT virtual void InitLoop();
+
+  Standard_EXPORT virtual bool MoreLoop() const;
+
+  Standard_EXPORT virtual void NextLoop();
+
+  Standard_EXPORT virtual occ::handle<TopOpeBRepBuild_Loop> Loop() const;
+
+private:
+  NCollection_List<occ::handle<TopOpeBRepBuild_Loop>>           myListOfLoop;
+  NCollection_List<occ::handle<TopOpeBRepBuild_Loop>>::Iterator myLoopIterator;
+  int                                                           myLoopIndex;
+  int                                                           myNbLoop;
+};
+
+#endif // _TopOpeBRepBuild_LoopSet_HeaderFile

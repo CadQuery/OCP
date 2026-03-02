@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 1992-07-09
+// Created by: Christophe MARION
+// Copyright (c) 1992-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,64 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ModelingAlgorithms/TKHLR/HLRAlgo/HLRAlgo_Projector.lxx"// clang-format on
+#include <Standard_NoSuchObject.hxx>
+#include <gp_Vec.hxx>
+#include <gp_Pnt.hxx>
+
+//=================================================================================================
+
+inline void HLRAlgo_Projector::Directions(gp_Vec2d& D1, gp_Vec2d& D2, gp_Vec2d& D3) const
+{
+  D1 = myD1;
+  D2 = myD2;
+  D3 = myD3;
+}
+
+//=================================================================================================
+
+inline bool HLRAlgo_Projector::Perspective() const
+{
+  return myPersp;
+}
+
+/*
+//=================================================================================================
+
+inline const gp_Trsf & HLRAlgo_Projector::Transformation() const
+{ return myTrsf; }
+*/
+//=================================================================================================
+
+inline const gp_Trsf& HLRAlgo_Projector::InvertedTransformation() const
+{
+  return myInvTrsf;
+}
+
+//=================================================================================================
+
+inline const gp_Trsf& HLRAlgo_Projector::FullTransformation() const
+{
+  return myScaledTrsf;
+}
+
+//=================================================================================================
+
+inline double HLRAlgo_Projector::Focus() const
+{
+  Standard_NoSuchObject_Raise_if(!myPersp, "HLRAlgo_Projector::Not a Perspective");
+  return myFocus;
+}
+
+//=================================================================================================
+
+inline void HLRAlgo_Projector::Transform(gp_Vec& D) const
+{
+  D.Transform(myTrsf);
+}
+
+//=================================================================================================
+
+inline void HLRAlgo_Projector::Transform(gp_Pnt& Pnt) const
+{
+  Pnt.Transform(myTrsf);
+}

@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 1991-03-27
+// Created by: Michel CHAUVAT
+// Copyright (c) 1991-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,22 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ModelingData/TKG2d/LProp/LProp_NotDefined.hxx"// clang-format on
+#ifndef _LProp_NotDefined_HeaderFile
+#define _LProp_NotDefined_HeaderFile
+
+#include <Standard_Type.hxx>
+#include <Standard_DefineException.hxx>
+#include <Standard_SStream.hxx>
+#include <Standard_Failure.hxx>
+
+#if !defined No_Exception && !defined No_LProp_NotDefined
+  #define LProp_NotDefined_Raise_if(CONDITION, MESSAGE)                                            \
+    if (CONDITION)                                                                                 \
+      throw LProp_NotDefined(MESSAGE);
+#else
+  #define LProp_NotDefined_Raise_if(CONDITION, MESSAGE)
+#endif
+
+DEFINE_STANDARD_EXCEPTION(LProp_NotDefined, Standard_Failure)
+
+#endif // _LProp_NotDefined_HeaderFile

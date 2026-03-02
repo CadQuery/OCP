@@ -1,4 +1,4 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Copyright (c) 2017 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +11,17 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/Visualization/TKV3d/SelectMgr/SelectMgr_PickingStrategy.hxx"// clang-format on
+#ifndef _SelectMgr_PickingStrategy_HeaderFile
+#define _SelectMgr_PickingStrategy_HeaderFile
+
+//! Enumeration defines picking strategy - which entities detected by picking line will be accepted,
+//! considering selection filters.
+enum SelectMgr_PickingStrategy
+{
+  SelectMgr_PickingStrategy_FirstAcceptable, //!< the first detected entity passing selection filter
+                                             //!< is accepted (e.g. any)
+  SelectMgr_PickingStrategy_OnlyTopmost //!< only topmost detected entity passing selection filter
+                                        //!< is accepted
+};
+
+#endif // _SelectMgr_PickingStrategy_HeaderFile

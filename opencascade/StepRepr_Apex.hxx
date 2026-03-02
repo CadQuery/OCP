@@ -1,4 +1,6 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 2015-07-10
+// Created by: Irina KRYLOVA
+// Copyright (c) 2015 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +13,21 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/DataExchange/TKDESTEP/StepRepr/StepRepr_Apex.hxx"// clang-format on
+#ifndef _StepRepr_Apex_HeaderFile
+#define _StepRepr_Apex_HeaderFile
+
+#include <Standard.hxx>
+#include <Standard_Type.hxx>
+
+#include <StepRepr_DerivedShapeAspect.hxx>
+
+//! Added for Dimensional Tolerances
+class StepRepr_Apex : public StepRepr_DerivedShapeAspect
+{
+
+public:
+  Standard_EXPORT StepRepr_Apex();
+
+  DEFINE_STANDARD_RTTIEXT(StepRepr_Apex, StepRepr_DerivedShapeAspect)
+};
+#endif // _StepRepr_Apex_HeaderFile

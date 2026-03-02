@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 1993-07-28
+// Created by: Martine LANGLOIS
+// Copyright (c) 1993-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,45 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/DataExchange/TKDESTEP/StepToTopoDS/StepToTopoDS_Root.hxx"// clang-format on
+#ifndef _StepToTopoDS_Root_HeaderFile
+#define _StepToTopoDS_Root_HeaderFile
+
+#include <Standard.hxx>
+#include <Standard_DefineAlloc.hxx>
+#include <Standard_Handle.hxx>
+
+//! This class implements the common services for
+//! all classes of StepToTopoDS which report error
+//! and sets and returns precision.
+class StepToTopoDS_Root
+{
+public:
+  DEFINE_STANDARD_ALLOC
+
+  bool IsDone() const;
+
+  //! Returns the value of "MyPrecision"
+  double Precision() const;
+
+  //! Sets the value of "MyPrecision"
+  void SetPrecision(const double preci);
+
+  //! Returns the value of "MaxTol"
+  double MaxTol() const;
+
+  //! Sets the value of MaxTol
+  void SetMaxTol(const double maxpreci);
+
+protected:
+  Standard_EXPORT StepToTopoDS_Root();
+
+  bool done;
+
+private:
+  double myPrecision;
+  double myMaxTol;
+};
+
+#include <StepToTopoDS_Root.lxx>
+
+#endif // _StepToTopoDS_Root_HeaderFile

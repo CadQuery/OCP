@@ -1,4 +1,5 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created by: Eugeny MALTCHIKOV
+// Copyright (c) 2017 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +12,36 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ModelingAlgorithms/TKBO/BOPTools/BOPTools_BoxTree.hxx"// clang-format on
+#ifndef BOPTools_BoxTree_HeaderFile
+#define BOPTools_BoxTree_HeaderFile
+
+#include <BOPTools_BoxSelector.hxx>
+#include <BOPTools_PairSelector.hxx>
+#include <Standard_Integer.hxx>
+#include <BVH_LinearBuilder.hxx>
+
+//! Redefines BoxSet to use the Linear builder by default
+
+template <class NumType, int Dimension, class DataType>
+class BOPTools_BoxSet : public BVH_BoxSet<NumType, Dimension, DataType>
+{
+public: //! @name Constructors
+  //! Empty constructor for use the default BVH_Builder
+  BOPTools_BoxSet(const opencascade::handle<BVH_Builder<NumType, Dimension>>& theBuilder = nullptr)
+      : BVH_BoxSet<NumType, Dimension, DataType>(
+          theBuilder.IsNull() ? new BVH_LinearBuilder<NumType, Dimension>() : theBuilder)
+  {
+  }
+};
+
+//! 2D definitions
+typedef BOPTools_BoxSet<double, 2, int> BOPTools_Box2dTree;
+typedef BOPTools_BoxSelector<2>         BOPTools_Box2dTreeSelector;
+typedef BOPTools_PairSelector<2>        BOPTools_Box2dPairSelector;
+
+//! 3D definitions
+typedef BOPTools_BoxSet<double, 3, int> BOPTools_BoxTree;
+typedef BOPTools_BoxSelector<3>         BOPTools_BoxTreeSelector;
+typedef BOPTools_PairSelector<3>        BOPTools_BoxPairSelector;
+
+#endif

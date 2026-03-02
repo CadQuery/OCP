@@ -1,4 +1,6 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 2016-04-07
+// Copyright (c) 2016 OPEN CASCADE SAS
+// Created by: Oleg AGASHIN
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +13,33 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ModelingAlgorithms/TKMesh/IMeshTools/IMeshTools_ShapeVisitor.hxx"// clang-format on
+#ifndef _IMeshTools_ShapeVisitor_HeaderFile
+#define _IMeshTools_ShapeVisitor_HeaderFile
+
+#include <Standard_Transient.hxx>
+#include <Standard_Type.hxx>
+
+class TopoDS_Face;
+class TopoDS_Edge;
+
+//! Interface class for shape visitor.
+class IMeshTools_ShapeVisitor : public Standard_Transient
+{
+public:
+  //! Destructor.
+  ~IMeshTools_ShapeVisitor() override = default;
+
+  //! Handles TopoDS_Face object.
+  Standard_EXPORT virtual void Visit(const TopoDS_Face& theFace) = 0;
+
+  //! Handles TopoDS_Edge object.
+  Standard_EXPORT virtual void Visit(const TopoDS_Edge& theEdge) = 0;
+
+  DEFINE_STANDARD_RTTIEXT(IMeshTools_ShapeVisitor, Standard_Transient)
+
+protected:
+  //! Constructor.
+  IMeshTools_ShapeVisitor() {}
+};
+
+#endif

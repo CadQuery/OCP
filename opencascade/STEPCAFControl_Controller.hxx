@@ -1,4 +1,6 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 2000-10-05
+// Created by: Andrey BETENEV
+// Copyright (c) 2000-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +13,31 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/DataExchange/TKDESTEP/STEPCAFControl/STEPCAFControl_Controller.hxx"// clang-format on
+#ifndef _STEPCAFControl_Controller_HeaderFile
+#define _STEPCAFControl_Controller_HeaderFile
+
+#include <Standard.hxx>
+#include <Standard_Type.hxx>
+
+#include <STEPControl_Controller.hxx>
+
+//! Extends Controller from STEPControl in order to provide
+//! ActorWrite adapted for writing assemblies from DECAF
+//! Note that ActorRead from STEPControl is used for reading
+//! (inherited automatically)
+class STEPCAFControl_Controller : public STEPControl_Controller
+{
+
+public:
+  //! Initializes the use of STEP Norm (the first time)
+  Standard_EXPORT STEPCAFControl_Controller();
+
+  //! Standard Initialisation. It creates a Controller for STEP-XCAF
+  //! and records it to various names, available to select it later
+  //! Returns True when done, False if could not be done
+  Standard_EXPORT static bool Init();
+
+  DEFINE_STANDARD_RTTIEXT(STEPCAFControl_Controller, STEPControl_Controller)
+};
+
+#endif // _STEPCAFControl_Controller_HeaderFile

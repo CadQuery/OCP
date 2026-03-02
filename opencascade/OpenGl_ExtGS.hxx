@@ -1,4 +1,6 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 2012-09-26
+// Created by: Olga SURYANINOVA
+// Copyright (c) 2012-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +13,17 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/Visualization/TKOpenGl/OpenGl/OpenGl_ExtGS.hxx"// clang-format on
+#ifndef OpenGl_ExtGS_HeaderFile
+#define OpenGl_ExtGS_HeaderFile
+
+#include <OpenGl_GlFunctions.hxx>
+
+//! Geometry shader as extension is available on OpenGL 2.0+
+struct OpenGl_ExtGS : protected OpenGl_GlFunctions
+{
+#if !defined(GL_ES_VERSION_2_0)
+  using OpenGl_GlFunctions::glProgramParameteriEXT;
+#endif
+};
+
+#endif // _OpenGl_ExtGS_H__

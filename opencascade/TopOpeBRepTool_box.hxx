@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 1997-04-01
+// Created by: Jean Yves LEBEY
+// Copyright (c) 1997-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,17 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ModelingAlgorithms/TKBool/TopOpeBRepTool/TopOpeBRepTool_box.hxx"// clang-format on
+#ifndef _TopOpeBRepTool_box_HeaderFile
+#define _TopOpeBRepTool_box_HeaderFile
+
+#include <TopOpeBRepTool_HBoxTool.hxx>
+
+#ifdef OCCT_DEBUG
+Standard_EXPORT bool TopOpeBRepTool_GettraceBOX();
+#endif
+
+Standard_EXPORT void FBOX_Prepare();
+Standard_EXPORT occ::handle<TopOpeBRepTool_HBoxTool> FBOX_GetHBoxTool();
+Standard_EXPORT const Bnd_Box&                       FBOX_Box(const TopoDS_Shape& S);
+
+#endif

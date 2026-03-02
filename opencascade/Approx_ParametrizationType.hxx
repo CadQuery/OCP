@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 1993-01-26
+// Created by: Laurent PAINNOT
+// Copyright (c) 1993-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,15 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ModelingData/TKGeomBase/Approx/Approx_ParametrizationType.hxx"// clang-format on
+#ifndef _Approx_ParametrizationType_HeaderFile
+#define _Approx_ParametrizationType_HeaderFile
+
+enum Approx_ParametrizationType
+{
+  Approx_ChordLength,  //!< parameters of points are proportionate to distances between them
+  Approx_Centripetal,  //!< parameters of points are proportionate to square roots of distances
+                       //!< between them
+  Approx_IsoParametric //!< parameters of points are distributed uniformly
+};
+
+#endif // _Approx_ParametrizationType_HeaderFile

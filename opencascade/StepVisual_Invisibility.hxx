@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 1995-12-01
+// Created by: EXPRESS->CDL V0.2 Translator
+// Copyright (c) 1995-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,41 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/DataExchange/TKDESTEP/StepVisual/StepVisual_Invisibility.hxx"// clang-format on
+#ifndef _StepVisual_Invisibility_HeaderFile
+#define _StepVisual_Invisibility_HeaderFile
+
+#include <Standard.hxx>
+
+#include <StepVisual_InvisibleItem.hxx>
+#include <NCollection_Array1.hxx>
+#include <NCollection_HArray1.hxx>
+#include <Standard_Transient.hxx>
+#include <Standard_Integer.hxx>
+class StepVisual_InvisibleItem;
+
+class StepVisual_Invisibility : public Standard_Transient
+{
+
+public:
+  //! Returns a Invisibility
+  Standard_EXPORT StepVisual_Invisibility();
+
+  Standard_EXPORT void Init(
+    const occ::handle<NCollection_HArray1<StepVisual_InvisibleItem>>& aInvisibleItems);
+
+  Standard_EXPORT void SetInvisibleItems(
+    const occ::handle<NCollection_HArray1<StepVisual_InvisibleItem>>& aInvisibleItems);
+
+  Standard_EXPORT occ::handle<NCollection_HArray1<StepVisual_InvisibleItem>> InvisibleItems() const;
+
+  Standard_EXPORT StepVisual_InvisibleItem InvisibleItemsValue(const int num) const;
+
+  Standard_EXPORT int NbInvisibleItems() const;
+
+  DEFINE_STANDARD_RTTIEXT(StepVisual_Invisibility, Standard_Transient)
+
+private:
+  occ::handle<NCollection_HArray1<StepVisual_InvisibleItem>> invisibleItems;
+};
+
+#endif // _StepVisual_Invisibility_HeaderFile

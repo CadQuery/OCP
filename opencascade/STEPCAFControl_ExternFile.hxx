@@ -1,4 +1,6 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 2000-09-28
+// Created by: Andrey BETENEV
+// Copyright (c) 2000-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +13,62 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/DataExchange/TKDESTEP/STEPCAFControl/STEPCAFControl_ExternFile.hxx"// clang-format on
+#ifndef _STEPCAFControl_ExternFile_HeaderFile
+#define _STEPCAFControl_ExternFile_HeaderFile
+
+#include <Standard.hxx>
+
+#include <IFSelect_ReturnStatus.hxx>
+#include <Standard_Boolean.hxx>
+#include <TDF_Label.hxx>
+#include <Standard_Transient.hxx>
+class XSControl_WorkSession;
+class TCollection_HAsciiString;
+
+//! Auxiliary class serving as container for data resulting
+//! from translation of external file
+class STEPCAFControl_ExternFile : public Standard_Transient
+{
+
+public:
+  //! Creates an empty structure
+  Standard_EXPORT STEPCAFControl_ExternFile();
+
+  void SetWS(const occ::handle<XSControl_WorkSession>& WS);
+
+  occ::handle<XSControl_WorkSession> GetWS() const;
+
+  void SetLoadStatus(const IFSelect_ReturnStatus stat);
+
+  IFSelect_ReturnStatus GetLoadStatus() const;
+
+  void SetTransferStatus(const bool isok);
+
+  bool GetTransferStatus() const;
+
+  void SetWriteStatus(const IFSelect_ReturnStatus stat);
+
+  IFSelect_ReturnStatus GetWriteStatus() const;
+
+  void SetName(const occ::handle<TCollection_HAsciiString>& name);
+
+  occ::handle<TCollection_HAsciiString> GetName() const;
+
+  void SetLabel(const TDF_Label& L);
+
+  TDF_Label GetLabel() const;
+
+  DEFINE_STANDARD_RTTIEXT(STEPCAFControl_ExternFile, Standard_Transient)
+
+private:
+  occ::handle<XSControl_WorkSession>    myWS;
+  IFSelect_ReturnStatus                 myLoadStatus;
+  bool                                  myTransferStatus;
+  IFSelect_ReturnStatus                 myWriteStatus;
+  occ::handle<TCollection_HAsciiString> myName;
+  TDF_Label                             myLabel;
+};
+
+#include <STEPCAFControl_ExternFile.lxx>
+
+#endif // _STEPCAFControl_ExternFile_HeaderFile

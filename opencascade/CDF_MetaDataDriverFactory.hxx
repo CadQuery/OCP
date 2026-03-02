@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 1997-11-17
+// Created by: Jean-Louis Frenkel
+// Copyright (c) 1997-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,22 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ApplicationFramework/TKCDF/CDF/CDF_MetaDataDriverFactory.hxx"// clang-format on
+#ifndef _CDF_MetaDataDriverFactory_HeaderFile
+#define _CDF_MetaDataDriverFactory_HeaderFile
+
+#include <Standard.hxx>
+#include <Standard_Type.hxx>
+
+#include <Standard_Transient.hxx>
+class CDF_MetaDataDriver;
+
+class CDF_MetaDataDriverFactory : public Standard_Transient
+{
+
+public:
+  Standard_EXPORT virtual occ::handle<CDF_MetaDataDriver> Build() const = 0;
+
+  DEFINE_STANDARD_RTTIEXT(CDF_MetaDataDriverFactory, Standard_Transient)
+};
+
+#endif // _CDF_MetaDataDriverFactory_HeaderFile

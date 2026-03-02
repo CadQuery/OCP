@@ -1,4 +1,6 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 2014-10-07
+// Created by: Denis BOGOLEPOV
+// Copyright (c) 2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +13,35 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/Visualization/TKOpenGl/OpenGl/OpenGl_ArbTexBindless.hxx"// clang-format on
+#ifndef _OpenGl_ArbTexBindless_H__
+#define _OpenGl_ArbTexBindless_H__
+
+#include <OpenGl_GlFunctions.hxx>
+
+//! Provides bindless textures.
+//! This extension allows OpenGL applications to access texture objects in
+//! shaders without first binding each texture to one of a limited number of
+//! texture image units.
+struct OpenGl_ArbTexBindless : protected OpenGl_GlFunctions
+{
+#if !defined(GL_ES_VERSION_2_0)
+  using OpenGl_GlFunctions::glGetImageHandleARB;
+  using OpenGl_GlFunctions::glGetTextureHandleARB;
+  using OpenGl_GlFunctions::glGetTextureSamplerHandleARB;
+  using OpenGl_GlFunctions::glGetVertexAttribLui64vARB;
+  using OpenGl_GlFunctions::glIsImageHandleResidentARB;
+  using OpenGl_GlFunctions::glIsTextureHandleResidentARB;
+  using OpenGl_GlFunctions::glMakeImageHandleNonResidentARB;
+  using OpenGl_GlFunctions::glMakeImageHandleResidentARB;
+  using OpenGl_GlFunctions::glMakeTextureHandleNonResidentARB;
+  using OpenGl_GlFunctions::glMakeTextureHandleResidentARB;
+  using OpenGl_GlFunctions::glProgramUniformHandleui64ARB;
+  using OpenGl_GlFunctions::glProgramUniformHandleui64vARB;
+  using OpenGl_GlFunctions::glUniformHandleui64ARB;
+  using OpenGl_GlFunctions::glUniformHandleui64vARB;
+  using OpenGl_GlFunctions::glVertexAttribL1ui64ARB;
+  using OpenGl_GlFunctions::glVertexAttribL1ui64vARB;
+#endif
+};
+
+#endif // _OpenGl_ArbTexBindless_H__

@@ -1,4 +1,6 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 2015-07-10
+// Created by: Irina KRYLOVA
+// Copyright (c) 2015 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +13,48 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/DataExchange/TKDESTEP/StepAP242/StepAP242_IdAttribute.hxx"// clang-format on
+#ifndef _StepAP242_IdAttribute_HeaderFile
+#define _StepAP242_IdAttribute_HeaderFile
+
+#include <Standard.hxx>
+
+#include <StepAP242_IdAttributeSelect.hxx>
+#include <Standard_Transient.hxx>
+class TCollection_HAsciiString;
+
+class StepAP242_IdAttribute : public Standard_Transient
+{
+
+public:
+  //! Returns a IdAttribute
+  Standard_EXPORT StepAP242_IdAttribute();
+
+  //! Init all field own and inherited
+  Standard_EXPORT void Init(const occ::handle<TCollection_HAsciiString>& theAttributeValue,
+                            const StepAP242_IdAttributeSelect&           theIdentifiedItem);
+
+  // Set field AttributeValue
+  inline void SetAttributeValue(const occ::handle<TCollection_HAsciiString>& theAttributeValue)
+  {
+    attributeValue = theAttributeValue;
+  }
+
+  //! Returns field AttributeValue
+  inline occ::handle<TCollection_HAsciiString> AttributeValue() const { return attributeValue; }
+
+  //! Set field IdentifiedItem
+  inline void SetIdentifiedItem(const StepAP242_IdAttributeSelect& theIdentifiedItem)
+  {
+    identifiedItem = theIdentifiedItem;
+  }
+
+  //! Returns IdentifiedItem
+  inline StepAP242_IdAttributeSelect IdentifiedItem() const { return identifiedItem; }
+
+  DEFINE_STANDARD_RTTIEXT(StepAP242_IdAttribute, Standard_Transient)
+
+private:
+  occ::handle<TCollection_HAsciiString> attributeValue;
+  StepAP242_IdAttributeSelect           identifiedItem;
+};
+#endif // _StepAP242_IdAttribute_HeaderFile

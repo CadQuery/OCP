@@ -1,4 +1,6 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 2001-06-26
+// Created by: Alexander GRIGORIEV
+// Copyright (c) 2001-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +13,72 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ApplicationFramework/TKCDF/LDOM/LDOM_BasicAttribute.hxx"// clang-format on
+#ifndef LDOM_BasicAttribute_HeaderFile
+#define LDOM_BasicAttribute_HeaderFile
+
+#include <LDOM_BasicNode.hxx>
+#include <LDOMBasicString.hxx>
+
+class LDOM_Attr;
+
+//  Class LDOM_BasicAttribute
+//
+
+class LDOM_BasicAttribute : public LDOM_BasicNode
+{
+public:
+  // ---------- PUBLIC METHODS ----------
+
+  LDOM_BasicAttribute()
+      : LDOM_BasicNode(LDOM_Node::UNKNOWN),
+        myName(nullptr)
+  {
+  }
+
+  //    Empty constructor
+
+  LDOM_BasicAttribute& operator=(const LDOM_NullPtr* aNull);
+
+  //    Nullify
+
+  const char* GetName() const { return myName; }
+
+  const LDOMBasicString& GetValue() const { return myValue; }
+
+  void SetValue(const LDOMBasicString& aValue, const occ::handle<LDOM_MemManager>& aDoc)
+  {
+    myValue = LDOMString(aValue, aDoc);
+  }
+
+private:
+  friend class LDOM_Node;
+  friend class LDOM_Attr;
+  friend class LDOM_Element;
+  friend class LDOM_BasicElement;
+  friend class LDOM_XmlReader;
+
+  // ---------- PRIVATE METHODS ----------
+
+  LDOM_BasicAttribute(const LDOMBasicString& aName)
+      : LDOM_BasicNode(LDOM_Node::ATTRIBUTE_NODE),
+        myName(aName.GetString())
+  {
+  }
+
+  //    Constructor
+
+  static LDOM_BasicAttribute& Create(const LDOMBasicString&              theName,
+                                     const occ::handle<LDOM_MemManager>& theDoc,
+                                     int&                                theHashIndex);
+
+  LDOM_BasicAttribute(const LDOM_Attr& anAttr);
+
+private:
+  // ---------- PRIVATE FIELDS ----------
+
+  //  LDOMBasicString       myName;
+  const char*     myName;
+  LDOMBasicString myValue;
+};
+
+#endif

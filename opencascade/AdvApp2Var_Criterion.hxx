@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 1997-01-15
+// Created by: Joelle CHAUVET
+// Copyright (c) 1997-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,42 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ModelingData/TKGeomBase/AdvApp2Var/AdvApp2Var_Criterion.hxx"// clang-format on
+#ifndef _AdvApp2Var_Criterion_HeaderFile
+#define _AdvApp2Var_Criterion_HeaderFile
+
+#include <Standard.hxx>
+#include <Standard_DefineAlloc.hxx>
+#include <Standard_Handle.hxx>
+
+#include <Standard_Real.hxx>
+#include <AdvApp2Var_CriterionType.hxx>
+#include <AdvApp2Var_CriterionRepartition.hxx>
+#include <Standard_Boolean.hxx>
+class AdvApp2Var_Patch;
+class AdvApp2Var_Context;
+
+//! this class contains a given criterion to be satisfied
+class AdvApp2Var_Criterion
+{
+public:
+  DEFINE_STANDARD_ALLOC
+
+  Standard_EXPORT virtual ~AdvApp2Var_Criterion();
+
+  Standard_EXPORT virtual void Value(AdvApp2Var_Patch& P, const AdvApp2Var_Context& C) const = 0;
+
+  Standard_EXPORT virtual bool IsSatisfied(const AdvApp2Var_Patch& P) const = 0;
+
+  Standard_EXPORT double MaxValue() const;
+
+  Standard_EXPORT AdvApp2Var_CriterionType Type() const;
+
+  Standard_EXPORT AdvApp2Var_CriterionRepartition Repartition() const;
+
+protected:
+  double                          myMaxValue;
+  AdvApp2Var_CriterionType        myType;
+  AdvApp2Var_CriterionRepartition myRepartition;
+};
+
+#endif // _AdvApp2Var_Criterion_HeaderFile

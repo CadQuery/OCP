@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 1993-07-21
+// Created by: Remi LEQUETTE
+// Copyright (c) 1993-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,48 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ModelingAlgorithms/TKTopAlgo/BRepLib/BRepLib_Command.hxx"// clang-format on
+#ifndef _BRepLib_Command_HeaderFile
+#define _BRepLib_Command_HeaderFile
+
+#include <Standard.hxx>
+#include <Standard_DefineAlloc.hxx>
+#include <Standard_Handle.hxx>
+
+#include <Standard_Boolean.hxx>
+
+//! Root class for all commands in BRepLib.
+//!
+//! Provides :
+//!
+//! * Managements of the notDone flag.
+//!
+//! * Catching of exceptions (not implemented).
+//!
+//! * Logging (not implemented).
+class BRepLib_Command
+{
+public:
+  DEFINE_STANDARD_ALLOC
+
+  Standard_EXPORT virtual ~BRepLib_Command();
+
+  Standard_EXPORT bool IsDone() const;
+
+  //! Raises NotDone if done is false.
+  Standard_EXPORT void Check() const;
+
+protected:
+  //! Set done to False.
+  Standard_EXPORT BRepLib_Command();
+
+  //! Set done to true.
+  Standard_EXPORT void Done();
+
+  //! Set done to false.
+  Standard_EXPORT void NotDone();
+
+private:
+  bool myDone;
+};
+
+#endif // _BRepLib_Command_HeaderFile

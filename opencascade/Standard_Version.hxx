@@ -1,4 +1,4 @@
-// Created on: 2025-12-31
+// Created on: 2026-02-27
 // Copyright (c) 2002-2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.

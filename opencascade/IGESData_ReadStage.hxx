@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 1992-04-06
+// Created by: Christian CAILLET
+// Copyright (c) 1992-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,17 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/DataExchange/TKDEIGES/IGESData/IGESData_ReadStage.hxx"// clang-format on
+#ifndef _IGESData_ReadStage_HeaderFile
+#define _IGESData_ReadStage_HeaderFile
+
+//! gives successive stages of reading an entity (see ParamReader)
+enum IGESData_ReadStage
+{
+  IGESData_ReadDir,
+  IGESData_ReadOwn,
+  IGESData_ReadAssocs,
+  IGESData_ReadProps,
+  IGESData_ReadEnd
+};
+
+#endif // _IGESData_ReadStage_HeaderFile

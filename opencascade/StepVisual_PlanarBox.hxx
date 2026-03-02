@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 1995-12-01
+// Created by: EXPRESS->CDL V0.2 Translator
+// Copyright (c) 1995-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,36 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/DataExchange/TKDESTEP/StepVisual/StepVisual_PlanarBox.hxx"// clang-format on
+#ifndef _StepVisual_PlanarBox_HeaderFile
+#define _StepVisual_PlanarBox_HeaderFile
+
+#include <Standard.hxx>
+
+#include <StepGeom_Axis2Placement.hxx>
+#include <StepVisual_PlanarExtent.hxx>
+#include <Standard_Real.hxx>
+class TCollection_HAsciiString;
+
+class StepVisual_PlanarBox : public StepVisual_PlanarExtent
+{
+
+public:
+  //! Returns a PlanarBox
+  Standard_EXPORT StepVisual_PlanarBox();
+
+  Standard_EXPORT void Init(const occ::handle<TCollection_HAsciiString>& aName,
+                            const double                                 aSizeInX,
+                            const double                                 aSizeInY,
+                            const StepGeom_Axis2Placement&               aPlacement);
+
+  Standard_EXPORT void SetPlacement(const StepGeom_Axis2Placement& aPlacement);
+
+  Standard_EXPORT StepGeom_Axis2Placement Placement() const;
+
+  DEFINE_STANDARD_RTTIEXT(StepVisual_PlanarBox, StepVisual_PlanarExtent)
+
+private:
+  StepGeom_Axis2Placement placement;
+};
+
+#endif // _StepVisual_PlanarBox_HeaderFile

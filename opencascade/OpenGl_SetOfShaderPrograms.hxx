@@ -1,4 +1,6 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 2014-10-08
+// Created by: Kirill Gavrilov
+// Copyright (c) 2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +13,66 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/Visualization/TKOpenGl/OpenGl/OpenGl_SetOfShaderPrograms.hxx"// clang-format on
+#ifndef _OpenGl_SetOfShaderPrograms_HeaderFile
+#define _OpenGl_SetOfShaderPrograms_HeaderFile
+
+#include <Graphic3d_ShaderFlags.hxx>
+#include <Graphic3d_TypeOfShadingModel.hxx>
+#include <NCollection_DataMap.hxx>
+
+class OpenGl_ShaderProgram;
+
+//! Alias to programs array of predefined length
+class OpenGl_SetOfPrograms : public Standard_Transient
+{
+  DEFINE_STANDARD_RTTI_INLINE(OpenGl_SetOfPrograms, Standard_Transient)
+public:
+  //! Empty constructor
+  OpenGl_SetOfPrograms() = default;
+
+  //! Access program by index
+  occ::handle<OpenGl_ShaderProgram>& ChangeValue(int theProgramBits)
+  {
+    return myPrograms[theProgramBits];
+  }
+
+protected:
+  occ::handle<OpenGl_ShaderProgram> myPrograms[Graphic3d_ShaderFlags_NB]; //!< programs array
+};
+
+//! Alias to 2D programs array of predefined length
+class OpenGl_SetOfShaderPrograms : public Standard_Transient
+{
+  DEFINE_STANDARD_RTTI_INLINE(OpenGl_SetOfShaderPrograms, Standard_Transient)
+public:
+  //! Empty constructor
+  OpenGl_SetOfShaderPrograms() = default;
+
+  //! Constructor
+  OpenGl_SetOfShaderPrograms(const occ::handle<OpenGl_SetOfPrograms>& thePrograms)
+  {
+    for (int aSetIter = 0; aSetIter < Graphic3d_TypeOfShadingModel_NB - 1; ++aSetIter)
+    {
+      myPrograms[aSetIter] = thePrograms;
+    }
+  }
+
+  //! Access program by index
+  occ::handle<OpenGl_ShaderProgram>& ChangeValue(Graphic3d_TypeOfShadingModel theShadingModel,
+                                                 int                          theProgramBits)
+  {
+    occ::handle<OpenGl_SetOfPrograms>& aSet = myPrograms[theShadingModel - 1];
+    if (aSet.IsNull())
+    {
+      aSet = new OpenGl_SetOfPrograms();
+    }
+    return aSet->ChangeValue(theProgramBits);
+  }
+
+protected:
+  // clang-format off
+  occ::handle<OpenGl_SetOfPrograms> myPrograms[Graphic3d_TypeOfShadingModel_NB - 1]; //!< programs array, excluding Graphic3d_TypeOfShadingModel_Unlit
+  // clang-format on
+};
+
+#endif // _OpenGl_SetOfShaderPrograms_HeaderFile

@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 1991-01-14
+// Created by: Arnaud BOUZY
+// Copyright (c) 1991-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,41 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ModelingAlgorithms/TKExpress/Expr/Expr_RelationIterator.hxx"// clang-format on
+#ifndef _Expr_RelationIterator_HeaderFile
+#define _Expr_RelationIterator_HeaderFile
+
+#include <Standard.hxx>
+#include <Standard_DefineAlloc.hxx>
+#include <Standard_Handle.hxx>
+
+#include <Expr_SingleRelation.hxx>
+#include <NCollection_Array1.hxx>
+#include <Standard_Integer.hxx>
+#include <Standard_Boolean.hxx>
+class Expr_GeneralRelation;
+class Expr_SingleRelation;
+
+//! Iterates on every basic relation contained in
+//! a GeneralRelation.
+class Expr_RelationIterator
+{
+public:
+  DEFINE_STANDARD_ALLOC
+
+  Standard_EXPORT Expr_RelationIterator(const occ::handle<Expr_GeneralRelation>& rel);
+
+  //! Returns False if no other relation remains.
+  Standard_EXPORT bool More() const;
+
+  Standard_EXPORT void Next();
+
+  //! Returns current basic relation.
+  //! Exception is raised if no more relation remains.
+  Standard_EXPORT occ::handle<Expr_SingleRelation> Value() const;
+
+private:
+  NCollection_Array1<occ::handle<Expr_SingleRelation>> myRelation;
+  int                                                  current;
+};
+
+#endif // _Expr_RelationIterator_HeaderFile

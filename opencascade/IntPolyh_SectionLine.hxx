@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 1999-04-06
+// Created by: Fabrice SERVANT
+// Copyright (c) 1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,58 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ModelingAlgorithms/TKGeomAlgo/IntPolyh/IntPolyh_SectionLine.hxx"// clang-format on
+#ifndef _IntPolyh_SectionLine_HeaderFile
+#define _IntPolyh_SectionLine_HeaderFile
+
+#include <Standard.hxx>
+#include <Standard_DefineAlloc.hxx>
+#include <Standard_Handle.hxx>
+
+#include <IntPolyh_StartPoint.hxx>
+#include <NCollection_Sequence.hxx>
+class IntPolyh_StartPoint;
+
+class IntPolyh_SectionLine
+{
+public:
+  DEFINE_STANDARD_ALLOC
+
+  Standard_EXPORT IntPolyh_SectionLine();
+
+  Standard_EXPORT IntPolyh_SectionLine(const int nn);
+
+  IntPolyh_SectionLine(const IntPolyh_SectionLine& theOther) { Copy(theOther); }
+
+  Standard_EXPORT void Init(const int nn);
+
+  Standard_EXPORT const IntPolyh_StartPoint& Value(const int nn) const;
+
+  const IntPolyh_StartPoint& operator[](const int nn) const { return Value(nn); }
+
+  Standard_EXPORT IntPolyh_StartPoint& ChangeValue(const int nn);
+
+  IntPolyh_StartPoint& operator[](const int nn) { return ChangeValue(nn); }
+
+  Standard_EXPORT IntPolyh_SectionLine& Copy(const IntPolyh_SectionLine& Other);
+
+  IntPolyh_SectionLine& operator=(const IntPolyh_SectionLine& Other) { return Copy(Other); }
+
+  Standard_EXPORT int GetN() const;
+
+  Standard_EXPORT int NbStartPoints() const;
+
+  Standard_EXPORT void IncrementNbStartPoints();
+
+  Standard_EXPORT void Destroy();
+
+  ~IntPolyh_SectionLine() { Destroy(); }
+
+  Standard_EXPORT void Dump() const;
+
+  Standard_EXPORT void Prepend(const IntPolyh_StartPoint& SP);
+
+private:
+  NCollection_Sequence<IntPolyh_StartPoint> mySeqOfSPoints;
+};
+
+#endif // _IntPolyh_SectionLine_HeaderFile

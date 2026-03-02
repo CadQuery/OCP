@@ -1,4 +1,6 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 2003-01-28
+// Created by: data exchange team
+// Copyright (c) 2003-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +13,45 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/DataExchange/TKDESTEP/StepBasic/StepBasic_ProductOrFormationOrDefinition.hxx"// clang-format on
+#ifndef _StepBasic_ProductOrFormationOrDefinition_HeaderFile
+#define _StepBasic_ProductOrFormationOrDefinition_HeaderFile
+
+#include <Standard.hxx>
+#include <Standard_DefineAlloc.hxx>
+#include <Standard_Handle.hxx>
+
+#include <StepData_SelectType.hxx>
+#include <Standard_Integer.hxx>
+class Standard_Transient;
+class StepBasic_Product;
+class StepBasic_ProductDefinitionFormation;
+class StepBasic_ProductDefinition;
+
+//! Representation of STEP SELECT type ProductOrFormationOrDefinition
+class StepBasic_ProductOrFormationOrDefinition : public StepData_SelectType
+{
+public:
+  DEFINE_STANDARD_ALLOC
+
+  //! Empty constructor
+  Standard_EXPORT StepBasic_ProductOrFormationOrDefinition();
+
+  //! Recognizes a kind of ProductOrFormationOrDefinition select type
+  //! 1 -> Product from StepBasic
+  //! 2 -> ProductDefinitionFormation from StepBasic
+  //! 3 -> ProductDefinition from StepBasic
+  //! 0 else
+  Standard_EXPORT int CaseNum(const occ::handle<Standard_Transient>& ent) const override;
+
+  //! Returns Value as Product (or Null if another type)
+  Standard_EXPORT occ::handle<StepBasic_Product> Product() const;
+
+  //! Returns Value as ProductDefinitionFormation (or Null if another type)
+  Standard_EXPORT occ::handle<StepBasic_ProductDefinitionFormation> ProductDefinitionFormation()
+    const;
+
+  //! Returns Value as ProductDefinition (or Null if another type)
+  Standard_EXPORT occ::handle<StepBasic_ProductDefinition> ProductDefinition() const;
+};
+
+#endif // _StepBasic_ProductOrFormationOrDefinition_HeaderFile

@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 1992-09-21
+// Created by: Christian CAILLET
+// Copyright (c) 1992-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,24 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/DataExchange/TKXSBase/IFSelect/IFSelect_EditValue.hxx"// clang-format on
+#ifndef _IFSelect_EditValue_HeaderFile
+#define _IFSelect_EditValue_HeaderFile
+
+//! Controls access on Values by an Editor
+//! EditOptional  : normal access, in addition may be removed
+//! Editable      : normal access, must be present
+//! EditProtected : access must be validated
+//! EditComputed  : why write it ?  it will be recomputed
+//! EditRead      : no way to write it, only for read
+//! EditDynamic   : not a field, only to be displayed
+enum IFSelect_EditValue
+{
+  IFSelect_Optional,
+  IFSelect_Editable,
+  IFSelect_EditProtected,
+  IFSelect_EditComputed,
+  IFSelect_EditRead,
+  IFSelect_EditDynamic
+};
+
+#endif // _IFSelect_EditValue_HeaderFile

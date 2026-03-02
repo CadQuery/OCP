@@ -1,4 +1,4 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Copyright (c) 2015 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +11,48 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ApplicationFramework/TKStdL/StdLPersistent/StdLPersistent_Function.hxx"// clang-format on
+#ifndef _StdLPersistent_Function_HeaderFile
+#define _StdLPersistent_Function_HeaderFile
+
+#include <StdObjMgt_Attribute.hxx>
+
+#include <TFunction_Function.hxx>
+#include <Standard_GUID.hxx>
+
+class StdLPersistent_Function : public StdObjMgt_Attribute<TFunction_Function>
+{
+public:
+  //! Empty constructor.
+  StdLPersistent_Function()
+      : myFailure(0)
+  {
+  }
+
+  //! Read persistent data from a file.
+  inline void Read(StdObjMgt_ReadData& theReadData) { theReadData >> myDriverGUID >> myFailure; }
+
+  //! Write persistent data to a file.
+  inline void Write(StdObjMgt_WriteData& theWriteData) const
+  {
+    theWriteData << myDriverGUID << myFailure;
+  }
+
+  //! Gets persistent child objects
+  inline void PChildren(StdObjMgt_Persistent::SequenceOfPersistent&) const {}
+
+  //! Returns persistent type name
+  inline const char* PName() const { return "PFunction_Function"; }
+
+  //! Import transient attribute from the persistent data.
+  void Import(const occ::handle<TFunction_Function>& theAttribute) const
+  {
+    theAttribute->SetDriverGUID(myDriverGUID);
+    theAttribute->SetFailure(myFailure);
+  }
+
+private:
+  Standard_GUID myDriverGUID;
+  int           myFailure;
+};
+
+#endif

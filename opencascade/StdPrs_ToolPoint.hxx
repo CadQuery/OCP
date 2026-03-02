@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 1992-12-16
+// Created by: Jean Louis FRENKEL
+// Copyright (c) 1992-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,24 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/Visualization/TKV3d/StdPrs/StdPrs_ToolPoint.hxx"// clang-format on
+#ifndef _StdPrs_ToolPoint_HeaderFile
+#define _StdPrs_ToolPoint_HeaderFile
+
+#include <Standard.hxx>
+#include <Standard_DefineAlloc.hxx>
+#include <Standard_Handle.hxx>
+
+class Geom_Point;
+
+class StdPrs_ToolPoint
+{
+public:
+  DEFINE_STANDARD_ALLOC
+
+  Standard_EXPORT static void Coord(const occ::handle<Geom_Point>& aPoint,
+                                    double&                        X,
+                                    double&                        Y,
+                                    double&                        Z);
+};
+
+#endif // _StdPrs_ToolPoint_HeaderFile

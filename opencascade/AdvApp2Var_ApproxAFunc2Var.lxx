@@ -1,4 +1,5 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Copyright (c) 1996-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +12,38 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ModelingData/TKGeomBase/AdvApp2Var/AdvApp2Var_ApproxAFunc2Var.lxx"// clang-format on
+#include <Geom_Surface.hxx>
+#include <NCollection_Array1.hxx>
+#include <NCollection_HArray1.hxx>
+#include <Geom_BSplineSurface.hxx>
+
+inline bool AdvApp2Var_ApproxAFunc2Var::IsDone() const
+{
+  return myDone;
+}
+
+inline bool AdvApp2Var_ApproxAFunc2Var::HasResult() const
+{
+  return myHasResult;
+}
+
+inline occ::handle<Geom_BSplineSurface> AdvApp2Var_ApproxAFunc2Var::Surface(
+  const int SSPIndex) const
+{
+  return occ::down_cast<Geom_BSplineSurface>(mySurfaces->Value(SSPIndex));
+}
+
+inline int AdvApp2Var_ApproxAFunc2Var::UDegree() const
+{
+  return myDegreeInU;
+}
+
+inline int AdvApp2Var_ApproxAFunc2Var::VDegree() const
+{
+  return myDegreeInV;
+}
+
+inline int AdvApp2Var_ApproxAFunc2Var::NumSubSpaces(const int Dimension) const
+{
+  return myNumSubSpaces[Dimension - 1];
+}

@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 1993-10-22
+// Created by: Laurent BOURESCHE
+// Copyright (c) 1993-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,52 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ModelingAlgorithms/TKFillet/ChFiDS/ChFiDS_Map.hxx"// clang-format on
+#ifndef _ChFiDS_Map_HeaderFile
+#define _ChFiDS_Map_HeaderFile
+
+#include <Standard.hxx>
+#include <Standard_DefineAlloc.hxx>
+#include <Standard_Handle.hxx>
+
+#include <TopoDS_Shape.hxx>
+#include <NCollection_List.hxx>
+#include <TopTools_ShapeMapHasher.hxx>
+#include <NCollection_IndexedDataMap.hxx>
+#include <TopAbs_ShapeEnum.hxx>
+#include <Standard_Boolean.hxx>
+class TopoDS_Shape;
+
+//! Encapsulation of IndexedDataMapOfShapeListOfShape.
+class ChFiDS_Map
+{
+public:
+  DEFINE_STANDARD_ALLOC
+
+  //! Create an empty Map
+  Standard_EXPORT ChFiDS_Map();
+
+  //! Fills the map with the subshapes of type T1 as keys
+  //! and the list of ancestors of type T2 as items.
+  Standard_EXPORT void Fill(const TopoDS_Shape&    S,
+                            const TopAbs_ShapeEnum T1,
+                            const TopAbs_ShapeEnum T2);
+
+  Standard_EXPORT bool Contains(const TopoDS_Shape& S) const;
+
+  Standard_EXPORT const NCollection_List<TopoDS_Shape>& FindFromKey(const TopoDS_Shape& S) const;
+
+  const NCollection_List<TopoDS_Shape>& operator()(const TopoDS_Shape& S) const
+  {
+    return FindFromKey(S);
+  }
+
+  Standard_EXPORT const NCollection_List<TopoDS_Shape>& FindFromIndex(const int I) const;
+
+  const NCollection_List<TopoDS_Shape>& operator()(const int I) const { return FindFromIndex(I); }
+
+private:
+  NCollection_IndexedDataMap<TopoDS_Shape, NCollection_List<TopoDS_Shape>, TopTools_ShapeMapHasher>
+    myMap;
+};
+
+#endif // _ChFiDS_Map_HeaderFile

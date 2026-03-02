@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 1995-12-01
+// Created by: EXPRESS->CDL V0.2 Translator
+// Copyright (c) 1995-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,33 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/DataExchange/TKDESTEP/StepShape/StepShape_CsgSolid.hxx"// clang-format on
+#ifndef _StepShape_CsgSolid_HeaderFile
+#define _StepShape_CsgSolid_HeaderFile
+
+#include <Standard.hxx>
+
+#include <StepShape_CsgSelect.hxx>
+#include <StepShape_SolidModel.hxx>
+class TCollection_HAsciiString;
+
+class StepShape_CsgSolid : public StepShape_SolidModel
+{
+
+public:
+  //! Returns a CsgSolid
+  Standard_EXPORT StepShape_CsgSolid();
+
+  Standard_EXPORT void Init(const occ::handle<TCollection_HAsciiString>& aName,
+                            const StepShape_CsgSelect&                   aTreeRootExpression);
+
+  Standard_EXPORT void SetTreeRootExpression(const StepShape_CsgSelect& aTreeRootExpression);
+
+  Standard_EXPORT StepShape_CsgSelect TreeRootExpression() const;
+
+  DEFINE_STANDARD_RTTIEXT(StepShape_CsgSolid, StepShape_SolidModel)
+
+private:
+  StepShape_CsgSelect treeRootExpression;
+};
+
+#endif // _StepShape_CsgSolid_HeaderFile

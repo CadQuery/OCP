@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 1999-03-09
+// Created by: data exchange team
+// Copyright (c) 1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,43 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/DataExchange/TKDESTEP/StepAP214/StepAP214_AppliedDateAssignment.hxx"// clang-format on
+#ifndef _StepAP214_AppliedDateAssignment_HeaderFile
+#define _StepAP214_AppliedDateAssignment_HeaderFile
+
+#include <Standard.hxx>
+
+#include <StepAP214_DateItem.hxx>
+#include <NCollection_Array1.hxx>
+#include <NCollection_HArray1.hxx>
+#include <StepBasic_DateAssignment.hxx>
+#include <Standard_Integer.hxx>
+class StepBasic_Date;
+class StepBasic_DateRole;
+class StepAP214_DateItem;
+
+class StepAP214_AppliedDateAssignment : public StepBasic_DateAssignment
+{
+
+public:
+  //! Returns a AppliedDateAssignment
+  Standard_EXPORT StepAP214_AppliedDateAssignment();
+
+  Standard_EXPORT void Init(const occ::handle<StepBasic_Date>&     aAssignedDate,
+                            const occ::handle<StepBasic_DateRole>& aRole,
+                            const occ::handle<NCollection_HArray1<StepAP214_DateItem>>& aItems);
+
+  Standard_EXPORT void SetItems(const occ::handle<NCollection_HArray1<StepAP214_DateItem>>& aItems);
+
+  Standard_EXPORT occ::handle<NCollection_HArray1<StepAP214_DateItem>> Items() const;
+
+  Standard_EXPORT StepAP214_DateItem ItemsValue(const int num) const;
+
+  Standard_EXPORT int NbItems() const;
+
+  DEFINE_STANDARD_RTTIEXT(StepAP214_AppliedDateAssignment, StepBasic_DateAssignment)
+
+private:
+  occ::handle<NCollection_HArray1<StepAP214_DateItem>> items;
+};
+
+#endif // _StepAP214_AppliedDateAssignment_HeaderFile

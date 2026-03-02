@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 1997-02-27
+// Created by: Christophe LEYNADIER
+// Copyright (c) 1997-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,34 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/FoundationClasses/TKernel/Storage/Storage_CallBack.hxx"// clang-format on
+#ifndef _Storage_CallBack_HeaderFile
+#define _Storage_CallBack_HeaderFile
+
+#include <Standard.hxx>
+#include <Standard_Type.hxx>
+
+#include <Standard_Transient.hxx>
+class Standard_Persistent;
+class Storage_Schema;
+class Storage_BaseDriver;
+
+class Storage_CallBack : public Standard_Transient
+{
+public:
+  Standard_EXPORT virtual occ::handle<Standard_Persistent> New() const = 0;
+
+  Standard_EXPORT virtual void Add(const occ::handle<Standard_Persistent>& aPers,
+                                   const occ::handle<Storage_Schema>&      aSchema) const = 0;
+
+  Standard_EXPORT virtual void Write(const occ::handle<Standard_Persistent>& aPers,
+                                     const occ::handle<Storage_BaseDriver>&  aDriver,
+                                     const occ::handle<Storage_Schema>&      aSchema) const = 0;
+
+  Standard_EXPORT virtual void Read(const occ::handle<Standard_Persistent>& aPers,
+                                    const occ::handle<Storage_BaseDriver>&  aDriver,
+                                    const occ::handle<Storage_Schema>&      aSchema) const = 0;
+
+  DEFINE_STANDARD_RTTIEXT(Storage_CallBack, Standard_Transient)
+};
+
+#endif // _Storage_CallBack_HeaderFile

@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 1996-01-29
+// Created by: Christian CAILLET
+// Copyright (c) 1996-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,38 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/DataExchange/TKXSBase/IFSelect/IFSelect_SignType.hxx"// clang-format on
+#ifndef _IFSelect_SignType_HeaderFile
+#define _IFSelect_SignType_HeaderFile
+
+#include <Standard.hxx>
+
+#include <IFSelect_Signature.hxx>
+class Standard_Transient;
+class Interface_InterfaceModel;
+
+//! This Signature returns the cdl Type of an entity, under two
+//! forms :
+//! - complete dynamic type (package and class)
+//! - class type, without package name
+class IFSelect_SignType : public IFSelect_Signature
+{
+
+public:
+  //! Returns a SignType
+  //! <nopk> false (D) : complete dynamic type (name = Dynamic Type)
+  //! <nopk> true : class type without pk (name = Class Type)
+  Standard_EXPORT IFSelect_SignType(const bool nopk = false);
+
+  //! Returns the Signature for a Transient object, as its Dynamic
+  //! Type, with or without package name, according starting option
+  Standard_EXPORT const char* Value(
+    const occ::handle<Standard_Transient>&       ent,
+    const occ::handle<Interface_InterfaceModel>& model) const override;
+
+  DEFINE_STANDARD_RTTIEXT(IFSelect_SignType, IFSelect_Signature)
+
+private:
+  bool thenopk;
+};
+
+#endif // _IFSelect_SignType_HeaderFile

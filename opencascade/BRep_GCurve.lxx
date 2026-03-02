@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 1995-03-15
+// Created by: Laurent PAINNOT
+// Copyright (c) 1995-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,49 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ModelingData/TKBRep/BRep/BRep_GCurve.lxx"// clang-format on
+//=================================================================================================
+
+inline void BRep_GCurve::SetRange(const double First, const double Last)
+{
+  myFirst = First;
+  myLast  = Last;
+  Update();
+}
+
+//=================================================================================================
+
+inline void BRep_GCurve::Range(double& First, double& Last) const
+{
+  First = myFirst;
+  Last  = myLast;
+}
+
+//=================================================================================================
+
+inline double BRep_GCurve::First() const
+{
+  return myFirst;
+}
+
+//=================================================================================================
+
+inline double BRep_GCurve::Last() const
+{
+  return myLast;
+}
+
+//=================================================================================================
+
+inline void BRep_GCurve::First(const double F)
+{
+  myFirst = F;
+  Update();
+}
+
+//=================================================================================================
+
+inline void BRep_GCurve::Last(const double L)
+{
+  myLast = L;
+  Update();
+}

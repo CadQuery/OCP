@@ -1,4 +1,4 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Copyright (c) 2016 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +11,14 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/Visualization/TKV3d/Prs3d/Prs3d_DatumMode.hxx"// clang-format on
+#ifndef _Prs3d_DatumMode_HeaderFile
+#define _Prs3d_DatumMode_HeaderFile
+
+//! Enumeration defining a mode of datum graphic presentation, see Prs3d_Datum.
+enum Prs3d_DatumMode
+{
+  Prs3d_DM_WireFrame = 0,
+  Prs3d_DM_Shaded
+};
+
+#endif // _Prs3d_DatumMode_HeaderFile

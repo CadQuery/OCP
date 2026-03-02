@@ -1,4 +1,6 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 2000-04-18
+// Created by: Andrey BETENEV
+// Copyright (c) 2000-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +13,24 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/DataExchange/TKDESTEP/StepRepr/StepRepr_FeatureForDatumTargetRelationship.hxx"// clang-format on
+#ifndef _StepRepr_FeatureForDatumtargetRelationship_HeaderFile
+#define _StepRepr_FeatureForDatumtargetRelationship_HeaderFile
+
+#include <Standard.hxx>
+#include <Standard_Type.hxx>
+
+#include <StepRepr_ShapeAspectRelationship.hxx>
+
+//! Representation of STEP entity DimensionalLocation
+class StepRepr_FeatureForDatumTargetRelationship : public StepRepr_ShapeAspectRelationship
+{
+
+public:
+  //! Empty constructor
+  Standard_EXPORT StepRepr_FeatureForDatumTargetRelationship();
+
+  DEFINE_STANDARD_RTTIEXT(StepRepr_FeatureForDatumTargetRelationship,
+                          StepRepr_ShapeAspectRelationship)
+};
+
+#endif // _StepRepr_FeatureForDatumtargetRelationship_HeaderFile

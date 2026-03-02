@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 1991-03-27
+// Created by: Michel CHAUVAT
+// Copyright (c) 1991-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,18 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ModelingData/TKG2d/LProp/LProp_CIType.hxx"// clang-format on
+#ifndef _LProp_CIType_HeaderFile
+#define _LProp_CIType_HeaderFile
+
+//! Identifies the type of a particular point on a curve:
+//! - LProp_Inflection: a point of inflection
+//! - LProp_MinCur: a minimum of curvature
+//! - LProp_MaxCur: a maximum of curvature.
+enum LProp_CIType
+{
+  LProp_Inflection,
+  LProp_MinCur,
+  LProp_MaxCur
+};
+
+#endif // _LProp_CIType_HeaderFile

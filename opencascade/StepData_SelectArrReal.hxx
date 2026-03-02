@@ -1,4 +1,6 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 2002-12-18
+// Created by: data exchange team
+// Copyright (c) 2002-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +13,32 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/DataExchange/TKDESTEP/StepData/StepData_SelectArrReal.hxx"// clang-format on
+#ifndef _StepData_SelectArrReal_HeaderFile
+#define _StepData_SelectArrReal_HeaderFile
+
+#include <Standard.hxx>
+
+#include <NCollection_Array1.hxx>
+#include <NCollection_HArray1.hxx>
+#include <StepData_SelectNamed.hxx>
+#include <Standard_Integer.hxx>
+
+class StepData_SelectArrReal : public StepData_SelectNamed
+{
+
+public:
+  Standard_EXPORT StepData_SelectArrReal();
+
+  Standard_EXPORT int Kind() const override;
+
+  Standard_EXPORT occ::handle<NCollection_HArray1<double>> ArrReal() const;
+
+  Standard_EXPORT void SetArrReal(const occ::handle<NCollection_HArray1<double>>& arr);
+
+  DEFINE_STANDARD_RTTIEXT(StepData_SelectArrReal, StepData_SelectNamed)
+
+private:
+  occ::handle<NCollection_HArray1<double>> theArr;
+};
+
+#endif // _StepData_SelectArrReal_HeaderFile

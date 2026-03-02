@@ -1,4 +1,5 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created by: Kirill GAVRILOV
+// Copyright (c) 2019 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +12,21 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/Visualization/TKService/Media/Media_IFrameQueue.hxx"// clang-format on
+#ifndef _Media_IFrameQueue_HeaderFile
+#define _Media_IFrameQueue_HeaderFile
+
+#include <Media_Frame.hxx>
+
+//! Interface defining frame queuing.
+class Media_IFrameQueue
+{
+public:
+  //! Lock the frame, e.g. take ownership on a single (not currently displayed) frame from the queue
+  //! to perform decoding into.
+  virtual occ::handle<Media_Frame> LockFrame() = 0;
+
+  //! Release previously locked frame, e.g. it can be displayed on the screen.
+  virtual void ReleaseFrame(const occ::handle<Media_Frame>& theFrame) = 0;
+};
+
+#endif // _Media_IFrameQueue_HeaderFile

@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 1995-12-01
+// Created by: EXPRESS->CDL V0.2 Translator
+// Copyright (c) 1995-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,40 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/DataExchange/TKDESTEP/StepShape/StepShape_Edge.hxx"// clang-format on
+#ifndef _StepShape_Edge_HeaderFile
+#define _StepShape_Edge_HeaderFile
+
+#include <Standard.hxx>
+#include <Standard_Type.hxx>
+
+#include <StepShape_Vertex.hxx>
+
+class TCollection_HAsciiString;
+
+class StepShape_Edge : public StepShape_TopologicalRepresentationItem
+{
+
+public:
+  //! Returns a Edge
+  Standard_EXPORT StepShape_Edge();
+
+  Standard_EXPORT void Init(const occ::handle<TCollection_HAsciiString>& aName,
+                            const occ::handle<StepShape_Vertex>&         aEdgeStart,
+                            const occ::handle<StepShape_Vertex>&         aEdgeEnd);
+
+  Standard_EXPORT virtual void SetEdgeStart(const occ::handle<StepShape_Vertex>& aEdgeStart);
+
+  Standard_EXPORT virtual occ::handle<StepShape_Vertex> EdgeStart() const;
+
+  Standard_EXPORT virtual void SetEdgeEnd(const occ::handle<StepShape_Vertex>& aEdgeEnd);
+
+  Standard_EXPORT virtual occ::handle<StepShape_Vertex> EdgeEnd() const;
+
+  DEFINE_STANDARD_RTTIEXT(StepShape_Edge, StepShape_TopologicalRepresentationItem)
+
+private:
+  occ::handle<StepShape_Vertex> edgeStart;
+  occ::handle<StepShape_Vertex> edgeEnd;
+};
+
+#endif // _StepShape_Edge_HeaderFile

@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 1995-12-01
+// Created by: EXPRESS->CDL V0.2 Translator
+// Copyright (c) 1995-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,43 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/DataExchange/TKDESTEP/StepVisual/StepVisual_StyleContextSelect.hxx"// clang-format on
+#ifndef _StepVisual_StyleContextSelect_HeaderFile
+#define _StepVisual_StyleContextSelect_HeaderFile
+
+#include <Standard.hxx>
+#include <Standard_DefineAlloc.hxx>
+#include <Standard_Handle.hxx>
+
+#include <StepData_SelectType.hxx>
+#include <Standard_Integer.hxx>
+class Standard_Transient;
+class StepRepr_Representation;
+class StepRepr_RepresentationItem;
+class StepVisual_PresentationSet;
+
+class StepVisual_StyleContextSelect : public StepData_SelectType
+{
+public:
+  DEFINE_STANDARD_ALLOC
+
+  //! Returns a StyleContextSelect SelectType
+  Standard_EXPORT StepVisual_StyleContextSelect();
+
+  //! Recognizes a StyleContextSelect Kind Entity that is :
+  //! 1 -> Representation
+  //! 2 -> RepresentationItem
+  //! 3 -> PresentationSet
+  //! 0 else
+  Standard_EXPORT int CaseNum(const occ::handle<Standard_Transient>& ent) const override;
+
+  //! returns Value as a Representation (Null if another type)
+  Standard_EXPORT occ::handle<StepRepr_Representation> Representation() const;
+
+  //! returns Value as a RepresentationItem (Null if another type)
+  Standard_EXPORT occ::handle<StepRepr_RepresentationItem> RepresentationItem() const;
+
+  //! returns Value as a PresentationSet (Null if another type)
+  Standard_EXPORT occ::handle<StepVisual_PresentationSet> PresentationSet() const;
+};
+
+#endif // _StepVisual_StyleContextSelect_HeaderFile

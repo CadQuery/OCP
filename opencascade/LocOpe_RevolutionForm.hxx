@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 1997-10-20
+// Created by: Olga KOULECHOVA
+// Copyright (c) 1997-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,60 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ModelingAlgorithms/TKFeat/LocOpe/LocOpe_RevolutionForm.hxx"// clang-format on
+#ifndef _LocOpe_RevolutionForm_HeaderFile
+#define _LocOpe_RevolutionForm_HeaderFile
+
+#include <Standard.hxx>
+#include <Standard_DefineAlloc.hxx>
+
+#include <TopoDS_Shape.hxx>
+#include <gp_Vec.hxx>
+#include <gp_Ax1.hxx>
+#include <NCollection_List.hxx>
+#include <TopTools_ShapeMapHasher.hxx>
+#include <NCollection_DataMap.hxx>
+#include <gp_Pnt.hxx>
+
+//! Defines a revolution form (using Revol from BRepSweep)
+//! with modifications provided for the RevolutionForm feature.
+class LocOpe_RevolutionForm
+{
+public:
+  DEFINE_STANDARD_ALLOC
+
+  Standard_EXPORT LocOpe_RevolutionForm();
+
+  Standard_EXPORT LocOpe_RevolutionForm(const TopoDS_Shape& Base,
+                                        const gp_Ax1&       Axe,
+                                        const double        Angle);
+
+  Standard_EXPORT void Perform(const TopoDS_Shape& Base, const gp_Ax1& Axe, const double Angle);
+
+  Standard_EXPORT const TopoDS_Shape& FirstShape() const;
+
+  Standard_EXPORT const TopoDS_Shape& LastShape() const;
+
+  Standard_EXPORT const TopoDS_Shape& Shape() const;
+
+  Standard_EXPORT const NCollection_List<TopoDS_Shape>& Shapes(const TopoDS_Shape& S) const;
+
+private:
+  Standard_EXPORT void IntPerf();
+
+  TopoDS_Shape myBase;
+  gp_Vec       myVec;
+  gp_Vec       myTra;
+  double       myAngle;
+  gp_Ax1       myAxis;
+  double       myAngTra;
+  bool         myDone;
+  bool         myIsTrans;
+  TopoDS_Shape myRes;
+  TopoDS_Shape myFirstShape;
+  TopoDS_Shape myLastShape;
+  NCollection_DataMap<TopoDS_Shape, NCollection_List<TopoDS_Shape>, TopTools_ShapeMapHasher> myMap;
+  gp_Pnt                                                                                     myPnt1;
+  gp_Pnt                                                                                     myPnt2;
+};
+
+#endif // _LocOpe_RevolutionForm_HeaderFile

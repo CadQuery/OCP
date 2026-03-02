@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 1992-02-03
+// Created by: Christian CAILLET
+// Copyright (c) 1992-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,46 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/DataExchange/TKXSBase/Transfer/Transfer_TransientMapper.hxx"// clang-format on
+#ifndef _Transfer_TransientMapper_HeaderFile
+#define _Transfer_TransientMapper_HeaderFile
+
+#include <Standard.hxx>
+#include <Standard_Type.hxx>
+
+#include <Transfer_Finder.hxx>
+class Standard_Transient;
+class Transfer_DataInfo;
+class Transfer_Finder;
+
+class Transfer_TransientMapper : public Transfer_Finder
+{
+
+public:
+  //! Creates a Mapper with a Value. This Value can then not be
+  //! changed. It is used by the Hasher to compute the HashCode,
+  //! which will then be stored for an immediate reading.
+  Standard_EXPORT Transfer_TransientMapper(const occ::handle<Standard_Transient>& akey);
+
+  //! Returns the contained value
+  Standard_EXPORT const occ::handle<Standard_Transient>& Value() const;
+
+  //! Specific testof equality : defined as False if <other> has
+  //! not the same true Type, else contents are compared (by
+  //! C++ operator ==)
+  Standard_EXPORT bool Equates(const occ::handle<Transfer_Finder>& other) const override;
+
+  //! Returns the Type of the Value. By default, returns the
+  //! DynamicType of <me>, but can be redefined
+  Standard_EXPORT occ::handle<Standard_Type> ValueType() const override;
+
+  //! Returns the name of the Type of the Value. Default is name
+  //! of ValueType, unless it is for a non-handled object
+  Standard_EXPORT const char* ValueTypeName() const override;
+
+  DEFINE_STANDARD_RTTI_INLINE(Transfer_TransientMapper, Transfer_Finder)
+
+private:
+  occ::handle<Standard_Transient> theval;
+};
+
+#endif // _Transfer_TransientMapper_HeaderFile

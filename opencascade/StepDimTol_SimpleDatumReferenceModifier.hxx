@@ -1,4 +1,6 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 2015-07-14
+// Created by: Irina KRYLOVA
+// Copyright (c) 2015 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +13,33 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/DataExchange/TKDESTEP/StepDimTol/StepDimTol_SimpleDatumReferenceModifier.hxx"// clang-format on
+#ifndef _StepDimTol_SimpleDatumReferenceModifier_HeaderFile
+#define _StepDimTol_SimpleDatumReferenceModifier_HeaderFile
+
+enum StepDimTol_SimpleDatumReferenceModifier
+{
+  StepDimTol_SDRMAnyCrossSection,
+  StepDimTol_SDRMAnyLongitudinalSection,
+  StepDimTol_SDRMBasic,
+  StepDimTol_SDRMContactingFeature,
+  StepDimTol_SDRMDegreeOfFreedomConstraintU,
+  StepDimTol_SDRMDegreeOfFreedomConstraintV,
+  StepDimTol_SDRMDegreeOfFreedomConstraintW,
+  StepDimTol_SDRMDegreeOfFreedomConstraintX,
+  StepDimTol_SDRMDegreeOfFreedomConstraintY,
+  StepDimTol_SDRMDegreeOfFreedomConstraintZ,
+  StepDimTol_SDRMDistanceVariable,
+  StepDimTol_SDRMFreeState,
+  StepDimTol_SDRMLeastMaterialRequirement,
+  StepDimTol_SDRMLine,
+  StepDimTol_SDRMMajorDiameter,
+  StepDimTol_SDRMMaximumMaterialRequirement,
+  StepDimTol_SDRMMinorDiameter,
+  StepDimTol_SDRMOrientation,
+  StepDimTol_SDRMPitchDiameter,
+  StepDimTol_SDRMPlane,
+  StepDimTol_SDRMPoint,
+  StepDimTol_SDRMTranslation
+};
+
+#endif

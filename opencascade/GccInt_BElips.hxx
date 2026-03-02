@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 1991-10-04
+// Created by: Remi GILET
+// Copyright (c) 1991-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,34 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ModelingAlgorithms/TKGeomAlgo/GccInt/GccInt_BElips.hxx"// clang-format on
+#ifndef _GccInt_BElips_HeaderFile
+#define _GccInt_BElips_HeaderFile
+
+#include <Standard.hxx>
+
+#include <gp_Elips2d.hxx>
+#include <GccInt_Bisec.hxx>
+#include <GccInt_IType.hxx>
+
+//! Describes an ellipse as a bisecting curve between two
+//! 2D geometric objects (such as circles or points).
+class GccInt_BElips : public GccInt_Bisec
+{
+
+public:
+  //! Constructs a bisecting curve whose geometry is the 2D ellipse Ellipse.
+  Standard_EXPORT GccInt_BElips(const gp_Elips2d& Ellipse);
+
+  //! Returns a 2D ellipse which is the geometry of this bisecting curve.
+  Standard_EXPORT gp_Elips2d Ellipse() const override;
+
+  //! Returns GccInt_Ell, which is the type of any GccInt_BElips bisecting curve.
+  Standard_EXPORT GccInt_IType ArcType() const override;
+
+  DEFINE_STANDARD_RTTIEXT(GccInt_BElips, GccInt_Bisec)
+
+private:
+  gp_Elips2d eli;
+};
+
+#endif // _GccInt_BElips_HeaderFile

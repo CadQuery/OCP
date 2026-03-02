@@ -1,4 +1,6 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 2000-08-11
+// Created by: data exchange team
+// Copyright (c) 2000-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +13,30 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/DataExchange/TKXCAF/XCAFPrs/XCAFPrs_Driver.hxx"// clang-format on
+#ifndef _XCAFPrs_Driver_HeaderFile
+#define _XCAFPrs_Driver_HeaderFile
+
+#include <Standard.hxx>
+#include <Standard_Type.hxx>
+
+#include <TPrsStd_Driver.hxx>
+class TDF_Label;
+class AIS_InteractiveObject;
+class Standard_GUID;
+
+//! Implements a driver for presentation of shapes in DECAF
+//! document. Its the only purpose is to initialize and return
+//! XCAFPrs_AISObject object on request
+class XCAFPrs_Driver : public TPrsStd_Driver
+{
+
+public:
+  Standard_EXPORT bool Update(const TDF_Label& L, occ::handle<AIS_InteractiveObject>& ais) override;
+
+  //! returns GUID of the driver
+  Standard_EXPORT static const Standard_GUID& GetID();
+
+  DEFINE_STANDARD_RTTIEXT(XCAFPrs_Driver, TPrsStd_Driver)
+};
+
+#endif // _XCAFPrs_Driver_HeaderFile

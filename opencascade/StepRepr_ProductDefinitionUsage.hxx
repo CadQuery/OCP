@@ -1,4 +1,6 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 2000-07-03
+// Created by: Andrey BETENEV
+// Copyright (c) 2000-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +13,22 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/DataExchange/TKDESTEP/StepRepr/StepRepr_ProductDefinitionUsage.hxx"// clang-format on
+#ifndef _StepRepr_ProductDefinitionUsage_HeaderFile
+#define _StepRepr_ProductDefinitionUsage_HeaderFile
+
+#include <Standard.hxx>
+
+#include <StepBasic_ProductDefinitionRelationship.hxx>
+
+//! Representation of STEP entity ProductDefinitionUsage
+class StepRepr_ProductDefinitionUsage : public StepBasic_ProductDefinitionRelationship
+{
+
+public:
+  //! Empty constructor
+  Standard_EXPORT StepRepr_ProductDefinitionUsage();
+
+  DEFINE_STANDARD_RTTIEXT(StepRepr_ProductDefinitionUsage, StepBasic_ProductDefinitionRelationship)
+};
+
+#endif // _StepRepr_ProductDefinitionUsage_HeaderFile

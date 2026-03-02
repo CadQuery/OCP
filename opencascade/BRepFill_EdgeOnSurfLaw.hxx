@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 1998-07-27
+// Created by: Philippe MANGIN
+// Copyright (c) 1998-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,31 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ModelingAlgorithms/TKBool/BRepFill/BRepFill_EdgeOnSurfLaw.hxx"// clang-format on
+#ifndef _BRepFill_EdgeOnSurfLaw_HeaderFile
+#define _BRepFill_EdgeOnSurfLaw_HeaderFile
+
+#include <Standard.hxx>
+
+#include <BRepFill_LocationLaw.hxx>
+class TopoDS_Wire;
+class TopoDS_Shape;
+
+//! Build Location Law, with a Wire and a Surface.
+class BRepFill_EdgeOnSurfLaw : public BRepFill_LocationLaw
+{
+
+public:
+  Standard_EXPORT BRepFill_EdgeOnSurfLaw(const TopoDS_Wire& Path, const TopoDS_Shape& Surf);
+
+  //! returns <False> if one Edge of <Path> do not have
+  //! representation on <Surf>. In this case it is
+  //! impossible to use this object.
+  Standard_EXPORT bool HasResult() const;
+
+  DEFINE_STANDARD_RTTIEXT(BRepFill_EdgeOnSurfLaw, BRepFill_LocationLaw)
+
+private:
+  bool hasresult;
+};
+
+#endif // _BRepFill_EdgeOnSurfLaw_HeaderFile

@@ -1,4 +1,4 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Copyright (c) 2024 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +11,11 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/FoundationClasses/TKMath/BVH/BVH_Builder3d.hxx"// clang-format on
+#ifndef _BVH_Builder3d_Header
+#define _BVH_Builder3d_Header
+
+#include <BVH_Builder.hxx>
+
+typedef BVH_Builder<double, 3> BVH_Builder3d;
+
+#endif // _BVH_Builder3d_Header

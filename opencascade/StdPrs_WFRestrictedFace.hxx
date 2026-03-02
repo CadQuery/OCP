@@ -1,4 +1,4 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Copyright (c) 2013-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +11,82 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/Visualization/TKV3d/StdPrs/StdPrs_WFRestrictedFace.hxx"// clang-format on
+#ifndef StdPrs_WFRestrictedFace_HeaderFile
+#define StdPrs_WFRestrictedFace_HeaderFile
+
+#include <BRepAdaptor_Surface.hxx>
+#include <Prs3d_Drawer.hxx>
+#include <Prs3d_Root.hxx>
+#include <gp_Pnt.hxx>
+#include <NCollection_Sequence.hxx>
+#include <NCollection_HSequence.hxx>
+#include <NCollection_List.hxx>
+
+// Computes the wireframe presentation of faces with
+// restrictions by displaying a given number of U and/or
+// V isoparametric curves. The isoparametric curves are
+// drawn with a fixed number of points.
+// The presentation includes the restriction curves.
+
+class StdPrs_WFRestrictedFace : public Prs3d_Root
+{
+public:
+  DEFINE_STANDARD_ALLOC
+
+  Standard_EXPORT static void Add(
+    const occ::handle<Prs3d_Presentation>&                        thePresentation,
+    const occ::handle<BRepAdaptor_Surface>&                       theFace,
+    const bool                                                    theDrawUIso,
+    const bool                                                    theDrawVIso,
+    const int                                                     theNbUIso,
+    const int                                                     theNbVIso,
+    const occ::handle<Prs3d_Drawer>&                              theDrawer,
+    NCollection_List<occ::handle<NCollection_HSequence<gp_Pnt>>>& theCurves);
+
+  Standard_EXPORT static void Add(const occ::handle<Prs3d_Presentation>&  thePresentation,
+                                  const occ::handle<BRepAdaptor_Surface>& theFace,
+                                  const occ::handle<Prs3d_Drawer>&        theDrawer);
+
+  Standard_EXPORT static bool Match(const double                            theX,
+                                    const double                            theY,
+                                    const double                            theZ,
+                                    const double                            theDistance,
+                                    const occ::handle<BRepAdaptor_Surface>& theFace,
+                                    const bool                              theDrawUIso,
+                                    const bool                              theDrawVIso,
+                                    const double                            theDeflection,
+                                    const int                               theNbUIso,
+                                    const int                               theNbVIso,
+                                    const occ::handle<Prs3d_Drawer>&        theDrawer);
+
+  Standard_EXPORT static bool Match(const double                            theX,
+                                    const double                            theY,
+                                    const double                            theZ,
+                                    const double                            theDistance,
+                                    const occ::handle<BRepAdaptor_Surface>& theFace,
+                                    const occ::handle<Prs3d_Drawer>&        theDrawer);
+
+  Standard_EXPORT static bool MatchUIso(const double                            theX,
+                                        const double                            theY,
+                                        const double                            theZ,
+                                        const double                            theDistance,
+                                        const occ::handle<BRepAdaptor_Surface>& theFace,
+                                        const occ::handle<Prs3d_Drawer>&        theDrawer);
+
+  Standard_EXPORT static bool MatchVIso(const double                            theX,
+                                        const double                            theY,
+                                        const double                            theZ,
+                                        const double                            theDistance,
+                                        const occ::handle<BRepAdaptor_Surface>& theFace,
+                                        const occ::handle<Prs3d_Drawer>&        theDrawer);
+
+  Standard_EXPORT static void AddUIso(const occ::handle<Prs3d_Presentation>&  thePresentation,
+                                      const occ::handle<BRepAdaptor_Surface>& theFace,
+                                      const occ::handle<Prs3d_Drawer>&        theDrawer);
+
+  Standard_EXPORT static void AddVIso(const occ::handle<Prs3d_Presentation>&  thePresentation,
+                                      const occ::handle<BRepAdaptor_Surface>& theFace,
+                                      const occ::handle<Prs3d_Drawer>&        theDrawer);
+};
+
+#endif

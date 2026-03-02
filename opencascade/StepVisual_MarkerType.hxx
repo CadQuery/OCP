@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 1995-12-01
+// Created by: EXPRESS->CDL V0.2 Translator
+// Copyright (c) 1995-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,18 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/DataExchange/TKDESTEP/StepVisual/StepVisual_MarkerType.hxx"// clang-format on
+#ifndef _StepVisual_MarkerType_HeaderFile
+#define _StepVisual_MarkerType_HeaderFile
+
+enum StepVisual_MarkerType
+{
+  StepVisual_mtDot,
+  StepVisual_mtX,
+  StepVisual_mtPlus,
+  StepVisual_mtAsterisk,
+  StepVisual_mtRing,
+  StepVisual_mtSquare,
+  StepVisual_mtTriangle
+};
+
+#endif // _StepVisual_MarkerType_HeaderFile

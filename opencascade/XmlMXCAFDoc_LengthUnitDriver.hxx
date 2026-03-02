@@ -1,4 +1,4 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Copyright (c) 2021 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +11,37 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/DataExchange/TKXmlXCAF/XmlMXCAFDoc/XmlMXCAFDoc_LengthUnitDriver.hxx"// clang-format on
+#ifndef _XmlMXCAFDoc_LengthUnitDriver_HeaderFile
+#define _XmlMXCAFDoc_LengthUnitDriver_HeaderFile
+
+#include <Standard.hxx>
+
+#include <XmlMDF_ADriver.hxx>
+#include <XmlObjMgt_RRelocationTable.hxx>
+#include <XmlObjMgt_SRelocationTable.hxx>
+class Message_Messenger;
+class TDF_Attribute;
+class XmlObjMgt_Persistent;
+
+//! Attribute Driver.
+class XmlMXCAFDoc_LengthUnitDriver : public XmlMDF_ADriver
+{
+
+public:
+  Standard_EXPORT XmlMXCAFDoc_LengthUnitDriver(
+    const occ::handle<Message_Messenger>& theMessageDriver);
+
+  Standard_EXPORT occ::handle<TDF_Attribute> NewEmpty() const override;
+
+  Standard_EXPORT bool Paste(const XmlObjMgt_Persistent&       theSource,
+                             const occ::handle<TDF_Attribute>& theTarget,
+                             XmlObjMgt_RRelocationTable&       theRelocTable) const override;
+
+  Standard_EXPORT void Paste(const occ::handle<TDF_Attribute>& theSource,
+                             XmlObjMgt_Persistent&             theTarget,
+                             XmlObjMgt_SRelocationTable&       theRelocTable) const override;
+
+  DEFINE_STANDARD_RTTIEXT(XmlMXCAFDoc_LengthUnitDriver, XmlMDF_ADriver)
+};
+
+#endif // _XmlMXCAFDoc_LengthUnitDriver_HeaderFile

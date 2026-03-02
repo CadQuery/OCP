@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 1993-06-03
+// Created by: Bruno DUMORTIER
+// Copyright (c) 1993-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,29 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ModelingData/TKG2d/Geom2dAdaptor/Geom2dAdaptor.hxx"// clang-format on
+#ifndef _Geom2dAdaptor_HeaderFile
+#define _Geom2dAdaptor_HeaderFile
+
+#include <Standard.hxx>
+#include <Standard_DefineAlloc.hxx>
+#include <Standard_Handle.hxx>
+
+class Geom2d_Curve;
+class Adaptor2d_Curve2d;
+
+//! this package contains the geometric definition of
+//! 2d curves compatible with the Adaptor package
+//! templates.
+class Geom2dAdaptor
+{
+public:
+  DEFINE_STANDARD_ALLOC
+
+  //! Inherited from GHCurve. Provides a curve
+  //! handled by reference.
+  //! Creates a 2d curve from a HCurve2d. This
+  //! cannot process the OtherCurves.
+  Standard_EXPORT static occ::handle<Geom2d_Curve> MakeCurve(const Adaptor2d_Curve2d& HC);
+};
+
+#endif // _Geom2dAdaptor_HeaderFile

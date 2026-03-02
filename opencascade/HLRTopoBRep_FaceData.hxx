@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 1995-03-27
+// Created by: Christophe MARION
+// Copyright (c) 1995-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,43 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ModelingAlgorithms/TKHLR/HLRTopoBRep/HLRTopoBRep_FaceData.hxx"// clang-format on
+#ifndef _HLRTopoBRep_FaceData_HeaderFile
+#define _HLRTopoBRep_FaceData_HeaderFile
+
+#include <Standard.hxx>
+#include <Standard_DefineAlloc.hxx>
+#include <Standard_Handle.hxx>
+
+#include <TopoDS_Shape.hxx>
+#include <NCollection_List.hxx>
+
+//! Contains the 3 ListOfShape of a Face
+//! (Internal OutLines, OutLines on restriction and IsoLines).
+class HLRTopoBRep_FaceData
+{
+public:
+  DEFINE_STANDARD_ALLOC
+
+  Standard_EXPORT HLRTopoBRep_FaceData();
+
+  const NCollection_List<TopoDS_Shape>& FaceIntL() const;
+
+  const NCollection_List<TopoDS_Shape>& FaceOutL() const;
+
+  const NCollection_List<TopoDS_Shape>& FaceIsoL() const;
+
+  NCollection_List<TopoDS_Shape>& AddIntL();
+
+  NCollection_List<TopoDS_Shape>& AddOutL();
+
+  NCollection_List<TopoDS_Shape>& AddIsoL();
+
+private:
+  NCollection_List<TopoDS_Shape> myIntL;
+  NCollection_List<TopoDS_Shape> myOutL;
+  NCollection_List<TopoDS_Shape> myIsoL;
+};
+
+#include <HLRTopoBRep_FaceData.lxx>
+
+#endif // _HLRTopoBRep_FaceData_HeaderFile

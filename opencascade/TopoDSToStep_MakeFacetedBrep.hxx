@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 1993-07-23
+// Created by: Martine LANGLOIS
+// Copyright (c) 1993-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,50 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/DataExchange/TKDESTEP/TopoDSToStep/TopoDSToStep_MakeFacetedBrep.hxx"// clang-format on
+#ifndef _TopoDSToStep_MakeFacetedBrep_HeaderFile
+#define _TopoDSToStep_MakeFacetedBrep_HeaderFile
+
+#include <Standard.hxx>
+#include <Standard_DefineAlloc.hxx>
+#include <Standard_Handle.hxx>
+
+#include <TopoDSToStep_Root.hxx>
+#include <Message_ProgressRange.hxx>
+
+class StepShape_FacetedBrep;
+class StepVisual_TessellatedItem;
+class TopoDS_Shell;
+class Transfer_FinderProcess;
+class TopoDS_Solid;
+
+//! This class implements the mapping between classes
+//! Shell or Solid from TopoDS and FacetedBrep from
+//! StepShape. All the topology and geometry comprised
+//! into the shell or the solid are taken into account and
+//! translated.
+class TopoDSToStep_MakeFacetedBrep : public TopoDSToStep_Root
+{
+public:
+  DEFINE_STANDARD_ALLOC
+
+  Standard_EXPORT TopoDSToStep_MakeFacetedBrep(
+    const TopoDS_Shell&                        S,
+    const occ::handle<Transfer_FinderProcess>& FP,
+    const StepData_Factors&                    theLocalFactors = StepData_Factors(),
+    const Message_ProgressRange&               theProgress     = Message_ProgressRange());
+
+  Standard_EXPORT TopoDSToStep_MakeFacetedBrep(
+    const TopoDS_Solid&                        S,
+    const occ::handle<Transfer_FinderProcess>& FP,
+    const StepData_Factors&                    theLocalFactors = StepData_Factors(),
+    const Message_ProgressRange&               theProgress     = Message_ProgressRange());
+
+  Standard_EXPORT const occ::handle<StepShape_FacetedBrep>& Value() const;
+  Standard_EXPORT const occ::handle<StepVisual_TessellatedItem>& TessellatedValue() const;
+
+private:
+  occ::handle<StepShape_FacetedBrep>      theFacetedBrep;
+  occ::handle<StepVisual_TessellatedItem> theTessellatedItem;
+};
+
+#endif // _TopoDSToStep_MakeFacetedBrep_HeaderFile

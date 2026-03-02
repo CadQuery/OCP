@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 1992-08-20
+// Created by: Christophe MARION
+// Copyright (c) 1992-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,69 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ModelingAlgorithms/TKHLR/HLRAlgo/HLRAlgo_Coincidence.hxx"// clang-format on
+#ifndef _HLRAlgo_Coincidence_HeaderFile
+#define _HLRAlgo_Coincidence_HeaderFile
+
+#include <Standard.hxx>
+#include <Standard_DefineAlloc.hxx>
+
+#include <Standard_Integer.hxx>
+#include <TopAbs_State.hxx>
+
+//! The Coincidence class is used in an Interference to
+//! store information on the "hiding" edge.
+//!
+//! 2D Data: The tangent and the curvature of the
+//! projection of the edge at the intersection point.
+//! This is necesserary when the intersection is at
+//! the extremity of the edge.
+//!
+//! 3D Data: The state of the edge near the
+//! intersection with the face (before and after).
+//! This is necessary when the intersection is "ON"
+//! the face.
+class HLRAlgo_Coincidence
+{
+public:
+  DEFINE_STANDARD_ALLOC
+
+  HLRAlgo_Coincidence()
+      : myFE(0),
+        myParam(0.),
+        myStBef(TopAbs_IN),
+        myStAft(TopAbs_IN)
+  {
+  }
+
+  void Set2D(const int FE, const double Param)
+  {
+    myFE    = FE;
+    myParam = Param;
+  }
+
+  void SetState3D(const TopAbs_State stbef, const TopAbs_State staft)
+  {
+    myStBef = stbef;
+    myStAft = staft;
+  }
+
+  void Value2D(int& FE, double& Param) const
+  {
+    FE    = myFE;
+    Param = myParam;
+  }
+
+  void State3D(TopAbs_State& stbef, TopAbs_State& staft) const
+  {
+    stbef = myStBef;
+    staft = myStAft;
+  }
+
+private:
+  int          myFE;
+  double       myParam;
+  TopAbs_State myStBef;
+  TopAbs_State myStAft;
+};
+
+#endif // _HLRAlgo_Coincidence_HeaderFile

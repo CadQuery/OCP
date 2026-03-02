@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 1992-11-05
+// Created by: Remi LEQUETTE
+// Copyright (c) 1992-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,47 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ModelingAlgorithms/TKPrim/BRepPrim/BRepPrim_Torus.hxx"// clang-format on
+#ifndef _BRepPrim_Torus_HeaderFile
+#define _BRepPrim_Torus_HeaderFile
+
+#include <Standard.hxx>
+#include <Standard_DefineAlloc.hxx>
+#include <Standard_Handle.hxx>
+
+#include <BRepPrim_Revolution.hxx>
+class gp_Ax2;
+class gp_Pnt;
+class TopoDS_Face;
+
+//! Implements the torus primitive
+class BRepPrim_Torus : public BRepPrim_Revolution
+{
+public:
+  DEFINE_STANDARD_ALLOC
+
+  //! the STEP definition
+  //! Position : center and axes
+  //! Major, Minor : Radii
+  //!
+  //! Errors : Major < Resolution
+  //! Minor < Resolution
+  Standard_EXPORT BRepPrim_Torus(const gp_Ax2& Position, const double Major, const double Minor);
+
+  //! Torus centered at origin
+  Standard_EXPORT BRepPrim_Torus(const double Major, const double Minor);
+
+  //! Torus at Center
+  Standard_EXPORT BRepPrim_Torus(const gp_Pnt& Center, const double Major, const double Minor);
+
+  //! The surface normal should be directed towards the
+  //! outside.
+  Standard_EXPORT TopoDS_Face MakeEmptyLateralFace() const override;
+
+private:
+  Standard_EXPORT void SetMeridian();
+
+  double myMajor; //!< distance from the center of the pipe to the center of the torus
+  double myMinor; //!< radius of the pipe
+};
+
+#endif // _BRepPrim_Torus_HeaderFile

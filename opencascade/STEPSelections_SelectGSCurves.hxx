@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 1999-03-22
+// Created by: data exchange team
+// Copyright (c) 1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,35 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/DataExchange/TKDESTEP/STEPSelections/STEPSelections_SelectGSCurves.hxx"// clang-format on
+#ifndef _STEPSelections_SelectGSCurves_HeaderFile
+#define _STEPSelections_SelectGSCurves_HeaderFile
+
+#include <Standard.hxx>
+#include <Standard_Type.hxx>
+
+#include <IFSelect_SelectExplore.hxx>
+#include <Standard_Integer.hxx>
+class Standard_Transient;
+class Interface_Graph;
+class Interface_EntityIterator;
+class TCollection_AsciiString;
+
+//! This selection returns "curves in the geometric_set (except composite curves)"
+class STEPSelections_SelectGSCurves : public IFSelect_SelectExplore
+{
+
+public:
+  Standard_EXPORT STEPSelections_SelectGSCurves();
+
+  Standard_EXPORT bool Explore(const int                              level,
+                               const occ::handle<Standard_Transient>& ent,
+                               const Interface_Graph&                 G,
+                               Interface_EntityIterator&              explored) const override;
+
+  //! Returns a text defining the criterium : "Curves"
+  Standard_EXPORT TCollection_AsciiString ExploreLabel() const override;
+
+  DEFINE_STANDARD_RTTIEXT(STEPSelections_SelectGSCurves, IFSelect_SelectExplore)
+};
+
+#endif // _STEPSelections_SelectGSCurves_HeaderFile

@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 1994-08-31
+// Created by: Jacques GOUSSARD
+// Copyright (c) 1994-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,30 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ModelingAlgorithms/TKOffset/Draft/Draft.hxx"// clang-format on
+#ifndef _Draft_HeaderFile
+#define _Draft_HeaderFile
+
+#include <Standard.hxx>
+#include <Standard_DefineAlloc.hxx>
+#include <Standard_Handle.hxx>
+
+#include <Standard_Real.hxx>
+class TopoDS_Face;
+class gp_Dir;
+
+class Draft
+{
+public:
+  DEFINE_STANDARD_ALLOC
+
+  //! Returns the draft angle of the face <F> using the
+  //! direction <Direction>. The method is valid for :
+  //! - Plane faces,
+  //! - Cylindrical or conical faces, when the direction
+  //! of the axis of the surface is colinear with the
+  //! direction.
+  //! Otherwise, the exception DomainError is raised.
+  Standard_EXPORT static double Angle(const TopoDS_Face& F, const gp_Dir& Direction);
+};
+
+#endif // _Draft_HeaderFile

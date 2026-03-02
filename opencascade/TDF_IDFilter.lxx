@@ -1,4 +1,6 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created by: DAUTRY Philippe
+// Copyright (c) 1997-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +13,39 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ApplicationFramework/TKLCAF/TDF/TDF_IDFilter.lxx"// clang-format on
+//      	---------------------
+
+// Version:	0.0
+// Version	Date		Purpose
+//		0.0	Jun 10 1997	Creation
+
+#include <TDF_Attribute.hxx>
+
+inline bool TDF_IDFilter::IgnoreAll() const
+{
+  return myIgnore;
+}
+
+inline bool TDF_IDFilter::IsKept(const Standard_GUID& anID) const
+{
+  return (myIgnore == myIDMap.Contains(anID));
+}
+
+// Ce qui est plus compacte et rapide que:
+// bool IsBound = myIDMap.Contains(anID);
+// return myIgnore ? IsBound : !IsBound;
+
+inline bool TDF_IDFilter::IsKept(const occ::handle<TDF_Attribute>& anAtt) const
+{
+  return IsKept(anAtt->ID());
+}
+
+inline bool TDF_IDFilter::IsIgnored(const Standard_GUID& anID) const
+{
+  return (myIgnore != myIDMap.Contains(anID));
+}
+
+inline bool TDF_IDFilter::IsIgnored(const occ::handle<TDF_Attribute>& anAtt) const
+{
+  return IsIgnored(anAtt->ID());
+}

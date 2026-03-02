@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 1996-10-07
+// Created by: Christian CAILLET
+// Copyright (c) 1996-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,22 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/DataExchange/TKDESTEP/StepBasic/StepBasic_DesignContext.hxx"// clang-format on
+#ifndef _StepBasic_DesignContext_HeaderFile
+#define _StepBasic_DesignContext_HeaderFile
+
+#include <Standard.hxx>
+#include <Standard_Type.hxx>
+
+#include <StepBasic_ProductDefinitionContext.hxx>
+
+//! class added to Schema AP214 around April 1996
+class StepBasic_DesignContext : public StepBasic_ProductDefinitionContext
+{
+
+public:
+  Standard_EXPORT StepBasic_DesignContext();
+
+  DEFINE_STANDARD_RTTIEXT(StepBasic_DesignContext, StepBasic_ProductDefinitionContext)
+};
+
+#endif // _StepBasic_DesignContext_HeaderFile

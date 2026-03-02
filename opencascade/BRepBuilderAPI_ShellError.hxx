@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 1993-07-06
+// Created by: Remi LEQUETTE
+// Copyright (c) 1993-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,24 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ModelingAlgorithms/TKTopAlgo/BRepBuilderAPI/BRepBuilderAPI_ShellError.hxx"// clang-format on
+#ifndef _BRepBuilderAPI_ShellError_HeaderFile
+#define _BRepBuilderAPI_ShellError_HeaderFile
+
+//! Indicates the outcome of the construction of a face, i.e.
+//! whether it is successful or not, as explained below:
+//! -   BRepBuilderAPI_ShellDone No error occurred.
+//! The shell is correctly built.
+//! -   BRepBuilderAPI_EmptyShell No initialization of
+//! the algorithm: only an empty constructor was used.
+//! -   BRepBuilderAPI_DisconnectedShell not yet used
+//! -   BRepBuilderAPI_ShellParametersOutOfRange
+//! The parameters given to limit the surface are out of its bounds.
+enum BRepBuilderAPI_ShellError
+{
+  BRepBuilderAPI_ShellDone,
+  BRepBuilderAPI_EmptyShell,
+  BRepBuilderAPI_DisconnectedShell,
+  BRepBuilderAPI_ShellParametersOutOfRange
+};
+
+#endif // _BRepBuilderAPI_ShellError_HeaderFile

@@ -1,4 +1,4 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +11,19 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/DataExchange/TKDESTEP/StepElement/StepElement_EnumeratedCurveElementFreedom.hxx"// clang-format on
+#ifndef _StepElement_EnumeratedCurveElementFreedom_HeaderFile
+#define _StepElement_EnumeratedCurveElementFreedom_HeaderFile
+
+enum StepElement_EnumeratedCurveElementFreedom
+{
+  StepElement_XTranslation,
+  StepElement_YTranslation,
+  StepElement_ZTranslation,
+  StepElement_XRotation,
+  StepElement_YRotation,
+  StepElement_ZRotation,
+  StepElement_Warp,
+  StepElement_None
+};
+
+#endif // _StepElement_EnumeratedCurveElementFreedom_HeaderFile

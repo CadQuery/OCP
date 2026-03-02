@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 1995-12-01
+// Created by: EXPRESS->CDL V0.2 Translator
+// Copyright (c) 1995-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,45 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/DataExchange/TKDESTEP/StepShape/StepShape_FaceSurface.hxx"// clang-format on
+#ifndef _StepShape_FaceSurface_HeaderFile
+#define _StepShape_FaceSurface_HeaderFile
+
+#include <Standard.hxx>
+#include <Standard_Type.hxx>
+
+#include <StepShape_Face.hxx>
+#include <StepShape_FaceBound.hxx>
+#include <NCollection_Array1.hxx>
+#include <NCollection_HArray1.hxx>
+class StepGeom_Surface;
+class TCollection_HAsciiString;
+
+class StepShape_FaceSurface : public StepShape_Face
+{
+
+public:
+  //! Returns a FaceSurface
+  Standard_EXPORT StepShape_FaceSurface();
+
+  Standard_EXPORT void Init(
+    const occ::handle<TCollection_HAsciiString>&                              aName,
+    const occ::handle<NCollection_HArray1<occ::handle<StepShape_FaceBound>>>& aBounds,
+    const occ::handle<StepGeom_Surface>&                                      aFaceGeometry,
+    const bool                                                                aSameSense);
+
+  Standard_EXPORT void SetFaceGeometry(const occ::handle<StepGeom_Surface>& aFaceGeometry);
+
+  Standard_EXPORT occ::handle<StepGeom_Surface> FaceGeometry() const;
+
+  Standard_EXPORT void SetSameSense(const bool aSameSense);
+
+  Standard_EXPORT bool SameSense() const;
+
+  DEFINE_STANDARD_RTTIEXT(StepShape_FaceSurface, StepShape_Face)
+
+private:
+  occ::handle<StepGeom_Surface> faceGeometry;
+  bool                          sameSense;
+};
+
+#endif // _StepShape_FaceSurface_HeaderFile

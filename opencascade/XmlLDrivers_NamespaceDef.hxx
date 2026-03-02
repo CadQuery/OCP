@@ -1,4 +1,6 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 2001-09-19
+// Created by: admin of fao FACTORY
+// Copyright (c) 2001-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +13,32 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ApplicationFramework/TKXmlL/XmlLDrivers/XmlLDrivers_NamespaceDef.hxx"// clang-format on
+#ifndef _XmlLDrivers_NamespaceDef_HeaderFile
+#define _XmlLDrivers_NamespaceDef_HeaderFile
+
+#include <Standard.hxx>
+#include <Standard_DefineAlloc.hxx>
+#include <Standard_Handle.hxx>
+
+#include <TCollection_AsciiString.hxx>
+
+class XmlLDrivers_NamespaceDef
+{
+public:
+  DEFINE_STANDARD_ALLOC
+
+  Standard_EXPORT XmlLDrivers_NamespaceDef();
+
+  Standard_EXPORT XmlLDrivers_NamespaceDef(const TCollection_AsciiString& thePrefix,
+                                           const TCollection_AsciiString& theURI);
+
+  Standard_EXPORT const TCollection_AsciiString& Prefix() const;
+
+  Standard_EXPORT const TCollection_AsciiString& URI() const;
+
+private:
+  TCollection_AsciiString myPrefix;
+  TCollection_AsciiString myURI;
+};
+
+#endif // _XmlLDrivers_NamespaceDef_HeaderFile

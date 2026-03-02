@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 1993-01-09
+// Created by: CKY / Contract Toubro-Larsen ( Anand NATRAJAN )
+// Copyright (c) 1993-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,35 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/DataExchange/TKDEIGES/IGESBasic/IGESBasic_ExternalRefFile.hxx"// clang-format on
+#ifndef _IGESBasic_ExternalRefFile_HeaderFile
+#define _IGESBasic_ExternalRefFile_HeaderFile
+
+#include <Standard.hxx>
+
+#include <IGESData_IGESEntity.hxx>
+class TCollection_HAsciiString;
+
+//! defines ExternalRefFile, Type <416> Form <1>
+//! in package IGESBasic
+//! Used when entire reference file is to be instanced
+class IGESBasic_ExternalRefFile : public IGESData_IGESEntity
+{
+
+public:
+  Standard_EXPORT IGESBasic_ExternalRefFile();
+
+  //! This method is used to set the field of the class
+  //! ExternalRefFile
+  //! - aFileIdent : External Reference File Identifier
+  Standard_EXPORT void Init(const occ::handle<TCollection_HAsciiString>& aFileIdent);
+
+  //! returns External Reference File Identifier
+  Standard_EXPORT occ::handle<TCollection_HAsciiString> FileId() const;
+
+  DEFINE_STANDARD_RTTIEXT(IGESBasic_ExternalRefFile, IGESData_IGESEntity)
+
+private:
+  occ::handle<TCollection_HAsciiString> theExtRefFileIdentifier;
+};
+
+#endif // _IGESBasic_ExternalRefFile_HeaderFile

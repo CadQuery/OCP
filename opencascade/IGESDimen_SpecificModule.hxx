@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 1993-09-07
+// Created by: Christian CAILLET
+// Copyright (c) 1993-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,41 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/DataExchange/TKDEIGES/IGESDimen/IGESDimen_SpecificModule.hxx"// clang-format on
+#ifndef _IGESDimen_SpecificModule_HeaderFile
+#define _IGESDimen_SpecificModule_HeaderFile
+
+#include <Standard.hxx>
+#include <Standard_Type.hxx>
+
+#include <IGESData_SpecificModule.hxx>
+#include <Standard_Integer.hxx>
+class IGESData_IGESEntity;
+class IGESData_IGESDumper;
+
+//! Defines Services attached to IGES Entities :
+//! Dump & OwnCorrect, for IGESDimen
+class IGESDimen_SpecificModule : public IGESData_SpecificModule
+{
+
+public:
+  //! Creates a SpecificModule from IGESDimen & puts it into SpecificLib
+  Standard_EXPORT IGESDimen_SpecificModule();
+
+  //! Specific Dump (own parameters) for IGESDimen
+  Standard_EXPORT void OwnDump(const int                               CN,
+                               const occ::handle<IGESData_IGESEntity>& ent,
+                               const IGESData_IGESDumper&              dumper,
+                               Standard_OStream&                       S,
+                               const int                               own) const override;
+
+  //! Performs non-ambiguous Corrections on Entities which support
+  //! them (BasicDimension,CenterLine,DimensionDisplayData,
+  //! DimensionTolerance,DimensionUnits,DimensionedGeometry,
+  //! NewDimensionedGeometry,Section,WitnessLine)
+  Standard_EXPORT bool OwnCorrect(const int                               CN,
+                                  const occ::handle<IGESData_IGESEntity>& ent) const override;
+
+  DEFINE_STANDARD_RTTIEXT(IGESDimen_SpecificModule, IGESData_SpecificModule)
+};
+
+#endif // _IGESDimen_SpecificModule_HeaderFile

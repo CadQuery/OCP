@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 1996-01-25
+// Created by: Frederic MAUPAS
+// Copyright (c) 1996-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,36 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/DataExchange/TKDESTEP/GeomToStep/GeomToStep_MakeRectangularTrimmedSurface.hxx"// clang-format on
+#ifndef _GeomToStep_MakeRectangularTrimmedSurface_HeaderFile
+#define _GeomToStep_MakeRectangularTrimmedSurface_HeaderFile
+
+#include <Standard.hxx>
+#include <Standard_DefineAlloc.hxx>
+#include <Standard_Handle.hxx>
+
+#include <GeomToStep_Root.hxx>
+
+class StepGeom_RectangularTrimmedSurface;
+class Geom_RectangularTrimmedSurface;
+
+//! This class implements the mapping between class
+//! RectangularTrimmedSurface from Geom and the class
+//! RectangularTrimmedSurface from
+//! StepGeom which describes a
+//! rectangular_trimmed_surface from ISO-IS 10303-42
+class GeomToStep_MakeRectangularTrimmedSurface : public GeomToStep_Root
+{
+public:
+  DEFINE_STANDARD_ALLOC
+
+  Standard_EXPORT GeomToStep_MakeRectangularTrimmedSurface(
+    const occ::handle<Geom_RectangularTrimmedSurface>& RTSurf,
+    const StepData_Factors&                            theLocalFactors = StepData_Factors());
+
+  Standard_EXPORT const occ::handle<StepGeom_RectangularTrimmedSurface>& Value() const;
+
+private:
+  occ::handle<StepGeom_RectangularTrimmedSurface> theRectangularTrimmedSurface;
+};
+
+#endif // _GeomToStep_MakeRectangularTrimmedSurface_HeaderFile

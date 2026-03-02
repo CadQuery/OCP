@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 1996-12-11
+// Created by: Robert COUBLANC
+// Copyright (c) 1996-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,14 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/Visualization/TKV3d/AIS/AIS_SelectStatus.hxx"// clang-format on
+#ifndef _AIS_SelectStatus_HeaderFile
+#define _AIS_SelectStatus_HeaderFile
+
+enum AIS_SelectStatus
+{
+  AIS_SS_Added,
+  AIS_SS_Removed,
+  AIS_SS_NotDone
+};
+
+#endif // _AIS_SelectStatus_HeaderFile

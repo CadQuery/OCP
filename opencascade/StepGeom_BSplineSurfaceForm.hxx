@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 1995-12-01
+// Created by: EXPRESS->CDL V0.2 Translator
+// Copyright (c) 1995-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,22 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/DataExchange/TKDESTEP/StepGeom/StepGeom_BSplineSurfaceForm.hxx"// clang-format on
+#ifndef _StepGeom_BSplineSurfaceForm_HeaderFile
+#define _StepGeom_BSplineSurfaceForm_HeaderFile
+
+enum StepGeom_BSplineSurfaceForm
+{
+  StepGeom_bssfPlaneSurf,
+  StepGeom_bssfCylindricalSurf,
+  StepGeom_bssfConicalSurf,
+  StepGeom_bssfSphericalSurf,
+  StepGeom_bssfToroidalSurf,
+  StepGeom_bssfSurfOfRevolution,
+  StepGeom_bssfRuledSurf,
+  StepGeom_bssfGeneralisedCone,
+  StepGeom_bssfQuadricSurf,
+  StepGeom_bssfSurfOfLinearExtrusion,
+  StepGeom_bssfUnspecified
+};
+
+#endif // _StepGeom_BSplineSurfaceForm_HeaderFile

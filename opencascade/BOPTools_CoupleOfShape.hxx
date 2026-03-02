@@ -1,4 +1,5 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created by: Peter KURNEV
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +12,36 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ModelingAlgorithms/TKBO/BOPTools/BOPTools_CoupleOfShape.hxx"// clang-format on
+#ifndef BOPTools_CoupleOfShape_HeaderFile
+#define BOPTools_CoupleOfShape_HeaderFile
+
+#include <TopoDS_Shape.hxx>
+
+//=================================================================================================
+
+class BOPTools_CoupleOfShape
+{
+public:
+  BOPTools_CoupleOfShape() = default;
+  //
+  ~BOPTools_CoupleOfShape() = default;
+
+  //
+  void SetShape1(const TopoDS_Shape& theShape) { myShape1 = theShape; }
+
+  //
+  const TopoDS_Shape& Shape1() const { return myShape1; }
+
+  //
+  void SetShape2(const TopoDS_Shape& theShape) { myShape2 = theShape; }
+
+  //
+  const TopoDS_Shape& Shape2() const { return myShape2; }
+
+  //
+protected:
+  TopoDS_Shape myShape1;
+  TopoDS_Shape myShape2;
+};
+
+#endif

@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 1999-12-20
+// Created by: data exchange team
+// Copyright (c) 1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,40 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ModelingAlgorithms/TKShHealing/ShapeConstruct/ShapeConstruct_MakeTriangulation.hxx"// clang-format on
+#ifndef _ShapeConstruct_MakeTriangulation_HeaderFile
+#define _ShapeConstruct_MakeTriangulation_HeaderFile
+
+#include <Standard.hxx>
+#include <Standard_DefineAlloc.hxx>
+
+#include <TopoDS_Wire.hxx>
+#include <BRepBuilderAPI_MakeShape.hxx>
+#include <gp_Pnt.hxx>
+#include <NCollection_Array1.hxx>
+
+class ShapeConstruct_MakeTriangulation : public BRepBuilderAPI_MakeShape
+{
+public:
+  DEFINE_STANDARD_ALLOC
+
+  Standard_EXPORT ShapeConstruct_MakeTriangulation(const NCollection_Array1<gp_Pnt>& pnts,
+                                                   const double                      prec = 0.0);
+
+  Standard_EXPORT ShapeConstruct_MakeTriangulation(const TopoDS_Wire& wire,
+                                                   const double       prec = 0.0);
+
+  Standard_EXPORT void Build(
+    const Message_ProgressRange& theRange = Message_ProgressRange()) override;
+
+  Standard_EXPORT bool IsDone() const override;
+
+private:
+  Standard_EXPORT void Triangulate(const TopoDS_Wire& wire);
+
+  Standard_EXPORT void AddFacet(const TopoDS_Wire& wire);
+
+  double      myPrecision;
+  TopoDS_Wire myWire;
+};
+
+#endif // _ShapeConstruct_MakeTriangulation_HeaderFile

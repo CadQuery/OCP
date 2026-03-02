@@ -1,4 +1,6 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 2006-08-08
+// Created by: Galina KULIKOVA
+// Copyright (c) 2006-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +13,57 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ModelingAlgorithms/TKShHealing/ShapeUpgrade/ShapeUpgrade_ShapeDivideArea.hxx"// clang-format on
+#ifndef _ShapeUpgrade_ShapeDivideArea_HeaderFile
+#define _ShapeUpgrade_ShapeDivideArea_HeaderFile
+
+#include <Standard.hxx>
+#include <Standard_DefineAlloc.hxx>
+#include <Standard_Handle.hxx>
+
+#include <ShapeUpgrade_ShapeDivide.hxx>
+class TopoDS_Shape;
+class ShapeUpgrade_FaceDivide;
+
+//! Divides faces from specified shape by max area criterium.
+class ShapeUpgrade_ShapeDivideArea : public ShapeUpgrade_ShapeDivide
+{
+public:
+  DEFINE_STANDARD_ALLOC
+
+  Standard_EXPORT ShapeUpgrade_ShapeDivideArea();
+
+  //! Initialize by a Shape.
+  Standard_EXPORT ShapeUpgrade_ShapeDivideArea(const TopoDS_Shape& S);
+
+  //! Set max area allowed for faces
+  double& MaxArea();
+
+  //! Set number of parts expected
+  //! for the case of splitting by number
+  int& NbParts();
+
+  //! Set fixed numbers of splits in U and V directions.
+  //! Only for "Splitting By Numbers" mode
+  void SetNumbersUVSplits(const int theNbUsplits, const int theNbVsplits);
+
+  //! Set splitting mode
+  //! If the mode is "splitting by number",
+  //! the face is splitted approximately into <myNbParts> parts,
+  //! the parts are similar to squares in 2D.
+  void SetSplittingByNumber(const bool theIsSplittingByNumber);
+
+protected:
+  //! Returns the tool for splitting faces.
+  Standard_EXPORT occ::handle<ShapeUpgrade_FaceDivide> GetSplitFaceTool() const override;
+
+private:
+  double myMaxArea;
+  int    myNbParts;
+  int    myUnbSplit;
+  int    myVnbSplit;
+  bool   myIsSplittingByNumber;
+};
+
+#include <ShapeUpgrade_ShapeDivideArea.lxx>
+
+#endif // _ShapeUpgrade_ShapeDivideArea_HeaderFile

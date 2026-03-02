@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 1994-07-22
+// Created by: Remi LEQUETTE
+// Copyright (c) 1994-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,88 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ModelingAlgorithms/TKTopAlgo/BRepLib/BRepLib_FindSurface.hxx"// clang-format on
+#ifndef _BRepLib_FindSurface_HeaderFile
+#define _BRepLib_FindSurface_HeaderFile
+
+#include <Standard.hxx>
+#include <Standard_DefineAlloc.hxx>
+#include <Standard_Handle.hxx>
+
+#include <TopLoc_Location.hxx>
+class Geom_Surface;
+class TopoDS_Shape;
+
+//! Provides an algorithm to find a Surface through a
+//! set of edges.
+//!
+//! The edges of the shape given as argument are
+//! explored if they are not coplanar at the required
+//! tolerance the method Found returns false.
+//!
+//! If a null tolerance is given the max of the edges
+//! tolerances is used.
+//!
+//! The method Tolerance returns the true distance of
+//! the edges to the Surface.
+//!
+//! The method Surface returns the Surface if found.
+//!
+//! The method Existed returns True if the
+//! Surface was already attached to some of the edges.
+//!
+//! When Existed returns True the Surface may have a
+//! location given by the Location method.
+class BRepLib_FindSurface
+{
+public:
+  DEFINE_STANDARD_ALLOC
+
+  Standard_EXPORT BRepLib_FindSurface();
+
+  //! Computes the Surface from the edges of <S> with the
+  //! given tolerance.
+  //! if <OnlyPlane> is true, the computed surface will be
+  //! a plane. If it is not possible to find a plane, the
+  //! flag NotDone will be set.
+  //! If <OnlyClosed> is true, then S should be a wire
+  //! and the existing surface, on which wire S is not
+  //! closed in 2D, will be ignored.
+  Standard_EXPORT BRepLib_FindSurface(const TopoDS_Shape& S,
+                                      const double        Tol        = -1,
+                                      const bool          OnlyPlane  = false,
+                                      const bool          OnlyClosed = false);
+
+  //! Computes the Surface from the edges of <S> with the
+  //! given tolerance.
+  //! if <OnlyPlane> is true, the computed surface will be
+  //! a plane. If it is not possible to find a plane, the
+  //! flag NotDone will be set.
+  //! If <OnlyClosed> is true, then S should be a wire
+  //! and the existing surface, on which wire S is not
+  //! closed in 2D, will be ignored.
+  Standard_EXPORT void Init(const TopoDS_Shape& S,
+                            const double        Tol        = -1,
+                            const bool          OnlyPlane  = false,
+                            const bool          OnlyClosed = false);
+
+  Standard_EXPORT bool Found() const;
+
+  Standard_EXPORT occ::handle<Geom_Surface> Surface() const;
+
+  Standard_EXPORT double Tolerance() const;
+
+  Standard_EXPORT double ToleranceReached() const;
+
+  Standard_EXPORT bool Existed() const;
+
+  Standard_EXPORT TopLoc_Location Location() const;
+
+private:
+  occ::handle<Geom_Surface> mySurface;
+  double                    myTolerance;
+  double                    myTolReached;
+  bool                      isExisted;
+  TopLoc_Location           myLocation;
+};
+
+#endif // _BRepLib_FindSurface_HeaderFile

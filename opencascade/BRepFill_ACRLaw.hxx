@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 1998-09-01
+// Created by: Stephanie HUMEAU
+// Copyright (c) 1998-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,32 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ModelingAlgorithms/TKBool/BRepFill/BRepFill_ACRLaw.hxx"// clang-format on
+#ifndef _BRepFill_ACRLaw_HeaderFile
+#define _BRepFill_ACRLaw_HeaderFile
+
+#include <Standard.hxx>
+#include <Standard_Type.hxx>
+
+#include <NCollection_Array1.hxx>
+#include <NCollection_HArray1.hxx>
+#include <BRepFill_LocationLaw.hxx>
+class TopoDS_Wire;
+class GeomFill_LocationGuide;
+
+//! Build Location Law, with a Wire. In the case
+//! of guided contour and trihedron by reduced
+//! curvilinear abscissa
+class BRepFill_ACRLaw : public BRepFill_LocationLaw
+{
+
+public:
+  Standard_EXPORT BRepFill_ACRLaw(const TopoDS_Wire&                         Path,
+                                  const occ::handle<GeomFill_LocationGuide>& Law);
+
+  DEFINE_STANDARD_RTTIEXT(BRepFill_ACRLaw, BRepFill_LocationLaw)
+
+private:
+  occ::handle<NCollection_HArray1<double>> OrigParam;
+};
+
+#endif // _BRepFill_ACRLaw_HeaderFile

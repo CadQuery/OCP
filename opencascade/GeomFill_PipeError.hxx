@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 1993-09-28
+// Created by: Bruno DUMORTIER
+// Copyright (c) 1993-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,15 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ModelingAlgorithms/TKGeomAlgo/GeomFill/GeomFill_PipeError.hxx"// clang-format on
+#ifndef _GeomFill_PipeError_HeaderFile
+#define _GeomFill_PipeError_HeaderFile
+
+enum GeomFill_PipeError
+{
+  GeomFill_PipeOk,
+  GeomFill_PipeNotOk,
+  GeomFill_PlaneNotIntersectGuide,
+  GeomFill_ImpossibleContact
+};
+
+#endif // _GeomFill_PipeError_HeaderFile

@@ -1,4 +1,6 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 2013-11-11
+// Created by: Anastasia BORISOVA
+// Copyright (c) 2013-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +13,46 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/Visualization/TKV3d/Prs3d/Prs3d_DimensionUnits.hxx"// clang-format on
+#ifndef Prs3d_DimensionUnits_HeaderFile
+#define Prs3d_DimensionUnits_HeaderFile
+
+#include <TCollection_AsciiString.hxx>
+
+//! This class provides units for two dimension groups:
+//! - lengths (length, radius, diameter)
+//! - angles
+class Prs3d_DimensionUnits
+{
+public:
+  //! Default constructor. Sets meters as default length units
+  //! and radians as default angle units.
+  Prs3d_DimensionUnits()
+      : myLengthUnits("m"),
+        myAngleUnits("rad")
+  {
+  }
+
+  Prs3d_DimensionUnits(const Prs3d_DimensionUnits& theUnits)
+      : myLengthUnits(theUnits.GetLengthUnits()),
+        myAngleUnits(theUnits.GetAngleUnits())
+  {
+  }
+
+  //! Sets angle units
+  void SetAngleUnits(const TCollection_AsciiString& theUnits) { myAngleUnits = theUnits; }
+
+  //! @return angle units
+  const TCollection_AsciiString& GetAngleUnits() const { return myAngleUnits; }
+
+  //! Sets length units
+  void SetLengthUnits(const TCollection_AsciiString& theUnits) { myLengthUnits = theUnits; }
+
+  //! @return length units
+  const TCollection_AsciiString& GetLengthUnits() const { return myLengthUnits; }
+
+private:
+  TCollection_AsciiString myLengthUnits;
+  TCollection_AsciiString myAngleUnits;
+};
+
+#endif

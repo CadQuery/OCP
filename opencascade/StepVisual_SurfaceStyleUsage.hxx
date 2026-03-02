@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 1995-12-01
+// Created by: EXPRESS->CDL V0.2 Translator
+// Copyright (c) 1995-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,39 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/DataExchange/TKDESTEP/StepVisual/StepVisual_SurfaceStyleUsage.hxx"// clang-format on
+#ifndef _StepVisual_SurfaceStyleUsage_HeaderFile
+#define _StepVisual_SurfaceStyleUsage_HeaderFile
+
+#include <Standard.hxx>
+#include <Standard_Type.hxx>
+
+#include <StepVisual_SurfaceSide.hxx>
+#include <Standard_Transient.hxx>
+class StepVisual_SurfaceSideStyle;
+
+class StepVisual_SurfaceStyleUsage : public Standard_Transient
+{
+
+public:
+  //! Returns a SurfaceStyleUsage
+  Standard_EXPORT StepVisual_SurfaceStyleUsage();
+
+  Standard_EXPORT void Init(const StepVisual_SurfaceSide                    aSide,
+                            const occ::handle<StepVisual_SurfaceSideStyle>& aStyle);
+
+  Standard_EXPORT void SetSide(const StepVisual_SurfaceSide aSide);
+
+  Standard_EXPORT StepVisual_SurfaceSide Side() const;
+
+  Standard_EXPORT void SetStyle(const occ::handle<StepVisual_SurfaceSideStyle>& aStyle);
+
+  Standard_EXPORT occ::handle<StepVisual_SurfaceSideStyle> Style() const;
+
+  DEFINE_STANDARD_RTTIEXT(StepVisual_SurfaceStyleUsage, Standard_Transient)
+
+private:
+  StepVisual_SurfaceSide                   side;
+  occ::handle<StepVisual_SurfaceSideStyle> style;
+};
+
+#endif // _StepVisual_SurfaceStyleUsage_HeaderFile

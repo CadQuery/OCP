@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 1994-06-03
+// Created by: Christian CAILLET
+// Copyright (c) 1994-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,33 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/DataExchange/TKDEIGES/IGESSelect/IGESSelect_Activator.hxx"// clang-format on
+#ifndef _IGESSelect_Activator_HeaderFile
+#define _IGESSelect_Activator_HeaderFile
+
+#include <Standard.hxx>
+#include <Standard_Type.hxx>
+
+#include <IFSelect_Activator.hxx>
+#include <IFSelect_ReturnStatus.hxx>
+#include <Standard_Integer.hxx>
+class IFSelect_SessionPilot;
+
+//! Performs Actions specific to IGESSelect, i.e. creation of
+//! IGES Selections and Dispatches, plus dumping specific to IGES
+class IGESSelect_Activator : public IFSelect_Activator
+{
+
+public:
+  Standard_EXPORT IGESSelect_Activator();
+
+  //! Executes a Command Line for IGESSelect
+  Standard_EXPORT IFSelect_ReturnStatus
+    Do(const int number, const occ::handle<IFSelect_SessionPilot>& pilot) override;
+
+  //! Sends a short help message for IGESSelect commands
+  Standard_EXPORT const char* Help(const int number) const override;
+
+  DEFINE_STANDARD_RTTIEXT(IGESSelect_Activator, IFSelect_Activator)
+};
+
+#endif // _IGESSelect_Activator_HeaderFile

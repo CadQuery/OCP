@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 1993-10-14
+// Created by: Remi LEQUETTE
+// Copyright (c) 1993-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,50 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ModelingAlgorithms/TKBO/BRepAlgoAPI/BRepAlgoAPI_Fuse.hxx"// clang-format on
+#ifndef _BRepAlgoAPI_Fuse_HeaderFile
+#define _BRepAlgoAPI_Fuse_HeaderFile
+
+#include <Standard.hxx>
+#include <Standard_DefineAlloc.hxx>
+
+#include <BRepAlgoAPI_BooleanOperation.hxx>
+class BOPAlgo_PaveFiller;
+class TopoDS_Shape;
+
+//! The class provides Boolean fusion operation
+//! between arguments and tools (Boolean Union).
+class BRepAlgoAPI_Fuse : public BRepAlgoAPI_BooleanOperation
+{
+public:
+  DEFINE_STANDARD_ALLOC
+
+  //! Empty constructor
+  Standard_EXPORT BRepAlgoAPI_Fuse();
+  Standard_EXPORT ~BRepAlgoAPI_Fuse() override;
+
+  //! Empty constructor
+  //! <PF> - PaveFiller object that is carried out
+  Standard_EXPORT BRepAlgoAPI_Fuse(const BOPAlgo_PaveFiller& PF);
+
+  //! Constructor with two shapes
+  //! <S1>  -argument
+  //! <S2>  -tool
+  //! <anOperation> - the type of the operation
+  //! Obsolete
+  Standard_EXPORT BRepAlgoAPI_Fuse(const TopoDS_Shape&          S1,
+                                   const TopoDS_Shape&          S2,
+                                   const Message_ProgressRange& theRange = Message_ProgressRange());
+
+  //! Constructor with two shapes
+  //! <S1>  -argument
+  //! <S2>  -tool
+  //! <anOperation> - the type of the operation
+  //! <PF> - PaveFiller object that is carried out
+  //! Obsolete
+  Standard_EXPORT BRepAlgoAPI_Fuse(const TopoDS_Shape&          S1,
+                                   const TopoDS_Shape&          S2,
+                                   const BOPAlgo_PaveFiller&    aDSF,
+                                   const Message_ProgressRange& theRange = Message_ProgressRange());
+};
+
+#endif // _BRepAlgoAPI_Fuse_HeaderFile

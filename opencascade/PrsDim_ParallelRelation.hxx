@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 1996-12-05
+// Created by: Jean-Pierre COMBE/Odile Olivier
+// Copyright (c) 1996-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,59 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/Visualization/TKV3d/PrsDim/PrsDim_ParallelRelation.hxx"// clang-format on
+#ifndef _PrsDim_ParallelRelation_HeaderFile
+#define _PrsDim_ParallelRelation_HeaderFile
+
+#include <PrsDim_Relation.hxx>
+#include <DsgPrs_ArrowSide.hxx>
+
+//! A framework to display constraints of parallelism
+//! between two or more Interactive Objects. These
+//! entities can be faces or edges.
+class PrsDim_ParallelRelation : public PrsDim_Relation
+{
+  DEFINE_STANDARD_RTTIEXT(PrsDim_ParallelRelation, PrsDim_Relation)
+public:
+  //! Constructs an object to display parallel constraints.
+  //! This object is defined by the first shape aFShape and
+  //! the second shape aSShape and the plane aPlane.
+  Standard_EXPORT PrsDim_ParallelRelation(const TopoDS_Shape&            aFShape,
+                                          const TopoDS_Shape&            aSShape,
+                                          const occ::handle<Geom_Plane>& aPlane);
+
+  //! Constructs an object to display parallel constraints.
+  //! This object is defined by the first shape aFShape and
+  //! the second shape aSShape the plane aPlane, the
+  //! position aPosition, the type of arrow, aSymbolPrs and
+  //! its size anArrowSize.
+  Standard_EXPORT PrsDim_ParallelRelation(const TopoDS_Shape&            aFShape,
+                                          const TopoDS_Shape&            aSShape,
+                                          const occ::handle<Geom_Plane>& aPlane,
+                                          const gp_Pnt&                  aPosition,
+                                          const DsgPrs_ArrowSide         aSymbolPrs,
+                                          const double                   anArrowSize = 0.01);
+
+  //! Returns true if the parallelism is movable.
+  bool IsMovable() const override { return true; }
+
+private:
+  Standard_EXPORT void Compute(const occ::handle<PrsMgr_PresentationManager>& thePrsMgr,
+                               const occ::handle<Prs3d_Presentation>&         thePrs,
+                               const int                                      theMode) override;
+
+  Standard_EXPORT void ComputeSelection(const occ::handle<SelectMgr_Selection>& theSel,
+                                        const int                               theMode) override;
+
+  Standard_EXPORT void ComputeTwoFacesParallel(
+    const occ::handle<Prs3d_Presentation>& aPresentation);
+
+  Standard_EXPORT void ComputeTwoEdgesParallel(
+    const occ::handle<Prs3d_Presentation>& aPresentation);
+
+private:
+  gp_Pnt myFAttach;
+  gp_Pnt mySAttach;
+  gp_Dir myDirAttach;
+};
+
+#endif // _PrsDim_ParallelRelation_HeaderFile

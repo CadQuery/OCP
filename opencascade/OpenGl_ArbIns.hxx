@@ -1,4 +1,6 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 2012-04-10
+// Created by: Kirill GAVRILOV
+// Copyright (c) 2012-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +13,20 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/Visualization/TKOpenGl/OpenGl/OpenGl_ArbIns.hxx"// clang-format on
+#ifndef OpenGl_ArbIns_HeaderFile
+#define OpenGl_ArbIns_HeaderFile
+
+#include <OpenGl_GlFunctions.hxx>
+
+//! Instancing is available on OpenGL 3.0+ hardware
+//! (in core since OpenGL 3.1 or GL_ARB_draw_instanced extension).
+//!
+//! Note that this structure does not include glVertexAttribDivisor(),
+//! which has been introduced in later OpenGL versions (OpenGL 3.3 or OpenGL ES 3.0).
+struct OpenGl_ArbIns : protected OpenGl_GlFunctions
+{
+  using OpenGl_GlFunctions::glDrawArraysInstanced;
+  using OpenGl_GlFunctions::glDrawElementsInstanced;
+};
+
+#endif // _OpenGl_ArbIns_H__

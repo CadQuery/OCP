@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 1997-05-13
+// Created by: Fabien REUTER
+// Copyright (c) 1997-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,34 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/DataExchange/TKDESTL/StlAPI/StlAPI.hxx"// clang-format on
+#ifndef _StlAPI_HeaderFile
+#define _StlAPI_HeaderFile
+
+#include <Poly_Triangulation.hxx>
+#include <Standard.hxx>
+#include <Standard_DefineAlloc.hxx>
+#include <Standard_CString.hxx>
+class TopoDS_Shape;
+
+//! Offers the API for STL data manipulation.
+class StlAPI
+{
+public:
+  DEFINE_STANDARD_ALLOC
+
+  //! Convert and write shape to STL format.
+  //! File is written in binary if aAsciiMode is False otherwise it is written in Ascii (by
+  //! default).
+  Standard_EXPORT static bool Write(const TopoDS_Shape& theShape,
+                                    const char*         theFile,
+                                    const bool          theAsciiMode = true);
+
+  //! Legacy interface.
+  //! Read STL file and create a shape composed of triangular faces, one per facet.
+  //! This approach is very inefficient, especially for large files.
+  //! Consider reading STL file to Poly_Triangulation object instead (see class RWStl).
+  Standard_DEPRECATED("This method is very inefficient; see RWStl class for better alternative")
+  Standard_EXPORT static bool Read(TopoDS_Shape& theShape, const char* aFile);
+};
+
+#endif // _StlAPI_HeaderFile

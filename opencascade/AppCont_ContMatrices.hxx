@@ -1,4 +1,5 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Copyright (c) 1995-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +12,23 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ModelingData/TKGeomBase/AppCont/AppCont_ContMatrices.hxx"// clang-format on
+#ifndef AppCont_ContMatrices_HeaderFile
+#define AppCont_ContMatrices_HeaderFile
+#include <math_Vector.hxx>
+
+// Stockage des matrices de resolution d approxiamtion continue.
+// La classe est limitee a 26 pour MMatrix et InvMMatrix, (pas de contraintes)
+// pour IBPMatrix (contraintes de passage aux extremites)
+// et IBTMatrix (contraintes de tangence aux extremites).
+
+void InvMMatrix(const int classe, math_Matrix& M);
+
+void MMatrix(const int classe, math_Matrix& M);
+
+void IBPMatrix(const int classe, math_Matrix& M);
+
+void IBTMatrix(const int classe, math_Matrix& M);
+
+void VBernstein(const int classe, const int nbpoints, math_Matrix& M);
+
+#endif

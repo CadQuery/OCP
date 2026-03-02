@@ -1,4 +1,4 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Copyright (c) 2022 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +11,47 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/DataExchange/TKDESTEP/StepToTopoDS/StepToTopoDS_TranslateSolid.hxx"// clang-format on
+#ifndef _StepToTopoDS_TranslateSolid_HeaderFile
+#define _StepToTopoDS_TranslateSolid_HeaderFile
+
+#include <Standard.hxx>
+#include <Standard_DefineAlloc.hxx>
+#include <Standard_Handle.hxx>
+
+#include <StepToTopoDS_TranslateSolidError.hxx>
+#include <TopoDS_Shape.hxx>
+#include <StepToTopoDS_Root.hxx>
+#include <Message_ProgressRange.hxx>
+
+class StepShape_ConnectedFaceSet;
+class StepVisual_TessellatedSolid;
+class StepToTopoDS_Tool;
+class StepToTopoDS_NMTool;
+class Transfer_TransientProcess;
+
+class StepToTopoDS_TranslateSolid : public StepToTopoDS_Root
+{
+public:
+  DEFINE_STANDARD_ALLOC
+
+  Standard_EXPORT StepToTopoDS_TranslateSolid();
+
+  Standard_EXPORT void Init(const occ::handle<StepVisual_TessellatedSolid>& theTSo,
+                            const occ::handle<Transfer_TransientProcess>&   theTP,
+                            StepToTopoDS_Tool&                              theTool,
+                            StepToTopoDS_NMTool&                            theNMTool,
+                            const bool                   theReadTessellatedWhenNoBRepOnly,
+                            bool&                        theHasGeom,
+                            const StepData_Factors&      theLocalFactors = StepData_Factors(),
+                            const Message_ProgressRange& theProgress     = Message_ProgressRange());
+
+  Standard_EXPORT const TopoDS_Shape& Value() const;
+
+  Standard_EXPORT StepToTopoDS_TranslateSolidError Error() const;
+
+private:
+  StepToTopoDS_TranslateSolidError myError;
+  TopoDS_Shape                     myResult;
+};
+
+#endif // _StepToTopoDS_TranslateSolid_HeaderFile

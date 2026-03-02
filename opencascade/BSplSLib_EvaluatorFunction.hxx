@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 1997-05-12
+// Created by: Xavier BENVENISTE
+// Copyright (c) 1997-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,52 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/FoundationClasses/TKMath/BSplSLib/BSplSLib_EvaluatorFunction.hxx"// clang-format on
+#ifndef _BSplSLib_EvaluatorFunction_HeaderFile
+#define _BSplSLib_EvaluatorFunction_HeaderFile
+
+#ifndef _Standard_Integer_HeaderFile
+  #include <Standard_Integer.hxx>
+#endif
+#ifndef _Standard_Real_HeaderFile
+  #include <Standard_Real.hxx>
+#endif
+#ifndef _Standard_PrimitiveTypes_HeaderFile
+#endif
+
+// History - C function pointer converted to a virtual class
+// in order to get rid of usage of static functions and static data
+class BSplSLib_EvaluatorFunction
+{
+public:
+  //! Empty constructor
+  BSplSLib_EvaluatorFunction() = default;
+
+  //! Destructor should be declared as virtual
+  virtual ~BSplSLib_EvaluatorFunction() = default;
+
+  //! Function evaluation method to be defined by descendant
+  virtual void Evaluate(const int    theDerivativeRequest,
+                        const double theUParameter,
+                        const double theVParameter,
+                        double&      theResult,
+                        int&         theErrorCode) const = 0;
+
+  //! Shortcut for function-call style usage
+  void operator()(const int    theDerivativeRequest,
+                  const double theUParameter,
+                  const double theVParameter,
+                  double&      theResult,
+                  int&         theErrorCode) const
+  {
+    Evaluate(theDerivativeRequest, theUParameter, theVParameter, theResult, theErrorCode);
+  }
+
+private:
+  //! Copy constructor is declared private to forbid copying
+  BSplSLib_EvaluatorFunction(const BSplSLib_EvaluatorFunction&) = default;
+
+  //! Assignment operator is declared private to forbid copying
+  void operator=(const BSplSLib_EvaluatorFunction&) {}
+};
+
+#endif

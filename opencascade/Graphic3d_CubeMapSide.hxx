@@ -1,4 +1,5 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Author: Ilya Khramov
+// Copyright (c) 2019 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +12,18 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/Visualization/TKService/Graphic3d/Graphic3d_CubeMapSide.hxx"// clang-format on
+#ifndef _Graphic3d_CubeMapSide_HeaderFile
+#define _Graphic3d_CubeMapSide_HeaderFile
+
+//! Sides of cubemap in order of OpenGL rules
+enum Graphic3d_CubeMapSide
+{
+  Graphic3d_CMS_POS_X, //!< X axis positive direction side
+  Graphic3d_CMS_NEG_X, //!< X axis negative direction side
+  Graphic3d_CMS_POS_Y, //!< Y axis positive direction side
+  Graphic3d_CMS_NEG_Y, //!< Y axis negative direction side
+  Graphic3d_CMS_POS_Z, //!< Z axis positive direction side
+  Graphic3d_CMS_NEG_Z, //!< Z axis negative direction side
+};
+
+#endif // _Graphic3d_CubeMapSide_HeaderFile

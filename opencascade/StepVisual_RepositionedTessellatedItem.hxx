@@ -1,4 +1,4 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Copyright (c) 2022 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +11,38 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/DataExchange/TKDESTEP/StepVisual/StepVisual_RepositionedTessellatedItem.hxx"// clang-format on
+#ifndef _StepVisual_RepositionedTessellatedItem_HeaderFile
+#define _StepVisual_RepositionedTessellatedItem_HeaderFile
+
+#include <StepVisual_TessellatedItem.hxx>
+
+class StepGeom_Axis2Placement3d;
+
+//! Representation of STEP entity RepositionedTessellatedItem
+class StepVisual_RepositionedTessellatedItem : public StepVisual_TessellatedItem
+{
+public:
+  DEFINE_STANDARD_RTTIEXT(StepVisual_RepositionedTessellatedItem, StepVisual_TessellatedItem)
+
+  DEFINE_STANDARD_ALLOC
+
+  //! Default constructor
+  StepVisual_RepositionedTessellatedItem() = default;
+
+  //! Initialize all fields (own and inherited)
+  Standard_EXPORT void Init(const occ::handle<TCollection_HAsciiString>&  theName,
+                            const occ::handle<StepGeom_Axis2Placement3d>& theLocation);
+
+  //! Returns location
+  occ::handle<StepGeom_Axis2Placement3d> Location() const { return myLocation; }
+
+  //! Sets location
+  void SetLocation(const occ::handle<StepGeom_Axis2Placement3d>& theLocation)
+  {
+    myLocation = theLocation;
+  }
+
+private:
+  occ::handle<StepGeom_Axis2Placement3d> myLocation;
+};
+#endif // StepVisual_RepositionedTessellatedItem_HeaderFile

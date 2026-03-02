@@ -1,4 +1,6 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 2001-06-26
+// Created by: Alexander GRIGORIEV
+// Copyright (c) 2001-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +13,59 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ApplicationFramework/TKCDF/LDOM/LDOM_Attr.hxx"// clang-format on
+#ifndef LDOM_Attr_HeaderFile
+#define LDOM_Attr_HeaderFile
+
+#include <LDOM_Node.hxx>
+
+class LDOM_BasicAttribute;
+
+//  Class LDOM_Attr
+//
+
+class LDOM_Attr : public LDOM_Node
+{
+public:
+  // ---------- PUBLIC METHODS ----------
+
+  LDOM_Attr() = default;
+
+  //    Empty constructor
+
+  LDOM_Attr(const LDOM_Attr& anOther)
+
+    = default;
+
+  //    Copy constructor
+
+  LDOM_Attr& operator=(const LDOM_NullPtr* aNull)
+  {
+    return (LDOM_Attr&)LDOM_Node::operator=(aNull);
+  }
+
+  //    Nullify
+
+  LDOM_Attr& operator=(const LDOM_Attr& anOther)
+  {
+    return (LDOM_Attr&)LDOM_Node::operator=(anOther);
+  }
+
+  //    Assignment
+
+  LDOMString getName() const { return getNodeName(); }
+
+  LDOMString getValue() const { return getNodeValue(); }
+
+  Standard_EXPORT void setValue(const LDOMString& aValue);
+
+protected:
+  friend class LDOM_Element;
+  // ---------- PROTECTED METHODS ----------
+
+  LDOM_Attr(const LDOM_BasicAttribute& anAttr, const occ::handle<LDOM_MemManager>& aDoc);
+
+private:
+  // ---------- PRIVATE FIELDS ----------
+};
+
+#endif

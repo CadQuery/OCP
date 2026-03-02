@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 1996-02-01
+// Created by: Philippe MANGIN
+// Copyright (c) 1996-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,23 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ModelingAlgorithms/TKGeomAlgo/FairCurve/FairCurve_BattenLaw.lxx"// clang-format on
+inline void FairCurve_BattenLaw::SetSliding(const double Sliding)
+{
+  LengthSliding = Sliding;
+}
+
+inline void FairCurve_BattenLaw::SetHeigth(const double Heigth)
+{
+  MiddleHeigth = Heigth;
+}
+
+inline void FairCurve_BattenLaw::SetSlope(const double Slope)
+{
+  GeometricSlope = Slope;
+}
+
+inline bool FairCurve_BattenLaw::Value(const double T, double& THeigth)
+{
+  THeigth = MiddleHeigth + (T - 0.5) * GeometricSlope * LengthSliding;
+  return (THeigth > 0);
+}

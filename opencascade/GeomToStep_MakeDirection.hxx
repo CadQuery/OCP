@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 1993-06-14
+// Created by: Martine LANGLOIS
+// Copyright (c) 1993-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,41 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/DataExchange/TKDESTEP/GeomToStep/GeomToStep_MakeDirection.hxx"// clang-format on
+#ifndef _GeomToStep_MakeDirection_HeaderFile
+#define _GeomToStep_MakeDirection_HeaderFile
+
+#include <Standard.hxx>
+#include <Standard_DefineAlloc.hxx>
+#include <Standard_Handle.hxx>
+
+#include <GeomToStep_Root.hxx>
+class StepGeom_Direction;
+class gp_Dir;
+class gp_Dir2d;
+class Geom_Direction;
+class Geom2d_Direction;
+
+//! This class implements the mapping between classes
+//! Direction from Geom, Geom2d and Dir, Dir2d from gp, and the
+//! class Direction from StepGeom which describes a direction
+//! from Prostep.
+class GeomToStep_MakeDirection : public GeomToStep_Root
+{
+public:
+  DEFINE_STANDARD_ALLOC
+
+  Standard_EXPORT GeomToStep_MakeDirection(const gp_Dir& D);
+
+  Standard_EXPORT GeomToStep_MakeDirection(const gp_Dir2d& D);
+
+  Standard_EXPORT GeomToStep_MakeDirection(const occ::handle<Geom_Direction>& D);
+
+  Standard_EXPORT GeomToStep_MakeDirection(const occ::handle<Geom2d_Direction>& D);
+
+  Standard_EXPORT const occ::handle<StepGeom_Direction>& Value() const;
+
+private:
+  occ::handle<StepGeom_Direction> theDirection;
+};
+
+#endif // _GeomToStep_MakeDirection_HeaderFile

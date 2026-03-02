@@ -1,4 +1,6 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 2000-02-15
+// Created by: Gerard GRAS
+// Copyright (c) 2000-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +13,22 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/Visualization/TKV3d/Prs3d/Prs3d_BasicAspect.hxx"// clang-format on
+#ifndef _Prs3d_BasicAspect_HeaderFile
+#define _Prs3d_BasicAspect_HeaderFile
+
+#include <Standard.hxx>
+#include <Standard_OStream.hxx>
+#include <Standard_Type.hxx>
+#include <Standard_Transient.hxx>
+
+//! All basic Prs3d_xxxAspect must inherits from this class
+//! The aspect classes qualifies how to represent a given kind of object.
+class Prs3d_BasicAspect : public Standard_Transient
+{
+  DEFINE_STANDARD_RTTIEXT(Prs3d_BasicAspect, Standard_Transient)
+
+  //! Dumps the content of me into the stream
+  virtual void DumpJson(Standard_OStream& theOStream, int theDepth = -1) const = 0;
+};
+
+#endif // _Prs3d_BasicAspect_HeaderFile

@@ -1,4 +1,6 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 2015-10-29
+// Created by: Irina KRYLOVA
+// Copyright (c) 2015 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +13,19 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/DataExchange/TKDESTEP/StepVisual/StepVisual_AnnotationCurveOccurrence.hxx"// clang-format on
+#ifndef _StepVisual_AnnotationCurveOccurrence_HeaderFile
+#define _StepVisual_AnnotationCurveOccurrence_HeaderFile
+
+#include <Standard.hxx>
+
+#include <StepVisual_AnnotationOccurrence.hxx>
+
+class StepVisual_AnnotationCurveOccurrence : public StepVisual_AnnotationOccurrence
+{
+public:
+  //! Returns a AnnotationCurveOccurrence
+  Standard_EXPORT StepVisual_AnnotationCurveOccurrence();
+
+  DEFINE_STANDARD_RTTIEXT(StepVisual_AnnotationCurveOccurrence, StepVisual_AnnotationOccurrence)
+};
+#endif // _StepVisual_AnnotationCurveOccurrence_HeaderFile

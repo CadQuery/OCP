@@ -1,4 +1,6 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created by: DAUTRY Philippe
+// Copyright (c) 1997-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +13,28 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ApplicationFramework/TKLCAF/TDF/TDF_DeltaOnRemoval.hxx"// clang-format on
+#ifndef _TDF_DeltaOnRemoval_HeaderFile
+#define _TDF_DeltaOnRemoval_HeaderFile
+
+#include <Standard.hxx>
+
+#include <TDF_AttributeDelta.hxx>
+class TDF_Attribute;
+
+//! This class provides default services for an
+//! AttributeDelta on a REMOVAL action.
+//!
+//! Applying this AttributeDelta means ADDING its
+//! attribute.
+class TDF_DeltaOnRemoval : public TDF_AttributeDelta
+{
+
+public:
+  DEFINE_STANDARD_RTTIEXT(TDF_DeltaOnRemoval, TDF_AttributeDelta)
+
+protected:
+  //! Initializes a TDF_DeltaOnRemoval.
+  Standard_EXPORT TDF_DeltaOnRemoval(const occ::handle<TDF_Attribute>& anAtt);
+};
+
+#endif // _TDF_DeltaOnRemoval_HeaderFile

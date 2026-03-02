@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 1994-11-04
+// Created by: Christian CAILLET
+// Copyright (c) 1994-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,141 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/DataExchange/TKXSBase/Transfer/Transfer_Finder.hxx"// clang-format on
+#ifndef _Transfer_Finder_HeaderFile
+#define _Transfer_Finder_HeaderFile
+
+#include <Standard.hxx>
+#include <Standard_Type.hxx>
+#include <Standard_Transient.hxx>
+
+#include <NCollection_DataMap.hxx>
+#include <Standard_Integer.hxx>
+#include <Interface_ParamType.hxx>
+#include <TCollection_AsciiString.hxx>
+
+//! a Finder allows to map any kind of object as a Key for a Map.
+//! This works by defining, for a Hash Code, that of the real Key,
+//! not of the Finder which acts only as an intermediate.
+//! When a Map asks for the HashCode of a Finder, this one returns
+//! the code it has determined at creation time
+class Transfer_Finder : public Standard_Transient
+{
+
+public:
+  //! Returns the HashCode which has been stored by SetHashCode
+  //! (remark that HashCode could be deferred then be defined by
+  //! sub-classes, the result is the same)
+  Standard_EXPORT size_t GetHashCode() const;
+
+  //! Specific testof equality : to be defined by each sub-class,
+  //! must be False if Finders have not the same true Type, else
+  //! their contents must be compared
+  Standard_EXPORT virtual bool Equates(const occ::handle<Transfer_Finder>& other) const = 0;
+
+  //! Returns the Type of the Value. By default, returns the
+  //! DynamicType of <me>, but can be redefined
+  Standard_EXPORT virtual occ::handle<Standard_Type> ValueType() const;
+
+  //! Returns the name of the Type of the Value. Default is name
+  //! of ValueType, unless it is for a non-handled object
+  Standard_EXPORT virtual const char* ValueTypeName() const;
+
+  //! Adds an attribute with a given name (replaces the former one
+  //! with the same name if already exists)
+  Standard_EXPORT void SetAttribute(const char* name, const occ::handle<Standard_Transient>& val);
+
+  //! Removes an attribute
+  //! Returns True when done, False if this attribute did not exist
+  Standard_EXPORT bool RemoveAttribute(const char* name);
+
+  //! Returns an attribute from its name, filtered by a type
+  //! If no attribute has this name, or if it is not kind of this
+  //! type, <val> is Null and returned value is False
+  //! Else, it is True
+  Standard_EXPORT bool GetAttribute(const char*                       name,
+                                    const occ::handle<Standard_Type>& type,
+                                    occ::handle<Standard_Transient>&  val) const;
+
+  //! Returns an attribute from its name. Null Handle if not recorded
+  //! (whatever Transient, Integer, Real ...)
+  Standard_EXPORT occ::handle<Standard_Transient> Attribute(const char* name) const;
+
+  //! Returns the type of an attribute :
+  //! ParamInt , ParamReal , ParamText (String) , ParamIdent (any)
+  //! or ParamVoid (not recorded)
+  Standard_EXPORT Interface_ParamType AttributeType(const char* name) const;
+
+  //! Adds an integer value for an attribute
+  Standard_EXPORT void SetIntegerAttribute(const char* name, const int val);
+
+  //! Returns an attribute from its name, as integer
+  //! If no attribute has this name, or not an integer,
+  //! <val> is 0 and returned value is False
+  //! Else, it is True
+  Standard_EXPORT bool GetIntegerAttribute(const char* name, int& val) const;
+
+  //! Returns an integer attribute from its name. 0 if not recorded
+  Standard_EXPORT int IntegerAttribute(const char* name) const;
+
+  //! Adds a real value for an attribute
+  Standard_EXPORT void SetRealAttribute(const char* name, const double val);
+
+  //! Returns an attribute from its name, as real
+  //! If no attribute has this name, or not a real
+  //! <val> is 0.0 and returned value is False
+  //! Else, it is True
+  Standard_EXPORT bool GetRealAttribute(const char* name, double& val) const;
+
+  //! Returns a real attribute from its name. 0.0 if not recorded
+  Standard_EXPORT double RealAttribute(const char* name) const;
+
+  //! Adds a String value for an attribute
+  Standard_EXPORT void SetStringAttribute(const char* name, const char* val);
+
+  //! Returns an attribute from its name, as String
+  //! If no attribute has this name, or not a String
+  //! <val> is 0.0 and returned value is False
+  //! Else, it is True
+  Standard_EXPORT bool GetStringAttribute(const char* name, const char*& val) const;
+
+  //! Returns a String attribute from its name. "" if not recorded
+  Standard_EXPORT const char* StringAttribute(const char* name) const;
+
+  //! Returns the exhaustive list of attributes
+  Standard_EXPORT NCollection_DataMap<TCollection_AsciiString, occ::handle<Standard_Transient>>&
+                  AttrList();
+
+  //! Gets the list of attributes from <other>, as such, i.e.
+  //! not copied : attributes are shared, any attribute edited,
+  //! added, or removed in <other> is also in <me> and vice versa
+  //! The former list of attributes of <me> is dropped
+  Standard_EXPORT void SameAttributes(const occ::handle<Transfer_Finder>& other);
+
+  //! Gets the list of attributes from <other>, by copying it
+  //! By default, considers all the attributes from <other>
+  //! If <fromname> is given, considers only the attributes with
+  //! name beginning by <fromname>
+  //!
+  //! For each attribute, if <copied> is True (D), its value is also
+  //! copied if it is a basic type (Integer,Real,String), else it
+  //! remains shared between <other> and <me>
+  //!
+  //! These new attributes are added to the existing ones in <me>,
+  //! in case of same name, they replace the existing ones
+  Standard_EXPORT void GetAttributes(const occ::handle<Transfer_Finder>& other,
+                                     const char*                         fromname = "",
+                                     const bool                          copied   = true);
+
+  DEFINE_STANDARD_RTTIEXT(Transfer_Finder, Standard_Transient)
+
+protected:
+  //! Stores the HashCode which corresponds to the Value given to
+  //! create the Mapper
+  Standard_EXPORT void SetHashCode(const size_t code);
+
+private:
+  size_t                                                                        thecode;
+  NCollection_DataMap<TCollection_AsciiString, occ::handle<Standard_Transient>> theattrib;
+};
+
+#endif // _Transfer_Finder_HeaderFile

@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 1997-02-18
+// Created by: Alexander BRIVIN
+// Copyright (c) 1997-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,49 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/DataExchange/TKDEVRML/VrmlConverter/VrmlConverter_WFDeflectionRestrictedFace.hxx"// clang-format on
+#ifndef _VrmlConverter_WFDeflectionRestrictedFace_HeaderFile
+#define _VrmlConverter_WFDeflectionRestrictedFace_HeaderFile
+
+#include <BRepAdaptor_Surface.hxx>
+#include <Standard_OStream.hxx>
+
+class VrmlConverter_Drawer;
+
+//! WFDeflectionRestrictedFace - computes the
+//! wireframe presentation of faces with
+//! restrictions by displaying a given number of U
+//! and/or V isoparametric curves, converts his
+//! into VRML objects and writes (adds) them into
+//! anOStream. All requested properties of the
+//! representation are specify in aDrawer of Drawer
+//! class (Prs3d). This kind of the presentation
+//! is converted into IndexedFaceSet and
+//! IndexedLineSet (VRML).
+class VrmlConverter_WFDeflectionRestrictedFace
+{
+public:
+  DEFINE_STANDARD_ALLOC
+
+  Standard_EXPORT static void Add(Standard_OStream&                        anOStream,
+                                  const occ::handle<BRepAdaptor_Surface>&  aFace,
+                                  const occ::handle<VrmlConverter_Drawer>& aDrawer);
+
+  Standard_EXPORT static void AddUIso(Standard_OStream&                        anOStream,
+                                      const occ::handle<BRepAdaptor_Surface>&  aFace,
+                                      const occ::handle<VrmlConverter_Drawer>& aDrawer);
+
+  Standard_EXPORT static void AddVIso(Standard_OStream&                        anOStream,
+                                      const occ::handle<BRepAdaptor_Surface>&  aFace,
+                                      const occ::handle<VrmlConverter_Drawer>& aDrawer);
+
+  Standard_EXPORT static void Add(Standard_OStream&                        anOStream,
+                                  const occ::handle<BRepAdaptor_Surface>&  aFace,
+                                  const bool                               DrawUIso,
+                                  const bool                               DrawVIso,
+                                  const double                             Deflection,
+                                  const int                                NBUiso,
+                                  const int                                NBViso,
+                                  const occ::handle<VrmlConverter_Drawer>& aDrawer);
+};
+
+#endif // _VrmlConverter_WFDeflectionRestrictedFace_HeaderFile

@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 1992-02-11
+// Created by: Christian CAILLET
+// Copyright (c) 1992-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,45 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/DataExchange/TKDESTEP/StepData/StepData_NodeOfWriterLib.hxx"// clang-format on
+#ifndef _StepData_NodeOfWriterLib_HeaderFile
+#define _StepData_NodeOfWriterLib_HeaderFile
+
+#include <Standard.hxx>
+#include <Standard_Type.hxx>
+
+#include <Standard_Transient.hxx>
+class StepData_GlobalNodeOfWriterLib;
+class Standard_Transient;
+class StepData_ReadWriteModule;
+class StepData_Protocol;
+class StepData_WriterLib;
+
+class StepData_NodeOfWriterLib : public Standard_Transient
+{
+
+public:
+  //! Creates an empty Node, with no Next
+  Standard_EXPORT StepData_NodeOfWriterLib();
+
+  //! Adds a couple (Module,Protocol), that is, stores it into
+  //! itself if not yet done, else creates a Next Node to do it
+  Standard_EXPORT void AddNode(const occ::handle<StepData_GlobalNodeOfWriterLib>& anode);
+
+  //! Returns the Module designated by a precise Node
+  Standard_EXPORT const occ::handle<StepData_ReadWriteModule>& Module() const;
+
+  //! Returns the Protocol designated by a precise Node
+  Standard_EXPORT const occ::handle<StepData_Protocol>& Protocol() const;
+
+  //! Returns the Next Node. If none was defined, returned value
+  //! is a Null Handle
+  Standard_EXPORT const occ::handle<StepData_NodeOfWriterLib>& Next() const;
+
+  DEFINE_STANDARD_RTTI_INLINE(StepData_NodeOfWriterLib, Standard_Transient)
+
+private:
+  occ::handle<StepData_GlobalNodeOfWriterLib> thenode;
+  occ::handle<StepData_NodeOfWriterLib>       thenext;
+};
+
+#endif // _StepData_NodeOfWriterLib_HeaderFile

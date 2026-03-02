@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 1994-12-16
+// Created by: Frederic MAUPAS
+// Copyright (c) 1994-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,81 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/DataExchange/TKDESTEP/StepToTopoDS/StepToTopoDS_TranslateFace.hxx"// clang-format on
+#ifndef _StepToTopoDS_TranslateFace_HeaderFile
+#define _StepToTopoDS_TranslateFace_HeaderFile
+
+#include <Standard.hxx>
+#include <Standard_DefineAlloc.hxx>
+#include <Standard_Handle.hxx>
+
+#include <StepToTopoDS_TranslateFaceError.hxx>
+#include <TopoDS_Shape.hxx>
+#include <StepToTopoDS_Root.hxx>
+class Poly_Triangulation;
+class StepShape_FaceSurface;
+class StepToTopoDS_Tool;
+class StepToTopoDS_NMTool;
+class StepVisual_ComplexTriangulatedFace;
+class StepVisual_TessellatedFace;
+class StepVisual_TessellatedItem;
+class StepVisual_TessellatedSurfaceSet;
+class StepVisual_TriangulatedFace;
+
+class StepToTopoDS_TranslateFace : public StepToTopoDS_Root
+{
+public:
+  DEFINE_STANDARD_ALLOC
+
+  Standard_EXPORT StepToTopoDS_TranslateFace();
+
+  Standard_EXPORT StepToTopoDS_TranslateFace(
+    const occ::handle<StepShape_FaceSurface>& FS,
+    StepToTopoDS_Tool&                        T,
+    StepToTopoDS_NMTool&                      NMTool,
+    const StepData_Factors&                   theLocalFactors = StepData_Factors());
+
+  Standard_EXPORT StepToTopoDS_TranslateFace(
+    const occ::handle<StepVisual_TessellatedFace>& theTF,
+    StepToTopoDS_Tool&                             theTool,
+    StepToTopoDS_NMTool&                           theNMTool,
+    const bool                                     theReadTessellatedWhenNoBRepOnly,
+    bool&                                          theHasGeom,
+    const StepData_Factors&                        theLocalFactors = StepData_Factors());
+
+  Standard_EXPORT StepToTopoDS_TranslateFace(
+    const occ::handle<StepVisual_TessellatedSurfaceSet>& theTSS,
+    StepToTopoDS_Tool&                                   theTool,
+    StepToTopoDS_NMTool&                                 theNMTool,
+    const StepData_Factors&                              theLocalFactors = StepData_Factors());
+
+  Standard_EXPORT void Init(const occ::handle<StepShape_FaceSurface>& theFaceSurface,
+                            StepToTopoDS_Tool&                        theTopoDSTool,
+                            StepToTopoDS_NMTool&                      theTopoDSToolNM,
+                            const StepData_Factors& theLocalFactors = StepData_Factors());
+
+  Standard_EXPORT void Init(const occ::handle<StepVisual_TessellatedFace>& theTF,
+                            StepToTopoDS_Tool&                             theTool,
+                            StepToTopoDS_NMTool&                           theNMTool,
+                            const bool              theReadTessellatedWhenNoBRepOnly,
+                            bool&                   theHasGeom,
+                            const StepData_Factors& theLocalFactors = StepData_Factors());
+
+  Standard_EXPORT void Init(const occ::handle<StepVisual_TessellatedSurfaceSet>& theTSS,
+                            StepToTopoDS_Tool&                                   theTool,
+                            StepToTopoDS_NMTool&                                 theNMTool,
+                            const StepData_Factors& theLocalFactors = StepData_Factors());
+
+  Standard_EXPORT const TopoDS_Shape& Value() const;
+
+  Standard_EXPORT StepToTopoDS_TranslateFaceError Error() const;
+
+private:
+  occ::handle<Poly_Triangulation> createMesh(
+    const occ::handle<StepVisual_TessellatedItem>& theTI,
+    const StepData_Factors&                        theLocalFactors = StepData_Factors()) const;
+
+  StepToTopoDS_TranslateFaceError myError;
+  TopoDS_Shape                    myResult;
+};
+
+#endif // _StepToTopoDS_TranslateFace_HeaderFile

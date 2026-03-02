@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 1996-09-17
+// Created by: Odile Olivier
+// Copyright (c) 1996-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,31 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/Visualization/TKV3d/StdSelect/StdSelect_ShapeTypeFilter.hxx"// clang-format on
+#ifndef _StdSelect_ShapeTypeFilter_HeaderFile
+#define _StdSelect_ShapeTypeFilter_HeaderFile
+
+#include <TopAbs_ShapeEnum.hxx>
+#include <SelectMgr_Filter.hxx>
+
+class SelectMgr_EntityOwner;
+
+//! A filter framework which allows you to define a filter for a specific shape type.
+class StdSelect_ShapeTypeFilter : public SelectMgr_Filter
+{
+  DEFINE_STANDARD_RTTIEXT(StdSelect_ShapeTypeFilter, SelectMgr_Filter)
+public:
+  //! Constructs a filter object defined by the shape type aType.
+  Standard_EXPORT StdSelect_ShapeTypeFilter(const TopAbs_ShapeEnum aType);
+
+  //! Returns the type of shape selected by the filter.
+  TopAbs_ShapeEnum Type() const { return myType; }
+
+  Standard_EXPORT bool IsOk(const occ::handle<SelectMgr_EntityOwner>& anobj) const override;
+
+  Standard_EXPORT bool ActsOn(const TopAbs_ShapeEnum aStandardMode) const override;
+
+private:
+  TopAbs_ShapeEnum myType;
+};
+
+#endif // _StdSelect_ShapeTypeFilter_HeaderFile

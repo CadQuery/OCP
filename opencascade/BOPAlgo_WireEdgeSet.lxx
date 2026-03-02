@@ -1,4 +1,8 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created by: Peter KURNEV
+// Copyright (c) 2010-2014 OPEN CASCADE SAS
+// Copyright (c) 2007-2010 CEA/DEN, EDF R&D, OPEN CASCADE
+// Copyright (c) 2003-2007 OPEN CASCADE, EADS/CCR, LIP6, CEA/DEN, CEDRAT,
+//                         EDF R&D, LEG, PRINCIPIA R&D, BUREAU VERITAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +15,71 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ModelingAlgorithms/TKBO/BOPAlgo/BOPAlgo_WireEdgeSet.lxx"// clang-format on
+//=================================================================================================
+
+inline BOPAlgo_WireEdgeSet::BOPAlgo_WireEdgeSet() = default;
+
+//=================================================================================================
+
+inline BOPAlgo_WireEdgeSet::BOPAlgo_WireEdgeSet(
+  const occ::handle<NCollection_BaseAllocator>& theAllocator)
+    : myStartShapes(theAllocator),
+      myShapes(theAllocator)
+{
+}
+
+//=======================================================================
+// function : ~
+// purpose  :
+//=======================================================================
+inline BOPAlgo_WireEdgeSet::~BOPAlgo_WireEdgeSet() = default;
+
+//=================================================================================================
+
+inline void BOPAlgo_WireEdgeSet::Clear()
+{
+  myStartShapes.Clear();
+  myShapes.Clear();
+}
+
+//=================================================================================================
+
+inline void BOPAlgo_WireEdgeSet::SetFace(const TopoDS_Face& aF)
+{
+  myFace = aF;
+}
+
+//=================================================================================================
+
+inline const TopoDS_Face& BOPAlgo_WireEdgeSet::Face() const
+{
+  return myFace;
+}
+
+//=================================================================================================
+
+inline void BOPAlgo_WireEdgeSet::AddStartElement(const TopoDS_Shape& aE)
+{
+  myStartShapes.Append(aE);
+}
+
+//=================================================================================================
+
+inline const NCollection_List<TopoDS_Shape>& BOPAlgo_WireEdgeSet::StartElements() const
+{
+  return myStartShapes;
+}
+
+//=================================================================================================
+
+inline void BOPAlgo_WireEdgeSet::AddShape(const TopoDS_Shape& aW)
+{
+  myShapes.Append(aW);
+}
+
+//=================================================================================================
+
+inline const NCollection_List<TopoDS_Shape>& BOPAlgo_WireEdgeSet::Shapes() const
+{
+  return myShapes;
+}

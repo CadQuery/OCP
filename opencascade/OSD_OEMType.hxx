@@ -1,4 +1,5 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Copyright (c) 1992-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +12,25 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/FoundationClasses/TKernel/OSD/OSD_OEMType.hxx"// clang-format on
+#ifndef _OSD_OEMType_HeaderFile
+#define _OSD_OEMType_HeaderFile
+
+//! This is set of possible machine types
+//! used in OSD_Host::MachineType
+enum OSD_OEMType
+{
+  OSD_Unavailable,
+  OSD_SUN,
+  OSD_DEC,
+  OSD_SGI,
+  OSD_NEC,
+  OSD_MAC,
+  OSD_PC,
+  OSD_HP,
+  OSD_IBM,
+  OSD_VAX,
+  OSD_LIN,
+  OSD_AIX
+};
+
+#endif // _OSD_OEMType_HeaderFile

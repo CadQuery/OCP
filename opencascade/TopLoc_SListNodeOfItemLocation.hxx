@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 1993-02-26
+// Created by: Remi LEQUETTE
+// Copyright (c) 1993-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,33 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/FoundationClasses/TKMath/TopLoc/TopLoc_SListNodeOfItemLocation.hxx"// clang-format on
+#ifndef _TopLoc_SListNodeOfItemLocation_HeaderFile
+#define _TopLoc_SListNodeOfItemLocation_HeaderFile
+
+#include <Standard.hxx>
+
+#include <TopLoc_SListOfItemLocation.hxx>
+#include <TopLoc_ItemLocation.hxx>
+#include <Standard_Transient.hxx>
+
+class TopLoc_SListNodeOfItemLocation : public Standard_Transient
+{
+
+public:
+  TopLoc_SListNodeOfItemLocation(const TopLoc_ItemLocation&        I,
+                                 const TopLoc_SListOfItemLocation& aTail);
+
+  TopLoc_SListOfItemLocation& Tail() const;
+
+  TopLoc_ItemLocation& Value() const;
+
+  DEFINE_STANDARD_RTTIEXT(TopLoc_SListNodeOfItemLocation, Standard_Transient)
+
+private:
+  TopLoc_SListOfItemLocation myTail;
+  TopLoc_ItemLocation        myValue;
+};
+
+#include <TopLoc_SListNodeOfItemLocation.lxx>
+
+#endif // _TopLoc_SListNodeOfItemLocation_HeaderFile

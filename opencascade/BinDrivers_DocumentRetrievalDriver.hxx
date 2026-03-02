@@ -1,4 +1,6 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 2002-10-31
+// Created by: Michael SAZONOV
+// Copyright (c) 2002-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +13,47 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ApplicationFramework/TKBin/BinDrivers/BinDrivers_DocumentRetrievalDriver.hxx"// clang-format on
+#ifndef _BinDrivers_DocumentRetrievalDriver_HeaderFile
+#define _BinDrivers_DocumentRetrievalDriver_HeaderFile
+
+#include <Standard.hxx>
+
+#include <BinLDrivers_DocumentRetrievalDriver.hxx>
+#include <Standard_IStream.hxx>
+#include <Storage_Position.hxx>
+#include <Standard_Integer.hxx>
+class BinMDF_ADriverTable;
+class Message_Messenger;
+class BinLDrivers_DocumentSection;
+
+class BinDrivers_DocumentRetrievalDriver : public BinLDrivers_DocumentRetrievalDriver
+{
+
+public:
+  //! Constructor
+  Standard_EXPORT BinDrivers_DocumentRetrievalDriver();
+
+  Standard_EXPORT occ::handle<BinMDF_ADriverTable> AttributeDrivers(
+    const occ::handle<Message_Messenger>& theMsgDriver) override;
+
+  Standard_EXPORT void ReadShapeSection(
+    BinLDrivers_DocumentSection& theSection,
+    Standard_IStream&            theIS,
+    const bool                   isMess   = false,
+    const Message_ProgressRange& theRange = Message_ProgressRange()) override;
+
+  Standard_EXPORT void CheckShapeSection(const Storage_Position& thePos,
+                                         Standard_IStream&       theIS) override;
+
+  //! Clears the NamedShape driver
+  Standard_EXPORT void Clear() override;
+
+  //! Enables reading in the quick part access mode.
+  Standard_EXPORT void EnableQuickPartReading(
+    const occ::handle<Message_Messenger>& theMessageDriver,
+    bool                                  theValue) override;
+
+  DEFINE_STANDARD_RTTIEXT(BinDrivers_DocumentRetrievalDriver, BinLDrivers_DocumentRetrievalDriver)
+};
+
+#endif // _BinDrivers_DocumentRetrievalDriver_HeaderFile

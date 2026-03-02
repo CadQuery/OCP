@@ -1,4 +1,6 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 2000-04-18
+// Created by: Andrey BETENEV
+// Copyright (c) 2000-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +13,39 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/DataExchange/TKDESTEP/StepShape/StepShape_DimensionalSizeWithPath.hxx"// clang-format on
+#ifndef _StepShape_DimensionalSizeWithPath_HeaderFile
+#define _StepShape_DimensionalSizeWithPath_HeaderFile
+
+#include <Standard.hxx>
+#include <Standard_Type.hxx>
+
+#include <StepShape_DimensionalSize.hxx>
+class StepRepr_ShapeAspect;
+class TCollection_HAsciiString;
+
+//! Representation of STEP entity DimensionalSizeWithPath
+class StepShape_DimensionalSizeWithPath : public StepShape_DimensionalSize
+{
+
+public:
+  //! Empty constructor
+  Standard_EXPORT StepShape_DimensionalSizeWithPath();
+
+  //! Initialize all fields (own and inherited)
+  Standard_EXPORT void Init(const occ::handle<StepRepr_ShapeAspect>&     aDimensionalSize_AppliesTo,
+                            const occ::handle<TCollection_HAsciiString>& aDimensionalSize_Name,
+                            const occ::handle<StepRepr_ShapeAspect>&     aPath);
+
+  //! Returns field Path
+  Standard_EXPORT occ::handle<StepRepr_ShapeAspect> Path() const;
+
+  //! Set field Path
+  Standard_EXPORT void SetPath(const occ::handle<StepRepr_ShapeAspect>& Path);
+
+  DEFINE_STANDARD_RTTIEXT(StepShape_DimensionalSizeWithPath, StepShape_DimensionalSize)
+
+private:
+  occ::handle<StepRepr_ShapeAspect> thePath;
+};
+
+#endif // _StepShape_DimensionalSizeWithPath_HeaderFile

@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 1993-05-27
+// Created by: Yves FRICAUD
+// Copyright (c) 1993-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,59 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ModelingAlgorithms/TKTopAlgo/MAT/MAT_Zone.hxx"// clang-format on
+#ifndef _MAT_Zone_HeaderFile
+#define _MAT_Zone_HeaderFile
+
+#include <Standard.hxx>
+#include <Standard_Type.hxx>
+
+#include <MAT_Arc.hxx>
+#include <NCollection_Sequence.hxx>
+#include <Standard_Transient.hxx>
+#include <Standard_Integer.hxx>
+#include <MAT_Side.hxx>
+class MAT_BasicElt;
+class MAT_Arc;
+class MAT_Node;
+
+//! Definition of Zone of Proximity of a BasicElt :
+//! ----------------------------------------------
+//! A Zone of proximity is the set of the points which are
+//! more near from the BasicElt than any other.
+class MAT_Zone : public Standard_Transient
+{
+
+public:
+  Standard_EXPORT MAT_Zone();
+
+  //! Compute the frontier of the Zone of proximity.
+  Standard_EXPORT MAT_Zone(const occ::handle<MAT_BasicElt>& aBasicElt);
+
+  //! Compute the frontier of the Zone of proximity.
+  Standard_EXPORT void Perform(const occ::handle<MAT_BasicElt>& aBasicElt);
+
+  //! Return the number Of Arcs On the frontier of <me>.
+  Standard_EXPORT int NumberOfArcs() const;
+
+  //! Return the Arc number <Index> on the frontier.
+  //! of <me>.
+  Standard_EXPORT occ::handle<MAT_Arc> ArcOnFrontier(const int Index) const;
+
+  //! Return TRUE if <me> is not empty .
+  Standard_EXPORT bool NoEmptyZone() const;
+
+  //! Return TRUE if <me> is Limited.
+  Standard_EXPORT bool Limited() const;
+
+  DEFINE_STANDARD_RTTIEXT(MAT_Zone, Standard_Transient)
+
+private:
+  Standard_EXPORT occ::handle<MAT_Node> NodeForTurn(const occ::handle<MAT_Arc>&      anArc,
+                                                    const occ::handle<MAT_BasicElt>& aBasicElt,
+                                                    const MAT_Side                   aSide) const;
+
+  NCollection_Sequence<occ::handle<MAT_Arc>> frontier;
+  bool                                       limited;
+};
+
+#endif // _MAT_Zone_HeaderFile

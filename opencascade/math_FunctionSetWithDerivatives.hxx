@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 1991-05-13
+// Created by: Laurent PAINNOT
+// Copyright (c) 1991-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,47 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/FoundationClasses/TKMath/math/math_FunctionSetWithDerivatives.hxx"// clang-format on
+#ifndef _math_FunctionSetWithDerivatives_HeaderFile
+#define _math_FunctionSetWithDerivatives_HeaderFile
+
+#include <Standard.hxx>
+#include <Standard_DefineAlloc.hxx>
+
+#include <math_FunctionSet.hxx>
+#include <Standard_Integer.hxx>
+#include <math_Vector.hxx>
+class math_Matrix;
+
+//! This abstract class describes the virtual functions associated
+//! with a set of N Functions each of M independent variables.
+class math_FunctionSetWithDerivatives : public math_FunctionSet
+{
+public:
+  DEFINE_STANDARD_ALLOC
+
+  //! Returns the number of variables of the function.
+  Standard_EXPORT int NbVariables() const override = 0;
+
+  //! Returns the number of equations of the function.
+  Standard_EXPORT int NbEquations() const override = 0;
+
+  //! Computes the values <F> of the Functions for the
+  //! variable <X>.
+  //! Returns True if the computation was done successfully,
+  //! False otherwise.
+  Standard_EXPORT bool Value(const math_Vector& X, math_Vector& F) override = 0;
+
+  //! Returns the values <D> of the derivatives for the
+  //! variable <X>.
+  //! Returns True if the computation was done successfully,
+  //! False otherwise.
+  Standard_EXPORT virtual bool Derivatives(const math_Vector& X, math_Matrix& D) = 0;
+
+  //! returns the values <F> of the functions and the derivatives
+  //! <D> for the variable <X>.
+  //! Returns True if the computation was done successfully,
+  //! False otherwise.
+  Standard_EXPORT virtual bool Values(const math_Vector& X, math_Vector& F, math_Matrix& D) = 0;
+};
+
+#endif // _math_FunctionSetWithDerivatives_HeaderFile

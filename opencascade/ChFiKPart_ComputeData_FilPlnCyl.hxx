@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 1994-04-12
+// Created by: Isabelle GRIGNON
+// Copyright (c) 1994-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,35 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ModelingAlgorithms/TKFillet/ChFiKPart/ChFiKPart_ComputeData_FilPlnCyl.hxx"// clang-format on
+#ifndef ChFiKPart_ComputeData_FilPlnCyl_HeaderFile
+#define ChFiKPart_ComputeData_FilPlnCyl_HeaderFile
+
+bool ChFiKPart_MakeFillet(TopOpeBRepDS_DataStructure&         DStr,
+                          const occ::handle<ChFiDS_SurfData>& Data,
+                          const gp_Pln&                       Pln,
+                          const gp_Cylinder&                  Cyl,
+                          const double                        fu,
+                          const double                        lu,
+                          const TopAbs_Orientation            Or1,
+                          const TopAbs_Orientation            Or2,
+                          const double                        Radius,
+                          const gp_Lin&                       Spine,
+                          const double                        First,
+                          const TopAbs_Orientation            Ofpl,
+                          const bool                          plandab);
+
+bool ChFiKPart_MakeFillet(TopOpeBRepDS_DataStructure&         DStr,
+                          const occ::handle<ChFiDS_SurfData>& Data,
+                          const gp_Pln&                       Pln,
+                          const gp_Cylinder&                  Cyl,
+                          const double                        fu,
+                          const double                        lu,
+                          const TopAbs_Orientation            Or1,
+                          const TopAbs_Orientation            Or2,
+                          const double                        Radius,
+                          const gp_Circ&                      Spine,
+                          const double                        First,
+                          const TopAbs_Orientation            Ofpl,
+                          const bool                          plandab);
+
+#endif

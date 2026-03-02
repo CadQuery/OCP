@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 1992-10-13
+// Created by: Ramin BARRETO
+// Copyright (c) 1992-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,30 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/FoundationClasses/TKernel/TCollection/TCollection.hxx"// clang-format on
+#ifndef _TCollection_HeaderFile
+#define _TCollection_HeaderFile
+
+#include <NCollection_Primes.hxx>
+
+#include <Standard.hxx>
+#include <Standard_DefineAlloc.hxx>
+#include <Standard_Handle.hxx>
+
+//! The package <TCollection> provides the services for the
+//! transient basic data structures.
+class Standard_DEPRECATED(
+  "Deprecated since OCCT 7.9, NCollection_Primes should be used instead of TCollection") TCollection
+{
+public:
+  DEFINE_STANDARD_ALLOC
+
+  //! Returns a prime number greater than <I> suitable
+  //! to dimension a Map. When <I> becomes great there
+  //! is a limit on the result (today the limit is
+  //! around 1 000 000). This is not a limit of the number
+  //! of items but a limit in the number of buckets. i.e.
+  //! there will be more collisions in the map.
+  static int NextPrimeForMap(const int I) { return NCollection_Primes::NextPrimeForMap(I); }
+};
+
+#endif // _TCollection_HeaderFile

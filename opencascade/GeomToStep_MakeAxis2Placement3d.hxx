@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 1993-06-14
+// Created by: Martine LANGLOIS
+// Copyright (c) 1993-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,53 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/DataExchange/TKDESTEP/GeomToStep/GeomToStep_MakeAxis2Placement3d.hxx"// clang-format on
+#ifndef _GeomToStep_MakeAxis2Placement3d_HeaderFile
+#define _GeomToStep_MakeAxis2Placement3d_HeaderFile
+
+#include <Standard.hxx>
+#include <Standard_DefineAlloc.hxx>
+#include <Standard_Handle.hxx>
+
+#include <GeomToStep_Root.hxx>
+#include <StepData_StepModel.hxx>
+class StepGeom_Axis2Placement3d;
+class gp_Ax2;
+class gp_Ax3;
+class gp_Trsf;
+class Geom_Axis2Placement;
+
+//! This class implements the mapping between classes
+//! Axis2Placement from Geom and Ax2, Ax3 from gp, and the class
+//! Axis2Placement3d from StepGeom which describes an
+//! axis2_placement_3d from Prostep.
+class GeomToStep_MakeAxis2Placement3d : public GeomToStep_Root
+{
+public:
+  DEFINE_STANDARD_ALLOC
+
+  Standard_EXPORT GeomToStep_MakeAxis2Placement3d(
+    const StepData_Factors& theLocalFactors = StepData_Factors());
+
+  Standard_EXPORT GeomToStep_MakeAxis2Placement3d(
+    const gp_Ax2&           A,
+    const StepData_Factors& theLocalFactors = StepData_Factors());
+
+  Standard_EXPORT GeomToStep_MakeAxis2Placement3d(
+    const gp_Ax3&           A,
+    const StepData_Factors& theLocalFactors = StepData_Factors());
+
+  Standard_EXPORT GeomToStep_MakeAxis2Placement3d(
+    const gp_Trsf&          T,
+    const StepData_Factors& theLocalFactors = StepData_Factors());
+
+  Standard_EXPORT GeomToStep_MakeAxis2Placement3d(
+    const occ::handle<Geom_Axis2Placement>& A,
+    const StepData_Factors&                 theLocalFactors = StepData_Factors());
+
+  Standard_EXPORT const occ::handle<StepGeom_Axis2Placement3d>& Value() const;
+
+private:
+  occ::handle<StepGeom_Axis2Placement3d> theAxis2Placement3d;
+};
+
+#endif // _GeomToStep_MakeAxis2Placement3d_HeaderFile

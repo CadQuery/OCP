@@ -1,4 +1,6 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 2014-12-18
+// Created by: Kirill Gavrilov
+// Copyright (c) 2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +13,12 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/Visualization/TKService/Graphic3d/Graphic3d_MapOfStructure.hxx"// clang-format on
+#ifndef _Graphic3d_MapOfStructure
+#define _Graphic3d_MapOfStructure
+
+#include <NCollection_Map.hxx>
+
+class Graphic3d_Structure;
+typedef NCollection_Map<occ::handle<Graphic3d_Structure>> Graphic3d_MapOfStructure;
+
+#endif // _Graphic3d_MapOfStructure

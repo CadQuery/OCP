@@ -1,4 +1,6 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 2015-11-13
+// Created by: Irina KRYLOVA
+// Copyright (c) 2015 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +13,52 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/DataExchange/TKDESTEP/StepDimTol/StepDimTol_GeoTolAndGeoTolWthMaxTol.hxx"// clang-format on
+#ifndef _StepDimTol_GeoTolAndGeoTolWthMaxTol_HeaderFile
+#define _StepDimTol_GeoTolAndGeoTolWthMaxTol_HeaderFile
+
+#include <Standard.hxx>
+#include <Standard_Type.hxx>
+
+#include <StepDimTol_GeoTolAndGeoTolWthMod.hxx>
+#include <StepDimTol_GeometricToleranceType.hxx>
+class StepDimTol_GeometricToleranceTarget;
+class StepDimTol_GeometricToleranceWithModifiers;
+class TCollection_HAsciiString;
+class StepBasic_LengthMeasureWithUnit;
+class StepRepr_ShapeAspect;
+
+class StepDimTol_GeoTolAndGeoTolWthMaxTol : public StepDimTol_GeoTolAndGeoTolWthMod
+{
+
+public:
+  Standard_EXPORT StepDimTol_GeoTolAndGeoTolWthMaxTol();
+
+  Standard_EXPORT void Init(const occ::handle<TCollection_HAsciiString>& theName,
+                            const occ::handle<TCollection_HAsciiString>& theDescription,
+                            const occ::handle<Standard_Transient>&       theMagnitude,
+                            const occ::handle<StepRepr_ShapeAspect>&     theTolerancedShapeAspect,
+                            const occ::handle<StepDimTol_GeometricToleranceWithModifiers>& theGTWM,
+                            const occ::handle<StepBasic_LengthMeasureWithUnit>& theMaxTol,
+                            const StepDimTol_GeometricToleranceType             theType);
+
+  Standard_EXPORT void Init(const occ::handle<TCollection_HAsciiString>& aName,
+                            const occ::handle<TCollection_HAsciiString>& aDescription,
+                            const occ::handle<Standard_Transient>&       aMagnitude,
+                            const StepDimTol_GeometricToleranceTarget&   aTolerancedShapeAspect,
+                            const occ::handle<StepDimTol_GeometricToleranceWithModifiers>& aGTWM,
+                            const occ::handle<StepBasic_LengthMeasureWithUnit>& theMaxTol,
+                            const StepDimTol_GeometricToleranceType             theType);
+
+  inline void SetMaxTolerance(occ::handle<StepBasic_LengthMeasureWithUnit>& theMaxTol)
+  {
+    myMaxTol = theMaxTol;
+  }
+
+  inline occ::handle<StepBasic_LengthMeasureWithUnit> GetMaxTolerance() { return myMaxTol; }
+
+  DEFINE_STANDARD_RTTIEXT(StepDimTol_GeoTolAndGeoTolWthMaxTol, StepDimTol_GeoTolAndGeoTolWthMod)
+
+private:
+  occ::handle<StepBasic_LengthMeasureWithUnit> myMaxTol;
+};
+#endif // _StepDimTol_GeoTolAndGeoTolWthMaxTol_HeaderFile

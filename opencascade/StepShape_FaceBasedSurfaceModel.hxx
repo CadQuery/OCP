@@ -1,4 +1,6 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 2001-12-28
+// Created by: Andrey BETENEV
+// Copyright (c) 2001-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +13,43 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/DataExchange/TKDESTEP/StepShape/StepShape_FaceBasedSurfaceModel.hxx"// clang-format on
+#ifndef _StepShape_FaceBasedSurfaceModel_HeaderFile
+#define _StepShape_FaceBasedSurfaceModel_HeaderFile
+
+#include <Standard.hxx>
+#include <Standard_Type.hxx>
+
+#include <StepShape_ConnectedFaceSet.hxx>
+#include <NCollection_Array1.hxx>
+#include <NCollection_HArray1.hxx>
+#include <StepGeom_GeometricRepresentationItem.hxx>
+class TCollection_HAsciiString;
+
+//! Representation of STEP entity FaceBasedSurfaceModel
+class StepShape_FaceBasedSurfaceModel : public StepGeom_GeometricRepresentationItem
+{
+
+public:
+  //! Empty constructor
+  Standard_EXPORT StepShape_FaceBasedSurfaceModel();
+
+  //! Initialize all fields (own and inherited)
+  Standard_EXPORT void Init(
+    const occ::handle<TCollection_HAsciiString>& aRepresentationItem_Name,
+    const occ::handle<NCollection_HArray1<occ::handle<StepShape_ConnectedFaceSet>>>& aFbsmFaces);
+
+  //! Returns field FbsmFaces
+  Standard_EXPORT occ::handle<NCollection_HArray1<occ::handle<StepShape_ConnectedFaceSet>>>
+                  FbsmFaces() const;
+
+  //! Set field FbsmFaces
+  Standard_EXPORT void SetFbsmFaces(
+    const occ::handle<NCollection_HArray1<occ::handle<StepShape_ConnectedFaceSet>>>& FbsmFaces);
+
+  DEFINE_STANDARD_RTTIEXT(StepShape_FaceBasedSurfaceModel, StepGeom_GeometricRepresentationItem)
+
+private:
+  occ::handle<NCollection_HArray1<occ::handle<StepShape_ConnectedFaceSet>>> theFbsmFaces;
+};
+
+#endif // _StepShape_FaceBasedSurfaceModel_HeaderFile

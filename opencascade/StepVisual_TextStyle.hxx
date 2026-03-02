@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 1995-12-01
+// Created by: EXPRESS->CDL V0.2 Translator
+// Copyright (c) 1995-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,41 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/DataExchange/TKDESTEP/StepVisual/StepVisual_TextStyle.hxx"// clang-format on
+#ifndef _StepVisual_TextStyle_HeaderFile
+#define _StepVisual_TextStyle_HeaderFile
+
+#include <Standard.hxx>
+#include <Standard_Type.hxx>
+
+#include <Standard_Transient.hxx>
+class TCollection_HAsciiString;
+class StepVisual_TextStyleForDefinedFont;
+
+class StepVisual_TextStyle : public Standard_Transient
+{
+
+public:
+  //! Returns a TextStyle
+  Standard_EXPORT StepVisual_TextStyle();
+
+  Standard_EXPORT void Init(
+    const occ::handle<TCollection_HAsciiString>&           aName,
+    const occ::handle<StepVisual_TextStyleForDefinedFont>& aCharacterAppearance);
+
+  Standard_EXPORT void SetName(const occ::handle<TCollection_HAsciiString>& aName);
+
+  Standard_EXPORT occ::handle<TCollection_HAsciiString> Name() const;
+
+  Standard_EXPORT void SetCharacterAppearance(
+    const occ::handle<StepVisual_TextStyleForDefinedFont>& aCharacterAppearance);
+
+  Standard_EXPORT occ::handle<StepVisual_TextStyleForDefinedFont> CharacterAppearance() const;
+
+  DEFINE_STANDARD_RTTIEXT(StepVisual_TextStyle, Standard_Transient)
+
+private:
+  occ::handle<TCollection_HAsciiString>           name;
+  occ::handle<StepVisual_TextStyleForDefinedFont> characterAppearance;
+};
+
+#endif // _StepVisual_TextStyle_HeaderFile

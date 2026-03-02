@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 1995-12-01
+// Created by: EXPRESS->CDL V0.2 Translator
+// Copyright (c) 1995-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,32 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/DataExchange/TKDESTEP/StepBasic/StepBasic_Date.hxx"// clang-format on
+#ifndef _StepBasic_Date_HeaderFile
+#define _StepBasic_Date_HeaderFile
+
+#include <Standard.hxx>
+#include <Standard_Type.hxx>
+
+#include <Standard_Integer.hxx>
+#include <Standard_Transient.hxx>
+
+class StepBasic_Date : public Standard_Transient
+{
+
+public:
+  //! Returns a Date
+  Standard_EXPORT StepBasic_Date();
+
+  Standard_EXPORT void Init(const int aYearComponent);
+
+  Standard_EXPORT void SetYearComponent(const int aYearComponent);
+
+  Standard_EXPORT int YearComponent() const;
+
+  DEFINE_STANDARD_RTTIEXT(StepBasic_Date, Standard_Transient)
+
+private:
+  int yearComponent;
+};
+
+#endif // _StepBasic_Date_HeaderFile

@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 1992-06-30
+// Created by: Laurent BUCHARD
+// Copyright (c) 1992-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,21 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ModelingData/TKGeomBase/IntAna/IntAna_ResultType.hxx"// clang-format on
+#ifndef _IntAna_ResultType_HeaderFile
+#define _IntAna_ResultType_HeaderFile
+
+enum IntAna_ResultType
+{
+  IntAna_Point,
+  IntAna_Line,
+  IntAna_Circle,
+  IntAna_PointAndCircle,
+  IntAna_Ellipse,
+  IntAna_Parabola,
+  IntAna_Hyperbola,
+  IntAna_Empty,
+  IntAna_Same,
+  IntAna_NoGeometricSolution
+};
+
+#endif // _IntAna_ResultType_HeaderFile

@@ -1,4 +1,4 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Copyright (c) 2015 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +11,60 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ApplicationFramework/TKStdL/StdLPersistent/StdLPersistent_Void.hxx"// clang-format on
+#ifndef _StdLPersistent_Void_HeaderFile
+#define _StdLPersistent_Void_HeaderFile
+
+#include <StdObjMgt_Attribute.hxx>
+
+#include <TDataStd_Directory.hxx>
+#include <TDataStd_Tick.hxx>
+#include <TDataStd_NoteBook.hxx>
+
+class StdLPersistent_Void
+{
+protected:
+  template <class AttribClass>
+  class instance : public StdObjMgt_Attribute<AttribClass>::Static
+  {
+  public:
+    //! Read persistent data from a file.
+    void Read(StdObjMgt_ReadData&) override {}
+
+    //! Write persistent data to a file.
+    void Write(StdObjMgt_WriteData&) const override {}
+
+    //! Gets persistent child objects
+    inline void PChildren(StdObjMgt_Persistent::SequenceOfPersistent&) const override {}
+
+    //! Returns persistent type name
+    const char* PName() const override;
+
+    //! Import transient attribute from the persistent data
+    void ImportAttribute() override {}
+  };
+
+public:
+  typedef instance<TDataStd_Directory> Directory;
+  typedef instance<TDataStd_Tick>      Tick;
+  typedef instance<TDataStd_NoteBook>  NoteBook;
+};
+
+template <>
+inline const char* StdLPersistent_Void::instance<TDataStd_Directory>::PName() const
+{
+  return "PDataStd_Directory";
+}
+
+template <>
+inline const char* StdLPersistent_Void::instance<TDataStd_Tick>::PName() const
+{
+  return "PDataStd_Tick";
+}
+
+template <>
+inline const char* StdLPersistent_Void::instance<TDataStd_NoteBook>::PName() const
+{
+  return "PDataStd_Notebook";
+}
+
+#endif

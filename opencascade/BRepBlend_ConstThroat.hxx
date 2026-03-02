@@ -1,4 +1,5 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created by: Julia GERASIMOVA
+// Copyright (c) 2015 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +12,11 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ModelingAlgorithms/TKFillet/BRepBlend/BRepBlend_ConstThroat.hxx"// clang-format on
+#ifndef _BRepBlend_ConstThroat_HeaderFile
+#define _BRepBlend_ConstThroat_HeaderFile
+
+#include <BlendFunc_ConstThroat.hxx>
+
+typedef BlendFunc_ConstThroat BRepBlend_ConstThroat;
+
+#endif // _BRepBlend_ConstThroat_HeaderFile

@@ -1,4 +1,5 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Copyright (c) 1995-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +12,27 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ModelingData/TKGeomBase/CPnts/CPnts_AbscissaPoint.lxx"// clang-format on
+#include <StdFail_NotDone.hxx>
+
+//=================================================================================================
+
+inline bool CPnts_AbscissaPoint::IsDone() const
+{
+  return myDone;
+}
+
+//=================================================================================================
+
+inline double CPnts_AbscissaPoint::Parameter() const
+{
+  StdFail_NotDone_Raise_if(!myDone, "CPnts_AbscissaPoint::Parameter() - no result");
+  return myParam;
+}
+
+//=================================================================================================
+
+inline void CPnts_AbscissaPoint::SetParameter(const double P)
+{
+  myParam = P;
+  myDone  = true;
+}

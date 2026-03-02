@@ -1,4 +1,4 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Copyright (c) 2003-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +11,41 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ModelingAlgorithms/TKShHealing/ShapeCustom/ShapeCustom_Modification.hxx"// clang-format on
+#ifndef _ShapeCustom_Modification_HeaderFile
+#define _ShapeCustom_Modification_HeaderFile
+
+#include <Standard.hxx>
+#include <Standard_Type.hxx>
+
+#include <BRepTools_Modification.hxx>
+#include <Message_Gravity.hxx>
+class ShapeExtend_BasicMsgRegistrator;
+class TopoDS_Shape;
+class Message_Msg;
+
+//! A base class of Modification's from ShapeCustom.
+//! Implements message sending mechanism.
+class ShapeCustom_Modification : public BRepTools_Modification
+{
+
+public:
+  //! Sets message registrator
+  Standard_EXPORT virtual void SetMsgRegistrator(
+    const occ::handle<ShapeExtend_BasicMsgRegistrator>& msgreg);
+
+  //! Returns message registrator
+  Standard_EXPORT occ::handle<ShapeExtend_BasicMsgRegistrator> MsgRegistrator() const;
+
+  //! Sends a message to be attached to the shape.
+  //! Calls corresponding message of message registrator.
+  Standard_EXPORT void SendMsg(const TopoDS_Shape&   shape,
+                               const Message_Msg&    message,
+                               const Message_Gravity gravity = Message_Info) const;
+
+  DEFINE_STANDARD_RTTIEXT(ShapeCustom_Modification, BRepTools_Modification)
+
+private:
+  occ::handle<ShapeExtend_BasicMsgRegistrator> myMsgReg;
+};
+
+#endif // _ShapeCustom_Modification_HeaderFile

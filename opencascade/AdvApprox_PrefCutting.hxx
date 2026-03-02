@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 1996-04-05
+// Created by: Joelle CHAUVET
+// Copyright (c) 1996-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,30 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ModelingData/TKG3d/AdvApprox/AdvApprox_PrefCutting.hxx"// clang-format on
+#ifndef _AdvApprox_PrefCutting_HeaderFile
+#define _AdvApprox_PrefCutting_HeaderFile
+
+#include <Standard.hxx>
+#include <Standard_DefineAlloc.hxx>
+#include <Standard_Handle.hxx>
+
+#include <NCollection_Array1.hxx>
+#include <AdvApprox_Cutting.hxx>
+#include <Standard_Boolean.hxx>
+
+//! inherits class Cutting; contains a list of preferential points (di)i
+//! if Cutting is necessary in [a,b], we cut at the di nearest from (a+b)/2.
+class AdvApprox_PrefCutting : public AdvApprox_Cutting
+{
+public:
+  DEFINE_STANDARD_ALLOC
+
+  Standard_EXPORT AdvApprox_PrefCutting(const NCollection_Array1<double>& CutPnts);
+
+  Standard_EXPORT bool Value(const double a, const double b, double& cuttingvalue) const override;
+
+private:
+  NCollection_Array1<double> myPntOfCutting;
+};
+
+#endif // _AdvApprox_PrefCutting_HeaderFile

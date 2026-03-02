@@ -1,4 +1,4 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Copyright (c) 2020 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +11,12 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/Visualization/TKService/Font/Font_BRepTextBuilder.hxx"// clang-format on
+#ifndef Font_BRepTextBuilder_Header
+#define Font_BRepTextBuilder_Header
+
+#include <StdPrs_BRepTextBuilder.hxx>
+
+//! Alias for porting from old name.
+typedef StdPrs_BRepTextBuilder Font_BRepTextBuilder;
+
+#endif // Font_BRepTextBuilder_Header

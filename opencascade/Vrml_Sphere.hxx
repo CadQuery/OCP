@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 1997-02-04
+// Created by: Alexander BRIVIN
+// Copyright (c) 1997-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,34 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/DataExchange/TKDEVRML/Vrml/Vrml_Sphere.hxx"// clang-format on
+#ifndef _Vrml_Sphere_HeaderFile
+#define _Vrml_Sphere_HeaderFile
+
+#include <Standard.hxx>
+#include <Standard_DefineAlloc.hxx>
+#include <Standard_Handle.hxx>
+
+#include <Standard_Real.hxx>
+#include <Standard_OStream.hxx>
+
+//! defines a Sphere node of VRML specifying geometry shapes.
+//! This node represents a sphere.
+//! By default, the sphere is centred at (0,0,0) and has a radius of 1.
+class Vrml_Sphere
+{
+public:
+  DEFINE_STANDARD_ALLOC
+
+  Standard_EXPORT Vrml_Sphere(const double aRadius = 1);
+
+  Standard_EXPORT void SetRadius(const double aRadius);
+
+  Standard_EXPORT double Radius() const;
+
+  Standard_EXPORT Standard_OStream& Print(Standard_OStream& anOStream) const;
+
+private:
+  double myRadius;
+};
+
+#endif // _Vrml_Sphere_HeaderFile

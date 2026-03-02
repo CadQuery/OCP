@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 1992-04-13
+// Created by: Isabelle GRIGNON
+// Copyright (c) 1992-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,15 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ModelingAlgorithms/TKGeomAlgo/IntImp/IntImp_ConstIsoparametric.hxx"// clang-format on
+#ifndef _IntImp_ConstIsoparametric_HeaderFile
+#define _IntImp_ConstIsoparametric_HeaderFile
+
+enum IntImp_ConstIsoparametric
+{
+  IntImp_UIsoparametricOnCaro1,
+  IntImp_VIsoparametricOnCaro1,
+  IntImp_UIsoparametricOnCaro2,
+  IntImp_VIsoparametricOnCaro2
+};
+
+#endif // _IntImp_ConstIsoparametric_HeaderFile

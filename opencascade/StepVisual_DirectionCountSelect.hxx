@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 1995-12-06
+// Created by: Frederic MAUPAS
+// Copyright (c) 1995-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,36 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/DataExchange/TKDESTEP/StepVisual/StepVisual_DirectionCountSelect.hxx"// clang-format on
+#ifndef _StepVisual_DirectionCountSelect_HeaderFile
+#define _StepVisual_DirectionCountSelect_HeaderFile
+
+#include <Standard.hxx>
+#include <Standard_DefineAlloc.hxx>
+#include <Standard_Handle.hxx>
+
+class StepVisual_DirectionCountSelect
+{
+public:
+  DEFINE_STANDARD_ALLOC
+
+  Standard_EXPORT StepVisual_DirectionCountSelect();
+
+  Standard_EXPORT void SetTypeOfContent(const int aTypeOfContent);
+
+  Standard_EXPORT int TypeOfContent() const;
+
+  Standard_EXPORT int UDirectionCount() const;
+
+  Standard_EXPORT void SetUDirectionCount(const int aUDirectionCount);
+
+  Standard_EXPORT int VDirectionCount() const;
+
+  Standard_EXPORT void SetVDirectionCount(const int aUDirectionCount);
+
+private:
+  int theUDirectionCount;
+  int theVDirectionCount;
+  int theTypeOfContent;
+};
+
+#endif // _StepVisual_DirectionCountSelect_HeaderFile

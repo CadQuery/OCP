@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 1995-12-01
+// Created by: EXPRESS->CDL V0.2 Translator
+// Copyright (c) 1995-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,40 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/DataExchange/TKDESTEP/StepBasic/StepBasic_ApplicationContextElement.hxx"// clang-format on
+#ifndef _StepBasic_ApplicationContextElement_HeaderFile
+#define _StepBasic_ApplicationContextElement_HeaderFile
+
+#include <Standard.hxx>
+#include <Standard_Type.hxx>
+
+#include <Standard_Transient.hxx>
+class TCollection_HAsciiString;
+class StepBasic_ApplicationContext;
+
+class StepBasic_ApplicationContextElement : public Standard_Transient
+{
+
+public:
+  //! Returns a ApplicationContextElement
+  Standard_EXPORT StepBasic_ApplicationContextElement();
+
+  Standard_EXPORT void Init(const occ::handle<TCollection_HAsciiString>&     aName,
+                            const occ::handle<StepBasic_ApplicationContext>& aFrameOfReference);
+
+  Standard_EXPORT void SetName(const occ::handle<TCollection_HAsciiString>& aName);
+
+  Standard_EXPORT occ::handle<TCollection_HAsciiString> Name() const;
+
+  Standard_EXPORT void SetFrameOfReference(
+    const occ::handle<StepBasic_ApplicationContext>& aFrameOfReference);
+
+  Standard_EXPORT occ::handle<StepBasic_ApplicationContext> FrameOfReference() const;
+
+  DEFINE_STANDARD_RTTIEXT(StepBasic_ApplicationContextElement, Standard_Transient)
+
+private:
+  occ::handle<TCollection_HAsciiString>     name;
+  occ::handle<StepBasic_ApplicationContext> frameOfReference;
+};
+
+#endif // _StepBasic_ApplicationContextElement_HeaderFile

@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 1996-03-05
+// Created by: Joelle CHAUVET
+// Copyright (c) 1996-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,18 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ModelingData/TKGeomBase/AdvApp2Var/AdvApp2Var_CriterionRepartition.hxx"// clang-format on
+#ifndef _AdvApp2Var_CriterionRepartition_HeaderFile
+#define _AdvApp2Var_CriterionRepartition_HeaderFile
+
+//! way of cutting process//! all new cutting points at each step of cutting
+//! process : (a+i(b-a)/N)i at step N,
+//! (a+i(b-a)/(N+1))i at step N+1,...
+//! where (a,b) is the global interval//! add one new cutting point at each step
+//! of cutting process
+enum AdvApp2Var_CriterionRepartition
+{
+  AdvApp2Var_Regular,
+  AdvApp2Var_Incremental
+};
+
+#endif // _AdvApp2Var_CriterionRepartition_HeaderFile

@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 1996-09-04
+// Created by: Christian CAILLET
+// Copyright (c) 1996-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,32 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/DataExchange/TKXSBase/Transfer/Transfer_DataInfo.hxx"// clang-format on
+#ifndef _Transfer_DataInfo_HeaderFile
+#define _Transfer_DataInfo_HeaderFile
+
+#include <Standard.hxx>
+#include <Standard_DefineAlloc.hxx>
+#include <Standard_Handle.hxx>
+
+#include <Standard_Type.hxx>
+class Standard_Transient;
+
+//! Gives information on an object
+//! Used as template to instantiate Mapper and SimpleBinder
+//! This class is for Transient
+class Transfer_DataInfo
+{
+public:
+  DEFINE_STANDARD_ALLOC
+
+  //! Returns the Type attached to an object
+  //! Here, the Dynamic Type of a Transient. Null Type if unknown
+  Standard_EXPORT static occ::handle<Standard_Type> Type(
+    const occ::handle<Standard_Transient>& ent);
+
+  //! Returns Type Name (string)
+  //! Allows to name type of non-handled objects
+  Standard_EXPORT static const char* TypeName(const occ::handle<Standard_Transient>& ent);
+};
+
+#endif // _Transfer_DataInfo_HeaderFile

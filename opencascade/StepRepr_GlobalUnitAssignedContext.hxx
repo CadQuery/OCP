@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 1995-12-01
+// Created by: EXPRESS->CDL V0.2 Translator
+// Copyright (c) 1995-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,45 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/DataExchange/TKDESTEP/StepRepr/StepRepr_GlobalUnitAssignedContext.hxx"// clang-format on
+#ifndef _StepRepr_GlobalUnitAssignedContext_HeaderFile
+#define _StepRepr_GlobalUnitAssignedContext_HeaderFile
+
+#include <Standard.hxx>
+#include <Standard_Type.hxx>
+
+#include <StepBasic_NamedUnit.hxx>
+#include <NCollection_Array1.hxx>
+#include <NCollection_HArray1.hxx>
+#include <StepRepr_RepresentationContext.hxx>
+#include <Standard_Integer.hxx>
+class TCollection_HAsciiString;
+class StepBasic_NamedUnit;
+
+class StepRepr_GlobalUnitAssignedContext : public StepRepr_RepresentationContext
+{
+
+public:
+  //! Returns a GlobalUnitAssignedContext
+  Standard_EXPORT StepRepr_GlobalUnitAssignedContext();
+
+  Standard_EXPORT void Init(
+    const occ::handle<TCollection_HAsciiString>&                              aContextIdentifier,
+    const occ::handle<TCollection_HAsciiString>&                              aContextType,
+    const occ::handle<NCollection_HArray1<occ::handle<StepBasic_NamedUnit>>>& aUnits);
+
+  Standard_EXPORT void SetUnits(
+    const occ::handle<NCollection_HArray1<occ::handle<StepBasic_NamedUnit>>>& aUnits);
+
+  Standard_EXPORT occ::handle<NCollection_HArray1<occ::handle<StepBasic_NamedUnit>>> Units() const;
+
+  Standard_EXPORT occ::handle<StepBasic_NamedUnit> UnitsValue(const int num) const;
+
+  Standard_EXPORT int NbUnits() const;
+
+  DEFINE_STANDARD_RTTIEXT(StepRepr_GlobalUnitAssignedContext, StepRepr_RepresentationContext)
+
+private:
+  occ::handle<NCollection_HArray1<occ::handle<StepBasic_NamedUnit>>> units;
+};
+
+#endif // _StepRepr_GlobalUnitAssignedContext_HeaderFile

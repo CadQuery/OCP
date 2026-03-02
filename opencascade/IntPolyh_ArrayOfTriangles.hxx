@@ -1,4 +1,6 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 2012-11-13
+// Created by: Peter KURNEV
+// Copyright (c) 2012-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +13,13 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ModelingAlgorithms/TKGeomAlgo/IntPolyh/IntPolyh_ArrayOfTriangles.hxx"// clang-format on
+#ifndef IntPolyh_ArrayOfTriangles_HeaderFile
+#define IntPolyh_ArrayOfTriangles_HeaderFile
+
+#include <IntPolyh_Array.hxx>
+// #include <IntPolyh_Triangle.hxx>
+class IntPolyh_Triangle;
+
+typedef IntPolyh_Array<IntPolyh_Triangle> IntPolyh_ArrayOfTriangles;
+
+#endif

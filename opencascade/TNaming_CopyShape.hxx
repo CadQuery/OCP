@@ -1,4 +1,6 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 2000-02-14
+// Created by: Denis PASCAL
+// Copyright (c) 2000-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +13,45 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ApplicationFramework/TKCAF/TNaming/TNaming_CopyShape.hxx"// clang-format on
+#ifndef _TNaming_CopyShape_HeaderFile
+#define _TNaming_CopyShape_HeaderFile
+
+#include <Standard.hxx>
+#include <Standard_DefineAlloc.hxx>
+#include <Standard_Handle.hxx>
+
+#include <Standard_Transient.hxx>
+#include <NCollection_IndexedDataMap.hxx>
+class TopoDS_Shape;
+class TNaming_TranslateTool;
+class TopLoc_Location;
+
+class TNaming_CopyShape
+{
+public:
+  DEFINE_STANDARD_ALLOC
+
+  //! Makes copy a set of shape(s), using the aMap
+  Standard_EXPORT static void CopyTool(
+    const TopoDS_Shape& aShape,
+    NCollection_IndexedDataMap<occ::handle<Standard_Transient>, occ::handle<Standard_Transient>>&
+                  aMap,
+    TopoDS_Shape& aResult);
+
+  //! Translates a Transient shape(s) to Transient
+  Standard_EXPORT static void Translate(
+    const TopoDS_Shape& aShape,
+    NCollection_IndexedDataMap<occ::handle<Standard_Transient>, occ::handle<Standard_Transient>>&
+                                              aMap,
+    TopoDS_Shape&                             aResult,
+    const occ::handle<TNaming_TranslateTool>& TrTool);
+
+  //! Translates a Topological Location to an other Top.
+  //! Location
+  Standard_EXPORT static TopLoc_Location Translate(
+    const TopLoc_Location& L,
+    NCollection_IndexedDataMap<occ::handle<Standard_Transient>, occ::handle<Standard_Transient>>&
+      aMap);
+};
+
+#endif // _TNaming_CopyShape_HeaderFile

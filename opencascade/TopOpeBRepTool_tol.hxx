@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 1997-04-01
+// Created by: Jean Yves LEBEY
+// Copyright (c) 1997-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,45 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ModelingAlgorithms/TKBool/TopOpeBRepTool/TopOpeBRepTool_tol.hxx"// clang-format on
+#ifndef _TopOpeBRepTool_tol_HeaderFile
+#define _TopOpeBRepTool_tol_HeaderFile
+
+#include <Bnd_Box.hxx>
+#include <BRepAdaptor_Surface.hxx>
+
+Standard_EXPORT void FTOL_FaceTolerances(const Bnd_Box&             B1,
+                                         const Bnd_Box&             B2,
+                                         const TopoDS_Face&         myFace1,
+                                         const TopoDS_Face&         myFace2,
+                                         const BRepAdaptor_Surface& mySurface1,
+                                         const BRepAdaptor_Surface& mySurface2,
+                                         double&                    myTol1,
+                                         double&                    myTol2,
+                                         double&                    Deflection,
+                                         double&                    MaxUV);
+
+Standard_EXPORT void FTOL_FaceTolerances3d(const TopoDS_Face& myFace1,
+                                           const TopoDS_Face& myFace2,
+                                           double&            Tol);
+
+Standard_EXPORT void FTOL_FaceTolerances3d(const Bnd_Box&             B1,
+                                           const Bnd_Box&             B2,
+                                           const TopoDS_Face&         myFace1,
+                                           const TopoDS_Face&         myFace2,
+                                           const BRepAdaptor_Surface& mySurface1,
+                                           const BRepAdaptor_Surface& mySurface2,
+                                           double&                    myTol1,
+                                           double&                    myTol2,
+                                           double&                    Deflection,
+                                           double&                    MaxUV);
+
+Standard_EXPORT void FTOL_FaceTolerances2d(const Bnd_Box&             B1,
+                                           const Bnd_Box&             B2,
+                                           const TopoDS_Face&         myFace1,
+                                           const TopoDS_Face&         myFace2,
+                                           const BRepAdaptor_Surface& mySurface1,
+                                           const BRepAdaptor_Surface& mySurface2,
+                                           double&                    myTol1,
+                                           double&                    myTol2);
+
+#endif

@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 1991-02-26
+// Created by: Isabelle GRIGNON
+// Copyright (c) 1991-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,27 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ModelingData/TKGeomBase/Extrema/Extrema_ExtPC.hxx"// clang-format on
+#ifndef _Extrema_ExtPC_HeaderFile
+#define _Extrema_ExtPC_HeaderFile
+
+#include <Adaptor3d_Curve.hxx>
+#include <Extrema_CurveTool.hxx>
+#include <Extrema_EPCOfExtPC.hxx>
+#include <Extrema_ExtPElC.hxx>
+#include <Extrema_GGExtPC.hxx>
+#include <Extrema_POnCurv.hxx>
+#include <NCollection_Sequence.hxx>
+#include <gp_Pnt.hxx>
+#include <gp_Vec.hxx>
+
+//! Type alias for 3D point-to-curve extremum computation.
+using Extrema_ExtPC = Extrema_GGExtPC<Adaptor3d_Curve,
+                                      Extrema_CurveTool,
+                                      Extrema_ExtPElC,
+                                      gp_Pnt,
+                                      gp_Vec,
+                                      Extrema_POnCurv,
+                                      NCollection_Sequence<Extrema_POnCurv>,
+                                      Extrema_EPCOfExtPC>;
+
+#endif // _Extrema_ExtPC_HeaderFile

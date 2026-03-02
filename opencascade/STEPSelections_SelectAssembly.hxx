@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 1999-03-25
+// Created by: data exchange team
+// Copyright (c) 1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,36 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/DataExchange/TKDESTEP/STEPSelections/STEPSelections_SelectAssembly.hxx"// clang-format on
+#ifndef _STEPSelections_SelectAssembly_HeaderFile
+#define _STEPSelections_SelectAssembly_HeaderFile
+
+#include <Standard.hxx>
+#include <Standard_Type.hxx>
+
+#include <IFSelect_SelectExplore.hxx>
+#include <Standard_Integer.hxx>
+class Standard_Transient;
+class Interface_Graph;
+class Interface_EntityIterator;
+class TCollection_AsciiString;
+
+class STEPSelections_SelectAssembly : public IFSelect_SelectExplore
+{
+
+public:
+  Standard_EXPORT STEPSelections_SelectAssembly();
+
+  //! Explores an entity, to take its faces
+  //! Works recursively
+  Standard_EXPORT bool Explore(const int                              level,
+                               const occ::handle<Standard_Transient>& ent,
+                               const Interface_Graph&                 G,
+                               Interface_EntityIterator&              explored) const override;
+
+  //! Returns a text defining the criterium : "Assembly structures"
+  Standard_EXPORT TCollection_AsciiString ExploreLabel() const override;
+
+  DEFINE_STANDARD_RTTIEXT(STEPSelections_SelectAssembly, IFSelect_SelectExplore)
+};
+
+#endif // _STEPSelections_SelectAssembly_HeaderFile

@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 1991-02-26
+// Created by: Isabelle GRIGNON
+// Copyright (c) 1991-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,19 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ModelingData/TKGeomBase/Extrema/Extrema_LocECC.hxx"// clang-format on
+#ifndef _Extrema_LocECC_HeaderFile
+#define _Extrema_LocECC_HeaderFile
+
+#include <Adaptor3d_Curve.hxx>
+#include <Extrema_CCLocFOfLocECC.hxx>
+#include <Extrema_CurveTool.hxx>
+#include <Extrema_GenLocateExtCC.hxx>
+#include <Extrema_POnCurv.hxx>
+
+//! Type alias for 3D curve-curve local extremum locator.
+using Extrema_LocECC = Extrema_GenLocateExtCC<Adaptor3d_Curve,
+                                              Extrema_CurveTool,
+                                              Extrema_POnCurv,
+                                              Extrema_CCLocFOfLocECC>;
+
+#endif // _Extrema_LocECC_HeaderFile

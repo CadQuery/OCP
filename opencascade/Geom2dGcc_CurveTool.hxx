@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 1992-06-04
+// Created by: Jacques GOUSSARD
+// Copyright (c) 1992-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,49 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ModelingAlgorithms/TKGeomAlgo/Geom2dGcc/Geom2dGcc_CurveTool.hxx"// clang-format on
+#ifndef _Geom2dGcc_CurveTool_HeaderFile
+#define _Geom2dGcc_CurveTool_HeaderFile
+
+#include <Standard.hxx>
+#include <Standard_DefineAlloc.hxx>
+
+#include <Standard_Integer.hxx>
+class Geom2dAdaptor_Curve;
+class gp_Pnt2d;
+class gp_Vec2d;
+
+class Geom2dGcc_CurveTool
+{
+public:
+  DEFINE_STANDARD_ALLOC
+
+  Standard_EXPORT static double FirstParameter(const Geom2dAdaptor_Curve& C);
+
+  Standard_EXPORT static double LastParameter(const Geom2dAdaptor_Curve& C);
+
+  Standard_EXPORT static double EpsX(const Geom2dAdaptor_Curve& C, const double Tol);
+
+  Standard_EXPORT static int NbSamples(const Geom2dAdaptor_Curve& C);
+
+  Standard_EXPORT static gp_Pnt2d Value(const Geom2dAdaptor_Curve& C, const double X);
+
+  Standard_EXPORT static void D1(const Geom2dAdaptor_Curve& C,
+                                 const double               U,
+                                 gp_Pnt2d&                  P,
+                                 gp_Vec2d&                  T);
+
+  Standard_EXPORT static void D2(const Geom2dAdaptor_Curve& C,
+                                 const double               U,
+                                 gp_Pnt2d&                  P,
+                                 gp_Vec2d&                  T,
+                                 gp_Vec2d&                  N);
+
+  Standard_EXPORT static void D3(const Geom2dAdaptor_Curve& C,
+                                 const double               U,
+                                 gp_Pnt2d&                  P,
+                                 gp_Vec2d&                  T,
+                                 gp_Vec2d&                  N,
+                                 gp_Vec2d&                  dN);
+};
+
+#endif // _Geom2dGcc_CurveTool_HeaderFile

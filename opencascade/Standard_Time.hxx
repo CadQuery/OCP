@@ -1,4 +1,4 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Copyright (c) 2013-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +11,22 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/FoundationClasses/TKernel/Standard/Standard_Time.hxx"// clang-format on
+#ifndef _Standard_Time_HeaderFile
+#define _Standard_Time_HeaderFile
+
+#include <Standard_TypeDef.hxx>
+
+// ------------------------------------------------------------------
+// IsEqual : Returns true if two time values are equal
+// ------------------------------------------------------------------
+template <typename TheTimeType>
+typename opencascade::std::enable_if<opencascade::std::is_same<TheTimeType, std::time_t>::value
+                                       && !opencascade::std::is_same<size_t, std::time_t>::value
+                                       && !opencascade::std::is_same<int, std::time_t>::value,
+                                     bool>::type
+  IsEqual(const TheTimeType theOne, const TheTimeType theTwo)
+{
+  return theOne == theTwo;
+}
+
+#endif

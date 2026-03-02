@@ -1,4 +1,5 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Copyright (c) 1995-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +12,24 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ModelingAlgorithms/TKGeomAlgo/IntSurf/IntSurf_Couple.lxx"// clang-format on
+inline IntSurf_Couple::IntSurf_Couple()
+    : firstInteger(0),
+      secondInteger(0)
+{
+}
+
+inline IntSurf_Couple::IntSurf_Couple(const int Index1, const int Index2)
+    : firstInteger(Index1),
+      secondInteger(Index2)
+{
+}
+
+inline int IntSurf_Couple::First() const
+{
+  return firstInteger;
+}
+
+inline int IntSurf_Couple::Second() const
+{
+  return secondInteger;
+}

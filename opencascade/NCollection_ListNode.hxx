@@ -1,4 +1,6 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 2002-04-17
+// Created by: Alexander KARTOMIN (akm)
+// Copyright (c) 2002-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +13,43 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/FoundationClasses/TKernel/NCollection/NCollection_ListNode.hxx"// clang-format on
+#ifndef NCollection_ListNode_HeaderFile
+#define NCollection_ListNode_HeaderFile
+
+#include <NCollection_BaseAllocator.hxx>
+#include <NCollection_DefineAlloc.hxx>
+
+/**
+ * Purpose:     This class is used to  represent a node  in the BaseList and
+ *              BaseMap.
+ */
+class NCollection_ListNode
+{
+public:
+  // define new operator for use with NCollection allocators
+  DEFINE_NCOLLECTION_ALLOC
+public:
+  //! The only constructor
+  NCollection_ListNode(NCollection_ListNode* theNext) noexcept
+      : myNext(theNext)
+  {
+  }
+
+  //! Next pointer access
+  NCollection_ListNode*& Next() noexcept { return myNext; }
+
+  //! Next pointer const access
+  NCollection_ListNode* Next() const noexcept { return myNext; }
+
+private:
+  //! operator= - forbidden
+  NCollection_ListNode& operator=(const NCollection_ListNode&) = delete;
+
+  //! copy constructor - forbidden
+  NCollection_ListNode(const NCollection_ListNode&) = delete;
+
+private:
+  NCollection_ListNode* myNext; //!< Pointer to the next node
+};
+
+#endif

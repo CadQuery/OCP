@@ -1,4 +1,6 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 2003-10-10
+// Created by: Alexander SOLOVYOV
+// Copyright (c) 2003-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +13,10 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/Visualization/TKMeshVS/MeshVS/MeshVS_MeshPtr.hxx"// clang-format on
+#ifndef _MeshVS_MeshPtr_HeaderFile
+#define _MeshVS_MeshPtr_HeaderFile
+
+class MeshVS_Mesh;
+typedef MeshVS_Mesh* MeshVS_MeshPtr;
+
+#endif // _MeshVS_MeshPtr_HeaderFile

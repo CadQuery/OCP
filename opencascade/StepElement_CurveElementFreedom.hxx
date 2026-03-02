@@ -1,4 +1,6 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 2002-12-10
+// Created by: data exchange team
+// Copyright (c) 2002-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +13,55 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/DataExchange/TKDESTEP/StepElement/StepElement_CurveElementFreedom.hxx"// clang-format on
+#ifndef _StepElement_CurveElementFreedom_HeaderFile
+#define _StepElement_CurveElementFreedom_HeaderFile
+
+#include <Standard.hxx>
+#include <Standard_DefineAlloc.hxx>
+#include <Standard_Handle.hxx>
+
+#include <StepData_SelectType.hxx>
+#include <Standard_Integer.hxx>
+#include <StepElement_EnumeratedCurveElementFreedom.hxx>
+class Standard_Transient;
+class StepData_SelectMember;
+class TCollection_HAsciiString;
+
+//! Representation of STEP SELECT type CurveElementFreedom
+class StepElement_CurveElementFreedom : public StepData_SelectType
+{
+public:
+  DEFINE_STANDARD_ALLOC
+
+  //! Empty constructor
+  Standard_EXPORT StepElement_CurveElementFreedom();
+
+  //! Recognizes a kind of CurveElementFreedom select type
+  //! return 0
+  Standard_EXPORT int CaseNum(const occ::handle<Standard_Transient>& ent) const override;
+
+  //! Recognizes a items of select member CurveElementFreedomMember
+  //! 1 -> EnumeratedCurveElementFreedom
+  //! 2 -> ApplicationDefinedDegreeOfFreedom
+  //! 0 else
+  Standard_EXPORT int CaseMem(const occ::handle<StepData_SelectMember>& ent) const override;
+
+  //! Returns a new select member the type CurveElementFreedomMember
+  Standard_EXPORT occ::handle<StepData_SelectMember> NewMember() const override;
+
+  //! Set Value for EnumeratedCurveElementFreedom
+  Standard_EXPORT void SetEnumeratedCurveElementFreedom(
+    const StepElement_EnumeratedCurveElementFreedom aVal);
+
+  //! Returns Value as EnumeratedCurveElementFreedom (or Null if another type)
+  Standard_EXPORT StepElement_EnumeratedCurveElementFreedom EnumeratedCurveElementFreedom() const;
+
+  //! Set Value for ApplicationDefinedDegreeOfFreedom
+  Standard_EXPORT void SetApplicationDefinedDegreeOfFreedom(
+    const occ::handle<TCollection_HAsciiString>& aVal);
+
+  //! Returns Value as ApplicationDefinedDegreeOfFreedom (or Null if another type)
+  Standard_EXPORT occ::handle<TCollection_HAsciiString> ApplicationDefinedDegreeOfFreedom() const;
+};
+
+#endif // _StepElement_CurveElementFreedom_HeaderFile

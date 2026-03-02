@@ -1,4 +1,6 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 2013-12-20
+// Created by: Denis BOGOLEPOV
+// Copyright (c) 2013-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +13,52 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/FoundationClasses/TKMath/BVH/BVH_Set.hxx"// clang-format on
+#ifndef BVH_Set_HeaderFile
+#define BVH_Set_HeaderFile
+
+#include <BVH_Box.hxx>
+
+//! Set of abstract entities (bounded by BVH boxes). This is
+//! the minimal geometry interface needed to construct BVH.
+//! \tparam T Numeric data type
+//! \tparam N Vector dimension
+template <class T, int N>
+class BVH_Set
+{
+public:
+  typedef BVH_Box<T, N> BVH_BoxNt;
+
+public:
+  //! Creates new abstract set of objects.
+  BVH_Set() = default;
+
+  //! Releases resources of set of objects.
+  virtual ~BVH_Set() = default;
+
+  //! Returns AABB of the entire set of objects.
+  virtual BVH_Box<T, N> Box() const
+  {
+    BVH_Box<T, N> aBox;
+    const int     aSize = Size();
+    for (int anIndex = 0; anIndex < aSize; ++anIndex)
+    {
+      aBox.Combine(Box(anIndex));
+    }
+    return aBox;
+  }
+
+public:
+  //! Returns total number of objects.
+  virtual int Size() const = 0;
+
+  //! Returns AABB of the given object.
+  virtual BVH_Box<T, N> Box(const int theIndex) const = 0;
+
+  //! Returns centroid position along the given axis.
+  virtual T Center(const int theIndex, const int theAxis) const = 0;
+
+  //! Performs transposing the two given objects in the set.
+  virtual void Swap(const int theIndex1, const int theIndex2) = 0;
+};
+
+#endif // _BVH_Set_Header

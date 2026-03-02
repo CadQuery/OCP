@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 1996-03-05
+// Created by: Christian CAILLET
+// Copyright (c) 1996-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,75 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/DataExchange/TKXSBase/IFSelect/IFSelect_Act.hxx"// clang-format on
+#ifndef _IFSelect_Act_HeaderFile
+#define _IFSelect_Act_HeaderFile
+
+#include <Standard.hxx>
+
+#include <IFSelect_ActFunc.hxx>
+#include <IFSelect_Activator.hxx>
+#include <IFSelect_ReturnStatus.hxx>
+#include <Standard_Integer.hxx>
+class IFSelect_SessionPilot;
+
+//! Act gives a simple way to define and add functions to be ran
+//! from a SessionPilot, as follows :
+//!
+//! Define a function as
+//! static IFSelect_RetStatus myfunc
+//! (const char* name,
+//! const occ::handle<IFSelect_SessionPilot>& pilot)
+//! { ... }
+//! When ran, it receives the exact name (string) of the called
+//! function, and the SessionPilot which brings other infos
+//!
+//! Add it by
+//! IFSelect_Act::AddFunc (name,help,myfunc);
+//! for a normal function, or
+//! IFSelect_Act::AddFSet (name,help,myfunc);
+//! for a function which is intended to create a control item
+//! name and help are given as CString
+//!
+//! Then, it is available for run
+class IFSelect_Act : public IFSelect_Activator
+{
+
+public:
+  //! Creates an Act with a name, help and a function
+  //! mode (Add or AddSet) is given when recording
+  Standard_EXPORT IFSelect_Act(const char* name, const char* help, const IFSelect_ActFunc func);
+
+  //! Execution of Command Line. remark that <number> is senseless
+  //! because each Act brings one and only one function
+  Standard_EXPORT IFSelect_ReturnStatus
+    Do(const int number, const occ::handle<IFSelect_SessionPilot>& pilot) override;
+
+  //! Short Help for commands : returns the help given to create
+  Standard_EXPORT const char* Help(const int number) const override;
+
+  //! Changes the default group name for the following Acts
+  //! group empty means to come back to default from Activator
+  //! Also a file name can be precised (to query by getsource)
+  Standard_EXPORT static void SetGroup(const char* group, const char* file = "");
+
+  //! Adds a function with its name and help : creates an Act then
+  //! records it as normal function
+  Standard_EXPORT static void AddFunc(const char*            name,
+                                      const char*            help,
+                                      const IFSelect_ActFunc func);
+
+  //! Adds a function with its name and help : creates an Act then
+  //! records it as function for XSET (i.e. to create control item)
+  Standard_EXPORT static void AddFSet(const char*            name,
+                                      const char*            help,
+                                      const IFSelect_ActFunc func);
+
+  DEFINE_STANDARD_RTTIEXT(IFSelect_Act, IFSelect_Activator)
+
+private:
+  TCollection_AsciiString thename;
+  TCollection_AsciiString thehelp;
+  IFSelect_ActFunc        thefunc;
+};
+
+#endif // _IFSelect_Act_HeaderFile

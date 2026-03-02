@@ -1,4 +1,6 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 2015-10-29
+// Created by: Galina Kulikova
+// Copyright (c) 2015 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +13,19 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/DataExchange/TKDESTEP/StepVisual/StepVisual_TessellatedAnnotationOccurrence.hxx"// clang-format on
+#ifndef _StepVisual_TessellatedAnnotationOccurrence_HeaderFile
+#define _StepVisual_TessellatedAnnotationOccurrence_HeaderFile
+
+#include <Standard.hxx>
+
+#include <StepVisual_StyledItem.hxx>
+
+class StepVisual_TessellatedAnnotationOccurrence : public StepVisual_StyledItem
+{
+public:
+  //! Returns a TesselatedAnnotationOccurence
+  Standard_EXPORT StepVisual_TessellatedAnnotationOccurrence();
+
+  DEFINE_STANDARD_RTTIEXT(StepVisual_TessellatedAnnotationOccurrence, StepVisual_StyledItem)
+};
+#endif // _StepVisual_TesselatedAnnotationOccurrence_HeaderFile

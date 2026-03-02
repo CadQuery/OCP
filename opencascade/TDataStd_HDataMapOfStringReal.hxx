@@ -1,4 +1,6 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 2007-08-17
+// Created by: Sergey ZARITCHNY
+// Copyright (c) 2007-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +13,33 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ApplicationFramework/TKLCAF/TDataStd/TDataStd_HDataMapOfStringReal.hxx"// clang-format on
+#ifndef _TDataStd_HDataMapOfStringReal_HeaderFile
+#define _TDataStd_HDataMapOfStringReal_HeaderFile
+
+#include <Standard.hxx>
+
+#include <TCollection_ExtendedString.hxx>
+#include <NCollection_DataMap.hxx>
+#include <Standard_Transient.hxx>
+#include <Standard_Integer.hxx>
+
+//! Extension of NCollection_DataMap<TCollection_ExtendedString, double> class
+//! to be manipulated by handle.
+class TDataStd_HDataMapOfStringReal : public Standard_Transient
+{
+  DEFINE_STANDARD_RTTIEXT(TDataStd_HDataMapOfStringReal, Standard_Transient)
+public:
+  Standard_EXPORT TDataStd_HDataMapOfStringReal(const int NbBuckets = 1);
+
+  Standard_EXPORT TDataStd_HDataMapOfStringReal(
+    const NCollection_DataMap<TCollection_ExtendedString, double>& theOther);
+
+  const NCollection_DataMap<TCollection_ExtendedString, double>& Map() const { return myMap; }
+
+  NCollection_DataMap<TCollection_ExtendedString, double>& ChangeMap() { return myMap; }
+
+private:
+  NCollection_DataMap<TCollection_ExtendedString, double> myMap;
+};
+
+#endif // _TDataStd_HDataMapOfStringReal_HeaderFile

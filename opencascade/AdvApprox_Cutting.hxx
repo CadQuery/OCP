@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 1996-04-05
+// Created by: Joelle CHAUVET
+// Copyright (c) 1996-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,27 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ModelingData/TKG3d/AdvApprox/AdvApprox_Cutting.hxx"// clang-format on
+#ifndef _AdvApprox_Cutting_HeaderFile
+#define _AdvApprox_Cutting_HeaderFile
+
+#include <Standard.hxx>
+#include <Standard_DefineAlloc.hxx>
+#include <Standard_Handle.hxx>
+
+#include <Standard_Boolean.hxx>
+#include <Standard_Real.hxx>
+
+//! to choose the way of cutting in approximation
+class AdvApprox_Cutting
+{
+public:
+  DEFINE_STANDARD_ALLOC
+
+  Standard_EXPORT virtual ~AdvApprox_Cutting();
+
+  Standard_EXPORT virtual bool Value(const double a,
+                                     const double b,
+                                     double&      cuttingvalue) const = 0;
+};
+
+#endif // _AdvApprox_Cutting_HeaderFile

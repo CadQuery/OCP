@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 1993-07-06
+// Created by: Remi LEQUETTE
+// Copyright (c) 1993-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,29 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ModelingAlgorithms/TKTopAlgo/BRepBuilderAPI/BRepBuilderAPI_FaceError.hxx"// clang-format on
+#ifndef _BRepBuilderAPI_FaceError_HeaderFile
+#define _BRepBuilderAPI_FaceError_HeaderFile
+
+//! Indicates the outcome of the
+//! construction of a face, i.e. whether it has been successful or
+//! not, as explained below:
+//! -      BRepBuilderAPI_FaceDone No error occurred. The face is
+//! correctly built.
+//! -      BRepBuilderAPI_NoFace No initialization of the
+//! algorithm; only an empty constructor was used.
+//! -      BRepBuilderAPI_NotPlanar
+//! No surface was given and the wire was not planar.
+//! -      BRepBuilderAPI_CurveProjectionFailed
+//! Not used so far.
+//! -      BRepBuilderAPI_ParametersOutOfRange
+//! The parameters given to limit the surface are out of its bounds.
+enum BRepBuilderAPI_FaceError
+{
+  BRepBuilderAPI_FaceDone,
+  BRepBuilderAPI_NoFace,
+  BRepBuilderAPI_NotPlanar,
+  BRepBuilderAPI_CurveProjectionFailed,
+  BRepBuilderAPI_ParametersOutOfRange
+};
+
+#endif // _BRepBuilderAPI_FaceError_HeaderFile

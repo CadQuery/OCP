@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 1997-12-08
+// Created by: Serguei ZARITCHNY
+// Copyright (c) 1997-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,47 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/Visualization/TKV3d/DsgPrs/DsgPrs_FilletRadiusPresentation.hxx"// clang-format on
+#ifndef _DsgPrs_FilletRadiusPresentation_HeaderFile
+#define _DsgPrs_FilletRadiusPresentation_HeaderFile
+
+#include <Standard.hxx>
+#include <Standard_DefineAlloc.hxx>
+
+#include <Prs3d_Drawer.hxx>
+#include <DsgPrs_ArrowSide.hxx>
+#include <Prs3d_Presentation.hxx>
+
+class TCollection_ExtendedString;
+class gp_Pnt;
+class gp_Dir;
+class Geom_TrimmedCurve;
+
+//! A framework for displaying radii of fillets.
+class DsgPrs_FilletRadiusPresentation
+{
+public:
+  DEFINE_STANDARD_ALLOC
+
+  //! Adds a display of the radius of a fillet to the
+  //! presentation aPresentation. The display ttributes
+  //! defined by the attribute manager aDrawer. the value
+  //! specifies the length of the radius.
+  Standard_EXPORT static void Add(const occ::handle<Prs3d_Presentation>& aPresentation,
+                                  const occ::handle<Prs3d_Drawer>&       aDrawer,
+                                  const double                           thevalue,
+                                  const TCollection_ExtendedString&      aText,
+                                  const gp_Pnt&                          aPosition,
+                                  const gp_Dir&                          aNormalDir,
+                                  const gp_Pnt&                          aBasePnt,
+                                  const gp_Pnt&                          aFirstPoint,
+                                  const gp_Pnt&                          aSecondPoint,
+                                  const gp_Pnt&                          aCenter,
+                                  const DsgPrs_ArrowSide                 ArrowPrs,
+                                  const bool                             drawRevers,
+                                  gp_Pnt&                                DrawPosition,
+                                  gp_Pnt&                                EndOfArrow,
+                                  occ::handle<Geom_TrimmedCurve>&        TrimCurve,
+                                  bool&                                  HasCircle);
+};
+
+#endif // _DsgPrs_FilletRadiusPresentation_HeaderFile

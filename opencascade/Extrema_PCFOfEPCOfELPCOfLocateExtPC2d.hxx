@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 1991-02-26
+// Created by: Isabelle GRIGNON
+// Copyright (c) 1991-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,24 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ModelingData/TKGeomBase/Extrema/Extrema_PCFOfEPCOfELPCOfLocateExtPC2d.hxx"// clang-format on
+#ifndef _Extrema_PCFOfEPCOfELPCOfLocateExtPC2d_HeaderFile
+#define _Extrema_PCFOfEPCOfELPCOfLocateExtPC2d_HeaderFile
+
+#include <Adaptor2d_Curve2d.hxx>
+#include <Extrema_Curve2dTool.hxx>
+#include <Extrema_GFuncExtPC.hxx>
+#include <Extrema_POnCurv2d.hxx>
+#include <NCollection_Sequence.hxx>
+#include <gp_Pnt2d.hxx>
+#include <gp_Vec2d.hxx>
+
+//! Type alias for 2D point-curve extremum function (for LocateExtPC2d).
+using Extrema_PCFOfEPCOfELPCOfLocateExtPC2d =
+  Extrema_GFuncExtPC<Adaptor2d_Curve2d,
+                     Extrema_Curve2dTool,
+                     Extrema_POnCurv2d,
+                     gp_Pnt2d,
+                     gp_Vec2d,
+                     NCollection_Sequence<Extrema_POnCurv2d>>;
+
+#endif // _Extrema_PCFOfEPCOfELPCOfLocateExtPC2d_HeaderFile

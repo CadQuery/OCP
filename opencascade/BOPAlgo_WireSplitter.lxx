@@ -1,4 +1,5 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created by: Peter KURNEV
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +12,78 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ModelingAlgorithms/TKBO/BOPAlgo/BOPAlgo_WireSplitter.lxx"// clang-format on
+#include <BRep_Builder.hxx>
+#include <BRep_Tool.hxx>
+
+#include <TopoDS_Edge.hxx>
+
+//=================================================================================================
+
+class BOPAlgo_EdgeInfo
+{
+public:
+  //
+  BOPAlgo_EdgeInfo()
+      : myPassed(false),
+        myInFlag(false),
+        myIsInside(false),
+        myAngle(-1.) {};
+
+  //
+  void SetEdge(const TopoDS_Edge& theE) { myEdge = theE; };
+
+  //
+  const TopoDS_Edge& Edge() const { return myEdge; };
+
+  //
+  void SetPassed(const bool theFlag) { myPassed = theFlag; };
+
+  //
+  bool Passed() const { return myPassed; };
+
+  //
+  void SetInFlag(const bool theFlag) { myInFlag = theFlag; };
+
+  //
+  bool IsIn() const { return myInFlag; };
+
+  //
+  void SetAngle(const double theAngle) { myAngle = theAngle; };
+
+  //
+  double Angle() const { return myAngle; };
+
+  //
+  bool IsInside() const { return myIsInside; };
+
+  //
+  void SetIsInside(const bool theIsInside) { myIsInside = theIsInside; };
+
+  //
+protected:
+  TopoDS_Edge myEdge;
+  bool        myPassed;
+  bool        myInFlag;
+  bool        myIsInside;
+  double      myAngle;
+};
+
+#include <NCollection_List.hxx>
+
+#include <NCollection_IndexedDataMap.hxx>
+#include <TopTools_ShapeMapHasher.hxx>
+
+//=================================================================================================
+
+inline void BOPAlgo_WireSplitter::MakeWire(NCollection_List<TopoDS_Shape>& aLE, TopoDS_Wire& aWire)
+{
+  BRep_Builder aBB;
+  aBB.MakeWire(aWire);
+  //
+  NCollection_List<TopoDS_Shape>::Iterator aIt(aLE);
+  for (; aIt.More(); aIt.Next())
+  {
+    aBB.Add(aWire, aIt.Value());
+  }
+  aWire.Closed(BRep_Tool::IsClosed(aWire));
+}

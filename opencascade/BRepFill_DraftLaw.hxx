@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 1998-01-14
+// Created by: Philippe MANGIN
+// Copyright (c) 1998-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,28 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ModelingAlgorithms/TKBool/BRepFill/BRepFill_DraftLaw.hxx"// clang-format on
+#ifndef _BRepFill_DraftLaw_HeaderFile
+#define _BRepFill_DraftLaw_HeaderFile
+
+#include <Standard.hxx>
+
+#include <BRepFill_Edge3DLaw.hxx>
+#include <Standard_Real.hxx>
+class TopoDS_Wire;
+class GeomFill_LocationDraft;
+
+//! Build Location Law, with a Wire.
+class BRepFill_DraftLaw : public BRepFill_Edge3DLaw
+{
+
+public:
+  Standard_EXPORT BRepFill_DraftLaw(const TopoDS_Wire&                         Path,
+                                    const occ::handle<GeomFill_LocationDraft>& Law);
+
+  //! To clean the little discontinuities.
+  Standard_EXPORT void CleanLaw(const double TolAngular);
+
+  DEFINE_STANDARD_RTTIEXT(BRepFill_DraftLaw, BRepFill_Edge3DLaw)
+};
+
+#endif // _BRepFill_DraftLaw_HeaderFile

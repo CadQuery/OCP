@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 1998-02-14
+// Created by: Jean Yves LEBEY
+// Copyright (c) 1998-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,19 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ModelingAlgorithms/TKBool/TopOpeBRepDS/TopOpeBRepDS_repvg.hxx"// clang-format on
+#ifndef TopOpeBRepDS_repvg_HeaderFile
+#define TopOpeBRepDS_repvg_HeaderFile
+
+#include <TopOpeBRepDS_define.hxx>
+Standard_EXPORT void FDS_repvg(const TopOpeBRepDS_DataStructure&                         BDS,
+                               const int                                                 EIX,
+                               const TopOpeBRepDS_Kind                                   GT,
+                               NCollection_List<occ::handle<TopOpeBRepDS_Interference>>& LI,
+                               NCollection_List<occ::handle<TopOpeBRepDS_Interference>>& reducedLI);
+Standard_EXPORT void FDS_repvg2(
+  const TopOpeBRepDS_DataStructure&                         BDS,
+  const int                                                 EIX,
+  const TopOpeBRepDS_Kind                                   GT,
+  NCollection_List<occ::handle<TopOpeBRepDS_Interference>>& LI,
+  NCollection_List<occ::handle<TopOpeBRepDS_Interference>>& reducedLI);
+#endif

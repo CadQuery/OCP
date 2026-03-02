@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 1997-12-03
+// Created by: Yves FRICAUD
+// Copyright (c) 1997-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,30 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ApplicationFramework/TKCAF/TNaming/TNaming_DeltaOnRemoval.hxx"// clang-format on
+#ifndef _TNaming_DeltaOnRemoval_HeaderFile
+#define _TNaming_DeltaOnRemoval_HeaderFile
+
+#include <Standard.hxx>
+#include <Standard_Type.hxx>
+
+#include <TDF_DeltaOnRemoval.hxx>
+class TNaming_DeltaOnModification;
+class TNaming_NamedShape;
+
+class TNaming_DeltaOnRemoval : public TDF_DeltaOnRemoval
+{
+
+public:
+  //! Initializes a TDF_DeltaOnModification.
+  Standard_EXPORT TNaming_DeltaOnRemoval(const occ::handle<TNaming_NamedShape>& NS);
+
+  //! Applies the delta to the attribute.
+  Standard_EXPORT void Apply() override;
+
+  DEFINE_STANDARD_RTTIEXT(TNaming_DeltaOnRemoval, TDF_DeltaOnRemoval)
+
+private:
+  occ::handle<TNaming_DeltaOnModification> myDelta;
+};
+
+#endif // _TNaming_DeltaOnRemoval_HeaderFile

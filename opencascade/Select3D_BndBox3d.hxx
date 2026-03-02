@@ -1,4 +1,6 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 2014-29-05
+// Created by: Varvara POSKONINA
+// Copyright (c) 2005-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +13,13 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/Visualization/TKV3d/Select3D/Select3D_BndBox3d.hxx"// clang-format on
+#ifndef _Select3D_BndBox3d_Header
+#define _Select3D_BndBox3d_Header
+
+#include <BVH_Box.hxx>
+
+#include <gp_Trsf.hxx>
+
+typedef BVH_Box<double, 3> Select3D_BndBox3d;
+
+#endif // _Select3D_BndBox3d_Header

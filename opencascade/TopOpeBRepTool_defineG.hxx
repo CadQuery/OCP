@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 1997-10-08
+// Created by: Prestataire Xuan PHAM PHU
+// Copyright (c) 1997-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,22 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ModelingAlgorithms/TKBool/TopOpeBRepTool/TopOpeBRepTool_defineG.hxx"// clang-format on
+#ifndef _TopOpeBRepTool_defineG_HeaderFile
+#define _TopOpeBRepTool_defineG_HeaderFile
+
+#include <Geom_Curve.hxx>
+#include <Geom_TrimmedCurve.hxx>
+#include <Geom2d_Curve.hxx>
+#include <Geom2d_TrimmedCurve.hxx>
+
+#define Mhgc occ::handle<Geom_Curve>
+#define Mhgtc occ::handle<Geom_TrimmedCurve>
+#define Mhg2c occ::handle<Geom2d_Curve>
+#define Mhg2tc occ::handle<Geom2d_TrimmedCurve>
+
+#define Mgc Geom_Curve
+#define Mgtc Geom_TrimmedCurve
+#define Mg2c Geom2d_Curve
+#define Mg2tc Geom_TrimmedCurve
+
+#endif

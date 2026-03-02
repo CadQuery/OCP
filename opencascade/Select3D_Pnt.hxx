@@ -1,4 +1,4 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +11,26 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/Visualization/TKV3d/Select3D/Select3D_Pnt.hxx"// clang-format on
+#ifndef _Select3D_Pnt_HeaderFile
+#define _Select3D_Pnt_HeaderFile
+
+#include <gp_Pnt.hxx>
+
+struct Select3D_Pnt
+{
+  float x, y, z;
+
+  operator gp_Pnt() const { return gp_Pnt(x, y, z); }
+
+  operator gp_XYZ() const { return gp_XYZ(x, y, z); }
+
+  gp_Pnt operator=(const gp_Pnt& thePnt)
+  {
+    x = RealToShortReal(thePnt.X());
+    y = RealToShortReal(thePnt.Y());
+    z = RealToShortReal(thePnt.Z());
+    return *this;
+  }
+};
+
+#endif

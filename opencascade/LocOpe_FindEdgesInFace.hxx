@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 1996-02-15
+// Created by: Jacques GOUSSARD
+// Copyright (c) 1996-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,44 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ModelingAlgorithms/TKFeat/LocOpe/LocOpe_FindEdgesInFace.hxx"// clang-format on
+#ifndef _LocOpe_FindEdgesInFace_HeaderFile
+#define _LocOpe_FindEdgesInFace_HeaderFile
+
+#include <Standard.hxx>
+#include <Standard_DefineAlloc.hxx>
+#include <Standard_Handle.hxx>
+
+#include <TopoDS_Shape.hxx>
+#include <TopoDS_Face.hxx>
+#include <NCollection_List.hxx>
+class TopoDS_Edge;
+
+class LocOpe_FindEdgesInFace
+{
+public:
+  DEFINE_STANDARD_ALLOC
+
+  LocOpe_FindEdgesInFace();
+
+  LocOpe_FindEdgesInFace(const TopoDS_Shape& S, const TopoDS_Face& F);
+
+  Standard_EXPORT void Set(const TopoDS_Shape& S, const TopoDS_Face& F);
+
+  void Init();
+
+  bool More() const;
+
+  const TopoDS_Edge& Edge() const;
+
+  void Next();
+
+private:
+  TopoDS_Shape                             myShape;
+  TopoDS_Face                              myFace;
+  NCollection_List<TopoDS_Shape>           myList;
+  NCollection_List<TopoDS_Shape>::Iterator myIt;
+};
+
+#include <LocOpe_FindEdgesInFace.lxx>
+
+#endif // _LocOpe_FindEdgesInFace_HeaderFile

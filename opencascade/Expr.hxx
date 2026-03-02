@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 1991-01-14
+// Created by: Arnaud BOUZY
+// Copyright (c) 1991-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,36 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ModelingAlgorithms/TKExpress/Expr/Expr.hxx"// clang-format on
+#ifndef _Expr_HeaderFile
+#define _Expr_HeaderFile
+
+#include <Standard.hxx>
+#include <Standard_DefineAlloc.hxx>
+#include <Standard_Handle.hxx>
+
+#include <Standard_Integer.hxx>
+#include <Standard_Real.hxx>
+class Expr_GeneralExpression;
+class Expr_GeneralRelation;
+
+//! This package describes the data structure of any
+//! expression, relation or function used in mathematics.
+//! It also describes the assignment of variables. Standard
+//! mathematical functions are implemented such as
+//! trigonometrics, hyperbolics, and log functions.
+class Expr
+{
+public:
+  DEFINE_STANDARD_ALLOC
+
+  Standard_EXPORT static occ::handle<Expr_GeneralExpression> CopyShare(
+    const occ::handle<Expr_GeneralExpression>& exp);
+
+  Standard_EXPORT static int NbOfFreeVariables(const occ::handle<Expr_GeneralExpression>& exp);
+
+  Standard_EXPORT static int NbOfFreeVariables(const occ::handle<Expr_GeneralRelation>& exp);
+
+  Standard_EXPORT static double Sign(const double val);
+};
+
+#endif // _Expr_HeaderFile

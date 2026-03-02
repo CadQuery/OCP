@@ -1,4 +1,5 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Copyright (c) 1995-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +12,76 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ModelingAlgorithms/TKFillet/BRepBlend/BRepBlend_Extremity.lxx"// clang-format on
+#include <Standard_DomainError.hxx>
+
+inline const gp_Pnt& BRepBlend_Extremity::Value() const
+{
+  return pt;
+}
+
+inline void BRepBlend_Extremity::SetTangent(const gp_Vec& Tangent)
+{
+  hastang = true;
+  tang    = Tangent;
+}
+
+inline bool BRepBlend_Extremity::HasTangent() const
+{
+  return hastang;
+}
+
+inline const gp_Vec& BRepBlend_Extremity::Tangent() const
+{
+  if (!hastang)
+  {
+    throw Standard_DomainError();
+  }
+  return tang;
+}
+
+inline void BRepBlend_Extremity::Parameters(double& U, double& V) const
+{
+  U = u;
+  V = v;
+}
+
+inline double BRepBlend_Extremity::Tolerance() const
+{
+  return tol;
+}
+
+inline bool BRepBlend_Extremity::IsVertex() const
+{
+  return isvtx;
+}
+
+inline const occ::handle<Adaptor3d_HVertex>& BRepBlend_Extremity::Vertex() const
+{
+  if (!isvtx)
+  {
+    throw Standard_DomainError();
+  }
+  return vtx;
+}
+
+inline int BRepBlend_Extremity::NbPointOnRst() const
+{
+  return seqpt.Length();
+}
+
+inline const BRepBlend_PointOnRst& BRepBlend_Extremity::PointOnRst(const int Index) const
+{
+  return seqpt(Index);
+}
+
+inline double BRepBlend_Extremity::Parameter() const
+
+{
+  return u;
+}
+
+inline double BRepBlend_Extremity::ParameterOnGuide() const
+
+{
+  return param;
+}

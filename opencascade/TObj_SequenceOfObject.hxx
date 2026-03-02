@@ -1,4 +1,6 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 2004-11-22
+// Created by: Pavel TELKOV
+// Copyright (c) 2004-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +13,14 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ApplicationFramework/TKTObj/TObj/TObj_SequenceOfObject.hxx"// clang-format on
+// The original implementation Copyright: (C) RINA S.p.A
+
+#ifndef TObj_SequenceOfObject_HeaderFile
+#define TObj_SequenceOfObject_HeaderFile
+
+#include <NCollection_Sequence.hxx>
+#include <NCollection_HSequence.hxx>
+
+class TObj_Object;
+typedef NCollection_Sequence<occ::handle<TObj_Object>> TObj_SequenceOfObject;
+#endif

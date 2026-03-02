@@ -1,4 +1,4 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Copyright (c) 2019 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +11,23 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/Visualization/TKV3d/AIS/AIS_RotationMode.hxx"// clang-format on
+#ifndef _AIS_RotationMode_HeaderFile
+#define _AIS_RotationMode_HeaderFile
+
+//! Camera rotation mode.
+enum AIS_RotationMode
+{
+  AIS_RotationMode_BndBoxActive, //!< default OCCT rotation
+  AIS_RotationMode_PickLast,     //!< rotate around last picked point
+  AIS_RotationMode_PickCenter,   //!< rotate around point at the center of window
+  AIS_RotationMode_CameraAt,     //!< rotate around camera center
+  AIS_RotationMode_BndBoxScene,  //!< rotate around scene center
+};
+
+enum
+{
+  AIS_RotationMode_LOWER = 0,
+  AIS_RotationMode_UPPER = AIS_RotationMode_BndBoxScene,
+};
+
+#endif // _AIS_RotationMode_HeaderFile

@@ -1,4 +1,4 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Copyright (c) 2020 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +11,72 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/FoundationClasses/TKernel/Message/Message_CompositeAlerts.hxx"// clang-format on
+#ifndef _Message_CompositeAlerts_HeaderFile
+#define _Message_CompositeAlerts_HeaderFile
+
+#include <Message_Alert.hxx>
+#include <Message_Gravity.hxx>
+#include <NCollection_List.hxx>
+#include <Standard_Transient.hxx>
+
+//! Class providing container of alerts
+class Message_CompositeAlerts : public Standard_Transient
+{
+  DEFINE_STANDARD_RTTIEXT(Message_CompositeAlerts, Standard_Transient)
+public:
+  //! Empty constructor
+  Message_CompositeAlerts() = default;
+
+  //! Returns list of collected alerts with specified gravity
+  Standard_EXPORT const NCollection_List<occ::handle<Message_Alert>>& Alerts(
+    const Message_Gravity theGravity) const;
+
+  //! Add alert with specified gravity. If the alert supports merge it will be merged.
+  //! @param theGravity an alert gravity
+  //! @param theAlert an alert to be added as a child alert
+  //! @return true if the alert is added or merged
+  Standard_EXPORT bool AddAlert(Message_Gravity                   theGravity,
+                                const occ::handle<Message_Alert>& theAlert);
+
+  //! Removes alert with specified gravity.
+  //! @param theGravity an alert gravity
+  //! @param theAlert an alert to be removed from the children
+  //! @return true if the alert is removed
+  Standard_EXPORT bool RemoveAlert(Message_Gravity                   theGravity,
+                                   const occ::handle<Message_Alert>& theAlert);
+
+  //! Returns true if the alert belong the list of the child alerts.
+  //! @param theAlert an alert to be checked as a child alert
+  //! @return true if the alert is found in a container of children
+  Standard_EXPORT bool HasAlert(const occ::handle<Message_Alert>& theAlert);
+
+  //! Returns true if specific type of alert is recorded with specified gravity
+  //! @param theType an alert type
+  //! @param theGravity an alert gravity
+  //! @return true if the alert is found in a container of children
+  Standard_EXPORT bool HasAlert(const occ::handle<Standard_Type>& theType,
+                                Message_Gravity                   theGravity);
+
+  //! Clears all collected alerts
+  Standard_EXPORT void Clear();
+
+  //! Clears collected alerts with specified gravity
+  //! @param theGravity an alert gravity
+  Standard_EXPORT void Clear(Message_Gravity theGravity);
+
+  //! Clears collected alerts with specified type
+  //! @param theType an alert type
+  Standard_EXPORT void Clear(const occ::handle<Standard_Type>& theType);
+
+  //! Dumps the content of me into the stream
+  Standard_EXPORT void DumpJson(Standard_OStream& theOStream, int theDepth = -1) const;
+
+protected:
+  // store messages in a lists sorted by gravity;
+  // here we rely on knowledge that Message_Fail is the last element of the enum
+  // clang-format off
+  NCollection_List<occ::handle<Message_Alert>> myAlerts[Message_Fail + 1]; //!< container of child alert for each type of gravity
+  // clang-format on
+};
+
+#endif // _Message_CompositeAlerts_HeaderFile

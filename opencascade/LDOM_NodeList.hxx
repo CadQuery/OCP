@@ -1,4 +1,6 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 2001-06-28
+// Created by: Alexander GRIGORIEV
+// Copyright (c) 2001-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +13,57 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ApplicationFramework/TKCDF/LDOM/LDOM_NodeList.hxx"// clang-format on
+#ifndef LDOM_NodeList_HeaderFile
+#define LDOM_NodeList_HeaderFile
+
+#include <LDOM_Node.hxx>
+
+class LDOM_BasicNode;
+class LDOM_BasicNodeSequence;
+
+//  Class LDOM_NodeList
+//
+
+class LDOM_NodeList
+{
+public:
+  // ---------- PUBLIC METHODS ----------
+
+  Standard_EXPORT LDOM_NodeList();
+  // Empty constructor
+
+  Standard_EXPORT LDOM_NodeList(const LDOM_NodeList& theOther);
+  // Copy constructor
+
+  Standard_EXPORT LDOM_NodeList& operator=(const LDOM_NodeList& theOther);
+  // Copy constructor
+
+  Standard_EXPORT ~LDOM_NodeList();
+  // Destructor
+
+  Standard_EXPORT LDOM_NodeList& operator=(const LDOM_NullPtr*);
+  // Nullify
+
+  Standard_EXPORT bool operator==(const LDOM_NullPtr*) const;
+
+  Standard_EXPORT bool operator!=(const LDOM_NullPtr*) const;
+
+  Standard_EXPORT LDOM_Node item(const int) const;
+
+  Standard_EXPORT int getLength() const;
+
+private:
+  friend class LDOM_Document;
+  friend class LDOM_Element;
+  friend class LDOM_BasicElement;
+  // ---------- PRIVATE FIELDS ----------
+
+  Standard_EXPORT LDOM_NodeList(const occ::handle<LDOM_MemManager>& aDoc);
+
+  Standard_EXPORT void Append(const LDOM_BasicNode& aNode) const;
+
+  occ::handle<LDOM_MemManager> myDoc;
+  LDOM_BasicNodeSequence*      mySeq;
+};
+
+#endif

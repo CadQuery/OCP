@@ -1,4 +1,6 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 2000-05-10
+// Created by: Andrey BETENEV
+// Copyright (c) 2000-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +13,50 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/DataExchange/TKDESTEP/StepBasic/StepBasic_IdentificationRole.hxx"// clang-format on
+#ifndef _StepBasic_IdentificationRole_HeaderFile
+#define _StepBasic_IdentificationRole_HeaderFile
+
+#include <Standard.hxx>
+#include <Standard_Type.hxx>
+
+#include <Standard_Boolean.hxx>
+#include <Standard_Transient.hxx>
+class TCollection_HAsciiString;
+
+//! Representation of STEP entity IdentificationRole
+class StepBasic_IdentificationRole : public Standard_Transient
+{
+
+public:
+  //! Empty constructor
+  Standard_EXPORT StepBasic_IdentificationRole();
+
+  //! Initialize all fields (own and inherited)
+  Standard_EXPORT void Init(const occ::handle<TCollection_HAsciiString>& aName,
+                            const bool                                   hasDescription,
+                            const occ::handle<TCollection_HAsciiString>& aDescription);
+
+  //! Returns field Name
+  Standard_EXPORT occ::handle<TCollection_HAsciiString> Name() const;
+
+  //! Set field Name
+  Standard_EXPORT void SetName(const occ::handle<TCollection_HAsciiString>& Name);
+
+  //! Returns field Description
+  Standard_EXPORT occ::handle<TCollection_HAsciiString> Description() const;
+
+  //! Set field Description
+  Standard_EXPORT void SetDescription(const occ::handle<TCollection_HAsciiString>& Description);
+
+  //! Returns True if optional field Description is defined
+  Standard_EXPORT bool HasDescription() const;
+
+  DEFINE_STANDARD_RTTIEXT(StepBasic_IdentificationRole, Standard_Transient)
+
+private:
+  occ::handle<TCollection_HAsciiString> theName;
+  occ::handle<TCollection_HAsciiString> theDescription;
+  bool                                  defDescription;
+};
+
+#endif // _StepBasic_IdentificationRole_HeaderFile

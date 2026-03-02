@@ -1,4 +1,6 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 2001-12-13
+// Created by: Sergey KUUl
+// Copyright (c) 2001-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +13,45 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/DataExchange/TKXSBase/MoniTool/MoniTool_TimerSentry.hxx"// clang-format on
+#ifndef _MoniTool_TimerSentry_HeaderFile
+#define _MoniTool_TimerSentry_HeaderFile
+
+#include <Standard.hxx>
+#include <Standard_DefineAlloc.hxx>
+#include <Standard_Handle.hxx>
+
+#include <Standard_CString.hxx>
+class MoniTool_Timer;
+
+//! A tool to facilitate using MoniTool_Timer functionality
+//! by automatically ensuring consistency of start/stop actions
+//!
+//! When instance of TimerSentry is created, a timer
+//! with corresponding name is started
+//! When instance is deleted, timer stops
+class MoniTool_TimerSentry
+{
+public:
+  DEFINE_STANDARD_ALLOC
+
+  //! Constructor creates an instance and runs the corresponding timer
+  MoniTool_TimerSentry(const char* cname);
+
+  //! Constructor creates an instance and runs the corresponding timer
+  MoniTool_TimerSentry(const occ::handle<MoniTool_Timer>& timer);
+
+  //! Destructor stops the associated timer
+  ~MoniTool_TimerSentry();
+
+  occ::handle<MoniTool_Timer> Timer() const;
+
+  //! Manually stops the timer
+  void Stop();
+
+private:
+  occ::handle<MoniTool_Timer> myTimer;
+};
+
+#include <MoniTool_TimerSentry.lxx>
+
+#endif // _MoniTool_TimerSentry_HeaderFile

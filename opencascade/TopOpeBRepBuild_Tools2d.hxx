@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 1999-11-29
+// Created by: Peter KURNEV
+// Copyright (c) 1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,36 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ModelingAlgorithms/TKBool/TopOpeBRepBuild/TopOpeBRepBuild_Tools2d.hxx"// clang-format on
+#ifndef _TopOpeBRepBuild_Tools2d_HeaderFile
+#define _TopOpeBRepBuild_Tools2d_HeaderFile
+
+#include <Standard.hxx>
+#include <Standard_DefineAlloc.hxx>
+
+#include <TopoDS_Shape.hxx>
+#include <TopOpeBRepBuild_VertexInfo.hxx>
+#include <TopTools_ShapeMapHasher.hxx>
+#include <NCollection_IndexedDataMap.hxx>
+#include <NCollection_List.hxx>
+class TopoDS_Wire;
+
+class TopOpeBRepBuild_Tools2d
+{
+public:
+  DEFINE_STANDARD_ALLOC
+
+  Standard_EXPORT static void MakeMapOfShapeVertexInfo(
+    const TopoDS_Wire& aWire,
+    NCollection_IndexedDataMap<TopoDS_Shape, TopOpeBRepBuild_VertexInfo, TopTools_ShapeMapHasher>&
+      aMap);
+
+  Standard_EXPORT static void DumpMapOfShapeVertexInfo(
+    const NCollection_IndexedDataMap<TopoDS_Shape,
+                                     TopOpeBRepBuild_VertexInfo,
+                                     TopTools_ShapeMapHasher>& aMap);
+
+  Standard_EXPORT static void Path(const TopoDS_Wire&              aWire,
+                                   NCollection_List<TopoDS_Shape>& aResList);
+};
+
+#endif // _TopOpeBRepBuild_Tools2d_HeaderFile

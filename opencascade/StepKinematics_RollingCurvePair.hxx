@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on : Sat May 02 12:41:16 2020
+// Created by: Irina KRYLOVA
+// Generator:	Express (EXPRESS -> CASCADE/XSTEP Translator) V3.0
+// Copyright (c) Open CASCADE 2020
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,22 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/DataExchange/TKDESTEP/StepKinematics/StepKinematics_RollingCurvePair.hxx"// clang-format on
+#ifndef _StepKinematics_RollingCurvePair_HeaderFile_
+#define _StepKinematics_RollingCurvePair_HeaderFile_
+
+#include <Standard.hxx>
+#include <StepKinematics_PlanarCurvePair.hxx>
+
+#include <TCollection_HAsciiString.hxx>
+#include <StepGeom_Curve.hxx>
+
+//! Representation of STEP entity RollingCurvePair
+class StepKinematics_RollingCurvePair : public StepKinematics_PlanarCurvePair
+{
+public:
+  //! default constructor
+  Standard_EXPORT StepKinematics_RollingCurvePair();
+
+  DEFINE_STANDARD_RTTIEXT(StepKinematics_RollingCurvePair, StepKinematics_PlanarCurvePair)
+};
+#endif // _StepKinematics_RollingCurvePair_HeaderFile_

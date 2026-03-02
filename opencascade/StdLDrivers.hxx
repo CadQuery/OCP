@@ -1,4 +1,4 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Copyright (c) 2015 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +11,29 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ApplicationFramework/TKStdL/StdLDrivers/StdLDrivers.hxx"// clang-format on
+#ifndef _StdLDrivers_HeaderFile
+#define _StdLDrivers_HeaderFile
+
+#include <Standard_Handle.hxx>
+
+class Standard_Transient;
+class Standard_GUID;
+class StdObjMgt_MapOfInstantiators;
+class TDocStd_Application;
+
+class StdLDrivers
+{
+public:
+  //! Depending from the ID, returns a list of storage
+  //! or retrieval attribute drivers. Used for plugin
+  Standard_EXPORT static occ::handle<Standard_Transient> Factory(const Standard_GUID& aGUID);
+
+  //! Defines format "OCC-StdLite" and registers its retrieval driver
+  //! in the specified application
+  Standard_EXPORT static void DefineFormat(const occ::handle<TDocStd_Application>& theApp);
+
+  //! Register types.
+  Standard_EXPORT static void BindTypes(StdObjMgt_MapOfInstantiators& theMap);
+};
+
+#endif // _StdLDrivers_HeaderFile

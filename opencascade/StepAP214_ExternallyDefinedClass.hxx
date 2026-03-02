@@ -1,4 +1,6 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 2000-05-10
+// Created by: Andrey BETENEV
+// Copyright (c) 2000-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +13,46 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/DataExchange/TKDESTEP/StepAP214/StepAP214_ExternallyDefinedClass.hxx"// clang-format on
+#ifndef _StepAP214_ExternallyDefinedClass_HeaderFile
+#define _StepAP214_ExternallyDefinedClass_HeaderFile
+
+#include <Standard.hxx>
+#include <Standard_Type.hxx>
+
+#include <StepAP214_Class.hxx>
+#include <Standard_Boolean.hxx>
+class StepBasic_ExternallyDefinedItem;
+class TCollection_HAsciiString;
+class StepBasic_SourceItem;
+class StepBasic_ExternalSource;
+
+//! Representation of STEP entity ExternallyDefinedClass
+class StepAP214_ExternallyDefinedClass : public StepAP214_Class
+{
+
+public:
+  //! Empty constructor
+  Standard_EXPORT StepAP214_ExternallyDefinedClass();
+
+  //! Initialize all fields (own and inherited)
+  Standard_EXPORT void Init(
+    const occ::handle<TCollection_HAsciiString>& aGroup_Name,
+    const bool                                   hasGroup_Description,
+    const occ::handle<TCollection_HAsciiString>& aGroup_Description,
+    const StepBasic_SourceItem&                  aExternallyDefinedItem_ItemId,
+    const occ::handle<StepBasic_ExternalSource>& aExternallyDefinedItem_Source);
+
+  //! Returns data for supertype ExternallyDefinedItem
+  Standard_EXPORT occ::handle<StepBasic_ExternallyDefinedItem> ExternallyDefinedItem() const;
+
+  //! Set data for supertype ExternallyDefinedItem
+  Standard_EXPORT void SetExternallyDefinedItem(
+    const occ::handle<StepBasic_ExternallyDefinedItem>& ExternallyDefinedItem);
+
+  DEFINE_STANDARD_RTTIEXT(StepAP214_ExternallyDefinedClass, StepAP214_Class)
+
+private:
+  occ::handle<StepBasic_ExternallyDefinedItem> theExternallyDefinedItem;
+};
+
+#endif // _StepAP214_ExternallyDefinedClass_HeaderFile

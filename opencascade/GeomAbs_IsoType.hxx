@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 1993-02-22
+// Created by: Modelistation
+// Copyright (c) 1993-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,16 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/FoundationClasses/TKMath/GeomAbs/GeomAbs_IsoType.hxx"// clang-format on
+#ifndef _GeomAbs_IsoType_HeaderFile
+#define _GeomAbs_IsoType_HeaderFile
+
+//! this enumeration describes if a curve is an U isoparaetric
+//! or V isoparametric
+enum GeomAbs_IsoType
+{
+  GeomAbs_IsoU,
+  GeomAbs_IsoV,
+  GeomAbs_NoneIso
+};
+
+#endif // _GeomAbs_IsoType_HeaderFile

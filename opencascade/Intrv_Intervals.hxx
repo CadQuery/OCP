@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 1991-12-13
+// Created by: Christophe MARION
+// Copyright (c) 1991-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,57 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ModelingAlgorithms/TKHLR/Intrv/Intrv_Intervals.hxx"// clang-format on
+#ifndef _Intrv_Intervals_HeaderFile
+#define _Intrv_Intervals_HeaderFile
+
+#include <Standard.hxx>
+#include <Standard_DefineAlloc.hxx>
+#include <Standard_Handle.hxx>
+
+#include <Intrv_Interval.hxx>
+#include <NCollection_Sequence.hxx>
+class Intrv_Interval;
+
+//! The class Intervals is a sorted sequence of non
+//! overlapping Real Intervals.
+class Intrv_Intervals
+{
+public:
+  DEFINE_STANDARD_ALLOC
+
+  //! Creates a void sequence of intervals.
+  Standard_EXPORT Intrv_Intervals();
+
+  //! Creates a sequence of one interval.
+  Standard_EXPORT Intrv_Intervals(const Intrv_Interval& Int);
+
+  //! Intersects the intervals with the interval <Tool>.
+  Standard_EXPORT void Intersect(const Intrv_Interval& Tool);
+
+  //! Intersects the intervals with the intervals in the
+  //! sequence <Tool>.
+  Standard_EXPORT void Intersect(const Intrv_Intervals& Tool);
+
+  Standard_EXPORT void Subtract(const Intrv_Interval& Tool);
+
+  Standard_EXPORT void Subtract(const Intrv_Intervals& Tool);
+
+  Standard_EXPORT void Unite(const Intrv_Interval& Tool);
+
+  Standard_EXPORT void Unite(const Intrv_Intervals& Tool);
+
+  Standard_EXPORT void XUnite(const Intrv_Interval& Tool);
+
+  Standard_EXPORT void XUnite(const Intrv_Intervals& Tool);
+
+  int NbIntervals() const;
+
+  const Intrv_Interval& Value(const int Index) const;
+
+private:
+  NCollection_Sequence<Intrv_Interval> myInter;
+};
+
+#include <Intrv_Intervals.lxx>
+
+#endif // _Intrv_Intervals_HeaderFile

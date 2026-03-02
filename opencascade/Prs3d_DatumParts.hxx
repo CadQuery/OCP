@@ -1,4 +1,4 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Copyright (c) 2016 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +11,41 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/Visualization/TKV3d/Prs3d/Prs3d_DatumParts.hxx"// clang-format on
+#ifndef _Prs3d_DatumParts_HeaderFile
+#define _Prs3d_DatumParts_HeaderFile
+
+//! Enumeration defining a part of datum aspect, see Prs3d_Datum.
+enum Prs3d_DatumParts
+{
+  Prs3d_DatumParts_Origin = 0,
+  Prs3d_DatumParts_XAxis,
+  Prs3d_DatumParts_YAxis,
+  Prs3d_DatumParts_ZAxis,
+  Prs3d_DatumParts_XArrow,
+  Prs3d_DatumParts_YArrow,
+  Prs3d_DatumParts_ZArrow,
+  Prs3d_DatumParts_XOYAxis,
+  Prs3d_DatumParts_YOZAxis,
+  Prs3d_DatumParts_XOZAxis,
+  Prs3d_DatumParts_None,
+
+  // old aliases
+  Prs3d_DP_Origin  = Prs3d_DatumParts_Origin,
+  Prs3d_DP_XAxis   = Prs3d_DatumParts_XAxis,
+  Prs3d_DP_YAxis   = Prs3d_DatumParts_YAxis,
+  Prs3d_DP_ZAxis   = Prs3d_DatumParts_ZAxis,
+  Prs3d_DP_XArrow  = Prs3d_DatumParts_XArrow,
+  Prs3d_DP_YArrow  = Prs3d_DatumParts_YArrow,
+  Prs3d_DP_ZArrow  = Prs3d_DatumParts_ZArrow,
+  Prs3d_DP_XOYAxis = Prs3d_DatumParts_XOYAxis,
+  Prs3d_DP_YOZAxis = Prs3d_DatumParts_YOZAxis,
+  Prs3d_DP_XOZAxis = Prs3d_DatumParts_XOZAxis,
+  Prs3d_DP_None    = Prs3d_DatumParts_None
+};
+
+enum
+{
+  Prs3d_DatumParts_NB = Prs3d_DatumParts_None + 1
+};
+
+#endif // _Prs3d_DatumParts_HeaderFile

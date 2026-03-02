@@ -1,4 +1,6 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 2015-08-06
+// Created by: Ilya Novikov
+// Copyright (c) 2004-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +13,66 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/DataExchange/TKXCAF/XCAFDimTolObjects/XCAFDimTolObjects_Tool.hxx"// clang-format on
+#ifndef _XCAFDimTolObjects_Tool_HeaderFile
+#define _XCAFDimTolObjects_Tool_HeaderFile
+
+#include <Standard.hxx>
+#include <Standard_Type.hxx>
+
+#include <XCAFDoc_DimTolTool.hxx>
+#include <TDocStd_Document.hxx>
+#include <Standard_Boolean.hxx>
+#include <XCAFDimTolObjects_DimensionObjectSequence.hxx>
+#include <XCAFDimTolObjects_GeomToleranceObjectSequence.hxx>
+#include <XCAFDimTolObjects_DatumObjectSequence.hxx>
+#include <NCollection_DataMap.hxx>
+#include <XCAFDimTolObjects_GeomToleranceObject.hxx>
+#include <XCAFDimTolObjects_DatumObject.hxx>
+class TDocStd_Document;
+class TopoDS_Shape;
+
+class XCAFDimTolObjects_Tool
+{
+public:
+  DEFINE_STANDARD_ALLOC
+
+  Standard_EXPORT XCAFDimTolObjects_Tool(const occ::handle<TDocStd_Document>& theDoc);
+
+  //! Returns a sequence of Dimensions currently stored
+  //! in the GD&T table
+  Standard_EXPORT void GetDimensions(
+    NCollection_Sequence<occ::handle<XCAFDimTolObjects_DimensionObject>>&
+      theDimensionObjectSequence) const;
+
+  //! Returns all Dimensions defined for Shape
+  Standard_EXPORT bool GetRefDimensions(
+    const TopoDS_Shape&                                                   theShape,
+    NCollection_Sequence<occ::handle<XCAFDimTolObjects_DimensionObject>>& theDimensions) const;
+
+  //! Returns a sequence of Tolerances currently stored
+  //! in the GD&T table
+  Standard_EXPORT void GetGeomTolerances(
+    NCollection_Sequence<occ::handle<XCAFDimTolObjects_GeomToleranceObject>>&
+      theGeomToleranceObjectSequence,
+    NCollection_Sequence<occ::handle<XCAFDimTolObjects_DatumObject>>& theDatumObjectSequence,
+    NCollection_DataMap<occ::handle<XCAFDimTolObjects_GeomToleranceObject>,
+                        occ::handle<XCAFDimTolObjects_DatumObject>>&  theMap) const;
+
+  //! Returns all GeomTolerances defined for Shape
+  Standard_EXPORT bool GetRefGeomTolerances(
+    const TopoDS_Shape& theShape,
+    NCollection_Sequence<occ::handle<XCAFDimTolObjects_GeomToleranceObject>>&
+      theGeomToleranceObjectSequence,
+    NCollection_Sequence<occ::handle<XCAFDimTolObjects_DatumObject>>& theDatumObjectSequence,
+    NCollection_DataMap<occ::handle<XCAFDimTolObjects_GeomToleranceObject>,
+                        occ::handle<XCAFDimTolObjects_DatumObject>>&  theMap) const;
+
+  //! Returns DatumObject defined for Shape
+  Standard_EXPORT bool GetRefDatum(const TopoDS_Shape&                         theShape,
+                                   occ::handle<XCAFDimTolObjects_DatumObject>& theDatum) const;
+
+private:
+  occ::handle<XCAFDoc_DimTolTool> myDimTolTool;
+};
+
+#endif // _XCAFDimTolObjects_Tool_HeaderFile

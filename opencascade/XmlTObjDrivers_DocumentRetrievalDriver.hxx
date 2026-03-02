@@ -1,4 +1,6 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 2004-11-24
+// Created by: Michael SAZONOV
+// Copyright (c) 2004-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +13,37 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ApplicationFramework/TKXmlTObj/XmlTObjDrivers/XmlTObjDrivers_DocumentRetrievalDriver.hxx"// clang-format on
+// The original implementation Copyright: (C) RINA S.p.A
+
+#ifndef XmlTObjDrivers_DocumentRetrievalDriver_HeaderFile
+#define XmlTObjDrivers_DocumentRetrievalDriver_HeaderFile
+
+#include <XmlLDrivers_DocumentRetrievalDriver.hxx>
+#include <XmlMDF_ADriverTable.hxx>
+
+// Retrieval driver of a TObj XML document
+//
+
+class XmlTObjDrivers_DocumentRetrievalDriver : public XmlLDrivers_DocumentRetrievalDriver
+{
+public:
+  // ---------- PUBLIC METHODS ----------
+
+  Standard_EXPORT XmlTObjDrivers_DocumentRetrievalDriver();
+  // Constructor
+
+  Standard_EXPORT occ::handle<XmlMDF_ADriverTable> AttributeDrivers(
+    const occ::handle<Message_Messenger>& theMsgDriver) override;
+
+public:
+  // Declaration of CASCADE RTTI
+  DEFINE_STANDARD_RTTIEXT(XmlTObjDrivers_DocumentRetrievalDriver,
+                          XmlLDrivers_DocumentRetrievalDriver)
+};
+
+// Definition of HANDLE object using Standard_DefineHandle.hxx
+#endif
+
+#ifdef _MSC_VER
+#pragma once
+#endif

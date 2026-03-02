@@ -1,4 +1,6 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 2014-03-17
+// Created by: Kirill GAVRILOV
+// Copyright (c) 2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +13,28 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/Visualization/TKOpenGl/OpenGl/OpenGl_GlCore21.hxx"// clang-format on
+#ifndef OpenGl_GlCore21_HeaderFile
+#define OpenGl_GlCore21_HeaderFile
+
+#include <OpenGl_GlCore20.hxx>
+
+//! OpenGL 2.1 core based on 2.0 version.
+struct OpenGl_GlCore21 : public OpenGl_GlCore20
+{
+private:
+  typedef OpenGl_GlCore20 theBaseClass_t;
+
+public: //! @name OpenGL 2.1 additives to 2.0
+#if !defined(GL_ES_VERSION_2_0)
+
+  using theBaseClass_t::glUniformMatrix2x3fv;
+  using theBaseClass_t::glUniformMatrix2x4fv;
+  using theBaseClass_t::glUniformMatrix3x2fv;
+  using theBaseClass_t::glUniformMatrix3x4fv;
+  using theBaseClass_t::glUniformMatrix4x2fv;
+  using theBaseClass_t::glUniformMatrix4x3fv;
+
+#endif
+};
+
+#endif // _OpenGl_GlCore21_Header

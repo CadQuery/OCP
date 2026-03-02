@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 1995-12-01
+// Created by: EXPRESS->CDL V0.2 Translator
+// Copyright (c) 1995-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,41 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/DataExchange/TKDESTEP/StepVisual/StepVisual_CameraModelD2.hxx"// clang-format on
+#ifndef _StepVisual_CameraModelD2_HeaderFile
+#define _StepVisual_CameraModelD2_HeaderFile
+
+#include <Standard.hxx>
+#include <Standard_Type.hxx>
+
+#include <Standard_Boolean.hxx>
+#include <StepVisual_CameraModel.hxx>
+class StepVisual_PlanarBox;
+class TCollection_HAsciiString;
+
+class StepVisual_CameraModelD2 : public StepVisual_CameraModel
+{
+
+public:
+  //! Returns a CameraModelD2
+  Standard_EXPORT StepVisual_CameraModelD2();
+
+  Standard_EXPORT void Init(const occ::handle<TCollection_HAsciiString>& aName,
+                            const occ::handle<StepVisual_PlanarBox>&     aViewWindow,
+                            const bool                                   aViewWindowClipping);
+
+  Standard_EXPORT void SetViewWindow(const occ::handle<StepVisual_PlanarBox>& aViewWindow);
+
+  Standard_EXPORT occ::handle<StepVisual_PlanarBox> ViewWindow() const;
+
+  Standard_EXPORT void SetViewWindowClipping(const bool aViewWindowClipping);
+
+  Standard_EXPORT bool ViewWindowClipping() const;
+
+  DEFINE_STANDARD_RTTIEXT(StepVisual_CameraModelD2, StepVisual_CameraModel)
+
+private:
+  occ::handle<StepVisual_PlanarBox> viewWindow;
+  bool                              viewWindowClipping;
+};
+
+#endif // _StepVisual_CameraModelD2_HeaderFile

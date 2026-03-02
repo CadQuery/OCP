@@ -1,4 +1,5 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Copyright (c) 1997-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +12,39 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/FoundationClasses/TKMath/math/math_BrentMinimum.lxx"// clang-format on
+#include <StdFail_NotDone.hxx>
+
+inline bool math_BrentMinimum::IsSolutionReached(math_Function&)
+{
+  const double TwoTol = 2.0 * (XTol * fabs(x) + EPSZ);
+  return (x <= (TwoTol + a)) && (x >= (b - TwoTol));
+}
+
+inline bool math_BrentMinimum::IsDone() const
+{
+  return Done;
+}
+
+inline Standard_OStream& operator<<(Standard_OStream& o, const math_BrentMinimum& Br)
+{
+  Br.Dump(o);
+  return o;
+}
+
+inline double math_BrentMinimum::Location() const
+{
+  StdFail_NotDone_Raise_if(!Done, " ");
+  return x;
+}
+
+inline double math_BrentMinimum::Minimum() const
+{
+  StdFail_NotDone_Raise_if(!Done, " ");
+  return fx;
+}
+
+inline int math_BrentMinimum::NbIterations() const
+{
+  StdFail_NotDone_Raise_if(!Done, " ");
+  return iter;
+}

@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 1991-02-26
+// Created by: Isabelle GRIGNON
+// Copyright (c) 1991-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,15 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ModelingData/TKGeomBase/Extrema/Extrema_ElementType.hxx"// clang-format on
+#ifndef _Extrema_ElementType_HeaderFile
+#define _Extrema_ElementType_HeaderFile
+
+enum Extrema_ElementType
+{
+  Extrema_Node,
+  Extrema_UIsoEdge,
+  Extrema_VIsoEdge,
+  Extrema_Face
+};
+
+#endif // _Extrema_ElementType_HeaderFile

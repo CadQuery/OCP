@@ -1,4 +1,4 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Copyright (c) 2016 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +11,12 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/Visualization/TKV3d/V3d/V3d_ListOfView.hxx"// clang-format on
+#ifndef _V3d_ListOfView_HeaderFile
+#define _V3d_ListOfView_HeaderFile
+
+class V3d_View;
+#include <NCollection_List.hxx>
+
+typedef NCollection_List<occ::handle<V3d_View>> V3d_ListOfView;
+
+#endif // _V3d_ListOfView_HeaderFile

@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 1993-09-06
+// Created by: Christian CAILLET
+// Copyright (c) 1993-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,44 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/DataExchange/TKDEIGES/IGESAppli/IGESAppli_ReadWriteModule.hxx"// clang-format on
+#ifndef _IGESAppli_ReadWriteModule_HeaderFile
+#define _IGESAppli_ReadWriteModule_HeaderFile
+
+#include <Standard.hxx>
+#include <Standard_Type.hxx>
+
+#include <IGESData_ReadWriteModule.hxx>
+#include <Standard_Integer.hxx>
+class IGESData_IGESEntity;
+class IGESData_IGESReaderData;
+class IGESData_ParamReader;
+class IGESData_IGESWriter;
+
+//! Defines basic File Access Module for IGESAppli (specific parts)
+//! Specific actions concern : Read and Write Own Parameters of
+//! an IGESEntity.
+class IGESAppli_ReadWriteModule : public IGESData_ReadWriteModule
+{
+
+public:
+  //! Creates a ReadWriteModule & puts it into ReaderLib & WriterLib
+  Standard_EXPORT IGESAppli_ReadWriteModule();
+
+  //! Defines Case Numbers for Entities of IGESAppli
+  Standard_EXPORT int CaseIGES(const int typenum, const int formnum) const override;
+
+  //! Reads own parameters from file for an Entity of IGESAppli
+  Standard_EXPORT void ReadOwnParams(const int                                   CN,
+                                     const occ::handle<IGESData_IGESEntity>&     ent,
+                                     const occ::handle<IGESData_IGESReaderData>& IR,
+                                     IGESData_ParamReader&                       PR) const override;
+
+  //! Writes own parameters to IGESWriter
+  Standard_EXPORT void WriteOwnParams(const int                               CN,
+                                      const occ::handle<IGESData_IGESEntity>& ent,
+                                      IGESData_IGESWriter&                    IW) const override;
+
+  DEFINE_STANDARD_RTTIEXT(IGESAppli_ReadWriteModule, IGESData_ReadWriteModule)
+};
+
+#endif // _IGESAppli_ReadWriteModule_HeaderFile

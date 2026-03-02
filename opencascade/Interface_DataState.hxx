@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 1992-02-03
+// Created by: Christian CAILLET
+// Copyright (c) 1992-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,19 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/DataExchange/TKXSBase/Interface/Interface_DataState.hxx"// clang-format on
+#ifndef _Interface_DataState_HeaderFile
+#define _Interface_DataState_HeaderFile
+
+//! validity state of anentity's content (see InterfaceModel)
+enum Interface_DataState
+{
+  Interface_StateOK,
+  Interface_LoadWarning,
+  Interface_LoadFail,
+  Interface_DataWarning,
+  Interface_DataFail,
+  Interface_StateUnloaded,
+  Interface_StateUnknown
+};
+
+#endif // _Interface_DataState_HeaderFile

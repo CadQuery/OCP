@@ -1,4 +1,6 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 2015-10-29
+// Created by: Galina Kulikova
+// Copyright (c) 2015 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +13,36 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/DataExchange/TKDESTEP/StepVisual/StepVisual_TessellatedGeometricSet.hxx"// clang-format on
+#ifndef _StepVisual_TessellatedGeometricSet_HeaderFile
+#define _StepVisual_TessellatedGeometricSet_HeaderFile
+#include <Standard.hxx>
+#include <Standard_DefineAlloc.hxx>
+#include <Standard_Handle.hxx>
+
+#include <StepVisual_TessellatedItem.hxx>
+#include <NCollection_Array1.hxx>
+#include <NCollection_Handle.hxx>
+
+class StepVisual_TessellatedGeometricSet : public StepVisual_TessellatedItem
+{
+public:
+  DEFINE_STANDARD_ALLOC
+
+  //! Returns a DraughtingCalloutElement select type
+  Standard_EXPORT StepVisual_TessellatedGeometricSet();
+
+  Standard_EXPORT void Init(
+    const occ::handle<TCollection_HAsciiString>& theName,
+    const NCollection_Handle<NCollection_Array1<occ::handle<StepVisual_TessellatedItem>>>&
+      theItems);
+
+  Standard_EXPORT NCollection_Handle<NCollection_Array1<occ::handle<StepVisual_TessellatedItem>>>
+                  Items() const;
+
+private:
+  NCollection_Handle<NCollection_Array1<occ::handle<StepVisual_TessellatedItem>>> myItems;
+
+public:
+  DEFINE_STANDARD_RTTIEXT(StepVisual_TessellatedGeometricSet, StepVisual_TessellatedItem)
+};
+#endif // StepVisual_TessellatedGeometricSet

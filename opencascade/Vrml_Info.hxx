@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 1997-02-10
+// Created by: Alexander BRIVIN
+// Copyright (c) 1997-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,36 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/DataExchange/TKDEVRML/Vrml/Vrml_Info.hxx"// clang-format on
+#ifndef _Vrml_Info_HeaderFile
+#define _Vrml_Info_HeaderFile
+
+#include <Standard.hxx>
+#include <Standard_DefineAlloc.hxx>
+#include <Standard_Handle.hxx>
+
+#include <TCollection_AsciiString.hxx>
+#include <Standard_OStream.hxx>
+
+//! defines a Info node of VRML specifying properties of geometry
+//! and its appearance.
+//! It is used to store information in the scene graph,
+//! Typically for application-specific purposes, copyright messages,
+//! or other strings.
+class Vrml_Info
+{
+public:
+  DEFINE_STANDARD_ALLOC
+
+  Standard_EXPORT Vrml_Info(const TCollection_AsciiString& aString = "<Undefined info>");
+
+  Standard_EXPORT void SetString(const TCollection_AsciiString& aString);
+
+  Standard_EXPORT TCollection_AsciiString String() const;
+
+  Standard_EXPORT Standard_OStream& Print(Standard_OStream& anOStream) const;
+
+private:
+  TCollection_AsciiString myString;
+};
+
+#endif // _Vrml_Info_HeaderFile

@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 1993-05-07
+// Created by: Jacques GOUSSARD
+// Copyright (c) 1993-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,27 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ModelingAlgorithms/TKGeomAlgo/IntPatch/IntPatch_RstInt.hxx"// clang-format on
+#ifndef _IntPatch_RstInt_HeaderFile
+#define _IntPatch_RstInt_HeaderFile
+
+#include <Adaptor3d_Surface.hxx>
+
+class IntPatch_Line;
+class Adaptor3d_TopolTool;
+
+//! trouver les points d intersection entre la ligne de
+//! cheminement et les arcs de restriction
+class IntPatch_RstInt
+{
+public:
+  DEFINE_STANDARD_ALLOC
+
+  Standard_EXPORT static void PutVertexOnLine(const occ::handle<IntPatch_Line>&       L,
+                                              const occ::handle<Adaptor3d_Surface>&   Surf,
+                                              const occ::handle<Adaptor3d_TopolTool>& Domain,
+                                              const occ::handle<Adaptor3d_Surface>&   OtherSurf,
+                                              const bool                              OnFirst,
+                                              const double                            Tol);
+};
+
+#endif // _IntPatch_RstInt_HeaderFile

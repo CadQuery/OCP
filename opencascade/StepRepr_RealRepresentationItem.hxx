@@ -1,4 +1,4 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Copyright (c) 2024 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +11,33 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/DataExchange/TKDESTEP/StepRepr/StepRepr_RealRepresentationItem.hxx"// clang-format on
+#ifndef _StepRepr_RealRepresentationItem_HeaderFile
+#define _StepRepr_RealRepresentationItem_HeaderFile
+
+#include <Standard.hxx>
+#include <Standard_Type.hxx>
+
+#include <StepRepr_RepresentationItem.hxx>
+class TCollection_HAsciiString;
+
+class StepRepr_RealRepresentationItem : public StepRepr_RepresentationItem
+{
+
+public:
+  //! Returns a RealRepresentationItem
+  Standard_EXPORT StepRepr_RealRepresentationItem();
+
+  Standard_EXPORT void Init(const occ::handle<TCollection_HAsciiString>& theName,
+                            const double                                 theValue);
+
+  inline void SetValue(const double theValue) { value = theValue; }
+
+  inline double Value() const { return value; }
+
+  DEFINE_STANDARD_RTTIEXT(StepRepr_RealRepresentationItem, StepRepr_RepresentationItem)
+
+private:
+  double value;
+};
+
+#endif // _StepRepr_RealRepresentationItem_HeaderFile

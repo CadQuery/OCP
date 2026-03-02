@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 1998-02-04
+// Created by: Christian CAILLET
+// Copyright (c) 1998-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,34 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/DataExchange/TKXSBase/MoniTool/MoniTool_SignShape.hxx"// clang-format on
+#ifndef _MoniTool_SignShape_HeaderFile
+#define _MoniTool_SignShape_HeaderFile
+
+#include <Standard.hxx>
+#include <Standard_Type.hxx>
+
+#include <MoniTool_SignText.hxx>
+class TCollection_AsciiString;
+class Standard_Transient;
+
+//! Signs HShape according to its real content (type of Shape)
+//! Context is not used
+class MoniTool_SignShape : public MoniTool_SignText
+{
+
+public:
+  Standard_EXPORT MoniTool_SignShape();
+
+  //! Returns "SHAPE"
+  Standard_EXPORT const char* Name() const override;
+
+  //! Returns for a HShape, the string of its ShapeEnum
+  //! The Model is absolutely useless (may be null)
+  Standard_EXPORT TCollection_AsciiString
+    Text(const occ::handle<Standard_Transient>& ent,
+         const occ::handle<Standard_Transient>& context) const override;
+
+  DEFINE_STANDARD_RTTIEXT(MoniTool_SignShape, MoniTool_SignText)
+};
+
+#endif // _MoniTool_SignShape_HeaderFile

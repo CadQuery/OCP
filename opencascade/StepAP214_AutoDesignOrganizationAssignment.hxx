@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 1995-12-01
+// Created by: EXPRESS->CDL V0.2 Translator
+// Copyright (c) 1995-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,47 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/DataExchange/TKDESTEP/StepAP214/StepAP214_AutoDesignOrganizationAssignment.hxx"// clang-format on
+#ifndef _StepAP214_AutoDesignOrganizationAssignment_HeaderFile
+#define _StepAP214_AutoDesignOrganizationAssignment_HeaderFile
+
+#include <Standard.hxx>
+
+#include <StepAP214_AutoDesignGeneralOrgItem.hxx>
+#include <NCollection_Array1.hxx>
+#include <NCollection_HArray1.hxx>
+#include <StepBasic_OrganizationAssignment.hxx>
+#include <Standard_Integer.hxx>
+class StepBasic_Organization;
+class StepBasic_OrganizationRole;
+class StepAP214_AutoDesignGeneralOrgItem;
+
+class StepAP214_AutoDesignOrganizationAssignment : public StepBasic_OrganizationAssignment
+{
+
+public:
+  //! Returns a AutoDesignOrganizationAssignment
+  Standard_EXPORT StepAP214_AutoDesignOrganizationAssignment();
+
+  Standard_EXPORT void Init(
+    const occ::handle<StepBasic_Organization>&     aAssignedOrganization,
+    const occ::handle<StepBasic_OrganizationRole>& aRole,
+    const occ::handle<NCollection_HArray1<StepAP214_AutoDesignGeneralOrgItem>>& aItems);
+
+  Standard_EXPORT void SetItems(
+    const occ::handle<NCollection_HArray1<StepAP214_AutoDesignGeneralOrgItem>>& aItems);
+
+  Standard_EXPORT occ::handle<NCollection_HArray1<StepAP214_AutoDesignGeneralOrgItem>> Items()
+    const;
+
+  Standard_EXPORT StepAP214_AutoDesignGeneralOrgItem ItemsValue(const int num) const;
+
+  Standard_EXPORT int NbItems() const;
+
+  DEFINE_STANDARD_RTTIEXT(StepAP214_AutoDesignOrganizationAssignment,
+                          StepBasic_OrganizationAssignment)
+
+private:
+  occ::handle<NCollection_HArray1<StepAP214_AutoDesignGeneralOrgItem>> items;
+};
+
+#endif // _StepAP214_AutoDesignOrganizationAssignment_HeaderFile

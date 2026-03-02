@@ -1,4 +1,6 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 2013-10-02
+// Created by: Denis BOGOLEPOV
+// Copyright (c) 2013-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +13,56 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/Visualization/TKOpenGl/OpenGl/OpenGl_MaterialState.hxx"// clang-format on
+#ifndef _OpenGl_MaterialState_HeaderFile
+#define _OpenGl_MaterialState_HeaderFile
+
+#include <OpenGl_ShaderStates.hxx>
+#include <OpenGl_Material.hxx>
+
+//! Defines generic state of material properties.
+class OpenGl_MaterialState : public OpenGl_StateInterface
+{
+public:
+  //! Creates new material state.
+  OpenGl_MaterialState()
+      : myAlphaCutoff(0.5f),
+        myToDistinguish(false),
+        myToMapTexture(false)
+  {
+  }
+
+  //! Sets new material aspect.
+  void Set(const OpenGl_Material& theMat,
+           const float            theAlphaCutoff,
+           const bool             theToDistinguish,
+           const bool             theToMapTexture)
+  {
+    myMaterial      = theMat;
+    myAlphaCutoff   = theAlphaCutoff;
+    myToDistinguish = theToDistinguish;
+    myToMapTexture  = theToMapTexture;
+  }
+
+  //! Return front material.
+  const OpenGl_Material& Material() const { return myMaterial; }
+
+  //! Alpha cutoff value.
+  float AlphaCutoff() const { return myAlphaCutoff; }
+
+  //! Return TRUE if alpha test should be enabled.
+  bool HasAlphaCutoff() const { return myAlphaCutoff <= 1.0f; }
+
+  //! Distinguish front/back flag.
+  bool ToDistinguish() const { return myToDistinguish; }
+
+  //! Flag for mapping a texture.
+  bool ToMapTexture() const { return myToMapTexture; }
+
+private:
+  OpenGl_Material myMaterial;      //!< material
+  float           myAlphaCutoff;   //!< alpha cutoff value
+  bool            myToDistinguish; //!< distinguish front/back flag
+  bool            myToMapTexture;  //!< flag for mapping a texture
+};
+
+#endif // _OpenGl_MaterialState_HeaderFile

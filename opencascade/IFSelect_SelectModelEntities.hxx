@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 1992-11-17
+// Created by: Christian CAILLET
+// Copyright (c) 1992-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,38 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/DataExchange/TKXSBase/IFSelect/IFSelect_SelectModelEntities.hxx"// clang-format on
+#ifndef _IFSelect_SelectModelEntities_HeaderFile
+#define _IFSelect_SelectModelEntities_HeaderFile
+
+#include <Standard.hxx>
+#include <Standard_Type.hxx>
+
+#include <IFSelect_SelectBase.hxx>
+class Interface_EntityIterator;
+class Interface_Graph;
+class TCollection_AsciiString;
+
+//! A SelectModelEntities gets all the Entities of an
+//! InterfaceModel.
+class IFSelect_SelectModelEntities : public IFSelect_SelectBase
+{
+
+public:
+  //! Creates a SelectModelRoot
+  Standard_EXPORT IFSelect_SelectModelEntities();
+
+  //! Returns the list of selected entities : the Entities of the
+  //! Model (note that this result assures naturally uniqueness)
+  Standard_EXPORT Interface_EntityIterator RootResult(const Interface_Graph& G) const override;
+
+  //! The complete list of Entities (including shared ones) ...
+  //! is exactly identical to RootResults in this case
+  Standard_EXPORT Interface_EntityIterator CompleteResult(const Interface_Graph& G) const override;
+
+  //! Returns a text defining the criterium : "Model Entities"
+  Standard_EXPORT TCollection_AsciiString Label() const override;
+
+  DEFINE_STANDARD_RTTIEXT(IFSelect_SelectModelEntities, IFSelect_SelectBase)
+};
+
+#endif // _IFSelect_SelectModelEntities_HeaderFile

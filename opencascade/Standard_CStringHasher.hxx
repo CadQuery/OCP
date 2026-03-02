@@ -1,4 +1,4 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Copyright (c) 2023 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +11,30 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/FoundationClasses/TKernel/Standard/Standard_CStringHasher.hxx"// clang-format on
+#ifndef _Standard_CStringHasher_HeaderFile
+#define _Standard_CStringHasher_HeaderFile
+
+#include <Standard_CString.hxx>
+#include <Standard_HashUtils.hxx>
+#include <Standard_TypeDef.hxx>
+
+class Standard_CStringHasher
+{
+public:
+  size_t operator()(const char* theString) const noexcept
+  {
+    const int aLen = static_cast<int>(strlen(theString));
+    if (aLen < 4)
+    {
+      return opencascade::FNVHash::hash_combine(*theString, aLen);
+    }
+    return opencascade::hashBytes(theString, aLen);
+  }
+
+  bool operator()(const char* theString1, const char* theString2) const noexcept
+  {
+    return strcmp(theString1, theString2) == 0;
+  }
+};
+
+#endif

@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 1992-06-04
+// Created by: Jacques GOUSSARD
+// Copyright (c) 1992-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,56 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ModelingAlgorithms/TKGeomAlgo/Geom2dInt/Geom2dInt_TheProjPCurOfGInter.hxx"// clang-format on
+#ifndef _Geom2dInt_TheProjPCurOfGInter_HeaderFile
+#define _Geom2dInt_TheProjPCurOfGInter_HeaderFile
+
+#include <Geom2dInt_TheCurveLocatorOfTheProjPCurOfGInter.hxx>
+#include <Standard.hxx>
+#include <Standard_DefineAlloc.hxx>
+
+class Adaptor2d_Curve2d;
+class Geom2dInt_Geom2dCurveTool;
+class gp_Pnt2d;
+
+class Geom2dInt_TheProjPCurOfGInter
+{
+public:
+  DEFINE_STANDARD_ALLOC
+
+  //! Returns the parameter V of the point on the
+  //! parametric curve corresponding to the Point Pnt.
+  //! The Correspondence between Pnt and the point P(V)
+  //! on the parametric curve must be coherent with the
+  //! way of determination of the signed distance
+  //! between a point and the implicit curve.
+  //! Tol is the tolerance on the distance between a point
+  //! and the parametrised curve.
+  //! In that case, no bounds are given. The research of
+  //! the right parameter has to be made on the natural
+  //! parametric domain of the curve.
+  Standard_EXPORT static double FindParameter(const Adaptor2d_Curve2d& C,
+                                              const gp_Pnt2d&          Pnt,
+                                              const double             Tol);
+
+  //! Returns the parameter V of the point on the
+  //! parametric curve corresponding to the Point Pnt.
+  //! The Correspondence between Pnt and the point P(V)
+  //! on the parametric curve must be coherent with the
+  //! way of determination of the signed distance
+  //! between a point and the implicit curve.
+  //! Tol is the tolerance on the distance between a point
+  //! and the parametrised curve.
+  //! LowParameter and HighParameter give the
+  //! boundaries of the interval in which the parameter
+  //! certainly lies. These parameters are given to
+  //! implement a more efficient algorithm. So, it is not
+  //! necessary to check that the returned value verifies
+  //! LowParameter <= Value <= HighParameter.
+  Standard_EXPORT static double FindParameter(const Adaptor2d_Curve2d& C,
+                                              const gp_Pnt2d&          Pnt,
+                                              const double             LowParameter,
+                                              const double             HighParameter,
+                                              const double             Tol);
+};
+
+#endif // _Geom2dInt_TheProjPCurOfGInter_HeaderFile

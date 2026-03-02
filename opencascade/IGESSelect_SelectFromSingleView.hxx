@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 1994-05-31
+// Created by: Christian CAILLET
+// Copyright (c) 1994-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,36 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/DataExchange/TKDEIGES/IGESSelect/IGESSelect_SelectFromSingleView.hxx"// clang-format on
+#ifndef _IGESSelect_SelectFromSingleView_HeaderFile
+#define _IGESSelect_SelectFromSingleView_HeaderFile
+
+#include <Standard.hxx>
+#include <Standard_Type.hxx>
+
+#include <IFSelect_SelectDeduct.hxx>
+class Interface_EntityIterator;
+class Interface_Graph;
+class TCollection_AsciiString;
+
+//! This selection gets in all the model, the entities which are
+//! attached to the views given as input. Only Single Views are
+//! considered. This information is kept from Directory Part
+//! (View Item).
+class IGESSelect_SelectFromSingleView : public IFSelect_SelectDeduct
+{
+
+public:
+  //! Creates a SelectFromSingleView
+  Standard_EXPORT IGESSelect_SelectFromSingleView();
+
+  //! Selects the Entities which are attached to the Single View(s)
+  //! present in the Input
+  Standard_EXPORT Interface_EntityIterator RootResult(const Interface_Graph& G) const override;
+
+  //! Returns the label, with is "Entities attached to single View"
+  Standard_EXPORT TCollection_AsciiString Label() const override;
+
+  DEFINE_STANDARD_RTTIEXT(IGESSelect_SelectFromSingleView, IFSelect_SelectDeduct)
+};
+
+#endif // _IGESSelect_SelectFromSingleView_HeaderFile

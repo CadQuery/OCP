@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 1991-02-26
+// Created by: Isabelle GRIGNON
+// Copyright (c) 1991-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,21 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ModelingData/TKGeomBase/Extrema/Extrema_EPCOfExtPC2d.hxx"// clang-format on
+#ifndef _Extrema_EPCOfExtPC2d_HeaderFile
+#define _Extrema_EPCOfExtPC2d_HeaderFile
+
+#include <Adaptor2d_Curve2d.hxx>
+#include <Extrema_Curve2dTool.hxx>
+#include <Extrema_GGenExtPC.hxx>
+#include <Extrema_PCFOfEPCOfExtPC2d.hxx>
+#include <Extrema_POnCurv2d.hxx>
+#include <gp_Pnt2d.hxx>
+
+//! Type alias for 2D curve extremum point search using Extrema_Curve2dTool.
+using Extrema_EPCOfExtPC2d = Extrema_GGenExtPC<Adaptor2d_Curve2d,
+                                               Extrema_Curve2dTool,
+                                               Extrema_POnCurv2d,
+                                               gp_Pnt2d,
+                                               Extrema_PCFOfEPCOfExtPC2d>;
+
+#endif // _Extrema_EPCOfExtPC2d_HeaderFile

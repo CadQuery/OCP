@@ -1,4 +1,4 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Copyright (c) 2015 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +11,51 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ApplicationFramework/TKStd/StdPersistent/StdPersistent_TopoDS.hxx"// clang-format on
+#ifndef _StdPersistent_TopoDS_HeaderFile
+#define _StdPersistent_TopoDS_HeaderFile
+
+#include <StdObjMgt_SharedObject.hxx>
+#include <StdObjMgt_ReadData.hxx>
+#include <StdObjMgt_WriteData.hxx>
+
+#include <TopoDS_TShape.hxx>
+
+class StdPersistent_TopoDS : protected StdObjMgt_SharedObject
+{
+protected:
+  class pTShape : public Standard_Transient
+  {
+    friend class ShapePersistent_TopoDS;
+
+    DEFINE_STANDARD_RTTI_INLINE(pTShape, Standard_Transient)
+
+  public:
+    pTShape()
+        : myFlags(0)
+    {
+    }
+
+    inline void Read(StdObjMgt_ReadData& theReadData) { theReadData >> myShapes >> myFlags; }
+
+    inline void Write(StdObjMgt_WriteData& theWriteData) const
+    {
+      theWriteData << myShapes << myFlags;
+    }
+
+    inline void PChildren(StdObjMgt_Persistent::SequenceOfPersistent& theChildren) const
+    {
+      theChildren.Append(myShapes);
+    }
+
+    inline const char* PName() const { return "PTopoDS_TShape"; }
+
+  protected:
+    occ::handle<StdObjMgt_Persistent> myShapes;
+    int                               myFlags;
+  };
+
+public:
+  typedef IgnoreData<StdObjMgt_Persistent, pTShape, TopoDS_TShape> TShape;
+};
+
+#endif

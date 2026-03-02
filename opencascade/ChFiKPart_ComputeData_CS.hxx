@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 1994-06-28
+// Created by: Laurent BOURESCHE
+// Copyright (c) 1994-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,23 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ModelingAlgorithms/TKFillet/ChFiKPart/ChFiKPart_ComputeData_CS.hxx"// clang-format on
+#ifndef ChFiKPart_ComputeData_CS_HeaderFile
+#define ChFiKPart_ComputeData_CS_HeaderFile
+
+#include <Adaptor3d_Surface.hxx>
+#include <gp_Cylinder.hxx>
+#include <gp_Circ.hxx>
+
+void ChFiKPart_CornerSpine(const occ::handle<Adaptor3d_Surface>& S1,
+                           const occ::handle<Adaptor3d_Surface>& S2,
+                           const gp_Pnt2d&                       P1S1,
+                           const gp_Pnt2d&                       P2S1,
+                           const gp_Pnt2d&                       P1S2,
+                           const gp_Pnt2d&                       P2S2,
+                           const double                          R,
+                           gp_Cylinder&                          cyl,
+                           gp_Circ&                              circ,
+                           double&                               First,
+                           double&                               Last);
+
+#endif

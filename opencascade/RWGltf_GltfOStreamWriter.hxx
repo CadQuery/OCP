@@ -1,4 +1,4 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Copyright (c) 2019 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +11,24 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/DataExchange/TKDEGLTF/RWGltf/RWGltf_GltfOStreamWriter.hxx"// clang-format on
+#ifndef _RWGltf_GltfOStreamWriter_HeaderFile
+#define _RWGltf_GltfOStreamWriter_HeaderFile
+
+// disable warnings, occurs in rapidjson
+#include <Standard_WarningsDisable.hxx>
+#include <rapidjson/prettywriter.h>
+#include <rapidjson/ostreamwrapper.h>
+#include <Standard_WarningsRestore.hxx>
+
+//! rapidjson::Writer wrapper for forward declaration.
+class RWGltf_GltfOStreamWriter : public rapidjson::Writer<rapidjson::OStreamWrapper>
+{
+public:
+  //! Main constructor.
+  RWGltf_GltfOStreamWriter(rapidjson::OStreamWrapper& theOStream)
+      : rapidjson::Writer<rapidjson::OStreamWrapper>(theOStream)
+  {
+  }
+};
+
+#endif // _RWGltf_GltfOStreamWriter_HeaderFile

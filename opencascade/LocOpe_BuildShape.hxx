@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 1996-09-16
+// Created by: Jacques GOUSSARD
+// Copyright (c) 1996-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,36 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ModelingAlgorithms/TKFeat/LocOpe/LocOpe_BuildShape.hxx"// clang-format on
+#ifndef _LocOpe_BuildShape_HeaderFile
+#define _LocOpe_BuildShape_HeaderFile
+
+#include <Standard.hxx>
+#include <Standard_DefineAlloc.hxx>
+
+#include <TopoDS_Shape.hxx>
+#include <NCollection_List.hxx>
+
+class LocOpe_BuildShape
+{
+public:
+  DEFINE_STANDARD_ALLOC
+
+  LocOpe_BuildShape();
+
+  //! Builds shape(s) from the list <L>. Uses only the
+  //! faces of <L>.
+  LocOpe_BuildShape(const NCollection_List<TopoDS_Shape>& L);
+
+  //! Builds shape(s) from the list <L>. Uses only the
+  //! faces of <L>.
+  Standard_EXPORT void Perform(const NCollection_List<TopoDS_Shape>& L);
+
+  const TopoDS_Shape& Shape() const;
+
+private:
+  TopoDS_Shape myRes;
+};
+
+#include <LocOpe_BuildShape.lxx>
+
+#endif // _LocOpe_BuildShape_HeaderFile

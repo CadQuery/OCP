@@ -1,4 +1,6 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 2002-11-20
+// Created by: Vladimir ANIKIN
+// Copyright (c) 2002-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +13,57 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ApplicationFramework/TKLCAF/TDocStd/TDocStd_MultiTransactionManager.lxx"// clang-format on
+//=================================================================================================
+
+inline int TDocStd_MultiTransactionManager::GetUndoLimit() const
+{
+  return myUndoLimit;
+}
+
+//=================================================================================================
+
+inline const NCollection_Sequence<occ::handle<TDocStd_ApplicationDelta>>&
+  TDocStd_MultiTransactionManager::GetAvailableUndos() const
+{
+  return myUndos;
+}
+
+//=================================================================================================
+
+inline const NCollection_Sequence<occ::handle<TDocStd_ApplicationDelta>>&
+  TDocStd_MultiTransactionManager::GetAvailableRedos() const
+{
+  return myRedos;
+}
+
+//=================================================================================================
+
+inline const NCollection_Sequence<occ::handle<TDocStd_Document>>& TDocStd_MultiTransactionManager::
+  Documents() const
+{
+  return myDocuments;
+}
+
+//=================================================================================================
+
+inline bool TDocStd_MultiTransactionManager::IsNestedTransactionMode() const
+{
+  return myIsNestedTransactionMode;
+}
+
+//=================================================================================================
+
+inline bool TDocStd_MultiTransactionManager::HasOpenCommand() const
+{
+  return myOpenTransaction;
+}
+
+//=======================================================================
+// function : ModificationMode
+// purpose  : returns True if changes allowed only inside transactions
+//=======================================================================
+
+inline bool TDocStd_MultiTransactionManager::ModificationMode() const
+{
+  return myOnlyTransactionModification;
+}

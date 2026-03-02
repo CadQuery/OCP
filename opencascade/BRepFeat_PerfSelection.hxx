@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 1995-06-13
+// Created by: Jacques GOUSSARD
+// Copyright (c) 1995-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,26 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ModelingAlgorithms/TKFeat/BRepFeat/BRepFeat_PerfSelection.hxx"// clang-format on
+#ifndef _BRepFeat_PerfSelection_HeaderFile
+#define _BRepFeat_PerfSelection_HeaderFile
+
+//! To declare the type of selection semantics for local operation Perform methods
+//! -   NoSelection
+//! -   SelectionFU - selection of a face up to which a
+//! local operation will be performed
+//! -   SelectionU - selection of a point up to which a
+//! local operation will be performed
+//! -   SelectionSh - selection of a shape on which a
+//! local operation will be performed
+//! -   SelectionShU - selection of a shape up to which a
+//! local operation will be performed.
+enum BRepFeat_PerfSelection
+{
+  BRepFeat_NoSelection,
+  BRepFeat_SelectionFU,
+  BRepFeat_SelectionU,
+  BRepFeat_SelectionSh,
+  BRepFeat_SelectionShU
+};
+
+#endif // _BRepFeat_PerfSelection_HeaderFile

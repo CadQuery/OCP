@@ -1,4 +1,6 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 2015-08-06
+// Created by: Ilya Novikov
+// Copyright (c) 2004-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +13,15 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/DataExchange/TKXCAF/XCAFDimTolObjects/XCAFDimTolObjects_GeomToleranceMatReqModif.hxx"// clang-format on
+#ifndef _XCAFDimTolObjects_GeomToleranceMatReqModif_HeaderFile
+#define _XCAFDimTolObjects_GeomToleranceMatReqModif_HeaderFile
+
+//! Defines types of material requirement
+enum XCAFDimTolObjects_GeomToleranceMatReqModif
+{
+  XCAFDimTolObjects_GeomToleranceMatReqModif_None,
+  XCAFDimTolObjects_GeomToleranceMatReqModif_M,
+  XCAFDimTolObjects_GeomToleranceMatReqModif_L
+};
+
+#endif // _XCAFDimTolObjects_GeomToleranceMatReqModif_HeaderFile

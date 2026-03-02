@@ -1,4 +1,6 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 2003-02-10
+// Created by: Sergey KUUL
+// Copyright (c) 2003-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +13,37 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/DataExchange/TKDESTEP/StepBasic/StepBasic_ConversionBasedUnitAndMassUnit.hxx"// clang-format on
+#ifndef _StepBasic_ConversionBasedUnitAndMassUnit_HeaderFile
+#define _StepBasic_ConversionBasedUnitAndMassUnit_HeaderFile
+
+#include <Standard.hxx>
+#include <Standard_Type.hxx>
+
+#include <StepBasic_ConversionBasedUnit.hxx>
+class StepBasic_MassUnit;
+class StepBasic_DimensionalExponents;
+class TCollection_HAsciiString;
+class StepBasic_MeasureWithUnit;
+
+class StepBasic_ConversionBasedUnitAndMassUnit : public StepBasic_ConversionBasedUnit
+{
+
+public:
+  //! Returns a ConversionBasedUnitAndLengthUnit
+  Standard_EXPORT StepBasic_ConversionBasedUnitAndMassUnit();
+
+  Standard_EXPORT void Init(const occ::handle<StepBasic_DimensionalExponents>& aDimensions,
+                            const occ::handle<TCollection_HAsciiString>&       aName,
+                            const occ::handle<Standard_Transient>&             aConversionFactor);
+
+  Standard_EXPORT void SetMassUnit(const occ::handle<StepBasic_MassUnit>& aMassUnit);
+
+  Standard_EXPORT occ::handle<StepBasic_MassUnit> MassUnit() const;
+
+  DEFINE_STANDARD_RTTIEXT(StepBasic_ConversionBasedUnitAndMassUnit, StepBasic_ConversionBasedUnit)
+
+private:
+  occ::handle<StepBasic_MassUnit> massUnit;
+};
+
+#endif // _StepBasic_ConversionBasedUnitAndMassUnit_HeaderFile

@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 1995-12-21
+// Created by: Jean Yves LEBEY
+// Copyright (c) 1995-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,40 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ModelingAlgorithms/TKBool/TopOpeBRepBuild/TopOpeBRepBuild_SolidAreaBuilder.hxx"// clang-format on
+#ifndef _TopOpeBRepBuild_SolidAreaBuilder_HeaderFile
+#define _TopOpeBRepBuild_SolidAreaBuilder_HeaderFile
+
+#include <Standard.hxx>
+#include <Standard_DefineAlloc.hxx>
+
+#include <TopOpeBRepBuild_Area3dBuilder.hxx>
+class TopOpeBRepBuild_LoopSet;
+class TopOpeBRepBuild_LoopClassifier;
+
+//! The SolidAreaBuilder algorithm is used to construct Solids from a LoopSet,
+//! where the Loop is the composite topological object of the boundary,
+//! here wire or block of edges.
+//! The LoopSet gives an iteration on Loops.
+//! For each Loop it indicates if it is on the boundary (wire) or if it
+//! results from an interference (block of edges).
+//! The result of the SolidAreaBuilder is an iteration on areas.
+//! An area is described by a set of Loops.
+class TopOpeBRepBuild_SolidAreaBuilder : public TopOpeBRepBuild_Area3dBuilder
+{
+public:
+  DEFINE_STANDARD_ALLOC
+
+  Standard_EXPORT TopOpeBRepBuild_SolidAreaBuilder();
+
+  //! Creates a SolidAreaBuilder to build Solids on
+  //! the (shells,blocks of face) of <LS>, using the classifier <LC>.
+  Standard_EXPORT TopOpeBRepBuild_SolidAreaBuilder(TopOpeBRepBuild_LoopSet&        LS,
+                                                   TopOpeBRepBuild_LoopClassifier& LC,
+                                                   const bool ForceClass = false);
+
+  Standard_EXPORT void InitSolidAreaBuilder(TopOpeBRepBuild_LoopSet&        LS,
+                                            TopOpeBRepBuild_LoopClassifier& LC,
+                                            const bool                      ForceClass = false);
+};
+
+#endif // _TopOpeBRepBuild_SolidAreaBuilder_HeaderFile

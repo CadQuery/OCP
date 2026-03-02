@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 1997-03-28
+// Created by: Christian CAILLET
+// Copyright (c) 1997-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,29 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/DataExchange/TKDESTEP/StepBasic/StepBasic_SizeMember.hxx"// clang-format on
+#ifndef _StepBasic_SizeMember_HeaderFile
+#define _StepBasic_SizeMember_HeaderFile
+
+#include <Standard.hxx>
+#include <Standard_Type.hxx>
+
+#include <StepData_SelectReal.hxx>
+
+//! For immediate members of SizeSelect, i.e. :
+//! ParameterValue (a Real)
+class StepBasic_SizeMember : public StepData_SelectReal
+{
+
+public:
+  Standard_EXPORT StepBasic_SizeMember();
+
+  Standard_EXPORT bool HasName() const override;
+
+  Standard_EXPORT const char* Name() const override;
+
+  Standard_EXPORT bool SetName(const char* name) override;
+
+  DEFINE_STANDARD_RTTIEXT(StepBasic_SizeMember, StepData_SelectReal)
+};
+
+#endif // _StepBasic_SizeMember_HeaderFile

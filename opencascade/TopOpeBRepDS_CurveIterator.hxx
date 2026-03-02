@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 1993-06-17
+// Created by: Jean Yves LEBEY
+// Copyright (c) 1993-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,44 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ModelingAlgorithms/TKBool/TopOpeBRepDS/TopOpeBRepDS_CurveIterator.hxx"// clang-format on
+#ifndef _TopOpeBRepDS_CurveIterator_HeaderFile
+#define _TopOpeBRepDS_CurveIterator_HeaderFile
+
+#include <Standard.hxx>
+#include <Standard_DefineAlloc.hxx>
+#include <Standard_Handle.hxx>
+
+#include <TopOpeBRepDS_InterferenceIterator.hxx>
+#include <TopOpeBRepDS_Interference.hxx>
+#include <NCollection_List.hxx>
+#include <Standard_Integer.hxx>
+#include <TopAbs_Orientation.hxx>
+#include <TopAbs_State.hxx>
+class TopOpeBRepDS_Interference;
+class Geom2d_Curve;
+
+class TopOpeBRepDS_CurveIterator : public TopOpeBRepDS_InterferenceIterator
+{
+public:
+  DEFINE_STANDARD_ALLOC
+
+  //! Creates an iterator on the curves on surface
+  //! described by the interferences in <L>.
+  Standard_EXPORT TopOpeBRepDS_CurveIterator(
+    const NCollection_List<occ::handle<TopOpeBRepDS_Interference>>& L);
+
+  //! Returns True if the Interference <I> has a
+  //! GeometryType() TopOpeBRepDS_CURVE
+  //! returns False else.
+  Standard_EXPORT bool MatchInterference(
+    const occ::handle<TopOpeBRepDS_Interference>& I) const override;
+
+  //! Index of the curve in the data structure.
+  Standard_EXPORT int Current() const;
+
+  Standard_EXPORT TopAbs_Orientation Orientation(const TopAbs_State S) const;
+
+  Standard_EXPORT const occ::handle<Geom2d_Curve>& PCurve() const;
+};
+
+#endif // _TopOpeBRepDS_CurveIterator_HeaderFile

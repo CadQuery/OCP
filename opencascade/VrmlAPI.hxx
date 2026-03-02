@@ -1,4 +1,6 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 2000-05-30
+// Created by: Sergey MOZOKHIN
+// Copyright (c) 2000-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +13,28 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/DataExchange/TKDEVRML/VrmlAPI/VrmlAPI.hxx"// clang-format on
+#ifndef _VrmlAPI_HeaderFile
+#define _VrmlAPI_HeaderFile
+
+#include <Standard.hxx>
+#include <Standard_DefineAlloc.hxx>
+#include <Standard_Handle.hxx>
+
+#include <Standard_CString.hxx>
+class TopoDS_Shape;
+
+//! API for writing to VRML 1.0
+class VrmlAPI
+{
+public:
+  DEFINE_STANDARD_ALLOC
+
+  //! With help of this class user can change parameters of writing.
+  //! Converts the shape aShape to VRML format of the passed version and writes it
+  //! to the file identified by aFileName using default parameters.
+  Standard_EXPORT static bool Write(const TopoDS_Shape& aShape,
+                                    const char*         aFileName,
+                                    const int           aVersion = 2);
+};
+
+#endif // _VrmlAPI_HeaderFile

@@ -1,4 +1,6 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 2012-04-10
+// Created by: Kirill GAVRILOV
+// Copyright (c) 2012-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +13,15 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/Visualization/TKOpenGl/OpenGl/OpenGl_ArbTBO.hxx"// clang-format on
+#ifndef OpenGl_ArbTBO_HeaderFile
+#define OpenGl_ArbTBO_HeaderFile
+
+#include <OpenGl_GlFunctions.hxx>
+
+//! TBO is available on OpenGL 3.0+ and OpenGL ES 3.2+ hardware
+struct OpenGl_ArbTBO : protected OpenGl_GlFunctions
+{
+  using OpenGl_GlFunctions::glTexBuffer;
+};
+
+#endif // _OpenGl_ArbTBO_H__

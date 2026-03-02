@@ -1,4 +1,6 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 2016-02-19
+// Created by: Kirill Gavrilov
+// Copyright (c) 2016 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +13,36 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/Visualization/TKService/Graphic3d/Graphic3d_ShaderAttribute.hxx"// clang-format on
+#ifndef _Graphic3d_ShaderAttribute_HeaderFile
+#define _Graphic3d_ShaderAttribute_HeaderFile
+
+#include <Standard_Transient.hxx>
+#include <NCollection_DefineAlloc.hxx>
+#include <TCollection_AsciiString.hxx>
+
+//! Describes custom vertex shader attribute.
+class Graphic3d_ShaderAttribute : public Standard_Transient
+{
+public:
+  //! Creates new attribute.
+  Standard_EXPORT Graphic3d_ShaderAttribute(const TCollection_AsciiString& theName,
+                                            const int                      theLocation);
+
+  //! Destructor.
+  Standard_EXPORT ~Graphic3d_ShaderAttribute() override;
+
+  //! Returns name of shader variable.
+  const TCollection_AsciiString& Name() const { return myName; }
+
+  //! Returns attribute location to be bound on GLSL program linkage stage.
+  int Location() const { return myLocation; }
+
+protected:
+  TCollection_AsciiString myName;     //!< attribute name
+  int                     myLocation; //!< attribute location
+
+public:
+  DEFINE_STANDARD_RTTIEXT(Graphic3d_ShaderAttribute, Standard_Transient)
+};
+
+#endif // _Graphic3d_ShaderAttribute_HeaderFile

@@ -1,4 +1,5 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Copyright (c) 1997-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +12,45 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/FoundationClasses/TKMath/math/math_FunctionRoots.lxx"// clang-format on
+#include <StdFail_NotDone.hxx>
+#include <NCollection_Sequence.hxx>
+#include <Standard_Integer.hxx>
+
+inline bool math_FunctionRoots::IsDone() const
+{
+  return Done;
+}
+
+inline Standard_OStream& operator<<(Standard_OStream& o, const math_FunctionRoots& F)
+{
+  F.Dump(o);
+  return o;
+}
+
+inline bool math_FunctionRoots::IsAllNull() const
+{
+
+  StdFail_NotDone_Raise_if(!Done, " ");
+  return AllNull;
+}
+
+inline int math_FunctionRoots::NbSolutions() const
+{
+
+  StdFail_NotDone_Raise_if(!Done, " ");
+  return Sol.Length();
+}
+
+inline double math_FunctionRoots::Value(const int Nieme) const
+{
+
+  StdFail_NotDone_Raise_if(!Done, " ");
+  return Sol.Value(Nieme);
+}
+
+inline int math_FunctionRoots::StateNumber(const int Nieme) const
+{
+
+  StdFail_NotDone_Raise_if(!Done, " ");
+  return NbStateSol.Value(Nieme);
+}

@@ -1,4 +1,6 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 2002-12-12
+// Created by: data exchange team
+// Copyright (c) 2002-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +13,55 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/DataExchange/TKDESTEP/StepRepr/StepRepr_RepresentedDefinition.hxx"// clang-format on
+#ifndef _StepRepr_RepresentedDefinition_HeaderFile
+#define _StepRepr_RepresentedDefinition_HeaderFile
+
+#include <Standard.hxx>
+#include <Standard_DefineAlloc.hxx>
+#include <Standard_Handle.hxx>
+
+#include <StepData_SelectType.hxx>
+#include <Standard_Integer.hxx>
+class Standard_Transient;
+class StepBasic_GeneralProperty;
+class StepRepr_PropertyDefinition;
+class StepRepr_PropertyDefinitionRelationship;
+class StepRepr_ShapeAspect;
+class StepRepr_ShapeAspectRelationship;
+
+//! Representation of STEP SELECT type RepresentedDefinition
+class StepRepr_RepresentedDefinition : public StepData_SelectType
+{
+public:
+  DEFINE_STANDARD_ALLOC
+
+  //! Empty constructor
+  Standard_EXPORT StepRepr_RepresentedDefinition();
+
+  //! Recognizes a kind of RepresentedDefinition select type
+  //! 1 -> GeneralProperty from StepBasic
+  //! 2 -> PropertyDefinition from StepRepr
+  //! 3 -> PropertyDefinitionRelationship from StepRepr
+  //! 4 -> ShapeAspect from StepRepr
+  //! 5 -> ShapeAspectRelationship from StepRepr
+  //! 0 else
+  Standard_EXPORT int CaseNum(const occ::handle<Standard_Transient>& ent) const override;
+
+  //! Returns Value as GeneralProperty (or Null if another type)
+  Standard_EXPORT occ::handle<StepBasic_GeneralProperty> GeneralProperty() const;
+
+  //! Returns Value as PropertyDefinition (or Null if another type)
+  Standard_EXPORT occ::handle<StepRepr_PropertyDefinition> PropertyDefinition() const;
+
+  //! Returns Value as PropertyDefinitionRelationship (or Null if another type)
+  Standard_EXPORT occ::handle<StepRepr_PropertyDefinitionRelationship>
+                  PropertyDefinitionRelationship() const;
+
+  //! Returns Value as ShapeAspect (or Null if another type)
+  Standard_EXPORT occ::handle<StepRepr_ShapeAspect> ShapeAspect() const;
+
+  //! Returns Value as ShapeAspectRelationship (or Null if another type)
+  Standard_EXPORT occ::handle<StepRepr_ShapeAspectRelationship> ShapeAspectRelationship() const;
+};
+
+#endif // _StepRepr_RepresentedDefinition_HeaderFile

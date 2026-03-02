@@ -1,4 +1,6 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 2005-04-18
+// Created by: Eugeny NAPALKOV <eugeny.napalkov@opencascade.com>
+// Copyright (c) 2005-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +13,30 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/DataExchange/TKBinXCAF/BinXCAFDrivers/BinXCAFDrivers.hxx"// clang-format on
+#ifndef _BinXCAFDrivers_HeaderFile
+#define _BinXCAFDrivers_HeaderFile
+
+#include <Standard_Handle.hxx>
+
+class Standard_Transient;
+class Standard_GUID;
+class BinMDF_ADriverTable;
+class Message_Messenger;
+class TDocStd_Application;
+
+class BinXCAFDrivers
+{
+public:
+  Standard_EXPORT static const occ::handle<Standard_Transient>& Factory(
+    const Standard_GUID& theGUID);
+
+  //! Defines format "BinXCAF" and registers its read and write drivers
+  //! in the specified application
+  Standard_EXPORT static void DefineFormat(const occ::handle<TDocStd_Application>& theApp);
+
+  //! Creates the table of drivers of types supported
+  Standard_EXPORT static occ::handle<BinMDF_ADriverTable> AttributeDrivers(
+    const occ::handle<Message_Messenger>& MsgDrv);
+};
+
+#endif // _BinXCAFDrivers_HeaderFile

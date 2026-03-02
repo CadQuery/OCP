@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 1999-03-24
+// Created by: data exchange team
+// Copyright (c) 1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,44 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/DataExchange/TKDESTEP/STEPSelections/STEPSelections_AssemblyComponent.hxx"// clang-format on
+#ifndef _STEPSelections_AssemblyComponent_HeaderFile
+#define _STEPSelections_AssemblyComponent_HeaderFile
+
+#include <Standard.hxx>
+#include <Standard_Type.hxx>
+
+#include <STEPSelections_AssemblyLink.hxx>
+#include <NCollection_Sequence.hxx>
+#include <NCollection_HSequence.hxx>
+#include <Standard_Transient.hxx>
+class StepShape_ShapeDefinitionRepresentation;
+
+class STEPSelections_AssemblyComponent : public Standard_Transient
+{
+
+public:
+  Standard_EXPORT STEPSelections_AssemblyComponent();
+
+  Standard_EXPORT STEPSelections_AssemblyComponent(
+    const occ::handle<StepShape_ShapeDefinitionRepresentation>&                         sdr,
+    const occ::handle<NCollection_HSequence<occ::handle<STEPSelections_AssemblyLink>>>& list);
+
+  occ::handle<StepShape_ShapeDefinitionRepresentation> GetSDR() const;
+
+  occ::handle<NCollection_HSequence<occ::handle<STEPSelections_AssemblyLink>>> GetList() const;
+
+  void SetSDR(const occ::handle<StepShape_ShapeDefinitionRepresentation>& sdr);
+
+  void SetList(
+    const occ::handle<NCollection_HSequence<occ::handle<STEPSelections_AssemblyLink>>>& list);
+
+  DEFINE_STANDARD_RTTIEXT(STEPSelections_AssemblyComponent, Standard_Transient)
+
+private:
+  occ::handle<StepShape_ShapeDefinitionRepresentation>                         mySDR;
+  occ::handle<NCollection_HSequence<occ::handle<STEPSelections_AssemblyLink>>> myList;
+};
+
+#include <STEPSelections_AssemblyComponent.lxx>
+
+#endif // _STEPSelections_AssemblyComponent_HeaderFile

@@ -1,4 +1,6 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 2012-08-06
+// Created by: jgv@ROLEX
+// Copyright (c) 2012-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +13,45 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ModelingAlgorithms/TKOffset/BRepOffsetAPI/BRepOffsetAPI_MiddlePath.hxx"// clang-format on
+#ifndef _BRepOffsetAPI_MiddlePath_HeaderFile
+#define _BRepOffsetAPI_MiddlePath_HeaderFile
+
+#include <Standard.hxx>
+#include <Standard_DefineAlloc.hxx>
+
+#include <TopoDS_Shape.hxx>
+#include <TopoDS_Wire.hxx>
+#include <TopTools_ShapeMapHasher.hxx>
+#include <NCollection_Map.hxx>
+#include <NCollection_Sequence.hxx>
+#include <BRepBuilderAPI_MakeShape.hxx>
+
+//! Describes functions to build a middle path of a
+//! pipe-like shape
+class BRepOffsetAPI_MiddlePath : public BRepBuilderAPI_MakeShape
+{
+public:
+  DEFINE_STANDARD_ALLOC
+
+  //! General constructor.
+  //! StartShape and EndShape may be
+  //! a wire or a face
+  Standard_EXPORT BRepOffsetAPI_MiddlePath(const TopoDS_Shape& aShape,
+                                           const TopoDS_Shape& StartShape,
+                                           const TopoDS_Shape& EndShape);
+
+  Standard_EXPORT void Build(
+    const Message_ProgressRange& theRange = Message_ProgressRange()) override;
+
+private:
+  TopoDS_Shape                                             myInitialShape;
+  TopoDS_Wire                                              myStartWire;
+  TopoDS_Wire                                              myEndWire;
+  bool                                                     myClosedSection;
+  bool                                                     myClosedRing;
+  NCollection_Map<TopoDS_Shape, TopTools_ShapeMapHasher>   myStartWireEdges;
+  NCollection_Map<TopoDS_Shape, TopTools_ShapeMapHasher>   myEndWireEdges;
+  NCollection_Sequence<NCollection_Sequence<TopoDS_Shape>> myPaths;
+};
+
+#endif // _BRepOffsetAPI_MiddlePath_HeaderFile

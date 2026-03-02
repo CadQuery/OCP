@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 1996-02-15
+// Created by: Jacques GOUSSARD
+// Copyright (c) 1996-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,43 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ModelingAlgorithms/TKFeat/LocOpe/LocOpe_FindEdgesInFace.lxx"// clang-format on
+#include <TopoDS.hxx>
+
+//=================================================================================================
+
+inline LocOpe_FindEdgesInFace::LocOpe_FindEdgesInFace() = default;
+
+//=================================================================================================
+
+inline LocOpe_FindEdgesInFace::LocOpe_FindEdgesInFace(const TopoDS_Shape& S, const TopoDS_Face& F)
+{
+  Set(S, F);
+}
+
+//=================================================================================================
+
+inline void LocOpe_FindEdgesInFace::Init()
+{
+  myIt.Initialize(myList);
+}
+
+//=================================================================================================
+
+inline bool LocOpe_FindEdgesInFace::More() const
+{
+  return myIt.More();
+}
+
+//=================================================================================================
+
+inline const TopoDS_Edge& LocOpe_FindEdgesInFace::Edge() const
+{
+  return TopoDS::Edge(myIt.Value());
+}
+
+//=================================================================================================
+
+inline void LocOpe_FindEdgesInFace::Next()
+{
+  myIt.Next();
+}

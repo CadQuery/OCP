@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 1997-09-03
+// Created by: Christian CAILLET
+// Copyright (c) 1997-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,30 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/DataExchange/TKXSBase/MoniTool/MoniTool_IntVal.hxx"// clang-format on
+#ifndef _MoniTool_IntVal_HeaderFile
+#define _MoniTool_IntVal_HeaderFile
+
+#include <Standard.hxx>
+#include <Standard_Type.hxx>
+
+#include <Standard_Integer.hxx>
+#include <Standard_Transient.hxx>
+
+//! An Integer through a Handle (i.e. managed as TShared)
+class MoniTool_IntVal : public Standard_Transient
+{
+
+public:
+  Standard_EXPORT MoniTool_IntVal(const int val = 0);
+
+  Standard_EXPORT int Value() const;
+
+  Standard_EXPORT int& CValue();
+
+  DEFINE_STANDARD_RTTIEXT(MoniTool_IntVal, Standard_Transient)
+
+private:
+  int theval;
+};
+
+#endif // _MoniTool_IntVal_HeaderFile

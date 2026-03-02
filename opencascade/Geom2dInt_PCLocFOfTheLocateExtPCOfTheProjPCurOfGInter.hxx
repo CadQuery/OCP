@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 1992-06-04
+// Created by: Jacques GOUSSARD
+// Copyright (c) 1992-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,24 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ModelingAlgorithms/TKGeomAlgo/Geom2dInt/Geom2dInt_PCLocFOfTheLocateExtPCOfTheProjPCurOfGInter.hxx"// clang-format on
+#ifndef _Geom2dInt_PCLocFOfTheLocateExtPCOfTheProjPCurOfGInter_HeaderFile
+#define _Geom2dInt_PCLocFOfTheLocateExtPCOfTheProjPCurOfGInter_HeaderFile
+
+#include <Adaptor2d_Curve2d.hxx>
+#include <Extrema_GFuncExtPC.hxx>
+#include <Extrema_POnCurv2d.hxx>
+#include <NCollection_Sequence.hxx>
+#include <Geom2dInt_Geom2dCurveTool.hxx>
+#include <gp_Pnt2d.hxx>
+#include <gp_Vec2d.hxx>
+
+//! Type alias for 2D curve extremum function using Geom2dInt_Geom2dCurveTool.
+using Geom2dInt_PCLocFOfTheLocateExtPCOfTheProjPCurOfGInter =
+  Extrema_GFuncExtPC<Adaptor2d_Curve2d,
+                     Geom2dInt_Geom2dCurveTool,
+                     Extrema_POnCurv2d,
+                     gp_Pnt2d,
+                     gp_Vec2d,
+                     NCollection_Sequence<Extrema_POnCurv2d>>;
+
+#endif // _Geom2dInt_PCLocFOfTheLocateExtPCOfTheProjPCurOfGInter_HeaderFile

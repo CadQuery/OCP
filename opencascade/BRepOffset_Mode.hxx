@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 1995-10-12
+// Created by: Bruno DUMORTIER
+// Copyright (c) 1995-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,21 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ModelingAlgorithms/TKOffset/BRepOffset/BRepOffset_Mode.hxx"// clang-format on
+#ifndef _BRepOffset_Mode_HeaderFile
+#define _BRepOffset_Mode_HeaderFile
+
+//! Lists the offset modes. These are the following:
+//! - BRepOffset_Skin which describes the offset along
+//! the surface of a solid, used to obtain a manifold topological space,
+//! - BRepOffset_Pipe which describes the offset of a
+//! curve, used to obtain a pre-surface,
+//! - BRepOffset_RectoVerso which describes the offset
+//! of a given surface shell along both sides of the surface.
+enum BRepOffset_Mode
+{
+  BRepOffset_Skin,
+  BRepOffset_Pipe,
+  BRepOffset_RectoVerso
+};
+
+#endif // _BRepOffset_Mode_HeaderFile

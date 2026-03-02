@@ -1,4 +1,6 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 2002-12-12
+// Created by: data exchange team
+// Copyright (c) 2002-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +13,23 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/DataExchange/TKDESTEP/StepShape/StepShape_PointRepresentation.hxx"// clang-format on
+#ifndef _StepShape_PointRepresentation_HeaderFile
+#define _StepShape_PointRepresentation_HeaderFile
+
+#include <Standard.hxx>
+#include <Standard_Type.hxx>
+
+#include <StepShape_ShapeRepresentation.hxx>
+
+//! Representation of STEP entity PointRepresentation
+class StepShape_PointRepresentation : public StepShape_ShapeRepresentation
+{
+
+public:
+  //! Empty constructor
+  Standard_EXPORT StepShape_PointRepresentation();
+
+  DEFINE_STANDARD_RTTIEXT(StepShape_PointRepresentation, StepShape_ShapeRepresentation)
+};
+
+#endif // _StepShape_PointRepresentation_HeaderFile

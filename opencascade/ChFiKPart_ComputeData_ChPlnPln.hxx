@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 1995-04-28
+// Created by: Stagiaire Flore Lautheanne
+// Copyright (c) 1995-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,20 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ModelingAlgorithms/TKFillet/ChFiKPart/ChFiKPart_ComputeData_ChPlnPln.hxx"// clang-format on
+#ifndef _ChFiKPart_ComputeData_ChPlnPln_HeaderFile
+#define _ChFiKPart_ComputeData_ChPlnPln_HeaderFile
+
+bool ChFiKPart_MakeChamfer(TopOpeBRepDS_DataStructure&         DStr,
+                           const occ::handle<ChFiDS_SurfData>& Data,
+                           const ChFiDS_ChamfMode              theMode,
+                           const gp_Pln&                       Pl1,
+                           const gp_Pln&                       Pl2,
+                           const TopAbs_Orientation            Or1,
+                           const TopAbs_Orientation            Or2,
+                           const double                        Dis1,
+                           const double                        Dis2,
+                           const gp_Lin&                       Spine,
+                           const double                        First,
+                           const TopAbs_Orientation            Of1);
+
+#endif

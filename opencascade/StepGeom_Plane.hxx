@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 1995-12-01
+// Created by: EXPRESS->CDL V0.2 Translator
+// Copyright (c) 1995-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,22 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/DataExchange/TKDESTEP/StepGeom/StepGeom_Plane.hxx"// clang-format on
+#ifndef _StepGeom_Plane_HeaderFile
+#define _StepGeom_Plane_HeaderFile
+
+#include <Standard.hxx>
+#include <Standard_Type.hxx>
+
+#include <StepGeom_ElementarySurface.hxx>
+
+class StepGeom_Plane : public StepGeom_ElementarySurface
+{
+
+public:
+  //! Returns a Plane
+  Standard_EXPORT StepGeom_Plane();
+
+  DEFINE_STANDARD_RTTIEXT(StepGeom_Plane, StepGeom_ElementarySurface)
+};
+
+#endif // _StepGeom_Plane_HeaderFile

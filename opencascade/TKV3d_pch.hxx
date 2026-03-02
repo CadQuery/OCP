@@ -11,5 +11,12 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/Visualization/TKV3d/TKV3d_pch.hxx"// clang-format on
+#ifndef TKTKV3d_PCH_H
+#define TKTKV3d_PCH_H
+
+#include <AIS_InteractiveObject.hxx>
+#include <PrsMgr_PresentableObject.hxx>
+#include <SelectMgr_EntityOwner.hxx>
+#include <SelectMgr_SelectableObject.hxx>
+
+#endif // TKTKV3d_PCH_H

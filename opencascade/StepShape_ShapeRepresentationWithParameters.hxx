@@ -1,4 +1,6 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 2003-06-04
+// Created by: Galina KULIKOVA
+// Copyright (c) 2003-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +13,24 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/DataExchange/TKDESTEP/StepShape/StepShape_ShapeRepresentationWithParameters.hxx"// clang-format on
+#ifndef _StepShape_ShapeRepresentationWithParameters_HeaderFile
+#define _StepShape_ShapeRepresentationWithParameters_HeaderFile
+
+#include <Standard.hxx>
+#include <Standard_Type.hxx>
+
+#include <StepShape_ShapeRepresentation.hxx>
+
+//! Representation of STEP entity ShapeRepresentationWithParameters
+class StepShape_ShapeRepresentationWithParameters : public StepShape_ShapeRepresentation
+{
+
+public:
+  //! Empty constructor
+  Standard_EXPORT StepShape_ShapeRepresentationWithParameters();
+
+  DEFINE_STANDARD_RTTIEXT(StepShape_ShapeRepresentationWithParameters,
+                          StepShape_ShapeRepresentation)
+};
+
+#endif // _StepShape_ShapeRepresentationWithParameters_HeaderFile

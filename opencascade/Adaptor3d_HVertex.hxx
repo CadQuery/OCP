@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 1994-03-25
+// Created by: model
+// Copyright (c) 1994-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,40 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ModelingData/TKG3d/Adaptor3d/Adaptor3d_HVertex.hxx"// clang-format on
+#ifndef _Adaptor3d_HVertex_HeaderFile
+#define _Adaptor3d_HVertex_HeaderFile
+
+#include <Adaptor2d_Curve2d.hxx>
+#include <gp_Pnt2d.hxx>
+#include <TopAbs_Orientation.hxx>
+
+class Adaptor3d_HVertex : public Standard_Transient
+{
+
+public:
+  Standard_EXPORT Adaptor3d_HVertex();
+
+  Standard_EXPORT Adaptor3d_HVertex(const gp_Pnt2d&          P,
+                                    const TopAbs_Orientation Ori,
+                                    const double             Resolution);
+
+  Standard_EXPORT virtual gp_Pnt2d Value();
+
+  Standard_EXPORT virtual double Parameter(const occ::handle<Adaptor2d_Curve2d>& C);
+
+  //! Parametric resolution (2d).
+  Standard_EXPORT virtual double Resolution(const occ::handle<Adaptor2d_Curve2d>& C);
+
+  Standard_EXPORT virtual TopAbs_Orientation Orientation();
+
+  Standard_EXPORT virtual bool IsSame(const occ::handle<Adaptor3d_HVertex>& Other);
+
+  DEFINE_STANDARD_RTTIEXT(Adaptor3d_HVertex, Standard_Transient)
+
+private:
+  gp_Pnt2d           myPnt;
+  double             myTol;
+  TopAbs_Orientation myOri;
+};
+
+#endif // _Adaptor3d_HVertex_HeaderFile

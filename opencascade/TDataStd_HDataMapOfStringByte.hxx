@@ -1,4 +1,6 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 2007-08-17
+// Created by: Sergey ZARITCHNY
+// Copyright (c) 2007-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +13,33 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ApplicationFramework/TKLCAF/TDataStd/TDataStd_HDataMapOfStringByte.hxx"// clang-format on
+#ifndef _TDataStd_HDataMapOfStringByte_HeaderFile
+#define _TDataStd_HDataMapOfStringByte_HeaderFile
+
+#include <Standard.hxx>
+
+#include <TCollection_ExtendedString.hxx>
+#include <NCollection_DataMap.hxx>
+#include <Standard_Transient.hxx>
+#include <Standard_Integer.hxx>
+
+//! Extension of NCollection_DataMap<TCollection_ExtendedString, uint8_t> class
+//! to be manipulated by handle.
+class TDataStd_HDataMapOfStringByte : public Standard_Transient
+{
+  DEFINE_STANDARD_RTTIEXT(TDataStd_HDataMapOfStringByte, Standard_Transient)
+public:
+  Standard_EXPORT TDataStd_HDataMapOfStringByte(const int NbBuckets = 1);
+
+  Standard_EXPORT TDataStd_HDataMapOfStringByte(
+    const NCollection_DataMap<TCollection_ExtendedString, uint8_t>& theOther);
+
+  const NCollection_DataMap<TCollection_ExtendedString, uint8_t>& Map() const { return myMap; }
+
+  NCollection_DataMap<TCollection_ExtendedString, uint8_t>& ChangeMap() { return myMap; }
+
+private:
+  NCollection_DataMap<TCollection_ExtendedString, uint8_t> myMap;
+};
+
+#endif // _TDataStd_HDataMapOfStringByte_HeaderFile

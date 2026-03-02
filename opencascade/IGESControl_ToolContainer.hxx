@@ -1,4 +1,6 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 2000-02-08
+// Created by: data exchange team
+// Copyright (c) 2000-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +13,26 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/DataExchange/TKDEIGES/IGESControl/IGESControl_ToolContainer.hxx"// clang-format on
+#ifndef _IGESControl_ToolContainer_HeaderFile
+#define _IGESControl_ToolContainer_HeaderFile
+
+#include <Standard.hxx>
+#include <Standard_Type.hxx>
+
+#include <IGESToBRep_ToolContainer.hxx>
+class IGESToBRep_IGESBoundary;
+
+class IGESControl_ToolContainer : public IGESToBRep_ToolContainer
+{
+
+public:
+  //! Empty constructor
+  Standard_EXPORT IGESControl_ToolContainer();
+
+  //! Returns IGESControl_IGESBoundary
+  Standard_EXPORT occ::handle<IGESToBRep_IGESBoundary> IGESBoundary() const override;
+
+  DEFINE_STANDARD_RTTIEXT(IGESControl_ToolContainer, IGESToBRep_ToolContainer)
+};
+
+#endif // _IGESControl_ToolContainer_HeaderFile

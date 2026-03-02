@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 1991-09-17
+// Created by: Arnaud BOUZY
+// Copyright (c) 1991-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,56 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ModelingAlgorithms/TKExpress/Expr/Expr_Operators.hxx"// clang-format on
+#ifndef Expr_Operators_HeaderFile
+#define Expr_Operators_HeaderFile
+
+#include <Expr_GeneralExpression.hxx>
+#include <Expr_NumericValue.hxx>
+#include <Expr_Sum.hxx>
+#include <Expr_UnaryMinus.hxx>
+#include <Expr_Difference.hxx>
+#include <Expr_Product.hxx>
+#include <Expr_Division.hxx>
+
+Standard_EXPORT occ::handle<Expr_Sum> operator+(const occ::handle<Expr_GeneralExpression>& x,
+                                                const occ::handle<Expr_GeneralExpression>& y);
+
+Standard_EXPORT occ::handle<Expr_Sum> operator+(const double                               x,
+                                                const occ::handle<Expr_GeneralExpression>& y);
+
+Standard_EXPORT occ::handle<Expr_Sum> operator+(const occ::handle<Expr_GeneralExpression>& x,
+                                                const double                               y);
+
+Standard_EXPORT occ::handle<Expr_Difference> operator-(
+  const occ::handle<Expr_GeneralExpression>& x,
+  const occ::handle<Expr_GeneralExpression>& y);
+
+Standard_EXPORT occ::handle<Expr_Difference> operator-(
+  const double                               x,
+  const occ::handle<Expr_GeneralExpression>& y);
+
+Standard_EXPORT occ::handle<Expr_Difference> operator-(const occ::handle<Expr_GeneralExpression>& x,
+                                                       const double y);
+
+Standard_EXPORT occ::handle<Expr_UnaryMinus> operator-(
+  const occ::handle<Expr_GeneralExpression>& x);
+
+Standard_EXPORT occ::handle<Expr_Product> operator*(const occ::handle<Expr_GeneralExpression>& x,
+                                                    const occ::handle<Expr_GeneralExpression>& y);
+
+Standard_EXPORT occ::handle<Expr_Product> operator*(const double                               x,
+                                                    const occ::handle<Expr_GeneralExpression>& y);
+
+Standard_EXPORT occ::handle<Expr_Product> operator*(const occ::handle<Expr_GeneralExpression>& x,
+                                                    const double                               y);
+
+Standard_EXPORT occ::handle<Expr_Division> operator/(const occ::handle<Expr_GeneralExpression>& x,
+                                                     const occ::handle<Expr_GeneralExpression>& y);
+
+Standard_EXPORT occ::handle<Expr_Division> operator/(const double                               x,
+                                                     const occ::handle<Expr_GeneralExpression>& y);
+
+Standard_EXPORT occ::handle<Expr_Division> operator/(const occ::handle<Expr_GeneralExpression>& x,
+                                                     const double                               y);
+
+#endif

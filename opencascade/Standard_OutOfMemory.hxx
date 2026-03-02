@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 1991-09-05
+// Created by: J.P. TIRAUlt
+// Copyright (c) 1991-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,65 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/FoundationClasses/TKernel/Standard/Standard_OutOfMemory.hxx"// clang-format on
+#ifndef _Standard_OutOfMemory_HeaderFile
+#define _Standard_OutOfMemory_HeaderFile
+
+#include <Standard_Type.hxx>
+#include <Standard_ProgramError.hxx>
+
+#if !defined No_Exception && !defined No_Standard_OutOfMemory
+  #define Standard_OutOfMemory_Raise_if(CONDITION, MESSAGE)                                        \
+    if (CONDITION)                                                                                 \
+      throw Standard_OutOfMemory(MESSAGE);
+#else
+  #define Standard_OutOfMemory_Raise_if(CONDITION, MESSAGE)
+#endif
+
+//! Standard_OutOfMemory exception is defined explicitly and not by
+//! macro DEFINE_STANDARD_EXCEPTION, to avoid necessity of dynamic
+//! memory allocations during throwing and stack unwinding:
+//!
+//! - method NewInstance() returns static instance (singleton)
+//! - method Raise() raises copy of that singleton, resetting
+//!   its message string
+//! - message string is stored as field, not allocated dynamically
+//!   (storable message length is limited by buffer size)
+//!
+//! The reason is that in out-of-memory condition any memory allocation can
+//! fail, thus use of operator new for allocation of new exception instance
+//! is dangerous (can cause recursion until stack overflow, see #24836).
+
+class Standard_OutOfMemory : public Standard_ProgramError
+{
+  Standard_EXPORT void Throw() const override;
+
+public:
+  //! Constructor is kept public for backward compatibility
+  Standard_EXPORT Standard_OutOfMemory(const char* theMessage = nullptr);
+
+  //! Returns error message
+  Standard_EXPORT const char* GetMessageString() const override;
+
+  //! Sets error message
+  Standard_EXPORT void SetMessageString(const char* aMessage) override;
+
+  //! Raises exception with specified message string
+  Standard_EXPORT static void Raise(const char* theMessage = "");
+
+  //! Raises exception with specified message string
+  Standard_EXPORT static void Raise(Standard_SStream& theMessage);
+
+  //! Returns global instance of exception
+  Standard_EXPORT static occ::handle<Standard_OutOfMemory> NewInstance(const char* theMessage = "");
+
+  //! Returns global instance of exception
+  Standard_EXPORT static occ::handle<Standard_OutOfMemory> NewInstance(const char* theMessage,
+                                                                       const char* theStackTrace);
+
+  DEFINE_STANDARD_RTTIEXT(Standard_OutOfMemory, Standard_ProgramError)
+
+protected:
+  char myBuffer[1024];
+};
+
+#endif // _Standard_OutOfMemory_HeaderFile

@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 1995-12-21
+// Created by: Jean Yves LEBEY
+// Copyright (c) 1995-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,44 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ModelingAlgorithms/TKBool/TopOpeBRepBuild/TopOpeBRepBuild_Area2dBuilder.hxx"// clang-format on
+#ifndef _TopOpeBRepBuild_Area2dBuilder_HeaderFile
+#define _TopOpeBRepBuild_Area2dBuilder_HeaderFile
+
+#include <Standard.hxx>
+#include <Standard_DefineAlloc.hxx>
+#include <Standard_Handle.hxx>
+
+#include <TopOpeBRepBuild_AreaBuilder.hxx>
+#include <Standard_Boolean.hxx>
+class TopOpeBRepBuild_LoopSet;
+class TopOpeBRepBuild_LoopClassifier;
+
+//! The Area2dBuilder algorithm is used to construct Faces from a LoopSet,
+//! where the Loop is the composite topological object of the boundary,
+//! here wire or block of edges.
+//! The LoopSet gives an iteration on Loops.
+//! For each Loop it indicates if it is on the boundary (wire) or if it
+//! results from an interference (block of edges).
+//! The result of the Area2dBuilder is an iteration on areas.
+//! An area is described by a set of Loops.
+class TopOpeBRepBuild_Area2dBuilder : public TopOpeBRepBuild_AreaBuilder
+{
+public:
+  DEFINE_STANDARD_ALLOC
+
+  Standard_EXPORT TopOpeBRepBuild_Area2dBuilder();
+
+  //! Creates a Area2dBuilder to build faces on
+  //! the (wires,blocks of edge) of <LS>, using the classifier <LC>.
+  Standard_EXPORT TopOpeBRepBuild_Area2dBuilder(TopOpeBRepBuild_LoopSet&        LS,
+                                                TopOpeBRepBuild_LoopClassifier& LC,
+                                                const bool                      ForceClass = false);
+
+  //! Sets a Area1dBuilder to find the areas of
+  //! the shapes described by <LS> using the classifier <LC>.
+  Standard_EXPORT void InitAreaBuilder(TopOpeBRepBuild_LoopSet&        LS,
+                                       TopOpeBRepBuild_LoopClassifier& LC,
+                                       const bool                      ForceClass = false) override;
+};
+
+#endif // _TopOpeBRepBuild_Area2dBuilder_HeaderFile

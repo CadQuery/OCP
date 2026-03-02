@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 1998-06-30
+// Created by: Christian CAILLET
+// Copyright (c) 1998-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,33 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/DataExchange/TKDESTEP/StepBasic/StepBasic_ProductDefinitionEffectivity.hxx"// clang-format on
+#ifndef _StepBasic_ProductDefinitionEffectivity_HeaderFile
+#define _StepBasic_ProductDefinitionEffectivity_HeaderFile
+
+#include <Standard.hxx>
+#include <Standard_Type.hxx>
+
+#include <StepBasic_Effectivity.hxx>
+class StepBasic_ProductDefinitionRelationship;
+class TCollection_HAsciiString;
+
+class StepBasic_ProductDefinitionEffectivity : public StepBasic_Effectivity
+{
+
+public:
+  Standard_EXPORT StepBasic_ProductDefinitionEffectivity();
+
+  Standard_EXPORT void Init(const occ::handle<TCollection_HAsciiString>&                aId,
+                            const occ::handle<StepBasic_ProductDefinitionRelationship>& aUsage);
+
+  Standard_EXPORT occ::handle<StepBasic_ProductDefinitionRelationship> Usage() const;
+
+  Standard_EXPORT void SetUsage(const occ::handle<StepBasic_ProductDefinitionRelationship>& aUsage);
+
+  DEFINE_STANDARD_RTTIEXT(StepBasic_ProductDefinitionEffectivity, StepBasic_Effectivity)
+
+private:
+  occ::handle<StepBasic_ProductDefinitionRelationship> theUsage;
+};
+
+#endif // _StepBasic_ProductDefinitionEffectivity_HeaderFile

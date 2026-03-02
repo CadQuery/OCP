@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 1995-12-01
+// Created by: EXPRESS->CDL V0.2 Translator
+// Copyright (c) 1995-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,40 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/DataExchange/TKDESTEP/StepGeom/StepGeom_Vector.hxx"// clang-format on
+#ifndef _StepGeom_Vector_HeaderFile
+#define _StepGeom_Vector_HeaderFile
+
+#include <Standard.hxx>
+#include <Standard_Type.hxx>
+
+#include <StepGeom_GeometricRepresentationItem.hxx>
+class StepGeom_Direction;
+class TCollection_HAsciiString;
+
+class StepGeom_Vector : public StepGeom_GeometricRepresentationItem
+{
+
+public:
+  //! Returns a Vector
+  Standard_EXPORT StepGeom_Vector();
+
+  Standard_EXPORT void Init(const occ::handle<TCollection_HAsciiString>& aName,
+                            const occ::handle<StepGeom_Direction>&       aOrientation,
+                            const double                                 aMagnitude);
+
+  Standard_EXPORT void SetOrientation(const occ::handle<StepGeom_Direction>& aOrientation);
+
+  Standard_EXPORT occ::handle<StepGeom_Direction> Orientation() const;
+
+  Standard_EXPORT void SetMagnitude(const double aMagnitude);
+
+  Standard_EXPORT double Magnitude() const;
+
+  DEFINE_STANDARD_RTTIEXT(StepGeom_Vector, StepGeom_GeometricRepresentationItem)
+
+private:
+  occ::handle<StepGeom_Direction> orientation;
+  double                          magnitude;
+};
+
+#endif // _StepGeom_Vector_HeaderFile

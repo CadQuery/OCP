@@ -1,4 +1,6 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 2001-04-24
+// Created by: Christian CAILLET
+// Copyright (c) 2001-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +13,37 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/DataExchange/TKDESTEP/StepShape/StepShape_ToleranceValue.hxx"// clang-format on
+#ifndef _StepShape_ToleranceValue_HeaderFile
+#define _StepShape_ToleranceValue_HeaderFile
+
+#include <Standard.hxx>
+#include <Standard_Type.hxx>
+
+#include <Standard_Transient.hxx>
+
+//! Added for Dimensional Tolerances
+class StepShape_ToleranceValue : public Standard_Transient
+{
+
+public:
+  Standard_EXPORT StepShape_ToleranceValue();
+
+  Standard_EXPORT void Init(const occ::handle<Standard_Transient>& lower_bound,
+                            const occ::handle<Standard_Transient>& upper_bound);
+
+  Standard_EXPORT occ::handle<Standard_Transient> LowerBound() const;
+
+  Standard_EXPORT void SetLowerBound(const occ::handle<Standard_Transient>& lower_bound);
+
+  Standard_EXPORT occ::handle<Standard_Transient> UpperBound() const;
+
+  Standard_EXPORT void SetUpperBound(const occ::handle<Standard_Transient>& upper_bound);
+
+  DEFINE_STANDARD_RTTIEXT(StepShape_ToleranceValue, Standard_Transient)
+
+private:
+  occ::handle<Standard_Transient> theLowerBound;
+  occ::handle<Standard_Transient> theUpperBound;
+};
+
+#endif // _StepShape_ToleranceValue_HeaderFile

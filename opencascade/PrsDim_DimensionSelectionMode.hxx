@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 1996-12-11
+// Created by: Robert COUBLANC
+// Copyright (c) 1996-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,15 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/Visualization/TKV3d/PrsDim/PrsDim_DimensionSelectionMode.hxx"// clang-format on
+#ifndef _PrsDim_DimensionSelectionMode_HeaderFile
+#define _PrsDim_DimensionSelectionMode_HeaderFile
+
+//! Specifies dimension selection modes.
+enum PrsDim_DimensionSelectionMode
+{
+  PrsDim_DimensionSelectionMode_All,
+  PrsDim_DimensionSelectionMode_Line,
+  PrsDim_DimensionSelectionMode_Text
+};
+
+#endif // _PrsDim_DimensionSelectionMode_HeaderFile

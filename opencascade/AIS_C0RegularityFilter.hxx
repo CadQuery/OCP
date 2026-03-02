@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 1998-02-04
+// Created by: Julia GERASIMOVA
+// Copyright (c) 1998-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,33 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/Visualization/TKV3d/AIS/AIS_C0RegularityFilter.hxx"// clang-format on
+#ifndef _AIS_C0RegularityFilter_HeaderFile
+#define _AIS_C0RegularityFilter_HeaderFile
+
+#include <Standard.hxx>
+
+#include <TopoDS_Shape.hxx>
+#include <TopTools_ShapeMapHasher.hxx>
+#include <NCollection_Map.hxx>
+#include <SelectMgr_Filter.hxx>
+#include <TopAbs_ShapeEnum.hxx>
+class TopoDS_Shape;
+class SelectMgr_EntityOwner;
+
+class AIS_C0RegularityFilter : public SelectMgr_Filter
+{
+
+public:
+  Standard_EXPORT AIS_C0RegularityFilter(const TopoDS_Shape& aShape);
+
+  Standard_EXPORT bool ActsOn(const TopAbs_ShapeEnum aType) const override;
+
+  Standard_EXPORT bool IsOk(const occ::handle<SelectMgr_EntityOwner>& EO) const override;
+
+  DEFINE_STANDARD_RTTIEXT(AIS_C0RegularityFilter, SelectMgr_Filter)
+
+private:
+  NCollection_Map<TopoDS_Shape, TopTools_ShapeMapHasher> myMapOfEdges;
+};
+
+#endif // _AIS_C0RegularityFilter_HeaderFile

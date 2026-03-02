@@ -1,4 +1,6 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 2003-06-04
+// Created by: Galina KULIKOVA
+// Copyright (c) 2003-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +13,23 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/DataExchange/TKDESTEP/StepDimTol/StepDimTol_CoaxialityTolerance.hxx"// clang-format on
+#ifndef _StepDimTol_CoaxialityTolerance_HeaderFile
+#define _StepDimTol_CoaxialityTolerance_HeaderFile
+
+#include <Standard.hxx>
+
+#include <StepDimTol_GeometricToleranceWithDatumReference.hxx>
+
+//! Representation of STEP entity CoaxialityTolerance
+class StepDimTol_CoaxialityTolerance : public StepDimTol_GeometricToleranceWithDatumReference
+{
+
+public:
+  //! Empty constructor
+  Standard_EXPORT StepDimTol_CoaxialityTolerance();
+
+  DEFINE_STANDARD_RTTIEXT(StepDimTol_CoaxialityTolerance,
+                          StepDimTol_GeometricToleranceWithDatumReference)
+};
+
+#endif // _StepDimTol_CoaxialityTolerance_HeaderFile

@@ -1,4 +1,6 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 2001-07-17
+// Created by: Julia DOROVSKIKH <jfa@hotdox.nnov.matra-dtv.fr>
+// Copyright (c) 2001-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +13,34 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ApplicationFramework/TKXmlL/XmlObjMgt/XmlObjMgt_RRelocationTable.hxx"// clang-format on
+#ifndef _XmlObjMgt_RRelocationTable_HeaderFile
+#define _XmlObjMgt_RRelocationTable_HeaderFile
+
+#include <Standard_Integer.hxx>
+#include <Standard_Transient.hxx>
+#include <NCollection_DataMap.hxx>
+
+#include <Storage_HeaderData.hxx>
+
+//! Retrieval relocation table is modeled as a child class of
+//! NCollection_DataMap<int, occ::handle<Standard_Transient>> that stores a handle to the file
+//! header section. With that attribute drivers have access to the file header
+//! section.
+class XmlObjMgt_RRelocationTable : public NCollection_DataMap<int, occ::handle<Standard_Transient>>
+{
+public:
+  //! Returns a handle to the header data of the file that is begin read
+  Standard_EXPORT const occ::handle<Storage_HeaderData>& GetHeaderData() const;
+
+  //! Sets the storage header data.
+  //!
+  //! @param theHeaderData header data of the file that is begin read
+  Standard_EXPORT void SetHeaderData(const occ::handle<Storage_HeaderData>& theHeaderData);
+
+  Standard_EXPORT void Clear(const bool doReleaseMemory = true);
+
+private:
+  occ::handle<Storage_HeaderData> myHeaderData;
+};
+
+#endif // _XmlObjMgt_RRelocationTable_HeaderFile

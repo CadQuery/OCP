@@ -1,4 +1,5 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Copyright (c) 1997-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +12,21 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/FoundationClasses/TKMath/math/math_GaussSingleIntegration.lxx"// clang-format on
+#include <StdFail_NotDone.hxx>
+
+inline Standard_OStream& operator<<(Standard_OStream& o, const math_GaussSingleIntegration& G)
+{
+  G.Dump(o);
+  return o;
+}
+
+inline bool math_GaussSingleIntegration::IsDone() const
+{
+  return Done;
+}
+
+inline double math_GaussSingleIntegration::Value() const
+{
+  StdFail_NotDone_Raise_if(!Done, " ");
+  return Val;
+}

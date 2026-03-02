@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 1999-08-11
+// Created by: Roman LYGIN
+// Copyright (c) 1999-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,58 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/DataExchange/TKXSBase/TransferBRep/TransferBRep_TransferResultInfo.lxx"// clang-format on
+//=================================================================================================
+
+inline int& TransferBRep_TransferResultInfo::Result()
+{
+  return myR;
+}
+
+//=================================================================================================
+
+inline int& TransferBRep_TransferResultInfo::ResultWarning()
+{
+  return myRW;
+}
+
+//=================================================================================================
+
+inline int& TransferBRep_TransferResultInfo::ResultFail()
+{
+  return myRF;
+}
+
+//=================================================================================================
+
+inline int& TransferBRep_TransferResultInfo::ResultWarningFail()
+{
+  return myRWF;
+}
+
+//=================================================================================================
+
+inline int& TransferBRep_TransferResultInfo::NoResult()
+{
+  return myNR;
+}
+
+//=================================================================================================
+
+inline int& TransferBRep_TransferResultInfo::NoResultWarning()
+{
+  return myNRW;
+}
+
+//=================================================================================================
+
+inline int& TransferBRep_TransferResultInfo::NoResultFail()
+{
+  return myNRF;
+}
+
+//=================================================================================================
+
+inline int& TransferBRep_TransferResultInfo::NoResultWarningFail()
+{
+  return myNRWF;
+}

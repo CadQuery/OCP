@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 1996-12-11
+// Created by: Robert COUBLANC
+// Copyright (c) 1996-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,14 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/Visualization/TKV3d/PrsDim/PrsDim_TypeOfAngle.hxx"// clang-format on
+#ifndef _PrsDim_TypeOfAngle_HeaderFile
+#define _PrsDim_TypeOfAngle_HeaderFile
+
+//! Declares the type of angle.
+enum PrsDim_TypeOfAngle
+{
+  PrsDim_TypeOfAngle_Interior, //!< the angle between two lines built on geometry parameters
+  PrsDim_TypeOfAngle_Exterior, //!< the angle equal 2 PI minus the interior angle
+};
+
+#endif // _PrsDim_TypeOfAngle_HeaderFile

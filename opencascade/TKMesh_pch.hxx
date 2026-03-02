@@ -11,5 +11,9 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ModelingAlgorithms/TKMesh/TKMesh_pch.hxx"// clang-format on
+#ifndef TKMESH_PCH_H
+#define TKMESH_PCH_H
+
+#include <IMeshData_Types.hxx>
+
+#endif // TKMESH_PCH_H

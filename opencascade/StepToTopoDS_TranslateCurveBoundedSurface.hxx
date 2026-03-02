@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 1999-02-12
+// Created by: Andrey BETENEV
+// Copyright (c) 1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,43 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/DataExchange/TKDESTEP/StepToTopoDS/StepToTopoDS_TranslateCurveBoundedSurface.hxx"// clang-format on
+#ifndef _StepToTopoDS_TranslateCurveBoundedSurface_HeaderFile
+#define _StepToTopoDS_TranslateCurveBoundedSurface_HeaderFile
+
+#include <Standard.hxx>
+#include <Standard_DefineAlloc.hxx>
+#include <Standard_Handle.hxx>
+
+#include <TopoDS_Face.hxx>
+#include <StepToTopoDS_Root.hxx>
+class StepGeom_CurveBoundedSurface;
+class Transfer_TransientProcess;
+
+//! Translate curve_bounded_surface into TopoDS_Face
+class StepToTopoDS_TranslateCurveBoundedSurface : public StepToTopoDS_Root
+{
+public:
+  DEFINE_STANDARD_ALLOC
+
+  //! Create empty tool
+  Standard_EXPORT StepToTopoDS_TranslateCurveBoundedSurface();
+
+  //! Translate surface
+  Standard_EXPORT StepToTopoDS_TranslateCurveBoundedSurface(
+    const occ::handle<StepGeom_CurveBoundedSurface>& CBS,
+    const occ::handle<Transfer_TransientProcess>&    TP,
+    const StepData_Factors&                          theLocalFactors = StepData_Factors());
+
+  //! Translate surface
+  Standard_EXPORT bool Init(const occ::handle<StepGeom_CurveBoundedSurface>& CBS,
+                            const occ::handle<Transfer_TransientProcess>&    TP,
+                            const StepData_Factors& theLocalFactors = StepData_Factors());
+
+  //! Returns result of last translation or null wire if failed.
+  Standard_EXPORT const TopoDS_Face& Value() const;
+
+private:
+  TopoDS_Face myFace;
+};
+
+#endif // _StepToTopoDS_TranslateCurveBoundedSurface_HeaderFile

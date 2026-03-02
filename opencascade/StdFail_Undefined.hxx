@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 1992-05-07
+// Created by: Modelistation
+// Copyright (c) 1992-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,22 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/FoundationClasses/TKernel/StdFail/StdFail_Undefined.hxx"// clang-format on
+#ifndef _StdFail_Undefined_HeaderFile
+#define _StdFail_Undefined_HeaderFile
+
+#include <Standard_Type.hxx>
+#include <Standard_DefineException.hxx>
+#include <Standard_SStream.hxx>
+#include <Standard_Failure.hxx>
+
+#if !defined No_Exception && !defined No_StdFail_Undefined
+  #define StdFail_Undefined_Raise_if(CONDITION, MESSAGE)                                           \
+    if (CONDITION)                                                                                 \
+      throw StdFail_Undefined(MESSAGE);
+#else
+  #define StdFail_Undefined_Raise_if(CONDITION, MESSAGE)
+#endif
+
+DEFINE_STANDARD_EXCEPTION(StdFail_Undefined, Standard_Failure)
+
+#endif // _StdFail_Undefined_HeaderFile

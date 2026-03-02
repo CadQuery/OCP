@@ -1,4 +1,6 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 2000-08-16
+// Created by: Andrey BETENEV
+// Copyright (c) 2000-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +13,29 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/DataExchange/TKDEIGES/IGESCAFControl/IGESCAFControl.hxx"// clang-format on
+#ifndef _IGESCAFControl_HeaderFile
+#define _IGESCAFControl_HeaderFile
+
+#include <Standard.hxx>
+#include <Standard_DefineAlloc.hxx>
+#include <Standard_Handle.hxx>
+
+class Quantity_Color;
+
+//! Provides high-level API to translate IGES file
+//! to and from DECAF document
+class IGESCAFControl
+{
+public:
+  DEFINE_STANDARD_ALLOC
+
+  //! Provides a tool for writing IGES file
+  //! Converts IGES color index to CASCADE color
+  Standard_EXPORT static Quantity_Color DecodeColor(const int col);
+
+  //! Tries to Convert CASCADE color to IGES color index
+  //! If no corresponding color defined in IGES, returns 0
+  Standard_EXPORT static int EncodeColor(const Quantity_Color& col);
+};
+
+#endif // _IGESCAFControl_HeaderFile

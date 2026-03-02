@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 1997-10-31
+// Created by: Joelle CHAUVET
+// Copyright (c) 1997-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,43 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ModelingAlgorithms/TKBool/BRepFill/BRepFill_CurveConstraint.hxx"// clang-format on
+#ifndef _BRepFill_CurveConstraint_HeaderFile
+#define _BRepFill_CurveConstraint_HeaderFile
+
+#include <Standard.hxx>
+#include <Standard_Type.hxx>
+
+#include <GeomPlate_CurveConstraint.hxx>
+#include <Standard_Integer.hxx>
+
+//! same as CurveConstraint from GeomPlate
+//! with BRepAdaptor_Surface instead of
+//! GeomAdaptor_Surface
+class BRepFill_CurveConstraint : public GeomPlate_CurveConstraint
+{
+
+public:
+  //! Create a constraint
+  //! Order is the order of the constraint. The possible values for order are -1,0,1,2.
+  //! Order i means constraints Gi
+  //! Npt is the number of points associated with the constraint.
+  //! TolDist is the maximum error to satisfy for G0 constraints
+  //! TolAng is the maximum error to satisfy for G1 constraints
+  //! TolCurv is the maximum error to satisfy for G2 constraints
+  //! These errors can be replaced by laws of criterion.
+  Standard_EXPORT BRepFill_CurveConstraint(const occ::handle<Adaptor3d_CurveOnSurface>& Boundary,
+                                           const int                                    Order,
+                                           const int                                    NPt = 10,
+                                           const double TolDist = 0.0001,
+                                           const double TolAng  = 0.01,
+                                           const double TolCurv = 0.1);
+
+  Standard_EXPORT BRepFill_CurveConstraint(const occ::handle<Adaptor3d_Curve>& Boundary,
+                                           const int                           Tang,
+                                           const int                           NPt     = 10,
+                                           const double                        TolDist = 0.0001);
+
+  DEFINE_STANDARD_RTTIEXT(BRepFill_CurveConstraint, GeomPlate_CurveConstraint)
+};
+
+#endif // _BRepFill_CurveConstraint_HeaderFile

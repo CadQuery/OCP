@@ -1,4 +1,4 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Copyright (c) 2020 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +11,21 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/Visualization/TKService/Aspect/Aspect_XRTrackedDeviceRole.hxx"// clang-format on
+#ifndef _Aspect_XRTrackedDeviceRole_HeaderFile
+#define _Aspect_XRTrackedDeviceRole_HeaderFile
+
+//! Predefined tracked devices.
+enum Aspect_XRTrackedDeviceRole
+{
+  Aspect_XRTrackedDeviceRole_Head,      //!< head
+  Aspect_XRTrackedDeviceRole_LeftHand,  //!< left hand
+  Aspect_XRTrackedDeviceRole_RightHand, //!< right hand
+  Aspect_XRTrackedDeviceRole_Other,     //!< other devices
+};
+
+enum
+{
+  Aspect_XRTrackedDeviceRole_NB = Aspect_XRTrackedDeviceRole_Other + 1
+};
+
+#endif // _Aspect_XRTrackedDeviceRole_HeaderFile

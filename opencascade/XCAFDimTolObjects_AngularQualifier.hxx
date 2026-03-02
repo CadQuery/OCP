@@ -1,4 +1,6 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 2021-10-25
+// Created by: Irina Chesnokova
+// Copyright (c) 2021 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +13,16 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/DataExchange/TKXCAF/XCAFDimTolObjects/XCAFDimTolObjects_AngularQualifier.hxx"// clang-format on
+#ifndef _XCAFDimTolObjects_AngularQualifier_HeaderFile
+#define _XCAFDimTolObjects_AngularQualifier_HeaderFile
+
+//! Defines types of qualifier for angular dimensions
+enum XCAFDimTolObjects_AngularQualifier
+{
+  XCAFDimTolObjects_AngularQualifier_None,
+  XCAFDimTolObjects_AngularQualifier_Small,
+  XCAFDimTolObjects_AngularQualifier_Large,
+  XCAFDimTolObjects_AngularQualifier_Equal
+};
+
+#endif // _XCAFDimTolObjects_AngularQualifier_HeaderFile

@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 1994-05-26
+// Created by: Jean Yves LEBEY
+// Copyright (c) 1994-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,29 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ModelingAlgorithms/TKBool/TopOpeBRepDS/TopOpeBRepDS_SolidSurfaceInterference.hxx"// clang-format on
+#ifndef _TopOpeBRepDS_SolidSurfaceInterference_HeaderFile
+#define _TopOpeBRepDS_SolidSurfaceInterference_HeaderFile
+
+#include <Standard.hxx>
+
+#include <TopOpeBRepDS_Interference.hxx>
+#include <TopOpeBRepDS_Kind.hxx>
+#include <Standard_Integer.hxx>
+#include <Standard_OStream.hxx>
+class TopOpeBRepDS_Transition;
+
+//! Interference
+class TopOpeBRepDS_SolidSurfaceInterference : public TopOpeBRepDS_Interference
+{
+
+public:
+  Standard_EXPORT TopOpeBRepDS_SolidSurfaceInterference(const TopOpeBRepDS_Transition& Transition,
+                                                        const TopOpeBRepDS_Kind        SupportType,
+                                                        const int                      Support,
+                                                        const TopOpeBRepDS_Kind        GeometryType,
+                                                        const int                      Geometry);
+
+  DEFINE_STANDARD_RTTIEXT(TopOpeBRepDS_SolidSurfaceInterference, TopOpeBRepDS_Interference)
+};
+
+#endif // _TopOpeBRepDS_SolidSurfaceInterference_HeaderFile

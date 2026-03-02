@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 1997-02-10
+// Created by: Odile Olivier
+// Copyright (c) 1997-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,32 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/Visualization/TKV3d/DsgPrs/DsgPrs_XYZPlanePresentation.hxx"// clang-format on
+#ifndef _DsgPrs_XYZPlanePresentation_HeaderFile
+#define _DsgPrs_XYZPlanePresentation_HeaderFile
+
+#include <Standard.hxx>
+#include <Standard_DefineAlloc.hxx>
+
+#include <Prs3d_Drawer.hxx>
+#include <Prs3d_Presentation.hxx>
+
+class gp_Pnt;
+
+//! A framework for displaying the planes of an XYZ trihedron.
+class DsgPrs_XYZPlanePresentation
+{
+public:
+  DEFINE_STANDARD_ALLOC
+
+  //! Draws each plane of a trihedron displayed in the
+  //! presentation aPresentation and with attributes
+  //! defined by the attribute manager aDrawer. Each
+  //! triangular plane is defined by the points aPt1 aPt2 and aPt3.
+  Standard_EXPORT static void Add(const occ::handle<Prs3d_Presentation>& aPresentation,
+                                  const occ::handle<Prs3d_Drawer>&       aDrawer,
+                                  const gp_Pnt&                          aPt1,
+                                  const gp_Pnt&                          aPt2,
+                                  const gp_Pnt&                          aPt3);
+};
+
+#endif // _DsgPrs_XYZPlanePresentation_HeaderFile

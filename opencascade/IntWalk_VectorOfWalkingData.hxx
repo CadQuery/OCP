@@ -1,4 +1,6 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 2013-0603
+// Created by: Roman LYGIN
+// Copyright (c) 2013-2013 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +13,22 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ModelingAlgorithms/TKGeomAlgo/IntWalk/IntWalk_VectorOfWalkingData.hxx"// clang-format on
+#ifndef IntWalk_VectorOfWalkingData_HeaderFile
+#define IntWalk_VectorOfWalkingData_HeaderFile
+
+#include <vector>
+#include <NCollection_OccAllocator.hxx>
+
+// Defines a dynamic vector of work data.
+
+struct IntWalk_WalkingData
+{
+  double ustart;
+  double vstart;
+  int    etat;
+};
+
+typedef std::vector<IntWalk_WalkingData, NCollection_OccAllocator<IntWalk_WalkingData>>
+  IntWalk_VectorOfWalkingData;
+
+#endif

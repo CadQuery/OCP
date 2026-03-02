@@ -1,4 +1,6 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 2002-10-30
+// Created by: Michael SAZONOV
+// Copyright (c) 2002-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +13,29 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ApplicationFramework/TKBin/BinMDataXtd/BinMDataXtd.hxx"// clang-format on
+#ifndef _BinMDataXtd_HeaderFile
+#define _BinMDataXtd_HeaderFile
+
+#include <Standard.hxx>
+#include <Standard_DefineAlloc.hxx>
+#include <Standard_Handle.hxx>
+#include <Standard_Integer.hxx>
+class BinMDF_ADriverTable;
+class Message_Messenger;
+
+//! Storage and Retrieval drivers for modelling attributes.
+class BinMDataXtd
+{
+public:
+  DEFINE_STANDARD_ALLOC
+
+  //! Adds the attribute drivers to <theDriverTable>.
+  Standard_EXPORT static void AddDrivers(const occ::handle<BinMDF_ADriverTable>& theDriverTable,
+                                         const occ::handle<Message_Messenger>&   aMsgDrv);
+
+  Standard_EXPORT static void SetDocumentVersion(const int DocVersion);
+
+  Standard_EXPORT static int DocumentVersion();
+};
+
+#endif // _BinMDataXtd_HeaderFile

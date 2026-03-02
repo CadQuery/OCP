@@ -1,4 +1,4 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Copyright (c) 2013 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +11,18 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ModelingAlgorithms/TKMesh/BRepMesh/BRepMesh_DegreeOfFreedom.hxx"// clang-format on
+#ifndef _BRepMesh_DegreeOfFreedom_HeaderFile
+#define _BRepMesh_DegreeOfFreedom_HeaderFile
+
+enum BRepMesh_DegreeOfFreedom
+{
+  BRepMesh_Free,
+  BRepMesh_InVolume,
+  BRepMesh_OnSurface,
+  BRepMesh_OnCurve,
+  BRepMesh_Fixed,
+  BRepMesh_Frontier,
+  BRepMesh_Deleted
+};
+
+#endif

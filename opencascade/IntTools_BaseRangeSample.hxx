@@ -1,4 +1,6 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 2005-10-05
+// Created by: Mikhail KLOKOV
+// Copyright (c) 2005-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +13,29 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ModelingAlgorithms/TKBO/IntTools/IntTools_BaseRangeSample.hxx"// clang-format on
+#ifndef _IntTools_BaseRangeSample_HeaderFile
+#define _IntTools_BaseRangeSample_HeaderFile
+
+#include <Standard.hxx>
+#include <Standard_DefineAlloc.hxx>
+#include <Standard_Handle.hxx>
+
+//! base class for range index management
+class IntTools_BaseRangeSample
+{
+public:
+  DEFINE_STANDARD_ALLOC
+
+  Standard_EXPORT IntTools_BaseRangeSample();
+
+  Standard_EXPORT IntTools_BaseRangeSample(const int theDepth);
+
+  void SetDepth(const int theDepth) { myDepth = theDepth; }
+
+  int GetDepth() const { return myDepth; }
+
+private:
+  int myDepth;
+};
+
+#endif // _IntTools_BaseRangeSample_HeaderFile

@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 1994-03-10
+// Created by: Jean Yves LEBEY
+// Copyright (c) 1994-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,12 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ModelingAlgorithms/TKBool/TopOpeBRepTool/TopOpeBRepTool_Plos.hxx"// clang-format on
+#ifndef _TopOpeBRepTool_Plos_HeaderFile
+#define _TopOpeBRepTool_Plos_HeaderFile
+
+#include <TopoDS_Shape.hxx>
+#include <NCollection_List.hxx>
+
+typedef NCollection_List<TopoDS_Shape>* TopOpeBRepTool_Plos;
+
+#endif // _TopOpeBRepTool_Plos_HeaderFile

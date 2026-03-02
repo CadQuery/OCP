@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 1999-10-11
+// Created by: data exchange team
+// Copyright (c) 1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,30 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/DataExchange/TKDESTEP/StepBasic/StepBasic_SiUnitAndAreaUnit.hxx"// clang-format on
+#ifndef _StepBasic_SiUnitAndAreaUnit_HeaderFile
+#define _StepBasic_SiUnitAndAreaUnit_HeaderFile
+
+#include <Standard.hxx>
+#include <Standard_Type.hxx>
+
+#include <StepBasic_SiUnit.hxx>
+class StepBasic_AreaUnit;
+
+class StepBasic_SiUnitAndAreaUnit : public StepBasic_SiUnit
+{
+
+public:
+  //! Returns a SiUnitAndAreaUnit
+  Standard_EXPORT StepBasic_SiUnitAndAreaUnit();
+
+  Standard_EXPORT void SetAreaUnit(const occ::handle<StepBasic_AreaUnit>& anAreaUnit);
+
+  Standard_EXPORT occ::handle<StepBasic_AreaUnit> AreaUnit() const;
+
+  DEFINE_STANDARD_RTTIEXT(StepBasic_SiUnitAndAreaUnit, StepBasic_SiUnit)
+
+private:
+  occ::handle<StepBasic_AreaUnit> areaUnit;
+};
+
+#endif // _StepBasic_SiUnitAndAreaUnit_HeaderFile

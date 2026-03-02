@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 1998-01-17
+// Created by: Julia GERASIMOVA
+// Copyright (c) 1998-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,39 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/Visualization/TKV3d/PrsDim/PrsDim_EqualRadiusRelation.hxx"// clang-format on
+#ifndef _PrsDim_EqualRadiusRelation_HeaderFile
+#define _PrsDim_EqualRadiusRelation_HeaderFile
+
+#include <PrsDim_Relation.hxx>
+
+class Geom_Plane;
+
+class PrsDim_EqualRadiusRelation : public PrsDim_Relation
+{
+  DEFINE_STANDARD_RTTIEXT(PrsDim_EqualRadiusRelation, PrsDim_Relation)
+public:
+  //! Creates equal relation of two arc's radiuses.
+  //! If one of edges is not in the given plane,
+  //! the presentation method projects it onto the plane.
+  Standard_EXPORT PrsDim_EqualRadiusRelation(const TopoDS_Edge&             aFirstEdge,
+                                             const TopoDS_Edge&             aSecondEdge,
+                                             const occ::handle<Geom_Plane>& aPlane);
+
+private:
+  Standard_EXPORT void Compute(const occ::handle<PrsMgr_PresentationManager>& thePrsMgr,
+                               const occ::handle<Prs3d_Presentation>&         thePrs,
+                               const int                                      theMode) override;
+
+  Standard_EXPORT void ComputeSelection(const occ::handle<SelectMgr_Selection>& theSel,
+                                        const int                               theMode) override;
+
+  Standard_EXPORT void ComputeRadiusPosition();
+
+private:
+  gp_Pnt myFirstCenter;
+  gp_Pnt mySecondCenter;
+  gp_Pnt myFirstPoint;
+  gp_Pnt mySecondPoint;
+};
+
+#endif // _PrsDim_EqualRadiusRelation_HeaderFile

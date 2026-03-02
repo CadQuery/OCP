@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 1996-03-06
+// Created by: Laurent BOURESCHE
+// Copyright (c) 1996-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,37 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ModelingAlgorithms/TKFillet/ChFiDS/ChFiDS_CircSection.hxx"// clang-format on
+#ifndef _ChFiDS_CircSection_HeaderFile
+#define _ChFiDS_CircSection_HeaderFile
+
+#include <Standard.hxx>
+#include <Standard_DefineAlloc.hxx>
+#include <Standard_Handle.hxx>
+
+#include <gp_Circ.hxx>
+#include <gp_Lin.hxx>
+
+//! A Section of fillet.
+class ChFiDS_CircSection
+{
+public:
+  DEFINE_STANDARD_ALLOC
+
+  Standard_EXPORT ChFiDS_CircSection();
+
+  Standard_EXPORT void Set(const gp_Circ& C, const double F, const double L);
+
+  Standard_EXPORT void Set(const gp_Lin& C, const double F, const double L);
+
+  Standard_EXPORT void Get(gp_Circ& C, double& F, double& L) const;
+
+  Standard_EXPORT void Get(gp_Lin& C, double& F, double& L) const;
+
+private:
+  gp_Circ myCirc;
+  gp_Lin  myLin;
+  double  myF;
+  double  myL;
+};
+
+#endif // _ChFiDS_CircSection_HeaderFile

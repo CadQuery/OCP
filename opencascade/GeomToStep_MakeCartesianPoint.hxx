@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 1993-06-11
+// Created by: Martine LANGLOIS
+// Copyright (c) 1993-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,43 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/DataExchange/TKDESTEP/GeomToStep/GeomToStep_MakeCartesianPoint.hxx"// clang-format on
+#ifndef _GeomToStep_MakeCartesianPoint_HeaderFile
+#define _GeomToStep_MakeCartesianPoint_HeaderFile
+
+#include <Standard.hxx>
+#include <Standard_DefineAlloc.hxx>
+#include <Standard_Handle.hxx>
+
+#include <GeomToStep_Root.hxx>
+class StepGeom_CartesianPoint;
+class gp_Pnt;
+class gp_Pnt2d;
+class Geom_CartesianPoint;
+class Geom2d_CartesianPoint;
+class StepData_StepModel;
+
+//! This class implements the mapping between classes
+//! CartesianPoint from Geom and Pnt from gp, and the class
+//! CartesianPoint from StepGeom which describes a point from
+//! Prostep.
+class GeomToStep_MakeCartesianPoint : public GeomToStep_Root
+{
+public:
+  DEFINE_STANDARD_ALLOC
+
+  Standard_EXPORT GeomToStep_MakeCartesianPoint(const gp_Pnt& P, const double aFactor);
+
+  Standard_EXPORT GeomToStep_MakeCartesianPoint(const gp_Pnt2d& P, const double aFactor);
+
+  Standard_EXPORT GeomToStep_MakeCartesianPoint(const occ::handle<Geom_CartesianPoint>& P,
+                                                const double                            aFactor);
+
+  Standard_EXPORT GeomToStep_MakeCartesianPoint(const occ::handle<Geom2d_CartesianPoint>& P);
+
+  Standard_EXPORT const occ::handle<StepGeom_CartesianPoint>& Value() const;
+
+private:
+  occ::handle<StepGeom_CartesianPoint> theCartesianPoint;
+};
+
+#endif // _GeomToStep_MakeCartesianPoint_HeaderFile

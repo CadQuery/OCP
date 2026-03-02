@@ -1,4 +1,6 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 2000-09-07
+// Created by: TURIN  Anatoliy <ati@nnov.matra-dtv.fr>
+// Copyright (c) 2000-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +13,24 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ApplicationFramework/TKCAF/AppStd/AppStd_Application.hxx"// clang-format on
+#ifndef _AppStd_Application_HeaderFile
+#define _AppStd_Application_HeaderFile
+
+#include <Standard.hxx>
+
+#include <TDocStd_Application.hxx>
+
+//! Legacy class defining resources name for standard OCAF documents
+class AppStd_Application : public TDocStd_Application
+{
+public:
+  //! returns the file name which contains application resources
+  Standard_EXPORT const char* ResourcesName() override;
+
+  //! Dumps the content of me into the stream
+  Standard_EXPORT void DumpJson(Standard_OStream& theOStream, int theDepth = -1) const;
+
+  DEFINE_STANDARD_RTTIEXT(AppStd_Application, TDocStd_Application)
+};
+
+#endif // _AppStd_Application_HeaderFile

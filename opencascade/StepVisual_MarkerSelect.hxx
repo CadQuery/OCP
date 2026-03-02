@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 1995-12-01
+// Created by: EXPRESS->CDL V0.2 Translator
+// Copyright (c) 1995-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,39 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/DataExchange/TKDESTEP/StepVisual/StepVisual_MarkerSelect.hxx"// clang-format on
+#ifndef _StepVisual_MarkerSelect_HeaderFile
+#define _StepVisual_MarkerSelect_HeaderFile
+
+#include <Standard.hxx>
+#include <Standard_DefineAlloc.hxx>
+#include <Standard_Handle.hxx>
+
+#include <StepData_SelectType.hxx>
+#include <Standard_Integer.hxx>
+class Standard_Transient;
+class StepData_SelectMember;
+class StepVisual_MarkerMember;
+
+class StepVisual_MarkerSelect : public StepData_SelectType
+{
+public:
+  DEFINE_STANDARD_ALLOC
+
+  //! Returns a MarkerSelect SelectType
+  Standard_EXPORT StepVisual_MarkerSelect();
+
+  //! Recognizes a MarkerSelect Kind Entity that is :
+  //! 0 else
+  Standard_EXPORT int CaseNum(const occ::handle<Standard_Transient>& ent) const override;
+
+  //! Returns a new MarkerMember
+  Standard_EXPORT occ::handle<StepData_SelectMember> NewMember() const override;
+
+  //! Returns 1 for a SelectMember enum, named MARKER_TYPE
+  Standard_EXPORT int CaseMem(const occ::handle<StepData_SelectMember>& sm) const override;
+
+  //! Gives access to the MarkerMember in order to get/set its value
+  Standard_EXPORT occ::handle<StepVisual_MarkerMember> MarkerMember() const;
+};
+
+#endif // _StepVisual_MarkerSelect_HeaderFile

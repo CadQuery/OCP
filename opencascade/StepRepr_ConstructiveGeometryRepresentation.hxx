@@ -1,4 +1,6 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 2016-04-26
+// Created by: Irina KRYLOVA
+// Copyright (c) 2016 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +13,21 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/DataExchange/TKDESTEP/StepRepr/StepRepr_ConstructiveGeometryRepresentation.hxx"// clang-format on
+#ifndef _StepRepr_ConstructiveGeometryRepresentation_HeaderFile
+#define _StepRepr_ConstructiveGeometryRepresentation_HeaderFile
+
+#include <Standard.hxx>
+#include <Standard_Type.hxx>
+
+#include <StepRepr_Representation.hxx>
+
+class StepRepr_ConstructiveGeometryRepresentation : public StepRepr_Representation
+{
+public:
+  //! Returns a ConstructiveGeometryRepresentation
+  Standard_EXPORT StepRepr_ConstructiveGeometryRepresentation();
+
+  DEFINE_STANDARD_RTTIEXT(StepRepr_ConstructiveGeometryRepresentation, StepRepr_Representation)
+};
+
+#endif // _StepRepr_ConstructiveGeometryRepresentation_HeaderFile

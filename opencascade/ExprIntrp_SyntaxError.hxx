@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 1991-07-18
+// Created by: Arnaud BOUZY
+// Copyright (c) 1991-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,22 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ModelingAlgorithms/TKExpress/ExprIntrp/ExprIntrp_SyntaxError.hxx"// clang-format on
+#ifndef _ExprIntrp_SyntaxError_HeaderFile
+#define _ExprIntrp_SyntaxError_HeaderFile
+
+#include <Standard_Type.hxx>
+#include <Standard_DefineException.hxx>
+#include <Standard_SStream.hxx>
+#include <Standard_Failure.hxx>
+
+#if !defined No_Exception && !defined No_ExprIntrp_SyntaxError
+  #define ExprIntrp_SyntaxError_Raise_if(CONDITION, MESSAGE)                                       \
+    if (CONDITION)                                                                                 \
+      throw ExprIntrp_SyntaxError(MESSAGE);
+#else
+  #define ExprIntrp_SyntaxError_Raise_if(CONDITION, MESSAGE)
+#endif
+
+DEFINE_STANDARD_EXCEPTION(ExprIntrp_SyntaxError, Standard_Failure)
+
+#endif // _ExprIntrp_SyntaxError_HeaderFile

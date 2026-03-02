@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 1995-02-06
+// Created by: Mister rmi
+// Copyright (c) 1995-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,13 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/Visualization/TKV3d/SelectMgr/SelectMgr_SequenceOfOwner.hxx"// clang-format on
+#ifndef SelectMgr_SequenceOfOwner_HeaderFile
+#define SelectMgr_SequenceOfOwner_HeaderFile
+
+#include <NCollection_Sequence.hxx>
+
+class SelectMgr_EntityOwner;
+
+typedef NCollection_Sequence<occ::handle<SelectMgr_EntityOwner>> SelectMgr_SequenceOfOwner;
+
+#endif

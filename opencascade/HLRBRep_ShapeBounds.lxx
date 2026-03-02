@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 1997-04-17
+// Created by: Christophe MARION
+// Copyright (c) 1997-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,57 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ModelingAlgorithms/TKHLR/HLRBRep/HLRBRep_ShapeBounds.lxx"// clang-format on
+//=================================================================================================
+
+inline HLRBRep_ShapeBounds::HLRBRep_ShapeBounds()
+    : myNbIso(0),
+      myVertStart(0),
+      myVertEnd(0),
+      myEdgeStart(0),
+      myEdgeEnd(0),
+      myFaceStart(0),
+      myFaceEnd(0)
+{
+}
+
+//=================================================================================================
+
+inline void HLRBRep_ShapeBounds::Shape(const occ::handle<HLRTopoBRep_OutLiner>& S)
+{
+  myShape = S;
+}
+
+//=================================================================================================
+
+inline const occ::handle<HLRTopoBRep_OutLiner>& HLRBRep_ShapeBounds::Shape() const
+{
+  return myShape;
+}
+
+//=================================================================================================
+
+inline void HLRBRep_ShapeBounds::ShapeData(const occ::handle<Standard_Transient>& SD)
+{
+  myShapeData = SD;
+}
+
+//=================================================================================================
+
+inline const occ::handle<Standard_Transient>& HLRBRep_ShapeBounds::ShapeData() const
+{
+  return myShapeData;
+}
+
+//=================================================================================================
+
+inline void HLRBRep_ShapeBounds::NbOfIso(const int nbIso)
+{
+  myNbIso = nbIso;
+}
+
+//=================================================================================================
+
+inline int HLRBRep_ShapeBounds::NbOfIso() const
+{
+  return myNbIso;
+}

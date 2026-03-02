@@ -1,4 +1,6 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 2002-10-29
+// Created by: Michael SAZONOV
+// Copyright (c) 2002-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +13,13 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ApplicationFramework/TKBinL/BinMDF/BinMDF_ADriver.lxx"// clang-format on
+#include <TDF_Attribute.hxx>
+
+//=================================================================================================
+
+inline const TCollection_AsciiString& BinMDF_ADriver::TypeName() const
+{
+  if (myTypeName.Length() == 0)
+    (TCollection_AsciiString&)myTypeName += SourceType()->Name();
+  return myTypeName;
+}

@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 1996-01-26
+// Created by: Philippe MANGIN
+// Copyright (c) 1996-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,50 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ModelingAlgorithms/TKGeomAlgo/FairCurve/FairCurve_BattenLaw.hxx"// clang-format on
+#ifndef _FairCurve_BattenLaw_HeaderFile
+#define _FairCurve_BattenLaw_HeaderFile
+
+#include <Standard.hxx>
+#include <Standard_DefineAlloc.hxx>
+#include <Standard_Handle.hxx>
+
+#include <Standard_Real.hxx>
+#include <math_Function.hxx>
+#include <Standard_Boolean.hxx>
+
+//! This class compute the Heigth of an batten
+class FairCurve_BattenLaw : public math_Function
+{
+public:
+  DEFINE_STANDARD_ALLOC
+
+  //! Constructor of linear batten with
+  //! Heigth  : the Heigth at the middle point
+  //! Slope   : the geometric slope of the batten
+  //! Sliding : Active Length of the batten without extension
+  Standard_EXPORT FairCurve_BattenLaw(const double Heigth,
+                                      const double Slope,
+                                      const double Sliding);
+
+  //! Change the value of sliding
+  void SetSliding(const double Sliding);
+
+  //! Change the value of Heigth at the middle point.
+  void SetHeigth(const double Heigth);
+
+  //! Change the value of the geometric slope.
+  void SetSlope(const double Slope);
+
+  //! computes the value of the heigth for the parameter T
+  //! on the neutral fibber
+  bool Value(const double T, double& THeigth) override;
+
+private:
+  double MiddleHeigth;
+  double GeometricSlope;
+  double LengthSliding;
+};
+
+#include <FairCurve_BattenLaw.lxx>
+
+#endif // _FairCurve_BattenLaw_HeaderFile

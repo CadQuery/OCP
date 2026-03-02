@@ -1,4 +1,6 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 2002-12-12
+// Created by: data exchange team
+// Copyright (c) 2002-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +13,35 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/DataExchange/TKDESTEP/StepFEA/StepFEA_SymmetricTensor42d.hxx"// clang-format on
+#ifndef _StepFEA_SymmetricTensor42d_HeaderFile
+#define _StepFEA_SymmetricTensor42d_HeaderFile
+
+#include <Standard.hxx>
+#include <Standard_DefineAlloc.hxx>
+#include <Standard_Handle.hxx>
+
+#include <StepData_SelectType.hxx>
+#include <Standard_Integer.hxx>
+#include <NCollection_Array1.hxx>
+#include <NCollection_HArray1.hxx>
+class Standard_Transient;
+
+//! Representation of STEP SELECT type SymmetricTensor42d
+class StepFEA_SymmetricTensor42d : public StepData_SelectType
+{
+public:
+  DEFINE_STANDARD_ALLOC
+
+  //! Empty constructor
+  Standard_EXPORT StepFEA_SymmetricTensor42d();
+
+  //! Recognizes a kind of SymmetricTensor42d select type
+  //! 1 -> HArray1OfReal from TColStd
+  //! 0 else
+  Standard_EXPORT int CaseNum(const occ::handle<Standard_Transient>& ent) const override;
+
+  //! Returns Value as AnisotropicSymmetricTensor42d (or Null if another type)
+  Standard_EXPORT occ::handle<NCollection_HArray1<double>> AnisotropicSymmetricTensor42d() const;
+};
+
+#endif // _StepFEA_SymmetricTensor42d_HeaderFile

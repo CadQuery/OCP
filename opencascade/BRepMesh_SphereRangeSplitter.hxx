@@ -1,4 +1,6 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 2016-07-07
+// Copyright (c) 2016 OPEN CASCADE SAS
+// Created by: Oleg AGASHIN
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +13,37 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ModelingAlgorithms/TKMesh/BRepMesh/BRepMesh_SphereRangeSplitter.hxx"// clang-format on
+#ifndef _BRepMesh_SphereRangeSplitter_HeaderFile
+#define _BRepMesh_SphereRangeSplitter_HeaderFile
+
+#include <BRepMesh_DefaultRangeSplitter.hxx>
+#include <IMeshTools_Parameters.hxx>
+
+//! Auxiliary class extending default range splitter in
+//! order to generate internal nodes for spherical surface.
+class BRepMesh_SphereRangeSplitter : public BRepMesh_DefaultRangeSplitter
+{
+public:
+  //! Constructor.
+  BRepMesh_SphereRangeSplitter() = default;
+
+  //! Destructor.
+  ~BRepMesh_SphereRangeSplitter() override = default;
+
+  //! Returns list of nodes generated using surface data and specified parameters.
+  Standard_EXPORT Handle(IMeshData::ListOfPnt2d) GenerateSurfaceNodes(
+    const IMeshTools_Parameters& theParameters) const override;
+
+private:
+  //! Computes step for the given range.
+  void computeStep(const std::pair<double, double>& theRange,
+                   const double                     theDefaultStep,
+                   std::pair<double, double>&       theStepAndOffset) const
+  {
+    const double aDiff      = theRange.second - theRange.first;
+    theStepAndOffset.first  = aDiff / ((int)(aDiff / theDefaultStep) + 1);
+    theStepAndOffset.second = theRange.second - Precision::PConfusion();
+  }
+};
+
+#endif

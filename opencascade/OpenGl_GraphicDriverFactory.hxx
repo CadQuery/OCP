@@ -1,4 +1,4 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Copyright (c) 2021 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +11,32 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/Visualization/TKOpenGl/OpenGl/OpenGl_GraphicDriverFactory.hxx"// clang-format on
+#ifndef _OpenGl_GraphicDriverFactory_Header
+#define _OpenGl_GraphicDriverFactory_Header
+
+#include <Graphic3d_GraphicDriverFactory.hxx>
+#include <OpenGl_Caps.hxx>
+
+//! This class for creation of OpenGl_GraphicDriver.
+class OpenGl_GraphicDriverFactory : public Graphic3d_GraphicDriverFactory
+{
+  DEFINE_STANDARD_RTTIEXT(OpenGl_GraphicDriverFactory, Graphic3d_GraphicDriverFactory)
+public:
+  //! Empty constructor.
+  Standard_EXPORT OpenGl_GraphicDriverFactory();
+
+  //! Creates new empty graphic driver.
+  Standard_EXPORT occ::handle<Graphic3d_GraphicDriver> CreateDriver(
+    const occ::handle<Aspect_DisplayConnection>& theDisp) override;
+
+  //! Return default driver options.
+  const occ::handle<OpenGl_Caps>& DefaultOptions() const { return myDefaultCaps; }
+
+  //! Set default driver options.
+  void SetDefaultOptions(const occ::handle<OpenGl_Caps>& theOptions) { myDefaultCaps = theOptions; }
+
+protected:
+  occ::handle<OpenGl_Caps> myDefaultCaps;
+};
+
+#endif //_OpenGl_GraphicDriverFactory_Header

@@ -1,4 +1,4 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Copyright (c) 2019 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +11,38 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/FoundationClasses/TKernel/Message/Message_PrinterSystemLog.hxx"// clang-format on
+#ifndef _Message_PrinterSystemLog_HeaderFile
+#define _Message_PrinterSystemLog_HeaderFile
+
+#include <Message_Printer.hxx>
+#include <TCollection_AsciiString.hxx>
+
+//! Implementation of a message printer associated with system log.
+//! Implemented for the following systems:
+//! - Windows, through ReportEventW().
+//! - Android, through __android_log_write().
+//! - UNIX/Linux, through syslog().
+class Message_PrinterSystemLog : public Message_Printer
+{
+  DEFINE_STANDARD_RTTIEXT(Message_PrinterSystemLog, Message_Printer)
+public:
+  //! Main constructor.
+  Standard_EXPORT Message_PrinterSystemLog(const TCollection_AsciiString& theEventSourceName,
+                                           const Message_Gravity theTraceLevel = Message_Info);
+
+  //! Destructor.
+  Standard_EXPORT ~Message_PrinterSystemLog() override;
+
+protected:
+  //! Puts a message to the system log.
+  Standard_EXPORT void send(const TCollection_AsciiString& theString,
+                            const Message_Gravity          theGravity) const override;
+
+private:
+  TCollection_AsciiString myEventSourceName;
+#ifdef _WIN32
+  void* myEventSource;
+#endif
+};
+
+#endif // _Message_PrinterSystemLog_HeaderFile

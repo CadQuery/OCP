@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 1997-03-27
+// Created by: Alexander BRIVIN and Dmitry TARASOV
+// Copyright (c) 1997-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,34 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/DataExchange/TKDEVRML/Vrml/Vrml_Group.hxx"// clang-format on
+#ifndef _Vrml_Group_HeaderFile
+#define _Vrml_Group_HeaderFile
+
+#include <Standard.hxx>
+#include <Standard_DefineAlloc.hxx>
+#include <Standard_Handle.hxx>
+
+#include <Standard_Boolean.hxx>
+#include <Standard_OStream.hxx>
+
+//! defines a Group node of VRML specifying group properties.
+//! This node defines the base class for all group nodes. Group is a node that
+//! contains an ordered list of child nodes. This node is simply a container for
+//! the child nodes and does not alter the traversal state in any way.
+//! During traversal, state accumulated for a child is passed on to each successive
+//! child and then to the parents of the group (Group does not push or pop traversal
+//! state as separator does).
+class Vrml_Group
+{
+public:
+  DEFINE_STANDARD_ALLOC
+
+  Standard_EXPORT Vrml_Group();
+
+  Standard_EXPORT Standard_OStream& Print(Standard_OStream& anOStream);
+
+private:
+  bool myFlagPrint;
+};
+
+#endif // _Vrml_Group_HeaderFile

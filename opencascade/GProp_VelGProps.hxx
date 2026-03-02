@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 1992-12-02
+// Created by: Isabelle GRIGNON
+// Copyright (c) 1992-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,82 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ModelingData/TKG3d/GProp/GProp_VelGProps.hxx"// clang-format on
+#ifndef _GProp_VelGProps_HeaderFile
+#define _GProp_VelGProps_HeaderFile
+
+#include <Standard.hxx>
+#include <Standard_DefineAlloc.hxx>
+
+#include <GProp_GProps.hxx>
+class gp_Cylinder;
+class gp_Pnt;
+class gp_Cone;
+class gp_Sphere;
+class gp_Torus;
+
+//! Computes the global properties and the volume of a geometric solid
+//! (3D closed region of space)
+//! The solid can be elementary(definition in the gp package)
+class GProp_VelGProps : public GProp_GProps
+{
+public:
+  DEFINE_STANDARD_ALLOC
+
+  Standard_EXPORT GProp_VelGProps();
+
+  Standard_EXPORT GProp_VelGProps(const gp_Cylinder& S,
+                                  const double       Alpha1,
+                                  const double       Alpha2,
+                                  const double       Z1,
+                                  const double       Z2,
+                                  const gp_Pnt&      VLocation);
+
+  Standard_EXPORT GProp_VelGProps(const gp_Cone& S,
+                                  const double   Alpha1,
+                                  const double   Alpha2,
+                                  const double   Z1,
+                                  const double   Z2,
+                                  const gp_Pnt&  VLocation);
+
+  Standard_EXPORT GProp_VelGProps(const gp_Sphere& S,
+                                  const double     Teta1,
+                                  const double     Teta2,
+                                  const double     Alpha1,
+                                  const double     Alpha2,
+                                  const gp_Pnt&    VLocation);
+
+  Standard_EXPORT GProp_VelGProps(const gp_Torus& S,
+                                  const double    Teta1,
+                                  const double    Teta2,
+                                  const double    Alpha1,
+                                  const double    Alpha2,
+                                  const gp_Pnt&   VLocation);
+
+  Standard_EXPORT void SetLocation(const gp_Pnt& VLocation);
+
+  Standard_EXPORT void Perform(const gp_Cylinder& S,
+                               const double       Alpha1,
+                               const double       Alpha2,
+                               const double       Z1,
+                               const double       Z2);
+
+  Standard_EXPORT void Perform(const gp_Cone& S,
+                               const double   Alpha1,
+                               const double   Alpha2,
+                               const double   Z1,
+                               const double   Z2);
+
+  Standard_EXPORT void Perform(const gp_Sphere& S,
+                               const double     Teta1,
+                               const double     Teta2,
+                               const double     Alpha1,
+                               const double     Alpha2);
+
+  Standard_EXPORT void Perform(const gp_Torus& S,
+                               const double    Teta1,
+                               const double    Teta2,
+                               const double    Alpha1,
+                               const double    Alpha2);
+};
+
+#endif // _GProp_VelGProps_HeaderFile

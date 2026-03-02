@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 1995-12-01
+// Created by: EXPRESS->CDL V0.2 Translator
+// Copyright (c) 1995-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,22 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/DataExchange/TKDESTEP/StepShape/StepShape_TopologicalRepresentationItem.hxx"// clang-format on
+#ifndef _StepShape_TopologicalRepresentationItem_HeaderFile
+#define _StepShape_TopologicalRepresentationItem_HeaderFile
+
+#include <Standard.hxx>
+#include <Standard_Type.hxx>
+
+#include <StepRepr_RepresentationItem.hxx>
+
+class StepShape_TopologicalRepresentationItem : public StepRepr_RepresentationItem
+{
+
+public:
+  //! Returns a TopologicalRepresentationItem
+  Standard_EXPORT StepShape_TopologicalRepresentationItem();
+
+  DEFINE_STANDARD_RTTIEXT(StepShape_TopologicalRepresentationItem, StepRepr_RepresentationItem)
+};
+
+#endif // _StepShape_TopologicalRepresentationItem_HeaderFile

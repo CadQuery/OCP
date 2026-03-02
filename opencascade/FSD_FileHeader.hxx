@@ -1,4 +1,6 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 2008-06-20
+// Copyright (c) 1998-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +13,42 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/FoundationClasses/TKernel/FSD/FSD_FileHeader.hxx"// clang-format on
+#ifndef _FSD_FileHeader_HeaderFile
+#define _FSD_FileHeader_HeaderFile
+
+#include <stddef.h>
+
+#include <stdlib.h>
+
+#include <Standard_Macro.hxx>
+
+#include <Standard_Boolean.hxx>
+
+#include <Standard_Integer.hxx>
+
+#include <Standard_Real.hxx>
+
+#include <Standard_Character.hxx>
+
+#include <Standard_ExtCharacter.hxx>
+
+#include <Standard_CString.hxx>
+
+struct FSD_FileHeader
+{
+  int testindian;
+  int binfo;
+  int einfo;
+  int bcomment;
+  int ecomment;
+  int btype;
+  int etype;
+  int broot;
+  int eroot;
+  int bref;
+  int eref;
+  int bdata;
+  int edata;
+};
+
+#endif

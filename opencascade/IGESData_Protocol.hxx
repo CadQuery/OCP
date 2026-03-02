@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 1993-05-05
+// Created by: Christian CAILLET
+// Copyright (c) 1993-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,51 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/DataExchange/TKDEIGES/IGESData/IGESData_Protocol.hxx"// clang-format on
+#ifndef _IGESData_Protocol_HeaderFile
+#define _IGESData_Protocol_HeaderFile
+
+#include <Standard.hxx>
+#include <Standard_Type.hxx>
+
+#include <Interface_Protocol.hxx>
+#include <Standard_Integer.hxx>
+class Interface_InterfaceModel;
+class Standard_Transient;
+
+//! Description of basic Protocol for IGES
+//! This comprises treatment of IGESModel and Recognition of
+//! Undefined-FreeFormat-Entity
+class IGESData_Protocol : public Interface_Protocol
+{
+
+public:
+  Standard_EXPORT IGESData_Protocol();
+
+  //! Gives the count of Resource Protocol. Here, none
+  Standard_EXPORT int NbResources() const override;
+
+  //! Returns a Resource, given a rank. Here, none
+  Standard_EXPORT occ::handle<Interface_Protocol> Resource(const int num) const override;
+
+  //! Returns a Case Number, specific of each recognized Type
+  //! Here, Undefined and Free Format Entities have the Number 1.
+  Standard_EXPORT int TypeNumber(const occ::handle<Standard_Type>& atype) const override;
+
+  //! Creates an empty Model for IGES Norm
+  Standard_EXPORT occ::handle<Interface_InterfaceModel> NewModel() const override;
+
+  //! Returns True if <model> is a Model of IGES Norm
+  Standard_EXPORT bool IsSuitableModel(
+    const occ::handle<Interface_InterfaceModel>& model) const override;
+
+  //! Creates a new Unknown Entity for IGES (UndefinedEntity)
+  Standard_EXPORT occ::handle<Standard_Transient> UnknownEntity() const override;
+
+  //! Returns True if <ent> is an Unknown Entity for the Norm, i.e.
+  //! Type UndefinedEntity, status Unknown
+  Standard_EXPORT bool IsUnknownEntity(const occ::handle<Standard_Transient>& ent) const override;
+
+  DEFINE_STANDARD_RTTIEXT(IGESData_Protocol, Interface_Protocol)
+};
+
+#endif // _IGESData_Protocol_HeaderFile

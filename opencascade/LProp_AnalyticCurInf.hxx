@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 1994-09-02
+// Created by: Yves FRICAUD
+// Copyright (c) 1994-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,28 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ModelingData/TKG2d/LProp/LProp_AnalyticCurInf.hxx"// clang-format on
+#ifndef _LProp_AnalyticCurInf_HeaderFile
+#define _LProp_AnalyticCurInf_HeaderFile
+
+#include <Standard.hxx>
+#include <Standard_DefineAlloc.hxx>
+
+#include <GeomAbs_CurveType.hxx>
+class LProp_CurAndInf;
+
+//! Computes the locals extremas of curvature of a gp curve
+//! Remark : a gp curve has not inflection.
+class LProp_AnalyticCurInf
+{
+public:
+  DEFINE_STANDARD_ALLOC
+
+  Standard_EXPORT LProp_AnalyticCurInf();
+
+  Standard_EXPORT void Perform(const GeomAbs_CurveType T,
+                               const double            UFirst,
+                               const double            ULast,
+                               LProp_CurAndInf&        Result);
+};
+
+#endif // _LProp_AnalyticCurInf_HeaderFile

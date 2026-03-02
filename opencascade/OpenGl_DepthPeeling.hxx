@@ -1,4 +1,5 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 2021-01-15
+// Copyright (c) 2021 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +12,56 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/Visualization/TKOpenGl/OpenGl/OpenGl_DepthPeeling.hxx"// clang-format on
+#ifndef _OpenGl_DepthPeeling_HeaderFile
+#define _OpenGl_DepthPeeling_HeaderFile
+
+#include <OpenGl_FrameBuffer.hxx>
+#include <OpenGl_NamedResource.hxx>
+
+//! Class provides FBOs for dual depth peeling.
+class OpenGl_DepthPeeling : public OpenGl_NamedResource
+{
+  DEFINE_STANDARD_RTTIEXT(OpenGl_DepthPeeling, OpenGl_NamedResource)
+public:
+  //! Constructor.
+  Standard_EXPORT OpenGl_DepthPeeling();
+
+  //! Destructor.
+  Standard_EXPORT ~OpenGl_DepthPeeling() override;
+
+  //! Release OpenGL resources
+  Standard_EXPORT void Release(OpenGl_Context* theGlCtx) override;
+
+  //! Returns estimated GPU memory usage for holding data without considering overheads and
+  //! allocation alignment rules.
+  Standard_EXPORT size_t EstimatedDataSize() const override;
+
+  //! Attach a texture image.
+  //! Resets the active FBO to 0.
+  Standard_EXPORT void AttachDepthTexture(
+    const occ::handle<OpenGl_Context>& theCtx,
+    const occ::handle<OpenGl_Texture>& theDepthStencilTexture);
+
+  //! Detach a texture image.
+  //! Resets the active FBO to 0.
+  Standard_EXPORT void DetachDepthTexture(const occ::handle<OpenGl_Context>& theCtx);
+
+  //! Returns additional buffers for ping-pong
+  const occ::handle<OpenGl_FrameBuffer>* DepthPeelFbosOit() const { return myDepthPeelFbosOit; }
+
+  //! Returns additional buffers for ping-pong
+  const occ::handle<OpenGl_FrameBuffer>* FrontBackColorFbosOit() const
+  {
+    return myFrontBackColorFbosOit;
+  }
+
+  //! Returns additional FBO for depth peeling
+  const occ::handle<OpenGl_FrameBuffer>& BlendBackFboOit() const { return myBlendBackFboOit; }
+
+private:
+  occ::handle<OpenGl_FrameBuffer> myDepthPeelFbosOit[2];      //!< depth + front color + back color
+  occ::handle<OpenGl_FrameBuffer> myFrontBackColorFbosOit[2]; //!< front color + back color
+  occ::handle<OpenGl_FrameBuffer> myBlendBackFboOit;
+};
+
+#endif // _OpenGl_DepthPeeling_HeaderFile

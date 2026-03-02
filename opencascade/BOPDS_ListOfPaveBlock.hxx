@@ -1,4 +1,5 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created by: Peter KURNEV
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +12,14 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ModelingAlgorithms/TKBO/BOPDS/BOPDS_ListOfPaveBlock.hxx"// clang-format on
+#ifndef BOPDS_ListOfPaveBlock_HeaderFile
+#define BOPDS_ListOfPaveBlock_HeaderFile
+
+#include <NCollection_List.hxx>
+#include <Standard_Handle.hxx>
+
+class BOPDS_PaveBlock;
+
+typedef NCollection_List<occ::handle<BOPDS_PaveBlock>> BOPDS_ListOfPaveBlock;
+
+#endif

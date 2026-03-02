@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on : Sat May 02 12:41:15 2020
+// Created by: Irina KRYLOVA
+// Generator:	Express (EXPRESS -> CASCADE/XSTEP Translator) V3.0
+// Copyright (c) Open CASCADE 2020
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,43 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/DataExchange/TKDESTEP/StepKinematics/StepKinematics_CylindricalPairValue.hxx"// clang-format on
+#ifndef _StepKinematics_CylindricalPairValue_HeaderFile_
+#define _StepKinematics_CylindricalPairValue_HeaderFile_
+
+#include <Standard.hxx>
+#include <StepKinematics_PairValue.hxx>
+
+#include <TCollection_HAsciiString.hxx>
+#include <StepKinematics_KinematicPair.hxx>
+
+//! Representation of STEP entity CylindricalPairValue
+class StepKinematics_CylindricalPairValue : public StepKinematics_PairValue
+{
+public:
+  //! default constructor
+  Standard_EXPORT StepKinematics_CylindricalPairValue();
+
+  //! Initialize all fields (own and inherited)
+  Standard_EXPORT void Init(
+    const occ::handle<TCollection_HAsciiString>&     theRepresentationItem_Name,
+    const occ::handle<StepKinematics_KinematicPair>& thePairValue_AppliesToPair,
+    const double                                     theActualTranslation,
+    const double                                     theActualRotation);
+
+  //! Returns field ActualTranslation
+  Standard_EXPORT double ActualTranslation() const;
+  //! Sets field ActualTranslation
+  Standard_EXPORT void SetActualTranslation(const double theActualTranslation);
+
+  //! Returns field ActualRotation
+  Standard_EXPORT double ActualRotation() const;
+  //! Sets field ActualRotation
+  Standard_EXPORT void SetActualRotation(const double theActualRotation);
+
+  DEFINE_STANDARD_RTTIEXT(StepKinematics_CylindricalPairValue, StepKinematics_PairValue)
+
+private:
+  double myActualTranslation;
+  double myActualRotation;
+};
+#endif // _StepKinematics_CylindricalPairValue_HeaderFile_

@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 1996-04-01
+// Created by: Flore Lantheaume
+// Copyright (c) 1996-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,35 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/Visualization/TKV3d/DsgPrs/DsgPrs_FixPresentation.hxx"// clang-format on
+#ifndef _DsgPrs_FixPresentation_HeaderFile
+#define _DsgPrs_FixPresentation_HeaderFile
+
+#include <Standard.hxx>
+#include <Standard_DefineAlloc.hxx>
+
+#include <Prs3d_Drawer.hxx>
+#include <Prs3d_Presentation.hxx>
+
+class gp_Pnt;
+class gp_Dir;
+
+//! class which draws the presentation of Fixed objects
+class DsgPrs_FixPresentation
+{
+public:
+  DEFINE_STANDARD_ALLOC
+
+  //! draws the presentation of fixed objects by
+  //! drawing the 'fix' symbol at position <aPntEnd>.
+  //! A binding segment is drawn between <aPntAttach>
+  //! ( which belongs to the fixed object) and <aPntEnd>.
+  //! aSymbSize is the size of the 'fix'symbol
+  Standard_EXPORT static void Add(const occ::handle<Prs3d_Presentation>& aPresentation,
+                                  const occ::handle<Prs3d_Drawer>&       aDrawer,
+                                  const gp_Pnt&                          aPntAttach,
+                                  const gp_Pnt&                          aPntEnd,
+                                  const gp_Dir&                          aNormPln,
+                                  const double                           aSymbSize);
+};
+
+#endif // _DsgPrs_FixPresentation_HeaderFile

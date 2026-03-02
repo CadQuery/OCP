@@ -1,4 +1,6 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 2015-09-09
+// Created by: Irina KRYLOVA
+// Copyright (c) 2015 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +13,41 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/DataExchange/TKDESTEP/StepRepr/StepRepr_ValueRepresentationItem.hxx"// clang-format on
+#ifndef _StepRepr_ValueRepresentationItem_HeaderFile
+#define _StepRepr_ValueRepresentationItem_HeaderFile
+
+#include <Standard.hxx>
+#include <Standard_Type.hxx>
+
+#include <StepRepr_RepresentationItem.hxx>
+class StepBasic_MeasureValueMember;
+class TCollection_HAsciiString;
+
+class StepRepr_ValueRepresentationItem : public StepRepr_RepresentationItem
+{
+
+public:
+  //! Returns a ValueRepresentationItem
+  Standard_EXPORT StepRepr_ValueRepresentationItem();
+
+  Standard_EXPORT void Init(
+    const occ::handle<TCollection_HAsciiString>&     theName,
+    const occ::handle<StepBasic_MeasureValueMember>& theValueComponentMember);
+
+  inline void SetValueComponentMember(
+    const occ::handle<StepBasic_MeasureValueMember>& theValueComponentMember)
+  {
+    valueComponentMember = theValueComponentMember;
+  }
+
+  inline occ::handle<StepBasic_MeasureValueMember> ValueComponentMember() const
+  {
+    return valueComponentMember;
+  }
+
+  DEFINE_STANDARD_RTTIEXT(StepRepr_ValueRepresentationItem, StepRepr_RepresentationItem)
+
+private:
+  occ::handle<StepBasic_MeasureValueMember> valueComponentMember;
+};
+#endif // _StepRepr_ValueRepresentationItem_HeaderFile

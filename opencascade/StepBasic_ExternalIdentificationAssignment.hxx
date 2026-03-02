@@ -1,4 +1,6 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 2000-05-10
+// Created by: Andrey BETENEV
+// Copyright (c) 2000-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +13,42 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/DataExchange/TKDESTEP/StepBasic/StepBasic_ExternalIdentificationAssignment.hxx"// clang-format on
+#ifndef _StepBasic_ExternalIdentificationAssignment_HeaderFile
+#define _StepBasic_ExternalIdentificationAssignment_HeaderFile
+
+#include <Standard.hxx>
+#include <Standard_Type.hxx>
+
+#include <StepBasic_IdentificationAssignment.hxx>
+class StepBasic_ExternalSource;
+class TCollection_HAsciiString;
+class StepBasic_IdentificationRole;
+
+//! Representation of STEP entity ExternalIdentificationAssignment
+class StepBasic_ExternalIdentificationAssignment : public StepBasic_IdentificationAssignment
+{
+
+public:
+  //! Empty constructor
+  Standard_EXPORT StepBasic_ExternalIdentificationAssignment();
+
+  //! Initialize all fields (own and inherited)
+  Standard_EXPORT void Init(
+    const occ::handle<TCollection_HAsciiString>&     aIdentificationAssignment_AssignedId,
+    const occ::handle<StepBasic_IdentificationRole>& aIdentificationAssignment_Role,
+    const occ::handle<StepBasic_ExternalSource>&     aSource);
+
+  //! Returns field Source
+  Standard_EXPORT occ::handle<StepBasic_ExternalSource> Source() const;
+
+  //! Set field Source
+  Standard_EXPORT void SetSource(const occ::handle<StepBasic_ExternalSource>& Source);
+
+  DEFINE_STANDARD_RTTIEXT(StepBasic_ExternalIdentificationAssignment,
+                          StepBasic_IdentificationAssignment)
+
+private:
+  occ::handle<StepBasic_ExternalSource> theSource;
+};
+
+#endif // _StepBasic_ExternalIdentificationAssignment_HeaderFile

@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 1997-12-10
+// Created by: Denis PASCAL
+// Copyright (c) 1997-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,46 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ApplicationFramework/TKLCAF/TDataStd/TDataStd_Relation.hxx"// clang-format on
+#ifndef _TDataStd_Relation_HeaderFile
+#define _TDataStd_Relation_HeaderFile
+
+#include <TDataStd_Expression.hxx>
+
+//! Relation attribute.
+//! ==================
+//!
+//! * Data Structure of the Expression is stored in a
+//! string and references to variables used by the string
+//!
+//! Warning: To be consistent, each Variable referenced by the
+//! relation must have its equivalent in the string
+class TDataStd_Relation : public TDataStd_Expression
+{
+
+public:
+  //! class methods
+  //! =============
+  Standard_EXPORT static const Standard_GUID& GetID();
+
+  //! Find, or create, an Relation attribute.
+  //! Real methods
+  //! ============
+  Standard_EXPORT static occ::handle<TDataStd_Relation> Set(const TDF_Label& label);
+
+  Standard_EXPORT TDataStd_Relation();
+
+  Standard_EXPORT void SetRelation(const TCollection_ExtendedString& E);
+
+  Standard_EXPORT const TCollection_ExtendedString& GetRelation() const;
+
+  Standard_EXPORT const Standard_GUID& ID() const override;
+
+  Standard_EXPORT Standard_OStream& Dump(Standard_OStream& anOS) const override;
+
+  //! Dumps the content of me into the stream
+  Standard_EXPORT void DumpJson(Standard_OStream& theOStream, int theDepth = -1) const override;
+
+  DEFINE_DERIVED_ATTRIBUTE(TDataStd_Relation, TDataStd_Expression)
+};
+
+#endif // _TDataStd_Relation_HeaderFile

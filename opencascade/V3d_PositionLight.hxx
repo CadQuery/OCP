@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 1997-11-21
+// Created by: ZOV
+// Copyright (c) 1997-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,23 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/Visualization/TKV3d/V3d/V3d_PositionLight.hxx"// clang-format on
+#ifndef _V3d_PositionLight_HeaderFile
+#define _V3d_PositionLight_HeaderFile
+
+#include <V3d_Light.hxx>
+
+//! Base class for Positional, Spot and Directional Light classes.
+class V3d_PositionLight : public Graphic3d_CLight
+{
+  DEFINE_STANDARD_RTTIEXT(V3d_PositionLight, Graphic3d_CLight)
+protected:
+  //! Protected constructor.
+  Standard_EXPORT V3d_PositionLight(Graphic3d_TypeOfLightSource theType);
+
+  //! @name hidden properties not applicable to positional light
+protected:
+  using Graphic3d_CLight::Position;
+  using Graphic3d_CLight::SetPosition;
+};
+
+#endif // _V3d_PositionLight_HeaderFile

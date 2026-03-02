@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 1992-01-17
+// Created by: GG
+// Copyright (c) 1992-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,11 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/Visualization/TKV3d/V3d/V3d_Light.hxx"// clang-format on
+#ifndef _V3d_Light_HeaderFile
+#define _V3d_Light_HeaderFile
+
+#include <Graphic3d_CLight.hxx>
+
+typedef Graphic3d_CLight V3d_Light;
+
+#endif // _V3d_Light_HeaderFile

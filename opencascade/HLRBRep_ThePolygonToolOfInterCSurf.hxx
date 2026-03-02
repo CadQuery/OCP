@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 1992-10-14
+// Created by: Christophe MARION
+// Copyright (c) 1992-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,55 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ModelingAlgorithms/TKHLR/HLRBRep/HLRBRep_ThePolygonToolOfInterCSurf.hxx"// clang-format on
+#ifndef _HLRBRep_ThePolygonToolOfInterCSurf_HeaderFile
+#define _HLRBRep_ThePolygonToolOfInterCSurf_HeaderFile
+
+#include <Standard.hxx>
+#include <Standard_DefineAlloc.hxx>
+
+#include <Bnd_Box.hxx>
+#include <gp_Pnt.hxx>
+#include <HLRBRep_ThePolygonOfInterCSurf.hxx>
+
+class HLRBRep_ThePolygonToolOfInterCSurf
+{
+public:
+  DEFINE_STANDARD_ALLOC
+
+  //! Give the bounding box of the polygon.
+  static const Bnd_Box& Bounding(const HLRBRep_ThePolygonOfInterCSurf& thePolygon)
+  {
+    return thePolygon.Bounding();
+  }
+
+  static double DeflectionOverEstimation(const HLRBRep_ThePolygonOfInterCSurf& thePolygon)
+  {
+    return thePolygon.DeflectionOverEstimation();
+  }
+
+  static bool Closed(const HLRBRep_ThePolygonOfInterCSurf& thePolygon)
+  {
+    return thePolygon.Closed();
+  }
+
+  static int NbSegments(const HLRBRep_ThePolygonOfInterCSurf& thePolygon)
+  {
+    return thePolygon.NbSegments();
+  }
+
+  //! Give the point of range Index in the Polygon.
+  static const gp_Pnt& BeginOfSeg(const HLRBRep_ThePolygonOfInterCSurf& thePolygon, const int Index)
+  {
+    return thePolygon.BeginOfSeg(Index);
+  }
+
+  //! Give the point of range Index in the Polygon.
+  static const gp_Pnt& EndOfSeg(const HLRBRep_ThePolygonOfInterCSurf& thePolygon, const int Index)
+  {
+    return thePolygon.EndOfSeg(Index);
+  }
+
+  Standard_EXPORT static void Dump(const HLRBRep_ThePolygonOfInterCSurf& thePolygon);
+};
+
+#endif // _HLRBRep_ThePolygonToolOfInterCSurf_HeaderFile

@@ -1,4 +1,6 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 2022-09-07
+// Copyright (c) 2022 OPEN CASCADE SAS
+// Created by: Oleg AGASHIN
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +13,27 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ModelingAlgorithms/TKMesh/BRepMesh/BRepMesh_UndefinedRangeSplitter.hxx"// clang-format on
+#ifndef _BRepMesh_UndefinedRangeSplitter_HeaderFile
+#define _BRepMesh_UndefinedRangeSplitter_HeaderFile
+
+#include <BRepMesh_NURBSRangeSplitter.hxx>
+
+//! Auxiliary class provides safe value for surfaces that looks like NURBS
+//! but has no poles or other characteristics.
+class BRepMesh_UndefinedRangeSplitter : public BRepMesh_NURBSRangeSplitter
+{
+public:
+  //! Constructor.
+  BRepMesh_UndefinedRangeSplitter() = default;
+
+  //! Destructor.
+  ~BRepMesh_UndefinedRangeSplitter() override = default;
+
+protected:
+  //! Returns number of intervals computed using available geometrical parameters.
+  Standard_EXPORT int getUndefinedIntervalNb(const occ::handle<Adaptor3d_Surface>& theSurface,
+                                             const bool                            isU,
+                                             const GeomAbs_Shape theContinuity) const override;
+};
+
+#endif

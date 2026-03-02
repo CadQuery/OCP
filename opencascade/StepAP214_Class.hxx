@@ -1,4 +1,6 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 2000-05-10
+// Created by: Andrey BETENEV
+// Copyright (c) 2000-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +13,23 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/DataExchange/TKDESTEP/StepAP214/StepAP214_Class.hxx"// clang-format on
+#ifndef _StepAP214_Class_HeaderFile
+#define _StepAP214_Class_HeaderFile
+
+#include <Standard.hxx>
+#include <Standard_Type.hxx>
+
+#include <StepBasic_Group.hxx>
+
+//! Representation of STEP entity Class
+class StepAP214_Class : public StepBasic_Group
+{
+
+public:
+  //! Empty constructor
+  Standard_EXPORT StepAP214_Class();
+
+  DEFINE_STANDARD_RTTIEXT(StepAP214_Class, StepBasic_Group)
+};
+
+#endif // _StepAP214_Class_HeaderFile

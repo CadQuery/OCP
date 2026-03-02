@@ -1,4 +1,6 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 2001-08-24
+// Created by: Alexander GRIGORIEV
+// Copyright (c) 2001-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +13,39 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ApplicationFramework/TKBinL/BinMDataStd/BinMDataStd_VariableDriver.hxx"// clang-format on
+#ifndef _BinMDataStd_VariableDriver_HeaderFile
+#define _BinMDataStd_VariableDriver_HeaderFile
+
+#include <Standard.hxx>
+
+#include <BinMDF_ADriver.hxx>
+#include <BinObjMgt_RRelocationTable.hxx>
+#include <Standard_Transient.hxx>
+#include <NCollection_IndexedMap.hxx>
+class Message_Messenger;
+class TDF_Attribute;
+class BinObjMgt_Persistent;
+
+//! Attribute Driver.
+class BinMDataStd_VariableDriver : public BinMDF_ADriver
+{
+
+public:
+  Standard_EXPORT BinMDataStd_VariableDriver(
+    const occ::handle<Message_Messenger>& theMessageDriver);
+
+  Standard_EXPORT occ::handle<TDF_Attribute> NewEmpty() const override;
+
+  Standard_EXPORT bool Paste(const BinObjMgt_Persistent&       Source,
+                             const occ::handle<TDF_Attribute>& Target,
+                             BinObjMgt_RRelocationTable&       RelocTable) const override;
+
+  Standard_EXPORT void Paste(
+    const occ::handle<TDF_Attribute>&                        Source,
+    BinObjMgt_Persistent&                                    Target,
+    NCollection_IndexedMap<occ::handle<Standard_Transient>>& RelocTable) const override;
+
+  DEFINE_STANDARD_RTTIEXT(BinMDataStd_VariableDriver, BinMDF_ADriver)
+};
+
+#endif // _BinMDataStd_VariableDriver_HeaderFile

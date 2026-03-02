@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 1997-01-24
+// Created by: Laurent BOURESCHE
+// Copyright (c) 1997-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,62 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ModelingAlgorithms/TKFillet/BRepBlend/BRepBlend_RstRstLineBuilder.lxx"// clang-format on
+#include <StdFail_NotDone.hxx>
+
+//=================================================================================================
+
+inline bool BRepBlend_RstRstLineBuilder::IsDone() const
+{
+  return done;
+}
+
+//=================================================================================================
+
+inline const occ::handle<BRepBlend_Line>& BRepBlend_RstRstLineBuilder::Line() const
+{
+  if (!done)
+  {
+    throw StdFail_NotDone();
+  }
+  return line;
+}
+
+//=================================================================================================
+
+inline bool BRepBlend_RstRstLineBuilder::Decroch1Start() const
+{
+  if (decrochdeb == Blend_DecrochRst1 || decrochdeb == Blend_DecrochBoth)
+    return true;
+
+  return false;
+}
+
+//=================================================================================================
+
+inline bool BRepBlend_RstRstLineBuilder::Decroch1End() const
+{
+  if (decrochfin == Blend_DecrochRst1 || decrochfin == Blend_DecrochBoth)
+    return true;
+
+  return false;
+}
+
+//=================================================================================================
+
+inline bool BRepBlend_RstRstLineBuilder::Decroch2Start() const
+{
+  if (decrochdeb == Blend_DecrochRst2 || decrochdeb == Blend_DecrochBoth)
+    return true;
+
+  return false;
+}
+
+//=================================================================================================
+
+inline bool BRepBlend_RstRstLineBuilder::Decroch2End() const
+{
+  if (decrochfin == Blend_DecrochRst2 || decrochfin == Blend_DecrochBoth)
+    return true;
+
+  return false;
+}

@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 1993-01-11
+// Created by: Remi LEQUETTE
+// Copyright (c) 1993-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,81 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/FoundationClasses/TKMath/TopLoc/TopLoc_Location.lxx"// clang-format on
+#include <Standard_HashUtils.hxx>
+#include <TopLoc_SListOfItemLocation.hxx>
+#include <TopLoc_Datum3D.hxx>
+#include <TopLoc_ItemLocation.hxx>
+
+//=================================================================================================
+
+inline bool TopLoc_Location::IsIdentity() const
+{
+  return myItems.IsEmpty();
+}
+
+//=================================================================================================
+
+inline void TopLoc_Location::Identity()
+{
+  myItems.Clear();
+}
+
+//=================================================================================================
+
+inline const occ::handle<TopLoc_Datum3D>& TopLoc_Location::FirstDatum() const
+{
+  return myItems.Value().myDatum;
+}
+
+//=================================================================================================
+
+inline int TopLoc_Location::FirstPower() const
+{
+  return myItems.Value().myPower;
+}
+
+//=================================================================================================
+
+inline const TopLoc_Location& TopLoc_Location::NextLocation() const
+{
+  return (*(TopLoc_Location*)&(myItems.Tail()));
+}
+
+//=================================================================================================
+
+inline size_t TopLoc_Location::HashCode() const
+{
+  // Hashing base on IsEqual function
+  if (myItems.IsEmpty())
+  {
+    return 0;
+  }
+  size_t                     aHash = opencascade::MurmurHash::optimalSeed<size_t>();
+  TopLoc_SListOfItemLocation items = myItems;
+  size_t                     aCombined[3];
+  while (items.More())
+  {
+    aCombined[0] = std::hash<occ::handle<TopLoc_Datum3D>>{}(items.Value().myDatum);
+    aCombined[1] = opencascade::hash(items.Value().myPower);
+    aCombined[2] = aHash;
+    aHash        = opencascade::hashBytes(aCombined, sizeof(aCombined));
+    items.Next();
+  }
+  return aHash;
+}
+
+//=================================================================================================
+
+inline void ShallowDump(const TopLoc_Location& me, Standard_OStream& S)
+{
+  me.ShallowDump(S);
+}
+
+namespace std
+{
+template <>
+struct hash<TopLoc_Location>
+{
+  size_t operator()(const TopLoc_Location& theLocation) const { return theLocation.HashCode(); }
+};
+} // namespace std

@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 1995-12-01
+// Created by: EXPRESS->CDL V0.2 Translator
+// Copyright (c) 1995-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,39 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/DataExchange/TKDESTEP/StepBasic/StepBasic_ConversionBasedUnitAndPlaneAngleUnit.hxx"// clang-format on
+#ifndef _StepBasic_ConversionBasedUnitAndPlaneAngleUnit_HeaderFile
+#define _StepBasic_ConversionBasedUnitAndPlaneAngleUnit_HeaderFile
+
+#include <Standard.hxx>
+#include <Standard_Type.hxx>
+
+#include <StepBasic_ConversionBasedUnit.hxx>
+class StepBasic_PlaneAngleUnit;
+class StepBasic_DimensionalExponents;
+class TCollection_HAsciiString;
+class StepBasic_MeasureWithUnit;
+
+class StepBasic_ConversionBasedUnitAndPlaneAngleUnit : public StepBasic_ConversionBasedUnit
+{
+
+public:
+  //! Returns a ConversionBasedUnitAndPlaneAngleUnit
+  Standard_EXPORT StepBasic_ConversionBasedUnitAndPlaneAngleUnit();
+
+  Standard_EXPORT void Init(const occ::handle<StepBasic_DimensionalExponents>& aDimensions,
+                            const occ::handle<TCollection_HAsciiString>&       aName,
+                            const occ::handle<Standard_Transient>&             aConversionFactor);
+
+  Standard_EXPORT void SetPlaneAngleUnit(
+    const occ::handle<StepBasic_PlaneAngleUnit>& aPlaneAngleUnit);
+
+  Standard_EXPORT occ::handle<StepBasic_PlaneAngleUnit> PlaneAngleUnit() const;
+
+  DEFINE_STANDARD_RTTIEXT(StepBasic_ConversionBasedUnitAndPlaneAngleUnit,
+                          StepBasic_ConversionBasedUnit)
+
+private:
+  occ::handle<StepBasic_PlaneAngleUnit> planeAngleUnit;
+};
+
+#endif // _StepBasic_ConversionBasedUnitAndPlaneAngleUnit_HeaderFile

@@ -1,4 +1,6 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 2000-05-10
+// Created by: Andrey BETENEV
+// Copyright (c) 2000-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +13,42 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/DataExchange/TKDESTEP/StepAP214/StepAP214_RepItemGroup.hxx"// clang-format on
+#ifndef _StepAP214_RepItemGroup_HeaderFile
+#define _StepAP214_RepItemGroup_HeaderFile
+
+#include <Standard.hxx>
+#include <Standard_Type.hxx>
+
+#include <StepBasic_Group.hxx>
+#include <Standard_Boolean.hxx>
+class StepRepr_RepresentationItem;
+class TCollection_HAsciiString;
+
+//! Representation of STEP entity RepItemGroup
+class StepAP214_RepItemGroup : public StepBasic_Group
+{
+
+public:
+  //! Empty constructor
+  Standard_EXPORT StepAP214_RepItemGroup();
+
+  //! Initialize all fields (own and inherited)
+  Standard_EXPORT void Init(const occ::handle<TCollection_HAsciiString>& aGroup_Name,
+                            const bool                                   hasGroup_Description,
+                            const occ::handle<TCollection_HAsciiString>& aGroup_Description,
+                            const occ::handle<TCollection_HAsciiString>& aRepresentationItem_Name);
+
+  //! Returns data for supertype RepresentationItem
+  Standard_EXPORT occ::handle<StepRepr_RepresentationItem> RepresentationItem() const;
+
+  //! Set data for supertype RepresentationItem
+  Standard_EXPORT void SetRepresentationItem(
+    const occ::handle<StepRepr_RepresentationItem>& RepresentationItem);
+
+  DEFINE_STANDARD_RTTIEXT(StepAP214_RepItemGroup, StepBasic_Group)
+
+private:
+  occ::handle<StepRepr_RepresentationItem> theRepresentationItem;
+};
+
+#endif // _StepAP214_RepItemGroup_HeaderFile

@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 1991-07-19
+// Created by: Isabelle GRIGNON
+// Copyright (c) 1991-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,37 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ModelingData/TKGeomBase/CPnts/CPnts_MyGaussFunction.hxx"// clang-format on
+#ifndef _CPnts_MyGaussFunction_HeaderFile
+#define _CPnts_MyGaussFunction_HeaderFile
+
+#include <Standard.hxx>
+#include <Standard_DefineAlloc.hxx>
+#include <Standard_Handle.hxx>
+
+#include <CPnts_RealFunction.hxx>
+#include <math_Function.hxx>
+#include <Standard_Real.hxx>
+
+//! for implementation, compute values for Gauss
+class CPnts_MyGaussFunction : public math_Function
+{
+public:
+  DEFINE_STANDARD_ALLOC
+
+  CPnts_MyGaussFunction();
+
+  //! F is a pointer on a function D is a client data
+  //!
+  //! Each value is computed with F(D)
+  Standard_EXPORT void Init(const CPnts_RealFunction& F, void* const D);
+
+  Standard_EXPORT bool Value(const double X, double& F) override;
+
+private:
+  CPnts_RealFunction myFunction;
+  void*              myData;
+};
+
+#include <CPnts_MyGaussFunction.lxx>
+
+#endif // _CPnts_MyGaussFunction_HeaderFile

@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 1992-06-22
+// Created by: Gilles DEBARBOUILLE
+// Copyright (c) 1992-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,25 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/FoundationClasses/TKernel/Units/Units_MathSentence.hxx"// clang-format on
+#ifndef _Units_MathSentence_HeaderFile
+#define _Units_MathSentence_HeaderFile
+
+#include <Standard.hxx>
+#include <Standard_DefineAlloc.hxx>
+
+#include <Units_Sentence.hxx>
+
+//! This class defines all the methods to create and
+//! compute an algebraic formula.
+class Units_MathSentence : public Units_Sentence
+{
+public:
+  DEFINE_STANDARD_ALLOC
+
+  //! Creates and returns a MathSentence object. The string
+  //! <astring> describes an algebraic formula in natural
+  //! language.
+  Standard_EXPORT Units_MathSentence(const char* astring);
+};
+
+#endif // _Units_MathSentence_HeaderFile

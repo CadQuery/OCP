@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 1995-01-23
+// Created by: Mister rmi
+// Copyright (c) 1995-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,20 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/Visualization/TKV3d/SelectBasics/SelectBasics.hxx"// clang-format on
+#ifndef _SelectBasics_HeaderFile
+#define _SelectBasics_HeaderFile
+
+#include <Standard.hxx>
+
+//! interface class for dynamic selection
+class SelectBasics
+{
+public:
+  //! Structure to provide all-in-one result of selection of sensitive for "Matches" method of
+  //! Select3D_SensitiveEntity.
+  static int MaxOwnerPriority() { return 9; }
+
+  static int MinOwnerPriority() { return 0; }
+};
+
+#endif // _SelectBasics_HeaderFile

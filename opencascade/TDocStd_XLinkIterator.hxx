@@ -1,4 +1,6 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created by: DAUTRY Philippe
+// Copyright (c) 1997-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +13,50 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ApplicationFramework/TKLCAF/TDocStd/TDocStd_XLinkIterator.hxx"// clang-format on
+#ifndef _TDocStd_XLinkIterator_HeaderFile
+#define _TDocStd_XLinkIterator_HeaderFile
+
+#include <Standard.hxx>
+#include <Standard_DefineAlloc.hxx>
+#include <Standard_Handle.hxx>
+
+#include <TDocStd_XLinkPtr.hxx>
+#include <Standard_Boolean.hxx>
+class TDocStd_Document;
+
+//! Iterates on Reference attributes.
+//! This is an iterator giving all the external references
+//! of a Document.
+class TDocStd_XLinkIterator
+{
+public:
+  DEFINE_STANDARD_ALLOC
+
+  //! Returns an empty iterator;
+  Standard_EXPORT TDocStd_XLinkIterator();
+
+  //! Creates an iterator on Reference of <D>.
+  Standard_EXPORT TDocStd_XLinkIterator(const occ::handle<TDocStd_Document>& D);
+
+  //! Restarts an iteration with <D>.
+  Standard_EXPORT void Initialize(const occ::handle<TDocStd_Document>& D);
+
+  //! Returns True if there is a current Item in the
+  //! iteration.
+  bool More() const;
+
+  //! Move to the next item; raises if there is no more item.
+  Standard_EXPORT void Next();
+
+  //! Returns the current item; a null handle if there is none.
+  TDocStd_XLinkPtr Value() const;
+
+private:
+  Standard_EXPORT void Init(const occ::handle<TDocStd_Document>& D);
+
+  TDocStd_XLinkPtr myValue;
+};
+
+#include <TDocStd_XLinkIterator.lxx>
+
+#endif // _TDocStd_XLinkIterator_HeaderFile

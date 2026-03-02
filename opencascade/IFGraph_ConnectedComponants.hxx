@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 1992-09-23
+// Created by: Christian CAILLET
+// Copyright (c) 1992-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,29 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/DataExchange/TKXSBase/IFGraph/IFGraph_ConnectedComponants.hxx"// clang-format on
+#ifndef _IFGraph_ConnectedComponants_HeaderFile
+#define _IFGraph_ConnectedComponants_HeaderFile
+
+#include <Standard.hxx>
+#include <Standard_DefineAlloc.hxx>
+
+#include <IFGraph_SubPartsIterator.hxx>
+class Interface_Graph;
+
+//! determines Connected Components in a Graph.
+//! They define disjoined sets of Entities.
+class IFGraph_ConnectedComponants : public IFGraph_SubPartsIterator
+{
+public:
+  DEFINE_STANDARD_ALLOC
+
+  //! creates with a Graph, and will analyse :
+  //! whole True  : all the contents of the Model
+  //! whole False : sub-parts which will be given later
+  Standard_EXPORT IFGraph_ConnectedComponants(const Interface_Graph& agraph, const bool whole);
+
+  //! does the computation
+  Standard_EXPORT void Evaluate() override;
+};
+
+#endif // _IFGraph_ConnectedComponants_HeaderFile

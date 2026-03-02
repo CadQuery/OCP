@@ -1,4 +1,6 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 2016-08-25
+// Created by: Irina KRYLOVA
+// Copyright (c) 2016 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +13,25 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/DataExchange/TKDESTEP/StepVisual/StepVisual_CharacterizedObjAndRepresentationAndDraughtingModel.hxx"// clang-format on
+#ifndef _StepVisual_StepVisual_CharacterizedObjAndRepresentationAndDraughtingModel_HeaderFile
+#define _StepVisual_StepVisual_CharacterizedObjAndRepresentationAndDraughtingModel_HeaderFile
+
+#include <Standard.hxx>
+#include <Standard_Type.hxx>
+
+#include <StepVisual_DraughtingModel.hxx>
+
+//! Added for Dimensional Tolerances
+//! Complex STEP entity Characterized_Object & Characterized_Representation & Draughting_Model &
+//! Representation
+class StepVisual_CharacterizedObjAndRepresentationAndDraughtingModel
+    : public StepVisual_DraughtingModel
+{
+
+public:
+  Standard_EXPORT StepVisual_CharacterizedObjAndRepresentationAndDraughtingModel();
+
+  DEFINE_STANDARD_RTTIEXT(StepVisual_CharacterizedObjAndRepresentationAndDraughtingModel,
+                          StepVisual_DraughtingModel)
+};
+#endif // _StepVisual_CharacterizedObjAndRepresentationAndDraughtingModel_HeaderFile

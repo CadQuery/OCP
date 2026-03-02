@@ -1,4 +1,6 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 2002-12-12
+// Created by: data exchange team
+// Copyright (c) 2002-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +13,42 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/DataExchange/TKDESTEP/StepFEA/StepFEA_ParametricCurve3dElementCoordinateSystem.hxx"// clang-format on
+#ifndef _StepFEA_ParametricCurve3dElementCoordinateSystem_HeaderFile
+#define _StepFEA_ParametricCurve3dElementCoordinateSystem_HeaderFile
+
+#include <Standard.hxx>
+#include <Standard_Type.hxx>
+
+#include <StepFEA_FeaRepresentationItem.hxx>
+class StepFEA_ParametricCurve3dElementCoordinateDirection;
+class TCollection_HAsciiString;
+
+//! Representation of STEP entity ParametricCurve3dElementCoordinateSystem
+class StepFEA_ParametricCurve3dElementCoordinateSystem : public StepFEA_FeaRepresentationItem
+{
+
+public:
+  //! Empty constructor
+  Standard_EXPORT StepFEA_ParametricCurve3dElementCoordinateSystem();
+
+  //! Initialize all fields (own and inherited)
+  Standard_EXPORT void Init(
+    const occ::handle<TCollection_HAsciiString>& aRepresentationItem_Name,
+    const occ::handle<StepFEA_ParametricCurve3dElementCoordinateDirection>& aDirection);
+
+  //! Returns field Direction
+  Standard_EXPORT occ::handle<StepFEA_ParametricCurve3dElementCoordinateDirection> Direction()
+    const;
+
+  //! Set field Direction
+  Standard_EXPORT void SetDirection(
+    const occ::handle<StepFEA_ParametricCurve3dElementCoordinateDirection>& Direction);
+
+  DEFINE_STANDARD_RTTIEXT(StepFEA_ParametricCurve3dElementCoordinateSystem,
+                          StepFEA_FeaRepresentationItem)
+
+private:
+  occ::handle<StepFEA_ParametricCurve3dElementCoordinateDirection> theDirection;
+};
+
+#endif // _StepFEA_ParametricCurve3dElementCoordinateSystem_HeaderFile

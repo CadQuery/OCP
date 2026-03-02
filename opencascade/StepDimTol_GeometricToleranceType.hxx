@@ -1,4 +1,6 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 2015-08-10
+// Created by: Irina KRYLOVA
+// Copyright (c) 2015 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +13,26 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/DataExchange/TKDESTEP/StepDimTol/StepDimTol_GeometricToleranceType.hxx"// clang-format on
+#ifndef _StepDimTol_GeometricToleranceType_HeaderFile
+#define _StepDimTol_GeometricToleranceType_HeaderFile
+
+enum StepDimTol_GeometricToleranceType
+{
+  StepDimTol_GTTAngularityTolerance,
+  StepDimTol_GTTCircularRunoutTolerance,
+  StepDimTol_GTTCoaxialityTolerance,
+  StepDimTol_GTTConcentricityTolerance,
+  StepDimTol_GTTCylindricityTolerance,
+  StepDimTol_GTTFlatnessTolerance,
+  StepDimTol_GTTLineProfileTolerance,
+  StepDimTol_GTTParallelismTolerance,
+  StepDimTol_GTTPerpendicularityTolerance,
+  StepDimTol_GTTPositionTolerance,
+  StepDimTol_GTTRoundnessTolerance,
+  StepDimTol_GTTStraightnessTolerance,
+  StepDimTol_GTTSurfaceProfileTolerance,
+  StepDimTol_GTTSymmetryTolerance,
+  StepDimTol_GTTTotalRunoutTolerance
+};
+
+#endif // _StepDimTol_GeometricToleranceType_HeaderFile

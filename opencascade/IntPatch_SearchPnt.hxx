@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 1992-05-06
+// Created by: Jacques GOUSSARD
+// Copyright (c) 1992-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,11 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ModelingAlgorithms/TKGeomAlgo/IntPatch/IntPatch_SearchPnt.hxx"// clang-format on
+#ifndef _IntPatch_SearchPnt_HeaderFile
+#define _IntPatch_SearchPnt_HeaderFile
+
+#include <Intf_InterferencePolygon2d.hxx>
+
+typedef Intf_InterferencePolygon2d IntPatch_SearchPnt;
+
+#endif // _IntPatch_SearchPnt_HeaderFile

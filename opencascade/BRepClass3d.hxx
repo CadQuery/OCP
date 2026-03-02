@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 1994-04-18
+// Created by: Laurent BUCHARD
+// Copyright (c) 1994-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,25 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ModelingAlgorithms/TKTopAlgo/BRepClass3d/BRepClass3d.hxx"// clang-format on
+#ifndef _BRepClass3d_HeaderFile
+#define _BRepClass3d_HeaderFile
+
+#include <Standard.hxx>
+#include <Standard_DefineAlloc.hxx>
+#include <Standard_Handle.hxx>
+
+class TopoDS_Shell;
+class TopoDS_Solid;
+
+class BRepClass3d
+{
+public:
+  DEFINE_STANDARD_ALLOC
+
+  //! Returns the outer most shell of <S>. Returns a Null
+  //! shell if <S> has no outer shell.
+  //! If <S> has only one shell, then it will return, without checking orientation.
+  Standard_EXPORT static TopoDS_Shell OuterShell(const TopoDS_Solid& S);
+};
+
+#endif // _BRepClass3d_HeaderFile

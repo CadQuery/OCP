@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 1992-04-06
+// Created by: Christian CAILLET
+// Copyright (c) 1992-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,45 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/DataExchange/TKDEIGES/IGESData/IGESData_DefSwitch.hxx"// clang-format on
+#ifndef _IGESData_DefSwitch_HeaderFile
+#define _IGESData_DefSwitch_HeaderFile
+
+#include <Standard.hxx>
+#include <Standard_DefineAlloc.hxx>
+#include <Standard_Handle.hxx>
+
+#include <IGESData_DefType.hxx>
+
+//! description of a directory component which can be either
+//! undefined (let Void), defined as a Reference to an entity,
+//! or as a Rank, integer value addressing a builtin table
+//! The entity reference is not included here, only reference
+//! status is kept (because entity type must be adapted)
+class IGESData_DefSwitch
+{
+public:
+  DEFINE_STANDARD_ALLOC
+
+  //! creates a DefSwitch as Void
+  Standard_EXPORT IGESData_DefSwitch();
+
+  //! sets DefSwitch to "Void" status (in file : Integer = 0)
+  Standard_EXPORT void SetVoid();
+
+  //! sets DefSwitch to "Reference" Status (in file : Integer < 0)
+  Standard_EXPORT void SetReference();
+
+  //! sets DefSwitch to "Rank" with a Value (in file : Integer > 0)
+  Standard_EXPORT void SetRank(const int val);
+
+  //! returns DefType status (Void,Reference,Rank)
+  Standard_EXPORT IGESData_DefType DefType() const;
+
+  //! returns Value as Integer (sensefull for a Rank)
+  Standard_EXPORT int Value() const;
+
+private:
+  int theval;
+};
+
+#endif // _IGESData_DefSwitch_HeaderFile

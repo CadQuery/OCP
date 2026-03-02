@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 1995-12-01
+// Created by: EXPRESS->CDL V0.2 Translator
+// Copyright (c) 1995-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,42 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/DataExchange/TKDESTEP/StepAP214/StepAP214_AutoDesignPresentedItem.hxx"// clang-format on
+#ifndef _StepAP214_AutoDesignPresentedItem_HeaderFile
+#define _StepAP214_AutoDesignPresentedItem_HeaderFile
+
+#include <Standard.hxx>
+
+#include <StepAP214_AutoDesignPresentedItemSelect.hxx>
+#include <NCollection_Array1.hxx>
+#include <NCollection_HArray1.hxx>
+#include <StepVisual_PresentedItem.hxx>
+#include <Standard_Integer.hxx>
+class StepAP214_AutoDesignPresentedItemSelect;
+
+class StepAP214_AutoDesignPresentedItem : public StepVisual_PresentedItem
+{
+
+public:
+  //! Returns a AutoDesignPresentedItem
+  Standard_EXPORT StepAP214_AutoDesignPresentedItem();
+
+  Standard_EXPORT void Init(
+    const occ::handle<NCollection_HArray1<StepAP214_AutoDesignPresentedItemSelect>>& aItems);
+
+  Standard_EXPORT void SetItems(
+    const occ::handle<NCollection_HArray1<StepAP214_AutoDesignPresentedItemSelect>>& aItems);
+
+  Standard_EXPORT occ::handle<NCollection_HArray1<StepAP214_AutoDesignPresentedItemSelect>> Items()
+    const;
+
+  Standard_EXPORT StepAP214_AutoDesignPresentedItemSelect ItemsValue(const int num) const;
+
+  Standard_EXPORT int NbItems() const;
+
+  DEFINE_STANDARD_RTTIEXT(StepAP214_AutoDesignPresentedItem, StepVisual_PresentedItem)
+
+private:
+  occ::handle<NCollection_HArray1<StepAP214_AutoDesignPresentedItemSelect>> items;
+};
+
+#endif // _StepAP214_AutoDesignPresentedItem_HeaderFile

@@ -1,4 +1,6 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 2008-04-11
+// Created by: Peter KURNEV
+// Copyright (c) 2008-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +13,24 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ModelingAlgorithms/TKMesh/BRepMesh/BRepMesh_PluginMacro.hxx"// clang-format on
+#ifndef BRepMesh_PluginMacro_HeaderFile
+#define BRepMesh_PluginMacro_HeaderFile
+
+#define DISCRETPLUGIN(name)                                                                        \
+  extern "C"                                                                                       \
+  {                                                                                                \
+    Standard_EXPORT int DISCRETALGO(const TopoDS_Shape&,                                           \
+                                    const double,                                                  \
+                                    const double,                                                  \
+                                    BRepMesh_DiscretRoot*&);                                       \
+  }                                                                                                \
+                                                                                                   \
+  int DISCRETALGO(const TopoDS_Shape&    theShape,                                                 \
+                  const double           theLinDeflection,                                         \
+                  const double           theAngDeflection,                                         \
+                  BRepMesh_DiscretRoot*& theAlgo)                                                  \
+  {                                                                                                \
+    return name::Discret(theShape, theLinDeflection, theAngDeflection, theAlgo);                   \
+  }
+
+#endif

@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 1991-05-23
+// Created by: Didier PIFFAULT
+// Copyright (c) 1991-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,17 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ModelingAlgorithms/TKGeomAlgo/Intf/Intf_PIType.hxx"// clang-format on
+#ifndef _Intf_PIType_HeaderFile
+#define _Intf_PIType_HeaderFile
+
+//! Describes the different intersection point types for this
+//! application.
+enum Intf_PIType
+{
+  Intf_EXTERNAL,
+  Intf_FACE,
+  Intf_EDGE,
+  Intf_VERTEX
+};
+
+#endif // _Intf_PIType_HeaderFile

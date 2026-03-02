@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 1993-06-23
+// Created by: Jean Yves LEBEY
+// Copyright (c) 1993-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,29 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ModelingAlgorithms/TKBool/TopOpeBRepDS/TopOpeBRepDS_CurveData.hxx"// clang-format on
+#ifndef _TopOpeBRepDS_CurveData_HeaderFile
+#define _TopOpeBRepDS_CurveData_HeaderFile
+
+#include <Standard.hxx>
+#include <Standard_DefineAlloc.hxx>
+#include <Standard_Handle.hxx>
+
+#include <TopOpeBRepDS_Curve.hxx>
+#include <TopOpeBRepDS_GeometryData.hxx>
+
+class TopOpeBRepDS_CurveData : public TopOpeBRepDS_GeometryData
+{
+public:
+  DEFINE_STANDARD_ALLOC
+
+  Standard_EXPORT TopOpeBRepDS_CurveData();
+
+  Standard_EXPORT TopOpeBRepDS_CurveData(const TopOpeBRepDS_Curve& C);
+
+  friend class TopOpeBRepDS_DataStructure;
+
+private:
+  TopOpeBRepDS_Curve myCurve;
+};
+
+#endif // _TopOpeBRepDS_CurveData_HeaderFile

@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 1993-09-07
+// Created by: Christian CAILLET
+// Copyright (c) 1993-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,39 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/DataExchange/TKDEIGES/IGESGeom/IGESGeom_SpecificModule.hxx"// clang-format on
+#ifndef _IGESGeom_SpecificModule_HeaderFile
+#define _IGESGeom_SpecificModule_HeaderFile
+
+#include <Standard.hxx>
+#include <Standard_Type.hxx>
+
+#include <IGESData_SpecificModule.hxx>
+#include <Standard_Integer.hxx>
+class IGESData_IGESEntity;
+class IGESData_IGESDumper;
+
+//! Defines Services attached to IGES Entities :
+//! Dump & OwnCorrect, for IGESGeom
+class IGESGeom_SpecificModule : public IGESData_SpecificModule
+{
+
+public:
+  //! Creates a SpecificModule from IGESGeom & puts it into SpecificLib
+  Standard_EXPORT IGESGeom_SpecificModule();
+
+  //! Specific Dump (own parameters) for IGESGeom
+  Standard_EXPORT void OwnDump(const int                               CN,
+                               const occ::handle<IGESData_IGESEntity>& ent,
+                               const IGESData_IGESDumper&              dumper,
+                               Standard_OStream&                       S,
+                               const int                               own) const override;
+
+  //! Performs non-ambiguous Correction on Entities which support
+  //! them (Boundary,ConicArc,Flash,OffsetCurve,TransformationMatrix)
+  Standard_EXPORT bool OwnCorrect(const int                               CN,
+                                  const occ::handle<IGESData_IGESEntity>& ent) const override;
+
+  DEFINE_STANDARD_RTTIEXT(IGESGeom_SpecificModule, IGESData_SpecificModule)
+};
+
+#endif // _IGESGeom_SpecificModule_HeaderFile

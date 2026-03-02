@@ -1,4 +1,6 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 2014-04-09
+// Created by: Varvara POSKONINA
+// Copyright (c) 2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +13,11 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/Visualization/TKService/Graphic3d/Graphic3d_BndBox4d.hxx"// clang-format on
+#ifndef _Graphic3d_BndBox4d_HeaderFile
+#define _Graphic3d_BndBox4d_HeaderFile
+
+#include <BVH_Box.hxx>
+
+typedef BVH_Box<double, 4> Graphic3d_BndBox4d;
+
+#endif // _Graphic3d_BndBox4d_HeaderFile

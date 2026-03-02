@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 1995-09-01
+// Created by: Bruno DUMORTIER
+// Copyright (c) 1995-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,46 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ModelingAlgorithms/TKBool/BRepFill/BRepFill_OffsetAncestors.hxx"// clang-format on
+#ifndef _BRepFill_OffsetAncestors_HeaderFile
+#define _BRepFill_OffsetAncestors_HeaderFile
+
+#include <Standard.hxx>
+#include <Standard_DefineAlloc.hxx>
+#include <Standard_Handle.hxx>
+
+#include <Standard_Boolean.hxx>
+#include <TopoDS_Shape.hxx>
+#include <TopTools_ShapeMapHasher.hxx>
+#include <NCollection_DataMap.hxx>
+class BRepFill_OffsetWire;
+class TopoDS_Edge;
+class TopoDS_Shape;
+
+//! this class is used to find the generating shapes
+//! of an OffsetWire.
+class BRepFill_OffsetAncestors
+{
+public:
+  DEFINE_STANDARD_ALLOC
+
+  Standard_EXPORT BRepFill_OffsetAncestors();
+
+  Standard_EXPORT BRepFill_OffsetAncestors(BRepFill_OffsetWire& Paral);
+
+  Standard_EXPORT void Perform(BRepFill_OffsetWire& Paral);
+
+  Standard_EXPORT bool IsDone() const;
+
+  Standard_EXPORT bool HasAncestor(const TopoDS_Edge& S1) const;
+
+  //! may return a Null Shape if S1 is not a subShape
+  //! of <Paral>;
+  //! if Perform is not done.
+  Standard_EXPORT const TopoDS_Shape& Ancestor(const TopoDS_Edge& S1) const;
+
+private:
+  bool                                                                     myIsPerform;
+  NCollection_DataMap<TopoDS_Shape, TopoDS_Shape, TopTools_ShapeMapHasher> myMap;
+};
+
+#endif // _BRepFill_OffsetAncestors_HeaderFile

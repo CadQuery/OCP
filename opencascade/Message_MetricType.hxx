@@ -1,4 +1,4 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Copyright (c) 2020 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +11,25 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/FoundationClasses/TKernel/Message/Message_MetricType.hxx"// clang-format on
+#ifndef _Message_MetricType_HeaderFile
+#define _Message_MetricType_HeaderFile
+
+//! Specifies kind of report information to collect
+enum Message_MetricType
+{
+  Message_MetricType_None,                 //!< no computation
+  Message_MetricType_ThreadCPUUserTime,    //!< OSD_Chronometer::GetThreadCPU user time
+  Message_MetricType_ThreadCPUSystemTime,  //!< OSD_Chronometer::GetThreadCPU system time
+  Message_MetricType_ProcessCPUUserTime,   //!< OSD_Chronometer::GetProcessCPU user time
+  Message_MetricType_ProcessCPUSystemTime, //!< OSD_Chronometer::GetProcessCPU system time
+  Message_MetricType_WallClock,            //!< OSD_Timer elapsed time
+  Message_MetricType_MemPrivate,           //!< OSD_MemInfo::MemPrivate
+  Message_MetricType_MemVirtual,           //!< OSD_MemInfo::MemVirtual
+  Message_MetricType_MemWorkingSet,        //!< OSD_MemInfo::MemWorkingSet
+  Message_MetricType_MemWorkingSetPeak,    //!< OSD_MemInfo::MemWorkingSetPeak
+  Message_MetricType_MemSwapUsage,         //!< OSD_MemInfo::MemSwapUsage
+  Message_MetricType_MemSwapUsagePeak,     //!< OSD_MemInfo::MemSwapUsagePeak
+  Message_MetricType_MemHeapUsage          //!< OSD_MemInfo::MemHeapUsage
+};
+
+#endif // _Message_MetricType_HeaderFile

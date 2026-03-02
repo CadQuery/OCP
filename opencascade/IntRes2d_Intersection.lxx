@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 1992-05-27
+// Created by: Laurent BUCHARD
+// Copyright (c) 1992-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,109 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ModelingAlgorithms/TKGeomAlgo/IntRes2d/IntRes2d_Intersection.lxx"// clang-format on
+#include <StdFail_NotDone.hxx>
+#include <Standard_OutOfRange.hxx>
+
+inline bool IntRes2d_Intersection::IsDone() const
+{
+  return done;
+}
+
+//----------------------------------------------------------------------
+inline IntRes2d_Intersection::IntRes2d_Intersection()
+{
+  done = reverse = false;
+}
+
+//----------------------------------------------------------------------
+inline IntRes2d_Intersection::IntRes2d_Intersection(const IntRes2d_Intersection& Other)
+{
+  done = reverse = false;
+  lpnt           = Other.lpnt;
+  lseg           = Other.lseg;
+}
+
+//----------------------------------------------------------------------
+inline bool IntRes2d_Intersection::IsEmpty() const
+{
+  if (!done)
+  {
+    throw StdFail_NotDone();
+  }
+  return ((lpnt.Length() == 0) && (lseg.Length() == 0));
+}
+
+//----------------------------------------------------------------------
+inline int IntRes2d_Intersection::NbPoints() const
+{
+  if (!done)
+  {
+    throw StdFail_NotDone();
+  }
+  return lpnt.Length();
+}
+
+//----------------------------------------------------------------------
+inline const IntRes2d_IntersectionPoint& IntRes2d_Intersection::Point(const int N) const
+{
+  if (!done)
+  {
+    throw StdFail_NotDone();
+  }
+  return lpnt(N);
+}
+
+//----------------------------------------------------------------------
+inline int IntRes2d_Intersection::NbSegments() const
+{
+  if (!done)
+  {
+    throw StdFail_NotDone();
+  }
+  return lseg.Length();
+}
+
+//----------------------------------------------------------------------
+inline const IntRes2d_IntersectionSegment& IntRes2d_Intersection::Segment(const int N) const
+{
+  if (!done)
+  {
+    throw StdFail_NotDone();
+  }
+  return lseg(N);
+}
+
+//----------------------------------------------------------------------
+inline void IntRes2d_Intersection::Append(const IntRes2d_IntersectionSegment& Seg)
+{
+  lseg.Append(Seg);
+}
+
+//----------------------------------------------------------------------
+inline void IntRes2d_Intersection::Append(const IntRes2d_IntersectionPoint& Pnt)
+{
+  lpnt.Append(Pnt);
+}
+
+//----------------------------------------------------------------------
+inline void IntRes2d_Intersection::ResetFields()
+{
+  if (done)
+  {
+    lseg.Clear();
+    lpnt.Clear();
+    done = false;
+  }
+}
+
+//----------------------------------------------------------------------
+inline void IntRes2d_Intersection::SetReversedParameters(const bool flag)
+{
+  reverse = flag;
+}
+
+//----------------------------------------------------------------------
+inline bool IntRes2d_Intersection::ReversedParameters() const
+{
+  return (reverse);
+}

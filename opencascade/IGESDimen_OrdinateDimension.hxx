@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 1993-01-11
+// Created by: CKY / Contract Toubro-Larsen ( SIVA )
+// Copyright (c) 1993-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,56 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/DataExchange/TKDEIGES/IGESDimen/IGESDimen_OrdinateDimension.hxx"// clang-format on
+#ifndef _IGESDimen_OrdinateDimension_HeaderFile
+#define _IGESDimen_OrdinateDimension_HeaderFile
+
+#include <Standard.hxx>
+#include <Standard_Type.hxx>
+
+#include <IGESData_IGESEntity.hxx>
+class IGESDimen_GeneralNote;
+class IGESDimen_WitnessLine;
+class IGESDimen_LeaderArrow;
+
+//! defines IGES Ordinate Dimension, Type <218> Form <0, 1>,
+//! in package IGESDimen
+//! Note: The ordinate dimension entity is used to
+//! indicate dimensions from a common base line.
+//! Dimensioning is only permitted along the XT
+//! or YT axis.
+class IGESDimen_OrdinateDimension : public IGESData_IGESEntity
+{
+
+public:
+  Standard_EXPORT IGESDimen_OrdinateDimension();
+
+  Standard_EXPORT void Init(const occ::handle<IGESDimen_GeneralNote>& aNote,
+                            const bool                                aType,
+                            const occ::handle<IGESDimen_WitnessLine>& aLine,
+                            const occ::handle<IGESDimen_LeaderArrow>& anArrow);
+
+  //! returns True if Witness Line and False if Leader (only for Form 0)
+  Standard_EXPORT bool IsLine() const;
+
+  //! returns True if Leader and False if Witness Line (only for Form 0)
+  Standard_EXPORT bool IsLeader() const;
+
+  //! returns the General Note entity associated.
+  Standard_EXPORT occ::handle<IGESDimen_GeneralNote> Note() const;
+
+  //! returns the Witness Line associated or Null handle
+  Standard_EXPORT occ::handle<IGESDimen_WitnessLine> WitnessLine() const;
+
+  //! returns the Leader associated or Null handle
+  Standard_EXPORT occ::handle<IGESDimen_LeaderArrow> Leader() const;
+
+  DEFINE_STANDARD_RTTIEXT(IGESDimen_OrdinateDimension, IGESData_IGESEntity)
+
+private:
+  occ::handle<IGESDimen_GeneralNote> theNote;
+  bool                               isItLine;
+  occ::handle<IGESDimen_WitnessLine> theWitnessLine;
+  occ::handle<IGESDimen_LeaderArrow> theLeader;
+};
+
+#endif // _IGESDimen_OrdinateDimension_HeaderFile

@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 1993-05-07
+// Created by: Jean Yves LEBEY
+// Copyright (c) 1993-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,41 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ModelingAlgorithms/TKBool/TopOpeBRep/TopOpeBRep_WPointInterIterator.hxx"// clang-format on
+#ifndef _TopOpeBRep_WPointInterIterator_HeaderFile
+#define _TopOpeBRep_WPointInterIterator_HeaderFile
+
+#include <Standard.hxx>
+#include <Standard_DefineAlloc.hxx>
+
+#include <TopOpeBRep_PLineInter.hxx>
+#include <Standard_Integer.hxx>
+class TopOpeBRep_WPointInter;
+
+class TopOpeBRep_WPointInterIterator
+{
+public:
+  DEFINE_STANDARD_ALLOC
+
+  Standard_EXPORT TopOpeBRep_WPointInterIterator();
+
+  Standard_EXPORT TopOpeBRep_WPointInterIterator(const TopOpeBRep_LineInter& LI);
+
+  Standard_EXPORT void Init(const TopOpeBRep_LineInter& LI);
+
+  Standard_EXPORT void Init();
+
+  Standard_EXPORT bool More() const;
+
+  Standard_EXPORT void Next();
+
+  Standard_EXPORT const TopOpeBRep_WPointInter& CurrentWP();
+
+  Standard_EXPORT TopOpeBRep_PLineInter PLineInterDummy() const;
+
+private:
+  TopOpeBRep_PLineInter myLineInter;
+  int                   myWPointIndex;
+  int                   myWPointNb;
+};
+
+#endif // _TopOpeBRep_WPointInterIterator_HeaderFile

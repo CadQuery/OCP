@@ -1,4 +1,6 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 2014-07-18
+// Created by: Alexander Malyshev
+// Copyright (c) 2014-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +13,46 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/FoundationClasses/TKMath/math/math_BullardGenerator.hxx"// clang-format on
+#ifndef _math_BullardGenerator_HeaderFile
+#define _math_BullardGenerator_HeaderFile
+
+#include <Standard_Real.hxx>
+
+//! Fast random number generator (the algorithm proposed by Ian C. Bullard).
+class math_BullardGenerator
+{
+public:
+  //! Creates new Xorshift 64-bit RNG.
+  math_BullardGenerator(unsigned int theSeed = 1)
+      : myStateHi(theSeed)
+  {
+    SetSeed(theSeed);
+  }
+
+  //! Setup new seed / reset defaults.
+  void SetSeed(unsigned int theSeed = 1)
+  {
+    myStateHi = theSeed;
+    myStateLo = theSeed ^ 0x49616E42;
+  }
+
+  //! Generates new 64-bit integer value.
+  unsigned int NextInt()
+  {
+    myStateHi = (myStateHi >> 2) + (myStateHi << 2);
+
+    myStateHi += myStateLo;
+    myStateLo += myStateHi;
+
+    return myStateHi;
+  }
+
+  //! Generates new floating-point value.
+  double NextReal() { return NextInt() / static_cast<double>(0xFFFFFFFFu); }
+
+private:
+  unsigned int myStateHi;
+  unsigned int myStateLo;
+};
+
+#endif

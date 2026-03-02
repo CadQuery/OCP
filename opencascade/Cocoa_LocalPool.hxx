@@ -1,4 +1,4 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Copyright (c) 2013-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +11,39 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/Visualization/TKService/Cocoa/Cocoa_LocalPool.hxx"// clang-format on
+#ifndef Cocoa_LocalPool_HeaderFile
+#define Cocoa_LocalPool_HeaderFile
+
+#if defined(__clang__) && (__clang_major__ >= 4)
+  #if __has_feature(objc_arc)
+    #define HAVE_OBJC_ARC
+  #endif
+#endif
+
+#ifdef HAVE_OBJC_ARC
+
+  // @autoreleasepool should be used within ARC
+
+#else
+
+  #ifdef __OBJC__
+@class NSAutoreleasePool;
+  #else
+struct NSAutoreleasePool;
+  #endif
+
+//! Auxiliary class to create local pool.
+class Cocoa_LocalPool
+{
+
+public:
+  Cocoa_LocalPool();
+  ~Cocoa_LocalPool();
+
+private:
+  NSAutoreleasePool* myPoolObj;
+};
+
+#endif // ARC
+
+#endif // __Cocoa_LocalPool_h_

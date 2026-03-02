@@ -1,4 +1,4 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Copyright (c) 2019 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +11,13 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/Visualization/TKService/Graphic3d/Graphic3d_MapOfAspectsToAspects.hxx"// clang-format on
+#ifndef _Graphic3d_MapOfAspectsToAspects_Header
+#define _Graphic3d_MapOfAspectsToAspects_Header
+
+#include <NCollection_DataMap.hxx>
+
+class Graphic3d_Aspects;
+typedef NCollection_DataMap<occ::handle<Graphic3d_Aspects>, occ::handle<Graphic3d_Aspects>>
+  Graphic3d_MapOfAspectsToAspects;
+
+#endif // _Graphic3d_MapOfAspectsToAspects_Header

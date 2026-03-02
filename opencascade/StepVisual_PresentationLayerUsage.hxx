@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 1997-03-26
+// Created by: Christian CAILLET
+// Copyright (c) 1997-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,42 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/DataExchange/TKDESTEP/StepVisual/StepVisual_PresentationLayerUsage.hxx"// clang-format on
+#ifndef _StepVisual_PresentationLayerUsage_HeaderFile
+#define _StepVisual_PresentationLayerUsage_HeaderFile
+
+#include <Standard.hxx>
+#include <Standard_Type.hxx>
+
+#include <Standard_Transient.hxx>
+class StepVisual_PresentationLayerAssignment;
+class StepVisual_PresentationRepresentation;
+
+//! Added from StepVisual Rev2 to Rev4
+class StepVisual_PresentationLayerUsage : public Standard_Transient
+{
+
+public:
+  Standard_EXPORT StepVisual_PresentationLayerUsage();
+
+  Standard_EXPORT void Init(
+    const occ::handle<StepVisual_PresentationLayerAssignment>& aAssignment,
+    const occ::handle<StepVisual_PresentationRepresentation>&  aPresentation);
+
+  Standard_EXPORT void SetAssignment(
+    const occ::handle<StepVisual_PresentationLayerAssignment>& aAssignment);
+
+  Standard_EXPORT occ::handle<StepVisual_PresentationLayerAssignment> Assignment() const;
+
+  Standard_EXPORT void SetPresentation(
+    const occ::handle<StepVisual_PresentationRepresentation>& aPresentation);
+
+  Standard_EXPORT occ::handle<StepVisual_PresentationRepresentation> Presentation() const;
+
+  DEFINE_STANDARD_RTTIEXT(StepVisual_PresentationLayerUsage, Standard_Transient)
+
+private:
+  occ::handle<StepVisual_PresentationLayerAssignment> theAssignment;
+  occ::handle<StepVisual_PresentationRepresentation>  thePresentation;
+};
+
+#endif // _StepVisual_PresentationLayerUsage_HeaderFile

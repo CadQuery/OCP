@@ -1,4 +1,6 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 2015-07-21
+// Created by: Irina KRYLOVA
+// Copyright (c) 2015 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +13,38 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/DataExchange/TKDESTEP/StepDimTol/StepDimTol_DatumSystemOrReference.hxx"// clang-format on
+#ifndef _StepDimTol_DatumSystemOrReference_HeaderFile
+#define _StepDimTol_DatumSystemOrReference_HeaderFile
+
+#include <Standard.hxx>
+#include <Standard_DefineAlloc.hxx>
+#include <Standard_Handle.hxx>
+
+#include <StepData_SelectType.hxx>
+#include <Standard_Integer.hxx>
+
+class Standard_Transient;
+class StepDimTol_DatumSystem;
+class StepDimTol_DatumReference;
+
+class StepDimTol_DatumSystemOrReference : public StepData_SelectType
+{
+public:
+  DEFINE_STANDARD_ALLOC
+
+  //! Returns a DatumSystemOrReference select type
+  Standard_EXPORT StepDimTol_DatumSystemOrReference();
+
+  //! Recognizes a DatumSystemOrReference Kind Entity that is :
+  //! 1 -> DatumSystem
+  //! 2 -> DatumReference
+  //! 0 else
+  Standard_EXPORT int CaseNum(const occ::handle<Standard_Transient>& ent) const override;
+
+  //! returns Value as a DatumSystem (Null if another type)
+  Standard_EXPORT occ::handle<StepDimTol_DatumSystem> DatumSystem() const;
+
+  //! returns Value as a DatumReference (Null if another type)
+  Standard_EXPORT occ::handle<StepDimTol_DatumReference> DatumReference() const;
+};
+#endif // _StepDimTol_DatumSystemOrReference_HeaderFile

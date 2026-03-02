@@ -1,4 +1,5 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Copyright (c) 1995-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +12,58 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ModelingAlgorithms/TKGeomAlgo/IntImp/IntImp_ZerImpFunc.lxx"// clang-format on
+#include <StdFail_UndefinedDerivative.hxx>
+
+inline void IntImp_ZerImpFunc::Set(const ThePSurface& PS)
+{
+  surf = (void*)(&PS);
+}
+
+inline void IntImp_ZerImpFunc::SetImplicitSurface(const TheISurface& IS)
+{
+  func = (void*)(&IS);
+}
+
+inline void IntImp_ZerImpFunc::Set(const double Tol)
+{
+  tol = Tol;
+}
+
+inline double IntImp_ZerImpFunc::Root() const
+{
+  return valf;
+}
+
+inline double IntImp_ZerImpFunc::Tolerance() const
+{
+  return tol;
+}
+
+inline const gp_Pnt& IntImp_ZerImpFunc::Point() const
+{
+  return pntsol;
+}
+
+inline const gp_Vec& IntImp_ZerImpFunc::Direction3d()
+{
+  if (IsTangent())
+    throw StdFail_UndefinedDerivative();
+  return d3d;
+}
+
+inline const gp_Dir2d& IntImp_ZerImpFunc::Direction2d()
+{
+  if (IsTangent())
+    throw StdFail_UndefinedDerivative();
+  return d2d;
+}
+
+inline const ThePSurface& IntImp_ZerImpFunc::PSurface() const
+{
+  return (*((ThePSurface*)(surf)));
+}
+
+inline const TheISurface& IntImp_ZerImpFunc::ISurface() const
+{
+  return (*((TheISurface*)(func)));
+}

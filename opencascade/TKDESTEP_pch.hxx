@@ -11,5 +11,14 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/DataExchange/TKDESTEP/TKDESTEP_pch.hxx"// clang-format on
+#ifndef TKDESTEP_PCH_H
+#define TKDESTEP_PCH_H
+
+#include <StepData_StepReaderData.hxx>
+#include <StepData_StepWriter.hxx>
+#include <StepGeom_GeometricRepresentationItem.hxx>
+#include <StepKinematics_KinematicPair.hxx>
+#include <StepRepr_Representation.hxx>
+#include <StepRepr_RepresentationItem.hxx>
+
+#endif // TKDESTEP_PCH_H

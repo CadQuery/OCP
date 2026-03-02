@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 1995-12-01
+// Created by: EXPRESS->CDL V0.2 Translator
+// Copyright (c) 1995-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,36 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/DataExchange/TKDESTEP/StepGeom/StepGeom_SurfaceOfRevolution.hxx"// clang-format on
+#ifndef _StepGeom_SurfaceOfRevolution_HeaderFile
+#define _StepGeom_SurfaceOfRevolution_HeaderFile
+
+#include <Standard.hxx>
+#include <Standard_Type.hxx>
+
+#include <StepGeom_SweptSurface.hxx>
+class StepGeom_Axis1Placement;
+class TCollection_HAsciiString;
+class StepGeom_Curve;
+
+class StepGeom_SurfaceOfRevolution : public StepGeom_SweptSurface
+{
+
+public:
+  //! Returns a SurfaceOfRevolution
+  Standard_EXPORT StepGeom_SurfaceOfRevolution();
+
+  Standard_EXPORT void Init(const occ::handle<TCollection_HAsciiString>& aName,
+                            const occ::handle<StepGeom_Curve>&           aSweptCurve,
+                            const occ::handle<StepGeom_Axis1Placement>&  aAxisPosition);
+
+  Standard_EXPORT void SetAxisPosition(const occ::handle<StepGeom_Axis1Placement>& aAxisPosition);
+
+  Standard_EXPORT occ::handle<StepGeom_Axis1Placement> AxisPosition() const;
+
+  DEFINE_STANDARD_RTTIEXT(StepGeom_SurfaceOfRevolution, StepGeom_SweptSurface)
+
+private:
+  occ::handle<StepGeom_Axis1Placement> axisPosition;
+};
+
+#endif // _StepGeom_SurfaceOfRevolution_HeaderFile

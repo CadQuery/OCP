@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 1996-05-03
+// Created by: Philippe MANGIN
+// Copyright (c) 1996-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,56 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/FoundationClasses/TKMath/math/math_NewtonMinimum.lxx"// clang-format on
+#include <StdFail_NotDone.hxx>
+
+inline bool math_NewtonMinimum::IsConverged() const
+{
+  return ((TheStep.Norm() <= XTol)
+          || (std::abs(TheMinimum - PreviousMinimum) <= XTol * std::abs(PreviousMinimum)));
+}
+
+inline bool math_NewtonMinimum::IsDone() const
+{
+  return Done;
+}
+
+inline const math_Vector& math_NewtonMinimum::Location() const
+{
+  StdFail_NotDone_Raise_if(!Done, "NewtonMinimum");
+  return TheLocation;
+}
+
+inline void math_NewtonMinimum::Location(math_Vector& Loc) const
+{
+  StdFail_NotDone_Raise_if(!Done, "NewtonMinimum");
+  Loc = TheLocation;
+}
+
+inline double math_NewtonMinimum::Minimum() const
+{
+  StdFail_NotDone_Raise_if(!Done, "NewtonMinimum");
+  return TheMinimum;
+}
+
+inline const math_Vector& math_NewtonMinimum::Gradient() const
+{
+  StdFail_NotDone_Raise_if(!Done, "NewtonMinimum");
+  return TheGradient;
+}
+
+inline void math_NewtonMinimum::Gradient(math_Vector& Grad) const
+{
+  StdFail_NotDone_Raise_if(!Done, "NewtonMinimum");
+  Grad = TheGradient;
+}
+
+inline int math_NewtonMinimum::NbIterations() const
+{
+  StdFail_NotDone_Raise_if(!Done, "NewtonMinimum");
+  return nbiter;
+}
+
+inline math_Status math_NewtonMinimum::GetStatus() const
+{
+  return TheStatus;
+}

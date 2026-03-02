@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 1993-06-23
+// Created by: Jean Yves LEBEY
+// Copyright (c) 1993-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,47 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ModelingAlgorithms/TKBool/TopOpeBRepDS/TopOpeBRepDS_ShapeData.hxx"// clang-format on
+#ifndef _TopOpeBRepDS_ShapeData_HeaderFile
+#define _TopOpeBRepDS_ShapeData_HeaderFile
+
+#include <Standard.hxx>
+#include <Standard_DefineAlloc.hxx>
+
+#include <TopOpeBRepDS_Interference.hxx>
+#include <NCollection_List.hxx>
+#include <TopoDS_Shape.hxx>
+#include <Standard_Integer.hxx>
+#include <TopOpeBRepDS_Config.hxx>
+#include <TopAbs_Orientation.hxx>
+
+class TopOpeBRepDS_ShapeData
+{
+public:
+  DEFINE_STANDARD_ALLOC
+
+  Standard_EXPORT TopOpeBRepDS_ShapeData();
+
+  Standard_EXPORT const NCollection_List<occ::handle<TopOpeBRepDS_Interference>>& Interferences()
+    const;
+
+  Standard_EXPORT NCollection_List<occ::handle<TopOpeBRepDS_Interference>>& ChangeInterferences();
+
+  Standard_EXPORT bool Keep() const;
+
+  Standard_EXPORT void ChangeKeep(const bool B);
+
+  friend class TopOpeBRepDS_DataStructure;
+
+private:
+  NCollection_List<occ::handle<TopOpeBRepDS_Interference>> myInterferences;
+  NCollection_List<TopoDS_Shape>                           mySameDomain;
+  int                                                      mySameDomainRef;
+  TopOpeBRepDS_Config                                      mySameDomainOri;
+  int                                                      mySameDomainInd;
+  TopAbs_Orientation                                       myOrientation;
+  bool                                                     myOrientationDef;
+  int                                                      myAncestorRank;
+  bool                                                     myKeep;
+};
+
+#endif // _TopOpeBRepDS_ShapeData_HeaderFile

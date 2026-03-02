@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 1992-03-25
+// Created by: Isabelle GRIGNON
+// Copyright (c) 1992-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,35 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ModelingAlgorithms/TKGeomAlgo/IntSurf/IntSurf_Couple.hxx"// clang-format on
+#ifndef _IntSurf_Couple_HeaderFile
+#define _IntSurf_Couple_HeaderFile
+
+#include <Standard.hxx>
+#include <Standard_DefineAlloc.hxx>
+
+#include <Standard_Integer.hxx>
+
+//! creation d 'un couple de 2 entiers
+class IntSurf_Couple
+{
+public:
+  DEFINE_STANDARD_ALLOC
+
+  IntSurf_Couple();
+
+  IntSurf_Couple(const int Index1, const int Index2);
+
+  //! returns the first element
+  int First() const;
+
+  //! returns the Second element
+  int Second() const;
+
+private:
+  int firstInteger;
+  int secondInteger;
+};
+
+#include <IntSurf_Couple.lxx>
+
+#endif // _IntSurf_Couple_HeaderFile

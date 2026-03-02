@@ -1,4 +1,6 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 2016-07-07
+// Copyright (c) 2016 OPEN CASCADE SAS
+// Created by: Oleg AGASHIN
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +13,39 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ModelingAlgorithms/TKMesh/BRepMesh/BRepMesh_CylinderRangeSplitter.hxx"// clang-format on
+#ifndef _BRepMesh_CylinderRangeSplitter_HeaderFile
+#define _BRepMesh_CylinderRangeSplitter_HeaderFile
+
+#include <BRepMesh_DefaultRangeSplitter.hxx>
+
+//! Auxiliary class extending default range splitter in
+//! order to generate internal nodes for cylindrical surface.
+class BRepMesh_CylinderRangeSplitter : public BRepMesh_DefaultRangeSplitter
+{
+public:
+  //! Constructor.
+  BRepMesh_CylinderRangeSplitter()
+      : myDu(1.)
+  {
+  }
+
+  //! Destructor.
+  ~BRepMesh_CylinderRangeSplitter() override = default;
+
+  //! Resets this splitter. Must be called before first use.
+  Standard_EXPORT void Reset(const IMeshData::IFaceHandle& theDFace,
+                             const IMeshTools_Parameters&  theParameters) override;
+
+  //! Returns list of nodes generated using surface data and specified parameters.
+  Standard_EXPORT Handle(IMeshData::ListOfPnt2d) GenerateSurfaceNodes(
+    const IMeshTools_Parameters& theParameters) const override;
+
+protected:
+  //! Computes parametric delta taking length along U and V into account.
+  Standard_EXPORT void computeDelta(const double theLengthU, const double theLengthV) override;
+
+private:
+  double myDu;
+};
+
+#endif

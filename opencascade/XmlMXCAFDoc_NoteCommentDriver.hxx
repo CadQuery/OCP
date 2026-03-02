@@ -1,4 +1,6 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 2017-02-14
+// Created by: Sergey NIKONOV
+// Copyright (c) 2008-2017 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +13,33 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/DataExchange/TKXmlXCAF/XmlMXCAFDoc/XmlMXCAFDoc_NoteCommentDriver.hxx"// clang-format on
+#ifndef _XmlMXCAFDoc_NoteCommentDriver_HeaderFile
+#define _XmlMXCAFDoc_NoteCommentDriver_HeaderFile
+
+#include <XmlMXCAFDoc_NoteDriver.hxx>
+
+//! Attribute Driver.
+class XmlMXCAFDoc_NoteCommentDriver : public XmlMXCAFDoc_NoteDriver
+{
+public:
+  Standard_EXPORT XmlMXCAFDoc_NoteCommentDriver(
+    const occ::handle<Message_Messenger>& theMessageDriver);
+
+  Standard_EXPORT occ::handle<TDF_Attribute> NewEmpty() const override;
+
+  Standard_EXPORT bool Paste(const XmlObjMgt_Persistent&       theSource,
+                             const occ::handle<TDF_Attribute>& theTarget,
+                             XmlObjMgt_RRelocationTable&       theRelocTable) const override;
+
+  Standard_EXPORT void Paste(const occ::handle<TDF_Attribute>& theSource,
+                             XmlObjMgt_Persistent&             theTarget,
+                             XmlObjMgt_SRelocationTable&       theRelocTable) const override;
+
+  DEFINE_STANDARD_RTTIEXT(XmlMXCAFDoc_NoteCommentDriver, XmlMXCAFDoc_NoteDriver)
+
+protected:
+  XmlMXCAFDoc_NoteCommentDriver(const occ::handle<Message_Messenger>& theMsgDriver,
+                                const char*                           theName);
+};
+
+#endif // _XmlMXCAFDoc_NoteCommentDriver_HeaderFile

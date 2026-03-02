@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 1992-05-07
+// Created by: Jacques GOUSSARD
+// Copyright (c) 1992-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,83 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ModelingAlgorithms/TKGeomAlgo/IntPatch/IntPatch_ImpImpIntersection.lxx"// clang-format on
+#include <StdFail_NotDone.hxx>
+#include <Standard_DomainError.hxx>
+#include <IntPatch_Line.hxx>
+
+inline bool IntPatch_ImpImpIntersection::IsDone() const
+{
+  return (GetStatus() != IntStatus_Fail);
+}
+
+inline IntPatch_ImpImpIntersection::IntStatus IntPatch_ImpImpIntersection::GetStatus() const
+{
+  return myDone;
+}
+
+inline bool IntPatch_ImpImpIntersection::IsEmpty() const
+{
+  if (!IsDone())
+  {
+    throw StdFail_NotDone();
+  }
+  return empt;
+}
+
+inline bool IntPatch_ImpImpIntersection::TangentFaces() const
+{
+  if (!IsDone())
+  {
+    throw StdFail_NotDone();
+  }
+  return tgte;
+}
+
+inline bool IntPatch_ImpImpIntersection::OppositeFaces() const
+{
+  if (!IsDone())
+  {
+    throw StdFail_NotDone();
+  }
+  if (!tgte)
+  {
+    throw Standard_DomainError();
+  }
+  return oppo;
+}
+
+inline int IntPatch_ImpImpIntersection::NbPnts() const
+{
+  if (!IsDone())
+  {
+    throw StdFail_NotDone();
+  }
+  return spnt.Length();
+}
+
+inline const IntPatch_Point& IntPatch_ImpImpIntersection::Point(const int Index) const
+{
+  if (!IsDone())
+  {
+    throw StdFail_NotDone();
+  }
+  return spnt(Index);
+}
+
+inline int IntPatch_ImpImpIntersection::NbLines() const
+{
+  if (!IsDone())
+  {
+    throw StdFail_NotDone();
+  }
+  return slin.Length();
+}
+
+inline const occ::handle<IntPatch_Line>& IntPatch_ImpImpIntersection::Line(const int Index) const
+{
+  if (!IsDone())
+  {
+    throw StdFail_NotDone();
+  }
+  return slin(Index);
+}

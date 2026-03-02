@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 1997-01-09
+// Created by: Jean Yves LEBEY
+// Copyright (c) 1997-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,30 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ModelingAlgorithms/TKBool/TopOpeBRep/TopOpeBRep_Bipoint.hxx"// clang-format on
+#ifndef _TopOpeBRep_Bipoint_HeaderFile
+#define _TopOpeBRep_Bipoint_HeaderFile
+
+#include <Standard.hxx>
+#include <Standard_DefineAlloc.hxx>
+
+#include <Standard_Integer.hxx>
+
+class TopOpeBRep_Bipoint
+{
+public:
+  DEFINE_STANDARD_ALLOC
+
+  Standard_EXPORT TopOpeBRep_Bipoint();
+
+  Standard_EXPORT TopOpeBRep_Bipoint(const int I1, const int I2);
+
+  Standard_EXPORT int I1() const;
+
+  Standard_EXPORT int I2() const;
+
+private:
+  int myI1;
+  int myI2;
+};
+
+#endif // _TopOpeBRep_Bipoint_HeaderFile

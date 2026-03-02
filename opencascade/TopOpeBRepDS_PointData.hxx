@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 1993-06-23
+// Created by: Jean Yves LEBEY
+// Copyright (c) 1993-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,37 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ModelingAlgorithms/TKBool/TopOpeBRepDS/TopOpeBRepDS_PointData.hxx"// clang-format on
+#ifndef _TopOpeBRepDS_PointData_HeaderFile
+#define _TopOpeBRepDS_PointData_HeaderFile
+
+#include <Standard.hxx>
+#include <Standard_DefineAlloc.hxx>
+
+#include <TopOpeBRepDS_Point.hxx>
+#include <Standard_Integer.hxx>
+#include <TopOpeBRepDS_GeometryData.hxx>
+
+class TopOpeBRepDS_PointData : public TopOpeBRepDS_GeometryData
+{
+public:
+  DEFINE_STANDARD_ALLOC
+
+  Standard_EXPORT TopOpeBRepDS_PointData();
+
+  Standard_EXPORT TopOpeBRepDS_PointData(const TopOpeBRepDS_Point& P);
+
+  Standard_EXPORT TopOpeBRepDS_PointData(const TopOpeBRepDS_Point& P, const int I1, const int I2);
+
+  Standard_EXPORT void SetShapes(const int I1, const int I2);
+
+  Standard_EXPORT void GetShapes(int& I1, int& I2) const;
+
+  friend class TopOpeBRepDS_DataStructure;
+
+private:
+  TopOpeBRepDS_Point myPoint;
+  int                myS1;
+  int                myS2;
+};
+
+#endif // _TopOpeBRepDS_PointData_HeaderFile

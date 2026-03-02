@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 1995-12-08
+// Created by: Laurent BOURESCHE
+// Copyright (c) 1995-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,54 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ModelingAlgorithms/TKGeomAlgo/GeomFill/GeomFill_CornerState.hxx"// clang-format on
+#ifndef _GeomFill_CornerState_HeaderFile
+#define _GeomFill_CornerState_HeaderFile
+
+#include <Standard.hxx>
+#include <Standard_DefineAlloc.hxx>
+#include <Standard_Handle.hxx>
+
+#include <Standard_Real.hxx>
+#include <Standard_Boolean.hxx>
+
+//! Class (should be a structure) storing the
+//! information about continuity, normals
+//! parallelism, coons conditions and bounds tangents
+//! angle on the corner of contour to be filled.
+class GeomFill_CornerState
+{
+public:
+  DEFINE_STANDARD_ALLOC
+
+  Standard_EXPORT GeomFill_CornerState();
+
+  Standard_EXPORT double Gap() const;
+
+  Standard_EXPORT void Gap(const double G);
+
+  Standard_EXPORT double TgtAng() const;
+
+  Standard_EXPORT void TgtAng(const double Ang);
+
+  Standard_EXPORT bool HasConstraint() const;
+
+  Standard_EXPORT void Constraint();
+
+  Standard_EXPORT double NorAng() const;
+
+  Standard_EXPORT void NorAng(const double Ang);
+
+  Standard_EXPORT bool IsToKill(double& Scal) const;
+
+  Standard_EXPORT void DoKill(const double Scal);
+
+private:
+  double gap;
+  double tgtang;
+  bool   isconstrained;
+  double norang;
+  double scal;
+  bool   coonscnd;
+};
+
+#endif // _GeomFill_CornerState_HeaderFile

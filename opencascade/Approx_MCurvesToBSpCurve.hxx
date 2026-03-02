@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 1994-02-21
+// Created by: Laurent PAINNOT
+// Copyright (c) 1994-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,42 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ModelingData/TKGeomBase/Approx/Approx_MCurvesToBSpCurve.hxx"// clang-format on
+#ifndef _Approx_MCurvesToBSpCurve_HeaderFile
+#define _Approx_MCurvesToBSpCurve_HeaderFile
+
+#include <Standard.hxx>
+#include <Standard_DefineAlloc.hxx>
+
+#include <AppParCurves_MultiBSpCurve.hxx>
+#include <AppParCurves_MultiCurve.hxx>
+#include <NCollection_Sequence.hxx>
+class AppParCurves_MultiCurve;
+
+class Approx_MCurvesToBSpCurve
+{
+public:
+  DEFINE_STANDARD_ALLOC
+
+  Standard_EXPORT Approx_MCurvesToBSpCurve();
+
+  Standard_EXPORT void Reset();
+
+  Standard_EXPORT void Append(const AppParCurves_MultiCurve& MC);
+
+  Standard_EXPORT void Perform();
+
+  Standard_EXPORT void Perform(const NCollection_Sequence<AppParCurves_MultiCurve>& TheSeq);
+
+  //! return the composite MultiCurves as a MultiBSpCurve.
+  Standard_EXPORT const AppParCurves_MultiBSpCurve& Value() const;
+
+  //! return the composite MultiCurves as a MultiBSpCurve.
+  Standard_EXPORT const AppParCurves_MultiBSpCurve& ChangeValue();
+
+private:
+  AppParCurves_MultiBSpCurve                    mySpline;
+  bool                                          myDone;
+  NCollection_Sequence<AppParCurves_MultiCurve> myCurves;
+};
+
+#endif // _Approx_MCurvesToBSpCurve_HeaderFile

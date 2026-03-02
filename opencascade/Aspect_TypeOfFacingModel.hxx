@@ -1,4 +1,6 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created by: NW,JPB,CAL
+// Copyright (c) 1991-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +13,14 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/Visualization/TKService/Aspect/Aspect_TypeOfFacingModel.hxx"// clang-format on
+#ifndef _Aspect_TypeOfFacingModel_HeaderFile
+#define _Aspect_TypeOfFacingModel_HeaderFile
+
+enum Aspect_TypeOfFacingModel
+{
+  Aspect_TOFM_BOTH_SIDE,
+  Aspect_TOFM_BACK_SIDE,
+  Aspect_TOFM_FRONT_SIDE
+};
+
+#endif // _Aspect_TypeOfFacingModel_HeaderFile

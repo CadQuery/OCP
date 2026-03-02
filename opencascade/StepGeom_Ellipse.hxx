@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 1995-12-01
+// Created by: EXPRESS->CDL V0.2 Translator
+// Copyright (c) 1995-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,41 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/DataExchange/TKDESTEP/StepGeom/StepGeom_Ellipse.hxx"// clang-format on
+#ifndef _StepGeom_Ellipse_HeaderFile
+#define _StepGeom_Ellipse_HeaderFile
+
+#include <Standard.hxx>
+
+#include <Standard_Real.hxx>
+#include <StepGeom_Conic.hxx>
+class TCollection_HAsciiString;
+class StepGeom_Axis2Placement;
+
+class StepGeom_Ellipse : public StepGeom_Conic
+{
+
+public:
+  //! Returns a Ellipse
+  Standard_EXPORT StepGeom_Ellipse();
+
+  Standard_EXPORT void Init(const occ::handle<TCollection_HAsciiString>& aName,
+                            const StepGeom_Axis2Placement&               aPosition,
+                            const double                                 aSemiAxis1,
+                            const double                                 aSemiAxis2);
+
+  Standard_EXPORT void SetSemiAxis1(const double aSemiAxis1);
+
+  Standard_EXPORT double SemiAxis1() const;
+
+  Standard_EXPORT void SetSemiAxis2(const double aSemiAxis2);
+
+  Standard_EXPORT double SemiAxis2() const;
+
+  DEFINE_STANDARD_RTTIEXT(StepGeom_Ellipse, StepGeom_Conic)
+
+private:
+  double semiAxis1;
+  double semiAxis2;
+};
+
+#endif // _StepGeom_Ellipse_HeaderFile

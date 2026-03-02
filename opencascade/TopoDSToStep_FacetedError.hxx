@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 1994-11-25
+// Created by: Frederic MAUPAS
+// Copyright (c) 1994-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,14 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/DataExchange/TKDESTEP/TopoDSToStep/TopoDSToStep_FacetedError.hxx"// clang-format on
+#ifndef _TopoDSToStep_FacetedError_HeaderFile
+#define _TopoDSToStep_FacetedError_HeaderFile
+
+enum TopoDSToStep_FacetedError
+{
+  TopoDSToStep_FacetedDone,
+  TopoDSToStep_SurfaceNotPlane,
+  TopoDSToStep_PCurveNotLinear
+};
+
+#endif // _TopoDSToStep_FacetedError_HeaderFile

@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 1995-12-01
+// Created by: EXPRESS->CDL V0.2 Translator
+// Copyright (c) 1995-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,45 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/DataExchange/TKDESTEP/StepShape/StepShape_Path.hxx"// clang-format on
+#ifndef _StepShape_Path_HeaderFile
+#define _StepShape_Path_HeaderFile
+
+#include <Standard.hxx>
+#include <Standard_Type.hxx>
+
+#include <StepShape_OrientedEdge.hxx>
+#include <NCollection_Array1.hxx>
+#include <NCollection_HArray1.hxx>
+#include <StepShape_TopologicalRepresentationItem.hxx>
+#include <Standard_Integer.hxx>
+class TCollection_HAsciiString;
+class StepShape_OrientedEdge;
+
+class StepShape_Path : public StepShape_TopologicalRepresentationItem
+{
+
+public:
+  //! Returns a Path
+  Standard_EXPORT StepShape_Path();
+
+  Standard_EXPORT void Init(
+    const occ::handle<TCollection_HAsciiString>&                                 aName,
+    const occ::handle<NCollection_HArray1<occ::handle<StepShape_OrientedEdge>>>& aEdgeList);
+
+  Standard_EXPORT virtual void SetEdgeList(
+    const occ::handle<NCollection_HArray1<occ::handle<StepShape_OrientedEdge>>>& aEdgeList);
+
+  Standard_EXPORT virtual occ::handle<NCollection_HArray1<occ::handle<StepShape_OrientedEdge>>>
+    EdgeList() const;
+
+  Standard_EXPORT virtual occ::handle<StepShape_OrientedEdge> EdgeListValue(const int num) const;
+
+  Standard_EXPORT virtual int NbEdgeList() const;
+
+  DEFINE_STANDARD_RTTIEXT(StepShape_Path, StepShape_TopologicalRepresentationItem)
+
+private:
+  occ::handle<NCollection_HArray1<occ::handle<StepShape_OrientedEdge>>> edgeList;
+};
+
+#endif // _StepShape_Path_HeaderFile

@@ -1,4 +1,6 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 2015-08-06
+// Created by: Ilya Novikov
+// Copyright (c) 2004-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +13,29 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/DataExchange/TKXCAF/XCAFDimTolObjects/XCAFDimTolObjects_GeomToleranceModif.hxx"// clang-format on
+#ifndef _XCAFDimTolObjects_GeomToleranceModif_HeaderFile
+#define _XCAFDimTolObjects_GeomToleranceModif_HeaderFile
+
+//! Defines modifirs
+enum XCAFDimTolObjects_GeomToleranceModif
+{
+  XCAFDimTolObjects_GeomToleranceModif_Any_Cross_Section,
+  XCAFDimTolObjects_GeomToleranceModif_Common_Zone,
+  XCAFDimTolObjects_GeomToleranceModif_Each_Radial_Element,
+  XCAFDimTolObjects_GeomToleranceModif_Free_State,
+  XCAFDimTolObjects_GeomToleranceModif_Least_Material_Requirement,
+  XCAFDimTolObjects_GeomToleranceModif_Line_Element,
+  XCAFDimTolObjects_GeomToleranceModif_Major_Diameter,
+  XCAFDimTolObjects_GeomToleranceModif_Maximum_Material_Requirement,
+  XCAFDimTolObjects_GeomToleranceModif_Minor_Diameter,
+  XCAFDimTolObjects_GeomToleranceModif_Not_Convex,
+  XCAFDimTolObjects_GeomToleranceModif_Pitch_Diameter,
+  XCAFDimTolObjects_GeomToleranceModif_Reciprocity_Requirement,
+  XCAFDimTolObjects_GeomToleranceModif_Separate_Requirement,
+  XCAFDimTolObjects_GeomToleranceModif_Statistical_Tolerance,
+  XCAFDimTolObjects_GeomToleranceModif_Tangent_Plane,
+  XCAFDimTolObjects_GeomToleranceModif_All_Around,
+  XCAFDimTolObjects_GeomToleranceModif_All_Over,
+};
+
+#endif // _XCAFDimTolObjects_GeomToleranceModif_HeaderFile

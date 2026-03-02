@@ -1,4 +1,5 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 2016-08-04
+// Copyright (c) 2016 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +12,19 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/Visualization/TKService/Graphic3d/Graphic3d_CappingFlags.hxx"// clang-format on
+#ifndef _Graphic3d_CappingFlags_HeaderFile
+#define _Graphic3d_CappingFlags_HeaderFile
+
+//! Enumeration of capping flags.
+enum Graphic3d_CappingFlags
+{
+  Graphic3d_CappingFlags_None           = 0x0000, //!< no flags
+  Graphic3d_CappingFlags_ObjectMaterial = 0x0001, //!< use object material
+  Graphic3d_CappingFlags_ObjectTexture  = 0x0002, //!< use object texture
+  Graphic3d_CappingFlags_ObjectShader   = 0x0008, //!< use object GLSL program
+  Graphic3d_CappingFlags_ObjectAspect =
+    Graphic3d_CappingFlags_ObjectMaterial | Graphic3d_CappingFlags_ObjectTexture
+    | Graphic3d_CappingFlags_ObjectShader //!< use entire fill area aspect from object
+};
+
+#endif // _Graphic3d_CappingFlags_HeaderFile

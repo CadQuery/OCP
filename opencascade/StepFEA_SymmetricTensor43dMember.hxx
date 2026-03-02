@@ -1,4 +1,6 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 2003-01-14
+// Created by: data exchange team
+// Copyright (c) 2003-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +13,40 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/DataExchange/TKDESTEP/StepFEA/StepFEA_SymmetricTensor43dMember.hxx"// clang-format on
+#ifndef _StepFEA_SymmetricTensor43dMember_HeaderFile
+#define _StepFEA_SymmetricTensor43dMember_HeaderFile
+
+#include <Standard.hxx>
+
+#include <Standard_Integer.hxx>
+#include <StepData_SelectArrReal.hxx>
+#include <Standard_Boolean.hxx>
+#include <Standard_CString.hxx>
+
+//! Representation of member for STEP SELECT type SymmetricTensor43d
+class StepFEA_SymmetricTensor43dMember : public StepData_SelectArrReal
+{
+
+public:
+  //! Empty constructor
+  Standard_EXPORT StepFEA_SymmetricTensor43dMember();
+
+  //! Returns True if has name
+  Standard_EXPORT bool HasName() const override;
+
+  //! Returns set name
+  Standard_EXPORT const char* Name() const override;
+
+  //! Set name
+  Standard_EXPORT bool SetName(const char* name) override;
+
+  //! Tells if the name of a SelectMember matches a given one;
+  Standard_EXPORT bool Matches(const char* name) const override;
+
+  DEFINE_STANDARD_RTTIEXT(StepFEA_SymmetricTensor43dMember, StepData_SelectArrReal)
+
+private:
+  int mycase;
+};
+
+#endif // _StepFEA_SymmetricTensor43dMember_HeaderFile

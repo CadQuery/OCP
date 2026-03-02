@@ -11,5 +11,13 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/DataExchange/TKXSBase/TKXSBase_pch.hxx"// clang-format on
+#ifndef TKXSBASE_PCH_H
+#define TKXSBASE_PCH_H
+
+#include <Interface_Check.hxx>
+#include <Interface_CheckIterator.hxx>
+#include <Interface_EntityIterator.hxx>
+#include <Interface_FileReaderData.hxx>
+#include <Interface_Graph.hxx>
+
+#endif // TKXSBASE_PCH_H

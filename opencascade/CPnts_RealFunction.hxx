@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 1995-05-04
+// Created by: Modelistation
+// Copyright (c) 1995-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,13 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ModelingData/TKGeomBase/CPnts/CPnts_RealFunction.hxx"// clang-format on
+#ifndef _CPnts_RealFunction_HeaderFile
+#define _CPnts_RealFunction_HeaderFile
+
+#include <Standard_TypeDef.hxx>
+
+//! A pointer on a function for MyGaussFunction
+
+typedef double (*CPnts_RealFunction)(const double, void* const);
+
+#endif

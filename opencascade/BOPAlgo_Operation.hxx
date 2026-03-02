@@ -1,4 +1,5 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created by: Peter KURNEV
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +12,17 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ModelingAlgorithms/TKBO/BOPAlgo/BOPAlgo_Operation.hxx"// clang-format on
+#ifndef _BOPAlgo_Operation_HeaderFile
+#define _BOPAlgo_Operation_HeaderFile
+
+enum BOPAlgo_Operation
+{
+  BOPAlgo_COMMON,
+  BOPAlgo_FUSE,
+  BOPAlgo_CUT,
+  BOPAlgo_CUT21,
+  BOPAlgo_SECTION,
+  BOPAlgo_UNKNOWN
+};
+
+#endif // _BOPAlgo_Operation_HeaderFile

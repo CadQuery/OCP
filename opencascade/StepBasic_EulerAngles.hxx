@@ -1,4 +1,6 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 2002-12-12
+// Created by: data exchange team
+// Copyright (c) 2002-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +13,37 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/DataExchange/TKDESTEP/StepBasic/StepBasic_EulerAngles.hxx"// clang-format on
+#ifndef _StepBasic_EulerAngles_HeaderFile
+#define _StepBasic_EulerAngles_HeaderFile
+
+#include <Standard.hxx>
+#include <Standard_Type.hxx>
+
+#include <NCollection_Array1.hxx>
+#include <NCollection_HArray1.hxx>
+#include <Standard_Transient.hxx>
+
+//! Representation of STEP entity EulerAngles
+class StepBasic_EulerAngles : public Standard_Transient
+{
+
+public:
+  //! Empty constructor
+  Standard_EXPORT StepBasic_EulerAngles();
+
+  //! Initialize all fields (own and inherited)
+  Standard_EXPORT void Init(const occ::handle<NCollection_HArray1<double>>& aAngles);
+
+  //! Returns field Angles
+  Standard_EXPORT occ::handle<NCollection_HArray1<double>> Angles() const;
+
+  //! Set field Angles
+  Standard_EXPORT void SetAngles(const occ::handle<NCollection_HArray1<double>>& Angles);
+
+  DEFINE_STANDARD_RTTIEXT(StepBasic_EulerAngles, Standard_Transient)
+
+private:
+  occ::handle<NCollection_HArray1<double>> theAngles;
+};
+
+#endif // _StepBasic_EulerAngles_HeaderFile

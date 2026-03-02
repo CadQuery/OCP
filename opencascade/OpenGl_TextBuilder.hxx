@@ -1,4 +1,6 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 2015-06-18
+// Created by: Ilya SEVRIKOV
+// Copyright (c) 2015 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +13,50 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/Visualization/TKOpenGl/OpenGl/OpenGl_TextBuilder.hxx"// clang-format on
+#ifndef OpenGl_TextBuilder_Header
+#define OpenGl_TextBuilder_Header
+
+#include <OpenGl_Font.hxx>
+#include <OpenGl_VertexBuffer.hxx>
+#include <OpenGl_VertexBufferEditor.hxx>
+#include <OpenGl_Vec.hxx>
+
+#include <NCollection_Vector.hxx>
+#include <NCollection_Handle.hxx>
+
+class Font_TextFormatter;
+
+//! This class generates primitive array required for rendering textured text using OpenGl_Font
+//! instance.
+class OpenGl_TextBuilder
+{
+public:
+  //! Creates empty object.
+  Standard_EXPORT OpenGl_TextBuilder();
+
+  //! Creates texture quads for the given text.
+  Standard_EXPORT void Perform(
+    const occ::handle<Font_TextFormatter>&                theFormatter,
+    const occ::handle<OpenGl_Context>&                    theContext,
+    OpenGl_Font&                                          theFont,
+    NCollection_Vector<GLuint>&                           theTextures,
+    NCollection_Vector<occ::handle<OpenGl_VertexBuffer>>& theVertsPerTexture,
+    NCollection_Vector<occ::handle<OpenGl_VertexBuffer>>& theTCrdsPerTexture);
+
+protected: //! @name class auxiliary methods
+  Standard_EXPORT void createGlyphs(
+    const occ::handle<Font_TextFormatter>& theFormatter,
+    const occ::handle<OpenGl_Context>&     theCtx,
+    OpenGl_Font&                           theFont,
+    NCollection_Vector<GLuint>&            theTextures,
+    NCollection_Vector<NCollection_Handle<NCollection_Vector<NCollection_Vec2<float>>>>&
+      theVertsPerTexture,
+    NCollection_Vector<NCollection_Handle<NCollection_Vector<NCollection_Vec2<float>>>>&
+      theTCrdsPerTexture);
+
+protected: //! @name class auxiliary fields
+  NCollection_Vector<OpenGl_Font::Tile>              myTileRects;
+  OpenGl_VertexBufferEditor<NCollection_Vec2<float>> myVboEditor;
+};
+
+#endif // OpenGl_TextBuilder_Header

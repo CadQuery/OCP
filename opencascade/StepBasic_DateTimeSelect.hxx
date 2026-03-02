@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 1995-12-01
+// Created by: EXPRESS->CDL V0.2 Translator
+// Copyright (c) 1995-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,43 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/DataExchange/TKDESTEP/StepBasic/StepBasic_DateTimeSelect.hxx"// clang-format on
+#ifndef _StepBasic_DateTimeSelect_HeaderFile
+#define _StepBasic_DateTimeSelect_HeaderFile
+
+#include <Standard.hxx>
+#include <Standard_DefineAlloc.hxx>
+#include <Standard_Handle.hxx>
+
+#include <StepData_SelectType.hxx>
+#include <Standard_Integer.hxx>
+class Standard_Transient;
+class StepBasic_Date;
+class StepBasic_LocalTime;
+class StepBasic_DateAndTime;
+
+class StepBasic_DateTimeSelect : public StepData_SelectType
+{
+public:
+  DEFINE_STANDARD_ALLOC
+
+  //! Returns a DateTimeSelect SelectType
+  Standard_EXPORT StepBasic_DateTimeSelect();
+
+  //! Recognizes a DateTimeSelect Kind Entity that is :
+  //! 1 -> Date
+  //! 2 -> LocalTime
+  //! 3 -> DateAndTime
+  //! 0 else
+  Standard_EXPORT int CaseNum(const occ::handle<Standard_Transient>& ent) const override;
+
+  //! returns Value as a Date (Null if another type)
+  Standard_EXPORT occ::handle<StepBasic_Date> Date() const;
+
+  //! returns Value as a LocalTime (Null if another type)
+  Standard_EXPORT occ::handle<StepBasic_LocalTime> LocalTime() const;
+
+  //! returns Value as a DateAndTime (Null if another type)
+  Standard_EXPORT occ::handle<StepBasic_DateAndTime> DateAndTime() const;
+};
+
+#endif // _StepBasic_DateTimeSelect_HeaderFile

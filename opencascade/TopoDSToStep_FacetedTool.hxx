@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 1995-02-16
+// Created by: Dieter THIEMANN
+// Copyright (c) 1995-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,23 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/DataExchange/TKDESTEP/TopoDSToStep/TopoDSToStep_FacetedTool.hxx"// clang-format on
+#ifndef _TopoDSToStep_FacetedTool_HeaderFile
+#define _TopoDSToStep_FacetedTool_HeaderFile
+
+#include <Standard.hxx>
+#include <Standard_DefineAlloc.hxx>
+
+#include <TopoDSToStep_FacetedError.hxx>
+class TopoDS_Shape;
+
+//! This Tool Class provides Information about Faceted Shapes
+//! to be mapped to STEP.
+class TopoDSToStep_FacetedTool
+{
+public:
+  DEFINE_STANDARD_ALLOC
+
+  Standard_EXPORT static TopoDSToStep_FacetedError CheckTopoDSShape(const TopoDS_Shape& SH);
+};
+
+#endif // _TopoDSToStep_FacetedTool_HeaderFile

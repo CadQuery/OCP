@@ -1,4 +1,4 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +11,15 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/DataExchange/TKDESTEP/StepElement/StepElement_Volume3dElementShape.hxx"// clang-format on
+#ifndef _StepElement_Volume3dElementShape_HeaderFile
+#define _StepElement_Volume3dElementShape_HeaderFile
+
+enum StepElement_Volume3dElementShape
+{
+  StepElement_Hexahedron,
+  StepElement_Wedge,
+  StepElement_Tetrahedron,
+  StepElement_Pyramid
+};
+
+#endif // _StepElement_Volume3dElementShape_HeaderFile

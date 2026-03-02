@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 1993-06-22
+// Created by: Martine LANGLOIS
+// Copyright (c) 1993-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,36 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/DataExchange/TKDESTEP/GeomToStep/GeomToStep_MakeBoundedSurface.hxx"// clang-format on
+#ifndef _GeomToStep_MakeBoundedSurface_HeaderFile
+#define _GeomToStep_MakeBoundedSurface_HeaderFile
+
+#include <Standard.hxx>
+#include <Standard_DefineAlloc.hxx>
+#include <Standard_Handle.hxx>
+
+#include <GeomToStep_Root.hxx>
+
+class StepGeom_BoundedSurface;
+class Geom_BoundedSurface;
+
+//! This class implements the mapping between classes
+//! BoundedSurface from Geom and the class BoundedSurface from
+//! StepGeom which describes a BoundedSurface from prostep.
+//! As BoundedSurface is an abstract BoundedSurface this class
+//! is an access to the sub-class required.
+class GeomToStep_MakeBoundedSurface : public GeomToStep_Root
+{
+public:
+  DEFINE_STANDARD_ALLOC
+
+  Standard_EXPORT GeomToStep_MakeBoundedSurface(
+    const occ::handle<Geom_BoundedSurface>& C,
+    const StepData_Factors&                 theLocalFactors = StepData_Factors());
+
+  Standard_EXPORT const occ::handle<StepGeom_BoundedSurface>& Value() const;
+
+private:
+  occ::handle<StepGeom_BoundedSurface> theBoundedSurface;
+};
+
+#endif // _GeomToStep_MakeBoundedSurface_HeaderFile

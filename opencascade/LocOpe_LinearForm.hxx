@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 1997-04-14
+// Created by: Olga PILLOT
+// Copyright (c) 1997-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,74 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ModelingAlgorithms/TKFeat/LocOpe/LocOpe_LinearForm.hxx"// clang-format on
+#ifndef _LocOpe_LinearForm_HeaderFile
+#define _LocOpe_LinearForm_HeaderFile
+
+#include <Standard.hxx>
+#include <Standard_DefineAlloc.hxx>
+
+#include <TopoDS_Shape.hxx>
+#include <gp_Vec.hxx>
+#include <NCollection_List.hxx>
+#include <TopTools_ShapeMapHasher.hxx>
+#include <NCollection_DataMap.hxx>
+#include <gp_Pnt.hxx>
+
+//! Defines a linear form (using Prism from BRepSweep)
+//! with modifications provided for the LinearForm feature.
+class LocOpe_LinearForm
+{
+public:
+  DEFINE_STANDARD_ALLOC
+
+  LocOpe_LinearForm();
+
+  LocOpe_LinearForm(const TopoDS_Shape& Base,
+                    const gp_Vec&       V,
+                    const gp_Pnt&       Pnt1,
+                    const gp_Pnt&       Pnt2);
+
+  LocOpe_LinearForm(const TopoDS_Shape& Base,
+                    const gp_Vec&       V,
+                    const gp_Vec&       Vectra,
+                    const gp_Pnt&       Pnt1,
+                    const gp_Pnt&       Pnt2);
+
+  Standard_EXPORT void Perform(const TopoDS_Shape& Base,
+                               const gp_Vec&       V,
+                               const gp_Pnt&       Pnt1,
+                               const gp_Pnt&       Pnt2);
+
+  Standard_EXPORT void Perform(const TopoDS_Shape& Base,
+                               const gp_Vec&       V,
+                               const gp_Vec&       Vectra,
+                               const gp_Pnt&       Pnt1,
+                               const gp_Pnt&       Pnt2);
+
+  Standard_EXPORT const TopoDS_Shape& FirstShape() const;
+
+  Standard_EXPORT const TopoDS_Shape& LastShape() const;
+
+  Standard_EXPORT const TopoDS_Shape& Shape() const;
+
+  Standard_EXPORT const NCollection_List<TopoDS_Shape>& Shapes(const TopoDS_Shape& S) const;
+
+private:
+  Standard_EXPORT void IntPerf();
+
+  TopoDS_Shape myBase;
+  gp_Vec       myVec;
+  gp_Vec       myTra;
+  bool         myDone;
+  bool         myIsTrans;
+  TopoDS_Shape myRes;
+  TopoDS_Shape myFirstShape;
+  TopoDS_Shape myLastShape;
+  NCollection_DataMap<TopoDS_Shape, NCollection_List<TopoDS_Shape>, TopTools_ShapeMapHasher> myMap;
+  gp_Pnt                                                                                     myPnt1;
+  gp_Pnt                                                                                     myPnt2;
+};
+
+#include <LocOpe_LinearForm.lxx>
+
+#endif // _LocOpe_LinearForm_HeaderFile

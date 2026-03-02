@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 1998-06-30
+// Created by: Administrateur Atelier XSTEP
+// Copyright (c) 1998-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,20 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/DataExchange/TKDESTEP/StepRepr/StepRepr_PromissoryUsageOccurrence.hxx"// clang-format on
+#ifndef _StepRepr_PromissoryUsageOccurrence_HeaderFile
+#define _StepRepr_PromissoryUsageOccurrence_HeaderFile
+
+#include <Standard.hxx>
+
+#include <StepRepr_AssemblyComponentUsage.hxx>
+
+class StepRepr_PromissoryUsageOccurrence : public StepRepr_AssemblyComponentUsage
+{
+
+public:
+  Standard_EXPORT StepRepr_PromissoryUsageOccurrence();
+
+  DEFINE_STANDARD_RTTIEXT(StepRepr_PromissoryUsageOccurrence, StepRepr_AssemblyComponentUsage)
+};
+
+#endif // _StepRepr_PromissoryUsageOccurrence_HeaderFile

@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 1992-03-26
+// Created by: Laurent BUCHARD
+// Copyright (c) 1992-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,42 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ModelingAlgorithms/TKGeomAlgo/IntCurve/IntCurve_PConicTool.hxx"// clang-format on
+#ifndef _IntCurve_PConicTool_HeaderFile
+#define _IntCurve_PConicTool_HeaderFile
+
+#include <Standard.hxx>
+#include <Standard_DefineAlloc.hxx>
+
+#include <Standard_Integer.hxx>
+class IntCurve_PConic;
+class gp_Pnt2d;
+class gp_Vec2d;
+
+//! Implementation of the ParTool from IntImpParGen
+//! for conics of gp, using the class PConic from IntCurve.
+class IntCurve_PConicTool
+{
+public:
+  DEFINE_STANDARD_ALLOC
+
+  Standard_EXPORT static double EpsX(const IntCurve_PConic& C);
+
+  Standard_EXPORT static int NbSamples(const IntCurve_PConic& C);
+
+  Standard_EXPORT static int NbSamples(const IntCurve_PConic& C, const double U0, const double U1);
+
+  Standard_EXPORT static gp_Pnt2d Value(const IntCurve_PConic& C, const double X);
+
+  Standard_EXPORT static void D1(const IntCurve_PConic& C,
+                                 const double           U,
+                                 gp_Pnt2d&              P,
+                                 gp_Vec2d&              T);
+
+  Standard_EXPORT static void D2(const IntCurve_PConic& C,
+                                 const double           U,
+                                 gp_Pnt2d&              P,
+                                 gp_Vec2d&              T,
+                                 gp_Vec2d&              N);
+};
+
+#endif // _IntCurve_PConicTool_HeaderFile

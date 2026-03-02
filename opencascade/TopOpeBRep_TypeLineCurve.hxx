@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 1993-06-17
+// Created by: Jean Yves LEBEY
+// Copyright (c) 1993-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,20 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ModelingAlgorithms/TKBool/TopOpeBRep/TopOpeBRep_TypeLineCurve.hxx"// clang-format on
+#ifndef _TopOpeBRep_TypeLineCurve_HeaderFile
+#define _TopOpeBRep_TypeLineCurve_HeaderFile
+
+enum TopOpeBRep_TypeLineCurve
+{
+  TopOpeBRep_ANALYTIC,
+  TopOpeBRep_RESTRICTION,
+  TopOpeBRep_WALKING,
+  TopOpeBRep_LINE,
+  TopOpeBRep_CIRCLE,
+  TopOpeBRep_ELLIPSE,
+  TopOpeBRep_PARABOLA,
+  TopOpeBRep_HYPERBOLA,
+  TopOpeBRep_OTHERTYPE
+};
+
+#endif // _TopOpeBRep_TypeLineCurve_HeaderFile

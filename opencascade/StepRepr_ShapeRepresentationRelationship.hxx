@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 1998-06-30
+// Created by: Christian CAILLET
+// Copyright (c) 1998-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,22 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/DataExchange/TKDESTEP/StepRepr/StepRepr_ShapeRepresentationRelationship.hxx"// clang-format on
+#ifndef _StepRepr_ShapeRepresentationRelationship_HeaderFile
+#define _StepRepr_ShapeRepresentationRelationship_HeaderFile
+
+#include <Standard.hxx>
+#include <Standard_Type.hxx>
+
+#include <StepRepr_RepresentationRelationship.hxx>
+
+class StepRepr_ShapeRepresentationRelationship : public StepRepr_RepresentationRelationship
+{
+
+public:
+  Standard_EXPORT StepRepr_ShapeRepresentationRelationship();
+
+  DEFINE_STANDARD_RTTIEXT(StepRepr_ShapeRepresentationRelationship,
+                          StepRepr_RepresentationRelationship)
+};
+
+#endif // _StepRepr_ShapeRepresentationRelationship_HeaderFile

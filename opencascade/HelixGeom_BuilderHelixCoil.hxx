@@ -11,5 +11,28 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ModelingAlgorithms/TKHelix/HelixGeom/HelixGeom_BuilderHelixCoil.hxx"// clang-format on
+#ifndef _HelixGeom_BuilderHelixCoil_HeaderFile
+#define _HelixGeom_BuilderHelixCoil_HeaderFile
+
+#include <Standard.hxx>
+#include <Standard_DefineAlloc.hxx>
+#include <Standard_Handle.hxx>
+
+#include <HelixGeom_BuilderHelixGen.hxx>
+
+//! Implementation of algorithm for building helix coil with
+//! axis OZ
+class HelixGeom_BuilderHelixCoil : public HelixGeom_BuilderHelixGen
+{
+public:
+  DEFINE_STANDARD_ALLOC
+
+  //! Empty constructor
+  Standard_EXPORT HelixGeom_BuilderHelixCoil();
+  Standard_EXPORT ~HelixGeom_BuilderHelixCoil() override;
+
+  //! Performs calculations
+  Standard_EXPORT void Perform() override;
+};
+
+#endif // _HelixGeom_BuilderHelixCoil_HeaderFile

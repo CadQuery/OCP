@@ -1,4 +1,7 @@
-// Copyright (c) 2025 OPEN CASCADE SAS
+// Created on: 1991-07-18
+// Created by: Arnaud BOUZY
+// Copyright (c) 1991-1999 Matra Datavision
+// Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,5 +14,45 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// clang-format off
-#include "C:/Users/adamj/cq/ocp-kicad/OCCT/src/ModelingAlgorithms/TKExpress/ExprIntrp/ExprIntrp_GenExp.hxx"// clang-format on
+#ifndef _ExprIntrp_GenExp_HeaderFile
+#define _ExprIntrp_GenExp_HeaderFile
+
+#include <Standard.hxx>
+#include <Standard_Type.hxx>
+
+#include <ExprIntrp_Generator.hxx>
+class Expr_GeneralExpression;
+class TCollection_AsciiString;
+
+//! This class permits, from a string, to create any
+//! kind of expression of package Expr by using
+//! built-in functions such as Sin,Cos, etc, and by
+//! creating variables.
+class ExprIntrp_GenExp : public ExprIntrp_Generator
+{
+
+public:
+  Standard_EXPORT static occ::handle<ExprIntrp_GenExp> Create();
+
+  //! Processes given string.
+  Standard_EXPORT void Process(const TCollection_AsciiString& str);
+
+  //! Returns false if any syntax error has occurred during
+  //! process.
+  Standard_EXPORT bool IsDone() const;
+
+  //! Returns expression generated. Raises an exception if
+  //! IsDone answers false.
+  Standard_EXPORT occ::handle<Expr_GeneralExpression> Expression() const;
+
+  DEFINE_STANDARD_RTTIEXT(ExprIntrp_GenExp, ExprIntrp_Generator)
+
+private:
+  //! Creates an empty generator
+  Standard_EXPORT ExprIntrp_GenExp();
+
+  bool                                done;
+  occ::handle<Expr_GeneralExpression> myExpression;
+};
+
+#endif // _ExprIntrp_GenExp_HeaderFile
