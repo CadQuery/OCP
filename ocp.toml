@@ -382,6 +382,8 @@ exclude_collection = [
 "Sequence_const gp_Pnt2d",
 ]
 
+collection_pattern = "NCollection"
+
 module_mapping = "lambda x: Path(x).splitpath()[-1].split('.')[0].split('_')[0]"
 
 byref_types = ["Standard_Real","Standard_Integer","Standard_Boolean","int","double","bool"]
