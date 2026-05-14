@@ -48,7 +48,7 @@ jobs:
 
       # --- Setup Environment ---
       - name: install micromamba
-        run: "${SHELL}" <(curl -L micro.mamba.pm/install.sh)
+        run: "bash <(curl -L micro.mamba.pm/install.sh)"
 
       - name: install conda-devenv
         run: micromamba install mamba conda-devenv
