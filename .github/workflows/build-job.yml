@@ -54,7 +54,9 @@ jobs:
           # cache-environment: true
           # Create a minimal environment with mamba-devenv
           create-args: >-
-            -c conda-forge python=3.12 conda-devenv mamba
+            python=3.12
+            conda-devenv
+            mamba
 
       - name: Prepare conda environment (mamba-devenv)
         shell: bash -l {0}
@@ -196,7 +198,9 @@ jobs:
           environment-name: placeholder
           # Create a minimal environment with mamba-devenv
           create-args: >-
-            -c conda-forge python=${{ env.PYTHON_VERSION }} conda-devenv mamba
+            python=${{ env.PYTHON_VERSION }}
+            conda-devenv
+            mamba
 
       - name: Prepare conda environment
         shell: bash -l {0}
