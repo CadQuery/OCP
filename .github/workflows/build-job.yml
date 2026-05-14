@@ -1,0 +1,295 @@
+name: Build Bindings Logic
+
+on:
+  workflow_call:
+    inputs:
+      name:
+        required: true
+        type: string
+      runner_generate:
+        required: true
+        type: string
+      runner_compile:
+        required: true
+        type: string
+      platform:
+        required: true
+        type: string
+    secrets:
+      ANACONDA_TOKEN:
+        required: false
+
+jobs:
+  # -----------------------------------------------------------------------------
+  # PHASE 1: Generate Bindings (Python wrapper generation)
+  # -----------------------------------------------------------------------------
+  generate:
+    name: Generate ${{ inputs.name }}
+    runs-on: ${{ inputs.runner_generate }}
+    timeout-minutes: 360
+    outputs:
+      output_dir: ${{ steps.conf.outputs.OUTPUT }}
+    
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: true
+
+      # --- Mac SDK Hack ---
+      - name: SDK install and symlink (Mac)
+        if: contains(inputs.runner_generate, 'mac')
+        run: |
+          curl -L -O https://github.com/phracker/MacOSX-SDKs/releases/download/11.3/MacOSX11.3.sdk.tar.xz
+          sudo mkdir -p /opt
+          sudo tar -xf MacOSX11.3.sdk.tar.xz -C /opt
+          sudo mkdir -p /opt/usr/local/
+          sudo ln -s /opt/MacOSX11.3.sdk/usr/include /opt/usr/local/include
+          sudo ln -s /opt/MacOSX11.3.sdk/System/Library/Frameworks/OpenGL.framework/Headers /usr/local/include/OpenGL
+
+      # --- Setup Environment ---
+      - uses: mamba-org/setup-micromamba@v2
+        with:
+          # REMOVE: environment-file: environment.devenv.yml
+          environment-name: placeholder
+          # cache-environment: true
+          # Create a minimal environment with mamba-devenv
+          create-args: >-
+            -c conda-forge python=3.12 conda-devenv mamba
+
+      - name: Prepare conda environment (mamba-devenv)
+        shell: bash -l {0}
+        run: |
+          export CONDA_DEVENV_ENV_MANAGER=mamba
+          mamba create -n cpp-py-bindgen
+          mamba-devenv -f environment.devenv.yml
+
+      - name: Read output dir
+        id: conf
+        shell: bash -l {0}
+        run: |
+          micromamba activate cpp-py-bindgen
+          OUTPUT=`python -c'import toml; print(toml.load("ocp.toml")["output_folder"])'`
+          echo "OUTPUT=$OUTPUT" >> $GITHUB_OUTPUT
+
+      - name: Restore OCP_src cache
+        id: cache-ocp-src-restore
+        uses: actions/cache/restore@v4
+        with:
+          path: ${{ steps.conf.outputs.OUTPUT }}
+          key: OCP-src-${{ inputs.platform }}-
+
+      # --- Generation Logic ---
+      
+      # Windows Special Case (Running on Linux targeting Windows)
+      - name: Generate (Windows on Linux)
+        if: inputs.platform == 'Windows' && steps.cache-ocp-src-restore.outputs.cache-hit != 'true'
+        shell: bash -l {0}
+        run: |
+          micromamba create --yes --platform win-64 --no-deps --prefix ./occt occt=7.9.2
+          micromamba activate cpp-py-bindgen
+          cmake -S . -B . -G Ninja \
+            -DPython_ROOT_DIR=$CONDA_PREFIX \
+            -DPython3_ROOT_DIR=$CONDA_PREFIX \
+            -DPython_FIND_VIRTUALENV=ONLY \
+            -DPython3_FIND_VIRTUALENV=ONLY \
+            -DOCCT_LIB_DIR=./occt/Library/bin/ \
+            -DPLATFORM=Windows
+          cmake --build . -- -v
+          ls -lRht
+
+      # Standard Case (Linux/Mac)
+      - name: Generate (Standard)
+        if: inputs.platform != 'Windows' && steps.cache-ocp-src-restore.outputs.cache-hit != 'true'
+        shell: bash -l {0}
+        run: |
+          micromamba activate cpp-py-bindgen
+          cmake -S . -B . -G Ninja \
+            -DPython_ROOT_DIR=$CONDA_PREFIX \
+            -DPython3_ROOT_DIR=$CONDA_PREFIX \
+            -DPython_FIND_VIRTUALENV=ONLY \
+            -DPython3_FIND_VIRTUALENV=ONLY
+          cmake --build .
+          ls -lRht
+
+      - name: Cache OCP_src
+        id: cache-ocp-src-save
+        uses: actions/cache/save@v4
+        with:
+          path: ${{ steps.conf.outputs.OUTPUT }}
+          key: ${{ steps.cache-ocp-src-restore.outputs.cache-primary-key }}
+
+      - name: Copy pkl output
+        if: steps.cache-ocp-src-restore.outputs.cache-hit != 'true'
+        shell: bash -l {0}
+        run: |
+          mkdir -p ${{ steps.conf.outputs.OUTPUT }}_pkl
+          cp *.pkl ${{ steps.conf.outputs.OUTPUT }}_pkl/
+
+      # --- Artifact Upload ---
+      - name: Upload Sources
+        # if: steps.cache-ocp-src-restore.outputs.cache-hit != 'true'
+        uses: actions/upload-artifact@v4
+        with:
+          name: OCP_src_${{ inputs.platform }}
+          path: ${{ steps.conf.outputs.OUTPUT }}
+
+      - name: Upload Pickles
+        if: steps.cache-ocp-src-restore.outputs.cache-hit != 'true'
+        uses: actions/upload-artifact@v4
+        with:
+          name: OCP_pkl_${{ inputs.platform }}
+          path: ${{ steps.conf.outputs.OUTPUT }}_pkl
+
+  # -----------------------------------------------------------------------------
+  # PHASE 2: Compile (Matrix)
+  # -----------------------------------------------------------------------------
+  compile:
+    needs: generate
+    name: Compile ${{ inputs.name }} (3.${{ matrix.py_min }})
+    runs-on: ${{ inputs.runner_compile }}
+    # timeout-minutes: 360
+    strategy:
+      fail-fast: false
+      matrix:
+        py_min: [10, 11, 12, 13]
+    
+    env:
+      OCP_src: OCP_src_${{ inputs.platform }}
+      n_cores: 2
+      PYTHON_VERSION: 3.${{ matrix.py_min }}
+      STAGE: "compile"
+      ANACONDA_TOKEN: ${{ secrets.ANACONDA_TOKEN }}
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: true
+
+      # rely on source artifact??
+      # - name: Restore OCP_src cache
+      #   id: cache-ocp-src-restore
+      #   uses: actions/cache/restore@v4
+      #   with:
+      #     path: ${{ steps.conf.outputs.OUTPUT }}
+      #     key: OCP-src-${{ inputs.platform }}-
+
+      # --- Download Artifacts ---
+      - name: Download Source Artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: OCP_src_${{ inputs.platform }}
+          path: ../${{ env.OCP_src }}
+
+      # --- Mac SDK Hack (Compile Phase) ---
+      - name: SDK install (Mac)
+        if: contains(inputs.runner_compile, 'mac')
+        run: |
+          curl -L -O https://github.com/phracker/MacOSX-SDKs/releases/download/11.3/MacOSX10.15.sdk.tar.xz
+          sudo mkdir -p /opt
+          sudo tar -xf MacOSX10.15.sdk.tar.xz -C /opt
+
+      # --- Setup Environment ---
+      - uses: mamba-org/setup-micromamba@v2
+        with:
+          # micromamba-version: '1.5.8-0'
+          # REMOVE: environment-file: environment.devenv.yml
+          environment-name: placeholder
+          # Create a minimal environment with mamba-devenv
+          create-args: >-
+            -c conda-forge python=${{ env.PYTHON_VERSION }} conda-devenv mamba
+
+      - name: Prepare conda environment
+        shell: bash -l {0}
+        run: |
+          export CONDA_DEVENV_ENV_MANAGER=mamba
+          mamba create -n cpp-py-bindgen
+          mamba-devenv -f environment.devenv.yml
+
+      # --- Compilation ---
+      
+      # Ubuntu Compile
+      - name: Compile (Ubuntu)
+        if: contains(inputs.runner_compile, 'ubuntu')
+        shell: bash -l {0}
+        run: |
+          micromamba activate cpp-py-bindgen
+          cmake -B build -S "../${OCP_src}" -G Ninja -DCMAKE_BUILD_TYPE=Release
+          cmake --build build -j 2 -- -k 0
+          rm -rf build/CMakeFiles
+
+      # Mac Compile
+      - name: Compile (Mac)
+        if: contains(inputs.runner_compile, 'mac')
+        shell: bash -l {0}
+        run: |
+          micromamba activate cpp-py-bindgen
+          cmake -B build -S "../${OCP_src}" -G Ninja -DCMAKE_BUILD_TYPE=Release -DCMAKE_OSX_SYSROOT=/opt/MacOSX10.15.sdk/
+          cmake --build build -j 2 -- -k 0
+          rm -rf build/CMakeFiles
+
+      # Windows Compile
+      - name: Compile (Windows)
+        if: contains(inputs.runner_compile, 'windows')
+        shell: powershell
+        run: |
+          # Note: PowerShell interpolation of env vars is different
+          micromamba run -n cpp-py-bindgen cmake -B build -S "../$env:OCP_src" -G Ninja -DCMAKE_BUILD_TYPE=Release -DPython3_FIND_STRATEGY=LOCATION -DPython3_ROOT_DIR=$env:CONDA_PREFIX -DCMAKE_LINKER=lld-link.exe
+          micromamba run -n cpp-py-bindgen cmake --build build -j 1 -- -v -k 0
+          micromamba run -n cpp-py-bindgen cmake -E rm -rf build\CMakeFiles
+        env:
+          CXX: "cl.exe"
+
+      - name: Upload Compilation Artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: OCP_${{ inputs.platform }}_py3${{ matrix.py_min }}
+          path: build
+
+      # --- Stubs & Test ---
+      - name: Generate stubs
+        shell: bash -l {0}
+        run: |
+          micromamba activate cpp-py-bindgen
+          cd build
+          python -m pybind11_stubgen -o . OCP
+          rm -rf OCP-stubs/setup.py OCP-stubs/__pycache__ OCP-stubs/MANIFEST.in
+          cp -r "../../$(OCP_src)" ../upload
+          cp -r OCP-stubs ../upload/
+
+      - name: Upload Stubs Artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: OCP_src_stubs_${{ inputs.platform }}_py3${{ matrix.py_min }}
+          path: upload
+
+      - name: Test Import
+        shell: bash -l {0}
+        run: |
+          micromamba activate cpp-py-bindgen
+          cd build
+          # LD_DEBUG is linux specific, keeping it safe for others
+          if [[ "${{ inputs.platform }}" == "Linux" ]]; then
+             LD_DEBUG=libs python -c"import OCP"
+          else
+             python -c"import OCP"
+          fi
+
+      # --- Conda Packaging ---
+      - name: Build Conda Package
+        shell: bash -l {0}
+        env:
+          BUILD_STRING: "1"
+          TOKEN: ${{ secrets.ANACONDA_TOKEN }}
+        run: |
+          # Install build tools in a fresh env
+          micromamba create -n build -y -c conda-forge python=3.11 liblief=0.14.1 conda-build anaconda-client
+          micromamba activate build
+          
+          # Determine flags based on event
+          if [[ "${{ github.event_name }}" == "pull_request" ]]; then
+            echo "Building for PR..."
+            conda build -c conda-forge --override-channels conda
+          else
+            echo "Building and Uploading..."
+            conda build --token $TOKEN --user cadquery --label dev -c conda-forge --override-channels conda
+          fi
