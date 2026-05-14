@@ -193,6 +193,8 @@ jobs:
 
       # --- Setup Environment ---
       - uses: mamba-org/setup-micromamba@v3
+        env:
+          ACTIONS_STEP_DEBUG: true
         with:
           # micromamba-version: '1.5.8-0'
           # REMOVE: environment-file: environment.devenv.yml
