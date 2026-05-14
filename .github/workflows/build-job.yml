@@ -47,7 +47,7 @@ jobs:
           sudo ln -s /opt/MacOSX11.3.sdk/System/Library/Frameworks/OpenGL.framework/Headers /usr/local/include/OpenGL
 
       # --- Setup Environment ---
-      - uses: mamba-org/setup-micromamba@v2
+      - uses: mamba-org/setup-micromamba@v3
         with:
           # REMOVE: environment-file: environment.devenv.yml
           environment-name: placeholder
@@ -189,7 +189,7 @@ jobs:
           sudo tar -xf MacOSX10.15.sdk.tar.xz -C /opt
 
       # --- Setup Environment ---
-      - uses: mamba-org/setup-micromamba@v2
+      - uses: mamba-org/setup-micromamba@v3
         with:
           # micromamba-version: '1.5.8-0'
           # REMOVE: environment-file: environment.devenv.yml
