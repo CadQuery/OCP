@@ -53,6 +53,7 @@ jobs:
           environment-name: placeholder
           # cache-environment: true
           # Create a minimal environment with mamba-devenv
+          init-shell: bash
           create-args: >-
             python=3.12
             conda-devenv
@@ -197,6 +198,7 @@ jobs:
           # REMOVE: environment-file: environment.devenv.yml
           environment-name: placeholder
           # Create a minimal environment with mamba-devenv
+          init-shell: bash
           create-args: >-
             python=${{ env.PYTHON_VERSION }}
             conda-devenv
