@@ -51,7 +51,7 @@ jobs:
         run: "bash <(curl -L micro.mamba.pm/install.sh) && cp ~/.local/bin/micromamba ."
 
       - name: add to path
-        run: echo 'PATH="${PATH}:~"' >> $GITHUB_PATH
+        run: echo 'PATH="${PATH}:${HOME}"' >> $GITHUB_PATH
 
       - name: install conda-devenv
         run: micromamba install mamba conda-devenv
