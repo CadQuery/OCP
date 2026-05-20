@@ -60,10 +60,8 @@ jobs:
 
       - name: Read output dir
         id: conf
-        shell: bash -l {0}
         run: |
-          micromamba activate cpp-py-bindgen
-          OUTPUT=`python -c'import toml; print(toml.load("ocp.toml")["output_folder"])'`
+          micromamba run -n cpp-py-bindgen OUTPUT=`python -c'import toml; print(toml.load("ocp.toml")["output_folder"])'`
           echo "OUTPUT=$OUTPUT" >> $GITHUB_OUTPUT
 
       - name: Restore OCP_src cache
@@ -78,11 +76,9 @@ jobs:
       # Windows Special Case (Running on Linux targeting Windows)
       - name: Generate (Windows on Linux)
         if: inputs.platform == 'Windows' && steps.cache-ocp-src-restore.outputs.cache-hit != 'true'
-        shell: bash -l {0}
         run: |
           micromamba create --yes --platform win-64 --no-deps --prefix ./occt occt=7.9.2
-          micromamba activate cpp-py-bindgen
-          cmake -S . -B . -G Ninja \
+          micromamba run -n cpp-py-bindgen cmake -S . -B . -G Ninja \
             -DPython_ROOT_DIR=$CONDA_PREFIX \
             -DPython3_ROOT_DIR=$CONDA_PREFIX \
             -DPython_FIND_VIRTUALENV=ONLY \
@@ -95,10 +91,8 @@ jobs:
       # Standard Case (Linux/Mac)
       - name: Generate (Standard)
         if: inputs.platform != 'Windows' && steps.cache-ocp-src-restore.outputs.cache-hit != 'true'
-        shell: bash -l {0}
         run: |
-          micromamba activate cpp-py-bindgen
-          cmake -S . -B . -G Ninja \
+          micromamba run -n cpp-py-bindgen cmake -S . -B . -G Ninja \
             -DPython_ROOT_DIR=$CONDA_PREFIX \
             -DPython3_ROOT_DIR=$CONDA_PREFIX \
             -DPython_FIND_VIRTUALENV=ONLY \
