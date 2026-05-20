@@ -49,24 +49,14 @@ jobs:
           sudo ln -s /opt/MacOSX11.3.sdk/System/Library/Frameworks/OpenGL.framework/Headers /usr/local/include/OpenGL
 
       # --- Setup Environment ---
-      - name: install micromamba
-        run: "bash <(curl -L micro.mamba.pm/install.sh) && cp ~/.local/bin/micromamba ."
-
-      - name: add to path
-        run: echo 'PATH="${PATH}:${HOME}"' >> $GITHUB_PATH
-
       - name: install conda-devenv
         run: micromamba install mamba conda-devenv
 
-      - name: init shell
-        run: micromamba shell init
-
       - name: Prepare conda environment (mamba-devenv)
-        shell: bash -l {0}
         run: |
           export CONDA_DEVENV_ENV_MANAGER=mamba
-          mamba create -n cpp-py-bindgen
-          mamba-devenv -f environment.devenv.yml
+          micromamba create -n cpp-py-bindgen
+          micromamba run mamba-devenv -f environment.devenv.yml
 
       - name: Read output dir
         id: conf
