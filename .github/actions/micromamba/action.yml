@@ -1,0 +1,7 @@
+name: 'Install micromamba'
+runs:
+  using: 'composite'
+  steps:
+    - name: 'Install (MacOS)'
+      if: contains(runner.os,'mac')
+      run: brew install micromamba

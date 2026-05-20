@@ -35,6 +35,8 @@ jobs:
         with:
           submodules: true
 
+      - uses: ./.github/actions/micromamba
+
       # --- Mac SDK Hack ---
       - name: SDK install and symlink (Mac)
         if: contains(inputs.runner_generate, 'mac')
