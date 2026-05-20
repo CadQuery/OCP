@@ -35,6 +35,8 @@ jobs:
         with:
           submodules: true
 
+      - uses: ./.github/actions/micromamba
+
       # --- Mac SDK Hack ---
       - name: SDK install and symlink (Mac)
         if: contains(inputs.runner_generate, 'mac')
@@ -47,28 +49,19 @@ jobs:
           sudo ln -s /opt/MacOSX11.3.sdk/System/Library/Frameworks/OpenGL.framework/Headers /usr/local/include/OpenGL
 
       # --- Setup Environment ---
-      - uses: mamba-org/setup-micromamba@v2
-        with:
-          # REMOVE: environment-file: environment.devenv.yml
-          environment-name: placeholder
-          # cache-environment: true
-          # Create a minimal environment with mamba-devenv
-          create-args: >-
-            -c conda-forge python=3.12 conda-devenv mamba
+      - name: install conda-devenv
+        run: micromamba install mamba conda-devenv
 
       - name: Prepare conda environment (mamba-devenv)
-        shell: bash -l {0}
         run: |
           export CONDA_DEVENV_ENV_MANAGER=mamba
-          mamba create -n cpp-py-bindgen
-          mamba-devenv -f environment.devenv.yml
+          micromamba create -n cpp-py-bindgen
+          micromamba run mamba-devenv -f environment.devenv.yml
 
       - name: Read output dir
         id: conf
-        shell: bash -l {0}
         run: |
-          micromamba activate cpp-py-bindgen
-          OUTPUT=`python -c'import toml; print(toml.load("ocp.toml")["output_folder"])'`
+          OUTPUT=`micromamba run -n cpp-py-bindgen python -c'import toml; print(toml.load("ocp.toml")["output_folder"])'`
           echo "OUTPUT=$OUTPUT" >> $GITHUB_OUTPUT
 
       - name: Restore OCP_src cache
@@ -83,11 +76,9 @@ jobs:
       # Windows Special Case (Running on Linux targeting Windows)
       - name: Generate (Windows on Linux)
         if: inputs.platform == 'Windows' && steps.cache-ocp-src-restore.outputs.cache-hit != 'true'
-        shell: bash -l {0}
         run: |
           micromamba create --yes --platform win-64 --no-deps --prefix ./occt occt=7.9.2
-          micromamba activate cpp-py-bindgen
-          cmake -S . -B . -G Ninja \
+          micromamba run -n cpp-py-bindgen cmake -S . -B . -G Ninja \
             -DPython_ROOT_DIR=$CONDA_PREFIX \
             -DPython3_ROOT_DIR=$CONDA_PREFIX \
             -DPython_FIND_VIRTUALENV=ONLY \
@@ -100,10 +91,8 @@ jobs:
       # Standard Case (Linux/Mac)
       - name: Generate (Standard)
         if: inputs.platform != 'Windows' && steps.cache-ocp-src-restore.outputs.cache-hit != 'true'
-        shell: bash -l {0}
         run: |
-          micromamba activate cpp-py-bindgen
-          cmake -S . -B . -G Ninja \
+          micromamba run -n cpp-py-bindgen cmake -S . -B . -G Ninja \
             -DPython_ROOT_DIR=$CONDA_PREFIX \
             -DPython3_ROOT_DIR=$CONDA_PREFIX \
             -DPython_FIND_VIRTUALENV=ONLY \
@@ -189,14 +178,19 @@ jobs:
           sudo tar -xf MacOSX10.15.sdk.tar.xz -C /opt
 
       # --- Setup Environment ---
-      - uses: mamba-org/setup-micromamba@v2
+      - uses: mamba-org/setup-micromamba@v3
+        env:
+          ACTIONS_STEP_DEBUG: true
         with:
           # micromamba-version: '1.5.8-0'
           # REMOVE: environment-file: environment.devenv.yml
           environment-name: placeholder
           # Create a minimal environment with mamba-devenv
+          init-shell: bash
           create-args: >-
-            -c conda-forge python=${{ env.PYTHON_VERSION }} conda-devenv mamba
+            python=${{ env.PYTHON_VERSION }}
+            conda-devenv
+            mamba
 
       - name: Prepare conda environment
         shell: bash -l {0}
