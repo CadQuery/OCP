@@ -6,3 +6,6 @@ runs:
       if: contains(runner.os,'mac')
       shell: bash
       run: brew install micromamba
+    - name: 'Check installation'
+      shell: bash
+      run: micromamba info
