@@ -3,12 +3,12 @@ runs:
   using: 'composite'
   steps:
     - name: install micromamba
-      if: !contains(runner.os,'mac')
+      if: ${{ !contains(runner.os,'mac')}}
       shell: bash
       run: "bash <(curl -L micro.mamba.pm/install.sh) && cp ~/.local/bin/micromamba ."
 
     - name: add to path
-      if: !contains(runner.os,'mac')
+      if: ${{ !contains(runner.os,'mac')}}
       shell: bash
       run: echo 'PATH="${PATH}:${HOME}"' >> $GITHUB_PATH
 
