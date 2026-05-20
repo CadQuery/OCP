@@ -4,4 +4,5 @@ runs:
   steps:
     - name: 'Install (MacOS)'
       if: contains(runner.os,'mac')
+      shell: bash
       run: brew install micromamba
