@@ -2,10 +2,19 @@ name: 'Install micromamba'
 runs:
   using: 'composite'
   steps:
+    - name: install micromamba
+      shell: bash
+      run: "bash <(curl -L micro.mamba.pm/install.sh) && cp ~/.local/bin/micromamba ."
+
+    - name: add to path
+      shell: bash
+      run: echo 'PATH="${PATH}:${HOME}"' >> $GITHUB_PATH
+
     - name: 'Install (MacOS)'
       if: contains(runner.os,'mac')
       shell: bash
       run: brew install micromamba
+
     - name: 'Check installation'
       shell: bash
       run: micromamba info
