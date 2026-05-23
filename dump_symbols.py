@@ -1,15 +1,13 @@
 import lief
 import sys
 
-from logzero import logger
-
 libs = sys.argv[-1].split(';')
 
 exported_symbols = []
 
 for lib in libs:
 
-    logger.info(f'Analyzing {lib}')
+    print(f'Analyzing {lib}')
 
     p = lief.parse(lib)
     format = p.format
