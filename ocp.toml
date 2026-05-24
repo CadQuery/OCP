@@ -438,7 +438,7 @@ class Adaptor3d_Surface;
 
 [Attributes]
 
-    __version__ = "8.0.0.0RC3"
+    __version__ = "8.0.0.0"
 
 [Modules]
 
