@@ -23,15 +23,16 @@
 #include <Precision.hxx>
 #include <GeomAbs_BSplKnotDistribution.hxx>
 #include <GeomAbs_Shape.hxx>
-#include <Standard_Integer.hxx>
 #include <gp_Pnt2d.hxx>
 #include <NCollection_Array1.hxx>
-#include <NCollection_HArray1.hxx>
 #include <Geom2d_BoundedCurve.hxx>
-class gp_Pnt2d;
-class gp_Vec2d;
 class gp_Trsf2d;
 class Geom2d_Geometry;
+
+namespace Geom2dEval_RepCurveDesc
+{
+class Base;
+}
 
 //! Describes a BSpline curve.
 //! A BSpline curve can be:
@@ -193,6 +194,20 @@ public:
   //! Copy constructor for optimized copying without validation.
   Standard_EXPORT Geom2d_BSplineCurve(const Geom2d_BSplineCurve& theOther);
 
+  //! Returns true if an evaluation representation is attached.
+  bool HasEvalRepresentation() const { return !myEvalRep.IsNull(); }
+
+  //! Returns the current evaluation representation descriptor (may be null).
+  const occ::handle<Geom2dEval_RepCurveDesc::Base>& EvalRepresentation() const { return myEvalRep; }
+
+  //! Sets a new evaluation representation.
+  //! Validates descriptor data and ensures no circular references.
+  Standard_EXPORT void SetEvalRepresentation(
+    const occ::handle<Geom2dEval_RepCurveDesc::Base>& theDesc);
+
+  //! Removes the evaluation representation.
+  void ClearEvalRepresentation() { myEvalRep.Nullify(); }
+
   //! Increases the degree of this BSpline curve to
   //! Degree. As a result, the poles, weights and
   //! multiplicities tables are modified; the knots table is
@@ -342,14 +357,14 @@ public:
   //! point of the reversed curve;
   //! - the end point of the initial curve becomes the start
   //! point of the reversed curve.
-  Standard_EXPORT void Reverse() override;
+  Standard_EXPORT void Reverse() final;
 
   //! Computes the parameter on the reversed curve for
   //! the point of parameter U on this BSpline curve.
   //! The returned value is: UFirst + ULast - U,
   //! where UFirst and ULast are the values of the
   //! first and last parameters of this BSpline curve.
-  Standard_EXPORT double ReversedParameter(const double U) const override;
+  Standard_EXPORT double ReversedParameter(const double U) const final;
 
   //! Modifies this BSpline curve by segmenting it
   //! between U1 and U2. Either of these values can be
@@ -534,7 +549,7 @@ public:
   //! Returns true if the degree of continuity of this
   //! BSpline curve is at least N. A BSpline curve is at least GeomAbs_C0.
   //! Exceptions Standard_RangeError if N is negative.
-  Standard_EXPORT bool IsCN(const int N) const override;
+  Standard_EXPORT bool IsCN(const int N) const final;
 
   //! Check if curve has at least G1 continuity in interval [theTf, theTl]
   //! Returns true if IsCN(1)
@@ -550,10 +565,10 @@ public:
   //! Warnings :
   //! The first and the last point can be different from the first
   //! pole and the last pole of the curve.
-  Standard_EXPORT bool IsClosed() const override;
+  Standard_EXPORT bool IsClosed() const final;
 
   //! Returns True if the curve is periodic.
-  Standard_EXPORT bool IsPeriodic() const override;
+  Standard_EXPORT bool IsPeriodic() const final;
 
   //! Returns True if the weights are not identical.
   //! The tolerance criterion is Epsilon of the class Real.
@@ -571,7 +586,7 @@ public:
   //! than Cd-p where p is the maximum multiplicity of the interior
   //! Knots. In the interior of a knot span the curve is infinitely
   //! continuously differentiable.
-  Standard_EXPORT GeomAbs_Shape Continuity() const override;
+  Standard_EXPORT GeomAbs_Shape Continuity() const final;
 
   //! Returns the degree of this BSpline curve.
   //! In this class the degree of the basis normalized B-spline
@@ -579,13 +594,13 @@ public:
   //! Computation of value and derivatives
   Standard_EXPORT int Degree() const;
 
-  Standard_EXPORT void D0(const double U, gp_Pnt2d& P) const override;
+  Standard_EXPORT gp_Pnt2d EvalD0(const double U) const final;
 
   //! Raised if the continuity of the curve is not C1.
-  Standard_EXPORT void D1(const double U, gp_Pnt2d& P, gp_Vec2d& V1) const override;
+  Standard_EXPORT Geom2d_Curve::ResD1 EvalD1(const double U) const final;
 
   //! Raised if the continuity of the curve is not C2.
-  Standard_EXPORT void D2(const double U, gp_Pnt2d& P, gp_Vec2d& V1, gp_Vec2d& V2) const override;
+  Standard_EXPORT Geom2d_Curve::ResD2 EvalD2(const double U) const final;
 
   //! For this BSpline curve, computes
   //! - the point P of parameter U, or
@@ -599,11 +614,7 @@ public:
   //! defined by the parameter with a value greater than U,
   //! i.e. the part of the curve to the "right" of the singularity.
   //! Raises UndefinedDerivative if the continuity of the curve is not C3.
-  Standard_EXPORT void D3(const double U,
-                          gp_Pnt2d&    P,
-                          gp_Vec2d&    V1,
-                          gp_Vec2d&    V2,
-                          gp_Vec2d&    V3) const override;
+  Standard_EXPORT Geom2d_Curve::ResD3 EvalD3(const double U) const final;
 
   //! For the point of parameter U of this BSpline curve,
   //! computes the vector corresponding to the Nth derivative.
@@ -626,7 +637,7 @@ public:
   //! the same as if we consider the whole definition of the
   //! curve. Of course the evaluations are different outside
   //! this parametric domain.
-  Standard_EXPORT gp_Vec2d DN(const double U, const int N) const override;
+  Standard_EXPORT gp_Vec2d EvalDN(const double U, const int N) const final;
 
   //! Raised if FromK1 = ToK2.
   Standard_EXPORT gp_Pnt2d LocalValue(const double U, const int FromK1, const int ToK2) const;
@@ -678,7 +689,7 @@ public:
   //! The last point of the curve is different from the last
   //! pole of the curve if the multiplicity of the last knot
   //! is lower than Degree.
-  Standard_EXPORT gp_Pnt2d EndPoint() const override;
+  Standard_EXPORT gp_Pnt2d EndPoint() const final;
 
   //! For a B-spline curve the first parameter (which gives the start
   //! point of the curve) is a knot value but if the multiplicity of
@@ -689,7 +700,7 @@ public:
 
   //! Computes the parametric value of the start point of the curve.
   //! It is a knot value.
-  Standard_EXPORT double FirstParameter() const override;
+  Standard_EXPORT double FirstParameter() const final;
 
   //! Returns the knot of range Index. When there is a knot
   //! with a multiplicity greater than 1 the knot is not repeated.
@@ -702,6 +713,7 @@ public:
   //!
   //! Raised K.Lower() is less than number of first knot or
   //! K.Upper() is more than number of last knot.
+  Standard_DEPRECATED("use Knots() returning const reference instead")
   Standard_EXPORT void Knots(NCollection_Array1<double>& K) const;
 
   //! returns the knot values of the B-spline curve;
@@ -716,6 +728,7 @@ public:
   //! Raised if K.Lower() is less than number of first knot
   //! in knot sequence with repetitions or K.Upper() is more
   //! than number of last knot in knot sequence with repetitions.
+  Standard_DEPRECATED("use KnotSequence() returning const reference instead")
   Standard_EXPORT void KnotSequence(NCollection_Array1<double>& K) const;
 
   //! Returns the knots sequence.
@@ -748,7 +761,7 @@ public:
 
   //! Computes the parametric value of the end point of the curve.
   //! It is a knot value.
-  Standard_EXPORT double LastParameter() const override;
+  Standard_EXPORT double LastParameter() const final;
 
   //! Locates the parametric value U in the sequence of knots.
   //! If "WithKnotRepetition" is True we consider the knot's
@@ -773,6 +786,7 @@ public:
   //! Returns the multiplicity of the knots of the curve.
   //!
   //! Raised if the length of M is not equal to NbKnots.
+  Standard_DEPRECATED("use Multiplicities() returning const reference instead")
   Standard_EXPORT void Multiplicities(NCollection_Array1<int>& M) const;
 
   //! returns the multiplicity of the knots of the curve.
@@ -792,6 +806,7 @@ public:
   //! Returns the poles of the B-spline curve;
   //!
   //! Raised if the length of P is not equal to the number of poles.
+  Standard_DEPRECATED("use Poles() returning const reference instead")
   Standard_EXPORT void Poles(NCollection_Array1<gp_Pnt2d>& P) const;
 
   //! Returns the poles of the B-spline curve;
@@ -801,7 +816,7 @@ public:
   //! Warnings :
   //! This point is different from the first pole of the curve if the
   //! multiplicity of the first knot is lower than Degree.
-  Standard_EXPORT gp_Pnt2d StartPoint() const override;
+  Standard_EXPORT gp_Pnt2d StartPoint() const final;
 
   //! Returns the weight of the pole of range Index .
   //! Raised if Index < 1 or Index > NbPoles.
@@ -810,13 +825,21 @@ public:
   //! Returns the weights of the B-spline curve;
   //!
   //! Raised if the length of W is not equal to NbPoles.
+  Standard_DEPRECATED("use Weights() returning const pointer instead")
   Standard_EXPORT void Weights(NCollection_Array1<double>& W) const;
 
   //! Returns the weights of the B-spline curve;
   Standard_EXPORT const NCollection_Array1<double>* Weights() const;
 
+  //! Returns a const reference to the weights array.
+  //! For rational curves: the internal owning weights array.
+  //! For non-rational curves: a non-owning view of unit weights from BSplCLib.
+  //! The array is always sized to match NbPoles().
+  //! @warning Do NOT modify elements through the returned reference.
+  const NCollection_Array1<double>& WeightsArray() const { return myWeights; }
+
   //! Applies the transformation T to this BSpline curve.
-  Standard_EXPORT void Transform(const gp_Trsf2d& T) override;
+  Standard_EXPORT void Transform(const gp_Trsf2d& T) final;
 
   //! Returns the value of the maximum degree of the normalized
   //! B-spline basis functions in this package.
@@ -832,29 +855,31 @@ public:
   Standard_EXPORT void Resolution(const double ToleranceUV, double& UTolerance);
 
   //! Creates a new object which is a copy of this BSpline curve.
-  Standard_EXPORT occ::handle<Geom2d_Geometry> Copy() const override;
+  Standard_EXPORT occ::handle<Geom2d_Geometry> Copy() const final;
 
   //! Dumps the content of me into the stream
-  Standard_EXPORT void DumpJson(Standard_OStream& theOStream, int theDepth = -1) const override;
+  Standard_EXPORT void DumpJson(Standard_OStream& theOStream, int theDepth = -1) const final;
 
   DEFINE_STANDARD_RTTIEXT(Geom2d_BSplineCurve, Geom2d_BoundedCurve)
 
-private:
+protected:
   //! Recompute the flatknots, the knotsdistribution, the continuity.
-  Standard_EXPORT void UpdateKnots();
+  void updateKnots();
 
-  bool                                       rational;
-  bool                                       periodic;
-  GeomAbs_BSplKnotDistribution               knotSet;
-  GeomAbs_Shape                              smooth;
-  int                                        deg;
-  occ::handle<NCollection_HArray1<gp_Pnt2d>> poles;
-  occ::handle<NCollection_HArray1<double>>   weights;
-  occ::handle<NCollection_HArray1<double>>   flatknots;
-  occ::handle<NCollection_HArray1<double>>   knots;
-  occ::handle<NCollection_HArray1<int>>      mults;
-  double                                     maxderivinv;
-  bool                                       maxderivinvok;
+private:
+  NCollection_Array1<gp_Pnt2d>               myPoles;
+  NCollection_Array1<double>                 myWeights;
+  NCollection_Array1<double>                 myKnots;
+  NCollection_Array1<double>                 myFlatKnots;
+  NCollection_Array1<int>                    myMults;
+  occ::handle<Geom2dEval_RepCurveDesc::Base> myEvalRep;
+  int                                        myDeg           = 0;
+  bool                                       myPeriodic      = false;
+  bool                                       myRational      = false;
+  GeomAbs_BSplKnotDistribution               myKnotSet       = GeomAbs_NonUniform;
+  GeomAbs_Shape                              mySmooth        = GeomAbs_C0;
+  double                                     myMaxDerivInv   = 0.0;
+  bool                                       myMaxDerivInvOk = false;
 };
 
 #endif // _Geom2d_BSplineCurve_HeaderFile

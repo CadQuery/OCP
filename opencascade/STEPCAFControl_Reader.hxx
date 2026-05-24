@@ -17,6 +17,7 @@
 #define _STEPCAFControl_Reader_HeaderFile
 
 #include <STEPControl_Reader.hxx>
+#include <NCollection_LinearVector.hxx>
 #include <StepData_Factors.hxx>
 #include <IFSelect_ReturnStatus.hxx>
 #include <TDF_Label.hxx>
@@ -89,21 +90,22 @@ public:
   //! Provided for use like single-file reader.
   //! @param[in] theFileName  file to open
   //! @return read status
-  Standard_EXPORT IFSelect_ReturnStatus ReadFile(const char* theFileName);
+  Standard_EXPORT IFSelect_ReturnStatus ReadFile(const char* const theFileName);
 
   //! Loads a file and returns the read status
   //! Provided for use like single-file reader.
   //! @param[in] theFileName  file to open
   //! @param[in] theParams  default configuration parameters
   //! @return read status
-  Standard_EXPORT IFSelect_ReturnStatus ReadFile(const char*              theFileName,
+  Standard_EXPORT IFSelect_ReturnStatus ReadFile(const char* const        theFileName,
                                                  const DESTEP_Parameters& theParams);
 
   //! Loads a file from stream and returns the read status.
   //! @param[in] theName  auxiliary stream name
   //! @param[in] theIStream  stream to read from
   //! @return read status
-  Standard_EXPORT IFSelect_ReturnStatus ReadStream(const char* theName, std::istream& theIStream);
+  Standard_EXPORT IFSelect_ReturnStatus ReadStream(const char* const theName,
+                                                   std::istream&     theIStream);
 
   //! Returns number of roots recognized for transfer
   //! Shortcut for Reader().NbRootsForTransfer()
@@ -134,13 +136,13 @@ public:
 
   //! Translate STEP file given by filename into the document
   //! Return True if succeeded, and False in case of fail
-  Standard_EXPORT bool Perform(const char*                          filename,
+  Standard_EXPORT bool Perform(const char* const                    filename,
                                const occ::handle<TDocStd_Document>& doc,
                                const Message_ProgressRange& theProgress = Message_ProgressRange());
 
   //! Translate STEP file given by filename into the document
   //! Return True if succeeded, and False in case of fail
-  Standard_EXPORT bool Perform(const char*                          filename,
+  Standard_EXPORT bool Perform(const char* const                    filename,
                                const occ::handle<TDocStd_Document>& doc,
                                const DESTEP_Parameters&             theParams,
                                const Message_ProgressRange& theProgress = Message_ProgressRange());
@@ -153,7 +155,7 @@ public:
 
   //! Returns data on external file by its name
   //! Returns False if no external file with given name is read
-  Standard_EXPORT bool ExternFile(const char*                             name,
+  Standard_EXPORT bool ExternFile(const char* const                       name,
                                   occ::handle<STEPCAFControl_ExternFile>& ef) const;
 
   //! Returns basic reader
@@ -291,8 +293,8 @@ protected:
   //! Reads (or if returns already read) extern file with
   //! given name
   Standard_EXPORT occ::handle<STEPCAFControl_ExternFile> ReadExternFile(
-    const char*                          file,
-    const char*                          fullpath,
+    const char* const                    file,
+    const char* const                    fullpath,
     const occ::handle<TDocStd_Document>& doc,
     const Message_ProgressRange&         theProgress = Message_ProgressRange());
 
@@ -473,7 +475,7 @@ private:
   //! @param theWorkSession The work session to use for collecting property definitions.
   //! @param theGeneralProperty The general property from which to collect property definitions.
   //! @return A vector of collected property definitions.
-  std::vector<occ::handle<StepRepr_PropertyDefinition>> collectPropertyDefinitions(
+  NCollection_LinearVector<occ::handle<StepRepr_PropertyDefinition>> collectPropertyDefinitions(
     const occ::handle<XSControl_WorkSession>& theWorkSession,
     const occ::handle<Standard_Transient>&    theGeneralProperty) const;
 
@@ -482,7 +484,7 @@ private:
   //! @param theTransferProcess The transfer process to use for collecting shape labels.
   //! @param theSource The property definition from which to collect shape labels.
   //! @return A vector of collected shape labels.
-  std::vector<TDF_Label> collectShapeLabels(
+  NCollection_LinearVector<TDF_Label> collectShapeLabels(
     const occ::handle<XSControl_WorkSession>&       theWorkSession,
     const occ::handle<Transfer_TransientProcess>&   theTransferProcess,
     const occ::handle<StepRepr_PropertyDefinition>& theSource) const;
@@ -492,9 +494,10 @@ private:
   //! @param theWorkSession The work session to use for collecting related property definitions.
   //! @param theProperty The property definition from which to collect related property definitions.
   //! @return A vector of collected related property definitions.
-  std::vector<occ::handle<StepRepr_PropertyDefinition>> collectRelatedPropertyDefinitions(
-    const occ::handle<XSControl_WorkSession>&       theWorkSession,
-    const occ::handle<StepRepr_PropertyDefinition>& theProperty) const;
+  NCollection_LinearVector<occ::handle<StepRepr_PropertyDefinition>>
+    collectRelatedPropertyDefinitions(
+      const occ::handle<XSControl_WorkSession>&       theWorkSession,
+      const occ::handle<StepRepr_PropertyDefinition>& theProperty) const;
 
   //! Helper method to get NamedData attribute assigned to the given label.
   //! @param theLabel The label to get NamedData attribute from.

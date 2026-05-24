@@ -17,6 +17,7 @@
 #ifndef _V3d_View_HeaderFile
 #define _V3d_View_HeaderFile
 
+#include <Aspect_GridParams.hxx>
 #include <Graphic3d_ClipPlane.hxx>
 #include <Graphic3d_Texture2D.hxx>
 #include <Graphic3d_TypeOfShadingModel.hxx>
@@ -200,7 +201,7 @@ public:
 
   //! Defines the background texture of the view by supplying the texture image file name
   //! and fill method (centered by default).
-  Standard_EXPORT void SetBackgroundImage(const char*             theFileName,
+  Standard_EXPORT void SetBackgroundImage(const char* const       theFileName,
                                           const Aspect_FillMethod theFillStyle = Aspect_FM_CENTERED,
                                           const bool              theToUpdate  = false);
 
@@ -906,13 +907,40 @@ public:
                                  const double                         theResolution = 0.0,
                                  const bool theToEnlargeIfLine                      = true) const;
 
-  //! Defines or Updates the definition of the
-  //! grid in <me>
+public: //! @name CPU grid plumbing (deprecated, fed by V3d_Viewer::ActivateGrid)
+  //! Snap + CPU rendering. The CPU grid lives on the viewer's structure manager
+  //! and is visible in every active view; SetGrid on a view that has the shader
+  //! grid enabled erases the shader grid on this view, the CPU grid is left
+  //! intact (or re-displayed by V3d_Viewer::ActivateGrid).
+
+  //! Defines or updates the grid plane and snap object on this view.
+  //! @param[in] aPlane grid plane (origin + axes)
+  //! @param[in] aGrid  snap object (Aspect_RectangularGrid or Aspect_CircularGrid)
   Standard_EXPORT void SetGrid(const gp_Ax3& aPlane, const occ::handle<Aspect_Grid>& aGrid);
 
-  //! Defines or Updates the activity of the
-  //! grid in <me>
+  //! Activates / deactivates snap on this view.
+  //! @param[in] aFlag true to enable snap, false to disable
   Standard_EXPORT void SetGridActivity(const bool aFlag);
+
+public: //! @name GPU shader grid (recommended)
+  //! Per-view immediate-mode shader; supports unbounded extents, AA, background, arc range.
+  //! GridDisplay erases the viewer-wide CPU grid rendering on entry (snap geometry
+  //! on Aspect_*Grid is preserved). GridErase only tears down the shader grid on
+  //! this view; restoring the CPU rendering needs V3d_Viewer::ActivateGrid.
+
+  //! Display a shader-rendered grid on the viewer's privileged plane.
+  //! @param[in] theParams appearance: color, scale, bounds, arc, draw-mode, background /
+  //! view-adaptive flags
+  Standard_EXPORT void GridDisplay(const Aspect_GridParams& theParams);
+
+  //! Display a shader-rendered grid on an explicit plane (overrides the viewer's
+  //! privileged plane for this view only).
+  //! @param[in] theParams appearance parameters; see the single-argument overload
+  //! @param[in] thePlane  world-space grid plane (origin + axes)
+  Standard_EXPORT void GridDisplay(const Aspect_GridParams& theParams, const gp_Ax3& thePlane);
+
+  //! Erase the shader-rendered grid from this view.
+  Standard_EXPORT void GridErase();
 
   //! Dumps the full contents of the View into the image file. This is an alias for ToPixMap() with
   //! Image_AlienPixMap.
@@ -920,7 +948,7 @@ public:
   //! .bmp, .jpg)
   //! @param theBufferType buffer to dump
   //! @return FALSE when the dump has failed
-  Standard_EXPORT bool Dump(const char*                 theFile,
+  Standard_EXPORT bool Dump(const char* const           theFile,
                             const Graphic3d_BufferType& theBufferType = Graphic3d_BT_RGB);
 
   //! Dumps the full contents of the view to a pixmap with specified parameters.
@@ -948,7 +976,7 @@ public:
                 const Graphic3d_ZLayerId    theTargetZLayerId = Graphic3d_ZLayerId_BotOSD,
                 const int                   theIsSingleLayer  = false,
                 const V3d_StereoDumpOptions theStereoOptions  = V3d_SDO_MONO,
-                const char*                 theLightName      = "")
+                const char* const           theLightName      = "")
   {
     V3d_ImageDumpOptions aParams;
     aParams.Width          = theWidth;
@@ -1185,6 +1213,7 @@ private:
   occ::handle<Aspect_Grid>                                  MyGrid;
   gp_Ax3                                                    MyPlane;
   NCollection_Array2<double>                                MyTrsf;
+  bool                                                      myShaderGridActive = false;
   occ::handle<Graphic3d_Structure>                          MyGridEchoStructure;
   occ::handle<Graphic3d_Group>                              MyGridEchoGroup;
   gp_Vec                                                    myXscreenAxis;

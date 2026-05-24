@@ -21,7 +21,8 @@
 
 #include <Standard_Transient.hxx>
 #include <Standard_Integer.hxx>
-#include <CDM_MetaDataLookUpTable.hxx>
+#include <TCollection_ExtendedString.hxx>
+#include <NCollection_DataMap.hxx>
 #include <Message_ProgressRange.hxx>
 
 class CDM_MetaData;
@@ -52,7 +53,7 @@ public:
                                            const TCollection_ExtendedString& ErrorString);
 
   //! writes the string in the application MessagerDriver.
-  Standard_EXPORT void Write(const char16_t* aString);
+  Standard_EXPORT void Write(const char16_t* const aString);
 
   //! Returns the application name.
   Standard_EXPORT virtual TCollection_ExtendedString Name() const;

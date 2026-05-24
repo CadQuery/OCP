@@ -21,17 +21,17 @@
 
 #include <gp_Pnt2d.hxx>
 #include <NCollection_Array1.hxx>
-#include <NCollection_HArray1.hxx>
-#include <Standard_Integer.hxx>
-#include <Standard_Real.hxx>
 #include <Geom2d_BoundedCurve.hxx>
 #include <GeomAbs_Shape.hxx>
 #include <BSplCLib.hxx>
 
-class gp_Pnt2d;
-class gp_Vec2d;
 class gp_Trsf2d;
 class Geom2d_Geometry;
+
+namespace Geom2dEval_RepCurveDesc
+{
+class Base;
+}
 
 //! Describes a rational or non-rational Bezier curve
 //! - a non-rational Bezier curve is defined by a table
@@ -109,6 +109,20 @@ public:
   //! Copy constructor for optimized copying without validation.
   Standard_EXPORT Geom2d_BezierCurve(const Geom2d_BezierCurve& theOther);
 
+  //! Returns true if an evaluation representation is attached.
+  bool HasEvalRepresentation() const { return !myEvalRep.IsNull(); }
+
+  //! Returns the current evaluation representation descriptor (may be null).
+  const occ::handle<Geom2dEval_RepCurveDesc::Base>& EvalRepresentation() const { return myEvalRep; }
+
+  //! Sets a new evaluation representation.
+  //! Validates descriptor data and ensures no circular references.
+  Standard_EXPORT void SetEvalRepresentation(
+    const occ::handle<Geom2dEval_RepCurveDesc::Base>& theDesc);
+
+  //! Removes the evaluation representation.
+  void ClearEvalRepresentation() { myEvalRep.Nullify(); }
+
   //! Increases the degree of a bezier curve. Degree is the new
   //! degree of <me>.
   //! raises ConstructionError if Degree is greater than MaxDegree or lower than 2
@@ -144,13 +158,13 @@ public:
 
   //! Reverses the direction of parametrization of <me>
   //! Value (NewU) = Value (1 - OldU)
-  Standard_EXPORT void Reverse() override;
+  Standard_EXPORT void Reverse() final;
 
   //! Returns the parameter on the reversed curve for
   //! the point of parameter U on <me>.
   //!
   //! returns 1-U
-  Standard_EXPORT double ReversedParameter(const double U) const override;
+  Standard_EXPORT double ReversedParameter(const double U) const final;
 
   //! Segments the curve between U1 and U2 which can be out
   //! of the bounds of the curve. The curve is oriented from U1
@@ -192,38 +206,34 @@ public:
   //! Returns True if the distance between the first point
   //! and the last point of the curve is lower or equal to
   //! the Resolution from package gp.
-  Standard_EXPORT bool IsClosed() const override;
+  Standard_EXPORT bool IsClosed() const final;
 
   //! Continuity of the curve, returns True.
-  Standard_EXPORT bool IsCN(const int N) const override;
+  Standard_EXPORT bool IsCN(const int N) const final;
 
   //! Returns False. A BezierCurve cannot be periodic in this
   //! package
-  Standard_EXPORT bool IsPeriodic() const override;
+  Standard_EXPORT bool IsPeriodic() const final;
 
   //! Returns false if all the weights are identical. The tolerance
   //! criterion is Resolution from package gp.
   Standard_EXPORT bool IsRational() const;
 
   //! Returns GeomAbs_CN, which is the continuity of any Bezier curve.
-  Standard_EXPORT GeomAbs_Shape Continuity() const override;
+  Standard_EXPORT GeomAbs_Shape Continuity() const final;
 
   //! Returns the polynomial degree of the curve. It is the number
   //! of poles less one. In this package the Degree of a Bezier
   //! curve cannot be greater than "MaxDegree".
   Standard_EXPORT int Degree() const;
 
-  Standard_EXPORT void D0(const double U, gp_Pnt2d& P) const override;
+  Standard_EXPORT gp_Pnt2d EvalD0(const double U) const final;
 
-  Standard_EXPORT void D1(const double U, gp_Pnt2d& P, gp_Vec2d& V1) const override;
+  Standard_EXPORT Geom2d_Curve::ResD1 EvalD1(const double U) const final;
 
-  Standard_EXPORT void D2(const double U, gp_Pnt2d& P, gp_Vec2d& V1, gp_Vec2d& V2) const override;
+  Standard_EXPORT Geom2d_Curve::ResD2 EvalD2(const double U) const final;
 
-  Standard_EXPORT void D3(const double U,
-                          gp_Pnt2d&    P,
-                          gp_Vec2d&    V1,
-                          gp_Vec2d&    V2,
-                          gp_Vec2d&    V3) const override;
+  Standard_EXPORT Geom2d_Curve::ResD3 EvalD3(const double U) const final;
 
   //! For this Bezier curve, computes
   //! - the point P of parameter U, or
@@ -233,18 +243,18 @@ public:
   //! - V3, the third derivative vector.
   //! Note: the parameter U can be outside the bounds of the curve.
   //! Raises RangeError if N < 1.
-  Standard_EXPORT gp_Vec2d DN(const double U, const int N) const override;
+  Standard_EXPORT gp_Vec2d EvalDN(const double U, const int N) const final;
 
   //! Returns the end point or start point of this Bezier curve.
-  Standard_EXPORT gp_Pnt2d EndPoint() const override;
+  Standard_EXPORT gp_Pnt2d EndPoint() const final;
 
   //! Returns the value of the first parameter of this Bezier curve.
   //! This is 0.0, which gives the start point of this Bezier curve.
-  Standard_EXPORT double FirstParameter() const override;
+  Standard_EXPORT double FirstParameter() const final;
 
   //! Returns the value of the last parameter of this Bezier curve.
   //! This is 1.0, which gives the end point of this Bezier curve.
-  Standard_EXPORT double LastParameter() const override;
+  Standard_EXPORT double LastParameter() const final;
 
   //! Returns the number of poles for this Bezier curve.
   Standard_EXPORT int NbPoles() const;
@@ -256,14 +266,15 @@ public:
   //! Returns all the poles of the curve.
   //!
   //! Raised if the length of P is not equal to the number of poles.
+  Standard_DEPRECATED("use Poles() returning const reference instead")
   Standard_EXPORT void Poles(NCollection_Array1<gp_Pnt2d>& P) const;
 
   //! Returns all the poles of the curve.
-  const NCollection_Array1<gp_Pnt2d>& Poles() const { return poles->Array1(); }
+  const NCollection_Array1<gp_Pnt2d>& Poles() const { return myPoles; }
 
   //! Returns Value (U=1), it is the first control point
   //! of the curve.
-  Standard_EXPORT gp_Pnt2d StartPoint() const override;
+  Standard_EXPORT gp_Pnt2d StartPoint() const final;
 
   //! Returns the weight of range Index.
   //! Raised if Index is not in the range [1, NbPoles]
@@ -272,18 +283,24 @@ public:
   //! Returns all the weights of the curve.
   //!
   //! Raised if the length of W is not equal to the number of poles.
+  Standard_DEPRECATED("use Weights() returning const pointer instead")
   Standard_EXPORT void Weights(NCollection_Array1<double>& W) const;
 
   //! Returns all the weights of the curve.
   const NCollection_Array1<double>* Weights() const
   {
-    if (!weights.IsNull())
-      return &weights->Array1();
-    return BSplCLib::NoWeights();
+    return myRational ? &myWeights : BSplCLib::NoWeights();
   }
 
+  //! Returns a const reference to the weights array.
+  //! For rational curves: the internal owning weights array.
+  //! For non-rational curves: a non-owning view of unit weights from BSplCLib.
+  //! The array is always sized to match NbPoles().
+  //! @warning Do NOT modify elements through the returned reference.
+  const NCollection_Array1<double>& WeightsArray() const { return myWeights; }
+
   //! Applies the transformation T to this Bezier curve.
-  Standard_EXPORT void Transform(const gp_Trsf2d& T) override;
+  Standard_EXPORT void Transform(const gp_Trsf2d& T) final;
 
   //! Returns the value of the maximum polynomial degree of a
   //! BezierCurve. This value is 25.
@@ -299,32 +316,37 @@ public:
   Standard_EXPORT void Resolution(const double ToleranceUV, double& UTolerance);
 
   //! Creates a new object which is a copy of this Bezier curve.
-  Standard_EXPORT occ::handle<Geom2d_Geometry> Copy() const override;
+  Standard_EXPORT occ::handle<Geom2d_Geometry> Copy() const final;
 
   //! Dumps the content of me into the stream
-  Standard_EXPORT void DumpJson(Standard_OStream& theOStream, int theDepth = -1) const override;
+  Standard_EXPORT void DumpJson(Standard_OStream& theOStream, int theDepth = -1) const final;
+
+  //! Returns Bezier knots {0.0, 1.0} as a static array.
+  Standard_EXPORT const NCollection_Array1<double>& Knots() const;
+
+  //! Returns Bezier multiplicities for the current degree.
+  Standard_EXPORT const NCollection_Array1<int>& Multiplicities() const;
+
+  //! Returns Bezier flat knots for the current degree.
+  Standard_EXPORT const NCollection_Array1<double>& KnotSequence() const;
 
   DEFINE_STANDARD_RTTIEXT(Geom2d_BezierCurve, Geom2d_BoundedCurve)
 
-private:
-  //! Set poles to Poles, weights to Weights (not
-  //! copied). If Weights is null the curve is non
-  //! rational. Create the arrays of coefficients.
-  //! Poles and Weights are assumed to have the first
-  //! coefficient 1.
-  //!
+protected:
+  //! Set poles to thePoles, weights to theWeights.
+  //! If theWeights is null the curve is non rational.
   //! Update rational and closed.
-  //!
-  //! if nbpoles < 2 or nbboles > MaDegree + 1
-  void Init(const occ::handle<NCollection_HArray1<gp_Pnt2d>>& Poles,
-            const occ::handle<NCollection_HArray1<double>>&   Weights);
+  void init(const NCollection_Array1<gp_Pnt2d>& thePoles,
+            const NCollection_Array1<double>*   theWeights);
 
-  bool                                       rational;
-  bool                                       closed;
-  occ::handle<NCollection_HArray1<gp_Pnt2d>> poles;
-  occ::handle<NCollection_HArray1<double>>   weights;
-  double                                     maxderivinv;
-  bool                                       maxderivinvok;
+private:
+  NCollection_Array1<gp_Pnt2d>               myPoles;
+  NCollection_Array1<double>                 myWeights;
+  occ::handle<Geom2dEval_RepCurveDesc::Base> myEvalRep;
+  bool                                       myRational      = false;
+  bool                                       myClosed        = false;
+  double                                     myMaxDerivInv   = 0.0;
+  bool                                       myMaxDerivInvOk = false;
 };
 
 #endif // _Geom2d_BezierCurve_HeaderFile

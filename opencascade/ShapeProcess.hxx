@@ -20,9 +20,10 @@
 #include <Standard.hxx>
 #include <Standard_DefineAlloc.hxx>
 #include <Standard_Handle.hxx>
+#include <NCollection_LinearVector.hxx>
 
 #include <bitset>
-#include <vector>
+#include <utility>
 
 class ShapeProcess_Operator;
 class ShapeProcess_Context;
@@ -74,11 +75,11 @@ public:
 
 public:
   //! Registers operator to make it visible for Performer
-  Standard_EXPORT static bool RegisterOperator(const char*                               name,
+  Standard_EXPORT static bool RegisterOperator(const char* const                         name,
                                                const occ::handle<ShapeProcess_Operator>& op);
 
   //! Finds operator by its name
-  Standard_EXPORT static bool FindOperator(const char*                         name,
+  Standard_EXPORT static bool FindOperator(const char* const                   name,
                                            occ::handle<ShapeProcess_Operator>& op);
 
   //! Performs a specified sequence of operators on Context
@@ -86,7 +87,7 @@ public:
   //! to Context (including description of sequence seq)
   Standard_EXPORT static bool Perform(
     const occ::handle<ShapeProcess_Context>& context,
-    const char*                              seq,
+    const char* const                        seq,
     const Message_ProgressRange&             theProgress = Message_ProgressRange());
 
   //! Performs a specified sequence of operators on @p theContext.
@@ -111,8 +112,8 @@ private:
   //! Returns operators to be performed according to the specified flags.
   //! @param theFlags Bitset of operations flags.
   //! @return List of operators to perform: pairs of operator name and operator handle.
-  static std::vector<std::pair<const char*, occ::handle<ShapeProcess_Operator>>> getOperators(
-    const OperationsFlags& theFlags);
+  static NCollection_LinearVector<std::pair<const char*, occ::handle<ShapeProcess_Operator>>>
+    getOperators(const OperationsFlags& theFlags);
 
   //! Converts operation flag to its name.
   //! @param theOperation Operation flag.

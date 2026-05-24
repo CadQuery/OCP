@@ -22,7 +22,11 @@
 #include <NCollection_StlIterator.hxx>
 #include <NCollection_TListNode.hxx>
 #include <Standard_NoSuchObject.hxx>
+#include <Standard_OutOfRange.hxx>
 
+#include <functional>
+#include <optional>
+#include <type_traits>
 #include <utility>
 
 /**
@@ -78,6 +82,13 @@ public:
     {
     }
 
+    //! Constructor with in-place key construction
+    template <typename... Args>
+    MapNode(std::in_place_t, NCollection_ListNode* theNext, Args&&... theArgs)
+        : NCollection_TListNode<TheKeyType>(std::in_place, theNext, std::forward<Args>(theArgs)...)
+    {
+    }
+
     //! Key
     const TheKeyType& Key() noexcept { return this->Value(); }
   };
@@ -124,6 +135,15 @@ public:
   typedef NCollection_StlIterator<std::forward_iterator_tag, Iterator, TheKeyType, true>
     const_iterator;
 
+  //! Shorthand for iterator type (same as const_iterator for key-only maps).
+  typedef const_iterator iterator;
+
+  //! Returns an iterator pointing to the first element in the map.
+  iterator begin() const noexcept { return Iterator(*this); }
+
+  //! Returns an iterator referring to the past-the-end element in the map.
+  iterator end() const noexcept { return Iterator(); }
+
   //! Returns a const iterator pointing to the first element in the map.
   const_iterator cbegin() const noexcept { return Iterator(*this); }
 
@@ -140,15 +160,67 @@ public:
   }
 
   //! Constructor
-  explicit NCollection_Map(const int                                     theNbBuckets,
+  explicit NCollection_Map(const size_t                                  theNbBuckets,
                            const occ::handle<NCollection_BaseAllocator>& theAllocator = nullptr)
       : NCollection_BaseMap(theNbBuckets, true, theAllocator)
   {
   }
 
+  //! Constructor (legacy int-taking).
+  explicit NCollection_Map(const int                                     theNbBuckets,
+                           const occ::handle<NCollection_BaseAllocator>& theAllocator = nullptr)
+      : NCollection_Map(NCollection_BaseMap::NbBucketsFromInt(theNbBuckets), theAllocator)
+  {
+  }
+
+  //! Constructor with custom hasher (copy).
+  //! @param theHasher custom hasher instance
+  //! @param theNbBuckets initial number of buckets
+  //! @param theAllocator custom memory allocator
+  explicit NCollection_Map(const Hasher&                                 theHasher,
+                           const size_t                                  theNbBuckets = 1,
+                           const occ::handle<NCollection_BaseAllocator>& theAllocator = nullptr)
+      : NCollection_BaseMap(theNbBuckets, true, theAllocator),
+        myHasher(theHasher)
+  {
+  }
+
+  //! Constructor with custom hasher (copy, legacy int-taking).
+  explicit NCollection_Map(const Hasher&                                 theHasher,
+                           const int                                     theNbBuckets,
+                           const occ::handle<NCollection_BaseAllocator>& theAllocator = nullptr)
+      : NCollection_Map(theHasher,
+                        NCollection_BaseMap::NbBucketsFromInt(theNbBuckets),
+                        theAllocator)
+  {
+  }
+
+  //! Constructor with custom hasher (move).
+  //! @param theHasher custom hasher instance (moved)
+  //! @param theNbBuckets initial number of buckets
+  //! @param theAllocator custom memory allocator
+  explicit NCollection_Map(Hasher&&                                      theHasher,
+                           const size_t                                  theNbBuckets = 1,
+                           const occ::handle<NCollection_BaseAllocator>& theAllocator = nullptr)
+      : NCollection_BaseMap(theNbBuckets, true, theAllocator),
+        myHasher(std::move(theHasher))
+  {
+  }
+
+  //! Constructor with custom hasher (move, legacy int-taking).
+  explicit NCollection_Map(Hasher&&                                      theHasher,
+                           const int                                     theNbBuckets,
+                           const occ::handle<NCollection_BaseAllocator>& theAllocator = nullptr)
+      : NCollection_Map(std::move(theHasher),
+                        NCollection_BaseMap::NbBucketsFromInt(theNbBuckets),
+                        theAllocator)
+  {
+  }
+
   //! Copy constructor
   NCollection_Map(const NCollection_Map& theOther)
-      : NCollection_BaseMap(theOther.NbBuckets(), true, theOther.myAllocator)
+      : NCollection_BaseMap(theOther.NbBuckets(), true, theOther.myAllocator),
+        myHasher(theOther.myHasher)
   {
     const int anExt = theOther.Extent();
     if (anExt <= 0)
@@ -160,13 +232,21 @@ public:
 
   //! Move constructor
   NCollection_Map(NCollection_Map&& theOther) noexcept
-      : NCollection_BaseMap(std::forward<NCollection_BaseMap>(theOther))
+      : NCollection_BaseMap(std::forward<NCollection_BaseMap>(theOther)),
+        myHasher(std::move(theOther.myHasher))
   {
   }
 
   //! Exchange the content of two maps without re-allocations.
   //! Notice that allocators will be swapped as well!
-  void Exchange(NCollection_Map& theOther) noexcept { this->exchangeMapsData(theOther); }
+  void Exchange(NCollection_Map& theOther) noexcept
+  {
+    this->exchangeMapsData(theOther);
+    std::swap(myHasher, theOther.myHasher);
+  }
+
+  //! Returns const reference to the hasher.
+  const Hasher& GetHasher() const noexcept { return myHasher; }
 
   //! Assign.
   //! This method does not change the internal allocator.
@@ -200,18 +280,18 @@ public:
   }
 
   //! ReSize
-  void ReSize(const int N)
+  void ReSize(const size_t N)
   {
     NCollection_ListNode** newdata = nullptr;
     NCollection_ListNode** dummy   = nullptr;
-    int                    newBuck;
+    size_t                 newBuck;
     if (BeginResize(N, newBuck, newdata, dummy))
     {
       if (myData1)
       {
         MapNode** olddata = (MapNode**)myData1;
         MapNode * p, *q;
-        for (int i = 0; i <= NbBuckets(); i++)
+        for (size_t i = 0; i <= NbBuckets(); ++i)
         {
           if (olddata[i])
           {
@@ -231,74 +311,63 @@ public:
     }
   }
 
-  //! Add
-  bool Add(const TheKeyType& theKey)
+  void ReSize(const int N)
   {
-    if (Resizable())
-      ReSize(Extent());
-    MapNode* aNode;
-    size_t   aHash;
-    if (lookup(theKey, aNode, aHash))
-    {
-      return false;
-    }
-    MapNode** data = (MapNode**)myData1;
-    data[aHash]    = new (this->myAllocator) MapNode(theKey, data[aHash]);
-    Increment();
-    return true;
+    Standard_OutOfRange_Raise_if(N < 0, "NCollection_Map::ReSize: negative size");
+    ReSize(static_cast<size_t>(N));
   }
 
   //! Add
-  bool Add(TheKeyType&& theKey)
-  {
-    if (Resizable())
-      ReSize(Extent());
-    MapNode* aNode;
-    size_t   aHash;
-    if (lookup(theKey, aNode, aHash))
-    {
-      return false;
-    }
-    MapNode** data = (MapNode**)myData1;
-    data[aHash]    = new (this->myAllocator) MapNode(std::forward<TheKeyType>(theKey), data[aHash]);
-    Increment();
-    return true;
-  }
+  bool Add(const TheKeyType& theKey) { return addImpl(theKey, std::false_type{}); }
+
+  //! Add
+  bool Add(TheKeyType&& theKey) { return addImpl(std::move(theKey), std::false_type{}); }
 
   //! Added: add a new key if not yet in the map, and return
   //! reference to either newly added or previously existing object
-  const TheKeyType& Added(const TheKeyType& theKey)
-  {
-    if (Resizable())
-      ReSize(Extent());
-    MapNode* aNode;
-    size_t   aHash;
-    if (lookup(theKey, aNode, aHash))
-    {
-      return aNode->Key();
-    }
-    MapNode** data = (MapNode**)myData1;
-    data[aHash]    = new (this->myAllocator) MapNode(theKey, data[aHash]);
-    Increment();
-    return data[aHash]->Key();
-  }
+  const TheKeyType& Added(const TheKeyType& theKey) { return addImpl(theKey, std::true_type{}); }
 
   //! Added: add a new key if not yet in the map, and return
   //! reference to either newly added or previously existing object
   const TheKeyType& Added(TheKeyType&& theKey)
   {
-    if (Resizable())
-      ReSize(Extent());
-    MapNode* aNode;
-    size_t   aHash;
-    if (lookup(theKey, aNode, aHash))
-    {
-      return aNode->Key();
-    }
-    MapNode** data = (MapNode**)myData1;
-    data[aHash]    = new (this->myAllocator) MapNode(std::forward<TheKeyType>(theKey), data[aHash]);
-    Increment();
-    return data[aHash]->Key();
+    return addImpl(std::move(theKey), std::true_type{});
+  }
+
+  //! Emplace constructs key in-place; if key exists, destroys and reconstructs.
+  //! @param theArgs arguments forwarded to key constructor
+  //! @return true if key was newly added, false if key already existed (and was reconstructed)
+  template <typename... Args>
+  bool Emplace(Args&&... theArgs)
+  {
+    return emplaceImpl(std::false_type{}, std::false_type{}, std::forward<Args>(theArgs)...);
+  }
+
+  //! Emplaced constructs key in-place; if key exists, destroys and reconstructs.
+  //! @param theArgs arguments forwarded to key constructor
+  //! @return const reference to the key in the map
+  template <typename... Args>
+  const TheKeyType& Emplaced(Args&&... theArgs)
+  {
+    return emplaceImpl(std::false_type{}, std::true_type{}, std::forward<Args>(theArgs)...);
+  }
+
+  //! TryEmplace constructs key in-place only if not already present.
+  //! @param theArgs arguments forwarded to key constructor
+  //! @return true if key was newly added, false if key already existed
+  template <typename... Args>
+  bool TryEmplace(Args&&... theArgs)
+  {
+    return emplaceImpl(std::true_type{}, std::false_type{}, std::forward<Args>(theArgs)...);
+  }
+
+  //! TryEmplaced constructs key in-place only if not already present.
+  //! @param theArgs arguments forwarded to key constructor
+  //! @return const reference to the key (existing or newly added)
+  template <typename... Args>
+  const TheKeyType& TryEmplaced(Args&&... theArgs)
+  {
+    return emplaceImpl(std::true_type{}, std::true_type{}, std::forward<Args>(theArgs)...);
   }
 
   //! Contains
@@ -306,6 +375,16 @@ public:
   {
     MapNode* p;
     return lookup(theKey, p);
+  }
+
+  //! Contained returns optional const reference to the key in the map.
+  //! Returns std::nullopt if the key is not found.
+  std::optional<std::reference_wrapper<const TheKeyType>> Contained(const TheKeyType& theKey) const
+  {
+    MapNode* p;
+    if (!lookup(theKey, p))
+      return std::nullopt;
+    return std::cref(p->Key());
   }
 
   //! Remove
@@ -350,9 +429,6 @@ public:
 
   //! Destructor
   ~NCollection_Map() override { Clear(true); }
-
-  //! Size
-  int Size() const noexcept { return Extent(); }
 
 public:
   //! Checks if two maps contain exactly the same keys.
@@ -514,9 +590,75 @@ protected:
     return myHasher(theKey1, theKey2);
   }
 
-  size_t HashCode(const TheKeyType& theKey, const int theUpperBound) const
+  size_t HashCode(const TheKeyType& theKey, const size_t theUpperBound) const
   {
     return myHasher(theKey) % theUpperBound + 1;
+  }
+
+  //! Implementation helper for Add/Added.
+  //! @tparam K forwarding reference type for key
+  //! @tparam ReturnRef if true, returns const reference to key; if false, returns bool
+  //! @param theKey key to add
+  //! @return bool (Add) or const TheKeyType& (Added)
+  template <typename K, bool ReturnRef>
+  auto addImpl(K&& theKey, std::bool_constant<ReturnRef>)
+    -> std::conditional_t<ReturnRef, const TheKeyType&, bool>
+  {
+    if (Resizable())
+      ReSize(Extent());
+    MapNode* aNode;
+    size_t   aHash;
+    if (lookup(theKey, aNode, aHash))
+    {
+      if constexpr (ReturnRef)
+        return aNode->Key();
+      else
+        return false;
+    }
+    MapNode** data = (MapNode**)myData1;
+    data[aHash]    = new (this->myAllocator) MapNode(std::forward<K>(theKey), data[aHash]);
+    Increment();
+    if constexpr (ReturnRef)
+      return data[aHash]->Key();
+    else
+      return true;
+  }
+
+  //! Implementation helper for Emplace/TryEmplace/Emplaced/TryEmplaced.
+  //! @tparam IsTry if true, does not modify existing; if false, destroys and reconstructs
+  //! @tparam ReturnRef if true, returns const reference to key; if false, returns bool
+  //! @param theArgs arguments forwarded to key constructor
+  //! @return bool or const TheKeyType& depending on ReturnRef
+  template <bool IsTry, bool ReturnRef, typename... Args>
+  auto emplaceImpl(std::bool_constant<IsTry>, std::bool_constant<ReturnRef>, Args&&... theArgs)
+    -> std::conditional_t<ReturnRef, const TheKeyType&, bool>
+  {
+    if (Resizable())
+      ReSize(Extent());
+    // First construct the key to compute hash and check for existence
+    TheKeyType aTempKey(std::forward<Args>(theArgs)...);
+    MapNode*   aNode;
+    size_t     aHash;
+    if (lookup(aTempKey, aNode, aHash))
+    {
+      if constexpr (!IsTry)
+      {
+        // Destroy existing and reconstruct in-place
+        aNode->ChangeValue().~TheKeyType();
+        new (&aNode->ChangeValue()) TheKeyType(std::move(aTempKey));
+      }
+      if constexpr (ReturnRef)
+        return aNode->Key();
+      else
+        return false;
+    }
+    MapNode** data = (MapNode**)myData1;
+    data[aHash]    = new (this->myAllocator) MapNode(std::move(aTempKey), data[aHash]);
+    Increment();
+    if constexpr (ReturnRef)
+      return data[aHash]->Key();
+    else
+      return true;
   }
 
 protected:

@@ -21,12 +21,9 @@
 #include <Standard_Type.hxx>
 
 #include <Geom_Conic.hxx>
-#include <Standard_Integer.hxx>
 class gp_Parab;
 class gp_Ax2;
 class gp_Ax1;
-class gp_Pnt;
-class gp_Vec;
 class gp_Trsf;
 class Geom_Geometry;
 
@@ -103,25 +100,25 @@ public:
   //! Computes the parameter on the reversed parabola,
   //! for the point of parameter U on this parabola.
   //! For a parabola, the returned value is: -U.
-  Standard_EXPORT double ReversedParameter(const double U) const override;
+  Standard_EXPORT double ReversedParameter(const double U) const final;
 
   //! Returns the value of the first or last parameter of this
   //! parabola. This is, respectively:
   //! - double::RealFirst(), or
   //! - double::RealLast().
-  Standard_EXPORT double FirstParameter() const override;
+  Standard_EXPORT double FirstParameter() const final;
 
   //! Returns the value of the first or last parameter of this
   //! parabola. This is, respectively:
   //! - double::RealFirst(), or
   //! - double::RealLast().
-  Standard_EXPORT double LastParameter() const override;
+  Standard_EXPORT double LastParameter() const final;
 
   //! Returns False
-  Standard_EXPORT bool IsClosed() const override;
+  Standard_EXPORT bool IsClosed() const final;
 
   //! Returns False
-  Standard_EXPORT bool IsPeriodic() const override;
+  Standard_EXPORT bool IsPeriodic() const final;
 
   //! Computes the directrix of this parabola.
   //! This is a line normal to the axis of symmetry, in the
@@ -133,7 +130,7 @@ public:
   Standard_EXPORT gp_Ax1 Directrix() const;
 
   //! Returns 1. (which is the eccentricity of any parabola).
-  Standard_EXPORT double Eccentricity() const override;
+  Standard_EXPORT double Eccentricity() const final;
 
   //! Computes the focus of this parabola. The focus is on the
   //! positive side of the "X Axis" of the local coordinate
@@ -152,36 +149,32 @@ public:
   //! the parabola in its local coordinate system is: Y**2 = 2.*P*X.
   Standard_EXPORT double Parameter() const;
 
-  //! Returns in P the point of parameter U.
+  //! Returns the point of parameter U.
   //! If U = 0 the returned point is the origin of the XAxis and
   //! the YAxis of the parabola and it is the vertex of the parabola.
   //! P = S + F * (U * U * XDir + * U * YDir)
   //! where S is the vertex of the parabola, XDir the XDirection and
   //! YDir the YDirection of the parabola's local coordinate system.
-  Standard_EXPORT void D0(const double U, gp_Pnt& P) const override;
+  Standard_EXPORT gp_Pnt EvalD0(const double U) const final;
 
-  //! Returns the point P of parameter U and the first derivative V1.
-  Standard_EXPORT void D1(const double U, gp_Pnt& P, gp_Vec& V1) const override;
+  //! Returns the point of parameter U and the first derivative.
+  Standard_EXPORT Geom_Curve::ResD1 EvalD1(const double U) const final;
 
-  //! Returns the point P of parameter U, the first and second
-  //! derivatives V1 and V2.
-  Standard_EXPORT void D2(const double U, gp_Pnt& P, gp_Vec& V1, gp_Vec& V2) const override;
+  //! Returns the point of parameter U, the first and second
+  //! derivatives.
+  Standard_EXPORT Geom_Curve::ResD2 EvalD2(const double U) const final;
 
-  //! Returns the point P of parameter U, the first second and third
-  //! derivatives V1 V2 and V3.
-  Standard_EXPORT void D3(const double U,
-                          gp_Pnt&      P,
-                          gp_Vec&      V1,
-                          gp_Vec&      V2,
-                          gp_Vec&      V3) const override;
+  //! Returns the point of parameter U, the first, second and third
+  //! derivatives.
+  Standard_EXPORT Geom_Curve::ResD3 EvalD3(const double U) const final;
 
   //! For the point of parameter U of this parabola,
   //! computes the vector corresponding to the Nth derivative.
   //! Exceptions Standard_RangeError if N is less than 1.
-  Standard_EXPORT gp_Vec DN(const double U, const int N) const override;
+  Standard_EXPORT gp_Vec EvalDN(const double U, const int N) const final;
 
   //! Applies the transformation T to this parabola.
-  Standard_EXPORT void Transform(const gp_Trsf& T) override;
+  Standard_EXPORT void Transform(const gp_Trsf& T) final;
 
   //! Returns the parameter on the transformed curve for
   //! the transform of the point of parameter U on <me>.
@@ -193,7 +186,7 @@ public:
   //! me->Value(U).Transformed(T)
   //!
   //! This methods returns <U> * T.ScaleFactor()
-  Standard_EXPORT double TransformedParameter(const double U, const gp_Trsf& T) const override;
+  Standard_EXPORT double TransformedParameter(const double U, const gp_Trsf& T) const final;
 
   //! Returns a coefficient to compute the parameter on
   //! the transformed curve for the transform of the
@@ -206,13 +199,13 @@ public:
   //! Value(U).Transformed(T)
   //!
   //! This methods returns T.ScaleFactor()
-  Standard_EXPORT double ParametricTransformation(const gp_Trsf& T) const override;
+  Standard_EXPORT double ParametricTransformation(const gp_Trsf& T) const final;
 
   //! Creates a new object which is a copy of this parabola.
-  Standard_EXPORT occ::handle<Geom_Geometry> Copy() const override;
+  Standard_EXPORT occ::handle<Geom_Geometry> Copy() const final;
 
   //! Dumps the content of me into the stream
-  Standard_EXPORT void DumpJson(Standard_OStream& theOStream, int theDepth = -1) const override;
+  Standard_EXPORT void DumpJson(Standard_OStream& theOStream, int theDepth = -1) const final;
 
   DEFINE_STANDARD_RTTIEXT(Geom_Parabola, Geom_Conic)
 

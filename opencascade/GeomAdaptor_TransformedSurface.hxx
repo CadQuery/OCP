@@ -18,6 +18,12 @@
 #include <GeomAdaptor_Surface.hxx>
 #include <gp_Trsf.hxx>
 
+#include <optional>
+
+class Geom_BezierSurface;
+class Geom_BSplineSurface;
+class Geom_Surface;
+
 //! An adaptor for surfaces with an applied transformation.
 //!
 //! This class wraps a GeomAdaptor_Surface and applies a gp_Trsf transformation
@@ -63,7 +69,8 @@ public:
 
   //! Loads the surface geometry.
   //! @param theSurface underlying geometry
-  void Load(const occ::handle<Geom_Surface>& theSurface) { mySurf.Load(theSurface); }
+  //! @param theTrsf transformation to apply
+  Standard_EXPORT void Load(const occ::handle<Geom_Surface>& theSurface, const gp_Trsf& theTrsf);
 
   //! Loads the surface geometry with parameter bounds.
   //! @param theSurface underlying geometry
@@ -71,34 +78,49 @@ public:
   //! @param theULast maximum U parameter
   //! @param theVFirst minimum V parameter
   //! @param theVLast maximum V parameter
+  //! @param theTrsf transformation to apply
   //! @param theTolU tolerance in U direction
   //! @param theTolV tolerance in V direction
-  void Load(const occ::handle<Geom_Surface>& theSurface,
-            const double                     theUFirst,
-            const double                     theULast,
-            const double                     theVFirst,
-            const double                     theVLast,
-            const double                     theTolU = 0.0,
-            const double                     theTolV = 0.0)
-  {
-    mySurf.Load(theSurface, theUFirst, theULast, theVFirst, theVLast, theTolU, theTolV);
-  }
+  Standard_EXPORT void Load(const occ::handle<Geom_Surface>& theSurface,
+                            const double                     theUFirst,
+                            const double                     theULast,
+                            const double                     theVFirst,
+                            const double                     theVLast,
+                            const gp_Trsf&                   theTrsf,
+                            const double                     theTolU = 0.0,
+                            const double                     theTolV = 0.0);
 
   //! Sets the transformation.
   //! @param theTrsf transformation to apply
-  void SetTrsf(const gp_Trsf& theTrsf) { myTrsf = theTrsf; }
+  Standard_EXPORT void SetTrsf(const gp_Trsf& theTrsf);
+
+  //! Returns true if non-identity transformation is applied.
+  bool HasTrsf() const { return myTrsf.Form() != gp_Identity; }
 
   //! Returns the transformation.
   const gp_Trsf& Trsf() const { return myTrsf; }
 
   //! Returns the underlying GeomAdaptor_Surface.
+  Standard_DEPRECATED(
+    "Use AdaptorSurfaceOriginal() instead to get the original surface without transformation")
   const GeomAdaptor_Surface& Surface() const { return mySurf; }
 
-  //! Returns the underlying GeomAdaptor_Surface for modification.
-  GeomAdaptor_Surface& ChangeSurface() { return mySurf; }
+  //! Returns the underlying original GeomAdaptor_Surface without transformation applied.
+  const GeomAdaptor_Surface& AdaptorSurfaceOriginal() const { return mySurf; }
+
+  //! Returns an adaptor for the transformed surface state.
+  //! Uses the original adaptor for identity transformation to preserve existing trimming.
+  Standard_EXPORT const GeomAdaptor_Surface& AdaptorSurfaceTransformed() const;
+
+  //! Returns the underlying original Geom_Surface without transformation applied.
+  const occ::handle<Geom_Surface>& GeomSurfaceOriginal() const { return mySurf.Surface(); }
+
+  //! Returns the transformed Geom_Surface cached for current state.
+  Standard_EXPORT const occ::handle<Geom_Surface>& GeomSurfaceTransformed() const;
 
   //! Returns the underlying Geom_Surface.
-  const occ::handle<Geom_Surface>& GeomSurface() const { return mySurf.Surface(); }
+  Standard_DEPRECATED("Use GeomSurfaceOriginal() or GeomSurfaceTransformed() instead")
+  const occ::handle<Geom_Surface>& GeomSurface() const { return GeomSurfaceOriginal(); }
 
   // Parameter range methods - delegate to underlying surface
   double FirstUParameter() const override { return mySurf.FirstUParameter(); }
@@ -143,54 +165,32 @@ public:
 
   double VPeriod() const override { return mySurf.VPeriod(); }
 
-  //! Computes the point of parameters U,V on the surface.
-  //! Applies transformation after evaluation.
-  Standard_EXPORT gp_Pnt Value(const double theU, const double theV) const final;
+  //! Returns tolerance in U direction.
+  double ToleranceU() const { return mySurf.ToleranceU(); }
 
-  //! Computes the point of parameters U,V on the surface.
-  //! Applies transformation after evaluation.
-  Standard_EXPORT void D0(const double theU, const double theV, gp_Pnt& theP) const final;
+  //! Returns tolerance in V direction.
+  double ToleranceV() const { return mySurf.ToleranceV(); }
 
-  //! Computes the point and the first derivatives on the surface.
-  //! Applies transformation after evaluation.
-  Standard_EXPORT void D1(const double theU,
-                          const double theV,
-                          gp_Pnt&      theP,
-                          gp_Vec&      theD1U,
-                          gp_Vec&      theD1V) const final;
+  //! Point evaluation. Applies transformation after evaluation.
+  [[nodiscard]] Standard_EXPORT gp_Pnt EvalD0(const double theU, const double theV) const final;
 
-  //! Computes the point, the first and second derivatives on the surface.
-  //! Applies transformation after evaluation.
-  Standard_EXPORT void D2(const double theU,
-                          const double theV,
-                          gp_Pnt&      theP,
-                          gp_Vec&      theD1U,
-                          gp_Vec&      theD1V,
-                          gp_Vec&      theD2U,
-                          gp_Vec&      theD2V,
-                          gp_Vec&      theD2UV) const final;
+  //! D1 evaluation. Applies transformation after evaluation.
+  [[nodiscard]] Standard_EXPORT Geom_Surface::ResD1 EvalD1(const double theU,
+                                                           const double theV) const final;
 
-  //! Computes the point, the first, second and third derivatives on the surface.
-  //! Applies transformation after evaluation.
-  Standard_EXPORT void D3(const double theU,
-                          const double theV,
-                          gp_Pnt&      theP,
-                          gp_Vec&      theD1U,
-                          gp_Vec&      theD1V,
-                          gp_Vec&      theD2U,
-                          gp_Vec&      theD2V,
-                          gp_Vec&      theD2UV,
-                          gp_Vec&      theD3U,
-                          gp_Vec&      theD3V,
-                          gp_Vec&      theD3UUV,
-                          gp_Vec&      theD3UVV) const final;
+  //! D2 evaluation. Applies transformation after evaluation.
+  [[nodiscard]] Standard_EXPORT Geom_Surface::ResD2 EvalD2(const double theU,
+                                                           const double theV) const final;
 
-  //! Computes the derivative of order Nu in the direction U and Nv in the direction V.
-  //! Applies transformation after evaluation.
-  Standard_EXPORT gp_Vec DN(const double theU,
-                            const double theV,
-                            const int    theNu,
-                            const int    theNv) const final;
+  //! D3 evaluation. Applies transformation after evaluation.
+  [[nodiscard]] Standard_EXPORT Geom_Surface::ResD3 EvalD3(const double theU,
+                                                           const double theV) const final;
+
+  //! DN evaluation. Applies transformation after evaluation.
+  [[nodiscard]] Standard_EXPORT gp_Vec EvalDN(const double theU,
+                                              const double theV,
+                                              const int    theNu,
+                                              const int    theNv) const final;
 
   double UResolution(const double theR3d) const override { return mySurf.UResolution(theR3d); }
 
@@ -239,8 +239,25 @@ public:
   Standard_EXPORT double OffsetValue() const override;
 
 protected:
-  GeomAdaptor_Surface mySurf;
-  gp_Trsf             myTrsf;
+  //! Invalidates transformed cache for subsequent lazy rebuild.
+  void invalidateTransformedCache();
+
+  //! Ensures transformed cache is built on demand.
+  //! Non-thread-safe: mutable cache is initialized in const context without synchronization.
+  void ensureTransformedCache() const;
+
+  //! Rebuilds transformed geometry for current surface and transformation.
+  //! Non-thread-safe: invoked by ensureTransformedCache() for lazy initialization.
+  void initTransformedCache() const;
+
+  //! Returns an adaptor for the transformed surface state.
+  //! Uses the original adaptor for identity transformation to preserve existing trimming.
+  const GeomAdaptor_Surface& transformedAdaptor() const;
+
+protected:
+  GeomAdaptor_Surface                        mySurf;
+  gp_Trsf                                    myTrsf;
+  mutable std::optional<GeomAdaptor_Surface> myTransformedAdaptor;
 };
 
 #endif // _GeomAdaptor_TransformedSurface_HeaderFile

@@ -19,7 +19,8 @@
 
 #include <Graphic3d_BndBox4f.hxx>
 #include <Graphic3d_AspectFillArea3d.hxx>
-#include <Graphic3d_MapOfAspectsToAspects.hxx>
+#include <Graphic3d_Flipper.hxx>
+#include <NCollection_DataMap.hxx>
 #include <Standard_CString.hxx>
 #include <Graphic3d_Vertex.hxx>
 #include <Graphic3d_TextPath.hxx>
@@ -31,6 +32,7 @@
 #include <Graphic3d_BoundBuffer.hxx>
 #include <gp_Ax2.hxx>
 #include <TCollection_ExtendedString.hxx>
+class Graphic3d_Aspects;
 
 class Graphic3d_Structure;
 class Graphic3d_ArrayOfPrimitives;
@@ -133,6 +135,9 @@ public:
   Standard_EXPORT virtual void SetFlippingOptions(const bool    theIsEnabled,
                                                   const gp_Ax2& theRefPlane) = 0;
 
+  //! Return flipper metadata describing the runtime flip of this group, or null if not flipped.
+  const occ::handle<Graphic3d_Flipper>& Flipper() const { return myFlipper; }
+
   //! Return transformation.
   const gp_Trsf& Transformation() const { return myTrsf; }
 
@@ -205,7 +210,7 @@ public:
   //! (with respect to the horizontal).
   Standard_DEPRECATED(
     "Deprecated method Text() with obsolete arguments, use AddText() instead of it")
-  Standard_EXPORT virtual void Text(const char*                             AText,
+  Standard_EXPORT virtual void Text(const char* const                       AText,
                                     const Graphic3d_Vertex&                 APoint,
                                     const double                            AHeight,
                                     const double                            AAngle,
@@ -229,7 +234,7 @@ public:
   //! AVta    : VTA_BOTTOM
   Standard_DEPRECATED(
     "Deprecated method Text() with obsolete arguments, use AddText() instead of it")
-  Standard_EXPORT void Text(const char*             AText,
+  Standard_EXPORT void Text(const char* const       AText,
                             const Graphic3d_Vertex& APoint,
                             const double            AHeight,
                             const bool              EvalMinMax = true);
@@ -278,7 +283,7 @@ public:
   //! Creates the string <theText> at orientation <theOrientation> in 3D space.
   Standard_DEPRECATED(
     "Deprecated method Text() with obsolete arguments, use AddText() instead of it")
-  Standard_EXPORT virtual void Text(const char*                             theTextUtf,
+  Standard_EXPORT virtual void Text(const char* const                       theTextUtf,
                                     const gp_Ax2&                           theOrientation,
                                     const double                            theHeight,
                                     const double                            theAngle,
@@ -314,6 +319,7 @@ protected:
 
 protected:
   occ::handle<Graphic3d_TransformPers> myTrsfPers;  //!< current transform persistence
+  occ::handle<Graphic3d_Flipper>       myFlipper;   //!< current group flipping
   Graphic3d_Structure*                 myStructure; //!< pointer to the parent structure
   Graphic3d_BndBox4f                   myBounds;    //!< bounding box
   gp_Trsf                              myTrsf;      //!< group transformation

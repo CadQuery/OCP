@@ -17,10 +17,11 @@
 #ifndef _Select3D_SensitiveGroup_HeaderFile
 #define _Select3D_SensitiveGroup_HeaderFile
 
-#include <Select3D_EntitySequence.hxx>
-#include <Select3D_IndexedMapOfEntity.hxx>
+#include <NCollection_Sequence.hxx>
+#include <NCollection_IndexedMap.hxx>
 #include <Select3D_SensitiveSet.hxx>
 #include <SelectMgr_SelectingVolumeManager.hxx>
+class Select3D_SensitiveEntity;
 
 //! A framework to define selection of a sensitive group
 //!          by a sensitive entity which is a set of 3D sensitive entities.
@@ -170,7 +171,7 @@ private:
   bool                     myToCheckOverlapAll;  //!< flag to check overlapping with all entities within rectangular/polygonal selection
   gp_Pnt                               myCenter;             //!< Center of geometry of the group
   mutable Select3D_BndBox3d            myBndBox;             //!< Bounding box of the group
-  NCollection_Vector<int> myBVHPrimIndexes;     //!< Vector of sub-entities indexes for BVH tree build
+  NCollection_DynamicArray<int> myBVHPrimIndexes;     //!< Vector of sub-entities indexes for BVH tree build
   // clang-format on
 };
 

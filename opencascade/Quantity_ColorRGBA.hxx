@@ -78,9 +78,9 @@ public:
   constexpr void SetAlpha(const float theAlpha) noexcept { myAlpha = theAlpha; }
 
   //! Return the color as vector of 4 float elements.
-  constexpr operator const NCollection_Vec4<float>&() const noexcept
+  operator const NCollection_Vec4<float>&() const noexcept
   {
-    return *(const NCollection_Vec4<float>*)this;
+    return *reinterpret_cast<const NCollection_Vec4<float>*>(this);
   }
 
   //! Returns true if the distance between colors is greater than Epsilon().
@@ -113,7 +113,8 @@ public:
   //! @param theColorNameString the color name
   //! @param theColor a found color
   //! @return false if the color name is unknown, or true if the search by color name was successful
-  static bool ColorFromName(const char* theColorNameString, Quantity_ColorRGBA& theColor) noexcept
+  static bool ColorFromName(const char* const   theColorNameString,
+                            Quantity_ColorRGBA& theColor) noexcept
   {
     Quantity_ColorRGBA aColor;
     if (!Quantity_Color::ColorFromName(theColorNameString, aColor.ChangeRGB()))

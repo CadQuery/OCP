@@ -22,12 +22,9 @@
 
 #include <Geom_ElementarySurface.hxx>
 #include <NCollection_Array1.hxx>
-#include <Standard_Integer.hxx>
+
 class gp_Ax3;
 class gp_Torus;
-class Geom_Curve;
-class gp_Pnt;
-class gp_Vec;
 class gp_Trsf;
 class Geom_Geometry;
 
@@ -124,19 +121,19 @@ public:
   //! Return the parameter on the Ureversed surface for
   //! the point of parameter U on <me>.
   //! Return 2.PI - U.
-  Standard_EXPORT double UReversedParameter(const double U) const override;
+  Standard_EXPORT double UReversedParameter(const double U) const final;
 
   //! Return the parameter on the Ureversed surface for
   //! the point of parameter U on <me>.
   //! Return 2.PI - U.
-  Standard_EXPORT double VReversedParameter(const double U) const override;
+  Standard_EXPORT double VReversedParameter(const double U) const final;
 
   //! Computes the area of the surface.
   Standard_EXPORT double Area() const;
 
   //! Returns the parametric bounds U1, U2, V1 and V2 of this torus.
   //! For a torus: U1 = V1 = 0 and U2 = V2 = 2*PI .
-  Standard_EXPORT void Bounds(double& U1, double& U2, double& V1, double& V2) const override;
+  Standard_EXPORT void Bounds(double& U1, double& U2, double& V1, double& V2) const final;
 
   //! Returns the coefficients of the implicit equation of the surface
   //! in the absolute cartesian coordinate system :
@@ -164,16 +161,16 @@ public:
   Standard_EXPORT double Volume() const;
 
   //! Returns True.
-  Standard_EXPORT bool IsUClosed() const override;
+  Standard_EXPORT bool IsUClosed() const final;
 
   //! Returns True.
-  Standard_EXPORT bool IsVClosed() const override;
+  Standard_EXPORT bool IsVClosed() const final;
 
   //! Returns True.
-  Standard_EXPORT bool IsUPeriodic() const override;
+  Standard_EXPORT bool IsUPeriodic() const final;
 
   //! Returns True.
-  Standard_EXPORT bool IsVPeriodic() const override;
+  Standard_EXPORT bool IsVPeriodic() const final;
 
   //! Computes the U isoparametric curve.
   //!
@@ -183,7 +180,7 @@ public:
   //! Warnings:
   //! The radius of the circle can be zero if for the surface
   //! MinorRadius = 0.0
-  Standard_EXPORT occ::handle<Geom_Curve> UIso(const double U) const override;
+  Standard_EXPORT occ::handle<Geom_Curve> UIso(const double U) const final;
 
   //! Computes the V isoparametric curve.
   //!
@@ -193,7 +190,7 @@ public:
   //! Warnings:
   //! The radius of the circle can be zero if for the surface
   //! MajorRadius = MinorRadius
-  Standard_EXPORT occ::handle<Geom_Curve> VIso(const double V) const override;
+  Standard_EXPORT occ::handle<Geom_Curve> VIso(const double V) const final;
 
   //! Computes the point P (U, V) on the surface.
   //! P (U, V) = Loc + MinorRadius * Sin (V) * Zdir +
@@ -202,58 +199,36 @@ public:
   //! where Loc is the origin of the placement plane (XAxis, YAxis)
   //! XDir is the direction of the XAxis and YDir the direction of
   //! the YAxis and ZDir the direction of the ZAxis.
-  Standard_EXPORT void D0(const double U, const double V, gp_Pnt& P) const override;
+  Standard_EXPORT gp_Pnt EvalD0(const double U, const double V) const final;
 
   //! Computes the current point and the first derivatives in
   //! the directions U and V.
-  Standard_EXPORT void D1(const double U,
-                          const double V,
-                          gp_Pnt&      P,
-                          gp_Vec&      D1U,
-                          gp_Vec&      D1V) const override;
+  Standard_EXPORT Geom_Surface::ResD1 EvalD1(const double U, const double V) const final;
 
   //! Computes the current point, the first and the second derivatives
   //! in the directions U and V.
-  Standard_EXPORT void D2(const double U,
-                          const double V,
-                          gp_Pnt&      P,
-                          gp_Vec&      D1U,
-                          gp_Vec&      D1V,
-                          gp_Vec&      D2U,
-                          gp_Vec&      D2V,
-                          gp_Vec&      D2UV) const override;
+  Standard_EXPORT Geom_Surface::ResD2 EvalD2(const double U, const double V) const final;
 
   //! Computes the current point, the first,the second and the
   //! third derivatives in the directions U and V.
-  Standard_EXPORT void D3(const double U,
-                          const double V,
-                          gp_Pnt&      P,
-                          gp_Vec&      D1U,
-                          gp_Vec&      D1V,
-                          gp_Vec&      D2U,
-                          gp_Vec&      D2V,
-                          gp_Vec&      D2UV,
-                          gp_Vec&      D3U,
-                          gp_Vec&      D3V,
-                          gp_Vec&      D3UUV,
-                          gp_Vec&      D3UVV) const override;
+  Standard_EXPORT Geom_Surface::ResD3 EvalD3(const double U, const double V) const final;
 
   //! Computes the derivative of order Nu in the direction u and
   //! Nv in the direction v.
   //! Raised if Nu + Nv < 1 or Nu < 0 or Nv < 0.
-  Standard_EXPORT gp_Vec DN(const double U,
-                            const double V,
-                            const int    Nu,
-                            const int    Nv) const override;
+  Standard_EXPORT gp_Vec EvalDN(const double U,
+                                const double V,
+                                const int    Nu,
+                                const int    Nv) const final;
 
   //! Applies the transformation T to this torus.
-  Standard_EXPORT void Transform(const gp_Trsf& T) override;
+  Standard_EXPORT void Transform(const gp_Trsf& T) final;
 
   //! Creates a new object which is a copy of this torus.
-  Standard_EXPORT occ::handle<Geom_Geometry> Copy() const override;
+  Standard_EXPORT occ::handle<Geom_Geometry> Copy() const final;
 
   //! Dumps the content of me into the stream
-  Standard_EXPORT void DumpJson(Standard_OStream& theOStream, int theDepth = -1) const override;
+  Standard_EXPORT void DumpJson(Standard_OStream& theOStream, int theDepth = -1) const final;
 
   DEFINE_STANDARD_RTTIEXT(Geom_ToroidalSurface, Geom_ElementarySurface)
 

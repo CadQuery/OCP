@@ -353,7 +353,7 @@ private:
                                         const gp_XY& /*theMidPoint*/)
   {
     gp_Dir                           aNorm1, aNorm2;
-    const occ::handle<Geom_Surface>& aSurf = this->getDFace()->GetSurface()->Surface().Surface();
+    const occ::handle<Geom_Surface>& aSurf = this->getDFace()->GetSurface()->GeomSurfaceOriginal();
 
     if ((GeomLib::NormEstim(aSurf, theNodeInfo1.Point2d, Precision::Confusion(), aNorm1) == 0)
         && (GeomLib::NormEstim(aSurf, theNodeInfo2.Point2d, Precision::Confusion(), aNorm2) == 0))
@@ -364,16 +364,6 @@ private:
         return false;
       }
     }
-#if 0
-    else if (GeomLib::NormEstim(aSurf, theMidPoint, Precision::Confusion(), aNorm1) != 0)
-    {
-      // It is better to consider the singular point as a node of triangulation.
-      // However, it leads to hangs up meshing some faces (including faces with
-      // degenerated edges). E.g. tests "mesh standard_incmesh Q6".
-      // So, this code fragment is better to implement in the future.
-      return false;
-    }
-#endif
 
     return true;
   }

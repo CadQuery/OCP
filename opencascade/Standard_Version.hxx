@@ -1,4 +1,4 @@
-// Created on: 2026-02-27
+// Created on: 2026-05-08
 // Copyright (c) 2002-2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
@@ -45,7 +45,7 @@ major, minor, and patch number
 //! - "dev" for development version between releases
 //! - "beta..." or "rc..." for beta releases or release candidates
 //! - "project..." for version containing project-specific fixes
-#define OCC_VERSION_DEVELOPMENT "rc3-a509566a28"
+
 
 // Derived (manually): version as real and string (major.minor)
 #define OCC_VERSION 8.0

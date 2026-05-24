@@ -45,11 +45,7 @@
 //! When a deprecated macro is used, a compile-time warning will be issued.
 //! Unlike Standard_DEPRECATED which marks functions/classes, this is for deprecating macros
 //! themselves.
-#if 1 // Enabled for 8.0.0 deprecation validation.
-  #define Standard_MACRO_DEPRECATED(theMsg) Standard_DEPRECATED_WARNING(theMsg)
-#else
-  #define Standard_MACRO_DEPRECATED(theMsg)
-#endif
+#define Standard_MACRO_DEPRECATED(theMsg) Standard_DEPRECATED_WARNING(theMsg)
 
 //! @def Standard_HEADER_DEPRECATED(theMessage)
 //! Macro for marking header inclusions as deprecated; place near the top of a deprecated header
@@ -143,6 +139,21 @@
   #else
     #define Standard_DEPRECATED(theMsg)
   #endif
+#endif
+
+//! @def Standard_DEPRECATED_STD("message")
+//! Marks a declaration as deprecated using the standard C++ [[deprecated]] attribute.
+//! Use this instead of Standard_DEPRECATED in contexts where only standard C++ attributes
+//! are grammatically valid, such as using-alias declarations:
+//!   using OldName Standard_DEPRECATED_STD("msg") = NewName;
+//! MSVC rejects __declspec(deprecated) and GCC/Clang reject __attribute__((deprecated))
+//! when placed between the alias name and the = token, so Standard_DEPRECATED cannot be
+//! used there.
+//! If macro OCCT_NO_DEPRECATED is defined, Standard_DEPRECATED_STD is defined empty.
+#ifdef OCCT_NO_DEPRECATED
+  #define Standard_DEPRECATED_STD(theMsg)
+#else
+  #define Standard_DEPRECATED_STD(theMsg) [[deprecated(theMsg)]]
 #endif
 
 //! @def Standard_DISABLE_DEPRECATION_WARNINGS

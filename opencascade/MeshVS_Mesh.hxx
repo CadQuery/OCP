@@ -23,7 +23,6 @@
 #include <NCollection_DataMap.hxx>
 #include <MeshVS_MeshSelectionMethod.hxx>
 #include <AIS_InteractiveObject.hxx>
-#include <SelectMgr_SequenceOfOwner.hxx>
 
 class MeshVS_PrsBuilder;
 class TColStd_HPackedMapOfInteger;
@@ -115,7 +114,7 @@ public:
   Standard_DEPRECATED("This method will be removed right after 7.9 release. \
 Use FindBuilder(const occ::handle<Standard_Type>&) instead \
 or directly iterate under sequence of builders.")
-  Standard_EXPORT occ::handle<MeshVS_PrsBuilder> FindBuilder(const char* TypeString) const;
+  Standard_EXPORT occ::handle<MeshVS_PrsBuilder> FindBuilder(const char* const TypeString) const;
 
   //! Finds builder by its type the type represents
   Standard_EXPORT occ::handle<MeshVS_PrsBuilder> FindBuilder(

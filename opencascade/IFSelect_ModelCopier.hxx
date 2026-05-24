@@ -146,7 +146,7 @@ public:
   //! remaining data, already sent files, etc. Applies the Model and
   //! File Modifiers.
   //! Returns True if well done, False else
-  Standard_EXPORT Interface_CheckIterator SendAll(const char*                              filename,
+  Standard_EXPORT Interface_CheckIterator SendAll(const char* const                        filename,
                                                   const Interface_Graph&                   G,
                                                   const occ::handle<IFSelect_WorkLibrary>& WL,
                                                   const occ::handle<Interface_Protocol>& protocol);
@@ -156,7 +156,7 @@ public:
   //! Remaining data are managed and can be later be worked on.
   //! Returns True if well done, False else
   Standard_EXPORT Interface_CheckIterator
-    SendSelected(const char*                              filename,
+    SendSelected(const char* const                        filename,
                  const Interface_Graph&                   G,
                  const occ::handle<IFSelect_WorkLibrary>& WL,
                  const occ::handle<Interface_Protocol>&   protocol,
@@ -167,6 +167,18 @@ public:
   //! <WL> performs the copy by using <TC>
   //! <TC> is assumed to have been defined with the starting model
   //! same as defined by <G>.
+  //! Produces a model copied from the remaining list.
+  //! @param[in] G the interface graph
+  //! @param[in] WL the work library performing the copy
+  //! @param[in,out] TC the copy tool
+  //! @return the new model with remaining data, or null handle if empty
+  [[nodiscard]] Standard_EXPORT occ::handle<Interface_InterfaceModel> CopiedRemaining(
+    const Interface_Graph&                   G,
+    const occ::handle<IFSelect_WorkLibrary>& WL,
+    Interface_CopyTool&                      TC);
+
+  //! @deprecated Use CopiedRemaining() returning handle by value instead.
+  Standard_DEPRECATED("Use CopiedRemaining() returning handle by value instead")
   Standard_EXPORT void CopiedRemaining(const Interface_Graph&                   G,
                                        const occ::handle<IFSelect_WorkLibrary>& WL,
                                        Interface_CopyTool&                      TC,
@@ -211,7 +223,7 @@ public:
   //! Adds the name of a just sent file, if BeginSentFiles
   //! has commanded recording; else does nothing
   //! It is called by methods SendCopied Sending
-  Standard_EXPORT void AddSentFile(const char* filename);
+  Standard_EXPORT void AddSentFile(const char* const filename);
 
   //! Returns the list of recorded names of sent files. Can be empty
   //! (if no file has been sent). Returns a Null Handle if

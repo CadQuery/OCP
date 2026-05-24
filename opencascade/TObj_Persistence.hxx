@@ -22,7 +22,9 @@
 #include <TCollection_AsciiString.hxx>
 #include <TCollection_HExtendedString.hxx>
 #include <TDF_Label.hxx>
-#include <TObj_SequenceOfObject.hxx>
+#include <NCollection_Sequence.hxx>
+#include <NCollection_HSequence.hxx>
+class TObj_Object;
 
 class TDF_Label;
 
@@ -45,8 +47,8 @@ public:
 
   //! Creates and returns a new object of the registered type
   //! If the type is not registered, returns Null handle
-  static Standard_EXPORT occ::handle<TObj_Object> CreateNewObject(const char*      theType,
-                                                                  const TDF_Label& theLabel);
+  static Standard_EXPORT occ::handle<TObj_Object> CreateNewObject(const char* const theType,
+                                                                  const TDF_Label&  theLabel);
 
   //! Dumps names of all the types registered for persistence to the
   //! specified stream
@@ -58,7 +60,7 @@ protected:
    */
 
   //! The constructor registers the object
-  Standard_EXPORT TObj_Persistence(const char* theType);
+  Standard_EXPORT TObj_Persistence(const char* const theType);
 
   //! The destructor unregisters the object
   virtual Standard_EXPORT ~TObj_Persistence();
@@ -115,7 +117,7 @@ private:
   name::Persistence_       name::myPersistence_;                                                   \
   occ::handle<TObj_Object> name::Persistence_::New(const TDF_Label& aLabel) const                  \
   {                                                                                                \
-    return new name((const TObj_Persistence*)0, aLabel);                                           \
+    return new name(static_cast<const TObj_Persistence*>(nullptr), aLabel);                        \
   }
 
 #endif

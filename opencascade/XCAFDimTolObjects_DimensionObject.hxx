@@ -20,7 +20,6 @@
 #include <Standard.hxx>
 #include <Standard_Type.hxx>
 
-#include <XCAFDimTolObjects_DimensionObjectSequence.hxx>
 #include <XCAFDimTolObjects_DimensionType.hxx>
 #include <NCollection_Array1.hxx>
 #include <NCollection_HArray1.hxx>
@@ -37,8 +36,9 @@
 #include <Standard_Transient.hxx>
 #include <Standard_Real.hxx>
 #include <TCollection_HAsciiString.hxx>
-#include <NCollection_Vector.hxx>
+#include <NCollection_DynamicArray.hxx>
 #include <XCAFDimTolObjects_AngularQualifier.hxx>
+class XCAFDimTolObjects_DimensionObject;
 
 //! Access object to store dimension data
 class XCAFDimTolObjects_DimensionObject : public Standard_Transient
@@ -377,8 +377,8 @@ private:
   TopoDS_Shape                                           myPresentation;
   occ::handle<TCollection_HAsciiString>                  mySemanticName;
   occ::handle<TCollection_HAsciiString>                  myPresentationName;
-  NCollection_Vector<occ::handle<TCollection_HAsciiString>> myDescriptions;
-  NCollection_Vector<occ::handle<TCollection_HAsciiString>> myDescriptionNames;
+  NCollection_DynamicArray<occ::handle<TCollection_HAsciiString>> myDescriptions;
+  NCollection_DynamicArray<occ::handle<TCollection_HAsciiString>> myDescriptionNames;
 };
 
 #endif // _XCAFDimTolObjects_DimensionObject_HeaderFile

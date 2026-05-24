@@ -28,11 +28,11 @@ using namespace MathUtils;
 //! Result for vector function integration.
 struct SetResult
 {
-  Status                     Status = Status::NotConverged;
+  MathUtils::Status          Status = MathUtils::Status::NotConverged;
   std::optional<math_Vector> Values; //!< Integral of each component
   int                        NbEquations = 0;
 
-  bool IsDone() const { return Status == Status::OK; }
+  bool IsDone() const { return Status == MathUtils::Status::OK; }
 
   explicit operator bool() const { return IsDone(); }
 };
@@ -77,7 +77,11 @@ SetResult GaussSet(Func& theFunc, double theLower, double theUpper, int theOrder
   // Get Gauss points and weights
   math_Vector aGP(1, aOrder);
   math_Vector aGW(1, aOrder);
-  GetOrderedGaussPointsAndWeights(aOrder, aGP, aGW);
+  if (!GetOrderedGaussPointsAndWeights(aOrder, aGP, aGW))
+  {
+    aResult.Status = Status::InvalidInput;
+    return aResult;
+  }
 
   math_Vector aPoints(0, aOrder - 1);
   math_Vector aWeights(0, aOrder - 1);

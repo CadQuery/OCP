@@ -14,107 +14,30 @@
 #ifndef _GeomGridEval_HeaderFile
 #define _GeomGridEval_HeaderFile
 
-#include <gp_Pnt.hxx>
+#include <Geom_Curve.hxx>
+#include <Geom_Surface.hxx>
 #include <gp_Pnt2d.hxx>
-#include <gp_Vec.hxx>
 #include <NCollection_Array1.hxx>
 #include <NCollection_Array2.hxx>
 
-//! @brief Namespace containing result structures for grid evaluators.
+//! @brief Namespace containing type aliases and template helpers for grid evaluators.
 //!
-//! Provides lightweight POD structures for returning evaluation results
-//! with derivatives from curve and surface grid evaluators.
+//! Provides type aliases to common evaluation result structures defined in Geom_Curve and
+//! Geom_Surface and template helpers for iterating over parameter grids.
 namespace GeomGridEval
 {
 
-//! Result structure for curve D1 evaluation (point and first derivative).
-struct CurveD1
-{
-  gp_Pnt Point;
-  gp_Vec D1;
-};
+using CurveD1 = Geom_Curve::ResD1;
+using CurveD2 = Geom_Curve::ResD2;
+using CurveD3 = Geom_Curve::ResD3;
+using SurfD1  = Geom_Surface::ResD1;
+using SurfD2  = Geom_Surface::ResD2;
+using SurfD3  = Geom_Surface::ResD3;
 
-//! Result structure for curve D2 evaluation (point and first two derivatives).
-struct CurveD2
-{
-  gp_Pnt Point;
-  gp_Vec D1;
-  gp_Vec D2;
-};
-
-//! Result structure for curve D3 evaluation (point and first three derivatives).
-struct CurveD3
-{
-  gp_Pnt Point;
-  gp_Vec D1;
-  gp_Vec D2;
-  gp_Vec D3;
-};
-
-//! Result structure for surface D1 evaluation (point and partial derivatives).
-struct SurfD1
-{
-  gp_Pnt Point;
-  gp_Vec D1U;
-  gp_Vec D1V;
-};
-
-//! Result structure for surface D2 evaluation (point and partial derivatives up to 2nd order).
-struct SurfD2
-{
-  gp_Pnt Point;
-  gp_Vec D1U;
-  gp_Vec D1V;
-  gp_Vec D2U;
-  gp_Vec D2V;
-  gp_Vec D2UV;
-};
-
-//! Result structure for surface D3 evaluation (point and partial derivatives up to 3rd order).
-struct SurfD3
-{
-  gp_Pnt Point;
-  gp_Vec D1U;
-  gp_Vec D1V;
-  gp_Vec D2U;
-  gp_Vec D2V;
-  gp_Vec D2UV;
-  gp_Vec D3U;
-  gp_Vec D3V;
-  gp_Vec D3UUV;
-  gp_Vec D3UVV;
-};
-
-//! UV point with output index for unified grid/pairs handling.
-//! Used internally by surface evaluators - both SetUVParams (grid) and SetUVPairs
-//! convert input to this format for unified evaluation.
-//! For grid input: OutputIdx = i * NbV + j (row-major linear index)
-//! For pairs input: OutputIdx = original index in input array
-struct UVPoint
-{
-  double U;         //!< U parameter value
-  double V;         //!< V parameter value
-  int    OutputIdx; //!< Linear output index for result placement
-};
-
-//! UV point with span information for BSpline/Bezier optimization.
-//! Extends UVPoint with pre-computed span data for cache-optimal evaluation.
-//! The sorting by (USpanIdx, VSpanIdx, U) minimizes cache rebuilds during evaluation.
-struct UVPointWithSpan
-{
-  double U;         //!< U parameter value
-  double V;         //!< V parameter value
-  double LocalU;    //!< Pre-computed local U in [-1, 1] range for cache evaluation
-  double LocalV;    //!< Pre-computed local V in [-1, 1] range for cache evaluation
-  int    USpanIdx;  //!< U flat knot index identifying the span
-  int    VSpanIdx;  //!< V flat knot index identifying the span
-  int    OutputIdx; //!< Linear output index for result placement
-};
-
-//==================================================================================================
+//=================================================================================================
 // Template helpers for parametric surface evaluation.
 // These provide the iteration pattern, while the actual computation is delegated to a functor.
-//==================================================================================================
+//=================================================================================================
 
 //! Evaluate grid points using a point evaluator functor.
 //! @tparam Evaluator functor type with operator()(double theU, double theV) -> gp_Pnt
@@ -127,8 +50,8 @@ NCollection_Array2<gp_Pnt> EvaluateGridHelper(const NCollection_Array1<double>& 
                                               const NCollection_Array1<double>& theVParams,
                                               Evaluator                         theEval)
 {
-  const int aNbU = theUParams.Size();
-  const int aNbV = theVParams.Size();
+  const int aNbU = theUParams.Length();
+  const int aNbV = theVParams.Length();
   if (aNbU == 0 || aNbV == 0)
   {
     return NCollection_Array2<gp_Pnt>();
@@ -154,8 +77,8 @@ NCollection_Array2<SurfD1> EvaluateGridD1Helper(const NCollection_Array1<double>
                                                 const NCollection_Array1<double>& theVParams,
                                                 Evaluator                         theEval)
 {
-  const int aNbU = theUParams.Size();
-  const int aNbV = theVParams.Size();
+  const int aNbU = theUParams.Length();
+  const int aNbV = theVParams.Length();
   if (aNbU == 0 || aNbV == 0)
   {
     return NCollection_Array2<SurfD1>();
@@ -181,8 +104,8 @@ NCollection_Array2<SurfD2> EvaluateGridD2Helper(const NCollection_Array1<double>
                                                 const NCollection_Array1<double>& theVParams,
                                                 Evaluator                         theEval)
 {
-  const int aNbU = theUParams.Size();
-  const int aNbV = theVParams.Size();
+  const int aNbU = theUParams.Length();
+  const int aNbV = theVParams.Length();
   if (aNbU == 0 || aNbV == 0)
   {
     return NCollection_Array2<SurfD2>();
@@ -208,8 +131,8 @@ NCollection_Array2<SurfD3> EvaluateGridD3Helper(const NCollection_Array1<double>
                                                 const NCollection_Array1<double>& theVParams,
                                                 Evaluator                         theEval)
 {
-  const int aNbU = theUParams.Size();
-  const int aNbV = theVParams.Size();
+  const int aNbU = theUParams.Length();
+  const int aNbV = theVParams.Length();
   if (aNbU == 0 || aNbV == 0)
   {
     return NCollection_Array2<SurfD3>();
@@ -235,8 +158,8 @@ NCollection_Array2<gp_Vec> EvaluateGridDNHelper(const NCollection_Array1<double>
                                                 const NCollection_Array1<double>& theVParams,
                                                 Evaluator                         theEval)
 {
-  const int aNbU = theUParams.Size();
-  const int aNbV = theVParams.Size();
+  const int aNbU = theUParams.Length();
+  const int aNbV = theVParams.Length();
   if (aNbU == 0 || aNbV == 0)
   {
     return NCollection_Array2<gp_Vec>();
@@ -251,114 +174,6 @@ NCollection_Array2<gp_Vec> EvaluateGridDNHelper(const NCollection_Array1<double>
       const double aV = theVParams.Value(theVParams.Lower() + iV - 1);
       aResult.SetValue(iU, iV, theEval(aU, aV));
     }
-  }
-  return aResult;
-}
-
-//! Evaluate UV pairs using a point evaluator functor.
-//! @tparam Evaluator functor type with operator()(double theU, double theV) -> gp_Pnt
-//! @param theUVPairs array of UV coordinate pairs (U=X(), V=Y())
-//! @param theEval evaluator functor
-//! @return 1D array of evaluated points (1-based indexing)
-template <typename Evaluator>
-NCollection_Array1<gp_Pnt> EvaluatePointsHelper(const NCollection_Array1<gp_Pnt2d>& theUVPairs,
-                                                Evaluator                           theEval)
-{
-  const int aNbPts = theUVPairs.Size();
-  if (aNbPts == 0)
-  {
-    return NCollection_Array1<gp_Pnt>();
-  }
-
-  NCollection_Array1<gp_Pnt> aResult(1, aNbPts);
-  for (int i = 1; i <= aNbPts; ++i)
-  {
-    const gp_Pnt2d& aUV = theUVPairs.Value(theUVPairs.Lower() + i - 1);
-    aResult.SetValue(i, theEval(aUV.X(), aUV.Y()));
-  }
-  return aResult;
-}
-
-//! Evaluate UV pairs with D1 using an evaluator functor.
-//! @tparam Evaluator functor type with operator()(double theU, double theV) -> SurfD1
-template <typename Evaluator>
-NCollection_Array1<SurfD1> EvaluatePointsD1Helper(const NCollection_Array1<gp_Pnt2d>& theUVPairs,
-                                                  Evaluator                           theEval)
-{
-  const int aNbPts = theUVPairs.Size();
-  if (aNbPts == 0)
-  {
-    return NCollection_Array1<SurfD1>();
-  }
-
-  NCollection_Array1<SurfD1> aResult(1, aNbPts);
-  for (int i = 1; i <= aNbPts; ++i)
-  {
-    const gp_Pnt2d& aUV    = theUVPairs.Value(theUVPairs.Lower() + i - 1);
-    aResult.ChangeValue(i) = theEval(aUV.X(), aUV.Y());
-  }
-  return aResult;
-}
-
-//! Evaluate UV pairs with D2 using an evaluator functor.
-//! @tparam Evaluator functor type with operator()(double theU, double theV) -> SurfD2
-template <typename Evaluator>
-NCollection_Array1<SurfD2> EvaluatePointsD2Helper(const NCollection_Array1<gp_Pnt2d>& theUVPairs,
-                                                  Evaluator                           theEval)
-{
-  const int aNbPts = theUVPairs.Size();
-  if (aNbPts == 0)
-  {
-    return NCollection_Array1<SurfD2>();
-  }
-
-  NCollection_Array1<SurfD2> aResult(1, aNbPts);
-  for (int i = 1; i <= aNbPts; ++i)
-  {
-    const gp_Pnt2d& aUV    = theUVPairs.Value(theUVPairs.Lower() + i - 1);
-    aResult.ChangeValue(i) = theEval(aUV.X(), aUV.Y());
-  }
-  return aResult;
-}
-
-//! Evaluate UV pairs with D3 using an evaluator functor.
-//! @tparam Evaluator functor type with operator()(double theU, double theV) -> SurfD3
-template <typename Evaluator>
-NCollection_Array1<SurfD3> EvaluatePointsD3Helper(const NCollection_Array1<gp_Pnt2d>& theUVPairs,
-                                                  Evaluator                           theEval)
-{
-  const int aNbPts = theUVPairs.Size();
-  if (aNbPts == 0)
-  {
-    return NCollection_Array1<SurfD3>();
-  }
-
-  NCollection_Array1<SurfD3> aResult(1, aNbPts);
-  for (int i = 1; i <= aNbPts; ++i)
-  {
-    const gp_Pnt2d& aUV    = theUVPairs.Value(theUVPairs.Lower() + i - 1);
-    aResult.ChangeValue(i) = theEval(aUV.X(), aUV.Y());
-  }
-  return aResult;
-}
-
-//! Evaluate UV pairs DN using an evaluator functor.
-//! @tparam Evaluator functor type with operator()(double theU, double theV) -> gp_Vec
-template <typename Evaluator>
-NCollection_Array1<gp_Vec> EvaluatePointsDNHelper(const NCollection_Array1<gp_Pnt2d>& theUVPairs,
-                                                  Evaluator                           theEval)
-{
-  const int aNbPts = theUVPairs.Size();
-  if (aNbPts == 0)
-  {
-    return NCollection_Array1<gp_Vec>();
-  }
-
-  NCollection_Array1<gp_Vec> aResult(1, aNbPts);
-  for (int i = 1; i <= aNbPts; ++i)
-  {
-    const gp_Pnt2d& aUV = theUVPairs.Value(theUVPairs.Lower() + i - 1);
-    aResult.SetValue(i, theEval(aUV.X(), aUV.Y()));
   }
   return aResult;
 }

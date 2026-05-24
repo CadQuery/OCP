@@ -27,8 +27,8 @@ class gp_Cone;
 class gp_Sphere;
 class gp_Torus;
 
-//! Computes the global properties of a bounded
-//! elementary surface in 3d (surface of the gp package)
+//! Computes the global properties of a bounded elementary surface in 3D
+//! (surfaces from the gp package: Cylinder, Cone, Sphere, Torus).
 class GProp_SelGProps : public GProp_GProps
 {
 public:

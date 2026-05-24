@@ -14,6 +14,7 @@
 #ifndef TKDESTEP_PCH_H
 #define TKDESTEP_PCH_H
 
+#include <Interface_EntityIterator.hxx>
 #include <StepData_StepReaderData.hxx>
 #include <StepData_StepWriter.hxx>
 #include <StepGeom_GeometricRepresentationItem.hxx>

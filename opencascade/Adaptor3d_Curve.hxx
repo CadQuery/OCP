@@ -17,6 +17,7 @@
 #ifndef _Adaptor3d_Curve_HeaderFile
 #define _Adaptor3d_Curve_HeaderFile
 
+#include <Geom_Curve.hxx>
 #include <gp_Circ.hxx>
 #include <gp_Elips.hxx>
 #include <gp_Hypr.hxx>
@@ -28,8 +29,6 @@
 #include <NCollection_Array1.hxx>
 #include <GeomAbs_CurveType.hxx>
 
-class gp_Pnt;
-class gp_Vec;
 class Geom_BezierCurve;
 class Geom_BSplineCurve;
 class Geom_OffsetCurve;
@@ -87,39 +86,53 @@ public:
   Standard_EXPORT virtual double Period() const;
 
   //! Computes the point of parameter U on the curve.
-  Standard_EXPORT virtual gp_Pnt Value(const double U) const;
+  gp_Pnt Value(const double theU) const { return EvalD0(theU); }
 
   //! Computes the point of parameter U on the curve.
-  Standard_EXPORT virtual void D0(const double U, gp_Pnt& P) const;
+  void D0(const double theU, gp_Pnt& theP) const { theP = EvalD0(theU); }
 
   //! Computes the point of parameter U on the curve with its
   //! first derivative.
   //! Raised if the continuity of the current interval
   //! is not C1.
-  Standard_EXPORT virtual void D1(const double U, gp_Pnt& P, gp_Vec& V) const;
+  void D1(const double theU, gp_Pnt& theP, gp_Vec& theV) const
+  {
+    const Geom_Curve::ResD1 aRes = EvalD1(theU);
+    theP                         = aRes.Point;
+    theV                         = aRes.D1;
+  }
 
   //! Returns the point P of parameter U, the first and second
   //! derivatives V1 and V2.
   //! Raised if the continuity of the current interval
   //! is not C2.
-  Standard_EXPORT virtual void D2(const double U, gp_Pnt& P, gp_Vec& V1, gp_Vec& V2) const;
+  void D2(const double theU, gp_Pnt& theP, gp_Vec& theV1, gp_Vec& theV2) const
+  {
+    const Geom_Curve::ResD2 aRes = EvalD2(theU);
+    theP                         = aRes.Point;
+    theV1                        = aRes.D1;
+    theV2                        = aRes.D2;
+  }
 
   //! Returns the point P of parameter U, the first, the second
   //! and the third derivative.
   //! Raised if the continuity of the current interval
   //! is not C3.
-  Standard_EXPORT virtual void D3(const double U,
-                                  gp_Pnt&      P,
-                                  gp_Vec&      V1,
-                                  gp_Vec&      V2,
-                                  gp_Vec&      V3) const;
+  void D3(const double theU, gp_Pnt& theP, gp_Vec& theV1, gp_Vec& theV2, gp_Vec& theV3) const
+  {
+    const Geom_Curve::ResD3 aRes = EvalD3(theU);
+    theP                         = aRes.Point;
+    theV1                        = aRes.D1;
+    theV2                        = aRes.D2;
+    theV3                        = aRes.D3;
+  }
 
   //! The returned vector gives the value of the derivative for the
   //! order of derivation N.
   //! Raised if the continuity of the current interval
   //! is not CN.
   //! Raised if N < 1.
-  Standard_EXPORT virtual gp_Vec DN(const double U, const int N) const;
+  gp_Vec DN(const double theU, const int theN) const { return EvalDN(theU, theN); }
 
   //! Returns the parametric resolution corresponding
   //! to the real space resolution <R3d>.
@@ -153,6 +166,26 @@ public:
   Standard_EXPORT virtual occ::handle<Geom_BSplineCurve> BSpline() const;
 
   Standard_EXPORT virtual occ::handle<Geom_OffsetCurve> OffsetCurve() const;
+
+  //! Computes the point of parameter U on the curve.
+  //! Raises an exception on failure.
+  [[nodiscard]] Standard_EXPORT virtual gp_Pnt EvalD0(const double theU) const;
+
+  //! Computes the point and first derivative at parameter U.
+  //! Raises an exception on failure.
+  [[nodiscard]] Standard_EXPORT virtual Geom_Curve::ResD1 EvalD1(const double theU) const;
+
+  //! Computes the point and first two derivatives at parameter U.
+  //! Raises an exception on failure.
+  [[nodiscard]] Standard_EXPORT virtual Geom_Curve::ResD2 EvalD2(const double theU) const;
+
+  //! Computes the point and first three derivatives at parameter U.
+  //! Raises an exception on failure.
+  [[nodiscard]] Standard_EXPORT virtual Geom_Curve::ResD3 EvalD3(const double theU) const;
+
+  //! Computes the Nth derivative at parameter U.
+  //! Raises an exception on failure.
+  [[nodiscard]] Standard_EXPORT virtual gp_Vec EvalDN(const double theU, const int theN) const;
 
   Standard_EXPORT ~Adaptor3d_Curve() override;
 };

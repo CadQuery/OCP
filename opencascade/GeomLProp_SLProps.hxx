@@ -20,23 +20,23 @@
 #include <Standard.hxx>
 #include <Standard_DefineAlloc.hxx>
 #include <Standard_Handle.hxx>
+#include <Standard_OutOfRange.hxx>
 
-#include <Standard_Integer.hxx>
 #include <gp_Pnt.hxx>
 #include <gp_Vec.hxx>
 #include <gp_Dir.hxx>
 #include <LProp_Status.hxx>
-class Geom_Surface;
-class LProp_BadContinuity;
-class Standard_DomainError;
-class Standard_OutOfRange;
-class LProp_NotDefined;
-class GeomLProp_SurfaceTool;
-class gp_Pnt;
-class gp_Vec;
-class gp_Dir;
 
-class GeomLProp_SLProps
+#include <GeomLProp_SurfaceUtils.hxx>
+
+//! Template class for computing local properties of a 3D surface:
+//! point, first and second derivatives, tangent directions, normal,
+//! and curvature analysis (max, min, mean, Gaussian).
+//! @tparam SurfaceType the surface storage type (e.g. occ::handle<Geom_Surface>,
+//!         BRepAdaptor_Surface, occ::handle<Adaptor3d_Surface>, HLRBRep_SurfacePtr)
+//! @tparam Access the access policy for evaluating surface derivatives
+template <typename SurfaceType, typename Access = LProp_SurfaceUtils::DirectAccess>
+class GeomLProp_SLPropsBase
 {
 public:
   DEFINE_STANDARD_ALLOC
@@ -51,125 +51,267 @@ public:
   //! only the tangent, N should be equal to 1.
   //! <Resolution> is the linear tolerance (it is used to test
   //! if a vector is null).
-  Standard_EXPORT GeomLProp_SLProps(const occ::handle<Geom_Surface>& S,
-                                    const double                     U,
-                                    const double                     V,
-                                    const int                        N,
-                                    const double                     Resolution);
+  GeomLProp_SLPropsBase(const SurfaceType& S,
+                        const double       U,
+                        const double       V,
+                        const int          N,
+                        const double       Resolution)
+      : mySurf(S),
+        myU(RealLast()),
+        myV(RealLast()),
+        myDerOrder(N),
+        myCN(4),
+        myLinTol(Resolution),
+        myUTangentStatus(LProp_Undecided),
+        myVTangentStatus(LProp_Undecided),
+        myNormalStatus(LProp_Undecided),
+        myCurvatureStatus(LProp_Undecided)
+  {
+    Standard_OutOfRange_Raise_if(N < 0 || N > 2, "GeomLProp_SLPropsBase::GeomLProp_SLPropsBase()");
+    SetParameters(U, V);
+  }
 
   //! idem as previous constructor but without setting the value
   //! of parameters <U> and <V>.
-  Standard_EXPORT GeomLProp_SLProps(const occ::handle<Geom_Surface>& S,
-                                    const int                        N,
-                                    const double                     Resolution);
+  GeomLProp_SLPropsBase(const SurfaceType& S, const int N, const double Resolution)
+      : mySurf(S),
+        myU(RealLast()),
+        myV(RealLast()),
+        myDerOrder(N),
+        myCN(4),
+        myLinTol(Resolution),
+        myUTangentStatus(LProp_Undecided),
+        myVTangentStatus(LProp_Undecided),
+        myNormalStatus(LProp_Undecided),
+        myCurvatureStatus(LProp_Undecided)
+  {
+    Standard_OutOfRange_Raise_if(N < 0 || N > 2, "GeomLProp_SLPropsBase::GeomLProp_SLPropsBase()");
+  }
 
   //! idem as previous constructor but without setting the value
   //! of parameters <U> and <V> and the surface.
   //! the surface can have an empty constructor.
-  Standard_EXPORT GeomLProp_SLProps(const int N, const double Resolution);
+  GeomLProp_SLPropsBase(const int N, const double Resolution)
+      : mySurf{},
+        myU(RealLast()),
+        myV(RealLast()),
+        myDerOrder(N),
+        myCN(0),
+        myLinTol(Resolution),
+        myUTangentStatus(LProp_Undecided),
+        myVTangentStatus(LProp_Undecided),
+        myNormalStatus(LProp_Undecided),
+        myCurvatureStatus(LProp_Undecided)
+  {
+    Standard_OutOfRange_Raise_if(N < 0 || N > 2,
+                                 "GeomLProp_SLPropsBase::GeomLProp_SLPropsBase() bad level");
+  }
 
   //! Initializes the local properties of the surface S
   //! for the new surface.
-  Standard_EXPORT void SetSurface(const occ::handle<Geom_Surface>& S);
+  void SetSurface(const SurfaceType& S)
+  {
+    mySurf = S;
+    myCN   = 4;
+  }
 
   //! Initializes the local properties of the surface S
   //! for the new parameter values (<U>, <V>).
-  Standard_EXPORT void SetParameters(const double U, const double V);
+  void SetParameters(const double U, const double V)
+  {
+    LProp_SurfaceUtils::SetParameters<Access>(mySurf,
+                                              U,
+                                              V,
+                                              myU,
+                                              myV,
+                                              myDerOrder,
+                                              myPnt,
+                                              myD1u,
+                                              myD1v,
+                                              myD2u,
+                                              myD2v,
+                                              myDuv,
+                                              myUTangentStatus,
+                                              myVTangentStatus,
+                                              myNormalStatus,
+                                              myCurvatureStatus);
+  }
 
   //! Returns the point.
-  Standard_EXPORT const gp_Pnt& Value() const;
+  const gp_Pnt& Value() const { return myPnt; }
 
   //! Returns the first U derivative.
   //! The derivative is computed if it has not been yet.
-  Standard_EXPORT const gp_Vec& D1U();
+  const gp_Vec& D1U()
+  {
+    return LProp_SurfaceUtils::EnsureSurfDeriv<
+      Access>(mySurf, myU, myV, myDerOrder, 1, myPnt, myD1u, myD1v, myD2u, myD2v, myDuv, myD1u);
+  }
 
   //! Returns the first V derivative.
   //! The derivative is computed if it has not been yet.
-  Standard_EXPORT const gp_Vec& D1V();
+  const gp_Vec& D1V()
+  {
+    return LProp_SurfaceUtils::EnsureSurfDeriv<
+      Access>(mySurf, myU, myV, myDerOrder, 1, myPnt, myD1u, myD1v, myD2u, myD2v, myDuv, myD1v);
+  }
 
   //! Returns the second U derivatives
   //! The derivative is computed if it has not been yet.
-  Standard_EXPORT const gp_Vec& D2U();
+  const gp_Vec& D2U()
+  {
+    return LProp_SurfaceUtils::EnsureSurfDeriv<
+      Access>(mySurf, myU, myV, myDerOrder, 2, myPnt, myD1u, myD1v, myD2u, myD2v, myDuv, myD2u);
+  }
 
   //! Returns the second V derivative.
   //! The derivative is computed if it has not been yet.
-  Standard_EXPORT const gp_Vec& D2V();
+  const gp_Vec& D2V()
+  {
+    return LProp_SurfaceUtils::EnsureSurfDeriv<
+      Access>(mySurf, myU, myV, myDerOrder, 2, myPnt, myD1u, myD1v, myD2u, myD2v, myDuv, myD2v);
+  }
 
   //! Returns the second UV cross-derivative.
   //! The derivative is computed if it has not been yet.
-  Standard_EXPORT const gp_Vec& DUV();
+  const gp_Vec& DUV()
+  {
+    return LProp_SurfaceUtils::EnsureSurfDeriv<
+      Access>(mySurf, myU, myV, myDerOrder, 2, myPnt, myD1u, myD1v, myD2u, myD2v, myDuv, myDuv);
+  }
 
   //! returns True if the U tangent is defined.
   //! For example, the tangent is not defined if the
   //! two first U derivatives are null.
-  Standard_EXPORT bool IsTangentUDefined();
+  bool IsTangentUDefined()
+  {
+    return LProp_SurfaceUtils::IsTangentUDefined(*this,
+                                                 myCN,
+                                                 myLinTol,
+                                                 mySignificantFirstDerivativeOrderU,
+                                                 myUTangentStatus);
+  }
 
   //! Returns the tangent direction <D> on the iso-V.
-  Standard_EXPORT void TangentU(gp_Dir& D);
+  void TangentU(gp_Dir& D)
+  {
+    LProp_SurfaceUtils::TangentU<Access>(*this,
+                                         mySurf,
+                                         myU,
+                                         myV,
+                                         myD1u,
+                                         myD2u,
+                                         mySignificantFirstDerivativeOrderU,
+                                         D);
+  }
 
   //! returns if the V tangent is defined.
   //! For example, the tangent is not defined if the
   //! two first V derivatives are null.
-  Standard_EXPORT bool IsTangentVDefined();
+  bool IsTangentVDefined()
+  {
+    return LProp_SurfaceUtils::IsTangentVDefined(*this,
+                                                 myCN,
+                                                 myLinTol,
+                                                 mySignificantFirstDerivativeOrderV,
+                                                 myVTangentStatus);
+  }
 
   //! Returns the tangent direction <D> on the iso-V.
-  Standard_EXPORT void TangentV(gp_Dir& D);
+  void TangentV(gp_Dir& D)
+  {
+    LProp_SurfaceUtils::TangentV<Access>(*this,
+                                         mySurf,
+                                         myU,
+                                         myV,
+                                         myD1v,
+                                         myD2v,
+                                         mySignificantFirstDerivativeOrderV,
+                                         D);
+  }
 
   //! Tells if the normal is defined.
-  Standard_EXPORT bool IsNormalDefined();
+  bool IsNormalDefined()
+  {
+    return LProp_SurfaceUtils::IsNormalDefined(myD1u, myD1v, myLinTol, myNormal, myNormalStatus);
+  }
 
   //! Returns the normal direction.
-  Standard_EXPORT const gp_Dir& Normal();
+  const gp_Dir& Normal() { return LProp_SurfaceUtils::Normal(*this, myNormal); }
 
   //! returns True if the curvature is defined.
-  Standard_EXPORT bool IsCurvatureDefined();
+  bool IsCurvatureDefined()
+  {
+    return LProp_SurfaceUtils::IsCurvatureDefined(*this,
+                                                  myCN,
+                                                  myDerOrder,
+                                                  myD1u,
+                                                  myD1v,
+                                                  myD2u,
+                                                  myD2v,
+                                                  myDuv,
+                                                  myNormal,
+                                                  myMinCurv,
+                                                  myMaxCurv,
+                                                  myDirMinCurv,
+                                                  myDirMaxCurv,
+                                                  myMeanCurv,
+                                                  myGausCurv,
+                                                  myCurvatureStatus);
+  }
 
   //! returns True if the point is umbilic (i.e. if the
   //! curvature is constant).
-  Standard_EXPORT bool IsUmbilic();
+  bool IsUmbilic() { return LProp_SurfaceUtils::IsUmbilic(*this, myMaxCurv, myMinCurv); }
 
   //! Returns the maximum curvature
-  Standard_EXPORT double MaxCurvature();
+  double MaxCurvature() { return LProp_SurfaceUtils::RequireCurvature(*this, myMaxCurv); }
 
   //! Returns the minimum curvature
-  Standard_EXPORT double MinCurvature();
+  double MinCurvature() { return LProp_SurfaceUtils::RequireCurvature(*this, myMinCurv); }
 
   //! Returns the direction of the maximum and minimum curvature
   //! <MaxD> and <MinD>
-  Standard_EXPORT void CurvatureDirections(gp_Dir& MaxD, gp_Dir& MinD);
+  void CurvatureDirections(gp_Dir& MaxD, gp_Dir& MinD)
+  {
+    LProp_SurfaceUtils::CurvatureDirections(*this, myDirMaxCurv, myDirMinCurv, MaxD, MinD);
+  }
 
   //! Returns the mean curvature.
-  Standard_EXPORT double MeanCurvature();
+  double MeanCurvature() { return LProp_SurfaceUtils::RequireCurvature(*this, myMeanCurv); }
 
   //! Returns the Gaussian curvature
-  Standard_EXPORT double GaussianCurvature();
+  double GaussianCurvature() { return LProp_SurfaceUtils::RequireCurvature(*this, myGausCurv); }
 
 private:
-  occ::handle<Geom_Surface> mySurf;
-  double                    myU;
-  double                    myV;
-  int                       myDerOrder;
-  int                       myCN;
-  double                    myLinTol;
-  gp_Pnt                    myPnt;
-  gp_Vec                    myD1u;
-  gp_Vec                    myD1v;
-  gp_Vec                    myD2u;
-  gp_Vec                    myD2v;
-  gp_Vec                    myDuv;
-  gp_Dir                    myNormal;
-  double                    myMinCurv;
-  double                    myMaxCurv;
-  gp_Dir                    myDirMinCurv;
-  gp_Dir                    myDirMaxCurv;
-  double                    myMeanCurv;
-  double                    myGausCurv;
-  int                       mySignificantFirstDerivativeOrderU;
-  int                       mySignificantFirstDerivativeOrderV;
-  LProp_Status              myUTangentStatus;
-  LProp_Status              myVTangentStatus;
-  LProp_Status              myNormalStatus;
-  LProp_Status              myCurvatureStatus;
+  SurfaceType  mySurf;
+  double       myU;
+  double       myV;
+  int          myDerOrder;
+  int          myCN;
+  double       myLinTol;
+  gp_Pnt       myPnt;
+  gp_Vec       myD1u;
+  gp_Vec       myD1v;
+  gp_Vec       myD2u;
+  gp_Vec       myD2v;
+  gp_Vec       myDuv;
+  gp_Dir       myNormal;
+  double       myMinCurv = 0.0;
+  double       myMaxCurv = 0.0;
+  gp_Dir       myDirMinCurv;
+  gp_Dir       myDirMaxCurv;
+  double       myMeanCurv                         = 0.0;
+  double       myGausCurv                         = 0.0;
+  int          mySignificantFirstDerivativeOrderU = 0;
+  int          mySignificantFirstDerivativeOrderV = 0;
+  LProp_Status myUTangentStatus;
+  LProp_Status myVTangentStatus;
+  LProp_Status myNormalStatus;
+  LProp_Status myCurvatureStatus;
 };
+
+//! Default surface local properties class using occ::handle<Geom_Surface>.
+using GeomLProp_SLProps = GeomLProp_SLPropsBase<occ::handle<Geom_Surface>>;
 
 #endif // _GeomLProp_SLProps_HeaderFile

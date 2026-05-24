@@ -17,9 +17,11 @@
 
 #include <IntTools_CommonPrt.hxx>
 #include <NCollection_BaseAllocator.hxx>
-#include <NCollection_Vector.hxx>
+#include <NCollection_DynamicArray.hxx>
 #include <BOPDS_Curve.hxx>
 #include <BOPDS_Point.hxx>
+
+#include <optional>
 
 /**
  * The class BOPDS_Interf stores the information about
@@ -164,7 +166,14 @@ public:
    *   the index
    * @return true if the interference has index of new shape
    */
-  bool HasIndexNew() const { return (myIndexNew + 1) != 0; }
+  bool HasIndexNew() const { return myIndexNew != -1; }
+
+  //! Returns the index of new shape.
+  //! If the index is not set, returns std::nullopt.
+  std::optional<int> GetIndexNew() const
+  {
+    return myIndexNew != -1 ? std::optional<int>(myIndexNew) : std::nullopt;
+  }
 
   //
 protected:
@@ -560,7 +569,7 @@ public:
    * @return
    *   intersection curves
    */
-  const NCollection_Vector<BOPDS_Curve>& Curves() const { return myCurves; }
+  const NCollection_DynamicArray<BOPDS_Curve>& Curves() const { return myCurves; }
 
   //
   /**
@@ -569,7 +578,7 @@ public:
    * @return
    *   intersection curves
    */
-  NCollection_Vector<BOPDS_Curve>& ChangeCurves() { return myCurves; }
+  NCollection_DynamicArray<BOPDS_Curve>& ChangeCurves() { return myCurves; }
 
   //
   /**
@@ -578,7 +587,7 @@ public:
    * @return
    *   intersection points
    */
-  const NCollection_Vector<BOPDS_Point>& Points() const { return myPoints; }
+  const NCollection_DynamicArray<BOPDS_Point>& Points() const { return myPoints; }
 
   //
   /**
@@ -587,13 +596,13 @@ public:
    * @return
    *   intersection points
    */
-  NCollection_Vector<BOPDS_Point>& ChangePoints() { return myPoints; }
+  NCollection_DynamicArray<BOPDS_Point>& ChangePoints() { return myPoints; }
 
   //
 protected:
-  bool                            myTangentFaces;
-  NCollection_Vector<BOPDS_Curve> myCurves;
-  NCollection_Vector<BOPDS_Point> myPoints;
+  bool                                  myTangentFaces;
+  NCollection_DynamicArray<BOPDS_Curve> myCurves;
+  NCollection_DynamicArray<BOPDS_Point> myPoints;
 };
 
 /**

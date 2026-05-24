@@ -17,7 +17,8 @@
 #ifndef _TopExp_Explorer_HeaderFile
 #define _TopExp_Explorer_HeaderFile
 
-#include <NCollection_Vector.hxx>
+#include <NCollection_ForwardRange.hxx>
+#include <NCollection_LocalArray.hxx>
 #include <TopAbs.hxx>
 #include <TopoDS_Iterator.hxx>
 #include <TopoDS_Shape.hxx>
@@ -138,12 +139,33 @@ public:
   //! Destructor.
   Standard_EXPORT ~TopExp_Explorer();
 
+  //! Returns an STL-compatible iterator for range-based for loops.
+  //! @warning Do not call Next() or Init() externally during range-for iteration.
+  NCollection_ForwardRangeIterator<TopExp_Explorer> begin()
+  {
+    return NCollection_ForwardRangeIterator<TopExp_Explorer>(this);
+  }
+
+  //! Returns a sentinel marking the end of iteration.
+  NCollection_ForwardRangeSentinel end() const { return NCollection_ForwardRangeSentinel{}; }
+
 private:
-  NCollection_Vector<TopoDS_Iterator> myStack;
-  TopoDS_Shape                        myShape;
-  TopAbs_ShapeEnum                    toFind;
-  TopAbs_ShapeEnum                    toAvoid;
-  bool                                hasMore;
+  //! Push a new iterator onto the stack (placement new on first use, assign on reuse).
+  void pushIterator(TopoDS_Iterator&& theIter);
+
+  //! Pop the top iterator (explicit destructor call).
+  void popIterator();
+
+  static constexpr int THE_INLINE_STACK_SIZE =
+    20; //!< Inline stack capacity (covers all topology depths)
+
+  NCollection_LocalArray<TopoDS_Iterator, THE_INLINE_STACK_SIZE>
+                   myStack;         //!< DFS stack (lazy allocation)
+  int              myStackTop = -1; //!< Top of stack index (-1 = empty)
+  TopoDS_Shape     myShape;
+  TopAbs_ShapeEnum toFind;
+  TopAbs_ShapeEnum toAvoid;
+  bool             hasMore;
 };
 
 #endif // _TopExp_Explorer_HeaderFile

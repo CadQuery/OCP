@@ -22,11 +22,10 @@
 #include <Standard_Handle.hxx>
 
 #include <gp_Pnt.hxx>
-#include <Standard_Real.hxx>
-#include <Standard_Boolean.hxx>
 
 #include <algorithm>
 #include <cmath>
+#include <optional>
 
 class gp_Pnt;
 class gp_Dir;
@@ -79,17 +78,7 @@ public:
 
   //! Creates an empty Box.
   //! The constructed box is qualified Void. Its gap is null.
-  constexpr Bnd_Box()
-      : Xmin(RealLast()),
-        Xmax(-RealLast()),
-        Ymin(RealLast()),
-        Ymax(-RealLast()),
-        Zmin(RealLast()),
-        Zmax(-RealLast()),
-        Gap(0.0),
-        Flags(VoidMask)
-  {
-  }
+  constexpr Bnd_Box() noexcept = default;
 
   //! Creates a bounding box, it contains:
   //! -   minimum/maximum point of bounding box,
@@ -218,6 +207,12 @@ public:
   //! if IsVoid()
   [[nodiscard]] Standard_EXPORT gp_Pnt CornerMax() const;
 
+  //! Returns the center of this bounding box. The gap is included.
+  //! If this bounding box is infinite (i.e. "open"), returned values
+  //! may be equal to +/- Precision::Infinite().
+  //! Returns std::nullopt if the box is void.
+  [[nodiscard]] Standard_EXPORT std::optional<gp_Pnt> Center() const;
+
   //! The Box will be infinitely long in the Xmin
   //! direction.
   void OpenXmin() noexcept { Flags |= XminMask; }
@@ -251,7 +246,7 @@ public:
   //! Returns true if this bounding box is open in the Xmax direction.
   [[nodiscard]] bool IsOpenXmax() const noexcept { return (Flags & XmaxMask) != 0; }
 
-  //! Returns true if this bounding box is open in the Ymix direction.
+  //! Returns true if this bounding box is open in the Ymin direction.
   [[nodiscard]] bool IsOpenYmin() const noexcept { return (Flags & YminMask) != 0; }
 
   //! Returns true if this bounding box is open in the Ymax direction.
@@ -333,6 +328,12 @@ public:
                                            const gp_Pnt& P2,
                                            const gp_Dir& D) const;
 
+  //! Returns True if the point is inside or on the boundary of this box.
+  [[nodiscard]] bool Contains(const gp_Pnt& theP) const { return !IsOut(theP); }
+
+  //! Returns True if the other box intersects or is inside this box.
+  [[nodiscard]] bool Intersects(const Bnd_Box& theOther) const { return !IsOut(theOther); }
+
   //! Computes the minimum distance between two boxes.
   [[nodiscard]] Standard_EXPORT double Distance(const Bnd_Box& Other) const;
 
@@ -393,14 +394,14 @@ protected:
   };
 
 private:
-  double Xmin;
-  double Xmax;
-  double Ymin;
-  double Ymax;
-  double Zmin;
-  double Zmax;
-  double Gap;
-  int    Flags;
+  double Xmin  = RealLast();
+  double Xmax  = -RealLast();
+  double Ymin  = RealLast();
+  double Ymax  = -RealLast();
+  double Zmin  = RealLast();
+  double Zmax  = -RealLast();
+  double Gap   = 0.0;
+  int    Flags = VoidMask;
 };
 
 #endif // _Bnd_Box_HeaderFile

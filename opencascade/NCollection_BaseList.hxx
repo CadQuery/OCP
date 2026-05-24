@@ -29,6 +29,8 @@
 #include <NCollection_DefineAlloc.hxx>
 #include <NCollection_ListNode.hxx>
 
+#include <utility>
+
 typedef void (*NCollection_DelListNode)(NCollection_ListNode*,
                                         occ::handle<NCollection_BaseAllocator>& theAl);
 
@@ -94,7 +96,13 @@ public:
   // ---------- PUBLIC METHODS ------------
   // ******** Extent
   // Purpose: Returns the number of nodes in the list
-  int Extent() const noexcept { return myLength; }
+  int Extent() const noexcept { return static_cast<int>(myLength); }
+
+  //! Length - number of nodes (legacy int-returning API, synonym of Extent()).
+  int Length() const noexcept { return static_cast<int>(myLength); }
+
+  //! Size - number of nodes.
+  size_t Size() const noexcept { return myLength; }
 
   // ******** IsEmpty
   // Purpose: Query if the list is empty
@@ -187,12 +195,24 @@ protected:
   // Purpose: Reverse the list
   Standard_EXPORT void PReverse() noexcept;
 
+  // ******** PExchange
+  // Purpose: Exchange contents with another list.
+  //          Swaps all internal state including allocators, ensuring that
+  //          nodes are always deallocated by their original allocator.
+  void PExchange(NCollection_BaseList& theOther) noexcept
+  {
+    std::swap(myAllocator, theOther.myAllocator);
+    std::swap(myFirst, theOther.myFirst);
+    std::swap(myLast, theOther.myLast);
+    std::swap(myLength, theOther.myLength);
+  }
+
 protected:
   // ------------ PROTECTED FIELDS ------------
   occ::handle<NCollection_BaseAllocator> myAllocator;
   NCollection_ListNode*                  myFirst;  // Pointer to the head
   NCollection_ListNode*                  myLast;   // Pointer to the tail
-  int                                    myLength; // Actual length
+  size_t                                 myLength; // Actual length
 
   // ------------ FRIEND CLASSES ------------
   friend class Iterator;

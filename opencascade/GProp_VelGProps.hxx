@@ -28,8 +28,8 @@ class gp_Sphere;
 class gp_Torus;
 
 //! Computes the global properties and the volume of a geometric solid
-//! (3D closed region of space)
-//! The solid can be elementary(definition in the gp package)
+//! (3D closed region of space). Supports elementary solids from the gp
+//! package: Cylinder, Cone, Sphere, Torus.
 class GProp_VelGProps : public GProp_GProps
 {
 public:

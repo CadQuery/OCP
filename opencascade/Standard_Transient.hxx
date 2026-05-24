@@ -82,7 +82,7 @@ public:
   Standard_EXPORT bool IsInstance(const opencascade::handle<Standard_Type>& theType) const;
 
   //! Returns a true value if this is an instance of TypeName.
-  Standard_EXPORT bool IsInstance(const char* theTypeName) const;
+  Standard_EXPORT bool IsInstance(const char* const theTypeName) const;
 
   //! Returns true if this is an instance of Type or an
   //! instance of any class that inherits from Type.
@@ -92,7 +92,7 @@ public:
   //! Returns true if this is an instance of TypeName or an
   //! instance of any class that inherits from TypeName.
   //! Note that multiple inheritance is not supported by OCCT RTTI mechanism.
-  Standard_EXPORT bool IsKind(const char* theTypeName) const;
+  Standard_EXPORT bool IsKind(const char* const theTypeName) const;
 
   //! Returns non-const pointer to this object (like const_cast).
   //! For protection against creating handle to objects allocated in stack
@@ -104,14 +104,31 @@ public:
   //!@name Reference counting, for use by handle<>
 
   //! Get the reference counter of this object
-  inline int GetRefCount() const noexcept { return myRefCount_; }
+  inline int GetRefCount() const noexcept { return myRefCount_.load(std::memory_order_relaxed); }
 
-  //! Increments the reference counter of this object
-  inline void IncrementRefCounter() noexcept { myRefCount_.operator++(); }
+  //! Increments the reference counter of this object.
+  //! Uses relaxed memory ordering since incrementing only requires atomicity,
+  //! not synchronization with other memory operations.
+  inline void IncrementRefCounter() noexcept
+  {
+    myRefCount_.fetch_add(1, std::memory_order_relaxed);
+  }
 
   //! Decrements the reference counter of this object;
-  //! returns the decremented value
-  inline int DecrementRefCounter() noexcept { return myRefCount_.operator--(); }
+  //! returns the decremented value.
+  //! Uses release ordering for the decrement to ensure all writes to the object
+  //! are visible before the count reaches zero. An acquire fence is added only
+  //! when the count reaches zero, ensuring proper synchronization before deletion.
+  //! This is more efficient than using acq_rel for every decrement.
+  inline int DecrementRefCounter() noexcept
+  {
+    const int aResult = myRefCount_.fetch_sub(1, std::memory_order_release) - 1;
+    if (aResult == 0)
+    {
+      std::atomic_thread_fence(std::memory_order_acquire);
+    }
+    return aResult;
+  }
 
   //! Memory deallocator for transient classes
   virtual void Delete() const { delete this; }

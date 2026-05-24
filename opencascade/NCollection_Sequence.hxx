@@ -41,16 +41,24 @@ public:
   public:
     //! Constructor
     Node(const TheItemType& theItem)
-        : NCollection_SeqNode()
+        : NCollection_SeqNode(),
+          myValue(theItem)
     {
-      myValue = theItem;
     }
 
     //! Constructor
     Node(TheItemType&& theItem)
-        : NCollection_SeqNode()
+        : NCollection_SeqNode(),
+          myValue(std::forward<TheItemType>(theItem))
     {
-      myValue = std::forward<TheItemType>(theItem);
+    }
+
+    //! Constructor with in-place value construction
+    template <typename... Args>
+    Node(std::in_place_t, Args&&... theArgs)
+        : NCollection_SeqNode(),
+          myValue(std::forward<Args>(theArgs)...)
+    {
     }
 
     //! Constant value access
@@ -162,19 +170,13 @@ public:
     this->operator=(std::forward<NCollection_Sequence>(theOther));
   }
 
-  //! Number of items
-  int Size() const noexcept { return mySize; }
-
-  //! Number of items
-  int Length() const noexcept { return mySize; }
-
   //! Method for consistency with other collections.
   //! @return Lower bound (inclusive) for iteration.
   static constexpr int Lower() noexcept { return 1; }
 
   //! Method for consistency with other collections.
   //! @return Upper bound (inclusive) for iteration.
-  int Upper() const noexcept { return mySize; }
+  int Upper() const noexcept { return static_cast<int>(mySize); }
 
   //! Empty query
   bool IsEmpty() const noexcept { return (mySize == 0); }
@@ -183,7 +185,13 @@ public:
   void Reverse() { PReverse(); }
 
   //! Exchange two members
-  void Exchange(const int I, const int J) { PExchange(I, J); }
+  void Exchange(const size_t I, const size_t J) { PExchange(I, J); }
+
+  void Exchange(const int I, const int J)
+  {
+    Standard_OutOfRange_Raise_if(I < 0 || J < 0, "NCollection_Sequence::Exchange: negative index");
+    PExchange(static_cast<size_t>(I), static_cast<size_t>(J));
+  }
 
   //! Static deleter to be passed to BaseSequence
   static void delNode(NCollection_SeqNode* theNode, occ::handle<NCollection_BaseAllocator>& theAl)
@@ -241,12 +249,25 @@ public:
   void Remove(Iterator& thePosition) { RemoveSeq(thePosition, delNode); }
 
   //! Remove one item
-  void Remove(const int theIndex) { RemoveSeq(theIndex, delNode); }
+  void Remove(const size_t theIndex) { RemoveSeq(theIndex, delNode); }
+
+  void Remove(const int theIndex)
+  {
+    Standard_OutOfRange_Raise_if(theIndex < 0, "NCollection_Sequence::Remove: negative index");
+    RemoveSeq(static_cast<size_t>(theIndex), delNode);
+  }
 
   //! Remove range of items
-  void Remove(const int theFromIndex, const int theToIndex)
+  void Remove(const size_t theFromIndex, const size_t theToIndex)
   {
     RemoveSeq(theFromIndex, theToIndex, delNode);
+  }
+
+  void Remove(const int theFromIndex, const int theToIndex)
+  {
+    Standard_OutOfRange_Raise_if(theFromIndex < 0 || theToIndex < 0,
+                                 "NCollection_Sequence::Remove: negative index");
+    RemoveSeq(static_cast<size_t>(theFromIndex), static_cast<size_t>(theToIndex), delNode);
   }
 
   //! Append one item
@@ -306,21 +327,45 @@ public:
   }
 
   //! InsertBefore theIndex theItem
+  void InsertBefore(const size_t theIndex, const TheItemType& theItem)
+  {
+    Standard_OutOfRange_Raise_if(theIndex == 0, "NCollection_Sequence::InsertBefore: zero index");
+    InsertAfter(theIndex - 1, theItem);
+  }
+
   void InsertBefore(const int theIndex, const TheItemType& theItem)
   {
-    InsertAfter(theIndex - 1, theItem);
+    Standard_OutOfRange_Raise_if(theIndex < 0,
+                                 "NCollection_Sequence::InsertBefore: negative index");
+    InsertBefore(static_cast<size_t>(theIndex), theItem);
   }
 
   //! InsertBefore theIndex theItem
+  void InsertBefore(const size_t theIndex, TheItemType&& theItem)
+  {
+    Standard_OutOfRange_Raise_if(theIndex == 0, "NCollection_Sequence::InsertBefore: zero index");
+    InsertAfter(theIndex - 1, std::forward<TheItemType>(theItem));
+  }
+
   void InsertBefore(const int theIndex, TheItemType&& theItem)
   {
-    InsertAfter(theIndex - 1, theItem);
+    Standard_OutOfRange_Raise_if(theIndex < 0,
+                                 "NCollection_Sequence::InsertBefore: negative index");
+    InsertBefore(static_cast<size_t>(theIndex), std::forward<TheItemType>(theItem));
   }
 
   //! InsertBefore theIndex another sequence (making it empty)
+  void InsertBefore(const size_t theIndex, NCollection_Sequence& theSeq)
+  {
+    Standard_OutOfRange_Raise_if(theIndex == 0, "NCollection_Sequence::InsertBefore: zero index");
+    InsertAfter(theIndex - 1, theSeq);
+  }
+
   void InsertBefore(const int theIndex, NCollection_Sequence& theSeq)
   {
-    InsertAfter(theIndex - 1, theSeq);
+    Standard_OutOfRange_Raise_if(theIndex < 0,
+                                 "NCollection_Sequence::InsertBefore: negative index");
+    InsertBefore(static_cast<size_t>(theIndex), theSeq);
   }
 
   //! InsertAfter the position of iterator
@@ -336,7 +381,7 @@ public:
   }
 
   //! InsertAfter theIndex another sequence (making it empty)
-  void InsertAfter(const int theIndex, NCollection_Sequence& theSeq)
+  void InsertAfter(const size_t theIndex, NCollection_Sequence& theSeq)
   {
     if (this == &theSeq || theSeq.IsEmpty())
       return;
@@ -354,27 +399,123 @@ public:
     }
   }
 
-  //! InsertAfter theIndex theItem
-  void InsertAfter(const int theIndex, const TheItemType& theItem)
+  void InsertAfter(const int theIndex, NCollection_Sequence& theSeq)
   {
-    Standard_OutOfRange_Raise_if(theIndex < 0 || theIndex > mySize,
-                                 "NCollection_Sequence::InsertAfter");
-    PInsertAfter(theIndex, new (this->myAllocator) Node(theItem));
+    Standard_OutOfRange_Raise_if(theIndex < 0, "NCollection_Sequence::InsertAfter: negative index");
+    InsertAfter(static_cast<size_t>(theIndex), theSeq);
   }
 
   //! InsertAfter theIndex theItem
+  void InsertAfter(const size_t theIndex, const TheItemType& theItem)
+  {
+    Standard_OutOfRange_Raise_if(theIndex > mySize, "NCollection_Sequence::InsertAfter");
+    PInsertAfter(theIndex, new (this->myAllocator) Node(theItem));
+  }
+
+  void InsertAfter(const int theIndex, const TheItemType& theItem)
+  {
+    Standard_OutOfRange_Raise_if(theIndex < 0, "NCollection_Sequence::InsertAfter: negative index");
+    InsertAfter(static_cast<size_t>(theIndex), theItem);
+  }
+
+  //! InsertAfter theIndex theItem
+  void InsertAfter(const size_t theIndex, TheItemType&& theItem)
+  {
+    Standard_OutOfRange_Raise_if(theIndex > mySize, "NCollection_Sequence::InsertAfter");
+    PInsertAfter(theIndex, new (this->myAllocator) Node(std::forward<TheItemType>(theItem)));
+  }
+
   void InsertAfter(const int theIndex, TheItemType&& theItem)
   {
-    Standard_OutOfRange_Raise_if(theIndex < 0 || theIndex > mySize,
-                                 "NCollection_Sequence::InsertAfter");
-    PInsertAfter(theIndex, new (this->myAllocator) Node(theItem));
+    Standard_OutOfRange_Raise_if(theIndex < 0, "NCollection_Sequence::InsertAfter: negative index");
+    InsertAfter(static_cast<size_t>(theIndex), std::forward<TheItemType>(theItem));
+  }
+
+  //! Emplace one item at the end, constructing it in-place
+  //! @param theArgs arguments forwarded to TheItemType constructor
+  //! @return reference to the newly constructed item
+  template <typename... Args>
+  TheItemType& EmplaceAppend(Args&&... theArgs)
+  {
+    Node* pNew = new (this->myAllocator) Node(std::in_place, std::forward<Args>(theArgs)...);
+    PAppend(pNew);
+    return ((Node*)myLastItem)->ChangeValue();
+  }
+
+  //! Emplace one item at the beginning, constructing it in-place
+  //! @param theArgs arguments forwarded to TheItemType constructor
+  //! @return reference to the newly constructed item
+  template <typename... Args>
+  TheItemType& EmplacePrepend(Args&&... theArgs)
+  {
+    Node* pNew = new (this->myAllocator) Node(std::in_place, std::forward<Args>(theArgs)...);
+    PPrepend(pNew);
+    return ((Node*)myFirstItem)->ChangeValue();
+  }
+
+  //! Emplace one item after the position of iterator, constructing it in-place
+  //! @param thePosition iterator pointing to the position after which to insert
+  //! @param theArgs arguments forwarded to TheItemType constructor
+  //! @return reference to the newly constructed item
+  template <typename... Args>
+  TheItemType& EmplaceAfter(Iterator& thePosition, Args&&... theArgs)
+  {
+    Node* pNew = new (this->myAllocator) Node(std::in_place, std::forward<Args>(theArgs)...);
+    PInsertAfter(thePosition, pNew);
+    return pNew->ChangeValue();
+  }
+
+  //! Emplace one item after the specified index, constructing it in-place
+  //! @param theIndex index after which to insert (0 means insert at beginning)
+  //! @param theArgs arguments forwarded to TheItemType constructor
+  //! @return reference to the newly constructed item
+  template <typename... Args>
+  TheItemType& EmplaceAfter(const size_t theIndex, Args&&... theArgs)
+  {
+    Standard_OutOfRange_Raise_if(theIndex > mySize, "NCollection_Sequence::EmplaceAfter");
+    Node* pNew = new (this->myAllocator) Node(std::in_place, std::forward<Args>(theArgs)...);
+    PInsertAfter(theIndex, pNew);
+    return pNew->ChangeValue();
+  }
+
+  template <typename... Args>
+  TheItemType& EmplaceAfter(const int theIndex, Args&&... theArgs)
+  {
+    Standard_OutOfRange_Raise_if(theIndex < 0,
+                                 "NCollection_Sequence::EmplaceAfter: negative index");
+    return EmplaceAfter(static_cast<size_t>(theIndex), std::forward<Args>(theArgs)...);
+  }
+
+  //! Emplace one item before the specified index, constructing it in-place
+  //! @param theIndex index before which to insert
+  //! @param theArgs arguments forwarded to TheItemType constructor
+  //! @return reference to the newly constructed item
+  template <typename... Args>
+  TheItemType& EmplaceBefore(const size_t theIndex, Args&&... theArgs)
+  {
+    Standard_OutOfRange_Raise_if(theIndex == 0, "NCollection_Sequence::EmplaceBefore: zero index");
+    return EmplaceAfter(theIndex - 1, std::forward<Args>(theArgs)...);
+  }
+
+  template <typename... Args>
+  TheItemType& EmplaceBefore(const int theIndex, Args&&... theArgs)
+  {
+    Standard_OutOfRange_Raise_if(theIndex < 0,
+                                 "NCollection_Sequence::EmplaceBefore: negative index");
+    return EmplaceBefore(static_cast<size_t>(theIndex), std::forward<Args>(theArgs)...);
   }
 
   //! Split in two sequences
-  void Split(const int theIndex, NCollection_Sequence& theSeq)
+  void Split(const size_t theIndex, NCollection_Sequence& theSeq)
   {
     theSeq.Clear(this->myAllocator);
     PSplit(theIndex, theSeq);
+  }
+
+  void Split(const int theIndex, NCollection_Sequence& theSeq)
+  {
+    Standard_OutOfRange_Raise_if(theIndex < 0, "NCollection_Sequence::Split: negative index");
+    Split(static_cast<size_t>(theIndex), theSeq);
   }
 
   //! First item access
@@ -406,9 +547,9 @@ public:
   }
 
   //! Constant item access by theIndex
-  const TheItemType& Value(const int theIndex) const
+  const TheItemType& Value(const size_t theIndex) const
   {
-    Standard_OutOfRange_Raise_if(theIndex <= 0 || theIndex > mySize, "NCollection_Sequence::Value");
+    Standard_OutOfRange_Raise_if(theIndex == 0 || theIndex > mySize, "NCollection_Sequence::Value");
 
     NCollection_Sequence* const aLocalTHIS = (NCollection_Sequence*)this;
     aLocalTHIS->myCurrentItem              = Find(theIndex);
@@ -416,13 +557,21 @@ public:
     return ((const Node*)myCurrentItem)->Value();
   }
 
+  const TheItemType& Value(const int theIndex) const
+  {
+    Standard_OutOfRange_Raise_if(theIndex < 0, "NCollection_Sequence::Value: negative index");
+    return Value(static_cast<size_t>(theIndex));
+  }
+
   //! Constant operator()
+  const TheItemType& operator()(const size_t theIndex) const { return Value(theIndex); }
+
   const TheItemType& operator()(const int theIndex) const { return Value(theIndex); }
 
   //! Variable item access by theIndex
-  TheItemType& ChangeValue(const int theIndex)
+  TheItemType& ChangeValue(const size_t theIndex)
   {
-    Standard_OutOfRange_Raise_if(theIndex <= 0 || theIndex > mySize,
+    Standard_OutOfRange_Raise_if(theIndex == 0 || theIndex > mySize,
                                  "NCollection_Sequence::ChangeValue");
 
     myCurrentItem  = Find(theIndex);
@@ -430,11 +579,44 @@ public:
     return ((Node*)myCurrentItem)->ChangeValue();
   }
 
+  TheItemType& ChangeValue(const int theIndex)
+  {
+    Standard_OutOfRange_Raise_if(theIndex < 0, "NCollection_Sequence::ChangeValue: negative index");
+    return ChangeValue(static_cast<size_t>(theIndex));
+  }
+
   //! Variable operator()
+  TheItemType& operator()(const size_t theIndex) { return ChangeValue(theIndex); }
+
   TheItemType& operator()(const int theIndex) { return ChangeValue(theIndex); }
 
   //! Set item value by theIndex
-  void SetValue(const int theIndex, const TheItemType& theItem) { ChangeValue(theIndex) = theItem; }
+  void SetValue(const size_t theIndex, const TheItemType& theItem)
+  {
+    ChangeValue(theIndex) = theItem;
+  }
+
+  void SetValue(const int theIndex, const TheItemType& theItem)
+  {
+    Standard_OutOfRange_Raise_if(theIndex < 0, "NCollection_Sequence::SetValue: negative index");
+    SetValue(static_cast<size_t>(theIndex), theItem);
+  }
+
+  //! 0-based checked access independent of Lower()/Upper().
+  //! @param[in] theIndex 0-based index in [0, Size()-1]
+  const TheItemType& At(const size_t theIndex) const
+  {
+    Standard_OutOfRange_Raise_if(theIndex >= mySize, "NCollection_Sequence::At");
+    return Value(theIndex + 1);
+  }
+
+  //! 0-based checked mutable access independent of Lower()/Upper().
+  //! @param[in] theIndex 0-based index in [0, Size()-1]
+  TheItemType& ChangeAt(const size_t theIndex)
+  {
+    Standard_OutOfRange_Raise_if(theIndex >= mySize, "NCollection_Sequence::ChangeAt");
+    return ChangeValue(theIndex + 1);
+  }
 
   // ******** Destructor - clears the Sequence
   ~NCollection_Sequence() override { Clear(); }
@@ -457,9 +639,10 @@ private:
   }
 
   //! insert the sequence headed by the given Node before the item with the given index
-  void prependSeq(const Node* pCur, int ind)
+  void prependSeq(const Node* pCur, size_t ind)
   {
-    ind--;
+    if (ind > 0)
+      --ind;
     while (pCur)
     {
       Node* pNew = new (this->myAllocator) Node(pCur->Value());

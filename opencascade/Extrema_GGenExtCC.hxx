@@ -24,7 +24,7 @@
 #include <math_GlobOptMin.hxx>
 #include <math_Vector.hxx>
 #include <NCollection_CellFilter.hxx>
-#include <NCollection_Vector.hxx>
+#include <NCollection_DynamicArray.hxx>
 #include <Precision.hxx>
 #include <Standard.hxx>
 #include <Standard_DefineAlloc.hxx>
@@ -125,9 +125,9 @@ private:
   bool                         myDone;
 };
 
-//==================================================================================================
+//=================================================================================================
 // Static helper functions
-//==================================================================================================
+//=================================================================================================
 
 namespace
 {
@@ -201,20 +201,30 @@ inline void Extrema_GGenExtCC_ChangeIntervals(occ::handle<NCollection_HArray1<do
   theInts = aNewInts;
 }
 
-class Extrema_GGenExtCC_PointsInspector : public NCollection_CellFilter_InspectorXY
+class Extrema_GGenExtCC_PointsInspector
 {
 public:
+  static constexpr int Dimension = 2;
+
+  typedef gp_XY Point;
   typedef gp_XY Target;
 
-  Extrema_GGenExtCC_PointsInspector(const double theTol)
+  static double Coord(int i, const Point& thePnt) { return thePnt.Coord(i + 1); }
+
+  static Point Shift(const Point& thePnt, double theTol)
   {
-    myTol    = theTol * theTol;
-    myIsFind = false;
+    return Point(thePnt.X() + theTol, thePnt.Y() + theTol);
+  }
+
+  Extrema_GGenExtCC_PointsInspector(const double theTol)
+      : myTol(theTol * theTol),
+        myIsFind(false)
+  {
   }
 
   void ClearFind() { myIsFind = false; }
 
-  bool isFind() { return myIsFind; }
+  bool isFind() const { return myIsFind; }
 
   void SetCurrent(const gp_XY& theCurPnt) { myCurrent = theCurPnt; }
 
@@ -253,11 +263,11 @@ double Extrema_GGenExtCC_ProjPOnC(const ThePointType& theP, TheExtPCType& thePro
 }
 } // namespace
 
-//==================================================================================================
+//=================================================================================================
 // Implementation
-//==================================================================================================
+//=================================================================================================
 
-//==================================================================================================
+//=================================================================================================
 
 template <typename TheCurve1,
           typename TheCurveTool1,
@@ -278,7 +288,7 @@ Extrema_GGenExtCC<TheCurve1, TheCurveTool1, TheCurve2, TheCurveTool2, ThePOnC, T
   myC[0] = myC[1] = nullptr;
 }
 
-//==================================================================================================
+//=================================================================================================
 
 template <typename TheCurve1,
           typename TheCurveTool1,
@@ -304,7 +314,7 @@ Extrema_GGenExtCC<TheCurve1, TheCurveTool1, TheCurve2, TheCurveTool2, ThePOnC, T
   myUppBorder(2) = theC2.LastParameter();
 }
 
-//==================================================================================================
+//=================================================================================================
 
 template <typename TheCurve1,
           typename TheCurveTool1,
@@ -335,7 +345,7 @@ Extrema_GGenExtCC<TheCurve1, TheCurveTool1, TheCurve2, TheCurveTool2, ThePOnC, T
   myUppBorder(2) = theVsup;
 }
 
-//==================================================================================================
+//=================================================================================================
 
 template <typename TheCurve1,
           typename TheCurveTool1,
@@ -365,7 +375,7 @@ void Extrema_GGenExtCC<TheCurve1,
   myUppBorder(2) = theVsup;
 }
 
-//==================================================================================================
+//=================================================================================================
 
 template <typename TheCurve1,
           typename TheCurveTool1,
@@ -385,7 +395,7 @@ void Extrema_GGenExtCC<TheCurve1,
   myCurveMinTol = theTol;
 }
 
-//==================================================================================================
+//=================================================================================================
 
 template <typename TheCurve1,
           typename TheCurveTool1,
@@ -405,7 +415,7 @@ void Extrema_GGenExtCC<TheCurve1,
   myIsFindSingleSolution = theFlag;
 }
 
-//==================================================================================================
+//=================================================================================================
 
 template <typename TheCurve1,
           typename TheCurveTool1,
@@ -425,7 +435,7 @@ bool Extrema_GGenExtCC<TheCurve1,
   return myIsFindSingleSolution;
 }
 
-//==================================================================================================
+//=================================================================================================
 
 template <typename TheCurve1,
           typename TheCurveTool1,
@@ -619,7 +629,7 @@ void Extrema_GGenExtCC<TheCurve1,
                                     Precision::PConfusion());
   Extrema_GGenExtCC_PointsInspector                         anInspector(aCellSize);
   NCollection_CellFilter<Extrema_GGenExtCC_PointsInspector> aFilter(aCellSize);
-  NCollection_Vector<gp_XY>                                 aPnts;
+  NCollection_DynamicArray<gp_XY>                           aPnts;
 
   int         i, j, k;
   math_Vector aFirstBorderInterval(1, 2);
@@ -791,7 +801,7 @@ void Extrema_GGenExtCC<TheCurve1,
   }
 }
 
-//==================================================================================================
+//=================================================================================================
 
 template <typename TheCurve1,
           typename TheCurveTool1,
@@ -811,7 +821,7 @@ bool Extrema_GGenExtCC<TheCurve1,
   return myDone;
 }
 
-//==================================================================================================
+//=================================================================================================
 
 template <typename TheCurve1,
           typename TheCurveTool1,
@@ -833,7 +843,7 @@ bool Extrema_GGenExtCC<TheCurve1,
   return myParallel;
 }
 
-//==================================================================================================
+//=================================================================================================
 
 template <typename TheCurve1,
           typename TheCurveTool1,
@@ -855,7 +865,7 @@ int Extrema_GGenExtCC<TheCurve1,
   return myPoints1.Length();
 }
 
-//==================================================================================================
+//=================================================================================================
 
 template <typename TheCurve1,
           typename TheCurveTool1,
@@ -881,7 +891,7 @@ double Extrema_GGenExtCC<TheCurve1,
     .SquareDistance(TheCurveTool2::Value(*((TheCurve2*)myC[1]), myPoints2(theN)));
 }
 
-//==================================================================================================
+//=================================================================================================
 
 template <typename TheCurve1,
           typename TheCurveTool1,

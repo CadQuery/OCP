@@ -21,12 +21,13 @@
 #include <Standard_Type.hxx>
 
 #include <Geom2d_Geometry.hxx>
-#include <Standard_Real.hxx>
+#include <gp_Pnt2d.hxx>
+#include <gp_Vec2d.hxx>
+#include <Geom2d_UndefinedDerivative.hxx>
+#include <Geom2d_UndefinedValue.hxx>
 #include <GeomAbs_Shape.hxx>
-#include <Standard_Integer.hxx>
+
 class gp_Trsf2d;
-class gp_Pnt2d;
-class gp_Vec2d;
 
 //! The abstract class Curve describes the common
 //! behavior of curves in 2D space. The Geom2d
@@ -58,6 +59,30 @@ class Geom2d_Curve : public Geom2d_Geometry
 {
 
 public:
+  //! Result of D1 evaluation: point and first derivative.
+  struct ResD1
+  {
+    gp_Pnt2d Point;
+    gp_Vec2d D1;
+  };
+
+  //! Result of D2 evaluation: point and first two derivatives.
+  struct ResD2
+  {
+    gp_Pnt2d Point;
+    gp_Vec2d D1;
+    gp_Vec2d D2;
+  };
+
+  //! Result of D3 evaluation: point and first three derivatives.
+  struct ResD3
+  {
+    gp_Pnt2d Point;
+    gp_Vec2d D1;
+    gp_Vec2d D2;
+    gp_Vec2d D3;
+  };
+
   //! Changes the direction of parametrization of <me>.
   //! The "FirstParameter" and the "LastParameter" are not changed
   //! but the orientation of the curve is modified. If the curve
@@ -158,60 +183,60 @@ public:
   //! Exceptions Standard_RangeError if N is less than 0.
   Standard_EXPORT virtual bool IsCN(const int N) const = 0;
 
+  //! Computes the point of parameter U.
+  //! Raises an exception on failure.
+  [[nodiscard]] Standard_EXPORT virtual gp_Pnt2d EvalD0(const double U) const = 0;
+
+  //! Computes the point and first derivative at parameter U.
+  //! Raises an exception if the curve continuity is not C1.
+  [[nodiscard]] Standard_EXPORT virtual ResD1 EvalD1(const double U) const = 0;
+
+  //! Computes the point and first two derivatives at parameter U.
+  //! Raises an exception if the curve continuity is not C2.
+  [[nodiscard]] Standard_EXPORT virtual ResD2 EvalD2(const double U) const = 0;
+
+  //! Computes the point and first three derivatives at parameter U.
+  //! Raises an exception if the curve continuity is not C3.
+  [[nodiscard]] Standard_EXPORT virtual ResD3 EvalD3(const double U) const = 0;
+
+  //! Computes the Nth derivative at parameter U.
+  //! Raises an exception if the curve continuity is not CN, or N < 1.
+  [[nodiscard]] Standard_EXPORT virtual gp_Vec2d EvalDN(const double U, const int N) const = 0;
+
   //! Returns in P the point of parameter U.
-  //! If the curve is periodic then the returned point is P(U) with
-  //! U = Ustart + (U - Uend) where Ustart and Uend are the
-  //! parametric bounds of the curve.
-  //!
-  //! Raised only for the "OffsetCurve" if it is not possible to
-  //! compute the current point. For example when the first
-  //! derivative on the basis curve and the offset direction
-  //! are parallel.
-  Standard_EXPORT virtual void D0(const double U, gp_Pnt2d& P) const = 0;
+  inline void D0(const double U, gp_Pnt2d& P) const { P = EvalD0(U); }
 
   //! Returns the point P of parameter U and the first derivative V1.
-  //! Raised if the continuity of the curve is not C1.
-  Standard_EXPORT virtual void D1(const double U, gp_Pnt2d& P, gp_Vec2d& V1) const = 0;
+  inline void D1(const double U, gp_Pnt2d& P, gp_Vec2d& V1) const
+  {
+    const ResD1 aR = EvalD1(U);
+    P              = aR.Point;
+    V1             = aR.D1;
+  }
 
-  //! Returns the point P of parameter U, the first and second
-  //! derivatives V1 and V2.
-  //! Raised if the continuity of the curve is not C2.
-  Standard_EXPORT virtual void D2(const double U,
-                                  gp_Pnt2d&    P,
-                                  gp_Vec2d&    V1,
-                                  gp_Vec2d&    V2) const = 0;
+  //! Returns the point P of parameter U, the first and second derivatives V1 and V2.
+  inline void D2(const double U, gp_Pnt2d& P, gp_Vec2d& V1, gp_Vec2d& V2) const
+  {
+    const ResD2 aR = EvalD2(U);
+    P              = aR.Point;
+    V1             = aR.D1;
+    V2             = aR.D2;
+  }
 
-  //! Returns the point P of parameter U, the first, the second
-  //! and the third derivative.
-  //! Raised if the continuity of the curve is not C3.
-  Standard_EXPORT virtual void D3(const double U,
-                                  gp_Pnt2d&    P,
-                                  gp_Vec2d&    V1,
-                                  gp_Vec2d&    V2,
-                                  gp_Vec2d&    V3) const = 0;
+  //! Returns the point P of parameter U, the first, the second and the third derivative.
+  inline void D3(const double U, gp_Pnt2d& P, gp_Vec2d& V1, gp_Vec2d& V2, gp_Vec2d& V3) const
+  {
+    const ResD3 aR = EvalD3(U);
+    P              = aR.Point;
+    V1             = aR.D1;
+    V2             = aR.D2;
+    V3             = aR.D3;
+  }
 
-  //! For the point of parameter U of this curve, computes
-  //! the vector corresponding to the Nth derivative.
-  //! Exceptions
-  //! StdFail_UndefinedDerivative if:
-  //! - the continuity of the curve is not "CN", or
-  //! - the derivative vector cannot be computed easily;
-  //! this is the case with specific types of curve (for
-  //! example, a rational BSpline curve where N is greater than 3).
-  //! Standard_RangeError if N is less than 1.
-  Standard_EXPORT virtual gp_Vec2d DN(const double U, const int N) const = 0;
+  //! Computes the Nth derivative vector.
+  inline gp_Vec2d DN(const double U, const int N) const { return EvalDN(U, N); }
 
-  //! Computes the point of parameter U on <me>.
-  //! If the curve is periodic then the returned point is P(U) with
-  //! U = Ustart + (U - Uend) where Ustart and Uend are the
-  //! parametric bounds of the curve.
-  //!
-  //! it is implemented with D0.
-  //!
-  //! Raised only for the "OffsetCurve" if it is not possible to
-  //! compute the current point. For example when the first
-  //! derivative on the basis curve and the offset direction
-  //! are parallel.
+  //! Computes the point of parameter U on <me>. Implemented with D0.
   Standard_EXPORT gp_Pnt2d Value(const double U) const;
 
   //! Dumps the content of me into the stream

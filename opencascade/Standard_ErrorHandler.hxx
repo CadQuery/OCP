@@ -18,15 +18,35 @@
 #define _Standard_ErrorHandler_HeaderFile
 
 #include <Standard.hxx>
-#include <Standard_Handle.hxx>
 
-#include <Standard_PErrorHandler.hxx>
-#include <Standard_JmpBuf.hxx>
-#include <Standard_HandlerStatus.hxx>
-#include <Standard_ThreadId.hxx>
-#include <Standard_Type.hxx>
+#include <setjmp.h>
+#include <variant>
+#include <iostream>
 
-#include <mutex>
+// Signal exception types for variant storage
+#include <OSD_SIGBUS.hxx>
+#include <OSD_SIGHUP.hxx>
+#include <OSD_SIGILL.hxx>
+#include <OSD_SIGINT.hxx>
+#include <OSD_SIGKILL.hxx>
+#include <OSD_SIGQUIT.hxx>
+#include <OSD_SIGSEGV.hxx>
+#include <OSD_SIGSYS.hxx>
+#include <OSD_Exception_ACCESS_VIOLATION.hxx>
+#include <OSD_Exception_ARRAY_BOUNDS_EXCEEDED.hxx>
+#include <OSD_Exception_ILLEGAL_INSTRUCTION.hxx>
+#include <OSD_Exception_IN_PAGE_ERROR.hxx>
+#include <OSD_Exception_INT_OVERFLOW.hxx>
+#include <OSD_Exception_INVALID_DISPOSITION.hxx>
+#include <OSD_Exception_NONCONTINUABLE_EXCEPTION.hxx>
+#include <OSD_Exception_PRIV_INSTRUCTION.hxx>
+#include <OSD_Exception_STACK_OVERFLOW.hxx>
+#include <OSD_Exception_STATUS_NO_MEMORY.hxx>
+#include <Standard_DivideByZero.hxx>
+#include <Standard_NumericError.hxx>
+#include <Standard_Overflow.hxx>
+#include <Standard_ProgramError.hxx>
+#include <Standard_Underflow.hxx>
 
 //! @file
 //! Support of handling of C signals as C++-style exceptions, and implementation
@@ -49,14 +69,13 @@
 
 #if defined(OCC_CONVERT_SIGNALS)
 
-  // Exceptions are raied as usual, signal cause jumps in the nearest
+  // Exceptions are raised as usual, signal cause jumps in the nearest
   // OCC_CATCH_SIGNALS and then thrown as exceptions.
   #define OCC_CATCH_SIGNALS                                                                        \
     Standard_ErrorHandler _aHandler;                                                               \
     if (setjmp(_aHandler.Label()))                                                                 \
     {                                                                                              \
-      _aHandler.Catches(STANDARD_TYPE(Standard_Failure));                                          \
-      _aHandler.Error()->Reraise();                                                                \
+      _aHandler.Raise();                                                                           \
     }
 
   // Suppress GCC warning "variable ...  might be clobbered by 'longjmp' or 'vfork'"
@@ -71,18 +90,43 @@
 
 #endif
 
-class Standard_Failure;
-
 //! Class implementing mechanics of conversion of signals to exceptions.
 //!
-//! Each instance of it stores data for jump placement, thread id,
+//! Each instance of it stores data for jump placement,
 //! and callbacks to be called during jump (for proper resource release).
 //!
 //! The active handlers are stored in the global stack, which is used
 //! to find appropriate handler when signal is raised.
-
 class Standard_ErrorHandler
 {
+public:
+  //! Variant type holding all possible signal exceptions.
+  //! Used to store exception across longjmp without heap allocation.
+  using SignalException = std::variant<std::monostate, // Empty state (no exception)
+                                       OSD_SIGBUS,
+                                       OSD_SIGHUP,
+                                       OSD_SIGILL,
+                                       OSD_SIGINT,
+                                       OSD_SIGKILL,
+                                       OSD_SIGQUIT,
+                                       OSD_SIGSEGV,
+                                       OSD_SIGSYS,
+                                       OSD_Exception_ACCESS_VIOLATION,
+                                       OSD_Exception_ARRAY_BOUNDS_EXCEEDED,
+                                       OSD_Exception_ILLEGAL_INSTRUCTION,
+                                       OSD_Exception_IN_PAGE_ERROR,
+                                       OSD_Exception_INT_OVERFLOW,
+                                       OSD_Exception_INVALID_DISPOSITION,
+                                       OSD_Exception_NONCONTINUABLE_EXCEPTION,
+                                       OSD_Exception_PRIV_INSTRUCTION,
+                                       OSD_Exception_STACK_OVERFLOW,
+                                       OSD_Exception_STATUS_NO_MEMORY,
+                                       Standard_DivideByZero,
+                                       Standard_NumericError,
+                                       Standard_Overflow,
+                                       Standard_ProgramError,
+                                       Standard_Underflow>;
+
 public:
   DEFINE_STANDARD_ALLOC
 
@@ -96,39 +140,32 @@ public:
   //! Destructor
   ~Standard_ErrorHandler() { Destroy(); }
 
-  //! Removes handler from the handlers list
-  Standard_EXPORT void Unlink();
-
-  //! Returns "True" if the caught exception has the same type
-  //! or inherits from "aType"
-  Standard_EXPORT bool Catches(const occ::handle<Standard_Type>& aType);
+  //! Throws C++ exception if exception object set,
+  //! otherwise prints error and terminates program.
+  Standard_EXPORT void Raise();
 
   //! Returns label for jump
-  Standard_JmpBuf& Label() { return myLabel; }
+  jmp_buf& Label() { return myLabel; }
 
-  //! Returns the current Error.
-  Standard_EXPORT occ::handle<Standard_Failure> Error() const;
-
-  //! Returns the caught exception.
-  Standard_EXPORT static occ::handle<Standard_Failure> LastCaughtError();
+  //! Returns the current Error variant.
+  const SignalException& Error() const { return myCaughtError; }
 
   //! Test if the code is currently running in a try block
   Standard_EXPORT static bool IsInTryBlock();
 
-private:
-  //! A exception is raised but it is not yet caught.
-  //! So Abort the current function and transmit the exception
-  //! to "calling routines".
-  //! Warning: If no catch is prepared for this exception, it displays the
-  //! exception name and calls "exit(1)".
-  Standard_EXPORT static void Abort(const occ::handle<Standard_Failure>& theError);
+  //! Abort with specific exception type.
+  //! Finds nearest error handler, stores exception, and performs longjmp.
+  //! @tparam T Exception type (must be one of Standard_SignalException variant types)
+  //! @param theError Exception to store and throw after longjmp
+  template <typename T>
+  static void Abort(const T& theError);
 
-  //! Set the Error which will be transmitted to "calling routines".
-  Standard_EXPORT static void Error(const occ::handle<Standard_Failure>& aError);
+private:
+  //! Removes handler from the list.
+  void Unlink();
 
   //! Returns the current handler (closest in the stack in the current execution thread)
-  Standard_EXPORT static Standard_PErrorHandler FindHandler(const Standard_HandlerStatus theStatus,
-                                                            const bool                   theUnlink);
+  Standard_EXPORT static Standard_ErrorHandler* FindHandler();
 
 public:
   //! Defines a base class for callback objects that can be registered
@@ -186,39 +223,45 @@ public:
       Callback();
 
   private:
-    void* myHandler;
-    void* myPrev;
-    void* myNext;
+    void* myHandler = nullptr;
+    void* myPrev    = nullptr;
+    void* myNext    = nullptr;
 
     friend class Standard_ErrorHandler;
   };
 
 private:
-  Standard_PErrorHandler        myPrevious;
-  occ::handle<Standard_Failure> myCaughtError;
-  Standard_JmpBuf               myLabel;
-  Standard_HandlerStatus        myStatus;
-  Standard_ThreadId             myThread;
-  Callback*                     myCallbackPtr;
-
-  friend class Standard_Failure;
+  SignalException        myCaughtError;
+  Standard_ErrorHandler* myPrevious    = nullptr;
+  Callback*              myCallbackPtr = nullptr;
+  jmp_buf                myLabel       = {};
 };
+
+//! Template implementation of Abort - stores exception and performs longjmp.
+template <typename T>
+void Standard_ErrorHandler::Abort(const T& theError)
+{
+#ifndef OCC_CONVERT_SIGNALS
+  throw theError;
+#else
+  Standard_ErrorHandler* anActive = FindHandler();
+  if (anActive == nullptr)
+  {
+    std::cerr << "*** Abort *** an exception was raised, but no catch was found." << std::endl;
+    std::cerr << "\t... The exception is: " << theError.what() << std::endl;
+    exit(1);
+  }
+  anActive->myCaughtError = theError;
+  longjmp(anActive->myLabel, true);
+#endif
+}
 
 // If OCC_CONVERT_SIGNALS is not defined,
 // provide empty inline implementation
 #if !defined(OCC_CONVERT_SIGNALS)
-inline Standard_ErrorHandler::Callback::Callback()
-    : myHandler(0),
-      myPrev(0),
-      myNext(0)
-{
-}
+inline Standard_ErrorHandler::Callback::Callback() {}
 
-inline Standard_ErrorHandler::Callback::~Callback()
-{
-  (void)myHandler;
-  (void)myPrev;
-}
+inline Standard_ErrorHandler::Callback::~Callback() {}
 
 inline void Standard_ErrorHandler::Callback::RegisterCallback() {}
 

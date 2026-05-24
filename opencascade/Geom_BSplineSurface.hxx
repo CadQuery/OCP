@@ -23,18 +23,18 @@
 #include <Precision.hxx>
 #include <GeomAbs_BSplKnotDistribution.hxx>
 #include <GeomAbs_Shape.hxx>
-#include <Standard_Integer.hxx>
 #include <gp_Pnt.hxx>
 #include <NCollection_Array2.hxx>
-#include <NCollection_HArray2.hxx>
 #include <NCollection_Array1.hxx>
-#include <NCollection_HArray1.hxx>
 #include <Geom_BoundedSurface.hxx>
-class gp_Pnt;
-class gp_Vec;
 class Geom_Curve;
 class gp_Trsf;
 class Geom_Geometry;
+
+namespace GeomEval_RepSurfaceDesc
+{
+class Base;
+}
 
 //! Describes a BSpline surface.
 //! In each parametric direction, a BSpline surface can be:
@@ -225,6 +225,20 @@ public:
   //! @param[in] theOther the BSpline surface to copy from
   Standard_EXPORT Geom_BSplineSurface(const Geom_BSplineSurface& theOther);
 
+  //! Returns true if an evaluation representation is attached.
+  bool HasEvalRepresentation() const { return !myEvalRep.IsNull(); }
+
+  //! Returns the current evaluation representation descriptor (may be null).
+  const occ::handle<GeomEval_RepSurfaceDesc::Base>& EvalRepresentation() const { return myEvalRep; }
+
+  //! Sets a new evaluation representation.
+  //! Validates descriptor data and ensures no circular references.
+  Standard_EXPORT void SetEvalRepresentation(
+    const occ::handle<GeomEval_RepSurfaceDesc::Base>& theDesc);
+
+  //! Removes the evaluation representation.
+  void ClearEvalRepresentation() { myEvalRep.Nullify(); }
+
   //! Exchanges the u and v parametric directions on
   //! this BSpline surface.
   //! As a consequence:
@@ -322,7 +336,7 @@ public:
   //! direction is reversed. Hence the orientation of the
   //! surface is reversed.
   //! The knots and poles tables are modified.
-  Standard_EXPORT void UReverse() override;
+  Standard_EXPORT void UReverse() final;
 
   //! Changes the orientation of this BSpline surface in the
   //! V parametric direction. The bounds of the
@@ -330,7 +344,7 @@ public:
   //! direction is reversed. Hence the orientation of the
   //! surface is reversed.
   //! The knots and poles tables are modified.
-  Standard_EXPORT void VReverse() override;
+  Standard_EXPORT void VReverse() final;
 
   //! Computes the u parameter on the modified
   //! surface, produced by reversing its U parametric
@@ -340,7 +354,7 @@ public:
   //! where UFirst, ULast are
   //! the values of the first and last parameters of this
   //! BSpline surface, in the u parametric directions.
-  Standard_EXPORT double UReversedParameter(const double U) const override;
+  Standard_EXPORT double UReversedParameter(const double U) const final;
 
   //! Computes the v parameter on the modified
   //! surface, produced by reversing its V parametric
@@ -350,7 +364,7 @@ public:
   //! VFirst and VLast are
   //! the values of the first and last parameters of this
   //! BSpline surface, in the v pametric directions.
-  Standard_EXPORT double VReversedParameter(const double V) const override;
+  Standard_EXPORT double VReversedParameter(const double V) const final;
 
   //! Increases the degrees of this BSpline surface to
   //! UDegree and VDegree in the u and v parametric
@@ -812,27 +826,27 @@ public:
   //! Returns true if the first control points row and the last
   //! control points row are identical. The tolerance criterion
   //! is Resolution from package gp.
-  Standard_EXPORT bool IsUClosed() const override;
+  Standard_EXPORT bool IsUClosed() const final;
 
   //! Returns true if the first control points column and the
   //! last last control points column are identical.
   //! The tolerance criterion is Resolution from package gp.
-  Standard_EXPORT bool IsVClosed() const override;
+  Standard_EXPORT bool IsVClosed() const final;
 
   //! Returns True if the order of continuity of the surface in the
   //! U direction is N.
   //! Raised if N < 0.
-  Standard_EXPORT bool IsCNu(const int N) const override;
+  Standard_EXPORT bool IsCNu(const int N) const final;
 
   //! Returns True if the order of continuity of the surface
   //! in the V direction is N.
   //! Raised if N < 0.
-  Standard_EXPORT bool IsCNv(const int N) const override;
+  Standard_EXPORT bool IsCNv(const int N) const final;
 
   //! Returns True if the surface is closed in the U direction
   //! and if the B-spline has been turned into a periodic surface
   //! using the function SetUPeriodic.
-  Standard_EXPORT bool IsUPeriodic() const override;
+  Standard_EXPORT bool IsUPeriodic() const final;
 
   //! Returns False if for each row of weights all the weights
   //! are identical.
@@ -846,7 +860,7 @@ public:
   //! Returns True if the surface is closed in the V direction
   //! and if the B-spline has been turned into a periodic
   //! surface using the function SetVPeriodic.
-  Standard_EXPORT bool IsVPeriodic() const override;
+  Standard_EXPORT bool IsVPeriodic() const final;
 
   //! Returns False if for each column of weights all the weights
   //! are identical.
@@ -863,7 +877,7 @@ public:
   //! knots UKnots and VKnots only if the first knots and the
   //! last knots have a multiplicity equal to UDegree + 1 or
   //! VDegree + 1
-  Standard_EXPORT void Bounds(double& U1, double& U2, double& V1, double& V2) const override;
+  Standard_EXPORT void Bounds(double& U1, double& U2, double& V1, double& V2) const final;
 
   //! Returns the continuity of the surface :
   //! C0 : only geometric continuity,
@@ -878,7 +892,7 @@ public:
   //! Example :
   //! If the surface is C1 in the V direction and C2 in the U
   //! direction this function returns Shape = C1.
-  Standard_EXPORT GeomAbs_Shape Continuity() const override;
+  Standard_EXPORT GeomAbs_Shape Continuity() const final;
 
   //! Computes the Index of the UKnots which gives the first
   //! parametric value of the surface in the U direction.
@@ -926,6 +940,7 @@ public:
   //!
   //! Raised if the length of P in the U and V direction
   //! is not equal to NbUpoles and NbVPoles.
+  Standard_DEPRECATED("use Poles() returning const reference instead")
   Standard_EXPORT void Poles(NCollection_Array2<gp_Pnt>& P) const;
 
   //! Returns the poles of the B-spline surface.
@@ -958,6 +973,7 @@ public:
   //!
   //! Raised if the length of Ku is not equal to the number of knots
   //! in the U direction.
+  Standard_DEPRECATED("use UKnots() returning const reference instead")
   Standard_EXPORT void UKnots(NCollection_Array1<double>& Ku) const;
 
   //! Returns the knots in the U direction.
@@ -970,6 +986,7 @@ public:
   //! Ku = {k1, k1, k1, k2, k3, k3, k4, k4, k4}
   //!
   //! Raised if the length of Ku is not equal to NbUPoles + UDegree + 1
+  Standard_DEPRECATED("use UKnotSequence() returning const reference instead")
   Standard_EXPORT void UKnotSequence(NCollection_Array1<double>& Ku) const;
 
   //! Returns the uknots sequence.
@@ -988,6 +1005,7 @@ public:
   //!
   //! Raised if the length of Mu is not equal to the number of
   //! knots in the U direction.
+  Standard_DEPRECATED("use UMultiplicities() returning const reference instead")
   Standard_EXPORT void UMultiplicities(NCollection_Array1<int>& Mu) const;
 
   //! Returns the multiplicities of the knots in the U direction.
@@ -1020,6 +1038,7 @@ public:
   //!
   //! Raised if the length of Kv is not equal to the number of
   //! knots in the V direction.
+  Standard_DEPRECATED("use VKnots() returning const reference instead")
   Standard_EXPORT void VKnots(NCollection_Array1<double>& Kv) const;
 
   //! Returns the knots in the V direction.
@@ -1032,6 +1051,7 @@ public:
   //! Kv = {k1, k1, k1, k2, k3, k3, k4, k4, k4}
   //!
   //! Raised if the length of Kv is not equal to NbVPoles + VDegree + 1
+  Standard_DEPRECATED("use VKnotSequence() returning const reference instead")
   Standard_EXPORT void VKnotSequence(NCollection_Array1<double>& Kv) const;
 
   //! Returns the vknots sequence.
@@ -1050,6 +1070,7 @@ public:
   //!
   //! Raised if the length of Mv is not equal to the number of
   //! knots in the V direction.
+  Standard_DEPRECATED("use VMultiplicities() returning const reference instead")
   Standard_EXPORT void VMultiplicities(NCollection_Array1<int>& Mv) const;
 
   //! Returns the multiplicities of the knots in the V direction.
@@ -1065,60 +1086,38 @@ public:
   //!
   //! Raised if the length of W in the U and V direction is
   //! not equal to NbUPoles and NbVPoles.
+  Standard_DEPRECATED("use Weights() returning const pointer instead")
   Standard_EXPORT void Weights(NCollection_Array2<double>& W) const;
+
+  //! Returns a const reference to the weights array.
+  //! For rational surfaces: the internal owning weights array.
+  //! For non-rational surfaces: a non-owning view of unit weights from BSplSLib.
+  //! The array is always sized to match NbUPoles() x NbVPoles().
+  //! @warning Do NOT modify elements through the returned reference.
+  const NCollection_Array2<double>& WeightsArray() const { return myWeights; }
 
   //! Returns the weights of the B-spline surface.
   //! value and derivatives computation
   Standard_EXPORT const NCollection_Array2<double>* Weights() const;
 
-  //! Returns handle to the poles array (direct access to internal storage).
-  const occ::handle<NCollection_HArray2<gp_Pnt>>& HArrayPoles() const { return poles; }
+  //! Computes the point of parameter (U, V) on the surface.
+  //! Raises an exception on failure.
+  Standard_EXPORT gp_Pnt EvalD0(const double U, const double V) const final;
 
-  //! Returns handle to the weights array.
-  //! Returns null handle for non-rational surfaces.
-  const occ::handle<NCollection_HArray2<double>>& HArrayWeights() const { return weights; }
+  //! Computes the point and first partial derivatives at (U, V).
+  //! Raises an exception if the surface continuity is not C1.
+  Standard_EXPORT Geom_Surface::ResD1 EvalD1(const double U, const double V) const final;
 
-  //! Returns handle to the U flat knots sequence.
-  const occ::handle<NCollection_HArray1<double>>& HArrayUFlatKnots() const { return ufknots; }
+  //! Computes the point and partial derivatives up to 2nd order at (U, V).
+  //! Raises an exception if the surface continuity is not C2.
+  Standard_EXPORT Geom_Surface::ResD2 EvalD2(const double U, const double V) const final;
 
-  //! Returns handle to the V flat knots sequence.
-  const occ::handle<NCollection_HArray1<double>>& HArrayVFlatKnots() const { return vfknots; }
+  //! Computes the point and partial derivatives up to 3rd order at (U, V).
+  //! Raises an exception if the surface continuity is not C3.
+  Standard_EXPORT Geom_Surface::ResD3 EvalD3(const double U, const double V) const final;
 
-  Standard_EXPORT void D0(const double U, const double V, gp_Pnt& P) const override;
-
-  //! Raised if the continuity of the surface is not C1.
-  Standard_EXPORT void D1(const double U,
-                          const double V,
-                          gp_Pnt&      P,
-                          gp_Vec&      D1U,
-                          gp_Vec&      D1V) const override;
-
-  //! Raised if the continuity of the surface is not C2.
-  Standard_EXPORT void D2(const double U,
-                          const double V,
-                          gp_Pnt&      P,
-                          gp_Vec&      D1U,
-                          gp_Vec&      D1V,
-                          gp_Vec&      D2U,
-                          gp_Vec&      D2V,
-                          gp_Vec&      D2UV) const override;
-
-  //! Raised if the continuity of the surface is not C3.
-  Standard_EXPORT void D3(const double U,
-                          const double V,
-                          gp_Pnt&      P,
-                          gp_Vec&      D1U,
-                          gp_Vec&      D1V,
-                          gp_Vec&      D2U,
-                          gp_Vec&      D2V,
-                          gp_Vec&      D2UV,
-                          gp_Vec&      D3U,
-                          gp_Vec&      D3V,
-                          gp_Vec&      D3UUV,
-                          gp_Vec&      D3UVV) const override;
-
-  //! Nu is the order of derivation in the U parametric direction and
-  //! Nv is the order of derivation in the V parametric direction.
+  //! Computes the derivative of order Nu in U and Nv in V at (U, V).
+  //! Raises an exception on failure.
   //!
   //! Raised if the continuity of the surface is not CNu in the U
   //! direction and CNv in the V direction.
@@ -1138,10 +1137,10 @@ public:
   //! the evaluations are the same as if we consider the whole
   //! definition of the surface. Of course the evaluations are
   //! different outside this parametric domain.
-  Standard_EXPORT gp_Vec DN(const double U,
-                            const double V,
-                            const int    Nu,
-                            const int    Nv) const override;
+  Standard_EXPORT gp_Vec EvalDN(const double U,
+                                const double V,
+                                const int    Nu,
+                                const int    Nv) const final;
 
   //! Raised if FromUK1 = ToUK2 or FromVK1 = ToVK2.
   Standard_EXPORT void LocalD0(const double U,
@@ -1229,11 +1228,11 @@ public:
 
   //! Computes the U isoparametric curve.
   //! A B-spline curve is returned.
-  Standard_EXPORT occ::handle<Geom_Curve> UIso(const double U) const override;
+  Standard_EXPORT occ::handle<Geom_Curve> UIso(const double U) const final;
 
   //! Computes the V isoparametric curve.
   //! A B-spline curve is returned.
-  Standard_EXPORT occ::handle<Geom_Curve> VIso(const double V) const override;
+  Standard_EXPORT occ::handle<Geom_Curve> VIso(const double V) const final;
 
   //! Computes the U isoparametric curve.
   //! If CheckRational=False, no try to make it non-rational.
@@ -1247,7 +1246,7 @@ public:
   Standard_EXPORT occ::handle<Geom_Curve> VIso(const double V, const bool CheckRational) const;
 
   //! Applies the transformation T to this BSpline surface.
-  Standard_EXPORT void Transform(const gp_Trsf& T) override;
+  Standard_EXPORT void Transform(const gp_Trsf& T) final;
 
   //! Returns the value of the maximum degree of the normalized
   //! B-spline basis functions in the u and v directions.
@@ -1266,10 +1265,10 @@ public:
   Standard_EXPORT void Resolution(const double Tolerance3D, double& UTolerance, double& VTolerance);
 
   //! Creates a new object which is a copy of this BSpline surface.
-  Standard_EXPORT occ::handle<Geom_Geometry> Copy() const override;
+  Standard_EXPORT occ::handle<Geom_Geometry> Copy() const final;
 
   //! Dumps the content of me into the stream
-  Standard_EXPORT void DumpJson(Standard_OStream& theOStream, int theDepth = -1) const override;
+  Standard_EXPORT void DumpJson(Standard_OStream& theOStream, int theDepth = -1) const final;
 
   DEFINE_STANDARD_RTTIEXT(Geom_BSplineSurface, Geom_BoundedSurface)
 
@@ -1289,36 +1288,36 @@ protected:
                const bool   SegmentInU,
                const bool   SegmentInV);
 
+protected:
+  //! Recompute the flatknots, the knotsdistribution, the continuity for U.
+  void updateUKnots();
+
+  //! Recompute the flatknots, the knotsdistribution, the continuity for V.
+  void updateVKnots();
+
 private:
-  //! Recompute the flatknots, the knotsdistribution, the
-  //! continuity for U.
-  Standard_EXPORT void UpdateUKnots();
-
-  //! Recompute the flatknots, the knotsdistribution, the
-  //! continuity for V.
-  Standard_EXPORT void UpdateVKnots();
-
-  bool                                     urational;
-  bool                                     vrational;
-  bool                                     uperiodic;
-  bool                                     vperiodic;
-  GeomAbs_BSplKnotDistribution             uknotSet;
-  GeomAbs_BSplKnotDistribution             vknotSet;
-  GeomAbs_Shape                            Usmooth;
-  GeomAbs_Shape                            Vsmooth;
-  int                                      udeg;
-  int                                      vdeg;
-  occ::handle<NCollection_HArray2<gp_Pnt>> poles;
-  occ::handle<NCollection_HArray2<double>> weights;
-  occ::handle<NCollection_HArray1<double>> ufknots;
-  occ::handle<NCollection_HArray1<double>> vfknots;
-  occ::handle<NCollection_HArray1<double>> uknots;
-  occ::handle<NCollection_HArray1<double>> vknots;
-  occ::handle<NCollection_HArray1<int>>    umults;
-  occ::handle<NCollection_HArray1<int>>    vmults;
-  double                                   umaxderivinv;
-  double                                   vmaxderivinv;
-  bool                                     maxderivinvok;
+  NCollection_Array2<gp_Pnt>                 myPoles;
+  NCollection_Array2<double>                 myWeights;
+  NCollection_Array1<double>                 myUKnots;
+  NCollection_Array1<double>                 myVKnots;
+  NCollection_Array1<double>                 myUFlatKnots;
+  NCollection_Array1<double>                 myVFlatKnots;
+  NCollection_Array1<int>                    myUMults;
+  NCollection_Array1<int>                    myVMults;
+  occ::handle<GeomEval_RepSurfaceDesc::Base> myEvalRep;
+  int                                        myUDeg          = 0;
+  int                                        myVDeg          = 0;
+  bool                                       myUPeriodic     = false;
+  bool                                       myVPeriodic     = false;
+  bool                                       myURational     = false;
+  bool                                       myVRational     = false;
+  GeomAbs_BSplKnotDistribution               myUKnotSet      = GeomAbs_NonUniform;
+  GeomAbs_BSplKnotDistribution               myVKnotSet      = GeomAbs_NonUniform;
+  GeomAbs_Shape                              myUSmooth       = GeomAbs_C0;
+  GeomAbs_Shape                              myVSmooth       = GeomAbs_C0;
+  double                                     myUMaxDerivInv  = 0.0;
+  double                                     myVMaxDerivInv  = 0.0;
+  bool                                       myMaxDerivInvOk = false;
 };
 
 #endif // _Geom_BSplineSurface_HeaderFile

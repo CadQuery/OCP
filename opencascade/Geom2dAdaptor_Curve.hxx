@@ -22,6 +22,11 @@
 #include <Geom2d_Curve.hxx>
 #include <GeomAbs_CurveType.hxx>
 #include <GeomAbs_Shape.hxx>
+#include <gp_Circ2d.hxx>
+#include <gp_Elips2d.hxx>
+#include <gp_Hypr2d.hxx>
+#include <gp_Lin2d.hxx>
+#include <gp_Parab2d.hxx>
 #include <gp_Pnt2d.hxx>
 #include <Precision.hxx>
 #include <Standard_NullObject.hxx>
@@ -30,13 +35,13 @@
 #include <variant>
 
 class gp_Vec2d;
-class gp_Lin2d;
-class gp_Circ2d;
-class gp_Elips2d;
-class gp_Hypr2d;
-class gp_Parab2d;
 class Geom2d_BezierCurve;
 class Geom2d_BSplineCurve;
+
+namespace Geom2dEval_RepCurveDesc
+{
+class Base;
+}
 
 //! An interface between the services provided by any
 //! curve from the package Geom2d and those required
@@ -52,25 +57,37 @@ public:
   //! Internal structure for 2D offset curve evaluation data.
   struct OffsetData
   {
-    occ::handle<Geom2dAdaptor_Curve> BasisAdaptor; //!< Adaptor for basis curve
-    double                           Offset = 0.0; //!< Offset distance
+    occ::handle<Geom2dAdaptor_Curve>           BasisAdaptor; //!< Adaptor for basis curve
+    double                                     Offset = 0.0; //!< Offset distance
+    occ::handle<Geom2dEval_RepCurveDesc::Base> EvalRep;      //!< Eval representation descriptor
   };
 
   //! Internal structure for Bezier curve evaluation data.
   struct BezierData
   {
-    mutable occ::handle<BSplCLib_Cache> Cache; //!< Cached data for evaluation
+    occ::handle<Geom2d_BezierCurve>            Curve;   //!< Bezier curve to prevent downcasts
+    mutable occ::handle<BSplCLib_Cache>        Cache;   //!< Cached data for evaluation
+    occ::handle<Geom2dEval_RepCurveDesc::Base> EvalRep; //!< Eval representation descriptor
   };
 
   //! Internal structure for BSpline curve evaluation data.
   struct BSplineData
   {
-    occ::handle<Geom2d_BSplineCurve>    Curve; //!< BSpline curve to prevent downcasts
-    mutable occ::handle<BSplCLib_Cache> Cache; //!< Cached data for evaluation
+    occ::handle<Geom2d_BSplineCurve>           Curve;   //!< BSpline curve to prevent downcasts
+    mutable occ::handle<BSplCLib_Cache>        Cache;   //!< Cached data for evaluation
+    occ::handle<Geom2dEval_RepCurveDesc::Base> EvalRep; //!< Eval representation descriptor
   };
 
   //! Variant type for 2D curve-specific evaluation data.
-  using CurveDataVariant = std::variant<std::monostate, OffsetData, BezierData, BSplineData>;
+  using CurveDataVariant = std::variant<std::monostate,
+                                        gp_Lin2d,
+                                        gp_Circ2d,
+                                        gp_Elips2d,
+                                        gp_Hypr2d,
+                                        gp_Parab2d,
+                                        OffsetData,
+                                        BezierData,
+                                        BSplineData>;
 
 public:
   Standard_EXPORT Geom2dAdaptor_Curve();
@@ -113,6 +130,9 @@ public:
     load(theCurve, theUFirst, theULast);
   }
 
+  //! Returns true if the adaptor has been loaded with a curve.
+  bool IsInitialized() const { return !myCurve.IsNull(); }
+
   const occ::handle<Geom2d_Curve>& Curve() const { return myCurve; }
 
   double FirstParameter() const override { return myFirst; }
@@ -149,22 +169,22 @@ public:
   Standard_EXPORT double Period() const override;
 
   //! Computes the point of parameter U on the curve
-  Standard_EXPORT gp_Pnt2d Value(const double U) const override;
+  Standard_EXPORT gp_Pnt2d Value(const double U) const final;
 
   //! Computes the point of parameter U.
-  Standard_EXPORT void D0(const double U, gp_Pnt2d& P) const override;
+  Standard_EXPORT void D0(const double U, gp_Pnt2d& P) const final;
 
   //! Computes the point of parameter U on the curve with its
   //! first derivative.
   //! Raised if the continuity of the current interval
   //! is not C1.
-  Standard_EXPORT void D1(const double U, gp_Pnt2d& P, gp_Vec2d& V) const override;
+  Standard_EXPORT void D1(const double U, gp_Pnt2d& P, gp_Vec2d& V) const final;
 
   //! Returns the point P of parameter U, the first and second
   //! derivatives V1 and V2.
   //! Raised if the continuity of the current interval
   //! is not C2.
-  Standard_EXPORT void D2(const double U, gp_Pnt2d& P, gp_Vec2d& V1, gp_Vec2d& V2) const override;
+  Standard_EXPORT void D2(const double U, gp_Pnt2d& P, gp_Vec2d& V1, gp_Vec2d& V2) const final;
 
   //! Returns the point P of parameter U, the first, the second
   //! and the third derivative.
@@ -174,14 +194,14 @@ public:
                           gp_Pnt2d&    P,
                           gp_Vec2d&    V1,
                           gp_Vec2d&    V2,
-                          gp_Vec2d&    V3) const override;
+                          gp_Vec2d&    V3) const final;
 
   //! The returned vector gives the value of the derivative for the
   //! order of derivation N.
   //! Raised if the continuity of the current interval
   //! is not CN.
   //! Raised if N < 1.
-  Standard_EXPORT gp_Vec2d DN(const double U, const int N) const override;
+  Standard_EXPORT gp_Vec2d DN(const double U, const int N) const final;
 
   //! returns the parametric resolution
   Standard_EXPORT double Resolution(const double Ruv) const override;
@@ -211,6 +231,21 @@ public:
   Standard_EXPORT occ::handle<Geom2d_BezierCurve> Bezier() const override;
 
   Standard_EXPORT occ::handle<Geom2d_BSplineCurve> BSpline() const override;
+
+  //! Point evaluation. Raises an exception on failure.
+  [[nodiscard]] Standard_EXPORT gp_Pnt2d EvalD0(const double theU) const final;
+
+  //! D1 evaluation. Raises an exception on failure.
+  [[nodiscard]] Standard_EXPORT Geom2d_Curve::ResD1 EvalD1(const double theU) const final;
+
+  //! D2 evaluation. Raises an exception on failure.
+  [[nodiscard]] Standard_EXPORT Geom2d_Curve::ResD2 EvalD2(const double theU) const final;
+
+  //! D3 evaluation. Raises an exception on failure.
+  [[nodiscard]] Standard_EXPORT Geom2d_Curve::ResD3 EvalD3(const double theU) const final;
+
+  //! DN evaluation. Raises an exception on failure.
+  [[nodiscard]] Standard_EXPORT gp_Vec2d EvalDN(const double theU, const int theN) const final;
 
 private:
   Standard_EXPORT GeomAbs_Shape LocalContinuity(const double U1, const double U2) const;

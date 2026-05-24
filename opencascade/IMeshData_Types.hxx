@@ -24,7 +24,7 @@
 #include <NCollection_DefineAlloc.hxx>
 #include <NCollection_OccAllocator.hxx>
 #include <IMeshData_ParametersListArrayAdaptor.hxx>
-#include <TColStd_MapIteratorOfPackedMapOfInteger.hxx>
+#include <TColStd_PackedMapOfInteger.hxx>
 #include <NCollection_EBTree.hxx>
 #include <Bnd_Box2d.hxx>
 #include <NCollection_CellFilter.hxx>
@@ -87,19 +87,19 @@ typedef NCollection_Shared<NCollection_EBTree<int, Bnd_Box2d>> BndBox2dTree;
 typedef NCollection_UBTreeFiller<int, Bnd_Box2d>               BndBox2dTreeFiller;
 
 // Vectors
-typedef NCollection_Shared<NCollection_Vector<IFaceHandle>>        VectorOfIFaceHandles;
-typedef NCollection_Shared<NCollection_Vector<IWireHandle>>        VectorOfIWireHandles;
-typedef NCollection_Shared<NCollection_Vector<IEdgeHandle>>        VectorOfIEdgeHandles;
-typedef NCollection_Shared<NCollection_Vector<IPCurveHandle>>      VectorOfIPCurveHandles;
-typedef NCollection_Shared<NCollection_Vector<IEdgePtr>>           VectorOfIEdgePtrs;
-typedef NCollection_Shared<NCollection_Vector<bool>>               VectorOfBoolean;
-typedef NCollection_Shared<NCollection_Vector<int>>                VectorOfInteger;
-typedef NCollection_Shared<NCollection_Vector<TopAbs_Orientation>> VectorOfOrientation;
-typedef NCollection_Shared<NCollection_Vector<BRepMesh_Triangle>>  VectorOfElements;
-typedef NCollection_Shared<NCollection_Vector<BRepMesh_Circle>>    VectorOfCircle;
+typedef NCollection_Shared<NCollection_DynamicArray<IFaceHandle>>        VectorOfIFaceHandles;
+typedef NCollection_Shared<NCollection_DynamicArray<IWireHandle>>        VectorOfIWireHandles;
+typedef NCollection_Shared<NCollection_DynamicArray<IEdgeHandle>>        VectorOfIEdgeHandles;
+typedef NCollection_Shared<NCollection_DynamicArray<IPCurveHandle>>      VectorOfIPCurveHandles;
+typedef NCollection_Shared<NCollection_DynamicArray<IEdgePtr>>           VectorOfIEdgePtrs;
+typedef NCollection_Shared<NCollection_DynamicArray<bool>>               VectorOfBoolean;
+typedef NCollection_Shared<NCollection_DynamicArray<int>>                VectorOfInteger;
+typedef NCollection_Shared<NCollection_DynamicArray<TopAbs_Orientation>> VectorOfOrientation;
+typedef NCollection_Shared<NCollection_DynamicArray<BRepMesh_Triangle>>  VectorOfElements;
+typedef NCollection_Shared<NCollection_DynamicArray<BRepMesh_Circle>>    VectorOfCircle;
 
-typedef NCollection_Shared<NCollection_Array1<BRepMesh_Vertex>> Array1OfVertexOfDelaun;
-typedef NCollection_Shared<NCollection_Vector<BRepMesh_Vertex>> VectorOfVertex;
+typedef NCollection_Shared<NCollection_Array1<BRepMesh_Vertex>>       Array1OfVertexOfDelaun;
+typedef NCollection_Shared<NCollection_DynamicArray<BRepMesh_Vertex>> VectorOfVertex;
 
 // Sequences
 typedef NCollection_Shared<NCollection_Sequence<Bnd_B2d>> SequenceOfBndB2d;
@@ -120,7 +120,7 @@ typedef NCollection_Shared<NCollection_List<gp_Pnt2d>>      ListOfPnt2d;
 typedef NCollection_Shared<NCollection_List<IPCurveHandle>> ListOfIPCurves;
 
 typedef NCollection_Shared<TColStd_PackedMapOfInteger> MapOfInteger;
-typedef TColStd_MapIteratorOfPackedMapOfInteger        IteratorOfMapOfInteger;
+typedef TColStd_PackedMapOfInteger::Iterator           IteratorOfMapOfInteger;
 
 typedef NCollection_CellFilter<BRepMesh_CircleInspector> CircleCellFilter;
 typedef NCollection_CellFilter<BRepMesh_VertexInspector> VertexCellFilter;

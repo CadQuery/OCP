@@ -19,7 +19,10 @@
 #include <OSD_Thread.hxx>
 #include <Standard_Condition.hxx>
 
+#include <Standard_ProgramError.hxx>
+
 #include <atomic>
+#include <optional>
 
 //! Class defining a thread pool for executing algorithms in multi-threaded mode.
 //! Thread pool allocates requested amount of threads and keep them alive
@@ -78,10 +81,10 @@ public:
   int LowerThreadIndex() const { return 0; }
 
   //! Return the upper thread index (last index is reserved for self-thread).
-  int UpperThreadIndex() const { return LowerThreadIndex() + myThreads.Size(); }
+  int UpperThreadIndex() const { return LowerThreadIndex() + myThreads.Length(); }
 
   //! Return the number of threads; >= 1.
-  int NbThreads() const { return myThreads.Size() + 1; }
+  int NbThreads() const { return myThreads.Length() + 1; }
 
   //! Return maximum number of threads to be locked by a single Launcher object by default;
   //! the entire thread pool size is returned by default.
@@ -143,7 +146,8 @@ protected:
   public:
     //! Copy constructor.
     EnumeratedThread(const EnumeratedThread& theCopy)
-        : myPool(nullptr),
+        : OSD_Thread(theCopy),
+          myPool(nullptr),
           myJob(nullptr),
           myWakeEvent(false),
           myIdleEvent(false),
@@ -182,16 +186,16 @@ protected:
     static void* runThread(void* theTask);
 
   private:
-    OSD_ThreadPool*               myPool;
-    JobInterface*                 myJob;
-    occ::handle<Standard_Failure> myFailure;
-    Standard_Condition            myWakeEvent;
-    Standard_Condition            myIdleEvent;
-    int                           myThreadIndex;
-    std::atomic<int>              myUsageCounter;
-    bool                          myIsStarted;
-    bool                          myToCatchFpe;
-    bool                          myIsSelfThread;
+    OSD_ThreadPool*                      myPool;
+    JobInterface*                        myJob;
+    std::optional<Standard_ProgramError> myFailure;
+    Standard_Condition                   myWakeEvent;
+    Standard_Condition                   myIdleEvent;
+    int                                  myThreadIndex;
+    std::atomic<int>                     myUsageCounter;
+    bool                                 myIsStarted;
+    bool                                 myToCatchFpe;
+    bool                                 myIsSelfThread;
   };
 
 public:
@@ -335,9 +339,9 @@ protected:
   void release();
 
   //! Perform the job and catch exceptions.
-  static void performJob(occ::handle<Standard_Failure>& theFailure,
-                         OSD_ThreadPool::JobInterface*  theJob,
-                         int                            theThreadIndex);
+  static void performJob(std::optional<Standard_ProgramError>& theFailure,
+                         OSD_ThreadPool::JobInterface*         theJob,
+                         int                                   theThreadIndex);
 
 private:
   //! This method should not be called (prohibited).

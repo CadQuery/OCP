@@ -20,8 +20,12 @@
 #include <NCollection_TListNode.hxx>
 #include <Standard_MultiplyDefined.hxx>
 #include <Standard_NoSuchObject.hxx>
+#include <Standard_OutOfRange.hxx>
 
 #include <NCollection_DefaultHasher.hxx>
+
+#include <type_traits>
+#include <utility>
 
 /**
  * Purpose:     The DoubleMap  is used to  bind  pairs (Key1,Key2)
@@ -59,8 +63,56 @@ public:
     {
     }
 
-    //! Key1
-    const TheKey1Type& Key1() noexcept { return myKey1; }
+    //! Constructor with 'Next' (move Key1)
+    DoubleMapNode(TheKey1Type&&         theKey1,
+                  const TheKey2Type&    theKey2,
+                  NCollection_ListNode* theNext1,
+                  NCollection_ListNode* theNext2)
+        : NCollection_TListNode<TheKey2Type>(theKey2, theNext1),
+          myKey1(std::forward<TheKey1Type>(theKey1)),
+          myNext2((DoubleMapNode*)theNext2)
+    {
+    }
+
+    //! Constructor with 'Next' (move Key2)
+    DoubleMapNode(const TheKey1Type&    theKey1,
+                  TheKey2Type&&         theKey2,
+                  NCollection_ListNode* theNext1,
+                  NCollection_ListNode* theNext2)
+        : NCollection_TListNode<TheKey2Type>(std::forward<TheKey2Type>(theKey2), theNext1),
+          myKey1(theKey1),
+          myNext2((DoubleMapNode*)theNext2)
+    {
+    }
+
+    //! Constructor with 'Next' (move both keys)
+    DoubleMapNode(TheKey1Type&&         theKey1,
+                  TheKey2Type&&         theKey2,
+                  NCollection_ListNode* theNext1,
+                  NCollection_ListNode* theNext2)
+        : NCollection_TListNode<TheKey2Type>(std::forward<TheKey2Type>(theKey2), theNext1),
+          myKey1(std::forward<TheKey1Type>(theKey1)),
+          myNext2((DoubleMapNode*)theNext2)
+    {
+    }
+
+    //! Constructor with in-place Key2 construction
+    template <typename K1, typename... Args2>
+    DoubleMapNode(K1&& theKey1,
+                  std::in_place_t,
+                  NCollection_ListNode* theNext1,
+                  NCollection_ListNode* theNext2,
+                  Args2&&... theArgs2)
+        : NCollection_TListNode<TheKey2Type>(std::in_place,
+                                             theNext1,
+                                             std::forward<Args2>(theArgs2)...),
+          myKey1(std::forward<K1>(theKey1)),
+          myNext2((DoubleMapNode*)theNext2)
+    {
+    }
+
+    //! Key1 (mutable for destroy+reconstruct)
+    TheKey1Type& Key1() noexcept { return myKey1; }
 
     //! Key2
     const TheKey2Type& Key2() noexcept { return this->myValue; }
@@ -134,9 +186,17 @@ public:
 
   //! Constructor
   explicit NCollection_DoubleMap(
-    const int                                     theNbBuckets,
+    const size_t                                  theNbBuckets,
     const occ::handle<NCollection_BaseAllocator>& theAllocator = nullptr)
       : NCollection_BaseMap(theNbBuckets, false, theAllocator)
+  {
+  }
+
+  //! Constructor (legacy int-taking).
+  explicit NCollection_DoubleMap(
+    const int                                     theNbBuckets,
+    const occ::handle<NCollection_BaseAllocator>& theAllocator = nullptr)
+      : NCollection_DoubleMap(NCollection_BaseMap::NbBucketsFromInt(theNbBuckets), theAllocator)
   {
   }
 
@@ -187,17 +247,17 @@ public:
   }
 
   //! ReSize
-  void ReSize(const int N)
+  void ReSize(const size_t N)
   {
     NCollection_ListNode** ppNewData1 = nullptr;
     NCollection_ListNode** ppNewData2 = nullptr;
-    int                    newBuck;
+    size_t                 newBuck;
     if (BeginResize(N, newBuck, ppNewData1, ppNewData2))
     {
       if (myData1)
       {
         DoubleMapNode *p, *q;
-        for (int i = 0; i <= NbBuckets(); i++)
+        for (size_t i = 0; i <= NbBuckets(); ++i)
         {
           if (myData1[i])
           {
@@ -220,32 +280,84 @@ public:
     }
   }
 
-  //! Bind
+  void ReSize(const int N)
+  {
+    Standard_OutOfRange_Raise_if(N < 0, "NCollection_DoubleMap::ReSize: negative size");
+    ReSize(static_cast<size_t>(N));
+  }
+
+  //! Bind binds the pair (Key1, Key2).
+  //! @throw Standard_MultiplyDefined if Key1 or Key2 is already bound
   void Bind(const TheKey1Type& theKey1, const TheKey2Type& theKey2)
   {
-    if (Resizable())
-      ReSize(Extent());
-    const size_t   iK1 = HashCode1(theKey1, NbBuckets());
-    const size_t   iK2 = HashCode2(theKey2, NbBuckets());
-    DoubleMapNode* pNode;
-    pNode = (DoubleMapNode*)myData1[iK1];
-    while (pNode)
-    {
-      if (IsEqual1(pNode->Key1(), theKey1))
-        throw Standard_MultiplyDefined("NCollection_DoubleMap:Bind");
-      pNode = (DoubleMapNode*)pNode->Next();
-    }
-    pNode = (DoubleMapNode*)myData2[iK2];
-    while (pNode)
-    {
-      if (IsEqual2(pNode->Key2(), theKey2))
-        throw Standard_MultiplyDefined("NCollection_DoubleMap:Bind");
-      pNode = (DoubleMapNode*)pNode->Next();
-    }
-    pNode = new (this->myAllocator) DoubleMapNode(theKey1, theKey2, myData1[iK1], myData2[iK2]);
-    myData1[iK1] = pNode;
-    myData2[iK2] = pNode;
-    Increment();
+    bindImpl(theKey1, theKey2, std::false_type{});
+  }
+
+  //! Bind binds the pair (Key1, Key2).
+  //! @throw Standard_MultiplyDefined if Key1 or Key2 is already bound
+  void Bind(TheKey1Type&& theKey1, const TheKey2Type& theKey2)
+  {
+    bindImpl(std::move(theKey1), theKey2, std::false_type{});
+  }
+
+  //! Bind binds the pair (Key1, Key2).
+  //! @throw Standard_MultiplyDefined if Key1 or Key2 is already bound
+  void Bind(const TheKey1Type& theKey1, TheKey2Type&& theKey2)
+  {
+    bindImpl(theKey1, std::move(theKey2), std::false_type{});
+  }
+
+  //! Bind binds the pair (Key1, Key2).
+  //! @throw Standard_MultiplyDefined if Key1 or Key2 is already bound
+  void Bind(TheKey1Type&& theKey1, TheKey2Type&& theKey2)
+  {
+    bindImpl(std::move(theKey1), std::move(theKey2), std::false_type{});
+  }
+
+  //! TryBind binds the pair (Key1, Key2) only if neither key is already bound.
+  //! @param theKey1 first key to bind
+  //! @param theKey2 second key to bind
+  //! @return true if pair was successfully bound, false if either key already exists
+  bool TryBind(const TheKey1Type& theKey1, const TheKey2Type& theKey2)
+  {
+    return bindImpl(theKey1, theKey2, std::true_type{});
+  }
+
+  //! TryBind binds the pair (Key1, Key2) only if neither key is already bound.
+  //! @param theKey1 first key to bind
+  //! @param theKey2 second key to bind
+  //! @return true if pair was successfully bound, false if either key already exists
+  bool TryBind(TheKey1Type&& theKey1, const TheKey2Type& theKey2)
+  {
+    return bindImpl(std::move(theKey1), theKey2, std::true_type{});
+  }
+
+  //! TryBind binds the pair (Key1, Key2) only if neither key is already bound.
+  //! @param theKey1 first key to bind
+  //! @param theKey2 second key to bind
+  //! @return true if pair was successfully bound, false if either key already exists
+  bool TryBind(const TheKey1Type& theKey1, TheKey2Type&& theKey2)
+  {
+    return bindImpl(theKey1, std::move(theKey2), std::true_type{});
+  }
+
+  //! TryBind binds the pair (Key1, Key2) only if neither key is already bound.
+  //! @param theKey1 first key to bind
+  //! @param theKey2 second key to bind
+  //! @return true if pair was successfully bound, false if either key already exists
+  bool TryBind(TheKey1Type&& theKey1, TheKey2Type&& theKey2)
+  {
+    return bindImpl(std::move(theKey1), std::move(theKey2), std::true_type{});
+  }
+
+  //! TryEmplace constructs keys in-place only if neither key is already bound.
+  //! @param theKey1 first key to bind
+  //! @param theKey2 second key to bind
+  //! @return true if pair was successfully bound, false if either key already exists
+  template <typename K1, typename K2>
+  bool TryEmplace(K1&& theKey1, K2&& theKey2)
+  {
+    return bindImpl(std::forward<K1>(theKey1), std::forward<K2>(theKey2), std::true_type{});
   }
 
   //!* AreBound
@@ -508,16 +620,13 @@ public:
   //! Destructor
   ~NCollection_DoubleMap() override { Clear(true); }
 
-  //! Size
-  int Size() const noexcept { return Extent(); }
-
 protected:
   bool IsEqual1(const TheKey1Type& theKey1, const TheKey1Type& theKey2) const
   {
     return myHasher1(theKey1, theKey2);
   }
 
-  size_t HashCode1(const TheKey1Type& theKey, const int theUpperBound) const
+  size_t HashCode1(const TheKey1Type& theKey, const size_t theUpperBound) const
   {
     return myHasher1(theKey) % theUpperBound + 1;
   }
@@ -527,9 +636,86 @@ protected:
     return myHasher2(theKey1, theKey2);
   }
 
-  size_t HashCode2(const TheKey2Type& theKey, const int theUpperBound) const
+  size_t HashCode2(const TheKey2Type& theKey, const size_t theUpperBound) const
   {
     return myHasher2(theKey) % theUpperBound + 1;
+  }
+
+  //! Lookup for particular key1 in map.
+  //! @param[in] theKey1 key to search
+  //! @param[out] theNode the detected node with equal key. Can be null.
+  //! @param[out] theHash computed bounded hash code for current key.
+  //! @return true if key1 is found
+  bool lookup1(const TheKey1Type& theKey1, DoubleMapNode*& theNode, size_t& theHash) const
+  {
+    theHash = HashCode1(theKey1, NbBuckets());
+    if (IsEmpty())
+      return false;
+    for (theNode = (DoubleMapNode*)myData1[theHash]; theNode;
+         theNode = (DoubleMapNode*)theNode->Next())
+    {
+      if (IsEqual1(theNode->Key1(), theKey1))
+        return true;
+    }
+    return false;
+  }
+
+  //! Lookup for particular key2 in map.
+  //! @param[in] theKey2 key to search
+  //! @param[out] theNode the detected node with equal key. Can be null.
+  //! @param[out] theHash computed bounded hash code for current key.
+  //! @return true if key2 is found
+  bool lookup2(const TheKey2Type& theKey2, DoubleMapNode*& theNode, size_t& theHash) const
+  {
+    theHash = HashCode2(theKey2, NbBuckets());
+    if (IsEmpty())
+      return false;
+    for (theNode = (DoubleMapNode*)myData2[theHash]; theNode;
+         theNode = (DoubleMapNode*)theNode->Next2())
+    {
+      if (IsEqual2(theNode->Key2(), theKey2))
+        return true;
+    }
+    return false;
+  }
+
+  //! Implementation helper for Bind/TryBind.
+  //! @tparam K1 forwarding reference type for key1
+  //! @tparam K2 forwarding reference type for key2
+  //! @tparam IsTry if true, returns false on existing key; if false, throws exception
+  //! @param theKey1 first key to bind
+  //! @param theKey2 second key to bind
+  //! @return true if pair was successfully bound, false if either key already exists (only for
+  //! IsTry=true)
+  template <typename K1, typename K2, bool IsTry>
+  bool bindImpl(K1&& theKey1, K2&& theKey2, std::bool_constant<IsTry>)
+  {
+    if (Resizable())
+      ReSize(Extent());
+    DoubleMapNode* aNode;
+    size_t         iK1, iK2;
+    if (lookup1(theKey1, aNode, iK1))
+    {
+      if constexpr (IsTry)
+        return false;
+      else
+        throw Standard_MultiplyDefined("NCollection_DoubleMap:Bind");
+    }
+    if (lookup2(theKey2, aNode, iK2))
+    {
+      if constexpr (IsTry)
+        return false;
+      else
+        throw Standard_MultiplyDefined("NCollection_DoubleMap:Bind");
+    }
+    DoubleMapNode* pNode = new (this->myAllocator) DoubleMapNode(std::forward<K1>(theKey1),
+                                                                 std::forward<K2>(theKey2),
+                                                                 myData1[iK1],
+                                                                 myData2[iK2]);
+    myData1[iK1]         = pNode;
+    myData2[iK2]         = pNode;
+    Increment();
+    return true;
   }
 
 protected:

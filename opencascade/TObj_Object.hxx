@@ -19,7 +19,8 @@
 #define TObj_Object_HeaderFile
 
 #include <TObj_DeletingMode.hxx>
-#include <TObj_SequenceOfObject.hxx>
+#include <NCollection_Sequence.hxx>
+#include <NCollection_HSequence.hxx>
 
 #include <TDF_Label.hxx>
 #include <gp_XYZ.hxx>
@@ -35,6 +36,7 @@ class TCollection_HAsciiString;
 #include <NCollection_Array1.hxx>
 #include <NCollection_HArray1.hxx>
 #include <TCollection_ExtendedString.hxx>
+class TObj_Object;
 
 //! Basis class for transient objects in OCAF-based models
 
@@ -173,7 +175,7 @@ public:
   Standard_EXPORT bool SetName(const occ::handle<TCollection_HAsciiString>& theName) const;
 
   //! Sets name of the object. Returns False if theName is not unique.
-  Standard_EXPORT bool SetName(const char* name) const;
+  Standard_EXPORT bool SetName(const char* const theName) const;
 
   //! Returns name for copy
   //! default implementation returns the same name
