@@ -1,7 +1,4 @@
-// Created on: 1991-07-18
-// Created by: Arnaud BOUZY
-// Copyright (c) 1991-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,12 +11,26 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef ExprIntrp_SequenceOfNamedExpression_HeaderFile
-#define ExprIntrp_SequenceOfNamedExpression_HeaderFile
+//! @file ExprIntrp_SequenceOfNamedExpression.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection_Sequence<opencascade::handle<Expr_NamedExpression>> directly
+//!             instead.
 
+#ifndef _ExprIntrp_SequenceOfNamedExpression_hxx
+#define _ExprIntrp_SequenceOfNamedExpression_hxx
+
+#include <Standard_Macro.hxx>
 #include <Expr_NamedExpression.hxx>
 #include <NCollection_Sequence.hxx>
 
-typedef NCollection_Sequence<Handle(Expr_NamedExpression)> ExprIntrp_SequenceOfNamedExpression;
+Standard_HEADER_DEPRECATED(
+  "ExprIntrp_SequenceOfNamedExpression.hxx is deprecated since OCCT 8.0.0. Use "
+  "NCollection_Sequence<opencascade::handle<Expr_NamedExpression>> directly.")
 
-#endif
+  Standard_DEPRECATED("ExprIntrp_SequenceOfNamedExpression is deprecated, use "
+                      "NCollection_Sequence<opencascade::handle<Expr_NamedExpression>> directly")
+typedef NCollection_Sequence<opencascade::handle<Expr_NamedExpression>>
+  ExprIntrp_SequenceOfNamedExpression;
+
+#endif // _ExprIntrp_SequenceOfNamedExpression_hxx

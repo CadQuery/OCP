@@ -34,27 +34,27 @@ public:
 
   //! Computes the regularity at the junction between C1 and
   //! C2. The booleans r1 and r2 are true if the curves must
-  //! be taken reversed.  The point u1 on C1 and the point
+  //! be taken reversed. The point u1 on C1 and the point
   //! u2 on C2 must be confused.
   //! tl and ta are the linear and angular tolerance used two
   //! compare the derivative.
-  Standard_EXPORT static GeomAbs_Shape Continuity(const Handle(Geom_Curve)& C1,
-                                                  const Handle(Geom_Curve)& C2,
-                                                  const Standard_Real       u1,
-                                                  const Standard_Real       u2,
-                                                  const Standard_Boolean    r1,
-                                                  const Standard_Boolean    r2,
-                                                  const Standard_Real       tl,
-                                                  const Standard_Real       ta);
+  Standard_EXPORT static GeomAbs_Shape Continuity(const occ::handle<Geom_Curve>& C1,
+                                                  const occ::handle<Geom_Curve>& C2,
+                                                  const double                   u1,
+                                                  const double                   u2,
+                                                  const bool                     r1,
+                                                  const bool                     r2,
+                                                  const double                   tl,
+                                                  const double                   ta);
 
-  //! The  same  as  preceding   but   using  the   standard
+  //! The same as preceding but using the standard
   //! tolerances from package Precision.
-  Standard_EXPORT static GeomAbs_Shape Continuity(const Handle(Geom_Curve)& C1,
-                                                  const Handle(Geom_Curve)& C2,
-                                                  const Standard_Real       u1,
-                                                  const Standard_Real       u2,
-                                                  const Standard_Boolean    r1,
-                                                  const Standard_Boolean    r2);
+  Standard_EXPORT static GeomAbs_Shape Continuity(const occ::handle<Geom_Curve>& C1,
+                                                  const occ::handle<Geom_Curve>& C2,
+                                                  const double                   u1,
+                                                  const double                   u2,
+                                                  const bool                     r1,
+                                                  const bool                     r2);
 };
 
 #endif // _GeomLProp_HeaderFile

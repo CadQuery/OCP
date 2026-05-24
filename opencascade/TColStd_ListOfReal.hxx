@@ -1,5 +1,4 @@
-// Copyright (c) 1998-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -12,12 +11,24 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef TColStd_ListOfReal_HeaderFile
-#define TColStd_ListOfReal_HeaderFile
+//! @file TColStd_ListOfReal.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection types directly instead.
 
+#ifndef _TColStd_ListOfReal_hxx
+#define _TColStd_ListOfReal_hxx
+
+#include <Standard_Macro.hxx>
 #include <NCollection_List.hxx>
 
-typedef NCollection_List<Standard_Real>           TColStd_ListOfReal;
-typedef NCollection_List<Standard_Real>::Iterator TColStd_ListIteratorOfListOfReal;
+Standard_HEADER_DEPRECATED(
+  "TColStd_ListOfReal.hxx is deprecated since OCCT 8.0.0. Use NCollection types directly.")
 
-#endif
+  Standard_DEPRECATED("TColStd_ListOfReal is deprecated, use NCollection_List<double> directly")
+typedef NCollection_List<double> TColStd_ListOfReal;
+Standard_DEPRECATED(
+  "TColStd_ListIteratorOfListOfReal is deprecated, use NCollection_List<double>::Iterator directly")
+typedef NCollection_List<double>::Iterator TColStd_ListIteratorOfListOfReal;
+
+#endif // _TColStd_ListOfReal_hxx

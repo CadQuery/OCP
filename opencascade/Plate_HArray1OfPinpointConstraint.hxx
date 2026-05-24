@@ -1,7 +1,4 @@
-// Created on: 1995-10-17
-// Created by: Andre LIEUTIER
-// Copyright (c) 1995-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,13 +11,24 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef Plate_HArray1OfPinpointConstraint_HeaderFile
-#define Plate_HArray1OfPinpointConstraint_HeaderFile
+//! @file Plate_HArray1OfPinpointConstraint.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection_HArray1<Plate_PinpointConstraint> directly instead.
 
+#ifndef _Plate_HArray1OfPinpointConstraint_hxx
+#define _Plate_HArray1OfPinpointConstraint_hxx
+
+#include <Standard_Macro.hxx>
 #include <Plate_PinpointConstraint.hxx>
 #include <Plate_Array1OfPinpointConstraint.hxx>
-#include <NCollection_DefineHArray1.hxx>
+#include <NCollection_HArray1.hxx>
 
-DEFINE_HARRAY1(Plate_HArray1OfPinpointConstraint, Plate_Array1OfPinpointConstraint)
+Standard_HEADER_DEPRECATED("Plate_HArray1OfPinpointConstraint.hxx is deprecated since OCCT 8.0.0. "
+                           "Use NCollection_HArray1<Plate_PinpointConstraint> directly.")
 
-#endif
+  Standard_DEPRECATED("Plate_HArray1OfPinpointConstraint is deprecated, use "
+                      "NCollection_HArray1<Plate_PinpointConstraint> directly")
+typedef NCollection_HArray1<Plate_PinpointConstraint> Plate_HArray1OfPinpointConstraint;
+
+#endif // _Plate_HArray1OfPinpointConstraint_hxx

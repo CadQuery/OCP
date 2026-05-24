@@ -21,16 +21,16 @@
 #include <Standard_DefineAlloc.hxx>
 #include <Standard_Handle.hxx>
 
-#include <TColStd_HArray1OfInteger.hxx>
 #include <Standard_Integer.hxx>
-#include <TColStd_Array1OfInteger.hxx>
+#include <NCollection_Array1.hxx>
+#include <NCollection_HArray1.hxx>
 class Law_BSpline;
 
 //! For a B-spline curve the discontinuities are localised at the
 //! knot values and between two knots values the B-spline is
 //! infinitely continuously differentiable.
-//! At a knot of range index the continuity is equal to :
-//! Degree - Mult (Index)   where  Degree is the degree of the
+//! At a knot of range index the continuity is equal to:
+//! Degree - Mult (Index) where Degree is the degree of the
 //! basis B-spline functions and Mult the multiplicity of the knot
 //! of range Index.
 //! If for your computation you need to have B-spline curves with a
@@ -54,27 +54,26 @@ public:
   //! the curve into arcs with a continuity equal to ContinuityRange.
   //!
   //! Raised if ContinuityRange is not greater or equal zero.
-  Standard_EXPORT Law_BSplineKnotSplitting(const Handle(Law_BSpline)& BasisLaw,
-                                           const Standard_Integer     ContinuityRange);
+  Standard_EXPORT Law_BSplineKnotSplitting(const occ::handle<Law_BSpline>& BasisLaw,
+                                           const int                       ContinuityRange);
 
   //! Returns the number of knots corresponding to the splitting.
-  Standard_EXPORT Standard_Integer NbSplits() const;
+  Standard_EXPORT int NbSplits() const;
 
   //! Returns the indexes of the BSpline curve knots corresponding to
   //! the splitting.
   //!
   //! Raised if the length of SplitValues is not equal to NbSPlit.
-  Standard_EXPORT void Splitting(TColStd_Array1OfInteger& SplitValues) const;
+  Standard_EXPORT void Splitting(NCollection_Array1<int>& SplitValues) const;
 
   //! Returns the index of the knot corresponding to the splitting
   //! of range Index.
   //!
   //! Raised if Index < 1 or Index > NbSplits
-  Standard_EXPORT Standard_Integer SplitValue(const Standard_Integer Index) const;
+  Standard_EXPORT int SplitValue(const int Index) const;
 
-protected:
 private:
-  Handle(TColStd_HArray1OfInteger) splitIndexes;
+  occ::handle<NCollection_HArray1<int>> splitIndexes;
 };
 
 #endif // _Law_BSplineKnotSplitting_HeaderFile

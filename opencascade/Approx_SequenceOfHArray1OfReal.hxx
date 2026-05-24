@@ -1,7 +1,4 @@
-// Created on: 1993-01-26
-// Created by: Laurent PAINNOT
-// Copyright (c) 1993-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,12 +11,26 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef Approx_SequenceOfHArray1OfReal_HeaderFile
-#define Approx_SequenceOfHArray1OfReal_HeaderFile
+//! @file Approx_SequenceOfHArray1OfReal.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection_Sequence<opencascade::handle<TColStd_HArray1OfReal>> directly
+//!             instead.
 
+#ifndef _Approx_SequenceOfHArray1OfReal_hxx
+#define _Approx_SequenceOfHArray1OfReal_hxx
+
+#include <Standard_Macro.hxx>
 #include <NCollection_Sequence.hxx>
 #include <TColStd_HArray1OfReal.hxx>
 
-typedef NCollection_Sequence<Handle(TColStd_HArray1OfReal)> Approx_SequenceOfHArray1OfReal;
+Standard_HEADER_DEPRECATED(
+  "Approx_SequenceOfHArray1OfReal.hxx is deprecated since OCCT 8.0.0. Use "
+  "NCollection_Sequence<opencascade::handle<TColStd_HArray1OfReal>> directly.")
 
-#endif
+  Standard_DEPRECATED("Approx_SequenceOfHArray1OfReal is deprecated, use "
+                      "NCollection_Sequence<opencascade::handle<TColStd_HArray1OfReal>> directly")
+typedef NCollection_Sequence<opencascade::handle<TColStd_HArray1OfReal>>
+  Approx_SequenceOfHArray1OfReal;
+
+#endif // _Approx_SequenceOfHArray1OfReal_hxx

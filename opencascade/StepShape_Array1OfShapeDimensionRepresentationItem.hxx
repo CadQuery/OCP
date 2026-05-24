@@ -1,6 +1,4 @@
-// Created on: 2015-07-21
-// Created by: Irina KRYLOVA
-// Copyright (c) 2015 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -13,12 +11,25 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _StepShape_Array1OfShapeDimensionRepresentationItem_HeaderFile
-#define _StepShape_Array1OfShapeDimensionRepresentationItem_HeaderFile
+//! @file StepShape_Array1OfShapeDimensionRepresentationItem.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection_Array1<StepShape_ShapeDimensionRepresentationItem> directly instead.
 
+#ifndef _StepShape_Array1OfShapeDimensionRepresentationItem_hxx
+#define _StepShape_Array1OfShapeDimensionRepresentationItem_hxx
+
+#include <Standard_Macro.hxx>
 #include <StepShape_ShapeDimensionRepresentationItem.hxx>
 #include <NCollection_Array1.hxx>
 
+Standard_HEADER_DEPRECATED(
+  "StepShape_Array1OfShapeDimensionRepresentationItem.hxx is deprecated since OCCT 8.0.0. Use "
+  "NCollection_Array1<StepShape_ShapeDimensionRepresentationItem> directly.")
+
+  Standard_DEPRECATED("StepShape_Array1OfShapeDimensionRepresentationItem is deprecated, use "
+                      "NCollection_Array1<StepShape_ShapeDimensionRepresentationItem> directly")
 typedef NCollection_Array1<StepShape_ShapeDimensionRepresentationItem>
   StepShape_Array1OfShapeDimensionRepresentationItem;
-#endif // _StepShape_Array1OfShapeDimensionRepresentationItem_HeaderFile
+
+#endif // _StepShape_Array1OfShapeDimensionRepresentationItem_hxx

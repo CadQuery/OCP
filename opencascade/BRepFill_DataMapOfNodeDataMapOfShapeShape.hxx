@@ -1,7 +1,4 @@
-// Created on: 1994-03-03
-// Created by: Joelle CHAUVET
-// Copyright (c) 1994-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,16 +11,31 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef BRepFill_DataMapOfNodeDataMapOfShapeShape_HeaderFile
-#define BRepFill_DataMapOfNodeDataMapOfShapeShape_HeaderFile
+//! @file BRepFill_DataMapOfNodeDataMapOfShapeShape.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection types directly instead.
 
+#ifndef _BRepFill_DataMapOfNodeDataMapOfShapeShape_hxx
+#define _BRepFill_DataMapOfNodeDataMapOfShapeShape_hxx
+
+#include <Standard_Macro.hxx>
 #include <MAT_Node.hxx>
 #include <TopTools_DataMapOfShapeShape.hxx>
 #include <NCollection_DataMap.hxx>
 
-typedef NCollection_DataMap<Handle(MAT_Node), TopTools_DataMapOfShapeShape>
+Standard_HEADER_DEPRECATED("BRepFill_DataMapOfNodeDataMapOfShapeShape.hxx is deprecated since OCCT "
+                           "8.0.0. Use NCollection types directly.")
+
+  Standard_DEPRECATED(
+    "BRepFill_DataMapOfNodeDataMapOfShapeShape is deprecated, use "
+    "NCollection_DataMap<opencascade::handle<MAT_Node>, TopTools_DataMapOfShapeShape> directly")
+typedef NCollection_DataMap<opencascade::handle<MAT_Node>, TopTools_DataMapOfShapeShape>
   BRepFill_DataMapOfNodeDataMapOfShapeShape;
-typedef NCollection_DataMap<Handle(MAT_Node), TopTools_DataMapOfShapeShape>::Iterator
+Standard_DEPRECATED("BRepFill_DataMapIteratorOfDataMapOfNodeDataMapOfShapeShape is deprecated, use "
+                    "NCollection_DataMap<opencascade::handle<MAT_Node>, "
+                    "TopTools_DataMapOfShapeShape>::Iterator directly")
+typedef NCollection_DataMap<opencascade::handle<MAT_Node>, TopTools_DataMapOfShapeShape>::Iterator
   BRepFill_DataMapIteratorOfDataMapOfNodeDataMapOfShapeShape;
 
-#endif
+#endif // _BRepFill_DataMapOfNodeDataMapOfShapeShape_hxx

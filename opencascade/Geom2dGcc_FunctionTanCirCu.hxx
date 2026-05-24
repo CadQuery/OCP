@@ -38,26 +38,23 @@ public:
   //! Computes the value of the function F for the variable X.
   //! It returns True if the computation is successfully done,
   //! False otherwise.
-  Standard_EXPORT Standard_Boolean Value(const Standard_Real X, Standard_Real& F);
+  Standard_EXPORT bool Value(const double X, double& F) override;
 
   //! Computes the derivative of the function F for the variable X.
   //! It returns True if the computation is successfully done,
   //! False otherwise.
-  Standard_EXPORT Standard_Boolean Derivative(const Standard_Real X, Standard_Real& Deriv);
+  Standard_EXPORT bool Derivative(const double X, double& Deriv) override;
 
   //! Computes the value and the derivative of the function F
   //! for the variable X.
   //! It returns True if the computation is successfully done,
   //! False otherwise.
-  Standard_EXPORT Standard_Boolean Values(const Standard_Real X,
-                                          Standard_Real&      F,
-                                          Standard_Real&      Deriv);
+  Standard_EXPORT bool Values(const double X, double& F, double& Deriv) override;
 
-protected:
 private:
   gp_Circ2d           TheCirc;
   Geom2dAdaptor_Curve Curve;
-  Standard_Real       myWeight;
+  double              myWeight;
 };
 
 #endif // _Geom2dGcc_FunctionTanCirCu_HeaderFile

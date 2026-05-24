@@ -1,7 +1,4 @@
-// Created on: 1991-05-23
-// Created by: Didier PIFFAULT
-// Copyright (c) 1991-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,12 +11,23 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef Intf_SeqOfSectionPoint_HeaderFile
-#define Intf_SeqOfSectionPoint_HeaderFile
+//! @file Intf_SeqOfSectionPoint.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection_Sequence<Intf_SectionPoint> directly instead.
 
+#ifndef _Intf_SeqOfSectionPoint_hxx
+#define _Intf_SeqOfSectionPoint_hxx
+
+#include <Standard_Macro.hxx>
 #include <Intf_SectionPoint.hxx>
 #include <NCollection_Sequence.hxx>
 
+Standard_HEADER_DEPRECATED("Intf_SeqOfSectionPoint.hxx is deprecated since OCCT 8.0.0. Use "
+                           "NCollection_Sequence<Intf_SectionPoint> directly.")
+
+  Standard_DEPRECATED(
+    "Intf_SeqOfSectionPoint is deprecated, use NCollection_Sequence<Intf_SectionPoint> directly")
 typedef NCollection_Sequence<Intf_SectionPoint> Intf_SeqOfSectionPoint;
 
-#endif
+#endif // _Intf_SeqOfSectionPoint_hxx

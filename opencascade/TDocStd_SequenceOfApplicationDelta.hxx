@@ -1,7 +1,4 @@
-// Created on: 1999-04-07
-// Created by: Denis PASCAL
-// Copyright (c) 1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,12 +11,27 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef TDocStd_SequenceOfApplicationDelta_HeaderFile
-#define TDocStd_SequenceOfApplicationDelta_HeaderFile
+//! @file TDocStd_SequenceOfApplicationDelta.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection_Sequence<opencascade::handle<TDocStd_ApplicationDelta>> directly
+//!             instead.
 
+#ifndef _TDocStd_SequenceOfApplicationDelta_hxx
+#define _TDocStd_SequenceOfApplicationDelta_hxx
+
+#include <Standard_Macro.hxx>
 #include <TDocStd_ApplicationDelta.hxx>
 #include <NCollection_Sequence.hxx>
 
-typedef NCollection_Sequence<Handle(TDocStd_ApplicationDelta)> TDocStd_SequenceOfApplicationDelta;
+Standard_HEADER_DEPRECATED(
+  "TDocStd_SequenceOfApplicationDelta.hxx is deprecated since OCCT 8.0.0. Use "
+  "NCollection_Sequence<opencascade::handle<TDocStd_ApplicationDelta>> directly.")
 
-#endif
+  Standard_DEPRECATED(
+    "TDocStd_SequenceOfApplicationDelta is deprecated, use "
+    "NCollection_Sequence<opencascade::handle<TDocStd_ApplicationDelta>> directly")
+typedef NCollection_Sequence<opencascade::handle<TDocStd_ApplicationDelta>>
+  TDocStd_SequenceOfApplicationDelta;
+
+#endif // _TDocStd_SequenceOfApplicationDelta_hxx

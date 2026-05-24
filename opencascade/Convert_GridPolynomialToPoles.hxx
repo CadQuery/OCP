@@ -21,11 +21,11 @@
 #include <Standard_DefineAlloc.hxx>
 #include <Standard_Handle.hxx>
 
-#include <TColStd_HArray1OfReal.hxx>
-#include <TColStd_HArray1OfInteger.hxx>
-#include <TColgp_HArray2OfPnt.hxx>
-#include <Standard_Integer.hxx>
-#include <TColStd_HArray2OfInteger.hxx>
+#include <NCollection_Array1.hxx>
+#include <NCollection_HArray1.hxx>
+#include <gp_Pnt.hxx>
+#include <NCollection_Array2.hxx>
+#include <NCollection_HArray2.hxx>
 
 //! Convert a grid of Polynomial Surfaces
 //! that are have continuity CM to an
@@ -36,21 +36,21 @@ class Convert_GridPolynomialToPoles
 public:
   DEFINE_STANDARD_ALLOC
 
-  //! To    only  one   polynomial  Surface.
-  //! The  Length  of  <PolynomialUIntervals> and <PolynomialVIntervals>
+  //! To only one polynomial Surface.
+  //! The Length of <PolynomialUIntervals> and <PolynomialVIntervals>
   //! have to be 2.
   //! This values defined the parametric domain of the Polynomial Equation.
   //!
-  //! Coefficients :
+  //! Coefficients:
   //! The <Coefficients> have to be formatted than an "C array"
   //! [MaxUDegree+1] [MaxVDegree+1] [3]
   Standard_EXPORT Convert_GridPolynomialToPoles(
-    const Standard_Integer                  MaxUDegree,
-    const Standard_Integer                  MaxVDegree,
-    const Handle(TColStd_HArray1OfInteger)& NumCoeff,
-    const Handle(TColStd_HArray1OfReal)&    Coefficients,
-    const Handle(TColStd_HArray1OfReal)&    PolynomialUIntervals,
-    const Handle(TColStd_HArray1OfReal)&    PolynomialVIntervals);
+    const int                                       MaxUDegree,
+    const int                                       MaxVDegree,
+    const occ::handle<NCollection_HArray1<int>>&    NumCoeff,
+    const occ::handle<NCollection_HArray1<double>>& Coefficients,
+    const occ::handle<NCollection_HArray1<double>>& PolynomialUIntervals,
+    const occ::handle<NCollection_HArray1<double>>& PolynomialVIntervals);
 
   //! To one grid of polynomial Surface.
   //! Warning!
@@ -60,85 +60,92 @@ public:
   //! <TrueUIntervals>, <TrueVIntervals> :
   //! this is the true parameterisation for the composite surface
   //!
-  //! Coefficients :
+  //! Coefficients:
   //! The Coefficients have to be formatted than an "C array"
   //! [NbVSurfaces] [NBUSurfaces] [MaxUDegree+1] [MaxVDegree+1] [3]
-  //! raises DomainError    if <NumCoeffPerSurface> is not a
+  //! raises DomainError if <NumCoeffPerSurface> is not a
   //! [1, NbVSurfaces*NbUSurfaces, 1,2] array.
   //! if <Coefficients> is not a
   Standard_EXPORT Convert_GridPolynomialToPoles(
-    const Standard_Integer                  NbUSurfaces,
-    const Standard_Integer                  NBVSurfaces,
-    const Standard_Integer                  UContinuity,
-    const Standard_Integer                  VContinuity,
-    const Standard_Integer                  MaxUDegree,
-    const Standard_Integer                  MaxVDegree,
-    const Handle(TColStd_HArray2OfInteger)& NumCoeffPerSurface,
-    const Handle(TColStd_HArray1OfReal)&    Coefficients,
-    const Handle(TColStd_HArray1OfReal)&    PolynomialUIntervals,
-    const Handle(TColStd_HArray1OfReal)&    PolynomialVIntervals,
-    const Handle(TColStd_HArray1OfReal)&    TrueUIntervals,
-    const Handle(TColStd_HArray1OfReal)&    TrueVIntervals);
+    const int                                       NbUSurfaces,
+    const int                                       NBVSurfaces,
+    const int                                       UContinuity,
+    const int                                       VContinuity,
+    const int                                       MaxUDegree,
+    const int                                       MaxVDegree,
+    const occ::handle<NCollection_HArray2<int>>&    NumCoeffPerSurface,
+    const occ::handle<NCollection_HArray1<double>>& Coefficients,
+    const occ::handle<NCollection_HArray1<double>>& PolynomialUIntervals,
+    const occ::handle<NCollection_HArray1<double>>& PolynomialVIntervals,
+    const occ::handle<NCollection_HArray1<double>>& TrueUIntervals,
+    const occ::handle<NCollection_HArray1<double>>& TrueVIntervals);
 
-  Standard_EXPORT void Perform(const Standard_Integer                  UContinuity,
-                               const Standard_Integer                  VContinuity,
-                               const Standard_Integer                  MaxUDegree,
-                               const Standard_Integer                  MaxVDegree,
-                               const Handle(TColStd_HArray2OfInteger)& NumCoeffPerSurface,
-                               const Handle(TColStd_HArray1OfReal)&    Coefficients,
-                               const Handle(TColStd_HArray1OfReal)&    PolynomialUIntervals,
-                               const Handle(TColStd_HArray1OfReal)&    PolynomialVIntervals,
-                               const Handle(TColStd_HArray1OfReal)&    TrueUIntervals,
-                               const Handle(TColStd_HArray1OfReal)&    TrueVIntervals);
+  //! Returns the number of poles in the U parametric direction.
+  [[nodiscard]] Standard_EXPORT int NbUPoles() const;
 
-  Standard_EXPORT Standard_Integer NbUPoles() const;
+  //! Returns the number of poles in the V parametric direction.
+  [[nodiscard]] Standard_EXPORT int NbVPoles() const;
 
-  Standard_EXPORT Standard_Integer NbVPoles() const;
+  //! Returns the poles of the BSpline Surface.
+  [[nodiscard]] Standard_EXPORT const NCollection_Array2<gp_Pnt>& Poles() const;
 
-  //! returns the poles of the BSpline Surface
-  Standard_EXPORT const Handle(TColgp_HArray2OfPnt)& Poles() const;
+  //! Returns the degree in the U parametric direction.
+  [[nodiscard]] Standard_EXPORT int UDegree() const;
 
-  Standard_EXPORT Standard_Integer UDegree() const;
+  //! Returns the degree in the V parametric direction.
+  [[nodiscard]] Standard_EXPORT int VDegree() const;
 
-  Standard_EXPORT Standard_Integer VDegree() const;
+  //! Returns the number of knots in the U parametric direction.
+  [[nodiscard]] Standard_EXPORT int NbUKnots() const;
 
-  Standard_EXPORT Standard_Integer NbUKnots() const;
+  //! Returns the number of knots in the V parametric direction.
+  [[nodiscard]] Standard_EXPORT int NbVKnots() const;
 
-  Standard_EXPORT Standard_Integer NbVKnots() const;
+  //! Returns the knots in the U direction.
+  [[nodiscard]] Standard_EXPORT const NCollection_Array1<double>& UKnots() const;
 
-  //! Knots in the U direction
-  Standard_EXPORT const Handle(TColStd_HArray1OfReal)& UKnots() const;
+  //! Returns the knots in the V direction.
+  [[nodiscard]] Standard_EXPORT const NCollection_Array1<double>& VKnots() const;
 
-  //! Knots in the V direction
-  Standard_EXPORT const Handle(TColStd_HArray1OfReal)& VKnots() const;
+  //! Returns the multiplicities of the knots in the U direction.
+  [[nodiscard]] Standard_EXPORT const NCollection_Array1<int>& UMultiplicities() const;
 
-  //! Multiplicities of the knots in the U direction
-  Standard_EXPORT const Handle(TColStd_HArray1OfInteger)& UMultiplicities() const;
+  //! Returns the multiplicities of the knots in the V direction.
+  [[nodiscard]] Standard_EXPORT const NCollection_Array1<int>& VMultiplicities() const;
 
-  //! Multiplicities of the knots in the V direction
-  Standard_EXPORT const Handle(TColStd_HArray1OfInteger)& VMultiplicities() const;
+  //! Returns true if the conversion was successful.
+  [[nodiscard]] Standard_EXPORT bool IsDone() const;
 
-  Standard_EXPORT Standard_Boolean IsDone() const;
-
-protected:
 private:
-  Standard_EXPORT void BuildArray(const Standard_Integer               Degree,
-                                  const Handle(TColStd_HArray1OfReal)& Knots,
-                                  const Standard_Integer               Continuty,
-                                  Handle(TColStd_HArray1OfReal)&       FlatKnots,
-                                  Handle(TColStd_HArray1OfInteger)&    Mults,
-                                  Handle(TColStd_HArray1OfReal)&       Parameters) const;
+  Standard_EXPORT void Perform(const int                                       UContinuity,
+                               const int                                       VContinuity,
+                               const int                                       MaxUDegree,
+                               const int                                       MaxVDegree,
+                               const occ::handle<NCollection_HArray2<int>>&    NumCoeffPerSurface,
+                               const occ::handle<NCollection_HArray1<double>>& Coefficients,
+                               const occ::handle<NCollection_HArray1<double>>& PolynomialUIntervals,
+                               const occ::handle<NCollection_HArray1<double>>& PolynomialVIntervals,
+                               const occ::handle<NCollection_HArray1<double>>& TrueUIntervals,
+                               const occ::handle<NCollection_HArray1<double>>& TrueVIntervals);
 
-  Handle(TColStd_HArray1OfReal)    myUFlatKnots;
-  Handle(TColStd_HArray1OfReal)    myVFlatKnots;
-  Handle(TColStd_HArray1OfReal)    myUKnots;
-  Handle(TColStd_HArray1OfReal)    myVKnots;
-  Handle(TColStd_HArray1OfInteger) myUMults;
-  Handle(TColStd_HArray1OfInteger) myVMults;
-  Handle(TColgp_HArray2OfPnt)      myPoles;
-  Standard_Integer                 myUDegree;
-  Standard_Integer                 myVDegree;
-  Standard_Boolean                 myDone;
+  Standard_EXPORT void BuildArray(const int                         Degree,
+                                  const NCollection_Array1<double>& Knots,
+                                  const int                         Continuity,
+                                  NCollection_Array1<double>&       FlatKnots,
+                                  NCollection_Array1<int>&          Mults,
+                                  NCollection_Array1<double>&       Parameters) const;
+
+private:
+  NCollection_Array1<double> myUFlatKnots;
+  NCollection_Array1<double> myVFlatKnots;
+  NCollection_Array1<double> myUKnots;
+  NCollection_Array1<double> myVKnots;
+  NCollection_Array1<int>    myUMults;
+  NCollection_Array1<int>    myVMults;
+  NCollection_Array2<gp_Pnt> myPoles;
+  int                        myUDegree;
+  int                        myVDegree;
+  bool                       myDone;
 };
 
 #endif // _Convert_GridPolynomialToPoles_HeaderFile

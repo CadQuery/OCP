@@ -1,7 +1,4 @@
-// Created on: 1997-10-29
-// Created by: Roman BORISOV
-// Copyright (c) 1997-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,16 +11,28 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef FEmTool_ListOfVectors_HeaderFile
-#define FEmTool_ListOfVectors_HeaderFile
+//! @file FEmTool_ListOfVectors.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection types directly instead.
 
+#ifndef _FEmTool_ListOfVectors_hxx
+#define _FEmTool_ListOfVectors_hxx
+
+#include <Standard_Macro.hxx>
 #include <TColStd_HArray1OfReal.hxx>
 #include <NCollection_List.hxx>
 
-//! To  define  list  of  segments with  non-zero  coefficients of constraint
+Standard_HEADER_DEPRECATED(
+  "FEmTool_ListOfVectors.hxx is deprecated since OCCT 8.0.0. Use NCollection types directly.")
 
-typedef NCollection_List<Handle(TColStd_HArray1OfReal)> FEmTool_ListOfVectors;
-typedef NCollection_List<Handle(TColStd_HArray1OfReal)>::Iterator
+  Standard_DEPRECATED("FEmTool_ListOfVectors is deprecated, use "
+                      "NCollection_List<opencascade::handle<TColStd_HArray1OfReal>> directly")
+typedef NCollection_List<opencascade::handle<TColStd_HArray1OfReal>> FEmTool_ListOfVectors;
+Standard_DEPRECATED(
+  "FEmTool_ListIteratorOfListOfVectors is deprecated, use "
+  "NCollection_List<opencascade::handle<TColStd_HArray1OfReal>>::Iterator directly")
+typedef NCollection_List<opencascade::handle<TColStd_HArray1OfReal>>::Iterator
   FEmTool_ListIteratorOfListOfVectors;
 
-#endif
+#endif // _FEmTool_ListOfVectors_hxx

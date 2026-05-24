@@ -23,15 +23,15 @@
 
 #include <GeomLib_InterpolationErrors.hxx>
 #include <Standard_Integer.hxx>
-#include <TColgp_Array1OfPnt.hxx>
-#include <TColStd_Array1OfReal.hxx>
+#include <gp_Pnt.hxx>
+#include <NCollection_Array1.hxx>
 class Geom_BSplineCurve;
 
-//! this class is used to construct a BSpline curve by
-//! interpolation  of points  at given parameters  The
-//! continuity   of the curve   is degree -  1 and the
-//! method used when boundary  condition are not given
-//! is to use odd degrees  and null the derivatives on
+//! This class is used to construct a BSpline curve by
+//! interpolation of points at given parameters. The
+//! continuity of the curve is degree - 1 and the
+//! method used when boundary conditions are not given
+//! is to use odd degrees and null the derivatives on
 //! both sides from degree -1 down to (degree+1) / 2
 //! When even degree is given the returned curve is of
 //! degree - 1 so that the degree of the curve is odd
@@ -40,25 +40,24 @@ class GeomLib_Interpolate
 public:
   DEFINE_STANDARD_ALLOC
 
-  Standard_EXPORT GeomLib_Interpolate(const Standard_Integer      Degree,
-                                      const Standard_Integer      NumPoints,
-                                      const TColgp_Array1OfPnt&   Points,
-                                      const TColStd_Array1OfReal& Parameters);
+  Standard_EXPORT GeomLib_Interpolate(const int                         Degree,
+                                      const int                         NumPoints,
+                                      const NCollection_Array1<gp_Pnt>& Points,
+                                      const NCollection_Array1<double>& Parameters);
 
   //! returns if everything went OK
-  Standard_Boolean IsDone() const;
+  bool IsDone() const;
 
   //! returns the error type if any
   GeomLib_InterpolationErrors Error() const;
 
   //! returns the interpolated curve of the requested degree
-  Standard_EXPORT Handle(Geom_BSplineCurve) Curve() const;
+  Standard_EXPORT occ::handle<Geom_BSplineCurve> Curve() const;
 
-protected:
 private:
-  Handle(Geom_BSplineCurve)   myCurve;
-  Standard_Boolean            myIsDone;
-  GeomLib_InterpolationErrors myError;
+  occ::handle<Geom_BSplineCurve> myCurve;
+  bool                           myIsDone;
+  GeomLib_InterpolationErrors    myError;
 };
 
 #include <GeomLib_Interpolate.lxx>

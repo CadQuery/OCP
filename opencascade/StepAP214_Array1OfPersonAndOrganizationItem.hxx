@@ -1,7 +1,4 @@
-// Created on: 1995-12-01
-// Created by: EXPRESS->CDL V0.2 Translator
-// Copyright (c) 1995-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,13 +11,25 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef StepAP214_Array1OfPersonAndOrganizationItem_HeaderFile
-#define StepAP214_Array1OfPersonAndOrganizationItem_HeaderFile
+//! @file StepAP214_Array1OfPersonAndOrganizationItem.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection_Array1<StepAP214_PersonAndOrganizationItem> directly instead.
 
+#ifndef _StepAP214_Array1OfPersonAndOrganizationItem_hxx
+#define _StepAP214_Array1OfPersonAndOrganizationItem_hxx
+
+#include <Standard_Macro.hxx>
 #include <StepAP214_PersonAndOrganizationItem.hxx>
 #include <NCollection_Array1.hxx>
 
+Standard_HEADER_DEPRECATED(
+  "StepAP214_Array1OfPersonAndOrganizationItem.hxx is deprecated since OCCT 8.0.0. Use "
+  "NCollection_Array1<StepAP214_PersonAndOrganizationItem> directly.")
+
+  Standard_DEPRECATED("StepAP214_Array1OfPersonAndOrganizationItem is deprecated, use "
+                      "NCollection_Array1<StepAP214_PersonAndOrganizationItem> directly")
 typedef NCollection_Array1<StepAP214_PersonAndOrganizationItem>
   StepAP214_Array1OfPersonAndOrganizationItem;
 
-#endif
+#endif // _StepAP214_Array1OfPersonAndOrganizationItem_hxx

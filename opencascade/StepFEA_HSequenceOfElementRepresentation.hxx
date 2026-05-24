@@ -1,4 +1,4 @@
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,12 +11,27 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef StepFEA_HSequenceOfElementRepresentation_HeaderFile
-#define StepFEA_HSequenceOfElementRepresentation_HeaderFile
+//! @file StepFEA_HSequenceOfElementRepresentation.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection_HSequence<opencascade::handle<StepFEA_ElementRepresentation>>
+//!             directly instead.
 
+#ifndef _StepFEA_HSequenceOfElementRepresentation_hxx
+#define _StepFEA_HSequenceOfElementRepresentation_hxx
+
+#include <Standard_Macro.hxx>
 #include <StepFEA_SequenceOfElementRepresentation.hxx>
-#include <NCollection_DefineHSequence.hxx>
+#include <NCollection_HSequence.hxx>
 
-DEFINE_HSEQUENCE(StepFEA_HSequenceOfElementRepresentation, StepFEA_SequenceOfElementRepresentation)
+Standard_HEADER_DEPRECATED(
+  "StepFEA_HSequenceOfElementRepresentation.hxx is deprecated since OCCT 8.0.0. Use "
+  "NCollection_HSequence<opencascade::handle<StepFEA_ElementRepresentation>> directly.")
 
-#endif
+  Standard_DEPRECATED(
+    "StepFEA_HSequenceOfElementRepresentation is deprecated, use "
+    "NCollection_HSequence<opencascade::handle<StepFEA_ElementRepresentation>> directly")
+typedef NCollection_HSequence<opencascade::handle<StepFEA_ElementRepresentation>>
+  StepFEA_HSequenceOfElementRepresentation;
+
+#endif // _StepFEA_HSequenceOfElementRepresentation_hxx

@@ -1,6 +1,4 @@
-// Created by: DAUTRY Philippe
-// Copyright (c) 1997-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -13,12 +11,23 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef TDF_LabelSequence_HeaderFile
-#define TDF_LabelSequence_HeaderFile
+//! @file TDF_LabelSequence.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection_Sequence<TDF_Label> directly instead.
 
+#ifndef _TDF_LabelSequence_hxx
+#define _TDF_LabelSequence_hxx
+
+#include <Standard_Macro.hxx>
 #include <TDF_Label.hxx>
 #include <NCollection_Sequence.hxx>
 
+Standard_HEADER_DEPRECATED("TDF_LabelSequence.hxx is deprecated since OCCT 8.0.0. Use "
+                           "NCollection_Sequence<TDF_Label> directly.")
+
+  Standard_DEPRECATED(
+    "TDF_LabelSequence is deprecated, use NCollection_Sequence<TDF_Label> directly")
 typedef NCollection_Sequence<TDF_Label> TDF_LabelSequence;
 
-#endif
+#endif // _TDF_LabelSequence_hxx

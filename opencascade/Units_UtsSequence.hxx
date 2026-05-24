@@ -1,7 +1,4 @@
-// Created on: 1992-06-22
-// Created by: Gilles DEBARBOUILLE
-// Copyright (c) 1992-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,12 +11,23 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef Units_UtsSequence_HeaderFile
-#define Units_UtsSequence_HeaderFile
+//! @file Units_UtsSequence.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection_Sequence<opencascade::handle<Units_Unit>> directly instead.
 
+#ifndef _Units_UtsSequence_hxx
+#define _Units_UtsSequence_hxx
+
+#include <Standard_Macro.hxx>
 #include <Units_Unit.hxx>
 #include <NCollection_Sequence.hxx>
 
-typedef NCollection_Sequence<Handle(Units_Unit)> Units_UtsSequence;
+Standard_HEADER_DEPRECATED("Units_UtsSequence.hxx is deprecated since OCCT 8.0.0. Use "
+                           "NCollection_Sequence<opencascade::handle<Units_Unit>> directly.")
 
-#endif
+  Standard_DEPRECATED("Units_UtsSequence is deprecated, use "
+                      "NCollection_Sequence<opencascade::handle<Units_Unit>> directly")
+typedef NCollection_Sequence<opencascade::handle<Units_Unit>> Units_UtsSequence;
+
+#endif // _Units_UtsSequence_hxx

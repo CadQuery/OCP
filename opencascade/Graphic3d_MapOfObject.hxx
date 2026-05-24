@@ -1,6 +1,4 @@
-// Created on: 2014-12-18
-// Created by: Kirill Gavrilov
-// Copyright (c) 2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -13,13 +11,26 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _Graphic3d_MapOfObject
-#define _Graphic3d_MapOfObject
+//! @file Graphic3d_MapOfObject.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection_DataMap<const Standard_Transient*,
+//!             opencascade::handle<Graphic3d_ViewAffinity>> directly instead.
 
+#ifndef _Graphic3d_MapOfObject_hxx
+#define _Graphic3d_MapOfObject_hxx
+
+#include <Standard_Macro.hxx>
 #include <Graphic3d_ViewAffinity.hxx>
 #include <NCollection_DataMap.hxx>
 
-typedef NCollection_DataMap<const Standard_Transient*, Handle(Graphic3d_ViewAffinity)>
+Standard_HEADER_DEPRECATED(
+  "Graphic3d_MapOfObject.hxx is deprecated since OCCT 8.0.0. Use NCollection_DataMap<const "
+  "Standard_Transient*, opencascade::handle<Graphic3d_ViewAffinity>> directly.")
+
+  Standard_DEPRECATED("Graphic3d_MapOfObject is deprecated, use NCollection_DataMap<const "
+                      "Standard_Transient*, opencascade::handle<Graphic3d_ViewAffinity>> directly")
+typedef NCollection_DataMap<const Standard_Transient*, opencascade::handle<Graphic3d_ViewAffinity>>
   Graphic3d_MapOfObject;
 
-#endif // _Graphic3d_MapOfObject
+#endif // _Graphic3d_MapOfObject_hxx

@@ -1,5 +1,4 @@
-// Created by: Peter KURNEV
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -12,12 +11,23 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef BOPDS_VectorOfInterfFF_HeaderFile
-#define BOPDS_VectorOfInterfFF_HeaderFile
+//! @file BOPDS_VectorOfInterfFF.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection_DynamicArray<BOPDS_InterfFF> directly instead.
 
-#include <NCollection_Vector.hxx>
+#ifndef _BOPDS_VectorOfInterfFF_hxx
+#define _BOPDS_VectorOfInterfFF_hxx
+
+#include <Standard_Macro.hxx>
+#include <NCollection_DynamicArray.hxx>
 #include <BOPDS_Interf.hxx>
 
-typedef NCollection_Vector<BOPDS_InterfFF> BOPDS_VectorOfInterfFF;
+Standard_HEADER_DEPRECATED("BOPDS_VectorOfInterfFF.hxx is deprecated since OCCT 8.0.0. Use "
+                           "NCollection_DynamicArray<BOPDS_InterfFF> directly.")
 
-#endif
+  Standard_DEPRECATED(
+    "BOPDS_VectorOfInterfFF is deprecated, use NCollection_DynamicArray<BOPDS_InterfFF> directly")
+typedef NCollection_DynamicArray<BOPDS_InterfFF> BOPDS_VectorOfInterfFF;
+
+#endif // _BOPDS_VectorOfInterfFF_hxx

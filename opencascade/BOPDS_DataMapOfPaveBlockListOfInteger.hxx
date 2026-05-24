@@ -1,5 +1,4 @@
-// Created by: Peter KURNEV
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -12,15 +11,30 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef BOPDS_DataMapOfPaveBlockListOfInteger_HeaderFile
-#define BOPDS_DataMapOfPaveBlockListOfInteger_HeaderFile
+//! @file BOPDS_DataMapOfPaveBlockListOfInteger.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection types directly instead.
 
+#ifndef _BOPDS_DataMapOfPaveBlockListOfInteger_hxx
+#define _BOPDS_DataMapOfPaveBlockListOfInteger_hxx
+
+#include <Standard_Macro.hxx>
 #include <NCollection_DataMap.hxx>
 #include <TColStd_ListOfInteger.hxx>
 
-typedef NCollection_DataMap<Handle(BOPDS_PaveBlock), TColStd_ListOfInteger>
+Standard_HEADER_DEPRECATED("BOPDS_DataMapOfPaveBlockListOfInteger.hxx is deprecated since OCCT "
+                           "8.0.0. Use NCollection types directly.")
+
+  Standard_DEPRECATED(
+    "BOPDS_DataMapOfPaveBlockListOfInteger is deprecated, use "
+    "NCollection_DataMap<opencascade::handle<BOPDS_PaveBlock>, TColStd_ListOfInteger> directly")
+typedef NCollection_DataMap<opencascade::handle<BOPDS_PaveBlock>, TColStd_ListOfInteger>
   BOPDS_DataMapOfPaveBlockListOfInteger;
-typedef BOPDS_DataMapOfPaveBlockListOfInteger::Iterator
+Standard_DEPRECATED("BOPDS_DataMapIteratorOfDataMapOfPaveBlockListOfInteger is deprecated, use "
+                    "NCollection_DataMap<opencascade::handle<BOPDS_PaveBlock>, "
+                    "TColStd_ListOfInteger>::Iterator directly")
+typedef NCollection_DataMap<opencascade::handle<BOPDS_PaveBlock>, TColStd_ListOfInteger>::Iterator
   BOPDS_DataMapIteratorOfDataMapOfPaveBlockListOfInteger;
 
-#endif
+#endif // _BOPDS_DataMapOfPaveBlockListOfInteger_hxx

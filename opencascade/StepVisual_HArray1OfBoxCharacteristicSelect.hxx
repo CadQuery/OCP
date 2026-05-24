@@ -1,7 +1,4 @@
-// Created on: 1995-12-01
-// Created by: EXPRESS->CDL V0.2 Translator
-// Copyright (c) 1995-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,13 +11,25 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef StepVisual_HArray1OfBoxCharacteristicSelect_HeaderFile
-#define StepVisual_HArray1OfBoxCharacteristicSelect_HeaderFile
+//! @file StepVisual_HArray1OfBoxCharacteristicSelect.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection_HArray1<StepVisual_BoxCharacteristicSelect> directly instead.
 
+#ifndef _StepVisual_HArray1OfBoxCharacteristicSelect_hxx
+#define _StepVisual_HArray1OfBoxCharacteristicSelect_hxx
+
+#include <Standard_Macro.hxx>
 #include <StepVisual_Array1OfBoxCharacteristicSelect.hxx>
-#include <NCollection_DefineHArray1.hxx>
+#include <NCollection_HArray1.hxx>
 
-DEFINE_HARRAY1(StepVisual_HArray1OfBoxCharacteristicSelect,
-               StepVisual_Array1OfBoxCharacteristicSelect)
+Standard_HEADER_DEPRECATED(
+  "StepVisual_HArray1OfBoxCharacteristicSelect.hxx is deprecated since OCCT 8.0.0. Use "
+  "NCollection_HArray1<StepVisual_BoxCharacteristicSelect> directly.")
 
-#endif
+  Standard_DEPRECATED("StepVisual_HArray1OfBoxCharacteristicSelect is deprecated, use "
+                      "NCollection_HArray1<StepVisual_BoxCharacteristicSelect> directly")
+typedef NCollection_HArray1<StepVisual_BoxCharacteristicSelect>
+  StepVisual_HArray1OfBoxCharacteristicSelect;
+
+#endif // _StepVisual_HArray1OfBoxCharacteristicSelect_hxx

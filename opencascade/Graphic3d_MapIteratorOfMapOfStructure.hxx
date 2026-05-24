@@ -1,6 +1,4 @@
-// Created on: 2014-12-18
-// Created by: Kirill Gavrilov
-// Copyright (c) 2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -13,11 +11,26 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _Graphic3d_MapIteratorOfMapOfStructure
-#define _Graphic3d_MapIteratorOfMapOfStructure
+//! @file Graphic3d_MapIteratorOfMapOfStructure.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection_Map<opencascade::handle<Graphic3d_Structure>>::Iterator directly
+//!             instead.
 
+#ifndef _Graphic3d_MapIteratorOfMapOfStructure_hxx
+#define _Graphic3d_MapIteratorOfMapOfStructure_hxx
+
+#include <Standard_Macro.hxx>
 #include <Graphic3d_MapOfStructure.hxx>
 
-typedef Graphic3d_MapOfStructure::Iterator Graphic3d_MapIteratorOfMapOfStructure;
+Standard_HEADER_DEPRECATED(
+  "Graphic3d_MapIteratorOfMapOfStructure.hxx is deprecated since OCCT 8.0.0. Use "
+  "NCollection_Map<opencascade::handle<Graphic3d_Structure>>::Iterator directly.")
 
-#endif // _Graphic3d_MapIteratorOfMapOfStructure
+  Standard_DEPRECATED(
+    "Graphic3d_MapIteratorOfMapOfStructure is deprecated, use "
+    "NCollection_Map<opencascade::handle<Graphic3d_Structure>>::Iterator directly")
+typedef NCollection_Map<opencascade::handle<Graphic3d_Structure>>::Iterator
+  Graphic3d_MapIteratorOfMapOfStructure;
+
+#endif // _Graphic3d_MapIteratorOfMapOfStructure_hxx

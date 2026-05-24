@@ -37,57 +37,55 @@ class OpenGl_Group : public Graphic3d_Group
 public:
   //! Create empty group.
   //! Will throw exception if not created by OpenGl_Structure.
-  Standard_EXPORT OpenGl_Group(const Handle(Graphic3d_Structure)& theStruct);
+  Standard_EXPORT OpenGl_Group(const occ::handle<Graphic3d_Structure>& theStruct);
 
-  Standard_EXPORT virtual void Clear(const Standard_Boolean theToUpdateStructureMgr)
-    Standard_OVERRIDE;
+  Standard_EXPORT void Clear(const bool theToUpdateStructureMgr) override;
 
   //! Return line aspect.
-  virtual Handle(Graphic3d_Aspects) Aspects() const Standard_OVERRIDE
+  occ::handle<Graphic3d_Aspects> Aspects() const override
   {
-    return myAspects != NULL ? myAspects->Aspect() : Handle(Graphic3d_Aspects)();
+    return myAspects != nullptr ? myAspects->Aspect() : occ::handle<Graphic3d_Aspects>();
   }
 
   //! Return TRUE if group contains primitives with transform persistence.
   bool HasPersistence() const
   {
     return !myTrsfPers.IsNull()
-           || (myStructure != NULL && !myStructure->TransformPersistence().IsNull());
+           || (myStructure != nullptr && !myStructure->TransformPersistence().IsNull());
   }
 
   //! Update aspect.
-  Standard_EXPORT virtual void SetGroupPrimitivesAspect(const Handle(Graphic3d_Aspects)& theAspect)
-    Standard_OVERRIDE;
+  Standard_EXPORT void SetGroupPrimitivesAspect(
+    const occ::handle<Graphic3d_Aspects>& theAspect) override;
 
   //! Append aspect as an element.
-  Standard_EXPORT virtual void SetPrimitivesAspect(const Handle(Graphic3d_Aspects)& theAspect)
-    Standard_OVERRIDE;
+  Standard_EXPORT void SetPrimitivesAspect(
+    const occ::handle<Graphic3d_Aspects>& theAspect) override;
 
   //! Update presentation aspects after their modification.
-  Standard_EXPORT virtual void SynchronizeAspects() Standard_OVERRIDE;
+  Standard_EXPORT void SynchronizeAspects() override;
 
   //! Replace aspects specified in the replacement map.
-  Standard_EXPORT virtual void ReplaceAspects(const Graphic3d_MapOfAspectsToAspects& theMap)
-    Standard_OVERRIDE;
+  Standard_EXPORT void ReplaceAspects(
+    const NCollection_DataMap<occ::handle<Graphic3d_Aspects>, occ::handle<Graphic3d_Aspects>>&
+      theMap) override;
 
   //! Add primitive array element
-  Standard_EXPORT virtual void AddPrimitiveArray(const Graphic3d_TypeOfPrimitiveArray theType,
-                                                 const Handle(Graphic3d_IndexBuffer)& theIndices,
-                                                 const Handle(Graphic3d_Buffer)&      theAttribs,
-                                                 const Handle(Graphic3d_BoundBuffer)& theBounds,
-                                                 const Standard_Boolean theToEvalMinMax)
-    Standard_OVERRIDE;
+  Standard_EXPORT void AddPrimitiveArray(const Graphic3d_TypeOfPrimitiveArray      theType,
+                                         const occ::handle<Graphic3d_IndexBuffer>& theIndices,
+                                         const occ::handle<Graphic3d_Buffer>&      theAttribs,
+                                         const occ::handle<Graphic3d_BoundBuffer>& theBounds,
+                                         const bool theToEvalMinMax) override;
 
   //! Adds a text for display
-  Standard_EXPORT virtual void AddText(const Handle(Graphic3d_Text)& theTextParams,
-                                       const Standard_Boolean theToEvalMinMax) Standard_OVERRIDE;
+  Standard_EXPORT void AddText(const occ::handle<Graphic3d_Text>& theTextParams,
+                               const bool                         theToEvalMinMax) override;
   //! Add flipping element
-  Standard_EXPORT virtual void SetFlippingOptions(const Standard_Boolean theIsEnabled,
-                                                  const gp_Ax2& theRefPlane) Standard_OVERRIDE;
+  Standard_EXPORT void SetFlippingOptions(const bool    theIsEnabled,
+                                          const gp_Ax2& theRefPlane) override;
 
   //! Add stencil test element
-  Standard_EXPORT virtual void SetStencilTestOptions(const Standard_Boolean theIsEnabled)
-    Standard_OVERRIDE;
+  Standard_EXPORT void SetStencilTestOptions(const bool theIsEnabled) override;
 
 public:
   OpenGl_Structure* GlStruct() const
@@ -97,8 +95,8 @@ public:
 
   Standard_EXPORT void AddElement(OpenGl_Element* theElem);
 
-  Standard_EXPORT virtual void Render(const Handle(OpenGl_Workspace)& theWorkspace) const;
-  Standard_EXPORT virtual void Release(const Handle(OpenGl_Context)& theGlCtx);
+  Standard_EXPORT virtual void Render(const occ::handle<OpenGl_Workspace>& theWorkspace) const;
+  Standard_EXPORT virtual void Release(const occ::handle<OpenGl_Context>& theGlCtx);
 
   //! Returns first OpenGL element node of the group.
   const OpenGl_ElementNode* FirstNode() const { return myFirst; }
@@ -107,14 +105,13 @@ public:
   const OpenGl_Aspects* GlAspects() const { return myAspects; }
 
   //! Is the group ray-tracable (contains ray-tracable elements)?
-  Standard_Boolean IsRaytracable() const { return myIsRaytracable; }
+  bool IsRaytracable() const { return myIsRaytracable; }
 
   //! Dumps the content of me into the stream
-  Standard_EXPORT virtual void DumpJson(Standard_OStream& theOStream,
-                                        Standard_Integer  theDepth = -1) const Standard_OVERRIDE;
+  Standard_EXPORT void DumpJson(Standard_OStream& theOStream, int theDepth = -1) const override;
 
 protected:
-  Standard_EXPORT virtual ~OpenGl_Group();
+  Standard_EXPORT ~OpenGl_Group() override;
 
 private:
   //! Render element if it passes the filtering procedure.
@@ -125,19 +122,17 @@ private:
   //! @param[in] theFilter     the rendering filter to check whether the element should be rendered
   //! or not
   //! @return True if element passes the check and renders
-  Standard_EXPORT bool renderFiltered(const Handle(OpenGl_Workspace)& theWorkspace,
-                                      OpenGl_Element*                 theElement) const;
+  Standard_EXPORT bool renderFiltered(const occ::handle<OpenGl_Workspace>& theWorkspace,
+                                      OpenGl_Element*                      theElement) const;
 
 protected:
   OpenGl_Aspects*     myAspects;
   OpenGl_ElementNode* myFirst;
   OpenGl_ElementNode* myLast;
-  Standard_Boolean    myIsRaytracable;
+  bool                myIsRaytracable;
 
 public:
   DEFINE_STANDARD_RTTIEXT(OpenGl_Group, Graphic3d_Group) // Type definition
 };
-
-DEFINE_STANDARD_HANDLE(OpenGl_Group, Graphic3d_Group)
 
 #endif // _OpenGl_Group_Header

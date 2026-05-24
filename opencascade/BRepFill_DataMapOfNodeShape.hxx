@@ -1,7 +1,4 @@
-// Created on: 1994-03-03
-// Created by: Joelle CHAUVET
-// Copyright (c) 1994-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,15 +11,30 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef BRepFill_DataMapOfNodeShape_HeaderFile
-#define BRepFill_DataMapOfNodeShape_HeaderFile
+//! @file BRepFill_DataMapOfNodeShape.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection types directly instead.
 
+#ifndef _BRepFill_DataMapOfNodeShape_hxx
+#define _BRepFill_DataMapOfNodeShape_hxx
+
+#include <Standard_Macro.hxx>
 #include <MAT_Node.hxx>
 #include <TopoDS_Shape.hxx>
 #include <NCollection_DataMap.hxx>
 
-typedef NCollection_DataMap<Handle(MAT_Node), TopoDS_Shape> BRepFill_DataMapOfNodeShape;
-typedef NCollection_DataMap<Handle(MAT_Node), TopoDS_Shape>::Iterator
+Standard_HEADER_DEPRECATED(
+  "BRepFill_DataMapOfNodeShape.hxx is deprecated since OCCT 8.0.0. Use NCollection types directly.")
+
+  Standard_DEPRECATED("BRepFill_DataMapOfNodeShape is deprecated, use "
+                      "NCollection_DataMap<opencascade::handle<MAT_Node>, TopoDS_Shape> directly")
+typedef NCollection_DataMap<opencascade::handle<MAT_Node>, TopoDS_Shape>
+  BRepFill_DataMapOfNodeShape;
+Standard_DEPRECATED(
+  "BRepFill_DataMapIteratorOfDataMapOfNodeShape is deprecated, use "
+  "NCollection_DataMap<opencascade::handle<MAT_Node>, TopoDS_Shape>::Iterator directly")
+typedef NCollection_DataMap<opencascade::handle<MAT_Node>, TopoDS_Shape>::Iterator
   BRepFill_DataMapIteratorOfDataMapOfNodeShape;
 
-#endif
+#endif // _BRepFill_DataMapOfNodeShape_hxx

@@ -52,7 +52,7 @@ class StdLPersistent_Collection
     }
 
     //! Read persistent data from a file.
-    virtual void Read(StdObjMgt_ReadData& theReadData)
+    void Read(StdObjMgt_ReadData& theReadData) override
     {
       Base::Read(theReadData);
       theReadData >> myLower >> myUpper;
@@ -63,8 +63,8 @@ class StdLPersistent_Collection
     inline void import(const ArrayHandle& theArray, Converter theConverter) const;
 
   protected:
-    Standard_Integer myLower;
-    Standard_Integer myUpper;
+    int myLower;
+    int myUpper;
   };
 
   template <class Base>
@@ -105,7 +105,7 @@ class StdLPersistent_Collection
   {
   public:
     //! Import transient attribute from the persistent data.
-    Standard_EXPORT virtual void ImportAttribute();
+    Standard_EXPORT void ImportAttribute() override;
   };
 
   template <class Instance>
@@ -114,18 +114,18 @@ class StdLPersistent_Collection
   public:
     //! Empty constructor.
     instance_1()
-        : myDelta(Standard_False)
+        : myDelta(false)
     {
     }
 
     //! Read persistent data from a file.
-    Standard_EXPORT virtual void Read(StdObjMgt_ReadData& theReadData);
+    Standard_EXPORT void Read(StdObjMgt_ReadData& theReadData) override;
 
     //! Import transient attribute from the persistent data.
-    Standard_EXPORT virtual void ImportAttribute();
+    Standard_EXPORT void ImportAttribute() override;
 
   private:
-    Standard_Boolean myDelta;
+    bool myDelta;
   };
 
   // Collection type specialization

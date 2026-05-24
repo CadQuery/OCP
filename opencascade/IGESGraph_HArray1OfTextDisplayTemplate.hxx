@@ -1,7 +1,4 @@
-// Created on: 1993-01-11
-// Created by: CKY / Contract Toubro-Larsen (TCD)
-// Copyright (c) 1993-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,12 +11,27 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef IGESGraph_HArray1OfTextDisplayTemplate_HeaderFile
-#define IGESGraph_HArray1OfTextDisplayTemplate_HeaderFile
+//! @file IGESGraph_HArray1OfTextDisplayTemplate.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection_HArray1<opencascade::handle<IGESGraph_TextDisplayTemplate>> directly
+//!             instead.
 
+#ifndef _IGESGraph_HArray1OfTextDisplayTemplate_hxx
+#define _IGESGraph_HArray1OfTextDisplayTemplate_hxx
+
+#include <Standard_Macro.hxx>
 #include <IGESGraph_Array1OfTextDisplayTemplate.hxx>
-#include <NCollection_DefineHArray1.hxx>
+#include <NCollection_HArray1.hxx>
 
-DEFINE_HARRAY1(IGESGraph_HArray1OfTextDisplayTemplate, IGESGraph_Array1OfTextDisplayTemplate)
+Standard_HEADER_DEPRECATED(
+  "IGESGraph_HArray1OfTextDisplayTemplate.hxx is deprecated since OCCT 8.0.0. Use "
+  "NCollection_HArray1<opencascade::handle<IGESGraph_TextDisplayTemplate>> directly.")
 
-#endif
+  Standard_DEPRECATED(
+    "IGESGraph_HArray1OfTextDisplayTemplate is deprecated, use "
+    "NCollection_HArray1<opencascade::handle<IGESGraph_TextDisplayTemplate>> directly")
+typedef NCollection_HArray1<opencascade::handle<IGESGraph_TextDisplayTemplate>>
+  IGESGraph_HArray1OfTextDisplayTemplate;
+
+#endif // _IGESGraph_HArray1OfTextDisplayTemplate_hxx

@@ -27,18 +27,17 @@ class BRepMesh_CustomDelaunayBaseMeshAlgo : public BaseAlgo
 {
 public:
   //! Constructor.
-  BRepMesh_CustomDelaunayBaseMeshAlgo() {}
+  BRepMesh_CustomDelaunayBaseMeshAlgo() = default;
 
   //! Destructor.
-  virtual ~BRepMesh_CustomDelaunayBaseMeshAlgo() {}
+  ~BRepMesh_CustomDelaunayBaseMeshAlgo() override = default;
 
 protected:
   //! Performs processing of generated mesh.
-  virtual void postProcessMesh(BRepMesh_Delaun& theMesher, const Message_ProgressRange& theRange)
+  void postProcessMesh(BRepMesh_Delaun& theMesher, const Message_ProgressRange& theRange) override
   {
-    const Handle(BRepMesh_DataStructureOfDelaun)& aStructure = this->getStructure();
-    std::pair<Standard_Integer, Standard_Integer> aCellsCount =
-      this->getCellsCount(aStructure->NbNodes());
+    const occ::handle<BRepMesh_DataStructureOfDelaun>& aStructure = this->getStructure();
+    std::pair<int, int> aCellsCount = this->getCellsCount(aStructure->NbNodes());
     theMesher.InitCirclesTool(aCellsCount.first, aCellsCount.second);
 
     BaseAlgo::postProcessMesh(theMesher, theRange);

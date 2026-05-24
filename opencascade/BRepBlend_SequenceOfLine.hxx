@@ -1,7 +1,4 @@
-// Created on: 1993-12-06
-// Created by: Jacques GOUSSARD
-// Copyright (c) 1993-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,12 +11,23 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef BRepBlend_SequenceOfLine_HeaderFile
-#define BRepBlend_SequenceOfLine_HeaderFile
+//! @file BRepBlend_SequenceOfLine.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection_Sequence<opencascade::handle<BRepBlend_Line>> directly instead.
 
+#ifndef _BRepBlend_SequenceOfLine_hxx
+#define _BRepBlend_SequenceOfLine_hxx
+
+#include <Standard_Macro.hxx>
 #include <BRepBlend_Line.hxx>
 #include <NCollection_Sequence.hxx>
 
-typedef NCollection_Sequence<Handle(BRepBlend_Line)> BRepBlend_SequenceOfLine;
+Standard_HEADER_DEPRECATED("BRepBlend_SequenceOfLine.hxx is deprecated since OCCT 8.0.0. Use "
+                           "NCollection_Sequence<opencascade::handle<BRepBlend_Line>> directly.")
 
-#endif
+  Standard_DEPRECATED("BRepBlend_SequenceOfLine is deprecated, use "
+                      "NCollection_Sequence<opencascade::handle<BRepBlend_Line>> directly")
+typedef NCollection_Sequence<opencascade::handle<BRepBlend_Line>> BRepBlend_SequenceOfLine;
+
+#endif // _BRepBlend_SequenceOfLine_hxx

@@ -1,7 +1,4 @@
-// Created on: 1993-11-17
-// Created by: Isabelle GRIGNON
-// Copyright (c) 1993-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,13 +11,27 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef ChFiDS_ListOfStripe_HeaderFile
-#define ChFiDS_ListOfStripe_HeaderFile
+//! @file ChFiDS_ListOfStripe.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection types directly instead.
 
+#ifndef _ChFiDS_ListOfStripe_hxx
+#define _ChFiDS_ListOfStripe_hxx
+
+#include <Standard_Macro.hxx>
 #include <ChFiDS_Stripe.hxx>
 #include <NCollection_List.hxx>
 
-typedef NCollection_List<Handle(ChFiDS_Stripe)>           ChFiDS_ListOfStripe;
-typedef NCollection_List<Handle(ChFiDS_Stripe)>::Iterator ChFiDS_ListIteratorOfListOfStripe;
+Standard_HEADER_DEPRECATED(
+  "ChFiDS_ListOfStripe.hxx is deprecated since OCCT 8.0.0. Use NCollection types directly.")
 
-#endif
+  Standard_DEPRECATED("ChFiDS_ListOfStripe is deprecated, use "
+                      "NCollection_List<opencascade::handle<ChFiDS_Stripe>> directly")
+typedef NCollection_List<opencascade::handle<ChFiDS_Stripe>> ChFiDS_ListOfStripe;
+Standard_DEPRECATED("ChFiDS_ListIteratorOfListOfStripe is deprecated, use "
+                    "NCollection_List<opencascade::handle<ChFiDS_Stripe>>::Iterator directly")
+typedef NCollection_List<opencascade::handle<ChFiDS_Stripe>>::Iterator
+  ChFiDS_ListIteratorOfListOfStripe;
+
+#endif // _ChFiDS_ListOfStripe_hxx

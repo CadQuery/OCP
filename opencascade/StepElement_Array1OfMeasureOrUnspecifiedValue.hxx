@@ -1,4 +1,4 @@
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,13 +11,25 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef StepElement_Array1OfMeasureOrUnspecifiedValue_HeaderFile
-#define StepElement_Array1OfMeasureOrUnspecifiedValue_HeaderFile
+//! @file StepElement_Array1OfMeasureOrUnspecifiedValue.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection_Array1<StepElement_MeasureOrUnspecifiedValue> directly instead.
 
+#ifndef _StepElement_Array1OfMeasureOrUnspecifiedValue_hxx
+#define _StepElement_Array1OfMeasureOrUnspecifiedValue_hxx
+
+#include <Standard_Macro.hxx>
 #include <StepElement_MeasureOrUnspecifiedValue.hxx>
 #include <NCollection_Array1.hxx>
 
+Standard_HEADER_DEPRECATED(
+  "StepElement_Array1OfMeasureOrUnspecifiedValue.hxx is deprecated since OCCT 8.0.0. Use "
+  "NCollection_Array1<StepElement_MeasureOrUnspecifiedValue> directly.")
+
+  Standard_DEPRECATED("StepElement_Array1OfMeasureOrUnspecifiedValue is deprecated, use "
+                      "NCollection_Array1<StepElement_MeasureOrUnspecifiedValue> directly")
 typedef NCollection_Array1<StepElement_MeasureOrUnspecifiedValue>
   StepElement_Array1OfMeasureOrUnspecifiedValue;
 
-#endif
+#endif // _StepElement_Array1OfMeasureOrUnspecifiedValue_hxx

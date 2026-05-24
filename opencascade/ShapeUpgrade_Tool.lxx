@@ -14,32 +14,23 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-//=======================================================================
-// function : SetContext
-// purpose  :
-//=======================================================================
+//=================================================================================================
 
-inline void ShapeUpgrade_Tool::SetContext(const Handle(ShapeBuild_ReShape)& context)
+inline void ShapeUpgrade_Tool::SetContext(const occ::handle<ShapeBuild_ReShape>& context)
 {
   myContext = context;
 }
 
-//=======================================================================
-// function : Context
-// purpose  :
-//=======================================================================
+//=================================================================================================
 
-inline Handle(ShapeBuild_ReShape) ShapeUpgrade_Tool::Context() const
+inline occ::handle<ShapeBuild_ReShape> ShapeUpgrade_Tool::Context() const
 {
   return myContext;
 }
 
-//=======================================================================
-// function : SetPrecision
-// purpose  :
-//=======================================================================
+//=================================================================================================
 
-inline void ShapeUpgrade_Tool::SetPrecision(const Standard_Real preci)
+inline void ShapeUpgrade_Tool::SetPrecision(const double preci)
 {
   myPrecision = preci;
   if (myMaxTol < myPrecision)
@@ -48,63 +39,45 @@ inline void ShapeUpgrade_Tool::SetPrecision(const Standard_Real preci)
     myMinTol = myPrecision;
 }
 
-//=======================================================================
-// function : Precision
-// purpose  :
-//=======================================================================
+//=================================================================================================
 
-inline Standard_Real ShapeUpgrade_Tool::Precision() const
+inline double ShapeUpgrade_Tool::Precision() const
 {
   return myPrecision;
 }
 
-//=======================================================================
-// function : SetMinTolerance
-// purpose  :
-//=======================================================================
+//=================================================================================================
 
-inline void ShapeUpgrade_Tool::SetMinTolerance(const Standard_Real mintol)
+inline void ShapeUpgrade_Tool::SetMinTolerance(const double mintol)
 {
   myMinTol = mintol;
 }
 
-//=======================================================================
-// function : MinTolerance
-// purpose  :
-//=======================================================================
+//=================================================================================================
 
-inline Standard_Real ShapeUpgrade_Tool::MinTolerance() const
+inline double ShapeUpgrade_Tool::MinTolerance() const
 {
   return myMinTol;
 }
 
-//=======================================================================
-// function : SetMaxTolerance
-// purpose  :
-//=======================================================================
+//=================================================================================================
 
-inline void ShapeUpgrade_Tool::SetMaxTolerance(const Standard_Real maxtol)
+inline void ShapeUpgrade_Tool::SetMaxTolerance(const double maxtol)
 {
   myMaxTol = maxtol;
 }
 
-//=======================================================================
-// function : MaxTolerance
-// purpose  :
-//=======================================================================
+//=================================================================================================
 
-inline Standard_Real ShapeUpgrade_Tool::MaxTolerance() const
+inline double ShapeUpgrade_Tool::MaxTolerance() const
 {
   return myMaxTol;
 }
 
-//=======================================================================
-// function : LimitTolerance
-// purpose  :
-//=======================================================================
+//=================================================================================================
 
-inline Standard_Real ShapeUpgrade_Tool::LimitTolerance(const Standard_Real toler) const
+inline double ShapeUpgrade_Tool::LimitTolerance(const double toler) const
 {
   // only maximal restriction implemented.
-  return Min(myMaxTol, toler);
+  return std::min(myMaxTol, toler);
 }

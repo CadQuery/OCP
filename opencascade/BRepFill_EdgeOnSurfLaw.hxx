@@ -23,26 +23,22 @@
 class TopoDS_Wire;
 class TopoDS_Shape;
 
-class BRepFill_EdgeOnSurfLaw;
-DEFINE_STANDARD_HANDLE(BRepFill_EdgeOnSurfLaw, BRepFill_LocationLaw)
-
-//! Build Location Law, with a Wire and a  Surface.
+//! Build Location Law, with a Wire and a Surface.
 class BRepFill_EdgeOnSurfLaw : public BRepFill_LocationLaw
 {
 
 public:
   Standard_EXPORT BRepFill_EdgeOnSurfLaw(const TopoDS_Wire& Path, const TopoDS_Shape& Surf);
 
-  //! returns <False> if one  Edge of <Path> do not have
-  //! representation on  <Surf>.   In this  case  it is
+  //! returns <False> if one Edge of <Path> do not have
+  //! representation on <Surf>. In this case it is
   //! impossible to use this object.
-  Standard_EXPORT Standard_Boolean HasResult() const;
+  Standard_EXPORT bool HasResult() const;
 
   DEFINE_STANDARD_RTTIEXT(BRepFill_EdgeOnSurfLaw, BRepFill_LocationLaw)
 
-protected:
 private:
-  Standard_Boolean hasresult;
+  bool hasresult;
 };
 
 #endif // _BRepFill_EdgeOnSurfLaw_HeaderFile

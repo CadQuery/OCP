@@ -19,11 +19,7 @@
 
 #include <Standard.hxx>
 #include <Standard_Type.hxx>
-#include <TopAbs_ShapeEnum.hxx>
 #include <TopoDS_TShape.hxx>
-
-class TopoDS_TCompSolid;
-DEFINE_STANDARD_HANDLE(TopoDS_TCompSolid, TopoDS_TShape)
 
 //! A set of solids connected by their faces.
 class TopoDS_TCompSolid : public TopoDS_TShape
@@ -31,15 +27,12 @@ class TopoDS_TCompSolid : public TopoDS_TShape
 public:
   //! Creates an empty TCompSolid.
   TopoDS_TCompSolid()
-      : TopoDS_TShape()
+      : TopoDS_TShape(TopAbs_COMPSOLID)
   {
   }
 
-  //! returns COMPSOLID
-  Standard_EXPORT TopAbs_ShapeEnum ShapeType() const Standard_OVERRIDE;
-
   //! Returns an empty TCompSolid.
-  Standard_EXPORT Handle(TopoDS_TShape) EmptyCopy() const Standard_OVERRIDE;
+  Standard_EXPORT occ::handle<TopoDS_TShape> EmptyCopy() const override;
 
   DEFINE_STANDARD_RTTIEXT(TopoDS_TCompSolid, TopoDS_TShape)
 };

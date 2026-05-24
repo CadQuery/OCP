@@ -1,7 +1,4 @@
-// Created on: 1992-02-03
-// Created by: Christian CAILLET
-// Copyright (c) 1992-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,16 +11,30 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef Interface_DataMapOfTransientInteger_HeaderFile
-#define Interface_DataMapOfTransientInteger_HeaderFile
+//! @file Interface_DataMapOfTransientInteger.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection types directly instead.
 
+#ifndef _Interface_DataMapOfTransientInteger_hxx
+#define _Interface_DataMapOfTransientInteger_hxx
+
+#include <Standard_Macro.hxx>
 #include <Standard_Transient.hxx>
 #include <Standard_Integer.hxx>
 #include <NCollection_DataMap.hxx>
 
-typedef NCollection_DataMap<Handle(Standard_Transient), Standard_Integer>
+Standard_HEADER_DEPRECATED("Interface_DataMapOfTransientInteger.hxx is deprecated since OCCT "
+                           "8.0.0. Use NCollection types directly.")
+
+  Standard_DEPRECATED("Interface_DataMapOfTransientInteger is deprecated, use "
+                      "NCollection_DataMap<opencascade::handle<Standard_Transient>, int> directly")
+typedef NCollection_DataMap<opencascade::handle<Standard_Transient>, int>
   Interface_DataMapOfTransientInteger;
-typedef NCollection_DataMap<Handle(Standard_Transient), Standard_Integer>::Iterator
+Standard_DEPRECATED(
+  "Interface_DataMapIteratorOfDataMapOfTransientInteger is deprecated, use "
+  "NCollection_DataMap<opencascade::handle<Standard_Transient>, int>::Iterator directly")
+typedef NCollection_DataMap<opencascade::handle<Standard_Transient>, int>::Iterator
   Interface_DataMapIteratorOfDataMapOfTransientInteger;
 
-#endif
+#endif // _Interface_DataMapOfTransientInteger_hxx

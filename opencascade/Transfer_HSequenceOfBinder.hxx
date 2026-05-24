@@ -1,7 +1,4 @@
-// Created on: 1992-02-03
-// Created by: Christian CAILLET
-// Copyright (c) 1992-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,12 +11,23 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef Transfer_HSequenceOfBinder_HeaderFile
-#define Transfer_HSequenceOfBinder_HeaderFile
+//! @file Transfer_HSequenceOfBinder.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection_HSequence<opencascade::handle<Transfer_Binder>> directly instead.
 
+#ifndef _Transfer_HSequenceOfBinder_hxx
+#define _Transfer_HSequenceOfBinder_hxx
+
+#include <Standard_Macro.hxx>
 #include <Transfer_SequenceOfBinder.hxx>
-#include <NCollection_DefineHSequence.hxx>
+#include <NCollection_HSequence.hxx>
 
-DEFINE_HSEQUENCE(Transfer_HSequenceOfBinder, Transfer_SequenceOfBinder)
+Standard_HEADER_DEPRECATED("Transfer_HSequenceOfBinder.hxx is deprecated since OCCT 8.0.0. Use "
+                           "NCollection_HSequence<opencascade::handle<Transfer_Binder>> directly.")
 
-#endif
+  Standard_DEPRECATED("Transfer_HSequenceOfBinder is deprecated, use "
+                      "NCollection_HSequence<opencascade::handle<Transfer_Binder>> directly")
+typedef NCollection_HSequence<opencascade::handle<Transfer_Binder>> Transfer_HSequenceOfBinder;
+
+#endif // _Transfer_HSequenceOfBinder_hxx

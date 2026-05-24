@@ -17,13 +17,9 @@
 #ifndef _GccAna_NoSolution_HeaderFile
 #define _GccAna_NoSolution_HeaderFile
 
-#include <Standard_Type.hxx>
 #include <Standard_DefineException.hxx>
 #include <Standard_SStream.hxx>
 #include <Standard_Failure.hxx>
-
-class GccAna_NoSolution;
-DEFINE_STANDARD_HANDLE(GccAna_NoSolution, Standard_Failure)
 
 #if !defined No_Exception && !defined No_GccAna_NoSolution
   #define GccAna_NoSolution_Raise_if(CONDITION, MESSAGE)                                           \

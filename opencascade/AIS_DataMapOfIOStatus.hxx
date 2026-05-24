@@ -1,7 +1,4 @@
-// Created on: 1996-12-11
-// Created by: Robert COUBLANC
-// Copyright (c) 1996-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,16 +11,33 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef AIS_DataMapOfIOStatus_HeaderFile
-#define AIS_DataMapOfIOStatus_HeaderFile
+//! @file AIS_DataMapOfIOStatus.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection types directly instead.
 
+#ifndef _AIS_DataMapOfIOStatus_hxx
+#define _AIS_DataMapOfIOStatus_hxx
+
+#include <Standard_Macro.hxx>
 #include <AIS_InteractiveObject.hxx>
 #include <AIS_GlobalStatus.hxx>
 #include <NCollection_DataMap.hxx>
 
-typedef NCollection_DataMap<Handle(AIS_InteractiveObject), Handle(AIS_GlobalStatus)>
+Standard_HEADER_DEPRECATED(
+  "AIS_DataMapOfIOStatus.hxx is deprecated since OCCT 8.0.0. Use NCollection types directly.")
+
+  Standard_DEPRECATED("AIS_DataMapOfIOStatus is deprecated, use "
+                      "NCollection_DataMap<opencascade::handle<AIS_InteractiveObject>, "
+                      "opencascade::handle<AIS_GlobalStatus>> directly")
+typedef NCollection_DataMap<opencascade::handle<AIS_InteractiveObject>,
+                            opencascade::handle<AIS_GlobalStatus>>
   AIS_DataMapOfIOStatus;
-typedef NCollection_DataMap<Handle(AIS_InteractiveObject), Handle(AIS_GlobalStatus)>::Iterator
+Standard_DEPRECATED("AIS_DataMapIteratorOfDataMapOfIOStatus is deprecated, use "
+                    "NCollection_DataMap<opencascade::handle<AIS_InteractiveObject>, "
+                    "opencascade::handle<AIS_GlobalStatus>>::Iterator directly")
+typedef NCollection_DataMap<opencascade::handle<AIS_InteractiveObject>,
+                            opencascade::handle<AIS_GlobalStatus>>::Iterator
   AIS_DataMapIteratorOfDataMapOfIOStatus;
 
-#endif
+#endif // _AIS_DataMapOfIOStatus_hxx

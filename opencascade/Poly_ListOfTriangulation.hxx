@@ -1,6 +1,4 @@
-// Created on: 2008-04-21
-// Created by: Alexander GRIGORIEV
-// Copyright (c) 2008-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -13,15 +11,22 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef Poly_ListOfTriangulation_HeaderFile
-#define Poly_ListOfTriangulation_HeaderFile
+//! @file Poly_ListOfTriangulation.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection_List<opencascade::handle<Poly_Triangulation>> directly instead.
 
+#ifndef _Poly_ListOfTriangulation_hxx
+#define _Poly_ListOfTriangulation_hxx
+
+#include <Standard_Macro.hxx>
 #include <Poly_Triangulation.hxx>
 
-/**
- * List of Poly_Triangulation instances.
- */
+Standard_HEADER_DEPRECATED("Poly_ListOfTriangulation.hxx is deprecated since OCCT 8.0.0. Use "
+                           "NCollection_List<opencascade::handle<Poly_Triangulation>> directly.")
 
-typedef NCollection_List<Handle(Poly_Triangulation)> Poly_ListOfTriangulation;
+  Standard_DEPRECATED("Poly_ListOfTriangulation is deprecated, use "
+                      "NCollection_List<opencascade::handle<Poly_Triangulation>> directly")
+typedef NCollection_List<opencascade::handle<Poly_Triangulation>> Poly_ListOfTriangulation;
 
-#endif
+#endif // _Poly_ListOfTriangulation_hxx

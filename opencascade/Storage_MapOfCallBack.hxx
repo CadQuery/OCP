@@ -1,7 +1,4 @@
-// Created on: 1996-04-30
-// Created by: cle
-// Copyright (c) 1996-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,16 +11,32 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef Storage_MapOfCallBack_HeaderFile
-#define Storage_MapOfCallBack_HeaderFile
+//! @file Storage_MapOfCallBack.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection types directly instead.
 
+#ifndef _Storage_MapOfCallBack_hxx
+#define _Storage_MapOfCallBack_hxx
+
+#include <Standard_Macro.hxx>
 #include <TCollection_AsciiString.hxx>
 #include <Storage_TypedCallBack.hxx>
 #include <NCollection_DataMap.hxx>
 
-typedef NCollection_DataMap<TCollection_AsciiString, Handle(Storage_TypedCallBack)>
+Standard_HEADER_DEPRECATED(
+  "Storage_MapOfCallBack.hxx is deprecated since OCCT 8.0.0. Use NCollection types directly.")
+
+  Standard_DEPRECATED(
+    "Storage_MapOfCallBack is deprecated, use NCollection_DataMap<TCollection_AsciiString, "
+    "opencascade::handle<Storage_TypedCallBack>> directly")
+typedef NCollection_DataMap<TCollection_AsciiString, opencascade::handle<Storage_TypedCallBack>>
   Storage_MapOfCallBack;
-typedef NCollection_DataMap<TCollection_AsciiString, Handle(Storage_TypedCallBack)>::Iterator
+Standard_DEPRECATED("Storage_DataMapIteratorOfMapOfCallBack is deprecated, use "
+                    "NCollection_DataMap<TCollection_AsciiString, "
+                    "opencascade::handle<Storage_TypedCallBack>>::Iterator directly")
+typedef NCollection_DataMap<TCollection_AsciiString,
+                            opencascade::handle<Storage_TypedCallBack>>::Iterator
   Storage_DataMapIteratorOfMapOfCallBack;
 
-#endif
+#endif // _Storage_MapOfCallBack_hxx

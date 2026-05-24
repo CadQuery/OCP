@@ -1,5 +1,4 @@
-// Copyright (c) 1998-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -12,11 +11,22 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef TColStd_IndexedMapOfReal_HeaderFile
-#define TColStd_IndexedMapOfReal_HeaderFile
+//! @file TColStd_IndexedMapOfReal.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection_IndexedMap<double> directly instead.
 
+#ifndef _TColStd_IndexedMapOfReal_hxx
+#define _TColStd_IndexedMapOfReal_hxx
+
+#include <Standard_Macro.hxx>
 #include <NCollection_IndexedMap.hxx>
 
-typedef NCollection_IndexedMap<Standard_Real> TColStd_IndexedMapOfReal;
+Standard_HEADER_DEPRECATED("TColStd_IndexedMapOfReal.hxx is deprecated since OCCT 8.0.0. Use "
+                           "NCollection_IndexedMap<double> directly.")
 
-#endif
+  Standard_DEPRECATED(
+    "TColStd_IndexedMapOfReal is deprecated, use NCollection_IndexedMap<double> directly")
+typedef NCollection_IndexedMap<double> TColStd_IndexedMapOfReal;
+
+#endif // _TColStd_IndexedMapOfReal_hxx

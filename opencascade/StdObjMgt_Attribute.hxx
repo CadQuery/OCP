@@ -26,16 +26,16 @@ class StdObjMgt_Attribute : public Standard_Transient
   {
   public:
     //! Create an empty transient attribute
-    virtual Handle(TDF_Attribute) CreateAttribute() { return myTransient = new Transient; }
+    occ::handle<TDF_Attribute> CreateAttribute() override { return myTransient = new Transient; }
 
     //! Get transient attribute for the persistent data
-    virtual Handle(TDF_Attribute) GetAttribute() const
+    occ::handle<TDF_Attribute> GetAttribute() const override
     {
-      return Handle(TDF_Attribute)(myTransient);
+      return occ::handle<TDF_Attribute>(myTransient);
     }
 
   protected:
-    Handle(Transient) myTransient;
+    occ::handle<Transient> myTransient;
   };
 
 public:
@@ -48,24 +48,24 @@ public:
   {
   public:
     //! Read persistent data from a file.
-    virtual void Read(StdObjMgt_ReadData& theReadData) { theReadData >> myData; }
+    void Read(StdObjMgt_ReadData& theReadData) override { theReadData >> myData; }
 
     //! Write persistent data to a file.
-    virtual void Write(StdObjMgt_WriteData& theWriteData) const { theWriteData << myData; }
+    void Write(StdObjMgt_WriteData& theWriteData) const override { theWriteData << myData; }
 
-    virtual void PChildren(StdObjMgt_Persistent::SequenceOfPersistent&) const {}
+    void PChildren(StdObjMgt_Persistent::SequenceOfPersistent&) const override {}
 
-    virtual Standard_CString PName() const { return "StdObjMgt_Attribute::undefined"; }
+    const char* PName() const override { return "StdObjMgt_Attribute::undefined"; }
 
   protected:
     DataType myData;
   };
 
-  struct SingleInt : Simple<Standard_Integer>
+  struct SingleInt : Simple<int>
   {
   };
 
-  struct SingleRef : Simple<Handle(StdObjMgt_Persistent)>
+  struct SingleRef : Simple<occ::handle<StdObjMgt_Persistent>>
   {
   };
 
@@ -75,24 +75,24 @@ private:
   {
   public:
     //! Read persistent data from a file.
-    virtual void Read(StdObjMgt_ReadData& theReadData)
+    void Read(StdObjMgt_ReadData& theReadData) override
     {
       myPersistent = new Persistent;
       myPersistent->Read(theReadData);
     }
 
     //! Write persistent data to a file.
-    virtual void Write(StdObjMgt_WriteData& theWriteData) const
+    void Write(StdObjMgt_WriteData& theWriteData) const override
     {
       myPersistent->Write(theWriteData);
     }
 
-    virtual void PChildren(StdObjMgt_Persistent::SequenceOfPersistent&) const {}
+    void PChildren(StdObjMgt_Persistent::SequenceOfPersistent&) const override {}
 
-    virtual Standard_CString PName() const { return myPersistent->PName(); }
+    const char* PName() const override { return myPersistent->PName(); }
 
     //! Import transient attribute from the persistent data
-    virtual void ImportAttribute()
+    void ImportAttribute() override
     {
       if (myPersistent && this->myTransient)
       {
@@ -102,12 +102,12 @@ private:
     }
 
   private:
-    Handle(Persistent) myPersistent;
+    occ::handle<Persistent> myPersistent;
   };
 
 public:
   template <class Persistent>
-  static Handle(StdObjMgt_Persistent) Instantiate()
+  static occ::handle<StdObjMgt_Persistent> Instantiate()
   {
     return new container<Persistent>;
   }

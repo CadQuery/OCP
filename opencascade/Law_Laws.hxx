@@ -1,7 +1,4 @@
-// Created on: 1994-04-07
-// Created by: Isabelle GRIGNON
-// Copyright (c) 1994-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,13 +11,26 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef Law_Laws_HeaderFile
-#define Law_Laws_HeaderFile
+//! @file Law_Laws.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection types directly instead.
 
+#ifndef _Law_Laws_hxx
+#define _Law_Laws_hxx
+
+#include <Standard_Macro.hxx>
 #include <Law_Function.hxx>
 #include <NCollection_List.hxx>
 
-typedef NCollection_List<Handle(Law_Function)>           Law_Laws;
-typedef NCollection_List<Handle(Law_Function)>::Iterator Law_ListIteratorOfLaws;
+Standard_HEADER_DEPRECATED(
+  "Law_Laws.hxx is deprecated since OCCT 8.0.0. Use NCollection types directly.")
 
-#endif
+  Standard_DEPRECATED(
+    "Law_Laws is deprecated, use NCollection_List<opencascade::handle<Law_Function>> directly")
+typedef NCollection_List<opencascade::handle<Law_Function>> Law_Laws;
+Standard_DEPRECATED("Law_ListIteratorOfLaws is deprecated, use "
+                    "NCollection_List<opencascade::handle<Law_Function>>::Iterator directly")
+typedef NCollection_List<opencascade::handle<Law_Function>>::Iterator Law_ListIteratorOfLaws;
+
+#endif // _Law_Laws_hxx

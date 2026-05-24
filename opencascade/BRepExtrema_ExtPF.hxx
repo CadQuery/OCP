@@ -15,8 +15,8 @@
 #define _BRepExtrema_ExtPF_HeaderFile
 
 #include <Extrema_ExtPS.hxx>
-#include <TColStd_SequenceOfReal.hxx>
-#include <Extrema_SequenceOfPOnSurf.hxx>
+#include <NCollection_Sequence.hxx>
+#include <Extrema_POnSurf.hxx>
 #include <BRepAdaptor_Surface.hxx>
 #include <Extrema_ExtFlag.hxx>
 #include <Extrema_ExtAlgo.hxx>
@@ -29,9 +29,9 @@ class BRepExtrema_ExtPF
 public:
   DEFINE_STANDARD_ALLOC
 
-  BRepExtrema_ExtPF() {}
+  BRepExtrema_ExtPF() = default;
 
-  //! It calculates all the distances. <br>
+  //! It calculates all the distances.
   Standard_EXPORT BRepExtrema_ExtPF(const TopoDS_Vertex&  TheVertex,
                                     const TopoDS_Face&    TheFace,
                                     const Extrema_ExtFlag TheFlag = Extrema_ExtFlag_MINMAX,
@@ -41,37 +41,34 @@ public:
                                   const Extrema_ExtFlag TheFlag = Extrema_ExtFlag_MINMAX,
                                   const Extrema_ExtAlgo TheAlgo = Extrema_ExtAlgo_Grad);
 
-  //! An exception is raised if the fields have not been initialized. <br>
-  //! Be careful: this method uses the Face only for classify not for the fields. <br>
+  //! An exception is raised if the fields have not been initialized.
+  //! Be careful: this method uses the Face only for classify not for the fields.
   Standard_EXPORT void Perform(const TopoDS_Vertex& TheVertex, const TopoDS_Face& TheFace);
 
-  //! True if the distances are found. <br>
-  Standard_Boolean IsDone() const { return myExtPS.IsDone(); }
+  //! True if the distances are found.
+  bool IsDone() const { return myExtPS.IsDone(); }
 
-  //! Returns the number of extremum distances. <br>
-  Standard_Integer NbExt() const { return myPoints.Length(); }
+  //! Returns the number of extremum distances.
+  int NbExt() const { return myPoints.Length(); }
 
-  //! Returns the value of the <N>th extremum square distance. <br>
-  Standard_Real SquareDistance(const Standard_Integer N) const { return mySqDist.Value(N); }
+  //! Returns the value of the <N>th extremum square distance.
+  double SquareDistance(const int N) const { return mySqDist.Value(N); }
 
-  //! Returns the parameters on the Face of the <N>th extremum distance. <br>
-  void Parameter(const Standard_Integer N, Standard_Real& U, Standard_Real& V) const
-  {
-    myPoints.Value(N).Parameter(U, V);
-  }
+  //! Returns the parameters on the Face of the <N>th extremum distance.
+  void Parameter(const int N, double& U, double& V) const { myPoints.Value(N).Parameter(U, V); }
 
-  //! Returns the Point of the <N>th extremum distance. <br>
-  gp_Pnt Point(const Standard_Integer N) const { return myPoints.Value(N).Value(); }
+  //! Returns the Point of the <N>th extremum distance.
+  gp_Pnt Point(const int N) const { return myPoints.Value(N).Value(); }
 
   void SetFlag(const Extrema_ExtFlag F) { myExtPS.SetFlag(F); }
 
   void SetAlgo(const Extrema_ExtAlgo A) { myExtPS.SetAlgo(A); }
 
 private:
-  Extrema_ExtPS             myExtPS;
-  TColStd_SequenceOfReal    mySqDist;
-  Extrema_SequenceOfPOnSurf myPoints;
-  BRepAdaptor_Surface       mySurf;
+  Extrema_ExtPS                         myExtPS;
+  NCollection_Sequence<double>          mySqDist;
+  NCollection_Sequence<Extrema_POnSurf> myPoints;
+  BRepAdaptor_Surface                   mySurf;
 };
 
 #endif

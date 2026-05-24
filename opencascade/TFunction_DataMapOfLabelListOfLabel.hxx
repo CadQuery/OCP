@@ -1,7 +1,4 @@
-// Created on: 1999-06-10
-// Created by: Vladislav ROMASHKO
-// Copyright (c) 1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,14 +11,27 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef TFunction_DataMapOfLabelListOfLabel_HeaderFile
-#define TFunction_DataMapOfLabelListOfLabel_HeaderFile
+//! @file TFunction_DataMapOfLabelListOfLabel.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection types directly instead.
 
+#ifndef _TFunction_DataMapOfLabelListOfLabel_hxx
+#define _TFunction_DataMapOfLabelListOfLabel_hxx
+
+#include <Standard_Macro.hxx>
 #include <TDF_LabelList.hxx>
 #include <NCollection_DataMap.hxx>
 
+Standard_HEADER_DEPRECATED("TFunction_DataMapOfLabelListOfLabel.hxx is deprecated since OCCT "
+                           "8.0.0. Use NCollection types directly.")
+
+  Standard_DEPRECATED("TFunction_DataMapOfLabelListOfLabel is deprecated, use "
+                      "NCollection_DataMap<TDF_Label, TDF_LabelList> directly")
 typedef NCollection_DataMap<TDF_Label, TDF_LabelList> TFunction_DataMapOfLabelListOfLabel;
+Standard_DEPRECATED("TFunction_DataMapIteratorOfDataMapOfLabelListOfLabel is deprecated, use "
+                    "NCollection_DataMap<TDF_Label, TDF_LabelList>::Iterator directly")
 typedef NCollection_DataMap<TDF_Label, TDF_LabelList>::Iterator
   TFunction_DataMapIteratorOfDataMapOfLabelListOfLabel;
 
-#endif
+#endif // _TFunction_DataMapOfLabelListOfLabel_hxx

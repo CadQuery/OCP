@@ -1,7 +1,4 @@
-// Created on: 1999-11-09
-// Created by: data exchange team
-// Copyright (c) 1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,12 +11,23 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef StepAP203_HArray1OfCertifiedItem_HeaderFile
-#define StepAP203_HArray1OfCertifiedItem_HeaderFile
+//! @file StepAP203_HArray1OfCertifiedItem.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection_HArray1<StepAP203_CertifiedItem> directly instead.
 
+#ifndef _StepAP203_HArray1OfCertifiedItem_hxx
+#define _StepAP203_HArray1OfCertifiedItem_hxx
+
+#include <Standard_Macro.hxx>
 #include <StepAP203_Array1OfCertifiedItem.hxx>
-#include <NCollection_DefineHArray1.hxx>
+#include <NCollection_HArray1.hxx>
 
-DEFINE_HARRAY1(StepAP203_HArray1OfCertifiedItem, StepAP203_Array1OfCertifiedItem)
+Standard_HEADER_DEPRECATED("StepAP203_HArray1OfCertifiedItem.hxx is deprecated since OCCT 8.0.0. "
+                           "Use NCollection_HArray1<StepAP203_CertifiedItem> directly.")
 
-#endif
+  Standard_DEPRECATED("StepAP203_HArray1OfCertifiedItem is deprecated, use "
+                      "NCollection_HArray1<StepAP203_CertifiedItem> directly")
+typedef NCollection_HArray1<StepAP203_CertifiedItem> StepAP203_HArray1OfCertifiedItem;
+
+#endif // _StepAP203_HArray1OfCertifiedItem_hxx

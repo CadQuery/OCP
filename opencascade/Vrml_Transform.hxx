@@ -27,10 +27,10 @@
 
 //! defines a Transform of VRML specifying transform
 //! properties.
-//! This  node  defines  a  geometric  3D  transformation   consisting   of  (in  order)
-//! a  (possibly)  non-uniform  scale  about  an  arbitrary  point,  a  rotation  about
-//! an arbitrary point  and  axis  and  translation.
-//! By  default  :
+//! This node defines a geometric 3D transformation consisting of (in order)
+//! a (possibly) non-uniform scale about an arbitrary point, a rotation about
+//! an arbitrary point and axis and translation.
+//! By default:
 //! myTranslation (0,0,0)
 //! myRotation  (0,0,1,0)
 //! myScaleFactor (1,1,1)
@@ -71,7 +71,6 @@ public:
 
   Standard_EXPORT Standard_OStream& Print(Standard_OStream& anOStream) const;
 
-protected:
 private:
   gp_Vec          myTranslation;
   Vrml_SFRotation myRotation;

@@ -1,7 +1,4 @@
-// Created on: 1993-01-09
-// Created by: CKY / Contract Toubro-Larsen (Arun MENON)
-// Copyright (c) 1993-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,12 +11,26 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef IGESBasic_Array1OfLineFontEntity_HeaderFile
-#define IGESBasic_Array1OfLineFontEntity_HeaderFile
+//! @file IGESBasic_Array1OfLineFontEntity.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection_Array1<opencascade::handle<IGESData_LineFontEntity>> directly
+//!             instead.
 
+#ifndef _IGESBasic_Array1OfLineFontEntity_hxx
+#define _IGESBasic_Array1OfLineFontEntity_hxx
+
+#include <Standard_Macro.hxx>
 #include <IGESData_LineFontEntity.hxx>
 #include <NCollection_Array1.hxx>
 
-typedef NCollection_Array1<Handle(IGESData_LineFontEntity)> IGESBasic_Array1OfLineFontEntity;
+Standard_HEADER_DEPRECATED(
+  "IGESBasic_Array1OfLineFontEntity.hxx is deprecated since OCCT 8.0.0. Use "
+  "NCollection_Array1<opencascade::handle<IGESData_LineFontEntity>> directly.")
 
-#endif
+  Standard_DEPRECATED("IGESBasic_Array1OfLineFontEntity is deprecated, use "
+                      "NCollection_Array1<opencascade::handle<IGESData_LineFontEntity>> directly")
+typedef NCollection_Array1<opencascade::handle<IGESData_LineFontEntity>>
+  IGESBasic_Array1OfLineFontEntity;
+
+#endif // _IGESBasic_Array1OfLineFontEntity_hxx

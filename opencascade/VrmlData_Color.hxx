@@ -31,7 +31,7 @@ public:
   /**
    * Empty constructor.
    */
-  inline VrmlData_Color() {}
+  inline VrmlData_Color() = default;
 
   /**
    * Constructor.
@@ -39,7 +39,7 @@ public:
   inline VrmlData_Color(const VrmlData_Scene& theScene,
                         const char*           theName,
                         const size_t          nColors   = 0,
-                        const gp_XYZ*         arrColors = 0L)
+                        const gp_XYZ*         arrColors = nullptr)
       : VrmlData_ArrayVec3d(theScene, theName, nColors, arrColors)
   {
   }
@@ -51,7 +51,7 @@ public:
    * @return
    *   the color value for the index. If index irrelevant, returns (0., 0., 0.)
    */
-  inline const Quantity_Color Color(const Standard_Integer i) const
+  inline const Quantity_Color Color(const int i) const
   {
     return Quantity_Color(Value(i).X(), Value(i).Y(), Value(i).Z(), Quantity_TOC_sRGB);
   }
@@ -70,21 +70,18 @@ public:
    * If the parameter is null, a new copied node is created. Otherwise new node
    * is not created, but rather the given one is modified.<p>
    */
-  Standard_EXPORT virtual Handle(VrmlData_Node) Clone(const Handle(VrmlData_Node)& theOther) const
-    Standard_OVERRIDE;
+  Standard_EXPORT occ::handle<VrmlData_Node> Clone(
+    const occ::handle<VrmlData_Node>& theOther) const override;
 
   /**
    * Read the Node from input stream.
    */
-  Standard_EXPORT virtual VrmlData_ErrorStatus Read(VrmlData_InBuffer& theBuffer) Standard_OVERRIDE;
+  Standard_EXPORT VrmlData_ErrorStatus Read(VrmlData_InBuffer& theBuffer) override;
 
   /**
    * Write the Node to the Scene output.
    */
-  Standard_EXPORT virtual VrmlData_ErrorStatus Write(const char* thePrefix) const Standard_OVERRIDE;
-
-private:
-  // ---------- PRIVATE FIELDS ----------
+  Standard_EXPORT VrmlData_ErrorStatus Write(const char* thePrefix) const override;
 
 public:
   // Declaration of CASCADE RTTI
@@ -92,6 +89,4 @@ public:
 };
 
 // Definition of HANDLE object using Standard_DefineHandle.hxx
-DEFINE_STANDARD_HANDLE(VrmlData_Color, VrmlData_ArrayVec3d)
-
 #endif

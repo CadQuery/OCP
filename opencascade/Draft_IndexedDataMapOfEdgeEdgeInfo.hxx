@@ -1,7 +1,4 @@
-// Created on: 1994-08-31
-// Created by: Jacques GOUSSARD
-// Copyright (c) 1994-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,15 +11,29 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef Draft_IndexedDataMapOfEdgeEdgeInfo_HeaderFile
-#define Draft_IndexedDataMapOfEdgeEdgeInfo_HeaderFile
+//! @file Draft_IndexedDataMapOfEdgeEdgeInfo.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection_IndexedDataMap<TopoDS_Edge, Draft_EdgeInfo, TopTools_ShapeMapHasher>
+//!             directly instead.
 
+#ifndef _Draft_IndexedDataMapOfEdgeEdgeInfo_hxx
+#define _Draft_IndexedDataMapOfEdgeEdgeInfo_hxx
+
+#include <Standard_Macro.hxx>
 #include <TopoDS_Edge.hxx>
 #include <Draft_EdgeInfo.hxx>
 #include <TopTools_ShapeMapHasher.hxx>
 #include <NCollection_IndexedDataMap.hxx>
 
+Standard_HEADER_DEPRECATED(
+  "Draft_IndexedDataMapOfEdgeEdgeInfo.hxx is deprecated since OCCT 8.0.0. Use "
+  "NCollection_IndexedDataMap<TopoDS_Edge, Draft_EdgeInfo, TopTools_ShapeMapHasher> directly.")
+
+  Standard_DEPRECATED(
+    "Draft_IndexedDataMapOfEdgeEdgeInfo is deprecated, use NCollection_IndexedDataMap<TopoDS_Edge, "
+    "Draft_EdgeInfo, TopTools_ShapeMapHasher> directly")
 typedef NCollection_IndexedDataMap<TopoDS_Edge, Draft_EdgeInfo, TopTools_ShapeMapHasher>
   Draft_IndexedDataMapOfEdgeEdgeInfo;
 
-#endif
+#endif // _Draft_IndexedDataMapOfEdgeEdgeInfo_hxx

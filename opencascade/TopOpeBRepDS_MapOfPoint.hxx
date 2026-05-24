@@ -1,7 +1,4 @@
-// Created on: 1993-06-17
-// Created by: Jean Yves LEBEY
-// Copyright (c) 1993-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,15 +11,28 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef TopOpeBRepDS_MapOfPoint_HeaderFile
-#define TopOpeBRepDS_MapOfPoint_HeaderFile
+//! @file TopOpeBRepDS_MapOfPoint.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection types directly instead.
 
+#ifndef _TopOpeBRepDS_MapOfPoint_hxx
+#define _TopOpeBRepDS_MapOfPoint_hxx
+
+#include <Standard_Macro.hxx>
 #include <Standard_Integer.hxx>
 #include <TopOpeBRepDS_PointData.hxx>
 #include <NCollection_DataMap.hxx>
 
-typedef NCollection_DataMap<Standard_Integer, TopOpeBRepDS_PointData> TopOpeBRepDS_MapOfPoint;
-typedef NCollection_DataMap<Standard_Integer, TopOpeBRepDS_PointData>::Iterator
+Standard_HEADER_DEPRECATED(
+  "TopOpeBRepDS_MapOfPoint.hxx is deprecated since OCCT 8.0.0. Use NCollection types directly.")
+
+  Standard_DEPRECATED("TopOpeBRepDS_MapOfPoint is deprecated, use NCollection_DataMap<int, "
+                      "TopOpeBRepDS_PointData> directly")
+typedef NCollection_DataMap<int, TopOpeBRepDS_PointData> TopOpeBRepDS_MapOfPoint;
+Standard_DEPRECATED("TopOpeBRepDS_DataMapIteratorOfMapOfPoint is deprecated, use "
+                    "NCollection_DataMap<int, TopOpeBRepDS_PointData>::Iterator directly")
+typedef NCollection_DataMap<int, TopOpeBRepDS_PointData>::Iterator
   TopOpeBRepDS_DataMapIteratorOfMapOfPoint;
 
-#endif
+#endif // _TopOpeBRepDS_MapOfPoint_hxx

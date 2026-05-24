@@ -1,7 +1,4 @@
-// Created on: 1994-02-08
-// Created by: Gilles DEBARBOUILLE
-// Copyright (c) 1994-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,12 +11,23 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef Quantity_HArray1OfColor_HeaderFile
-#define Quantity_HArray1OfColor_HeaderFile
+//! @file Quantity_HArray1OfColor.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection_HArray1<Quantity_Color> directly instead.
 
+#ifndef _Quantity_HArray1OfColor_hxx
+#define _Quantity_HArray1OfColor_hxx
+
+#include <Standard_Macro.hxx>
 #include <Quantity_Array1OfColor.hxx>
-#include <NCollection_DefineHArray1.hxx>
+#include <NCollection_HArray1.hxx>
 
-DEFINE_HARRAY1(Quantity_HArray1OfColor, Quantity_Array1OfColor)
+Standard_HEADER_DEPRECATED("Quantity_HArray1OfColor.hxx is deprecated since OCCT 8.0.0. Use "
+                           "NCollection_HArray1<Quantity_Color> directly.")
 
-#endif
+  Standard_DEPRECATED(
+    "Quantity_HArray1OfColor is deprecated, use NCollection_HArray1<Quantity_Color> directly")
+typedef NCollection_HArray1<Quantity_Color> Quantity_HArray1OfColor;
+
+#endif // _Quantity_HArray1OfColor_hxx

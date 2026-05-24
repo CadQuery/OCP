@@ -20,15 +20,13 @@
 #include <Standard.hxx>
 
 #include <Standard_Integer.hxx>
-#include <IGESData_HArray1OfIGESEntity.hxx>
 #include <IGESData_IGESEntity.hxx>
-
-class IGESDimen_DimensionedGeometry;
-DEFINE_STANDARD_HANDLE(IGESDimen_DimensionedGeometry, IGESData_IGESEntity)
+#include <NCollection_Array1.hxx>
+#include <NCollection_HArray1.hxx>
 
 //! Defines IGES Dimensioned Geometry, Type <402> Form <13>,
 //! in package IGESDimen
-//! This entity has been replaced by the new form of  Dimensioned
+//! This entity has been replaced by the new form of Dimensioned
 //! Geometry Associativity Entity (Type 402, Form 21) and should no
 //! longer be used by preprocessors.
 class IGESDimen_DimensionedGeometry : public IGESData_IGESEntity
@@ -37,30 +35,30 @@ class IGESDimen_DimensionedGeometry : public IGESData_IGESEntity
 public:
   Standard_EXPORT IGESDimen_DimensionedGeometry();
 
-  Standard_EXPORT void Init(const Standard_Integer                      nbDims,
-                            const Handle(IGESData_IGESEntity)&          aDimension,
-                            const Handle(IGESData_HArray1OfIGESEntity)& entities);
+  Standard_EXPORT void Init(
+    const int                                                                 nbDims,
+    const occ::handle<IGESData_IGESEntity>&                                   aDimension,
+    const occ::handle<NCollection_HArray1<occ::handle<IGESData_IGESEntity>>>& entities);
 
   //! returns the number of dimensions
-  Standard_EXPORT Standard_Integer NbDimensions() const;
+  Standard_EXPORT int NbDimensions() const;
 
   //! returns the number of associated geometry entities
-  Standard_EXPORT Standard_Integer NbGeometryEntities() const;
+  Standard_EXPORT int NbGeometryEntities() const;
 
   //! returns the Dimension entity
-  Standard_EXPORT Handle(IGESData_IGESEntity) DimensionEntity() const;
+  Standard_EXPORT occ::handle<IGESData_IGESEntity> DimensionEntity() const;
 
   //! returns the num'th Geometry entity
   //! raises exception if Index <= 0 or Index > NbGeometryEntities()
-  Standard_EXPORT Handle(IGESData_IGESEntity) GeometryEntity(const Standard_Integer Index) const;
+  Standard_EXPORT occ::handle<IGESData_IGESEntity> GeometryEntity(const int Index) const;
 
   DEFINE_STANDARD_RTTIEXT(IGESDimen_DimensionedGeometry, IGESData_IGESEntity)
 
-protected:
 private:
-  Standard_Integer                     theNbDimensions;
-  Handle(IGESData_IGESEntity)          theDimension;
-  Handle(IGESData_HArray1OfIGESEntity) theGeometryEntities;
+  int                                                                theNbDimensions;
+  occ::handle<IGESData_IGESEntity>                                   theDimension;
+  occ::handle<NCollection_HArray1<occ::handle<IGESData_IGESEntity>>> theGeometryEntities;
 };
 
 #endif // _IGESDimen_DimensionedGeometry_HeaderFile

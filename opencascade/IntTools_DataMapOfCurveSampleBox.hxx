@@ -1,6 +1,4 @@
-// Created on: 2000-05-18
-// Created by: Peter KURNEV
-// Copyright (c) 2000-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -13,15 +11,28 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef IntTools_DataMapOfCurveSampleBox_HeaderFile
-#define IntTools_DataMapOfCurveSampleBox_HeaderFile
+//! @file IntTools_DataMapOfCurveSampleBox.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection types directly instead.
 
+#ifndef _IntTools_DataMapOfCurveSampleBox_hxx
+#define _IntTools_DataMapOfCurveSampleBox_hxx
+
+#include <Standard_Macro.hxx>
 #include <IntTools_CurveRangeSample.hxx>
 #include <Bnd_Box.hxx>
 #include <NCollection_DataMap.hxx>
 
+Standard_HEADER_DEPRECATED("IntTools_DataMapOfCurveSampleBox.hxx is deprecated since OCCT 8.0.0. "
+                           "Use NCollection types directly.")
+
+  Standard_DEPRECATED("IntTools_DataMapOfCurveSampleBox is deprecated, use "
+                      "NCollection_DataMap<IntTools_CurveRangeSample, Bnd_Box> directly")
 typedef NCollection_DataMap<IntTools_CurveRangeSample, Bnd_Box> IntTools_DataMapOfCurveSampleBox;
+Standard_DEPRECATED("IntTools_DataMapIteratorOfDataMapOfCurveSampleBox is deprecated, use "
+                    "NCollection_DataMap<IntTools_CurveRangeSample, Bnd_Box>::Iterator directly")
 typedef NCollection_DataMap<IntTools_CurveRangeSample, Bnd_Box>::Iterator
   IntTools_DataMapIteratorOfDataMapOfCurveSampleBox;
 
-#endif
+#endif // _IntTools_DataMapOfCurveSampleBox_hxx

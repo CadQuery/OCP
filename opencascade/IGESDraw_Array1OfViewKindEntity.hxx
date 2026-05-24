@@ -1,7 +1,4 @@
-// Created on: 1993-01-11
-// Created by: CKY / Contract Toubro-Larsen (Niraj RANGWALA)
-// Copyright (c) 1993-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,12 +11,26 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef IGESDraw_Array1OfViewKindEntity_HeaderFile
-#define IGESDraw_Array1OfViewKindEntity_HeaderFile
+//! @file IGESDraw_Array1OfViewKindEntity.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection_Array1<opencascade::handle<IGESData_ViewKindEntity>> directly
+//!             instead.
 
+#ifndef _IGESDraw_Array1OfViewKindEntity_hxx
+#define _IGESDraw_Array1OfViewKindEntity_hxx
+
+#include <Standard_Macro.hxx>
 #include <IGESData_ViewKindEntity.hxx>
 #include <NCollection_Array1.hxx>
 
-typedef NCollection_Array1<Handle(IGESData_ViewKindEntity)> IGESDraw_Array1OfViewKindEntity;
+Standard_HEADER_DEPRECATED(
+  "IGESDraw_Array1OfViewKindEntity.hxx is deprecated since OCCT 8.0.0. Use "
+  "NCollection_Array1<opencascade::handle<IGESData_ViewKindEntity>> directly.")
 
-#endif
+  Standard_DEPRECATED("IGESDraw_Array1OfViewKindEntity is deprecated, use "
+                      "NCollection_Array1<opencascade::handle<IGESData_ViewKindEntity>> directly")
+typedef NCollection_Array1<opencascade::handle<IGESData_ViewKindEntity>>
+  IGESDraw_Array1OfViewKindEntity;
+
+#endif // _IGESDraw_Array1OfViewKindEntity_hxx

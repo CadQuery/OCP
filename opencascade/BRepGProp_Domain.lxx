@@ -17,12 +17,9 @@
 #include <TopoDS.hxx>
 #include <TopoDS_Face.hxx>
 
-//=======================================================================
-// function : BRepGProp_Domain
-// purpose  : Empty constructor.
-//=======================================================================
+//=================================================================================================
 
-inline BRepGProp_Domain::BRepGProp_Domain() {}
+inline BRepGProp_Domain::BRepGProp_Domain() = default;
 
 //=======================================================================
 // function : BRepGProp_Domain
@@ -49,7 +46,7 @@ inline void BRepGProp_Domain::Init(const TopoDS_Face& F)
 // purpose  : Returns True if there is another arc of curve in the list.
 //=======================================================================
 
-inline Standard_Boolean BRepGProp_Domain::More()
+inline bool BRepGProp_Domain::More()
 {
   return myExplorer.More();
 }
@@ -64,10 +61,7 @@ inline void BRepGProp_Domain::Init()
   myExplorer.ReInit();
 }
 
-//=======================================================================
-// function : Value
-// purpose  : Returns the current edge.
-//=======================================================================
+//=================================================================================================
 
 inline const TopoDS_Edge& BRepGProp_Domain::Value()
 {

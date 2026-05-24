@@ -1,6 +1,4 @@
-// Created on: 2000-05-18
-// Created by: Peter KURNEV
-// Copyright (c) 2000-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -13,14 +11,27 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef IntTools_ListOfSurfaceRangeSample_HeaderFile
-#define IntTools_ListOfSurfaceRangeSample_HeaderFile
+//! @file IntTools_ListOfSurfaceRangeSample.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection types directly instead.
 
+#ifndef _IntTools_ListOfSurfaceRangeSample_hxx
+#define _IntTools_ListOfSurfaceRangeSample_hxx
+
+#include <Standard_Macro.hxx>
 #include <IntTools_SurfaceRangeSample.hxx>
 #include <NCollection_List.hxx>
 
+Standard_HEADER_DEPRECATED("IntTools_ListOfSurfaceRangeSample.hxx is deprecated since OCCT 8.0.0. "
+                           "Use NCollection types directly.")
+
+  Standard_DEPRECATED("IntTools_ListOfSurfaceRangeSample is deprecated, use "
+                      "NCollection_List<IntTools_SurfaceRangeSample> directly")
 typedef NCollection_List<IntTools_SurfaceRangeSample> IntTools_ListOfSurfaceRangeSample;
+Standard_DEPRECATED("IntTools_ListIteratorOfListOfSurfaceRangeSample is deprecated, use "
+                    "NCollection_List<IntTools_SurfaceRangeSample>::Iterator directly")
 typedef NCollection_List<IntTools_SurfaceRangeSample>::Iterator
   IntTools_ListIteratorOfListOfSurfaceRangeSample;
 
-#endif
+#endif // _IntTools_ListOfSurfaceRangeSample_hxx

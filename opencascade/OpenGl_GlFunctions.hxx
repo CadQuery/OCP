@@ -72,11 +72,10 @@ struct OpenGl_GlFunctions
   Standard_EXPORT static bool debugPrintError(const char* theName);
 
   //! Read OpenGL version.
-  Standard_EXPORT static void readGlVersion(Standard_Integer& theGlVerMajor,
-                                            Standard_Integer& theGlVerMinor);
+  Standard_EXPORT static void readGlVersion(int& theGlVerMajor, int& theGlVerMinor);
 
   //! Load functions.
-  Standard_EXPORT void load(OpenGl_Context& theCtx, Standard_Boolean theIsCoreProfile);
+  Standard_EXPORT void load(OpenGl_Context& theCtx, bool theIsCoreProfile);
 
 public: //! @name OpenGL 1.1
   typedef void(APIENTRYP glClearColor_t)(GLclampf theRed,
@@ -499,7 +498,7 @@ public: //! @name Edge flags and fixed-function vertex processing (removed since
   glPolygonMode_t glPolygonMode;
 
 public: //! @name OpenGL ES 3.2
-  typedef void(APIENTRYP glBlendBarrier_t)(void);
+  typedef void(APIENTRYP glBlendBarrier_t)();
   glBlendBarrier_t glBlendBarrier;
 
   typedef void(APIENTRYP glPrimitiveBoundingBox_t)(GLfloat minX,

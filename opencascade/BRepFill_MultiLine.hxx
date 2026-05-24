@@ -40,9 +40,9 @@ class gp_Pnt2d;
 //! two 2d curves resulting from the intersection of a
 //! surface of linear extrusion( Bissec, Dz) and the 2
 //! faces.
-//! This 3 curves will  have  the same parametrization
+//! These 3 curves will have the same parametrization
 //! as the Bissectrice.
-//! This  class  is  to  be  send  to an approximation
+//! This class is to be sent to an approximation
 //! routine.
 class BRepFill_MultiLine : public AppCont_Function
 {
@@ -51,59 +51,59 @@ public:
 
   Standard_EXPORT BRepFill_MultiLine();
 
-  Standard_EXPORT BRepFill_MultiLine(const TopoDS_Face&          Face1,
-                                     const TopoDS_Face&          Face2,
-                                     const TopoDS_Edge&          Edge1,
-                                     const TopoDS_Edge&          Edge2,
-                                     const Standard_Boolean      Inv1,
-                                     const Standard_Boolean      Inv2,
-                                     const Handle(Geom2d_Curve)& Bissec);
+  Standard_EXPORT BRepFill_MultiLine(const TopoDS_Face&               Face1,
+                                     const TopoDS_Face&               Face2,
+                                     const TopoDS_Edge&               Edge1,
+                                     const TopoDS_Edge&               Edge2,
+                                     const bool                       Inv1,
+                                     const bool                       Inv2,
+                                     const occ::handle<Geom2d_Curve>& Bissec);
 
   //! Search if the Projection of the Bissectrice on the
   //! faces needs an approximation or not.
   //! Returns true if the approximation is not needed.
-  Standard_EXPORT Standard_Boolean IsParticularCase() const;
+  Standard_EXPORT bool IsParticularCase() const;
 
-  //! Returns   the continuity  between  the two  faces
-  //! seShape         from GeomAbsparated by myBis.
+  //! Returns the continuity between the two faces
+  //! seShape from GeomAbsparated by myBis.
   Standard_EXPORT GeomAbs_Shape Continuity() const;
 
   //! raises if IsParticularCase is <False>.
-  Standard_EXPORT void Curves(Handle(Geom_Curve)&   Curve,
-                              Handle(Geom2d_Curve)& PCurve1,
-                              Handle(Geom2d_Curve)& PCurve2) const;
+  Standard_EXPORT void Curves(occ::handle<Geom_Curve>&   Curve,
+                              occ::handle<Geom2d_Curve>& PCurve1,
+                              occ::handle<Geom2d_Curve>& PCurve2) const;
 
   //! returns the first parameter of the Bissectrice.
-  Standard_EXPORT virtual Standard_Real FirstParameter() const;
+  Standard_EXPORT double FirstParameter() const override;
 
   //! returns the last parameter of the Bissectrice.
-  Standard_EXPORT virtual Standard_Real LastParameter() const;
+  Standard_EXPORT double LastParameter() const override;
 
   //! Returns the current point on the 3d curve
-  Standard_EXPORT gp_Pnt Value(const Standard_Real U) const;
+  Standard_EXPORT gp_Pnt Value(const double U) const;
 
   //! returns the current point on the PCurve of the
   //! first face
-  Standard_EXPORT gp_Pnt2d ValueOnF1(const Standard_Real U) const;
+  Standard_EXPORT gp_Pnt2d ValueOnF1(const double U) const;
 
   //! returns the current point on the PCurve of the
   //! first face
-  Standard_EXPORT gp_Pnt2d ValueOnF2(const Standard_Real U) const;
+  Standard_EXPORT gp_Pnt2d ValueOnF2(const double U) const;
 
-  Standard_EXPORT void Value3dOnF1OnF2(const Standard_Real U,
-                                       gp_Pnt&             P3d,
-                                       gp_Pnt2d&           PF1,
-                                       gp_Pnt2d&           PF2) const;
+  Standard_EXPORT void Value3dOnF1OnF2(const double U,
+                                       gp_Pnt&      P3d,
+                                       gp_Pnt2d&    PF1,
+                                       gp_Pnt2d&    PF2) const;
 
   //! Returns the point at parameter <theU>.
-  Standard_EXPORT virtual Standard_Boolean Value(const Standard_Real           theU,
-                                                 NCollection_Array1<gp_Pnt2d>& thePnt2d,
-                                                 NCollection_Array1<gp_Pnt>&   thePnt) const;
+  Standard_EXPORT bool Value(const double                  theU,
+                             NCollection_Array1<gp_Pnt2d>& thePnt2d,
+                             NCollection_Array1<gp_Pnt>&   thePnt) const override;
 
   //! Returns the derivative at parameter <theU>.
-  Standard_EXPORT virtual Standard_Boolean D1(const Standard_Real           theU,
-                                              NCollection_Array1<gp_Vec2d>& theVec2d,
-                                              NCollection_Array1<gp_Vec>&   theVec) const;
+  Standard_EXPORT bool D1(const double                  theU,
+                          NCollection_Array1<gp_Vec2d>& theVec2d,
+                          NCollection_Array1<gp_Vec>&   theVec) const override;
 
 private:
   TopoDS_Face         myFace1;
@@ -112,10 +112,10 @@ private:
   Geom2dAdaptor_Curve myV1;
   Geom2dAdaptor_Curve myU2;
   Geom2dAdaptor_Curve myV2;
-  Standard_Boolean    myIsoU1;
-  Standard_Boolean    myIsoU2;
+  bool                myIsoU1;
+  bool                myIsoU2;
   Geom2dAdaptor_Curve myBis;
-  Standard_Integer    myKPart;
+  int                 myKPart;
   GeomAbs_Shape       myCont;
 };
 

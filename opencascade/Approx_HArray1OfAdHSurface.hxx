@@ -1,7 +1,4 @@
-// Created on: 1993-01-26
-// Created by: Laurent PAINNOT
-// Copyright (c) 1993-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,13 +11,24 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef Approx_HArray1OfAdHSurface_HeaderFile
-#define Approx_HArray1OfAdHSurface_HeaderFile
+//! @file Approx_HArray1OfAdHSurface.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection_HArray1<opencascade::handle<Adaptor3d_Surface>> directly instead.
 
+#ifndef _Approx_HArray1OfAdHSurface_hxx
+#define _Approx_HArray1OfAdHSurface_hxx
+
+#include <Standard_Macro.hxx>
 #include <Adaptor3d_Surface.hxx>
 #include <Approx_Array1OfAdHSurface.hxx>
-#include <NCollection_DefineHArray1.hxx>
+#include <NCollection_HArray1.hxx>
 
-DEFINE_HARRAY1(Approx_HArray1OfAdHSurface, Approx_Array1OfAdHSurface)
+Standard_HEADER_DEPRECATED("Approx_HArray1OfAdHSurface.hxx is deprecated since OCCT 8.0.0. Use "
+                           "NCollection_HArray1<opencascade::handle<Adaptor3d_Surface>> directly.")
 
-#endif
+  Standard_DEPRECATED("Approx_HArray1OfAdHSurface is deprecated, use "
+                      "NCollection_HArray1<opencascade::handle<Adaptor3d_Surface>> directly")
+typedef NCollection_HArray1<opencascade::handle<Adaptor3d_Surface>> Approx_HArray1OfAdHSurface;
+
+#endif // _Approx_HArray1OfAdHSurface_hxx

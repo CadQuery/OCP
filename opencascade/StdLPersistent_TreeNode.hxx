@@ -23,32 +23,32 @@ class StdLPersistent_TreeNode : public StdObjMgt_Attribute<TDataStd_TreeNode>::S
 {
 public:
   //! Read persistent data from a file.
-  Standard_EXPORT virtual void Read(StdObjMgt_ReadData& theReadData);
+  Standard_EXPORT void Read(StdObjMgt_ReadData& theReadData) override;
 
   //! Write persistent data to a file.
-  Standard_EXPORT virtual void Write(StdObjMgt_WriteData& theWriteData) const;
+  Standard_EXPORT void Write(StdObjMgt_WriteData& theWriteData) const override;
 
   //! Gets persistent child objects
-  Standard_EXPORT virtual void PChildren(StdObjMgt_Persistent::SequenceOfPersistent&) const;
+  Standard_EXPORT void PChildren(StdObjMgt_Persistent::SequenceOfPersistent&) const override;
 
   //! Returns persistent type name
-  virtual Standard_CString PName() const { return "PDataStd_TreeNode"; }
+  const char* PName() const override { return "PDataStd_TreeNode"; }
 
   //! Create an empty transient attribute
-  Standard_EXPORT virtual Handle(TDF_Attribute) CreateAttribute();
+  Standard_EXPORT occ::handle<TDF_Attribute> CreateAttribute() override;
 
   //! Import transient attribute from the persistent data.
-  Standard_EXPORT virtual void ImportAttribute();
+  Standard_EXPORT void ImportAttribute() override;
 
 private:
   struct dynamic : public Standard_Transient
   {
-    Handle(StdLPersistent_TreeNode) First;
-    Standard_GUID                   TreeID;
+    occ::handle<StdLPersistent_TreeNode> First;
+    Standard_GUID                        TreeID;
   };
 
-  Handle(dynamic)                 myDynamicData;
-  Handle(StdLPersistent_TreeNode) myNext;
+  Handle(dynamic)                      myDynamicData;
+  occ::handle<StdLPersistent_TreeNode> myNext;
 };
 
 #endif

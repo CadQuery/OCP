@@ -17,13 +17,9 @@
 #ifndef _V3d_UnMapped_HeaderFile
 #define _V3d_UnMapped_HeaderFile
 
-#include <Standard_Type.hxx>
 #include <Standard_DefineException.hxx>
 #include <Standard_SStream.hxx>
 #include <Standard_DomainError.hxx>
-
-class V3d_UnMapped;
-DEFINE_STANDARD_HANDLE(V3d_UnMapped, Standard_DomainError)
 
 #if !defined No_Exception && !defined No_V3d_UnMapped
   #define V3d_UnMapped_Raise_if(CONDITION, MESSAGE)                                                \

@@ -1,7 +1,4 @@
-// Created on: 1993-01-09
-// Created by: CKY / Contract Toubro-Larsen ( Deepak PRABHU )
-// Copyright (c) 1993-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,12 +11,26 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef IGESDimen_HArray1OfLeaderArrow_HeaderFile
-#define IGESDimen_HArray1OfLeaderArrow_HeaderFile
+//! @file IGESDimen_HArray1OfLeaderArrow.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection_HArray1<opencascade::handle<IGESDimen_LeaderArrow>> directly
+//!             instead.
 
+#ifndef _IGESDimen_HArray1OfLeaderArrow_hxx
+#define _IGESDimen_HArray1OfLeaderArrow_hxx
+
+#include <Standard_Macro.hxx>
 #include <IGESDimen_Array1OfLeaderArrow.hxx>
-#include <NCollection_DefineHArray1.hxx>
+#include <NCollection_HArray1.hxx>
 
-DEFINE_HARRAY1(IGESDimen_HArray1OfLeaderArrow, IGESDimen_Array1OfLeaderArrow)
+Standard_HEADER_DEPRECATED(
+  "IGESDimen_HArray1OfLeaderArrow.hxx is deprecated since OCCT 8.0.0. Use "
+  "NCollection_HArray1<opencascade::handle<IGESDimen_LeaderArrow>> directly.")
 
-#endif
+  Standard_DEPRECATED("IGESDimen_HArray1OfLeaderArrow is deprecated, use "
+                      "NCollection_HArray1<opencascade::handle<IGESDimen_LeaderArrow>> directly")
+typedef NCollection_HArray1<opencascade::handle<IGESDimen_LeaderArrow>>
+  IGESDimen_HArray1OfLeaderArrow;
+
+#endif // _IGESDimen_HArray1OfLeaderArrow_hxx

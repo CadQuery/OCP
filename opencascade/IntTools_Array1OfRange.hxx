@@ -1,6 +1,4 @@
-// Created on: 2000-05-18
-// Created by: Peter KURNEV
-// Copyright (c) 2000-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -13,12 +11,23 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef IntTools_Array1OfRange_HeaderFile
-#define IntTools_Array1OfRange_HeaderFile
+//! @file IntTools_Array1OfRange.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection_Array1<IntTools_Range> directly instead.
 
+#ifndef _IntTools_Array1OfRange_hxx
+#define _IntTools_Array1OfRange_hxx
+
+#include <Standard_Macro.hxx>
 #include <IntTools_Range.hxx>
 #include <NCollection_Array1.hxx>
 
+Standard_HEADER_DEPRECATED("IntTools_Array1OfRange.hxx is deprecated since OCCT 8.0.0. Use "
+                           "NCollection_Array1<IntTools_Range> directly.")
+
+  Standard_DEPRECATED(
+    "IntTools_Array1OfRange is deprecated, use NCollection_Array1<IntTools_Range> directly")
 typedef NCollection_Array1<IntTools_Range> IntTools_Array1OfRange;
 
-#endif
+#endif // _IntTools_Array1OfRange_hxx

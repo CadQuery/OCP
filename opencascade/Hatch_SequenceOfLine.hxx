@@ -1,7 +1,4 @@
-// Created on: 1992-08-18
-// Created by: Remi Lequette
-// Copyright (c) 1992-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,12 +11,23 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef Hatch_SequenceOfLine_HeaderFile
-#define Hatch_SequenceOfLine_HeaderFile
+//! @file Hatch_SequenceOfLine.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection_Sequence<Hatch_Line> directly instead.
 
+#ifndef _Hatch_SequenceOfLine_hxx
+#define _Hatch_SequenceOfLine_hxx
+
+#include <Standard_Macro.hxx>
 #include <Hatch_Line.hxx>
 #include <NCollection_Sequence.hxx>
 
+Standard_HEADER_DEPRECATED("Hatch_SequenceOfLine.hxx is deprecated since OCCT 8.0.0. Use "
+                           "NCollection_Sequence<Hatch_Line> directly.")
+
+  Standard_DEPRECATED(
+    "Hatch_SequenceOfLine is deprecated, use NCollection_Sequence<Hatch_Line> directly")
 typedef NCollection_Sequence<Hatch_Line> Hatch_SequenceOfLine;
 
-#endif
+#endif // _Hatch_SequenceOfLine_hxx

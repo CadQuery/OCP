@@ -1,7 +1,4 @@
-// Created on : Thu Mar 24 18:30:12 2022
-// Created by: snn
-// Generator: Express (EXPRESS -> CASCADE/XSTEP Translator) V2.0
-// Copyright (c) Open CASCADE 2022
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,13 +11,25 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef StepVisual_Array1OfTessellatedEdgeOrVertex_HeaderFile
-#define StepVisual_Array1OfTessellatedEdgeOrVertex_HeaderFile
+//! @file StepVisual_Array1OfTessellatedEdgeOrVertex.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection_Array1<StepVisual_TessellatedEdgeOrVertex> directly instead.
 
+#ifndef _StepVisual_Array1OfTessellatedEdgeOrVertex_hxx
+#define _StepVisual_Array1OfTessellatedEdgeOrVertex_hxx
+
+#include <Standard_Macro.hxx>
 #include <StepVisual_TessellatedEdgeOrVertex.hxx>
 #include <NCollection_Array1.hxx>
 
+Standard_HEADER_DEPRECATED(
+  "StepVisual_Array1OfTessellatedEdgeOrVertex.hxx is deprecated since OCCT 8.0.0. Use "
+  "NCollection_Array1<StepVisual_TessellatedEdgeOrVertex> directly.")
+
+  Standard_DEPRECATED("StepVisual_Array1OfTessellatedEdgeOrVertex is deprecated, use "
+                      "NCollection_Array1<StepVisual_TessellatedEdgeOrVertex> directly")
 typedef NCollection_Array1<StepVisual_TessellatedEdgeOrVertex>
   StepVisual_Array1OfTessellatedEdgeOrVertex;
 
-#endif
+#endif // _StepVisual_Array1OfTessellatedEdgeOrVertex_hxx

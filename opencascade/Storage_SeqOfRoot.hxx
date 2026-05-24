@@ -1,7 +1,4 @@
-// Created on: 1996-04-30
-// Created by: cle
-// Copyright (c) 1996-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,12 +11,23 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef Storage_SeqOfRoot_HeaderFile
-#define Storage_SeqOfRoot_HeaderFile
+//! @file Storage_SeqOfRoot.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection_Sequence<opencascade::handle<Storage_Root>> directly instead.
 
+#ifndef _Storage_SeqOfRoot_hxx
+#define _Storage_SeqOfRoot_hxx
+
+#include <Standard_Macro.hxx>
 #include <Storage_Root.hxx>
 #include <NCollection_Sequence.hxx>
 
-typedef NCollection_Sequence<Handle(Storage_Root)> Storage_SeqOfRoot;
+Standard_HEADER_DEPRECATED("Storage_SeqOfRoot.hxx is deprecated since OCCT 8.0.0. Use "
+                           "NCollection_Sequence<opencascade::handle<Storage_Root>> directly.")
 
-#endif
+  Standard_DEPRECATED("Storage_SeqOfRoot is deprecated, use "
+                      "NCollection_Sequence<opencascade::handle<Storage_Root>> directly")
+typedef NCollection_Sequence<opencascade::handle<Storage_Root>> Storage_SeqOfRoot;
+
+#endif // _Storage_SeqOfRoot_hxx

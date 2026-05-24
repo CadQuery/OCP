@@ -1,7 +1,4 @@
-// Created on: 1998-04-01
-// Created by: Christian CAILLET
-// Copyright (c) 1998-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,17 +11,36 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef MoniTool_DataMapOfShapeTransient_HeaderFile
-#define MoniTool_DataMapOfShapeTransient_HeaderFile
+//! @file MoniTool_DataMapOfShapeTransient.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection types directly instead.
 
+#ifndef _MoniTool_DataMapOfShapeTransient_hxx
+#define _MoniTool_DataMapOfShapeTransient_hxx
+
+#include <Standard_Macro.hxx>
 #include <TopoDS_Shape.hxx>
 #include <Standard_Transient.hxx>
 #include <TopTools_ShapeMapHasher.hxx>
 #include <NCollection_DataMap.hxx>
 
-typedef NCollection_DataMap<TopoDS_Shape, Handle(Standard_Transient), TopTools_ShapeMapHasher>
-  MoniTool_DataMapOfShapeTransient;
-typedef NCollection_DataMap<TopoDS_Shape, Handle(Standard_Transient), TopTools_ShapeMapHasher>::
-  Iterator MoniTool_DataMapIteratorOfDataMapOfShapeTransient;
+Standard_HEADER_DEPRECATED("MoniTool_DataMapOfShapeTransient.hxx is deprecated since OCCT 8.0.0. "
+                           "Use NCollection types directly.")
 
-#endif
+  Standard_DEPRECATED(
+    "MoniTool_DataMapOfShapeTransient is deprecated, use NCollection_DataMap<TopoDS_Shape, "
+    "opencascade::handle<Standard_Transient>, TopTools_ShapeMapHasher> directly")
+typedef NCollection_DataMap<TopoDS_Shape,
+                            opencascade::handle<Standard_Transient>,
+                            TopTools_ShapeMapHasher>
+  MoniTool_DataMapOfShapeTransient;
+Standard_DEPRECATED("MoniTool_DataMapIteratorOfDataMapOfShapeTransient is deprecated, use "
+                    "NCollection_DataMap<TopoDS_Shape, opencascade::handle<Standard_Transient>, "
+                    "TopTools_ShapeMapHasher>::Iterator directly")
+typedef NCollection_DataMap<TopoDS_Shape,
+                            opencascade::handle<Standard_Transient>,
+                            TopTools_ShapeMapHasher>::Iterator
+  MoniTool_DataMapIteratorOfDataMapOfShapeTransient;
+
+#endif // _MoniTool_DataMapOfShapeTransient_hxx

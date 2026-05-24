@@ -1,7 +1,4 @@
-// Created on: 1995-12-01
-// Created by: EXPRESS->CDL V0.2 Translator
-// Copyright (c) 1995-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,12 +11,26 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef StepGeom_Array2OfCartesianPoint_HeaderFile
-#define StepGeom_Array2OfCartesianPoint_HeaderFile
+//! @file StepGeom_Array2OfCartesianPoint.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection_Array2<opencascade::handle<StepGeom_CartesianPoint>> directly
+//!             instead.
 
+#ifndef _StepGeom_Array2OfCartesianPoint_hxx
+#define _StepGeom_Array2OfCartesianPoint_hxx
+
+#include <Standard_Macro.hxx>
 #include <StepGeom_CartesianPoint.hxx>
 #include <NCollection_Array2.hxx>
 
-typedef NCollection_Array2<Handle(StepGeom_CartesianPoint)> StepGeom_Array2OfCartesianPoint;
+Standard_HEADER_DEPRECATED(
+  "StepGeom_Array2OfCartesianPoint.hxx is deprecated since OCCT 8.0.0. Use "
+  "NCollection_Array2<opencascade::handle<StepGeom_CartesianPoint>> directly.")
 
-#endif
+  Standard_DEPRECATED("StepGeom_Array2OfCartesianPoint is deprecated, use "
+                      "NCollection_Array2<opencascade::handle<StepGeom_CartesianPoint>> directly")
+typedef NCollection_Array2<opencascade::handle<StepGeom_CartesianPoint>>
+  StepGeom_Array2OfCartesianPoint;
+
+#endif // _StepGeom_Array2OfCartesianPoint_hxx

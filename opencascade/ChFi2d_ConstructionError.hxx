@@ -22,7 +22,7 @@ enum ChFi2d_ConstructionError
 {
   ChFi2d_NotPlanar,           //!< the face is not planar
   ChFi2d_NoFace,              //!< the face is null
-  ChFi2d_InitialisationError, //!< the two  faces used for the initialisation are uncompatible
+  ChFi2d_InitialisationError, //!< the two faces used for the initialisation are uncompatible
   ChFi2d_ParametersError, //!< the parameters as distances or angle for chamfer are less or equal to
                           //!< zero
   ChFi2d_Ready,           //!< the initialization has been successful
@@ -35,7 +35,7 @@ enum ChFi2d_ConstructionError
   ChFi2d_LastEdgeDegenerated,  //!< the last edge is degenerated
   ChFi2d_BothEdgesDegenerated, //!< the two edges are degenerated
   ChFi2d_NotAuthorized //!< One or the two edges connected to the vertex is a fillet or a chamfer;
-                       //!  One or the two edges connected to the vertex is not a line or a circle
+                       //!< One or the two edges connected to the vertex is not a line or a circle
 };
 
 #endif // _ChFi2d_ConstructionError_HeaderFile

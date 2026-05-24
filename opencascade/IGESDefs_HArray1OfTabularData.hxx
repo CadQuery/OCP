@@ -1,7 +1,4 @@
-// Created on: 1993-01-09
-// Created by: CKY / Contract Toubro-Larsen ( Deepak PRABHU )
-// Copyright (c) 1993-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,12 +11,25 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef IGESDefs_HArray1OfTabularData_HeaderFile
-#define IGESDefs_HArray1OfTabularData_HeaderFile
+//! @file IGESDefs_HArray1OfTabularData.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection_HArray1<opencascade::handle<IGESDefs_TabularData>> directly instead.
 
+#ifndef _IGESDefs_HArray1OfTabularData_hxx
+#define _IGESDefs_HArray1OfTabularData_hxx
+
+#include <Standard_Macro.hxx>
 #include <IGESDefs_Array1OfTabularData.hxx>
-#include <NCollection_DefineHArray1.hxx>
+#include <NCollection_HArray1.hxx>
 
-DEFINE_HARRAY1(IGESDefs_HArray1OfTabularData, IGESDefs_Array1OfTabularData)
+Standard_HEADER_DEPRECATED(
+  "IGESDefs_HArray1OfTabularData.hxx is deprecated since OCCT 8.0.0. Use "
+  "NCollection_HArray1<opencascade::handle<IGESDefs_TabularData>> directly.")
 
-#endif
+  Standard_DEPRECATED("IGESDefs_HArray1OfTabularData is deprecated, use "
+                      "NCollection_HArray1<opencascade::handle<IGESDefs_TabularData>> directly")
+typedef NCollection_HArray1<opencascade::handle<IGESDefs_TabularData>>
+  IGESDefs_HArray1OfTabularData;
+
+#endif // _IGESDefs_HArray1OfTabularData_hxx

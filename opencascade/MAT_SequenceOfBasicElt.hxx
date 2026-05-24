@@ -1,7 +1,4 @@
-// Created on: 1992-09-22
-// Created by: Gilles DEBARBOUILLE
-// Copyright (c) 1992-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,12 +11,23 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef MAT_SequenceOfBasicElt_HeaderFile
-#define MAT_SequenceOfBasicElt_HeaderFile
+//! @file MAT_SequenceOfBasicElt.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection_Sequence<opencascade::handle<MAT_BasicElt>> directly instead.
 
+#ifndef _MAT_SequenceOfBasicElt_hxx
+#define _MAT_SequenceOfBasicElt_hxx
+
+#include <Standard_Macro.hxx>
 #include <MAT_BasicElt.hxx>
 #include <NCollection_Sequence.hxx>
 
-typedef NCollection_Sequence<Handle(MAT_BasicElt)> MAT_SequenceOfBasicElt;
+Standard_HEADER_DEPRECATED("MAT_SequenceOfBasicElt.hxx is deprecated since OCCT 8.0.0. Use "
+                           "NCollection_Sequence<opencascade::handle<MAT_BasicElt>> directly.")
 
-#endif
+  Standard_DEPRECATED("MAT_SequenceOfBasicElt is deprecated, use "
+                      "NCollection_Sequence<opencascade::handle<MAT_BasicElt>> directly")
+typedef NCollection_Sequence<opencascade::handle<MAT_BasicElt>> MAT_SequenceOfBasicElt;
+
+#endif // _MAT_SequenceOfBasicElt_hxx

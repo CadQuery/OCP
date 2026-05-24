@@ -1,7 +1,4 @@
-// Created on: 1993-03-10
-// Created by: Philippe DAUTRY
-// Copyright (c) 1993-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,13 +11,24 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef TColgp_HSequenceOfDir2d_HeaderFile
-#define TColgp_HSequenceOfDir2d_HeaderFile
+//! @file TColgp_HSequenceOfDir2d.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection_HSequence<gp_Dir2d> directly instead.
 
+#ifndef _TColgp_HSequenceOfDir2d_hxx
+#define _TColgp_HSequenceOfDir2d_hxx
+
+#include <Standard_Macro.hxx>
 #include <gp_Dir2d.hxx>
 #include <TColgp_SequenceOfDir2d.hxx>
-#include <NCollection_DefineHSequence.hxx>
+#include <NCollection_HSequence.hxx>
 
-DEFINE_HSEQUENCE(TColgp_HSequenceOfDir2d, TColgp_SequenceOfDir2d)
+Standard_HEADER_DEPRECATED("TColgp_HSequenceOfDir2d.hxx is deprecated since OCCT 8.0.0. Use "
+                           "NCollection_HSequence<gp_Dir2d> directly.")
 
-#endif
+  Standard_DEPRECATED(
+    "TColgp_HSequenceOfDir2d is deprecated, use NCollection_HSequence<gp_Dir2d> directly")
+typedef NCollection_HSequence<gp_Dir2d> TColgp_HSequenceOfDir2d;
+
+#endif // _TColgp_HSequenceOfDir2d_hxx

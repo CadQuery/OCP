@@ -1,7 +1,4 @@
-// Created on: 1991-01-08
-// Created by: Didier Piffault
-// Copyright (c) 1991-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,12 +11,23 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef Bnd_HArray1OfSphere_HeaderFile
-#define Bnd_HArray1OfSphere_HeaderFile
+//! @file Bnd_HArray1OfSphere.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection_HArray1<Bnd_Sphere> directly instead.
 
+#ifndef _Bnd_HArray1OfSphere_hxx
+#define _Bnd_HArray1OfSphere_hxx
+
+#include <Standard_Macro.hxx>
 #include <Bnd_Array1OfSphere.hxx>
-#include <NCollection_DefineHArray1.hxx>
+#include <NCollection_HArray1.hxx>
 
-DEFINE_HARRAY1(Bnd_HArray1OfSphere, Bnd_Array1OfSphere)
+Standard_HEADER_DEPRECATED("Bnd_HArray1OfSphere.hxx is deprecated since OCCT 8.0.0. Use "
+                           "NCollection_HArray1<Bnd_Sphere> directly.")
 
-#endif
+  Standard_DEPRECATED(
+    "Bnd_HArray1OfSphere is deprecated, use NCollection_HArray1<Bnd_Sphere> directly")
+typedef NCollection_HArray1<Bnd_Sphere> Bnd_HArray1OfSphere;
+
+#endif // _Bnd_HArray1OfSphere_hxx

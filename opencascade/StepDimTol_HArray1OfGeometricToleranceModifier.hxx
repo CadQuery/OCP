@@ -1,6 +1,4 @@
-// Created on: 2015-07-10
-// Created by: Irina KRYLOVA
-// Copyright (c) 2015 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -13,12 +11,25 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _StepDimTol_HArray1OfGeometricToleranceModifier_HeaderFile
-#define _StepDimTol_HArray1OfGeometricToleranceModifier_HeaderFile
+//! @file StepDimTol_HArray1OfGeometricToleranceModifier.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection_HArray1<StepDimTol_GeometricToleranceModifier> directly instead.
 
+#ifndef _StepDimTol_HArray1OfGeometricToleranceModifier_hxx
+#define _StepDimTol_HArray1OfGeometricToleranceModifier_hxx
+
+#include <Standard_Macro.hxx>
 #include <StepDimTol_Array1OfGeometricToleranceModifier.hxx>
-#include <NCollection_DefineHArray1.hxx>
+#include <NCollection_HArray1.hxx>
 
-DEFINE_HARRAY1(StepDimTol_HArray1OfGeometricToleranceModifier,
-               StepDimTol_Array1OfGeometricToleranceModifier)
-#endif // _StepDimTol_HArray1OfGeometricToleranceModifier_HeaderFile
+Standard_HEADER_DEPRECATED(
+  "StepDimTol_HArray1OfGeometricToleranceModifier.hxx is deprecated since OCCT 8.0.0. Use "
+  "NCollection_HArray1<StepDimTol_GeometricToleranceModifier> directly.")
+
+  Standard_DEPRECATED("StepDimTol_HArray1OfGeometricToleranceModifier is deprecated, use "
+                      "NCollection_HArray1<StepDimTol_GeometricToleranceModifier> directly")
+typedef NCollection_HArray1<StepDimTol_GeometricToleranceModifier>
+  StepDimTol_HArray1OfGeometricToleranceModifier;
+
+#endif // _StepDimTol_HArray1OfGeometricToleranceModifier_hxx

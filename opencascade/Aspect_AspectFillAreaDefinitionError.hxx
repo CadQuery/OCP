@@ -16,12 +16,8 @@
 #ifndef _Aspect_AspectFillAreaDefinitionError_HeaderFile
 #define _Aspect_AspectFillAreaDefinitionError_HeaderFile
 
-#include <Standard_Type.hxx>
 #include <Standard_SStream.hxx>
 #include <Standard_OutOfRange.hxx>
-
-class Aspect_AspectFillAreaDefinitionError;
-DEFINE_STANDARD_HANDLE(Aspect_AspectFillAreaDefinitionError, Standard_OutOfRange)
 
 #if !defined No_Exception && !defined No_Aspect_AspectFillAreaDefinitionError
   #define Aspect_AspectFillAreaDefinitionError_Raise_if(CONDITION, MESSAGE)                        \

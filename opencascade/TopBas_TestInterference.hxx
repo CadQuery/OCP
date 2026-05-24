@@ -31,15 +31,15 @@ public:
 
   Standard_EXPORT TopBas_TestInterference();
 
-  Standard_EXPORT TopBas_TestInterference(const Standard_Real&     Inters,
-                                          const Standard_Integer&  Bound,
+  Standard_EXPORT TopBas_TestInterference(const double&            Inters,
+                                          const int&               Bound,
                                           const TopAbs_Orientation Orient,
                                           const TopAbs_Orientation Trans,
                                           const TopAbs_Orientation BTrans);
 
-  void Intersection(const Standard_Real& I);
+  void Intersection(const double& I);
 
-  void Boundary(const Standard_Integer& B);
+  void Boundary(const int& B);
 
   void Orientation(const TopAbs_Orientation O);
 
@@ -47,13 +47,13 @@ public:
 
   void BoundaryTransition(const TopAbs_Orientation BTr);
 
-  const Standard_Real& Intersection() const;
+  const double& Intersection() const;
 
-  Standard_Real& ChangeIntersection();
+  double& ChangeIntersection();
 
-  const Standard_Integer& Boundary() const;
+  const int& Boundary() const;
 
-  Standard_Integer& ChangeBoundary();
+  int& ChangeBoundary();
 
   TopAbs_Orientation Orientation() const;
 
@@ -61,29 +61,98 @@ public:
 
   TopAbs_Orientation BoundaryTransition() const;
 
-protected:
 private:
-  Standard_Real      myIntersection;
-  Standard_Integer   myBoundary;
+  double             myIntersection;
+  int                myBoundary;
   TopAbs_Orientation myOrientation;
   TopAbs_Orientation myTransition;
   TopAbs_Orientation myBTransition;
 };
 
-#define TheSubShape Standard_Real
-#define TheSubShape_hxx <Standard_Real.hxx>
-#define TheShape Standard_Integer
-#define TheShape_hxx <Standard_Integer.hxx>
-#define TopBas_Interference TopBas_TestInterference
-#define TopBas_Interference_hxx <TopBas_TestInterference.hxx>
+//=================================================================================================
+// Inline implementations
+//=================================================================================================
 
-#include <TopBas_Interference.lxx>
+inline void TopBas_TestInterference::Intersection(const double& I)
+{
+  myIntersection = I;
+}
 
-#undef TheSubShape
-#undef TheSubShape_hxx
-#undef TheShape
-#undef TheShape_hxx
-#undef TopBas_Interference
-#undef TopBas_Interference_hxx
+//=================================================================================================
+
+inline void TopBas_TestInterference::Boundary(const int& B)
+{
+  myBoundary = B;
+}
+
+//=================================================================================================
+
+inline void TopBas_TestInterference::Orientation(const TopAbs_Orientation Or)
+{
+  myOrientation = Or;
+}
+
+//=================================================================================================
+
+inline void TopBas_TestInterference::Transition(const TopAbs_Orientation Or)
+{
+  myTransition = Or;
+}
+
+//=================================================================================================
+
+inline void TopBas_TestInterference::BoundaryTransition(const TopAbs_Orientation Or)
+{
+  myBTransition = Or;
+}
+
+//=================================================================================================
+
+inline const double& TopBas_TestInterference::Intersection() const
+{
+  return myIntersection;
+}
+
+//=================================================================================================
+
+inline double& TopBas_TestInterference::ChangeIntersection()
+{
+  return myIntersection;
+}
+
+//=================================================================================================
+
+inline const int& TopBas_TestInterference::Boundary() const
+{
+  return myBoundary;
+}
+
+//=================================================================================================
+
+inline int& TopBas_TestInterference::ChangeBoundary()
+{
+  return myBoundary;
+}
+
+//=================================================================================================
+
+inline TopAbs_Orientation TopBas_TestInterference::Orientation() const
+{
+  return myOrientation;
+}
+
+//=================================================================================================
+
+inline TopAbs_Orientation TopBas_TestInterference::Transition() const
+{
+  return myTransition;
+}
+
+//=================================================================================================
+
+inline TopAbs_Orientation TopBas_TestInterference::BoundaryTransition() const
+{
+  return myBTransition;
+}
 
 #endif // _TopBas_TestInterference_HeaderFile

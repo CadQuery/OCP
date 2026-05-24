@@ -1,5 +1,4 @@
-// Copyright (c) 1998-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -12,12 +11,24 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef TColStd_SequenceOfTransient_HeaderFile
-#define TColStd_SequenceOfTransient_HeaderFile
+//! @file TColStd_SequenceOfTransient.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection_Sequence<opencascade::handle<Standard_Transient>> directly instead.
 
+#ifndef _TColStd_SequenceOfTransient_hxx
+#define _TColStd_SequenceOfTransient_hxx
+
+#include <Standard_Macro.hxx>
 #include <Standard_Transient.hxx>
 #include <NCollection_Sequence.hxx>
 
-typedef NCollection_Sequence<Handle(Standard_Transient)> TColStd_SequenceOfTransient;
+Standard_HEADER_DEPRECATED(
+  "TColStd_SequenceOfTransient.hxx is deprecated since OCCT 8.0.0. Use "
+  "NCollection_Sequence<opencascade::handle<Standard_Transient>> directly.")
 
-#endif
+  Standard_DEPRECATED("TColStd_SequenceOfTransient is deprecated, use "
+                      "NCollection_Sequence<opencascade::handle<Standard_Transient>> directly")
+typedef NCollection_Sequence<opencascade::handle<Standard_Transient>> TColStd_SequenceOfTransient;
+
+#endif // _TColStd_SequenceOfTransient_hxx

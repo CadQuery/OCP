@@ -14,63 +14,45 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-//=======================================================================
-// function : GeomAPI_IntSS
-// purpose  :
-//=======================================================================
+//=================================================================================================
 
-inline GeomAPI_IntSS::GeomAPI_IntSS() {}
+inline GeomAPI_IntSS::GeomAPI_IntSS() = default;
 
-//=======================================================================
-// function : GeomAPI_IntSS
-// purpose  :
-//=======================================================================
+//=================================================================================================
 
-inline GeomAPI_IntSS::GeomAPI_IntSS(const Handle(Geom_Surface)& S1,
-                                    const Handle(Geom_Surface)& S2,
-                                    const Standard_Real         Tol)
-    : myIntersec(S1, S2, Tol, Standard_True)
+inline GeomAPI_IntSS::GeomAPI_IntSS(const occ::handle<Geom_Surface>& S1,
+                                    const occ::handle<Geom_Surface>& S2,
+                                    const double                     Tol)
+    : myIntersec(S1, S2, Tol, true)
 {
 }
 
-//=======================================================================
-// function : Perform
-// purpose  :
-//=======================================================================
+//=================================================================================================
 
-inline void GeomAPI_IntSS::Perform(const Handle(Geom_Surface)& S1,
-                                   const Handle(Geom_Surface)& S2,
-                                   const Standard_Real         Tol)
+inline void GeomAPI_IntSS::Perform(const occ::handle<Geom_Surface>& S1,
+                                   const occ::handle<Geom_Surface>& S2,
+                                   const double                     Tol)
 {
-  myIntersec.Perform(S1, S2, Tol, Standard_True);
+  myIntersec.Perform(S1, S2, Tol, true);
 }
 
-//=======================================================================
-// function : IsDone
-// purpose  :
-//=======================================================================
+//=================================================================================================
 
-inline Standard_Boolean GeomAPI_IntSS::IsDone() const
+inline bool GeomAPI_IntSS::IsDone() const
 {
   return myIntersec.IsDone();
 }
 
-//=======================================================================
-// function : NbLines
-// purpose  :
-//=======================================================================
+//=================================================================================================
 
-inline Standard_Integer GeomAPI_IntSS::NbLines() const
+inline int GeomAPI_IntSS::NbLines() const
 {
   return myIntersec.NbLines();
 }
 
-//=======================================================================
-// function : Line
-// purpose  :
-//=======================================================================
+//=================================================================================================
 
-inline const Handle(Geom_Curve)& GeomAPI_IntSS::Line(const Standard_Integer I) const
+inline const occ::handle<Geom_Curve>& GeomAPI_IntSS::Line(const int I) const
 {
   return myIntersec.Line(I);
 }

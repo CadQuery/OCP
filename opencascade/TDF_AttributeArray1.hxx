@@ -1,6 +1,4 @@
-// Created by: DAUTRY Philippe
-// Copyright (c) 1997-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -13,12 +11,23 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef TDF_AttributeArray1_HeaderFile
-#define TDF_AttributeArray1_HeaderFile
+//! @file TDF_AttributeArray1.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection_Array1<opencascade::handle<TDF_Attribute>> directly instead.
 
+#ifndef _TDF_AttributeArray1_hxx
+#define _TDF_AttributeArray1_hxx
+
+#include <Standard_Macro.hxx>
 #include <TDF_Attribute.hxx>
 #include <NCollection_Array1.hxx>
 
-typedef NCollection_Array1<Handle(TDF_Attribute)> TDF_AttributeArray1;
+Standard_HEADER_DEPRECATED("TDF_AttributeArray1.hxx is deprecated since OCCT 8.0.0. Use "
+                           "NCollection_Array1<opencascade::handle<TDF_Attribute>> directly.")
 
-#endif
+  Standard_DEPRECATED("TDF_AttributeArray1 is deprecated, use "
+                      "NCollection_Array1<opencascade::handle<TDF_Attribute>> directly")
+typedef NCollection_Array1<opencascade::handle<TDF_Attribute>> TDF_AttributeArray1;
+
+#endif // _TDF_AttributeArray1_hxx

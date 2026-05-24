@@ -1,7 +1,4 @@
-// Created on: 1992-02-03
-// Created by: Christian CAILLET
-// Copyright (c) 1992-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,13 +11,29 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _Transfer_TransferMapOfProcessForTransient_HeaderFile
-#define _Transfer_TransferMapOfProcessForTransient_HeaderFile
+//! @file Transfer_TransferMapOfProcessForTransient.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection_IndexedDataMap<opencascade::handle<Standard_Transient>,
+//!             opencascade::handle<Transfer_Binder>> directly instead.
 
+#ifndef _Transfer_TransferMapOfProcessForTransient_hxx
+#define _Transfer_TransferMapOfProcessForTransient_hxx
+
+#include <Standard_Macro.hxx>
 #include <NCollection_IndexedDataMap.hxx>
 #include <Transfer_Binder.hxx>
 
-typedef NCollection_IndexedDataMap<Handle(Standard_Transient), Handle(Transfer_Binder)>
+Standard_HEADER_DEPRECATED(
+  "Transfer_TransferMapOfProcessForTransient.hxx is deprecated since OCCT 8.0.0. Use "
+  "NCollection_IndexedDataMap<opencascade::handle<Standard_Transient>, "
+  "opencascade::handle<Transfer_Binder>> directly.")
+
+  Standard_DEPRECATED("Transfer_TransferMapOfProcessForTransient is deprecated, use "
+                      "NCollection_IndexedDataMap<opencascade::handle<Standard_Transient>, "
+                      "opencascade::handle<Transfer_Binder>> directly")
+typedef NCollection_IndexedDataMap<opencascade::handle<Standard_Transient>,
+                                   opencascade::handle<Transfer_Binder>>
   Transfer_TransferMapOfProcessForTransient;
 
-#endif // _Transfer_TransferMapOfProcessForTransient_HeaderFile
+#endif // _Transfer_TransferMapOfProcessForTransient_hxx

@@ -1,4 +1,4 @@
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,13 +11,25 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef StepElement_Array1OfVolumeElementPurpose_HeaderFile
-#define StepElement_Array1OfVolumeElementPurpose_HeaderFile
+//! @file StepElement_Array1OfVolumeElementPurpose.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection_Array1<StepElement_VolumeElementPurpose> directly instead.
 
+#ifndef _StepElement_Array1OfVolumeElementPurpose_hxx
+#define _StepElement_Array1OfVolumeElementPurpose_hxx
+
+#include <Standard_Macro.hxx>
 #include <StepElement_VolumeElementPurpose.hxx>
 #include <NCollection_Array1.hxx>
 
+Standard_HEADER_DEPRECATED(
+  "StepElement_Array1OfVolumeElementPurpose.hxx is deprecated since OCCT 8.0.0. Use "
+  "NCollection_Array1<StepElement_VolumeElementPurpose> directly.")
+
+  Standard_DEPRECATED("StepElement_Array1OfVolumeElementPurpose is deprecated, use "
+                      "NCollection_Array1<StepElement_VolumeElementPurpose> directly")
 typedef NCollection_Array1<StepElement_VolumeElementPurpose>
   StepElement_Array1OfVolumeElementPurpose;
 
-#endif
+#endif // _StepElement_Array1OfVolumeElementPurpose_hxx

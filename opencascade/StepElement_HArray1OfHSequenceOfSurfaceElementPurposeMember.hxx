@@ -1,4 +1,4 @@
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,13 +11,30 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef StepElement_HArray1OfHSequenceOfSurfaceElementPurposeMember_HeaderFile
-#define StepElement_HArray1OfHSequenceOfSurfaceElementPurposeMember_HeaderFile
+//! @file StepElement_HArray1OfHSequenceOfSurfaceElementPurposeMember.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use
+//!             NCollection_HArray1<opencascade::handle<StepElement_HSequenceOfSurfaceElementPurposeMember>>
+//!             directly instead.
 
+#ifndef _StepElement_HArray1OfHSequenceOfSurfaceElementPurposeMember_hxx
+#define _StepElement_HArray1OfHSequenceOfSurfaceElementPurposeMember_hxx
+
+#include <Standard_Macro.hxx>
 #include <StepElement_Array1OfHSequenceOfSurfaceElementPurposeMember.hxx>
-#include <NCollection_DefineHArray1.hxx>
+#include <NCollection_HArray1.hxx>
 
-DEFINE_HARRAY1(StepElement_HArray1OfHSequenceOfSurfaceElementPurposeMember,
-               StepElement_Array1OfHSequenceOfSurfaceElementPurposeMember)
+Standard_HEADER_DEPRECATED("StepElement_HArray1OfHSequenceOfSurfaceElementPurposeMember.hxx is "
+                           "deprecated since OCCT 8.0.0. Use "
+                           "NCollection_HArray1<opencascade::handle<StepElement_"
+                           "HSequenceOfSurfaceElementPurposeMember>> directly.")
 
-#endif
+  Standard_DEPRECATED(
+    "StepElement_HArray1OfHSequenceOfSurfaceElementPurposeMember is deprecated, use "
+    "NCollection_HArray1<opencascade::handle<StepElement_HSequenceOfSurfaceElementPurposeMember>> "
+    "directly")
+typedef NCollection_HArray1<opencascade::handle<StepElement_HSequenceOfSurfaceElementPurposeMember>>
+  StepElement_HArray1OfHSequenceOfSurfaceElementPurposeMember;
+
+#endif // _StepElement_HArray1OfHSequenceOfSurfaceElementPurposeMember_hxx

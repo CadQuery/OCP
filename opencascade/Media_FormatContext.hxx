@@ -81,7 +81,7 @@ public:
   Standard_EXPORT Media_FormatContext();
 
   //! Destructor.
-  Standard_EXPORT virtual ~Media_FormatContext();
+  Standard_EXPORT ~Media_FormatContext() override;
 
   //! Return context.
   AVFormatContext* Context() const { return myFormatCtx; }
@@ -100,7 +100,7 @@ public:
 
   //! Format stream info.
   Standard_EXPORT TCollection_AsciiString StreamInfo(unsigned int    theIndex,
-                                                     AVCodecContext* theCodecCtx = NULL) const;
+                                                     AVCodecContext* theCodecCtx = nullptr) const;
 
   //! Return PTS start base in seconds.
   double PtsStartBase() const { return myPtsStartBase; }
@@ -109,7 +109,7 @@ public:
   double Duration() const { return myDuration; }
 
   //! av_read_frame() wrapper.
-  Standard_EXPORT bool ReadPacket(const Handle(Media_Packet)& thePacket);
+  Standard_EXPORT bool ReadPacket(const occ::handle<Media_Packet>& thePacket);
 
   //! Seek stream to specified position.
   Standard_EXPORT bool SeekStream(unsigned int theStreamId, double theSeekPts, bool toSeekBack);

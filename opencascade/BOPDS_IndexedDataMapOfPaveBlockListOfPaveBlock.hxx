@@ -1,5 +1,4 @@
-// Created by: Eugeny MALTCHIKOV
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -12,14 +11,29 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef BOPDS_IndexedDataMapOfPaveBlockListOfPaveBlock_HeaderFile
-#define BOPDS_IndexedDataMapOfPaveBlockListOfPaveBlock_HeaderFile
+//! @file BOPDS_IndexedDataMapOfPaveBlockListOfPaveBlock.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection_IndexedDataMap<opencascade::handle<BOPDS_PaveBlock>,
+//!             BOPDS_ListOfPaveBlock> directly instead.
 
+#ifndef _BOPDS_IndexedDataMapOfPaveBlockListOfPaveBlock_hxx
+#define _BOPDS_IndexedDataMapOfPaveBlockListOfPaveBlock_hxx
+
+#include <Standard_Macro.hxx>
 #include <NCollection_IndexedDataMap.hxx>
 #include <BOPDS_PaveBlock.hxx>
 #include <BOPDS_ListOfPaveBlock.hxx>
 
-typedef NCollection_IndexedDataMap<Handle(BOPDS_PaveBlock), BOPDS_ListOfPaveBlock>
+Standard_HEADER_DEPRECATED(
+  "BOPDS_IndexedDataMapOfPaveBlockListOfPaveBlock.hxx is deprecated since OCCT 8.0.0. Use "
+  "NCollection_IndexedDataMap<opencascade::handle<BOPDS_PaveBlock>, BOPDS_ListOfPaveBlock> "
+  "directly.")
+
+  Standard_DEPRECATED("BOPDS_IndexedDataMapOfPaveBlockListOfPaveBlock is deprecated, use "
+                      "NCollection_IndexedDataMap<opencascade::handle<BOPDS_PaveBlock>, "
+                      "BOPDS_ListOfPaveBlock> directly")
+typedef NCollection_IndexedDataMap<opencascade::handle<BOPDS_PaveBlock>, BOPDS_ListOfPaveBlock>
   BOPDS_IndexedDataMapOfPaveBlockListOfPaveBlock;
 
-#endif
+#endif // _BOPDS_IndexedDataMapOfPaveBlockListOfPaveBlock_hxx

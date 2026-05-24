@@ -1,4 +1,4 @@
-// Copyright (c) 2020 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,12 +11,24 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _AIS_NArray1OfEntityOwner_HeaderFile
-#define _AIS_NArray1OfEntityOwner_HeaderFile
+//! @file AIS_NArray1OfEntityOwner.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection_Array1<opencascade::handle<SelectMgr_EntityOwner>> directly instead.
 
+#ifndef _AIS_NArray1OfEntityOwner_hxx
+#define _AIS_NArray1OfEntityOwner_hxx
+
+#include <Standard_Macro.hxx>
 #include <NCollection_Array1.hxx>
 #include <SelectMgr_EntityOwner.hxx>
 
-typedef NCollection_Array1<Handle(SelectMgr_EntityOwner)> AIS_NArray1OfEntityOwner;
+Standard_HEADER_DEPRECATED(
+  "AIS_NArray1OfEntityOwner.hxx is deprecated since OCCT 8.0.0. Use "
+  "NCollection_Array1<opencascade::handle<SelectMgr_EntityOwner>> directly.")
 
-#endif // _AIS_NArray1OfEntityOwner_HeaderFile
+  Standard_DEPRECATED("AIS_NArray1OfEntityOwner is deprecated, use "
+                      "NCollection_Array1<opencascade::handle<SelectMgr_EntityOwner>> directly")
+typedef NCollection_Array1<opencascade::handle<SelectMgr_EntityOwner>> AIS_NArray1OfEntityOwner;
+
+#endif // _AIS_NArray1OfEntityOwner_hxx

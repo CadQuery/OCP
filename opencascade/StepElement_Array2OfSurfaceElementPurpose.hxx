@@ -1,4 +1,4 @@
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,13 +11,25 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef StepElement_Array2OfSurfaceElementPurpose_HeaderFile
-#define StepElement_Array2OfSurfaceElementPurpose_HeaderFile
+//! @file StepElement_Array2OfSurfaceElementPurpose.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection_Array2<StepElement_SurfaceElementPurpose> directly instead.
 
+#ifndef _StepElement_Array2OfSurfaceElementPurpose_hxx
+#define _StepElement_Array2OfSurfaceElementPurpose_hxx
+
+#include <Standard_Macro.hxx>
 #include <StepElement_SurfaceElementPurpose.hxx>
 #include <NCollection_Array2.hxx>
 
+Standard_HEADER_DEPRECATED(
+  "StepElement_Array2OfSurfaceElementPurpose.hxx is deprecated since OCCT 8.0.0. Use "
+  "NCollection_Array2<StepElement_SurfaceElementPurpose> directly.")
+
+  Standard_DEPRECATED("StepElement_Array2OfSurfaceElementPurpose is deprecated, use "
+                      "NCollection_Array2<StepElement_SurfaceElementPurpose> directly")
 typedef NCollection_Array2<StepElement_SurfaceElementPurpose>
   StepElement_Array2OfSurfaceElementPurpose;
 
-#endif
+#endif // _StepElement_Array2OfSurfaceElementPurpose_hxx

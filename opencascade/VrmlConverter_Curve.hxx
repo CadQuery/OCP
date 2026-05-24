@@ -27,14 +27,14 @@ class Adaptor3d_Curve;
 class VrmlConverter_Drawer;
 
 //! Curve - computes the presentation of objects to be
-//! seen  as curves  (the  computation  will  be  made
-//! with a constant  number  of  points),  converts this one
-//! into  VRML  objects  and  writes (adds) them  into
-//! anOStream.   All  requested   properties  of   the
-//! representation are specify  in aDrawer  of  Drawer
+//! seen as curves (the computation will be made
+//! with a constant number of points), converts this one
+//! into VRML objects and writes (adds) them into
+//! anOStream. All requested properties of the
+//! representation are specify in aDrawer of Drawer
 //! class (VrmlConverter).
 //! This kind of the presentation is converted into
-//! IndexedLineSet ( VRML ).
+//! IndexedLineSet (VRML).
 class VrmlConverter_Curve
 {
 public:
@@ -42,32 +42,29 @@ public:
 
   //! adds to the OStream the drawing of the curve aCurve.
   //! The aspect is defined by LineAspect in aDrawer.
-  Standard_EXPORT static void Add(const Adaptor3d_Curve&              aCurve,
-                                  const Handle(VrmlConverter_Drawer)& aDrawer,
-                                  Standard_OStream&                   anOStream);
+  Standard_EXPORT static void Add(const Adaptor3d_Curve&                   aCurve,
+                                  const occ::handle<VrmlConverter_Drawer>& aDrawer,
+                                  Standard_OStream&                        anOStream);
 
   //! adds to the OStream the drawing of the curve aCurve.
   //! The aspect is defined by LineAspect in aDrawer.
   //! The drawing will be limited between the points of parameter
   //! U1 and U2.
-  Standard_EXPORT static void Add(const Adaptor3d_Curve&              aCurve,
-                                  const Standard_Real                 U1,
-                                  const Standard_Real                 U2,
-                                  const Handle(VrmlConverter_Drawer)& aDrawer,
-                                  Standard_OStream&                   anOStream);
+  Standard_EXPORT static void Add(const Adaptor3d_Curve&                   aCurve,
+                                  const double                             U1,
+                                  const double                             U2,
+                                  const occ::handle<VrmlConverter_Drawer>& aDrawer,
+                                  Standard_OStream&                        anOStream);
 
   //! adds to the OStream the drawing of the curve aCurve.
   //! The aspect is the current aspect.
   //! The drawing will be limited between the points of parameter
-  //! U1 and U2. aNbPoints defines  number of points on  one interval.
+  //! U1 and U2. aNbPoints defines number of points on one interval.
   Standard_EXPORT static void Add(const Adaptor3d_Curve& aCurve,
-                                  const Standard_Real    U1,
-                                  const Standard_Real    U2,
+                                  const double           U1,
+                                  const double           U2,
                                   Standard_OStream&      anOStream,
-                                  const Standard_Integer aNbPoints);
-
-protected:
-private:
+                                  const int              aNbPoints);
 };
 
 #endif // _VrmlConverter_Curve_HeaderFile

@@ -1,7 +1,4 @@
-// Created on: 1993-01-14
-// Created by: Remi LEQUETTE
-// Copyright (c) 1993-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,13 +11,24 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef TopTools_HArray1OfShape_HeaderFile
-#define TopTools_HArray1OfShape_HeaderFile
+//! @file TopTools_HArray1OfShape.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection_HArray1<TopoDS_Shape> directly instead.
 
+#ifndef _TopTools_HArray1OfShape_hxx
+#define _TopTools_HArray1OfShape_hxx
+
+#include <Standard_Macro.hxx>
 #include <TopoDS_Shape.hxx>
 #include <TopTools_Array1OfShape.hxx>
-#include <NCollection_DefineHArray1.hxx>
+#include <NCollection_HArray1.hxx>
 
-DEFINE_HARRAY1(TopTools_HArray1OfShape, TopTools_Array1OfShape)
+Standard_HEADER_DEPRECATED("TopTools_HArray1OfShape.hxx is deprecated since OCCT 8.0.0. Use "
+                           "NCollection_HArray1<TopoDS_Shape> directly.")
 
-#endif
+  Standard_DEPRECATED(
+    "TopTools_HArray1OfShape is deprecated, use NCollection_HArray1<TopoDS_Shape> directly")
+typedef NCollection_HArray1<TopoDS_Shape> TopTools_HArray1OfShape;
+
+#endif // _TopTools_HArray1OfShape_hxx

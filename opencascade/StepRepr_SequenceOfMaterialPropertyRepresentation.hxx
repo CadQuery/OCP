@@ -1,7 +1,4 @@
-// Created on: 1995-12-01
-// Created by: EXPRESS->CDL V0.2 Translator
-// Copyright (c) 1995-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,13 +11,28 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef StepRepr_SequenceOfMaterialPropertyRepresentation_HeaderFile
-#define StepRepr_SequenceOfMaterialPropertyRepresentation_HeaderFile
+//! @file StepRepr_SequenceOfMaterialPropertyRepresentation.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use
+//!             NCollection_Sequence<opencascade::handle<StepRepr_MaterialPropertyRepresentation>>
+//!             directly instead.
 
+#ifndef _StepRepr_SequenceOfMaterialPropertyRepresentation_hxx
+#define _StepRepr_SequenceOfMaterialPropertyRepresentation_hxx
+
+#include <Standard_Macro.hxx>
 #include <StepRepr_MaterialPropertyRepresentation.hxx>
 #include <NCollection_Sequence.hxx>
 
-typedef NCollection_Sequence<Handle(StepRepr_MaterialPropertyRepresentation)>
+Standard_HEADER_DEPRECATED(
+  "StepRepr_SequenceOfMaterialPropertyRepresentation.hxx is deprecated since OCCT 8.0.0. Use "
+  "NCollection_Sequence<opencascade::handle<StepRepr_MaterialPropertyRepresentation>> directly.")
+
+  Standard_DEPRECATED(
+    "StepRepr_SequenceOfMaterialPropertyRepresentation is deprecated, use "
+    "NCollection_Sequence<opencascade::handle<StepRepr_MaterialPropertyRepresentation>> directly")
+typedef NCollection_Sequence<opencascade::handle<StepRepr_MaterialPropertyRepresentation>>
   StepRepr_SequenceOfMaterialPropertyRepresentation;
 
-#endif
+#endif // _StepRepr_SequenceOfMaterialPropertyRepresentation_hxx

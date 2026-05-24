@@ -1,7 +1,4 @@
-// Created on: 1993-07-28
-// Created by: Martine LANGLOIS
-// Copyright (c) 1993-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,15 +11,28 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef StepToTopoDS_PointEdgeMap_HeaderFile
-#define StepToTopoDS_PointEdgeMap_HeaderFile
+//! @file StepToTopoDS_PointEdgeMap.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection types directly instead.
 
+#ifndef _StepToTopoDS_PointEdgeMap_hxx
+#define _StepToTopoDS_PointEdgeMap_hxx
+
+#include <Standard_Macro.hxx>
 #include <StepToTopoDS_PointPair.hxx>
 #include <TopoDS_Edge.hxx>
 #include <NCollection_DataMap.hxx>
 
+Standard_HEADER_DEPRECATED(
+  "StepToTopoDS_PointEdgeMap.hxx is deprecated since OCCT 8.0.0. Use NCollection types directly.")
+
+  Standard_DEPRECATED("StepToTopoDS_PointEdgeMap is deprecated, use "
+                      "NCollection_DataMap<StepToTopoDS_PointPair, TopoDS_Edge> directly")
 typedef NCollection_DataMap<StepToTopoDS_PointPair, TopoDS_Edge> StepToTopoDS_PointEdgeMap;
+Standard_DEPRECATED("StepToTopoDS_DataMapIteratorOfPointEdgeMap is deprecated, use "
+                    "NCollection_DataMap<StepToTopoDS_PointPair, TopoDS_Edge>::Iterator directly")
 typedef NCollection_DataMap<StepToTopoDS_PointPair, TopoDS_Edge>::Iterator
   StepToTopoDS_DataMapIteratorOfPointEdgeMap;
 
-#endif
+#endif // _StepToTopoDS_PointEdgeMap_hxx

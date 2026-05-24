@@ -25,7 +25,7 @@ class BOPAlgo_PaveFiller;
 class TopoDS_Shape;
 
 //! The class provides Boolean fusion operation
-//! between arguments and tools  (Boolean Union).
+//! between arguments and tools (Boolean Union).
 class BRepAlgoAPI_Fuse : public BRepAlgoAPI_BooleanOperation
 {
 public:
@@ -33,7 +33,7 @@ public:
 
   //! Empty constructor
   Standard_EXPORT BRepAlgoAPI_Fuse();
-  Standard_EXPORT virtual ~BRepAlgoAPI_Fuse();
+  Standard_EXPORT ~BRepAlgoAPI_Fuse() override;
 
   //! Empty constructor
   //! <PF> - PaveFiller object that is carried out
@@ -58,9 +58,6 @@ public:
                                    const TopoDS_Shape&          S2,
                                    const BOPAlgo_PaveFiller&    aDSF,
                                    const Message_ProgressRange& theRange = Message_ProgressRange());
-
-protected:
-private:
 };
 
 #endif // _BRepAlgoAPI_Fuse_HeaderFile

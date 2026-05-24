@@ -21,7 +21,10 @@
 #include <Standard_DefineAlloc.hxx>
 
 #include <TopAbs_ShapeEnum.hxx>
-#include <TopTools_IndexedDataMapOfShapeListOfShape.hxx>
+#include <TopoDS_Shape.hxx>
+#include <NCollection_List.hxx>
+#include <TopTools_ShapeMapHasher.hxx>
+#include <NCollection_IndexedDataMap.hxx>
 class TopoDS_Shape;
 
 //! Describes the ancestors tool needed by
@@ -29,7 +32,7 @@ class TopoDS_Shape;
 //!
 //! This class has been created because it is not possible
 //! to instantiate the argument TheAncestorsTool (of
-//! DSFiller from TopOpeInter) with a  package (TopExp)
+//! DSFiller from TopOpeInter) with a package (TopExp)
 //! giving services as package methods.
 class TopOpeBRepTool_AncestorsTool
 {
@@ -37,13 +40,13 @@ public:
   DEFINE_STANDARD_ALLOC
 
   //! same as package method TopExp::MapShapeListOfShapes()
-  Standard_EXPORT static void MakeAncestors(const TopoDS_Shape&                        S,
-                                            const TopAbs_ShapeEnum                     TS,
-                                            const TopAbs_ShapeEnum                     TA,
-                                            TopTools_IndexedDataMapOfShapeListOfShape& M);
-
-protected:
-private:
+  Standard_EXPORT static void MakeAncestors(
+    const TopoDS_Shape&                                  S,
+    const TopAbs_ShapeEnum                               TS,
+    const TopAbs_ShapeEnum                               TA,
+    NCollection_IndexedDataMap<TopoDS_Shape,
+                               NCollection_List<TopoDS_Shape>,
+                               TopTools_ShapeMapHasher>& M);
 };
 
 #endif // _TopOpeBRepTool_AncestorsTool_HeaderFile

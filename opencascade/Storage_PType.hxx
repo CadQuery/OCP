@@ -1,7 +1,4 @@
-// Created on: 1996-04-30
-// Created by: cle
-// Copyright (c) 1996-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,13 +11,24 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef Storage_PType_HeaderFile
-#define Storage_PType_HeaderFile
+//! @file Storage_PType.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection_IndexedDataMap<TCollection_AsciiString, int> directly instead.
 
+#ifndef _Storage_PType_hxx
+#define _Storage_PType_hxx
+
+#include <Standard_Macro.hxx>
 #include <TCollection_AsciiString.hxx>
 #include <Standard_Integer.hxx>
 #include <NCollection_IndexedDataMap.hxx>
 
-typedef NCollection_IndexedDataMap<TCollection_AsciiString, Standard_Integer> Storage_PType;
+Standard_HEADER_DEPRECATED("Storage_PType.hxx is deprecated since OCCT 8.0.0. Use "
+                           "NCollection_IndexedDataMap<TCollection_AsciiString, int> directly.")
 
-#endif
+  Standard_DEPRECATED("Storage_PType is deprecated, use "
+                      "NCollection_IndexedDataMap<TCollection_AsciiString, int> directly")
+typedef NCollection_IndexedDataMap<TCollection_AsciiString, int> Storage_PType;
+
+#endif // _Storage_PType_hxx

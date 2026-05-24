@@ -28,7 +28,7 @@ public:
   //!             with 0 pointing to theStart and 1 to theEnd.
   static gp_Quaternion Interpolate(const gp_Quaternion& theQStart,
                                    const gp_Quaternion& theQEnd,
-                                   Standard_Real        theT)
+                                   double               theT)
   {
     gp_Quaternion      aResult;
     gp_QuaternionSLerp aLerp(theQStart, theQEnd);
@@ -38,7 +38,7 @@ public:
 
 public:
   //! Empty constructor,
-  gp_QuaternionSLerp() {}
+  gp_QuaternionSLerp() = default;
 
   //! Constructor with initialization.
   gp_QuaternionSLerp(const gp_Quaternion& theQStart, const gp_Quaternion& theQEnd)
@@ -55,9 +55,9 @@ public:
   //! Initialize the tool with Start and End unit quaternions.
   void InitFromUnit(const gp_Quaternion& theQStart, const gp_Quaternion& theQEnd)
   {
-    myQStart               = theQStart;
-    myQEnd                 = theQEnd;
-    Standard_Real cosOmega = myQStart.Dot(myQEnd);
+    myQStart        = theQStart;
+    myQEnd          = theQEnd;
+    double cosOmega = myQStart.Dot(myQEnd);
     if (cosOmega < 0.0)
     {
       cosOmega = -cosOmega;
@@ -67,22 +67,22 @@ public:
     {
       cosOmega = 0.9999;
     }
-    myOmega                   = ACos(cosOmega);
-    Standard_Real invSinOmega = (1.0 / Sin(myOmega));
+    myOmega            = std::acos(cosOmega);
+    double invSinOmega = (1.0 / std::sin(myOmega));
     myQStart.Scale(invSinOmega);
     myQEnd.Scale(invSinOmega);
   }
 
   //! Set interpolated quaternion for theT position (from 0.0 to 1.0)
-  void Interpolate(Standard_Real theT, gp_Quaternion& theResultQ) const
+  void Interpolate(double theT, gp_Quaternion& theResultQ) const
   {
-    theResultQ = myQStart * Sin((1.0 - theT) * myOmega) + myQEnd * Sin(theT * myOmega);
+    theResultQ = myQStart * std::sin((1.0 - theT) * myOmega) + myQEnd * std::sin(theT * myOmega);
   }
 
 private:
   gp_Quaternion myQStart;
   gp_Quaternion myQEnd;
-  Standard_Real myOmega;
+  double        myOmega;
 };
 
 #endif //_gp_QuaternionSLerp_HeaderFile

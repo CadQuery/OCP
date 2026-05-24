@@ -25,14 +25,13 @@ class LDOM_CDATASection : public LDOM_Text
 public:
   // ---------- PUBLIC METHODS ----------
 
-  LDOM_CDATASection() {}
+  LDOM_CDATASection() = default;
 
   // Empty constructor
 
   LDOM_CDATASection(const LDOM_CDATASection& theOther)
-      : LDOM_Text(theOther)
-  {
-  }
+
+    = default;
 
   // Copy constructor
 
@@ -53,7 +52,7 @@ public:
 protected:
   friend class LDOM_Document;
 
-  LDOM_CDATASection(const LDOM_BasicText& theText, const Handle(LDOM_MemManager)& theDoc)
+  LDOM_CDATASection(const LDOM_BasicText& theText, const occ::handle<LDOM_MemManager>& theDoc)
       : LDOM_Text(theText, theDoc)
   {
   }

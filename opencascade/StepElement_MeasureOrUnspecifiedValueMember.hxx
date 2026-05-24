@@ -22,10 +22,7 @@
 #include <StepData_SelectNamed.hxx>
 #include <Standard_CString.hxx>
 
-class StepElement_MeasureOrUnspecifiedValueMember;
-DEFINE_STANDARD_HANDLE(StepElement_MeasureOrUnspecifiedValueMember, StepData_SelectNamed)
-
-//! Representation of member for  STEP SELECT type MeasureOrUnspecifiedValue
+//! Representation of member for STEP SELECT type MeasureOrUnspecifiedValue
 class StepElement_MeasureOrUnspecifiedValueMember : public StepData_SelectNamed
 {
 
@@ -34,23 +31,21 @@ public:
   Standard_EXPORT StepElement_MeasureOrUnspecifiedValueMember();
 
   //! Returns True if has name
-  Standard_EXPORT virtual Standard_Boolean HasName() const Standard_OVERRIDE;
+  Standard_EXPORT bool HasName() const override;
 
   //! Returns set name
-  Standard_EXPORT virtual Standard_CString Name() const Standard_OVERRIDE;
+  Standard_EXPORT const char* Name() const override;
 
   //! Set name
-  Standard_EXPORT virtual Standard_Boolean SetName(const Standard_CString name) Standard_OVERRIDE;
+  Standard_EXPORT bool SetName(const char* const name) override;
 
   //! Tells if the name of a SelectMember matches a given one;
-  Standard_EXPORT virtual Standard_Boolean Matches(const Standard_CString name) const
-    Standard_OVERRIDE;
+  Standard_EXPORT bool Matches(const char* const name) const override;
 
   DEFINE_STANDARD_RTTIEXT(StepElement_MeasureOrUnspecifiedValueMember, StepData_SelectNamed)
 
-protected:
 private:
-  Standard_Integer mycase;
+  int mycase;
 };
 
 #endif // _StepElement_MeasureOrUnspecifiedValueMember_HeaderFile

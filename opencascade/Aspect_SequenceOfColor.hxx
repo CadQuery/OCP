@@ -1,6 +1,4 @@
-// Created by: NW,JPB,CAL
-// Copyright (c) 1991-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -13,12 +11,23 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef Aspect_SequenceOfColor_HeaderFile
-#define Aspect_SequenceOfColor_HeaderFile
+//! @file Aspect_SequenceOfColor.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection_Sequence<Quantity_Color> directly instead.
 
+#ifndef _Aspect_SequenceOfColor_hxx
+#define _Aspect_SequenceOfColor_hxx
+
+#include <Standard_Macro.hxx>
 #include <Quantity_Color.hxx>
 #include <NCollection_Sequence.hxx>
 
+Standard_HEADER_DEPRECATED("Aspect_SequenceOfColor.hxx is deprecated since OCCT 8.0.0. Use "
+                           "NCollection_Sequence<Quantity_Color> directly.")
+
+  Standard_DEPRECATED(
+    "Aspect_SequenceOfColor is deprecated, use NCollection_Sequence<Quantity_Color> directly")
 typedef NCollection_Sequence<Quantity_Color> Aspect_SequenceOfColor;
 
-#endif
+#endif // _Aspect_SequenceOfColor_hxx

@@ -17,13 +17,9 @@
 #ifndef _StdFail_Undefined_HeaderFile
 #define _StdFail_Undefined_HeaderFile
 
-#include <Standard_Type.hxx>
 #include <Standard_DefineException.hxx>
 #include <Standard_SStream.hxx>
 #include <Standard_Failure.hxx>
-
-class StdFail_Undefined;
-DEFINE_STANDARD_HANDLE(StdFail_Undefined, Standard_Failure)
 
 #if !defined No_Exception && !defined No_StdFail_Undefined
   #define StdFail_Undefined_Raise_if(CONDITION, MESSAGE)                                           \

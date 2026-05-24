@@ -1,7 +1,4 @@
-// Created on: 1999-11-17
-// Created by: Andrey BETENEV
-// Copyright (c) 1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,16 +11,32 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef STEPConstruct_DataMapOfAsciiStringTransient_HeaderFile
-#define STEPConstruct_DataMapOfAsciiStringTransient_HeaderFile
+//! @file STEPConstruct_DataMapOfAsciiStringTransient.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection types directly instead.
 
+#ifndef _STEPConstruct_DataMapOfAsciiStringTransient_hxx
+#define _STEPConstruct_DataMapOfAsciiStringTransient_hxx
+
+#include <Standard_Macro.hxx>
 #include <TCollection_AsciiString.hxx>
 #include <Standard_Transient.hxx>
 #include <NCollection_DataMap.hxx>
 
-typedef NCollection_DataMap<TCollection_AsciiString, Handle(Standard_Transient)>
+Standard_HEADER_DEPRECATED("STEPConstruct_DataMapOfAsciiStringTransient.hxx is deprecated since "
+                           "OCCT 8.0.0. Use NCollection types directly.")
+
+  Standard_DEPRECATED("STEPConstruct_DataMapOfAsciiStringTransient is deprecated, use "
+                      "NCollection_DataMap<TCollection_AsciiString, "
+                      "opencascade::handle<Standard_Transient>> directly")
+typedef NCollection_DataMap<TCollection_AsciiString, opencascade::handle<Standard_Transient>>
   STEPConstruct_DataMapOfAsciiStringTransient;
-typedef NCollection_DataMap<TCollection_AsciiString, Handle(Standard_Transient)>::Iterator
+Standard_DEPRECATED("STEPConstruct_DataMapIteratorOfDataMapOfAsciiStringTransient is deprecated, "
+                    "use NCollection_DataMap<TCollection_AsciiString, "
+                    "opencascade::handle<Standard_Transient>>::Iterator directly")
+typedef NCollection_DataMap<TCollection_AsciiString,
+                            opencascade::handle<Standard_Transient>>::Iterator
   STEPConstruct_DataMapIteratorOfDataMapOfAsciiStringTransient;
 
-#endif
+#endif // _STEPConstruct_DataMapOfAsciiStringTransient_hxx

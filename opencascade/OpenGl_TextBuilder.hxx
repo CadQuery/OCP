@@ -21,7 +21,7 @@
 #include <OpenGl_VertexBufferEditor.hxx>
 #include <OpenGl_Vec.hxx>
 
-#include <NCollection_Vector.hxx>
+#include <NCollection_DynamicArray.hxx>
 #include <NCollection_Handle.hxx>
 
 class Font_TextFormatter;
@@ -35,25 +35,28 @@ public:
   Standard_EXPORT OpenGl_TextBuilder();
 
   //! Creates texture quads for the given text.
-  Standard_EXPORT void Perform(const Handle(Font_TextFormatter)&                theFormatter,
-                               const Handle(OpenGl_Context)&                    theContext,
-                               OpenGl_Font&                                     theFont,
-                               NCollection_Vector<GLuint>&                      theTextures,
-                               NCollection_Vector<Handle(OpenGl_VertexBuffer)>& theVertsPerTexture,
-                               NCollection_Vector<Handle(OpenGl_VertexBuffer)>& theTCrdsPerTexture);
+  Standard_EXPORT void Perform(
+    const occ::handle<Font_TextFormatter>&                      theFormatter,
+    const occ::handle<OpenGl_Context>&                          theContext,
+    OpenGl_Font&                                                theFont,
+    NCollection_DynamicArray<GLuint>&                           theTextures,
+    NCollection_DynamicArray<occ::handle<OpenGl_VertexBuffer>>& theVertsPerTexture,
+    NCollection_DynamicArray<occ::handle<OpenGl_VertexBuffer>>& theTCrdsPerTexture);
 
 protected: //! @name class auxiliary methods
   Standard_EXPORT void createGlyphs(
-    const Handle(Font_TextFormatter)&                                        theFormatter,
-    const Handle(OpenGl_Context)&                                            theCtx,
-    OpenGl_Font&                                                             theFont,
-    NCollection_Vector<GLuint>&                                              theTextures,
-    NCollection_Vector<NCollection_Handle<NCollection_Vector<OpenGl_Vec2>>>& theVertsPerTexture,
-    NCollection_Vector<NCollection_Handle<NCollection_Vector<OpenGl_Vec2>>>& theTCrdsPerTexture);
+    const occ::handle<Font_TextFormatter>& theFormatter,
+    const occ::handle<OpenGl_Context>&     theCtx,
+    OpenGl_Font&                           theFont,
+    NCollection_DynamicArray<GLuint>&      theTextures,
+    NCollection_DynamicArray<NCollection_Handle<NCollection_DynamicArray<NCollection_Vec2<float>>>>&
+      theVertsPerTexture,
+    NCollection_DynamicArray<NCollection_Handle<NCollection_DynamicArray<NCollection_Vec2<float>>>>&
+      theTCrdsPerTexture);
 
 protected: //! @name class auxiliary fields
-  NCollection_Vector<OpenGl_Font::Tile>  myTileRects;
-  OpenGl_VertexBufferEditor<OpenGl_Vec2> myVboEditor;
+  NCollection_DynamicArray<OpenGl_Font::Tile>        myTileRects;
+  OpenGl_VertexBufferEditor<NCollection_Vec2<float>> myVboEditor;
 };
 
 #endif // OpenGl_TextBuilder_Header

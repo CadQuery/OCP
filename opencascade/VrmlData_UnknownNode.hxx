@@ -32,24 +32,24 @@ public:
   /**
    * Empty Constructor.
    */
-  inline VrmlData_UnknownNode() {}
+  inline VrmlData_UnknownNode() = default;
 
   /**
    * Constructor.
    */
   inline VrmlData_UnknownNode(const VrmlData_Scene& theScene,
-                              const char*           theName  = 0L,
-                              const char*           theTitle = 0L)
+                              const char*           theName  = nullptr,
+                              const char*           theTitle = nullptr)
       : VrmlData_Node(theScene, theName)
   {
     if (theTitle)
-      myTitle = (Standard_CString)theTitle;
+      myTitle = (const char*)theTitle;
   }
 
   /**
    * Read the unknown node, till the last closing brace of it.
    */
-  Standard_EXPORT virtual VrmlData_ErrorStatus Read(VrmlData_InBuffer& theBuffer) Standard_OVERRIDE;
+  Standard_EXPORT VrmlData_ErrorStatus Read(VrmlData_InBuffer& theBuffer) override;
 
   /**
    * Query the title of the unknown node.
@@ -59,7 +59,7 @@ public:
   /**
    * Check if the Node is non-writeable -- always returns true.
    */
-  Standard_EXPORT virtual Standard_Boolean IsDefault() const Standard_OVERRIDE;
+  Standard_EXPORT bool IsDefault() const override;
 
 private:
   // ---------- PRIVATE FIELDS ----------
@@ -72,6 +72,4 @@ public:
 };
 
 // Definition of HANDLE object using Standard_DefineHandle.hxx
-DEFINE_STANDARD_HANDLE(VrmlData_UnknownNode, VrmlData_Node)
-
 #endif

@@ -23,30 +23,30 @@
 
 //! The class contains API level of the **Splitter** algorithm,
 //! which allows splitting a group of arbitrary shapes by the
-//! other group of arbitrary shapes.<br>
-//! The arguments of the operation are divided on two groups:<br>
-//! *Objects* - shapes that will be split;<br>
-//! *Tools*   - shapes by which the *Objects* will be split.<br>
+//! other group of arbitrary shapes.
+//! The arguments of the operation are divided on two groups:
+//! *Objects* - shapes that will be split;
+//! *Tools*   - shapes by which the *Objects* will be split.
 //! The result of the operation contains only the split parts
-//! of the shapes from the group of *Objects*.<br>
+//! of the shapes from the group of *Objects*.
 //! The split parts of the shapes from the group of *Tools* are excluded
-//! from the result.<br>
+//! from the result.
 //! The shapes can be split by the other shapes from the same group
 //! (in case these shapes are interfering).
 //!
 //! The class is a General Fuse based algorithm. Thus, all options
 //! of the General Fuse algorithm such as Fuzzy mode, safe processing mode,
 //! parallel processing mode, gluing mode and history support are also
-//! available in this algorithm.<br>
+//! available in this algorithm.
 //! There is no requirement on the existence of the *Tools* shapes.
 //! And if there are no *Tools* shapes, the result of the splitting
 //! operation will be equivalent to the General Fuse result.
 //!
-//! The algorithm returns the following Error statuses:<br>
-//! - 0 - in case of success;<br>
+//! The algorithm returns the following Error statuses:
+//! - 0 - in case of success;
 //! - *BOPAlgo_AlertTooFewArguments*    - in case there is no enough arguments for the
-//! operation;<br>
-//! - *BOPAlgo_AlertIntersectionFailed* - in case the Intersection of the arguments has failed;<br>
+//! operation;
+//! - *BOPAlgo_AlertIntersectionFailed* - in case the Intersection of the arguments has failed;
 //! - *BOPAlgo_AlertBuilderFailed*      - in case the Building of the result has failed.
 class BRepAlgoAPI_Splitter : public BRepAlgoAPI_BuilderAlgo
 {
@@ -62,20 +62,20 @@ public: //! @name Constructors
 
 public: //! @name Setters/Getters for the Tools
   //! Sets the Tool arguments
-  void SetTools(const TopTools_ListOfShape& theLS) { myTools = theLS; }
+  void SetTools(const NCollection_List<TopoDS_Shape>& theLS) { myTools = theLS; }
 
   //! Returns the Tool arguments
-  const TopTools_ListOfShape& Tools() const { return myTools; }
+  const NCollection_List<TopoDS_Shape>& Tools() const { return myTools; }
 
 public: //! @name Performing the operation
   //! Performs the Split operation.
   //! Performs the intersection of the argument shapes (both objects and tools)
   //! and splits objects by the tools.
-  Standard_EXPORT virtual void Build(
-    const Message_ProgressRange& theRange = Message_ProgressRange()) Standard_OVERRIDE;
+  Standard_EXPORT void Build(
+    const Message_ProgressRange& theRange = Message_ProgressRange()) override;
 
-protected:                      //! @name Fields
-  TopTools_ListOfShape myTools; //!< Tool arguments of the operation
+protected:                                //! @name Fields
+  NCollection_List<TopoDS_Shape> myTools; //!< Tool arguments of the operation
 };
 
 #endif // _BRepAlgoAPI_Splitter_HeaderFile

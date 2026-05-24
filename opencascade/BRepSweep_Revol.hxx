@@ -35,39 +35,37 @@ class BRepSweep_Revol
 public:
   DEFINE_STANDARD_ALLOC
 
-  //! Builds the Revol of meridian S axis A  and angle D. If
+  //! Builds the Revol of meridian S axis A and angle D. If
   //! C is true S is copied.
-  Standard_EXPORT BRepSweep_Revol(const TopoDS_Shape&    S,
-                                  const gp_Ax1&          A,
-                                  const Standard_Real    D,
-                                  const Standard_Boolean C = Standard_False);
+  Standard_EXPORT BRepSweep_Revol(const TopoDS_Shape& S,
+                                  const gp_Ax1&       A,
+                                  const double        D,
+                                  const bool          C = false);
 
-  //! Builds the Revol of meridian S  axis A and angle 2*Pi.
+  //! Builds the Revol of meridian S axis A and angle 2*Pi.
   //! If C is true S is copied.
-  Standard_EXPORT BRepSweep_Revol(const TopoDS_Shape&    S,
-                                  const gp_Ax1&          A,
-                                  const Standard_Boolean C = Standard_False);
+  Standard_EXPORT BRepSweep_Revol(const TopoDS_Shape& S, const gp_Ax1& A, const bool C = false);
 
   //! Returns the TopoDS Shape attached to the Revol.
   Standard_EXPORT TopoDS_Shape Shape();
 
-  //! Returns    the  TopoDS  Shape   generated  with  aGenS
-  //! (subShape  of the generating shape).
+  //! Returns the TopoDS Shape generated with aGenS
+  //! (subShape of the generating shape).
   Standard_EXPORT TopoDS_Shape Shape(const TopoDS_Shape& aGenS);
 
-  //! Returns the first shape of the revol  (coinciding with
+  //! Returns the first shape of the revol (coinciding with
   //! the generating shape).
   Standard_EXPORT TopoDS_Shape FirstShape();
 
-  //! Returns the first shape of the revol  (coinciding with
+  //! Returns the first shape of the revol (coinciding with
   //! the generating shape).
   Standard_EXPORT TopoDS_Shape FirstShape(const TopoDS_Shape& aGenS);
 
   //! Returns the TopoDS Shape of the top of the prism.
   Standard_EXPORT TopoDS_Shape LastShape();
 
-  //! Returns the  TopoDS  Shape of the top  of  the  prism.
-  //! generated  with  aGenS  (subShape  of  the  generating
+  //! Returns the TopoDS Shape of the top of the prism.
+  //! generated with aGenS (subShape of the generating
   //! shape).
   Standard_EXPORT TopoDS_Shape LastShape(const TopoDS_Shape& aGenS);
 
@@ -75,23 +73,23 @@ public:
   Standard_EXPORT gp_Ax1 Axe() const;
 
   //! returns the angle.
-  Standard_EXPORT Standard_Real Angle() const;
+  Standard_EXPORT double Angle() const;
 
   //! Returns true if the aGenS is used in resulting Shape
-  Standard_EXPORT Standard_Boolean IsUsed(const TopoDS_Shape& aGenS) const;
+  Standard_EXPORT bool IsUsed(const TopoDS_Shape& aGenS) const;
 
 private:
   //! builds the NumShape.
-  Standard_EXPORT Sweep_NumShape NumShape(const Standard_Real D) const;
+  Standard_EXPORT Sweep_NumShape NumShape(const double D) const;
 
   //! Builds the Location
-  Standard_EXPORT TopLoc_Location Location(const gp_Ax1& Ax, const Standard_Real D) const;
+  Standard_EXPORT TopLoc_Location Location(const gp_Ax1& Ax, const double D) const;
 
   //! Builds the axis
-  Standard_EXPORT gp_Ax1 Axe(const gp_Ax1& Ax, const Standard_Real D) const;
+  Standard_EXPORT gp_Ax1 Axe(const gp_Ax1& Ax, const double D) const;
 
   //! computes the angle.
-  Standard_EXPORT Standard_Real Angle(const Standard_Real D) const;
+  Standard_EXPORT double Angle(const double D) const;
 
   BRepSweep_Rotation myRotation;
 };

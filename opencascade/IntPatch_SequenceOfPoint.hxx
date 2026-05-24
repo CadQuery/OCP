@@ -1,7 +1,4 @@
-// Created on: 1992-05-06
-// Created by: Jacques GOUSSARD
-// Copyright (c) 1992-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,12 +11,23 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef IntPatch_SequenceOfPoint_HeaderFile
-#define IntPatch_SequenceOfPoint_HeaderFile
+//! @file IntPatch_SequenceOfPoint.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection_Sequence<IntPatch_Point> directly instead.
 
+#ifndef _IntPatch_SequenceOfPoint_hxx
+#define _IntPatch_SequenceOfPoint_hxx
+
+#include <Standard_Macro.hxx>
 #include <IntPatch_Point.hxx>
 #include <NCollection_Sequence.hxx>
 
+Standard_HEADER_DEPRECATED("IntPatch_SequenceOfPoint.hxx is deprecated since OCCT 8.0.0. Use "
+                           "NCollection_Sequence<IntPatch_Point> directly.")
+
+  Standard_DEPRECATED(
+    "IntPatch_SequenceOfPoint is deprecated, use NCollection_Sequence<IntPatch_Point> directly")
 typedef NCollection_Sequence<IntPatch_Point> IntPatch_SequenceOfPoint;
 
-#endif
+#endif // _IntPatch_SequenceOfPoint_hxx

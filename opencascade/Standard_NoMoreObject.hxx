@@ -17,13 +17,9 @@
 #ifndef _Standard_NoMoreObject_HeaderFile
 #define _Standard_NoMoreObject_HeaderFile
 
-#include <Standard_Type.hxx>
 #include <Standard_DefineException.hxx>
 #include <Standard_SStream.hxx>
 #include <Standard_DomainError.hxx>
-
-class Standard_NoMoreObject;
-DEFINE_STANDARD_HANDLE(Standard_NoMoreObject, Standard_DomainError)
 
 #if !defined No_Exception && !defined No_Standard_NoMoreObject
   #define Standard_NoMoreObject_Raise_if(CONDITION, MESSAGE)                                       \

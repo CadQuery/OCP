@@ -1,7 +1,4 @@
-// Created on: 1999-06-10
-// Created by: Vladislav ROMASHKO
-// Copyright (c) 1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,12 +11,23 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef TFunction_Array1OfDataMapOfGUIDDriver_HeaderFile
-#define TFunction_Array1OfDataMapOfGUIDDriver_HeaderFile
+//! @file TFunction_Array1OfDataMapOfGUIDDriver.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection_Array1<TFunction_DataMapOfGUIDDriver> directly instead.
 
+#ifndef _TFunction_Array1OfDataMapOfGUIDDriver_hxx
+#define _TFunction_Array1OfDataMapOfGUIDDriver_hxx
+
+#include <Standard_Macro.hxx>
 #include <TFunction_DataMapOfGUIDDriver.hxx>
 #include <NCollection_Array1.hxx>
 
+Standard_HEADER_DEPRECATED("TFunction_Array1OfDataMapOfGUIDDriver.hxx is deprecated since OCCT "
+                           "8.0.0. Use NCollection_Array1<TFunction_DataMapOfGUIDDriver> directly.")
+
+  Standard_DEPRECATED("TFunction_Array1OfDataMapOfGUIDDriver is deprecated, use "
+                      "NCollection_Array1<TFunction_DataMapOfGUIDDriver> directly")
 typedef NCollection_Array1<TFunction_DataMapOfGUIDDriver> TFunction_Array1OfDataMapOfGUIDDriver;
 
-#endif
+#endif // _TFunction_Array1OfDataMapOfGUIDDriver_hxx

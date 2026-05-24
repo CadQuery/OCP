@@ -1,7 +1,4 @@
-// Created on: 1996-03-07
-// Created by: Stagiaire Frederic CALOONE
-// Copyright (c) 1996-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,12 +11,27 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef GeomPlate_SequenceOfCurveConstraint_HeaderFile
-#define GeomPlate_SequenceOfCurveConstraint_HeaderFile
+//! @file GeomPlate_SequenceOfCurveConstraint.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection_Sequence<opencascade::handle<GeomPlate_CurveConstraint>> directly
+//!             instead.
 
+#ifndef _GeomPlate_SequenceOfCurveConstraint_hxx
+#define _GeomPlate_SequenceOfCurveConstraint_hxx
+
+#include <Standard_Macro.hxx>
 #include <GeomPlate_CurveConstraint.hxx>
 #include <NCollection_Sequence.hxx>
 
-typedef NCollection_Sequence<Handle(GeomPlate_CurveConstraint)> GeomPlate_SequenceOfCurveConstraint;
+Standard_HEADER_DEPRECATED(
+  "GeomPlate_SequenceOfCurveConstraint.hxx is deprecated since OCCT 8.0.0. Use "
+  "NCollection_Sequence<opencascade::handle<GeomPlate_CurveConstraint>> directly.")
 
-#endif
+  Standard_DEPRECATED(
+    "GeomPlate_SequenceOfCurveConstraint is deprecated, use "
+    "NCollection_Sequence<opencascade::handle<GeomPlate_CurveConstraint>> directly")
+typedef NCollection_Sequence<opencascade::handle<GeomPlate_CurveConstraint>>
+  GeomPlate_SequenceOfCurveConstraint;
+
+#endif // _GeomPlate_SequenceOfCurveConstraint_hxx

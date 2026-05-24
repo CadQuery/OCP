@@ -1,7 +1,4 @@
-// Created on: 1992-08-24
-// Created by: Jacques GOUSSARD
-// Copyright (c) 1992-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,12 +11,23 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef IntSurf_SequenceOfPathPoint_HeaderFile
-#define IntSurf_SequenceOfPathPoint_HeaderFile
+//! @file IntSurf_SequenceOfPathPoint.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection_Sequence<IntSurf_PathPoint> directly instead.
 
+#ifndef _IntSurf_SequenceOfPathPoint_hxx
+#define _IntSurf_SequenceOfPathPoint_hxx
+
+#include <Standard_Macro.hxx>
 #include <IntSurf_PathPoint.hxx>
 #include <NCollection_Sequence.hxx>
 
+Standard_HEADER_DEPRECATED("IntSurf_SequenceOfPathPoint.hxx is deprecated since OCCT 8.0.0. Use "
+                           "NCollection_Sequence<IntSurf_PathPoint> directly.")
+
+  Standard_DEPRECATED("IntSurf_SequenceOfPathPoint is deprecated, use "
+                      "NCollection_Sequence<IntSurf_PathPoint> directly")
 typedef NCollection_Sequence<IntSurf_PathPoint> IntSurf_SequenceOfPathPoint;
 
-#endif
+#endif // _IntSurf_SequenceOfPathPoint_hxx

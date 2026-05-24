@@ -23,7 +23,8 @@
 
 #include <Standard_Boolean.hxx>
 #include <Intf_Interference.hxx>
-#include <Intf_Array1OfLin.hxx>
+#include <gp_Lin.hxx>
+#include <NCollection_Array1.hxx>
 class HLRBRep_ThePolygonOfInterCSurf;
 class HLRBRep_ThePolygonToolOfInterCSurf;
 class HLRBRep_ThePolyhedronOfInterCSurf;
@@ -38,7 +39,7 @@ class HLRBRep_TheInterferenceOfInterCSurf : public Intf_Interference
 public:
   DEFINE_STANDARD_ALLOC
 
-  //! Constructs  an  empty   interference  between Polygon   and
+  //! Constructs an empty interference between Polygon and
   //! Polyhedron.
   Standard_EXPORT HLRBRep_TheInterferenceOfInterCSurf();
 
@@ -48,31 +49,31 @@ public:
     const HLRBRep_ThePolygonOfInterCSurf&    thePolyg,
     const HLRBRep_ThePolyhedronOfInterCSurf& thePolyh);
 
-  //! Constructs  and computes  an  interference   between    the
+  //! Constructs and computes an interference between the
   //! Straight Line and the Polyhedron.
   Standard_EXPORT HLRBRep_TheInterferenceOfInterCSurf(
     const gp_Lin&                            theLin,
     const HLRBRep_ThePolyhedronOfInterCSurf& thePolyh);
 
-  //! Constructs   and   computes  an  interference   between the
+  //! Constructs and computes an interference between the
   //! Straight Lines and the Polyhedron.
   Standard_EXPORT HLRBRep_TheInterferenceOfInterCSurf(
-    const Intf_Array1OfLin&                  theLins,
+    const NCollection_Array1<gp_Lin>&        theLins,
     const HLRBRep_ThePolyhedronOfInterCSurf& thePolyh);
 
-  //! Computes  an interference    between the   Polygon  and the
+  //! Computes an interference between the Polygon and the
   //! Polyhedron.
   Standard_EXPORT void Perform(const HLRBRep_ThePolygonOfInterCSurf&    thePolyg,
                                const HLRBRep_ThePolyhedronOfInterCSurf& thePolyh);
 
-  //! Computes an interference between the Straight  Line and the
+  //! Computes an interference between the Straight Line and the
   //! Polyhedron.
   Standard_EXPORT void Perform(const gp_Lin&                            theLin,
                                const HLRBRep_ThePolyhedronOfInterCSurf& thePolyh);
 
-  //! Computes an interference  between the  Straight Lines  and
+  //! Computes an interference between the Straight Lines and
   //! the Polyhedron.
-  Standard_EXPORT void Perform(const Intf_Array1OfLin&                  theLins,
+  Standard_EXPORT void Perform(const NCollection_Array1<gp_Lin>&        theLins,
                                const HLRBRep_ThePolyhedronOfInterCSurf& thePolyh);
 
   //! Constructs and computes an interference between the Polygon
@@ -82,35 +83,35 @@ public:
     const HLRBRep_ThePolyhedronOfInterCSurf& thePolyh,
     Bnd_BoundSortBox&                        theBoundSB);
 
-  //! Constructs  and computes  an  interference   between    the
+  //! Constructs and computes an interference between the
   //! Straight Line and the Polyhedron.
   Standard_EXPORT HLRBRep_TheInterferenceOfInterCSurf(
     const gp_Lin&                            theLin,
     const HLRBRep_ThePolyhedronOfInterCSurf& thePolyh,
     Bnd_BoundSortBox&                        theBoundSB);
 
-  //! Constructs   and   computes  an  interference   between the
+  //! Constructs and computes an interference between the
   //! Straight Lines and the Polyhedron.
   Standard_EXPORT HLRBRep_TheInterferenceOfInterCSurf(
-    const Intf_Array1OfLin&                  theLins,
+    const NCollection_Array1<gp_Lin>&        theLins,
     const HLRBRep_ThePolyhedronOfInterCSurf& thePolyh,
     Bnd_BoundSortBox&                        theBoundSB);
 
-  //! Computes  an interference    between the   Polygon  and the
+  //! Computes an interference between the Polygon and the
   //! Polyhedron.
   Standard_EXPORT void Perform(const HLRBRep_ThePolygonOfInterCSurf&    thePolyg,
                                const HLRBRep_ThePolyhedronOfInterCSurf& thePolyh,
                                Bnd_BoundSortBox&                        theBoundSB);
 
-  //! Computes an interference between the Straight  Line and the
+  //! Computes an interference between the Straight Line and the
   //! Polyhedron.
   Standard_EXPORT void Perform(const gp_Lin&                            theLin,
                                const HLRBRep_ThePolyhedronOfInterCSurf& thePolyh,
                                Bnd_BoundSortBox&                        theBoundSB);
 
-  //! Computes an interference  between the  Straight Lines  and
+  //! Computes an interference between the Straight Lines and
   //! the Polyhedron.
-  Standard_EXPORT void Perform(const Intf_Array1OfLin&                  theLins,
+  Standard_EXPORT void Perform(const NCollection_Array1<gp_Lin>&        theLins,
                                const HLRBRep_ThePolyhedronOfInterCSurf& thePolyh,
                                Bnd_BoundSortBox&                        theBoundSB);
 
@@ -125,30 +126,29 @@ public:
   Standard_EXPORT void Interference(const HLRBRep_ThePolygonOfInterCSurf&    thePolyg,
                                     const HLRBRep_ThePolyhedronOfInterCSurf& thePolyh);
 
-protected:
 private:
-  //! Computes the intersection between  the segment <BegO><EndO>
+  //! Computes the intersection between the segment <BegO><EndO>
   //! and the triangle <TTri> of <thePolyh>.
   Standard_EXPORT void Intersect(const gp_Pnt&                            BegO,
                                  const gp_Pnt&                            EndO,
-                                 const Standard_Boolean                   Infinite,
-                                 const Standard_Integer                   TTri,
+                                 const bool                               Infinite,
+                                 const int                                TTri,
                                  const HLRBRep_ThePolyhedronOfInterCSurf& thePolyh);
 
-  //! Computes the intersection between  the segment <BegO><EndO>
+  //! Computes the intersection between the segment <BegO><EndO>
   //! and the triangle <TTri> of <thePolyh>.
   Standard_EXPORT void Intersect(const gp_Pnt&                            BegO,
                                  const gp_Pnt&                            EndO,
-                                 const Standard_Boolean                   Infinite,
-                                 const Standard_Integer                   TTri,
+                                 const bool                               Infinite,
+                                 const int                                TTri,
                                  const HLRBRep_ThePolyhedronOfInterCSurf& thePolyh,
                                  const gp_XYZ&                            TriNormal,
-                                 const Standard_Real                      TriDp,
-                                 const Standard_Real                      dBegTri,
-                                 const Standard_Real                      dEndTri);
+                                 const double                             TriDp,
+                                 const double                             dBegTri,
+                                 const double                             dEndTri);
 
-  Standard_Boolean BeginOfClosedPolygon;
-  Standard_Integer iLin;
+  bool BeginOfClosedPolygon;
+  int  iLin;
 };
 
 #endif // _HLRBRep_TheInterferenceOfInterCSurf_HeaderFile

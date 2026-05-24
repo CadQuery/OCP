@@ -1,7 +1,4 @@
-// Created on: 1999-07-29
-// Created by: Roman LYGIN
-// Copyright (c) 1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,13 +11,25 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef Message_ListOfMsg_HeaderFile
-#define Message_ListOfMsg_HeaderFile
+//! @file Message_ListOfMsg.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection types directly instead.
 
+#ifndef _Message_ListOfMsg_hxx
+#define _Message_ListOfMsg_hxx
+
+#include <Standard_Macro.hxx>
 #include <Message_Msg.hxx>
 #include <NCollection_List.hxx>
 
-typedef NCollection_List<Message_Msg>           Message_ListOfMsg;
+Standard_HEADER_DEPRECATED(
+  "Message_ListOfMsg.hxx is deprecated since OCCT 8.0.0. Use NCollection types directly.")
+
+  Standard_DEPRECATED("Message_ListOfMsg is deprecated, use NCollection_List<Message_Msg> directly")
+typedef NCollection_List<Message_Msg> Message_ListOfMsg;
+Standard_DEPRECATED("Message_ListIteratorOfListOfMsg is deprecated, use "
+                    "NCollection_List<Message_Msg>::Iterator directly")
 typedef NCollection_List<Message_Msg>::Iterator Message_ListIteratorOfListOfMsg;
 
-#endif
+#endif // _Message_ListOfMsg_hxx

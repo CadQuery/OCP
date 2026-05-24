@@ -1,6 +1,4 @@
-// Created on: 2000-04-09
-// Created by: Sergey MOZOKHIN
-// Copyright (c) 2000-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -13,15 +11,28 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef STEPCAFControl_DataMapOfLabelShape_HeaderFile
-#define STEPCAFControl_DataMapOfLabelShape_HeaderFile
+//! @file STEPCAFControl_DataMapOfLabelShape.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection types directly instead.
 
+#ifndef _STEPCAFControl_DataMapOfLabelShape_hxx
+#define _STEPCAFControl_DataMapOfLabelShape_hxx
+
+#include <Standard_Macro.hxx>
 #include <TopoDS_Shape.hxx>
 #include <TDF_Label.hxx>
 #include <NCollection_DataMap.hxx>
 
+Standard_HEADER_DEPRECATED("STEPCAFControl_DataMapOfLabelShape.hxx is deprecated since OCCT 8.0.0. "
+                           "Use NCollection types directly.")
+
+  Standard_DEPRECATED("STEPCAFControl_DataMapOfLabelShape is deprecated, use "
+                      "NCollection_DataMap<TDF_Label, TopoDS_Shape> directly")
 typedef NCollection_DataMap<TDF_Label, TopoDS_Shape> STEPCAFControl_DataMapOfLabelShape;
+Standard_DEPRECATED("STEPCAFControl_DataMapIteratorOfDataMapOfLabelShape is deprecated, use "
+                    "NCollection_DataMap<TDF_Label, TopoDS_Shape>::Iterator directly")
 typedef NCollection_DataMap<TDF_Label, TopoDS_Shape>::Iterator
   STEPCAFControl_DataMapIteratorOfDataMapOfLabelShape;
 
-#endif
+#endif // _STEPCAFControl_DataMapOfLabelShape_hxx

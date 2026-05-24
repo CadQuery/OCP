@@ -1,7 +1,4 @@
-// Created on: 1995-04-20
-// Created by: Tony GEORGIADES
-// Copyright (c) 1995-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,15 +11,30 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef Resource_DataMapOfAsciiStringAsciiString_HeaderFile
-#define Resource_DataMapOfAsciiStringAsciiString_HeaderFile
+//! @file Resource_DataMapOfAsciiStringAsciiString.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection types directly instead.
 
+#ifndef _Resource_DataMapOfAsciiStringAsciiString_hxx
+#define _Resource_DataMapOfAsciiStringAsciiString_hxx
+
+#include <Standard_Macro.hxx>
 #include <TCollection_AsciiString.hxx>
 #include <NCollection_DataMap.hxx>
 
+Standard_HEADER_DEPRECATED("Resource_DataMapOfAsciiStringAsciiString.hxx is deprecated since OCCT "
+                           "8.0.0. Use NCollection types directly.")
+
+  Standard_DEPRECATED(
+    "Resource_DataMapOfAsciiStringAsciiString is deprecated, use "
+    "NCollection_DataMap<TCollection_AsciiString, TCollection_AsciiString> directly")
 typedef NCollection_DataMap<TCollection_AsciiString, TCollection_AsciiString>
   Resource_DataMapOfAsciiStringAsciiString;
+Standard_DEPRECATED(
+  "Resource_DataMapIteratorOfDataMapOfAsciiStringAsciiString is deprecated, use "
+  "NCollection_DataMap<TCollection_AsciiString, TCollection_AsciiString>::Iterator directly")
 typedef NCollection_DataMap<TCollection_AsciiString, TCollection_AsciiString>::Iterator
   Resource_DataMapIteratorOfDataMapOfAsciiStringAsciiString;
 
-#endif
+#endif // _Resource_DataMapOfAsciiStringAsciiString_hxx

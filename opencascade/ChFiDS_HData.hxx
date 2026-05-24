@@ -1,7 +1,4 @@
-// Created on: 1993-11-17
-// Created by: Isabelle GRIGNON
-// Copyright (c) 1993-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,12 +11,23 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef ChFiDS_HData_HeaderFile
-#define ChFiDS_HData_HeaderFile
+//! @file ChFiDS_HData.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection_HSequence<opencascade::handle<ChFiDS_SurfData>> directly instead.
 
+#ifndef _ChFiDS_HData_hxx
+#define _ChFiDS_HData_hxx
+
+#include <Standard_Macro.hxx>
 #include <ChFiDS_SequenceOfSurfData.hxx>
-#include <NCollection_DefineHSequence.hxx>
+#include <NCollection_HSequence.hxx>
 
-DEFINE_HSEQUENCE(ChFiDS_HData, ChFiDS_SequenceOfSurfData)
+Standard_HEADER_DEPRECATED("ChFiDS_HData.hxx is deprecated since OCCT 8.0.0. Use "
+                           "NCollection_HSequence<opencascade::handle<ChFiDS_SurfData>> directly.")
 
-#endif
+  Standard_DEPRECATED("ChFiDS_HData is deprecated, use "
+                      "NCollection_HSequence<opencascade::handle<ChFiDS_SurfData>> directly")
+typedef NCollection_HSequence<opencascade::handle<ChFiDS_SurfData>> ChFiDS_HData;
+
+#endif // _ChFiDS_HData_hxx

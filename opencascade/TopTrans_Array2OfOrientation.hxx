@@ -1,7 +1,4 @@
-// Created on: 1991-10-28
-// Created by: Remi LEQUETTE
-// Copyright (c) 1991-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,12 +11,23 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef TopTrans_Array2OfOrientation_HeaderFile
-#define TopTrans_Array2OfOrientation_HeaderFile
+//! @file TopTrans_Array2OfOrientation.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection_Array2<TopAbs_Orientation> directly instead.
 
+#ifndef _TopTrans_Array2OfOrientation_hxx
+#define _TopTrans_Array2OfOrientation_hxx
+
+#include <Standard_Macro.hxx>
 #include <TopAbs_Orientation.hxx>
 #include <NCollection_Array2.hxx>
 
+Standard_HEADER_DEPRECATED("TopTrans_Array2OfOrientation.hxx is deprecated since OCCT 8.0.0. Use "
+                           "NCollection_Array2<TopAbs_Orientation> directly.")
+
+  Standard_DEPRECATED("TopTrans_Array2OfOrientation is deprecated, use "
+                      "NCollection_Array2<TopAbs_Orientation> directly")
 typedef NCollection_Array2<TopAbs_Orientation> TopTrans_Array2OfOrientation;
 
-#endif
+#endif // _TopTrans_Array2OfOrientation_hxx

@@ -19,11 +19,7 @@
 
 #include <Standard.hxx>
 #include <Standard_Type.hxx>
-#include <TopAbs_ShapeEnum.hxx>
 #include <TopoDS_TShape.hxx>
-
-class TopoDS_TWire;
-DEFINE_STANDARD_HANDLE(TopoDS_TWire, TopoDS_TShape)
 
 //! A set of edges connected by their vertices.
 class TopoDS_TWire : public TopoDS_TShape
@@ -31,15 +27,12 @@ class TopoDS_TWire : public TopoDS_TShape
 public:
   //! Creates an empty TWire.
   TopoDS_TWire()
-      : TopoDS_TShape()
+      : TopoDS_TShape(TopAbs_WIRE)
   {
   }
 
-  //! Returns WIRE.
-  Standard_EXPORT TopAbs_ShapeEnum ShapeType() const Standard_OVERRIDE;
-
   //! Returns an empty TWire.
-  Standard_EXPORT Handle(TopoDS_TShape) EmptyCopy() const Standard_OVERRIDE;
+  Standard_EXPORT occ::handle<TopoDS_TShape> EmptyCopy() const override;
 
   DEFINE_STANDARD_RTTIEXT(TopoDS_TWire, TopoDS_TShape)
 };

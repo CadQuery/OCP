@@ -1,7 +1,4 @@
-// Created on: 1997-08-01
-// Created by: Jean-Louis Frenkel
-// Copyright (c) 1997-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,12 +11,23 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef PCDM_SequenceOfDocument_HeaderFile
-#define PCDM_SequenceOfDocument_HeaderFile
+//! @file PCDM_SequenceOfDocument.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection_Sequence<opencascade::handle<PCDM_Document>> directly instead.
 
+#ifndef _PCDM_SequenceOfDocument_hxx
+#define _PCDM_SequenceOfDocument_hxx
+
+#include <Standard_Macro.hxx>
 #include <PCDM_Document.hxx>
 #include <NCollection_Sequence.hxx>
 
-typedef NCollection_Sequence<Handle(PCDM_Document)> PCDM_SequenceOfDocument;
+Standard_HEADER_DEPRECATED("PCDM_SequenceOfDocument.hxx is deprecated since OCCT 8.0.0. Use "
+                           "NCollection_Sequence<opencascade::handle<PCDM_Document>> directly.")
 
-#endif
+  Standard_DEPRECATED("PCDM_SequenceOfDocument is deprecated, use "
+                      "NCollection_Sequence<opencascade::handle<PCDM_Document>> directly")
+typedef NCollection_Sequence<opencascade::handle<PCDM_Document>> PCDM_SequenceOfDocument;
+
+#endif // _PCDM_SequenceOfDocument_hxx

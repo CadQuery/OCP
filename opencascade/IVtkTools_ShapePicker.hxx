@@ -49,21 +49,26 @@ public:
 
   //! Pick entities in the given point.
   //! @return Number of detected entities.
-  virtual int Pick(double theX, double theY, double theZ, vtkRenderer* theRenderer = NULL)
-    Standard_OVERRIDE;
+  int Pick(double theX, double theY, double theZ, vtkRenderer* theRenderer = nullptr) override;
 
   //! Pick entities in the given rectangle area.
   //! @return Number of detected entities.
-  int Pick(double theX0, double theY0, double theX1, double theY1, vtkRenderer* theRenderer = NULL);
+  int Pick(double       theX0,
+           double       theY0,
+           double       theX1,
+           double       theY1,
+           vtkRenderer* theRenderer = nullptr);
 
   //! Pick entities in the given polygonal area.
   //! @return Number of detected entities.
-  int Pick(double poly[][3], const int theNbPoints, vtkRenderer* theRenderer = NULL);
+  int Pick(double poly[][3], const int theNbPoints, vtkRenderer* theRenderer = nullptr);
 
-  //! Setter for tolerance of picking.
-  void SetTolerance(float theTolerance);
-  //! Getter for tolerance of picking.
-  float GetTolerance() const;
+  //! Sets the pixel-space selection tolerance applied on every subsequent
+  //! Pick. Forwards to SelectMgr_ViewerSelector::SetPixelTolerance via the
+  //! underlying picker algorithm.
+  void SetPixelTolerance(const int theTolerance);
+  //! Returns the current pixel-space selection tolerance.
+  int PixelTolerance() const;
 
   //! Sets the renderer to be used by OCCT selection algorithm
   void SetRenderer(vtkRenderer* theRenderer);
@@ -74,12 +79,12 @@ public:
   //! Get activated selection modes for a shape.
   //! @param[in]  theShape a shape with activated selection mode(s)
   //! @return list of active selection modes
-  IVtk_SelectionModeList GetSelectionModes(const IVtk_IShape::Handle& theShape) const;
+  NCollection_List<IVtk_SelectionMode> GetSelectionModes(const IVtk_IShape::Handle& theShape) const;
 
   //! Get activated selection modes for a shape actor.
   //! @param[in]  theShapeActor an actor with activated selection mode(s)
   //! @return list of active selection modes
-  IVtk_SelectionModeList GetSelectionModes(vtkActor* theShapeActor) const;
+  NCollection_List<IVtk_SelectionMode> GetSelectionModes(vtkActor* theShapeActor) const;
 
   //! Turn on/off a selection mode for a shape actor.
   //! @param[in]  theShape a shape to set a selection mode for
@@ -112,14 +117,15 @@ public:
   //! @param[in]  theIsAll Get all selected shapes or just the only
   //!        top one is returned, has no effect during area selection.
   //! @return List of top-level shape IDs
-  IVtk_ShapeIdList GetPickedShapesIds(bool theIsAll = false) const;
+  NCollection_List<IVtk_IdType> GetPickedShapesIds(bool theIsAll = false) const;
 
   //! Access to the list of sub-shapes ids picked.
   //! @param[in]  theId top-level shape ID
   //! @param[in]  theIsAll Get all selected sub-shapes or just the
   //!        only top one is returned, has no effect during area selection.
   //! @return List of sub-shapes IDs
-  IVtk_ShapeIdList GetPickedSubShapesIds(const IVtk_IdType theId, bool theIsAll = false) const;
+  NCollection_List<IVtk_IdType> GetPickedSubShapesIds(const IVtk_IdType theId,
+                                                      bool              theIsAll = false) const;
 
   //! Access to the list of actors picked.
   //! @param[in]  theIsAll Get all selected actors or just the only
@@ -139,7 +145,7 @@ protected:
   //! Constructs the picker with empty renderer and ready for point selection.
   IVtkTools_ShapePicker();
   //! Destructor
-  virtual ~IVtkTools_ShapePicker();
+  ~IVtkTools_ShapePicker() override;
 
   //! Convert display coordinates to world coordinates
   static bool convertDisplayToWorld(vtkRenderer* theRenderer,
@@ -147,8 +153,8 @@ protected:
                                     double       theWorldCoord[3]);
 
 private: // not copyable
-  IVtkTools_ShapePicker(const IVtkTools_ShapePicker&);
-  IVtkTools_ShapePicker& operator=(const IVtkTools_ShapePicker&);
+  IVtkTools_ShapePicker(const IVtkTools_ShapePicker&)            = delete;
+  IVtkTools_ShapePicker& operator=(const IVtkTools_ShapePicker&) = delete;
 
   //! Implementation of picking algorithm.
   //! The coordinates accepted by this method are display (pixel) coordinates.
@@ -165,7 +171,6 @@ private:
   vtkSmartPointer<vtkRenderer>    myRenderer;        //!< VTK renderer
   bool                            myIsRectSelection; //!< Rectangle selection mode flag
   bool                            myIsPolySelection; //!< Polyline selection mode flag
-  float                           myTolerance;       //!< Selection tolerance
 };
 
 #ifdef _MSC_VER

@@ -1,4 +1,4 @@
-// Copyright (c) 2017 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,16 +11,32 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef StdStorage_MapOfRoots_HeaderFile
-#define StdStorage_MapOfRoots_HeaderFile
+//! @file StdStorage_MapOfRoots.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection types directly instead.
 
+#ifndef _StdStorage_MapOfRoots_hxx
+#define _StdStorage_MapOfRoots_hxx
+
+#include <Standard_Macro.hxx>
 #include <TCollection_AsciiString.hxx>
 #include <StdStorage_Root.hxx>
 #include <NCollection_IndexedDataMap.hxx>
 
-typedef NCollection_IndexedDataMap<TCollection_AsciiString, Handle(StdStorage_Root)>
+Standard_HEADER_DEPRECATED(
+  "StdStorage_MapOfRoots.hxx is deprecated since OCCT 8.0.0. Use NCollection types directly.")
+
+  Standard_DEPRECATED(
+    "StdStorage_MapOfRoots is deprecated, use NCollection_IndexedDataMap<TCollection_AsciiString, "
+    "opencascade::handle<StdStorage_Root>> directly")
+typedef NCollection_IndexedDataMap<TCollection_AsciiString, opencascade::handle<StdStorage_Root>>
   StdStorage_MapOfRoots;
-typedef NCollection_IndexedDataMap<TCollection_AsciiString, Handle(StdStorage_Root)>::Iterator
+Standard_DEPRECATED("StdStorage_DataMapIteratorOfMapOfRoots is deprecated, use "
+                    "NCollection_IndexedDataMap<TCollection_AsciiString, "
+                    "opencascade::handle<StdStorage_Root>>::Iterator directly")
+typedef NCollection_IndexedDataMap<TCollection_AsciiString,
+                                   opencascade::handle<StdStorage_Root>>::Iterator
   StdStorage_DataMapIteratorOfMapOfRoots;
 
-#endif // StdStorage_MapOfRoots_HeaderFile
+#endif // _StdStorage_MapOfRoots_hxx

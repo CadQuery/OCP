@@ -17,6 +17,7 @@
 #define _BVH_LinearBuilder_Header
 
 #include <BVH_RadixSorter.hxx>
+#include <NCollection_DynamicArray.hxx>
 #include <Standard_Assert.hxx>
 
 //! Performs fast BVH construction using LBVH building approach.
@@ -37,74 +38,64 @@ public:
 
 public:
   //! Creates binned LBVH builder.
-  BVH_LinearBuilder(const Standard_Integer theLeafNodeSize = BVH_Constants_LeafNodeSizeDefault,
-                    const Standard_Integer theMaxTreeDepth = BVH_Constants_MaxTreeDepth);
+  BVH_LinearBuilder(const int theLeafNodeSize = BVH_Constants_LeafNodeSizeDefault,
+                    const int theMaxTreeDepth = BVH_Constants_MaxTreeDepth);
 
   //! Releases resources of LBVH builder.
-  virtual ~BVH_LinearBuilder();
+  ~BVH_LinearBuilder() override;
 
   //! Builds BVH.
-  virtual void Build(BVH_Set<T, N>*       theSet,
-                     BVH_Tree<T, N>*      theBVH,
-                     const BVH_Box<T, N>& theBox) const Standard_OVERRIDE;
+  void Build(BVH_Set<T, N>*       theSet,
+             BVH_Tree<T, N>*      theBVH,
+             const BVH_Box<T, N>& theBox) const override;
 
 protected:
   typedef NCollection_Array1<BVH_EncodedLink>::iterator LinkIterator;
 
 protected:
   //! Emits hierarchy from sorted Morton codes.
-  Standard_Integer emitHierachy(BVH_Tree<T, N>*                            theBVH,
-                                const NCollection_Array1<BVH_EncodedLink>& theEncodedLinks,
-                                const Standard_Integer                     theBit,
-                                const Standard_Integer                     theShift,
-                                const Standard_Integer                     theStart,
-                                const Standard_Integer                     theFinal) const;
+  int emitHierachy(BVH_Tree<T, N>*                            theBVH,
+                   const NCollection_Array1<BVH_EncodedLink>& theEncodedLinks,
+                   const int                                  theBit,
+                   const int                                  theShift,
+                   const int                                  theStart,
+                   const int                                  theFinal) const;
 
   //! Returns index of the first element which does not compare less than the given one.
-  Standard_Integer lowerBound(const NCollection_Array1<BVH_EncodedLink>& theEncodedLinks,
-                              Standard_Integer                           theStart,
-                              Standard_Integer                           theFinal,
-                              Standard_Integer                           theDigit) const;
+  int lowerBound(const NCollection_Array1<BVH_EncodedLink>& theEncodedLinks,
+                 int                                        theStart,
+                 int                                        theFinal,
+                 int                                        theDigit) const;
 };
 
-// =======================================================================
-// function : BVH_LinearBuilder
-// purpose  :
-// =======================================================================
+//=================================================================================================
+
 template <class T, int N>
-BVH_LinearBuilder<T, N>::BVH_LinearBuilder(const Standard_Integer theLeafNodeSize,
-                                           const Standard_Integer theMaxTreeDepth)
+BVH_LinearBuilder<T, N>::BVH_LinearBuilder(const int theLeafNodeSize, const int theMaxTreeDepth)
     : BVH_Builder<T, N>(theLeafNodeSize, theMaxTreeDepth)
 {
-  //
 }
 
-// =======================================================================
-// function : ~BVH_LinearBuilder
-// purpose  :
-// =======================================================================
+//=================================================================================================
+
 template <class T, int N>
-BVH_LinearBuilder<T, N>::~BVH_LinearBuilder()
-{
-  //
-}
+BVH_LinearBuilder<T, N>::~BVH_LinearBuilder() = default;
 
 // =======================================================================
 // function : lowerBound
 // purpose  : Returns index of first element greater than the given one
 // =======================================================================
 template <class T, int N>
-Standard_Integer BVH_LinearBuilder<T, N>::lowerBound(
-  const NCollection_Array1<BVH_EncodedLink>& theEncodedLinks,
-  Standard_Integer                           theStart,
-  Standard_Integer                           theFinal,
-  Standard_Integer                           theDigit) const
+int BVH_LinearBuilder<T, N>::lowerBound(const NCollection_Array1<BVH_EncodedLink>& theEncodedLinks,
+                                        int                                        theStart,
+                                        int                                        theFinal,
+                                        int                                        theDigit) const
 {
-  Standard_Integer aNbPrims = theFinal - theStart;
-  unsigned int     aBit     = 1U << theDigit;
+  int          aNbPrims = theFinal - theStart;
+  unsigned int aBit     = 1U << theDigit;
   while (aNbPrims > 0)
   {
-    const Standard_Integer aStep = aNbPrims / 2;
+    const int aStep = aNbPrims / 2;
     if (theEncodedLinks.Value(theStart + aStep).first & aBit)
     {
       aNbPrims = aStep;
@@ -124,31 +115,30 @@ Standard_Integer BVH_LinearBuilder<T, N>::lowerBound(
 // purpose  : Emits hierarchy from sorted Morton codes
 // =======================================================================
 template <class T, int N>
-Standard_Integer BVH_LinearBuilder<T, N>::emitHierachy(
+int BVH_LinearBuilder<T, N>::emitHierachy(
   BVH_Tree<T, N>*                            theBVH,
   const NCollection_Array1<BVH_EncodedLink>& theEncodedLinks,
-  const Standard_Integer                     theDigit,
-  const Standard_Integer                     theShift,
-  const Standard_Integer                     theStart,
-  const Standard_Integer                     theFinal) const
+  const int                                  theDigit,
+  const int                                  theShift,
+  const int                                  theStart,
+  const int                                  theFinal) const
 {
   if (theFinal - theStart > BVH_Builder<T, N>::myLeafNodeSize)
   {
-    const Standard_Integer aPosition =
-      theDigit < 0 ? (theStart + theFinal) / 2
-                   : lowerBound(theEncodedLinks, theStart, theFinal, theDigit);
+    const int aPosition = theDigit < 0 ? (theStart + theFinal) / 2
+                                       : lowerBound(theEncodedLinks, theStart, theFinal, theDigit);
     if (aPosition == theStart || aPosition == theFinal)
     {
       return emitHierachy(theBVH, theEncodedLinks, theDigit - 1, theShift, theStart, theFinal);
     }
 
     // Build inner node
-    const Standard_Integer aNode    = theBVH->AddInnerNode(0, 0);
-    const Standard_Integer aRghNode = theShift + aPosition - theStart;
+    const int aNode    = theBVH->AddInnerNode(0, 0);
+    const int aRghNode = theShift + aPosition - theStart;
 
-    const Standard_Integer aLftChild =
+    const int aLftChild =
       emitHierachy(theBVH, theEncodedLinks, theDigit - 1, theShift, theStart, aPosition);
-    const Standard_Integer aRghChild =
+    const int aRghChild =
       emitHierachy(theBVH, theEncodedLinks, theDigit - 1, aRghNode, aPosition, theFinal);
 
     theBVH->NodeInfoBuffer()[aNode].y() = aLftChild;
@@ -166,18 +156,16 @@ namespace BVH
 {
 //! Calculates bounding boxes (AABBs) for the given BVH tree.
 template <class T, int N>
-Standard_Integer UpdateBounds(BVH_Set<T, N>*         theSet,
-                              BVH_Tree<T, N>*        theTree,
-                              const Standard_Integer theNode = 0)
+int UpdateBounds(BVH_Set<T, N>* theSet, BVH_Tree<T, N>* theTree, const int theNode = 0)
 {
   const BVH_Vec4i aData = theTree->NodeInfoBuffer()[theNode];
   if (aData.x() == 0)
   {
-    const Standard_Integer aLftChild = theTree->NodeInfoBuffer()[theNode].y();
-    const Standard_Integer aRghChild = theTree->NodeInfoBuffer()[theNode].z();
+    const int aLftChild = theTree->NodeInfoBuffer()[theNode].y();
+    const int aRghChild = theTree->NodeInfoBuffer()[theNode].z();
 
-    const Standard_Integer aLftDepth = UpdateBounds(theSet, theTree, aLftChild);
-    const Standard_Integer aRghDepth = UpdateBounds(theSet, theTree, aRghChild);
+    const int aLftDepth = UpdateBounds(theSet, theTree, aLftChild);
+    const int aRghDepth = UpdateBounds(theSet, theTree, aRghChild);
 
     typename BVH_Box<T, N>::BVH_VecNt aLftMinPoint = theTree->MinPointBuffer()[aLftChild];
     typename BVH_Box<T, N>::BVH_VecNt aLftMaxPoint = theTree->MaxPointBuffer()[aLftChild];
@@ -189,13 +177,13 @@ Standard_Integer UpdateBounds(BVH_Set<T, N>*         theSet,
 
     theTree->MinPointBuffer()[theNode] = aLftMinPoint;
     theTree->MaxPointBuffer()[theNode] = aLftMaxPoint;
-    return Max(aLftDepth, aRghDepth) + 1;
+    return (std::max)(aLftDepth, aRghDepth) + 1;
   }
   else
   {
     typename BVH_Box<T, N>::BVH_VecNt& aMinPoint = theTree->MinPointBuffer()[theNode];
     typename BVH_Box<T, N>::BVH_VecNt& aMaxPoint = theTree->MaxPointBuffer()[theNode];
-    for (Standard_Integer aPrimIdx = aData.y(); aPrimIdx <= aData.z(); ++aPrimIdx)
+    for (int aPrimIdx = aData.y(); aPrimIdx <= aData.z(); ++aPrimIdx)
     {
       const BVH_Box<T, N> aBox = theSet->Box(aPrimIdx);
       if (aPrimIdx == aData.y())
@@ -216,11 +204,11 @@ Standard_Integer UpdateBounds(BVH_Set<T, N>*         theSet,
 template <class T, int N>
 struct BoundData
 {
-  BVH_Set<T, N>*    mySet;    //!< Set of geometric objects
-  BVH_Tree<T, N>*   myBVH;    //!< BVH tree built over the set
-  Standard_Integer  myNode;   //!< BVH node to update bounding box
-  Standard_Integer  myLevel;  //!< Level of the processed BVH node
-  Standard_Integer* myHeight; //!< Height of the processed BVH node
+  BVH_Set<T, N>*  mySet;    //!< Set of geometric objects
+  BVH_Tree<T, N>* myBVH;    //!< BVH tree built over the set
+  int             myNode;   //!< BVH node to update bounding box
+  int             myLevel;  //!< Level of the processed BVH node
+  int*            myHeight; //!< Height of the processed BVH node
 };
 
 //! Task for parallel bounds updating.
@@ -228,7 +216,7 @@ template <class T, int N>
 class UpdateBoundTask
 {
 public:
-  UpdateBoundTask(const Standard_Boolean isParallel)
+  UpdateBoundTask(const bool isParallel)
       : myIsParallel(isParallel)
   {
   }
@@ -242,14 +230,13 @@ public:
     }
     else
     {
-      Standard_Integer aLftHeight = 0;
-      Standard_Integer aRghHeight = 0;
+      int aLftHeight = 0;
+      int aRghHeight = 0;
 
-      const Standard_Integer aLftChild = theData.myBVH->NodeInfoBuffer()[theData.myNode].y();
-      const Standard_Integer aRghChild = theData.myBVH->NodeInfoBuffer()[theData.myNode].z();
+      const int aLftChild = theData.myBVH->NodeInfoBuffer()[theData.myNode].y();
+      const int aRghChild = theData.myBVH->NodeInfoBuffer()[theData.myNode].z();
 
-      std::vector<BoundData<T, N>> aList;
-      aList.reserve(2);
+      NCollection_DynamicArray<BoundData<T, N>> aList(2);
       if (!theData.myBVH->IsOuter(aLftChild))
       {
         BoundData<T, N> aBoundData = {theData.mySet,
@@ -257,7 +244,7 @@ public:
                                       aLftChild,
                                       theData.myLevel + 1,
                                       &aLftHeight};
-        aList.push_back(aBoundData);
+        aList.Append(aBoundData);
       }
       else
       {
@@ -271,14 +258,14 @@ public:
                                       aRghChild,
                                       theData.myLevel + 1,
                                       &aRghHeight};
-        aList.push_back(aBoundData);
+        aList.Append(aBoundData);
       }
       else
       {
         aRghHeight = BVH::UpdateBounds(theData.mySet, theData.myBVH, aRghChild);
       }
 
-      if (!aList.empty())
+      if (aList.Size() > 0)
       {
         OSD_Parallel::ForEach(aList.begin(),
                               aList.end(),
@@ -297,27 +284,25 @@ public:
       theData.myBVH->MinPointBuffer()[theData.myNode] = aLftMinPoint;
       theData.myBVH->MaxPointBuffer()[theData.myNode] = aLftMaxPoint;
 
-      *theData.myHeight = Max(aLftHeight, aRghHeight) + 1;
+      *theData.myHeight = (std::max)(aLftHeight, aRghHeight) + 1;
     }
   }
 
 private:
-  Standard_Boolean myIsParallel;
+  bool myIsParallel;
 };
 } // namespace BVH
 
-// =======================================================================
-// function : Build
-// purpose  :
-// =======================================================================
+//=================================================================================================
+
 template <class T, int N>
 void BVH_LinearBuilder<T, N>::Build(BVH_Set<T, N>*       theSet,
                                     BVH_Tree<T, N>*      theBVH,
                                     const BVH_Box<T, N>& theBox) const
 {
   Standard_STATIC_ASSERT(N == 2 || N == 3 || N == 4);
-  const Standard_Integer aSetSize = theSet->Size();
-  if (theBVH == NULL || aSetSize == 0)
+  const int aSetSize = theSet->Size();
+  if (theBVH == nullptr || aSetSize == 0)
   {
     return;
   }
@@ -335,10 +320,10 @@ void BVH_LinearBuilder<T, N>::Build(BVH_Set<T, N>*       theSet,
   emitHierachy(theBVH, aRadixSorter.EncodedLinks(), 29, 0, 0, theSet->Size());
 
   // Step 3 -- Compute bounding boxes of BVH nodes
-  theBVH->MinPointBuffer().resize(theBVH->NodeInfoBuffer().size());
-  theBVH->MaxPointBuffer().resize(theBVH->NodeInfoBuffer().size());
+  theBVH->MinPointBuffer().Resize(theBVH->NodeInfoBuffer().Size());
+  theBVH->MaxPointBuffer().Resize(theBVH->NodeInfoBuffer().Size());
 
-  Standard_Integer           aHeight    = 0;
+  int                        aHeight    = 0;
   BVH::BoundData<T, N>       aBoundData = {theSet, theBVH, 0, 0, &aHeight};
   BVH::UpdateBoundTask<T, N> aBoundTask(this->IsParallel());
   aBoundTask(aBoundData);

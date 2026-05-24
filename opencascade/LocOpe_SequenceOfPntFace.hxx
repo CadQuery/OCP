@@ -1,7 +1,4 @@
-// Created on: 1995-04-25
-// Created by: Jacques GOUSSARD
-// Copyright (c) 1995-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,12 +11,23 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef LocOpe_SequenceOfPntFace_HeaderFile
-#define LocOpe_SequenceOfPntFace_HeaderFile
+//! @file LocOpe_SequenceOfPntFace.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection_Sequence<LocOpe_PntFace> directly instead.
 
+#ifndef _LocOpe_SequenceOfPntFace_hxx
+#define _LocOpe_SequenceOfPntFace_hxx
+
+#include <Standard_Macro.hxx>
 #include <LocOpe_PntFace.hxx>
 #include <NCollection_Sequence.hxx>
 
+Standard_HEADER_DEPRECATED("LocOpe_SequenceOfPntFace.hxx is deprecated since OCCT 8.0.0. Use "
+                           "NCollection_Sequence<LocOpe_PntFace> directly.")
+
+  Standard_DEPRECATED(
+    "LocOpe_SequenceOfPntFace is deprecated, use NCollection_Sequence<LocOpe_PntFace> directly")
 typedef NCollection_Sequence<LocOpe_PntFace> LocOpe_SequenceOfPntFace;
 
-#endif
+#endif // _LocOpe_SequenceOfPntFace_hxx

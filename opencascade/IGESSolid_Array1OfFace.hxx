@@ -1,7 +1,4 @@
-// Created on: 1993-01-11
-// Created by: SIVA
-// Copyright (c) 1993-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,12 +11,23 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef IGESSolid_Array1OfFace_HeaderFile
-#define IGESSolid_Array1OfFace_HeaderFile
+//! @file IGESSolid_Array1OfFace.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection_Array1<opencascade::handle<IGESSolid_Face>> directly instead.
 
+#ifndef _IGESSolid_Array1OfFace_hxx
+#define _IGESSolid_Array1OfFace_hxx
+
+#include <Standard_Macro.hxx>
 #include <IGESSolid_Face.hxx>
 #include <NCollection_Array1.hxx>
 
-typedef NCollection_Array1<Handle(IGESSolid_Face)> IGESSolid_Array1OfFace;
+Standard_HEADER_DEPRECATED("IGESSolid_Array1OfFace.hxx is deprecated since OCCT 8.0.0. Use "
+                           "NCollection_Array1<opencascade::handle<IGESSolid_Face>> directly.")
 
-#endif
+  Standard_DEPRECATED("IGESSolid_Array1OfFace is deprecated, use "
+                      "NCollection_Array1<opencascade::handle<IGESSolid_Face>> directly")
+typedef NCollection_Array1<opencascade::handle<IGESSolid_Face>> IGESSolid_Array1OfFace;
+
+#endif // _IGESSolid_Array1OfFace_hxx

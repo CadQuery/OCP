@@ -1,6 +1,4 @@
-// Created on: 2007-04-28
-// Created by: Alexander GRIGORIEV
-// Copyright (c) 2007-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -13,13 +11,24 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef BinLDrivers_VectorOfDocumentSection_HeaderFile
-#define BinLDrivers_VectorOfDocumentSection_HeaderFile
+//! @file BinLDrivers_VectorOfDocumentSection.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection_DynamicArray<BinLDrivers_DocumentSection> directly instead.
 
-#include <NCollection_Vector.hxx>
+#ifndef _BinLDrivers_VectorOfDocumentSection_hxx
+#define _BinLDrivers_VectorOfDocumentSection_hxx
+
+#include <Standard_Macro.hxx>
+#include <NCollection_DynamicArray.hxx>
 #include <BinLDrivers_DocumentSection.hxx>
 
-/// Collection of BinLDrivers_DocumentSection
-typedef NCollection_Vector<BinLDrivers_DocumentSection> BinLDrivers_VectorOfDocumentSection;
+Standard_HEADER_DEPRECATED(
+  "BinLDrivers_VectorOfDocumentSection.hxx is deprecated since OCCT "
+  "8.0.0. Use NCollection_DynamicArray<BinLDrivers_DocumentSection> directly.")
 
-#endif // BinLDrivers_VectorOfDocumentSection_H
+  Standard_DEPRECATED("BinLDrivers_VectorOfDocumentSection is deprecated, use "
+                      "NCollection_DynamicArray<BinLDrivers_DocumentSection> directly")
+typedef NCollection_DynamicArray<BinLDrivers_DocumentSection> BinLDrivers_VectorOfDocumentSection;
+
+#endif // _BinLDrivers_VectorOfDocumentSection_hxx

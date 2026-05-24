@@ -1,6 +1,4 @@
-// Created on: 2013-05-23
-// Created by: Eugeny MALTCHIKOV
-// Copyright (c) 2013-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -13,15 +11,32 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef BOPDS_DataMapOfPaveBlockCommonBlock_HeaderFile
-#define BOPDS_DataMapOfPaveBlockCommonBlock_HeaderFile
+//! @file BOPDS_DataMapOfPaveBlockCommonBlock.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection types directly instead.
 
+#ifndef _BOPDS_DataMapOfPaveBlockCommonBlock_hxx
+#define _BOPDS_DataMapOfPaveBlockCommonBlock_hxx
+
+#include <Standard_Macro.hxx>
 #include <NCollection_DataMap.hxx>
 #include <BOPDS_CommonBlock.hxx>
 
-typedef NCollection_DataMap<Handle(BOPDS_PaveBlock), Handle(BOPDS_CommonBlock)>
+Standard_HEADER_DEPRECATED("BOPDS_DataMapOfPaveBlockCommonBlock.hxx is deprecated since OCCT "
+                           "8.0.0. Use NCollection types directly.")
+
+  Standard_DEPRECATED("BOPDS_DataMapOfPaveBlockCommonBlock is deprecated, use "
+                      "NCollection_DataMap<opencascade::handle<BOPDS_PaveBlock>, "
+                      "opencascade::handle<BOPDS_CommonBlock>> directly")
+typedef NCollection_DataMap<opencascade::handle<BOPDS_PaveBlock>,
+                            opencascade::handle<BOPDS_CommonBlock>>
   BOPDS_DataMapOfPaveBlockCommonBlock;
-typedef BOPDS_DataMapOfPaveBlockCommonBlock::Iterator
+Standard_DEPRECATED("BOPDS_DataMapIteratorOfDataMapOfPaveBlockCommonBlock is deprecated, use "
+                    "NCollection_DataMap<opencascade::handle<BOPDS_PaveBlock>, "
+                    "opencascade::handle<BOPDS_CommonBlock>>::Iterator directly")
+typedef NCollection_DataMap<opencascade::handle<BOPDS_PaveBlock>,
+                            opencascade::handle<BOPDS_CommonBlock>>::Iterator
   BOPDS_DataMapIteratorOfDataMapOfPaveBlockCommonBlock;
 
-#endif
+#endif // _BOPDS_DataMapOfPaveBlockCommonBlock_hxx

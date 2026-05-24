@@ -28,7 +28,7 @@ class OpenGl_Element
 public:
   Standard_EXPORT OpenGl_Element();
 
-  virtual void Render(const Handle(OpenGl_Workspace)& theWorkspace) const = 0;
+  virtual void Render(const occ::handle<OpenGl_Workspace>& theWorkspace) const = 0;
 
   //! Release GPU resources.
   //! Pointer to the context is used because this method might be called
@@ -42,7 +42,7 @@ public:
   template <typename theResource_t>
   static void Destroy(OpenGl_Context* theContext, theResource_t*& theElement)
   {
-    if (theElement == NULL)
+    if (theElement == nullptr)
     {
       return;
     }
@@ -50,16 +50,16 @@ public:
     theElement->Release(theContext);
     OpenGl_Element* anElement = theElement;
     delete anElement;
-    theElement = NULL;
+    theElement = nullptr;
   }
 
 public:
   //! Return TRUE if primitive type generates shaded triangulation (to be used in filters).
-  virtual Standard_Boolean IsFillDrawMode() const { return false; }
+  virtual bool IsFillDrawMode() const { return false; }
 
   //! Returns estimated GPU memory usage for holding data without considering overheads and
   //! allocation alignment rules.
-  virtual Standard_Size EstimatedDataSize() const { return 0; }
+  virtual size_t EstimatedDataSize() const { return 0; }
 
   //! Increment memory usage statistics.
   //! Default implementation puts EstimatedDataSize() into
@@ -77,8 +77,7 @@ public:
   virtual void SynchronizeAspects() {}
 
   //! Dumps the content of me into the stream
-  Standard_EXPORT virtual void DumpJson(Standard_OStream& theOStream,
-                                        Standard_Integer  theDepth = -1) const;
+  Standard_EXPORT virtual void DumpJson(Standard_OStream& theOStream, int theDepth = -1) const;
 
 protected:
   Standard_EXPORT virtual ~OpenGl_Element();

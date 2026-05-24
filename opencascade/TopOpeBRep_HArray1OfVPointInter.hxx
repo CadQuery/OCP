@@ -1,7 +1,4 @@
-// Created on: 1993-06-17
-// Created by: Jean Yves LEBEY
-// Copyright (c) 1993-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,12 +11,23 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef TopOpeBRep_HArray1OfVPointInter_HeaderFile
-#define TopOpeBRep_HArray1OfVPointInter_HeaderFile
+//! @file TopOpeBRep_HArray1OfVPointInter.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection_HArray1<TopOpeBRep_VPointInter> directly instead.
 
+#ifndef _TopOpeBRep_HArray1OfVPointInter_hxx
+#define _TopOpeBRep_HArray1OfVPointInter_hxx
+
+#include <Standard_Macro.hxx>
 #include <TopOpeBRep_Array1OfVPointInter.hxx>
-#include <NCollection_DefineHArray1.hxx>
+#include <NCollection_HArray1.hxx>
 
-DEFINE_HARRAY1(TopOpeBRep_HArray1OfVPointInter, TopOpeBRep_Array1OfVPointInter)
+Standard_HEADER_DEPRECATED("TopOpeBRep_HArray1OfVPointInter.hxx is deprecated since OCCT 8.0.0. "
+                           "Use NCollection_HArray1<TopOpeBRep_VPointInter> directly.")
 
-#endif
+  Standard_DEPRECATED("TopOpeBRep_HArray1OfVPointInter is deprecated, use "
+                      "NCollection_HArray1<TopOpeBRep_VPointInter> directly")
+typedef NCollection_HArray1<TopOpeBRep_VPointInter> TopOpeBRep_HArray1OfVPointInter;
+
+#endif // _TopOpeBRep_HArray1OfVPointInter_hxx

@@ -39,9 +39,9 @@ public:
   //! @param[in] theDisplayType  display mode
   Standard_EXPORT Graphic3d_AspectText3d(
     const Quantity_Color&    theColor,
-    Standard_CString         theFont,
-    Standard_Real            theExpansionFactor,
-    Standard_Real            theSpace,
+    const char*              theFont,
+    double                   theExpansionFactor,
+    double                   theSpace,
     Aspect_TypeOfStyleText   theStyle       = Aspect_TOST_NORMAL,
     Aspect_TypeOfDisplayText theDisplayType = Aspect_TODT_NORMAL);
 
@@ -62,8 +62,7 @@ public:
   {
     if (myTextFont.IsNull())
     {
-      static const TCollection_AsciiString anEmpty;
-      return anEmpty;
+      return TCollection_AsciiString::EmptyString();
     }
     return myTextFont->String();
   }
@@ -82,7 +81,7 @@ public:
   }
 
   //! Modifies the font.
-  void SetFont(const Standard_CString theFont) { SetFont(TCollection_AsciiString(theFont)); }
+  void SetFont(const char* const theFont) { SetFont(TCollection_AsciiString(theFont)); }
 
   //! Return the text style.
   Aspect_TypeOfStyleText Style() const { return myTextStyle; }
@@ -103,19 +102,16 @@ public:
   bool GetTextZoomable() const { return myIsTextZoomable; }
 
   //! Returns Angle of degree
-  Standard_ShortReal GetTextAngle() const { return myTextAngle; }
+  float GetTextAngle() const { return myTextAngle; }
 
   //! Turns usage of text rotated
-  void SetTextAngle(const Standard_Real theAngle) { myTextAngle = (Standard_ShortReal)theAngle; }
+  void SetTextAngle(const double theAngle) { myTextAngle = (float)theAngle; }
 
   //! Returns text FontAspect
   Font_FontAspect GetTextFontAspect() const { return myTextFontAspect; }
 
   //! Dumps the content of me into the stream
-  Standard_EXPORT virtual void DumpJson(Standard_OStream& theOStream,
-                                        Standard_Integer  theDepth = -1) const Standard_OVERRIDE;
+  Standard_EXPORT void DumpJson(Standard_OStream& theOStream, int theDepth = -1) const override;
 };
-
-DEFINE_STANDARD_HANDLE(Graphic3d_AspectText3d, Graphic3d_Aspects)
 
 #endif // _Graphic3d_AspectText3d_HeaderFile

@@ -1,5 +1,4 @@
-// Created by: Peter KURNEV
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -12,13 +11,27 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef BOPTools_ListOfCoupleOfShape_HeaderFile
-#define BOPTools_ListOfCoupleOfShape_HeaderFile
+//! @file BOPTools_ListOfCoupleOfShape.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection types directly instead.
 
+#ifndef _BOPTools_ListOfCoupleOfShape_hxx
+#define _BOPTools_ListOfCoupleOfShape_hxx
+
+#include <Standard_Macro.hxx>
 #include <NCollection_List.hxx>
 #include <BOPTools_CoupleOfShape.hxx>
 
-typedef NCollection_List<BOPTools_CoupleOfShape> BOPTools_ListOfCoupleOfShape;
-typedef BOPTools_ListOfCoupleOfShape::Iterator   BOPTools_ListIteratorOfListOfCoupleOfShape;
+Standard_HEADER_DEPRECATED("BOPTools_ListOfCoupleOfShape.hxx is deprecated since OCCT 8.0.0. Use "
+                           "NCollection types directly.")
 
-#endif
+  Standard_DEPRECATED("BOPTools_ListOfCoupleOfShape is deprecated, use "
+                      "NCollection_List<BOPTools_CoupleOfShape> directly")
+typedef NCollection_List<BOPTools_CoupleOfShape> BOPTools_ListOfCoupleOfShape;
+Standard_DEPRECATED("BOPTools_ListIteratorOfListOfCoupleOfShape is deprecated, use "
+                    "NCollection_List<BOPTools_CoupleOfShape>::Iterator directly")
+typedef NCollection_List<BOPTools_CoupleOfShape>::Iterator
+  BOPTools_ListIteratorOfListOfCoupleOfShape;
+
+#endif // _BOPTools_ListOfCoupleOfShape_hxx

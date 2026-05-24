@@ -1,7 +1,4 @@
-// Created on: 1992-10-14
-// Created by: Christophe MARION
-// Copyright (c) 1992-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,12 +11,23 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef HLRBRep_Array1OfFData_HeaderFile
-#define HLRBRep_Array1OfFData_HeaderFile
+//! @file HLRBRep_Array1OfFData.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection_Array1<HLRBRep_FaceData> directly instead.
 
+#ifndef _HLRBRep_Array1OfFData_hxx
+#define _HLRBRep_Array1OfFData_hxx
+
+#include <Standard_Macro.hxx>
 #include <HLRBRep_FaceData.hxx>
 #include <NCollection_Array1.hxx>
 
+Standard_HEADER_DEPRECATED("HLRBRep_Array1OfFData.hxx is deprecated since OCCT 8.0.0. Use "
+                           "NCollection_Array1<HLRBRep_FaceData> directly.")
+
+  Standard_DEPRECATED(
+    "HLRBRep_Array1OfFData is deprecated, use NCollection_Array1<HLRBRep_FaceData> directly")
 typedef NCollection_Array1<HLRBRep_FaceData> HLRBRep_Array1OfFData;
 
-#endif
+#endif // _HLRBRep_Array1OfFData_hxx

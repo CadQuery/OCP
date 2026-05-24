@@ -19,13 +19,15 @@
 #include <StdPersistent_HArray1.hxx>
 #include <StdLPersistent_HArray1.hxx>
 #include <StdObject_Shape.hxx>
-#include <StdObjMgt_TransientPersistentMap.hxx>
+#include <NCollection_DataMap.hxx>
 
 #include <TopoDS_TWire.hxx>
 #include <TopoDS_TShell.hxx>
 #include <TopoDS_TSolid.hxx>
 #include <TopoDS_TCompSolid.hxx>
 #include <TopoDS_TCompound.hxx>
+class Standard_Transient;
+class StdObjMgt_Persistent;
 
 class ShapePersistent_TopoDS : public StdPersistent_TopoDS
 {
@@ -34,26 +36,26 @@ public:
   {
   public:
     //! Read persistent data from a file.
-    Standard_EXPORT virtual void Read(StdObjMgt_ReadData& theReadData);
+    Standard_EXPORT void Read(StdObjMgt_ReadData& theReadData) override;
     //! Write persistent data to a file
-    Standard_EXPORT virtual void Write(StdObjMgt_WriteData& theWriteData) const;
+    Standard_EXPORT void Write(StdObjMgt_WriteData& theWriteData) const override;
     //! Gets persistent child objects
-    Standard_EXPORT virtual void PChildren(SequenceOfPersistent& theChildren) const;
+    Standard_EXPORT void PChildren(SequenceOfPersistent& theChildren) const override;
 
     //! Returns persistent type name
-    virtual Standard_CString PName() const { return "PTopoDS_HShape"; }
+    const char* PName() const override { return "PTopoDS_HShape"; }
 
   private:
-    Handle(StdObjMgt_Persistent) myEntry;
+    occ::handle<StdObjMgt_Persistent> myEntry;
   };
 
 protected:
   class pTBase : public pTShape
   {
   public:
-    inline Handle(TopoDS_TShape) Import() const
+    inline occ::handle<TopoDS_TShape> Import() const
     {
-      Handle(TopoDS_TShape) aTShape = createTShape();
+      occ::handle<TopoDS_TShape> aTShape = createTShape();
 
       TopoDS_Shape aWrapperShape;
       aWrapperShape.TShape(aTShape);
@@ -65,11 +67,11 @@ protected:
     }
 
   private:
-    virtual Handle(TopoDS_TShape) createTShape() const = 0;
+    virtual occ::handle<TopoDS_TShape> createTShape() const = 0;
 
     virtual void addShapes(TopoDS_Shape& theParent) const = 0;
 
-    void setFlags(const Handle(TopoDS_TShape)& theTShape) const;
+    void setFlags(const occ::handle<TopoDS_TShape>& theTShape) const;
 
   protected:
     template <class ShapesArray>
@@ -80,16 +82,16 @@ private:
   template <class Target>
   class pTSimple : public pTBase
   {
-    virtual Handle(TopoDS_TShape) createTShape() const;
+    occ::handle<TopoDS_TShape> createTShape() const override;
 
   public:
-    inline Standard_CString PName() const;
+    inline const char* PName() const;
   };
 
   template <class Persistent, class ShapesArray>
   class pTObject : public Persistent
   {
-    virtual void addShapes(TopoDS_Shape& theParent) const
+    void addShapes(TopoDS_Shape& theParent) const override
     {
       pTBase::addShapesT<ShapesArray>(theParent);
     }
@@ -128,37 +130,38 @@ public:
 
 public:
   //! Create a persistent object for a shape
-  Standard_EXPORT static Handle(HShape) Translate(const TopoDS_Shape&               theShape,
-                                                  StdObjMgt_TransientPersistentMap& theMap,
-                                                  ShapePersistent_TriangleMode theTriangleMode);
+  Standard_EXPORT static occ::handle<HShape> Translate(
+    const TopoDS_Shape& theShape,
+    NCollection_DataMap<occ::handle<Standard_Transient>, occ::handle<StdObjMgt_Persistent>>& theMap,
+    ShapePersistent_TriangleMode theTriangleMode);
 };
 
 template <>
-inline Standard_CString ShapePersistent_TopoDS::pTSimple<TopoDS_TWire>::PName() const
+inline const char* ShapePersistent_TopoDS::pTSimple<TopoDS_TWire>::PName() const
 {
   return "PTopoDS_TWire";
 }
 
 template <>
-inline Standard_CString ShapePersistent_TopoDS::pTSimple<TopoDS_TShell>::PName() const
+inline const char* ShapePersistent_TopoDS::pTSimple<TopoDS_TShell>::PName() const
 {
   return "PTopoDS_TShell";
 }
 
 template <>
-inline Standard_CString ShapePersistent_TopoDS::pTSimple<TopoDS_TSolid>::PName() const
+inline const char* ShapePersistent_TopoDS::pTSimple<TopoDS_TSolid>::PName() const
 {
   return "PTopoDS_TSolid";
 }
 
 template <>
-inline Standard_CString ShapePersistent_TopoDS::pTSimple<TopoDS_TCompSolid>::PName() const
+inline const char* ShapePersistent_TopoDS::pTSimple<TopoDS_TCompSolid>::PName() const
 {
   return "PTopoDS_TCompSolid";
 }
 
 template <>
-inline Standard_CString ShapePersistent_TopoDS::pTSimple<TopoDS_TCompound>::PName() const
+inline const char* ShapePersistent_TopoDS::pTSimple<TopoDS_TCompound>::PName() const
 {
   return "PTopoDS_TCompound";
 }

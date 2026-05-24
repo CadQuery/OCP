@@ -17,15 +17,14 @@
 #ifndef _HLRBRep_TheProjPCurOfCInter_HeaderFile
 #define _HLRBRep_TheProjPCurOfCInter_HeaderFile
 
+#include <HLRBRep_TheCurveLocatorOfTheProjPCurOfCInter.hxx>
 #include <Standard.hxx>
 #include <Standard_DefineAlloc.hxx>
 #include <Standard_Handle.hxx>
 
+#include <HLRBRep_TypeDef.hxx>
 #include <Standard_Real.hxx>
 class HLRBRep_CurveTool;
-class HLRBRep_TheCurveLocatorOfTheProjPCurOfCInter;
-class HLRBRep_TheLocateExtPCOfTheProjPCurOfCInter;
-class HLRBRep_PCLocFOfTheLocateExtPCOfTheProjPCurOfCInter;
 class gp_Pnt2d;
 
 class HLRBRep_TheProjPCurOfCInter
@@ -44,9 +43,9 @@ public:
   //! In that case, no bounds are given. The research of
   //! the right parameter has to be made on the natural
   //! parametric domain of the curve.
-  Standard_EXPORT static Standard_Real FindParameter(const Standard_Address& C,
-                                                     const gp_Pnt2d&         Pnt,
-                                                     const Standard_Real     Tol);
+  Standard_EXPORT static double FindParameter(const HLRBRep_CurvePtr& C,
+                                              const gp_Pnt2d&         Pnt,
+                                              const double            Tol);
 
   //! Returns the parameter V of the point on the
   //! parametric curve corresponding to the Point Pnt.
@@ -62,11 +61,11 @@ public:
   //! implement a more efficient algorithm. So, it is not
   //! necessary to check that the returned value verifies
   //! LowParameter <= Value <= HighParameter.
-  Standard_EXPORT static Standard_Real FindParameter(const Standard_Address& C,
-                                                     const gp_Pnt2d&         Pnt,
-                                                     const Standard_Real     LowParameter,
-                                                     const Standard_Real     HighParameter,
-                                                     const Standard_Real     Tol);
+  Standard_EXPORT static double FindParameter(const HLRBRep_CurvePtr& C,
+                                              const gp_Pnt2d&         Pnt,
+                                              const double            LowParameter,
+                                              const double            HighParameter,
+                                              const double            Tol);
 };
 
 #endif // _HLRBRep_TheProjPCurOfCInter_HeaderFile

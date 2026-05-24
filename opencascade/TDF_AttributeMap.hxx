@@ -1,6 +1,4 @@
-// Created by: DAUTRY Philippe
-// Copyright (c) 1997-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -13,13 +11,27 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef TDF_AttributeMap_HeaderFile
-#define TDF_AttributeMap_HeaderFile
+//! @file TDF_AttributeMap.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection types directly instead.
 
+#ifndef _TDF_AttributeMap_hxx
+#define _TDF_AttributeMap_hxx
+
+#include <Standard_Macro.hxx>
+#include <Standard_Handle.hxx>
 #include <TDF_Attribute.hxx>
 #include <NCollection_Map.hxx>
 
-typedef NCollection_Map<Handle(TDF_Attribute)>           TDF_AttributeMap;
-typedef NCollection_Map<Handle(TDF_Attribute)>::Iterator TDF_MapIteratorOfAttributeMap;
+Standard_HEADER_DEPRECATED(
+  "TDF_AttributeMap.hxx is deprecated since OCCT 8.0.0. Use NCollection types directly.")
 
-#endif
+  Standard_DEPRECATED("TDF_AttributeMap is deprecated, use "
+                      "NCollection_Map<opencascade::handle<TDF_Attribute>> directly")
+typedef NCollection_Map<opencascade::handle<TDF_Attribute>> TDF_AttributeMap;
+Standard_DEPRECATED("TDF_MapIteratorOfAttributeMap is deprecated, use "
+                    "NCollection_Map<opencascade::handle<TDF_Attribute>>::Iterator directly")
+typedef NCollection_Map<opencascade::handle<TDF_Attribute>>::Iterator TDF_MapIteratorOfAttributeMap;
+
+#endif // _TDF_AttributeMap_hxx

@@ -31,16 +31,16 @@ public:
 
   Standard_EXPORT Extrema_GlobOptFuncCCC0(const Adaptor2d_Curve2d& C1, const Adaptor2d_Curve2d& C2);
 
-  Standard_EXPORT virtual Standard_Integer NbVariables() const;
+  Standard_EXPORT int NbVariables() const override;
 
-  Standard_EXPORT virtual Standard_Boolean Value(const math_Vector& X, Standard_Real& F);
+  Standard_EXPORT bool Value(const math_Vector& X, double& F) override;
 
 private:
-  Extrema_GlobOptFuncCCC0& operator=(const Extrema_GlobOptFuncCCC0& theOther);
+  Extrema_GlobOptFuncCCC0& operator=(const Extrema_GlobOptFuncCCC0& theOther) = delete;
 
   const Adaptor3d_Curve *  myC1_3d, *myC2_3d;
   const Adaptor2d_Curve2d *myC1_2d, *myC2_2d;
-  Standard_Integer         myType;
+  int                      myType;
 };
 
 //! This class implements function which calculate Eucluidean distance
@@ -52,22 +52,20 @@ public:
 
   Standard_EXPORT Extrema_GlobOptFuncCCC1(const Adaptor2d_Curve2d& C1, const Adaptor2d_Curve2d& C2);
 
-  Standard_EXPORT virtual Standard_Integer NbVariables() const;
+  Standard_EXPORT int NbVariables() const override;
 
-  Standard_EXPORT virtual Standard_Boolean Value(const math_Vector& X, Standard_Real& F);
+  Standard_EXPORT bool Value(const math_Vector& X, double& F) override;
 
-  Standard_EXPORT virtual Standard_Boolean Gradient(const math_Vector& X, math_Vector& G);
+  Standard_EXPORT bool Gradient(const math_Vector& X, math_Vector& G) override;
 
-  Standard_EXPORT virtual Standard_Boolean Values(const math_Vector& X,
-                                                  Standard_Real&     F,
-                                                  math_Vector&       G);
+  Standard_EXPORT bool Values(const math_Vector& X, double& F, math_Vector& G) override;
 
 private:
-  Extrema_GlobOptFuncCCC1& operator=(const Extrema_GlobOptFuncCCC1& theOther);
+  Extrema_GlobOptFuncCCC1& operator=(const Extrema_GlobOptFuncCCC1& theOther) = delete;
 
   const Adaptor3d_Curve *  myC1_3d, *myC2_3d;
   const Adaptor2d_Curve2d *myC1_2d, *myC2_2d;
-  Standard_Integer         myType;
+  int                      myType;
 };
 
 //! This class implements function which calculate Eucluidean distance
@@ -79,27 +77,25 @@ public:
 
   Standard_EXPORT Extrema_GlobOptFuncCCC2(const Adaptor2d_Curve2d& C1, const Adaptor2d_Curve2d& C2);
 
-  Standard_EXPORT virtual Standard_Integer NbVariables() const;
+  Standard_EXPORT int NbVariables() const override;
 
-  Standard_EXPORT virtual Standard_Boolean Value(const math_Vector& X, Standard_Real& F);
+  Standard_EXPORT bool Value(const math_Vector& X, double& F) override;
 
-  Standard_EXPORT virtual Standard_Boolean Gradient(const math_Vector& X, math_Vector& G);
+  Standard_EXPORT bool Gradient(const math_Vector& X, math_Vector& G) override;
 
-  Standard_EXPORT virtual Standard_Boolean Values(const math_Vector& X,
-                                                  Standard_Real&     F,
-                                                  math_Vector&       G);
+  Standard_EXPORT bool Values(const math_Vector& X, double& F, math_Vector& G) override;
 
-  Standard_EXPORT virtual Standard_Boolean Values(const math_Vector& X,
-                                                  Standard_Real&     F,
-                                                  math_Vector&       G,
-                                                  math_Matrix&       H);
+  Standard_EXPORT bool Values(const math_Vector& X,
+                              double&            F,
+                              math_Vector&       G,
+                              math_Matrix&       H) override;
 
 private:
-  Extrema_GlobOptFuncCCC2& operator=(const Extrema_GlobOptFuncCCC2& theOther);
+  Extrema_GlobOptFuncCCC2& operator=(const Extrema_GlobOptFuncCCC2& theOther) = delete;
 
   const Adaptor3d_Curve *  myC1_3d, *myC2_3d;
   const Adaptor2d_Curve2d *myC1_2d, *myC2_2d;
-  Standard_Integer         myType;
+  int                      myType;
 };
 
 #endif

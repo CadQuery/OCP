@@ -17,10 +17,12 @@
 #include <StdObjMgt_SharedObject.hxx>
 #include <StdObjMgt_Persistent.hxx>
 #include <StdObject_Location.hxx>
-#include <StdObjMgt_TransientPersistentMap.hxx>
+#include <NCollection_DataMap.hxx>
 
 #include <TopLoc_Datum3D.hxx>
 #include <TopLoc_Location.hxx>
+class Standard_Transient;
+class StdObjMgt_Persistent;
 
 class StdPersistent_TopLoc
 {
@@ -29,15 +31,15 @@ public:
   {
   public:
     //! Read persistent data from a file.
-    void Read(StdObjMgt_ReadData& theReadData);
+    void Read(StdObjMgt_ReadData& theReadData) override;
     //! Write persistent data to a file.
-    void Write(StdObjMgt_WriteData& theWriteData) const;
+    void Write(StdObjMgt_WriteData& theWriteData) const override;
 
     //! Gets persistent child objects
-    virtual void PChildren(SequenceOfPersistent&) const {}
+    void PChildren(SequenceOfPersistent&) const override {}
 
     //! Returns persistent type name
-    virtual Standard_CString PName() const { return "PTopLoc_Datum3D"; }
+    const char* PName() const override { return "PTopLoc_Datum3D"; }
   };
 
   class ItemLocation : public StdObjMgt_Persistent
@@ -46,29 +48,33 @@ public:
 
   public:
     //! Read persistent data from a file.
-    Standard_EXPORT virtual void Read(StdObjMgt_ReadData& theReadData);
+    Standard_EXPORT void Read(StdObjMgt_ReadData& theReadData) override;
     //! Write persistent data to a file.
-    Standard_EXPORT virtual void Write(StdObjMgt_WriteData& theWriteData) const;
+    Standard_EXPORT void Write(StdObjMgt_WriteData& theWriteData) const override;
     //! Gets persistent child objects
-    Standard_EXPORT virtual void PChildren(SequenceOfPersistent& theChildren) const;
+    Standard_EXPORT void PChildren(SequenceOfPersistent& theChildren) const override;
 
     //! Returns persistent type name
-    virtual Standard_CString PName() const { return "PTopLoc_ItemLocation"; }
+    const char* PName() const override { return "PTopLoc_ItemLocation"; }
 
     //! Import transient object from the persistent data.
     Standard_EXPORT TopLoc_Location Import() const;
 
   private:
-    Handle(Datum3D)    myDatum;
-    Standard_Integer   myPower;
-    StdObject_Location myNext;
+    occ::handle<Datum3D> myDatum;
+    int                  myPower;
+    StdObject_Location   myNext;
   };
 
 public:
-  Standard_EXPORT static Handle(ItemLocation) Translate(const TopLoc_Location&            theLoc,
-                                                        StdObjMgt_TransientPersistentMap& theMap);
-  Standard_EXPORT static Handle(Datum3D)      Translate(const Handle(TopLoc_Datum3D)&     theDatum,
-                                                        StdObjMgt_TransientPersistentMap& theMap);
+  Standard_EXPORT static occ::handle<ItemLocation> Translate(
+    const TopLoc_Location& theLoc,
+    NCollection_DataMap<occ::handle<Standard_Transient>, occ::handle<StdObjMgt_Persistent>>&
+      theMap);
+  Standard_EXPORT static occ::handle<Datum3D> Translate(
+    const occ::handle<TopLoc_Datum3D>& theDatum,
+    NCollection_DataMap<occ::handle<Standard_Transient>, occ::handle<StdObjMgt_Persistent>>&
+      theMap);
 };
 
 #endif

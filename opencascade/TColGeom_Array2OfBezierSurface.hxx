@@ -1,7 +1,4 @@
-// Created on: 1993-03-09
-// Created by: Philippe DAUTRY
-// Copyright (c) 1993-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,12 +11,23 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef TColGeom_Array2OfBezierSurface_HeaderFile
-#define TColGeom_Array2OfBezierSurface_HeaderFile
+//! @file TColGeom_Array2OfBezierSurface.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection_Array2<opencascade::handle<Geom_BezierSurface>> directly instead.
 
+#ifndef _TColGeom_Array2OfBezierSurface_hxx
+#define _TColGeom_Array2OfBezierSurface_hxx
+
+#include <Standard_Macro.hxx>
 #include <Geom_BezierSurface.hxx>
 #include <NCollection_Array2.hxx>
 
-typedef NCollection_Array2<Handle(Geom_BezierSurface)> TColGeom_Array2OfBezierSurface;
+Standard_HEADER_DEPRECATED("TColGeom_Array2OfBezierSurface.hxx is deprecated since OCCT 8.0.0. Use "
+                           "NCollection_Array2<opencascade::handle<Geom_BezierSurface>> directly.")
 
-#endif
+  Standard_DEPRECATED("TColGeom_Array2OfBezierSurface is deprecated, use "
+                      "NCollection_Array2<opencascade::handle<Geom_BezierSurface>> directly")
+typedef NCollection_Array2<opencascade::handle<Geom_BezierSurface>> TColGeom_Array2OfBezierSurface;
+
+#endif // _TColGeom_Array2OfBezierSurface_hxx

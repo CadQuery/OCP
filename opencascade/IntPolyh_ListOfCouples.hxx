@@ -1,6 +1,4 @@
-// Created on: 2012-11-13
-// Created by: Peter KURNEV
-// Copyright (c) 2012-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -13,13 +11,26 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef IntPolyh_ListOfCouples_HeaderFile
-#define IntPolyh_ListOfCouples_HeaderFile
+//! @file IntPolyh_ListOfCouples.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection types directly instead.
 
+#ifndef _IntPolyh_ListOfCouples_hxx
+#define _IntPolyh_ListOfCouples_hxx
+
+#include <Standard_Macro.hxx>
 #include <NCollection_List.hxx>
 #include <IntPolyh_Couple.hxx>
 
-typedef NCollection_List<IntPolyh_Couple> IntPolyh_ListOfCouples;
-typedef IntPolyh_ListOfCouples::Iterator  IntPolyh_ListIteratorOfListOfCouples;
+Standard_HEADER_DEPRECATED(
+  "IntPolyh_ListOfCouples.hxx is deprecated since OCCT 8.0.0. Use NCollection types directly.")
 
-#endif
+  Standard_DEPRECATED(
+    "IntPolyh_ListOfCouples is deprecated, use NCollection_List<IntPolyh_Couple> directly")
+typedef NCollection_List<IntPolyh_Couple> IntPolyh_ListOfCouples;
+Standard_DEPRECATED("IntPolyh_ListIteratorOfListOfCouples is deprecated, use "
+                    "NCollection_List<IntPolyh_Couple>::Iterator directly")
+typedef NCollection_List<IntPolyh_Couple>::Iterator IntPolyh_ListIteratorOfListOfCouples;
+
+#endif // _IntPolyh_ListOfCouples_hxx

@@ -1,6 +1,4 @@
-// Created on: 2008-06-03
-// Created by: Alexander GRIGORIEV
-// Copyright (c) 2008-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -13,14 +11,29 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef VrmlData_DataMapOfShapeAppearance_HeaderFile
-#define VrmlData_DataMapOfShapeAppearance_HeaderFile
+//! @file VrmlData_DataMapOfShapeAppearance.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection_DataMap<opencascade::handle<TopoDS_TShape>,
+//!             opencascade::handle<VrmlData_Appearance>> directly instead.
 
+#ifndef _VrmlData_DataMapOfShapeAppearance_hxx
+#define _VrmlData_DataMapOfShapeAppearance_hxx
+
+#include <Standard_Macro.hxx>
 #include <NCollection_DataMap.hxx>
 #include <VrmlData_Appearance.hxx>
 #include <TopoDS_TShape.hxx>
 
-typedef NCollection_DataMap<Handle(TopoDS_TShape), Handle(VrmlData_Appearance)>
+Standard_HEADER_DEPRECATED("VrmlData_DataMapOfShapeAppearance.hxx is deprecated since OCCT 8.0.0. "
+                           "Use NCollection_DataMap<opencascade::handle<TopoDS_TShape>, "
+                           "opencascade::handle<VrmlData_Appearance>> directly.")
+
+  Standard_DEPRECATED("VrmlData_DataMapOfShapeAppearance is deprecated, use "
+                      "NCollection_DataMap<opencascade::handle<TopoDS_TShape>, "
+                      "opencascade::handle<VrmlData_Appearance>> directly")
+typedef NCollection_DataMap<opencascade::handle<TopoDS_TShape>,
+                            opencascade::handle<VrmlData_Appearance>>
   VrmlData_DataMapOfShapeAppearance;
 
-#endif
+#endif // _VrmlData_DataMapOfShapeAppearance_hxx

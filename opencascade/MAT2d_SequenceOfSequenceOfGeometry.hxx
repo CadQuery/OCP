@@ -1,7 +1,4 @@
-// Created on: 1993-07-06
-// Created by: Yves FRICAUD
-// Copyright (c) 1993-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,12 +11,23 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef MAT2d_SequenceOfSequenceOfGeometry_HeaderFile
-#define MAT2d_SequenceOfSequenceOfGeometry_HeaderFile
+//! @file MAT2d_SequenceOfSequenceOfGeometry.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection_Sequence<TColGeom2d_SequenceOfGeometry> directly instead.
 
+#ifndef _MAT2d_SequenceOfSequenceOfGeometry_hxx
+#define _MAT2d_SequenceOfSequenceOfGeometry_hxx
+
+#include <Standard_Macro.hxx>
 #include <TColGeom2d_SequenceOfGeometry.hxx>
 #include <NCollection_Sequence.hxx>
 
+Standard_HEADER_DEPRECATED("MAT2d_SequenceOfSequenceOfGeometry.hxx is deprecated since OCCT 8.0.0. "
+                           "Use NCollection_Sequence<TColGeom2d_SequenceOfGeometry> directly.")
+
+  Standard_DEPRECATED("MAT2d_SequenceOfSequenceOfGeometry is deprecated, use "
+                      "NCollection_Sequence<TColGeom2d_SequenceOfGeometry> directly")
 typedef NCollection_Sequence<TColGeom2d_SequenceOfGeometry> MAT2d_SequenceOfSequenceOfGeometry;
 
-#endif
+#endif // _MAT2d_SequenceOfSequenceOfGeometry_hxx

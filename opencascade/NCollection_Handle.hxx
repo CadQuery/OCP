@@ -25,7 +25,7 @@
 //! The advantage is that this handle will automatically destroy
 //! the object when last referred Handle is destroyed (i.e. it is a
 //! typical smart pointer), and that it can be handled as
-//! Handle(Standard_Transient) in OCCT components.
+//! occ::handle<Standard_Transient> in OCCT components.
 
 template <class T>
 class NCollection_Handle : public opencascade::handle<Standard_Transient>
@@ -44,11 +44,10 @@ private:
     }
 
     //! Destructor deletes the object
-    ~Ptr()
+    ~Ptr() override
     {
-      if (myPtr)
-        delete myPtr;
-      myPtr = 0;
+      delete myPtr;
+      myPtr = nullptr;
     }
 
   protected:
@@ -74,35 +73,39 @@ public:
   typedef T element_type;
 
   //! Default constructor; creates null handle
-  NCollection_Handle() {}
+  NCollection_Handle() = default;
 
   //! Constructor of handle from pointer on newly allocated object
   NCollection_Handle(T* theObject)
-      : opencascade::handle<Standard_Transient>(theObject ? new Ptr(theObject) : 0)
+      : opencascade::handle<Standard_Transient>(theObject ? new Ptr(theObject) : nullptr)
   {
   }
 
   //! Cast handle to contained type
-  T* get() { return ((Ptr*)opencascade::handle<Standard_Transient>::get())->myPtr; }
+  T* get() noexcept { return ((Ptr*)opencascade::handle<Standard_Transient>::get())->myPtr; }
 
   //! Cast handle to contained type
-  const T* get() const { return ((Ptr*)opencascade::handle<Standard_Transient>::get())->myPtr; }
+  const T* get() const noexcept
+  {
+    return ((Ptr*)opencascade::handle<Standard_Transient>::get())->myPtr;
+  }
 
   //! Cast handle to contained type
-  T* operator->() { return get(); }
+  T* operator->() noexcept { return get(); }
 
   //! Cast handle to contained type
-  const T* operator->() const { return get(); }
+  const T* operator->() const noexcept { return get(); }
 
   //! Cast handle to contained type
-  T& operator*() { return *get(); }
+  T& operator*() noexcept { return *get(); }
 
   //! Cast handle to contained type
-  const T& operator*() const { return *get(); }
+  const T& operator*() const noexcept { return *get(); }
 
   //! Downcast arbitrary Handle to the argument type if contained
   //! object is Handle for this type; returns null otherwise
-  static NCollection_Handle<T> DownCast(const opencascade::handle<Standard_Transient>& theOther)
+  static NCollection_Handle<T> DownCast(
+    const opencascade::handle<Standard_Transient>& theOther) noexcept
   {
     return NCollection_Handle<T>(dynamic_cast<Ptr*>(theOther.get()), 0);
   }

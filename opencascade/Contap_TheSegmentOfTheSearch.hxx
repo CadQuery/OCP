@@ -33,58 +33,80 @@ public:
   Standard_EXPORT Contap_TheSegmentOfTheSearch();
 
   //! Defines the concerned arc.
-  void SetValue(const Handle(Adaptor2d_Curve2d)& A);
+  void SetValue(const occ::handle<Adaptor2d_Curve2d>& A);
 
   //! Defines the first point or the last point,
   //! depending on the value of the boolean First.
-  Standard_EXPORT void SetLimitPoint(const Contap_ThePathPointOfTheSearch& V,
-                                     const Standard_Boolean                First);
+  Standard_EXPORT void SetLimitPoint(const Contap_ThePathPointOfTheSearch& V, const bool First);
 
   //! Returns the geometric curve on the surface 's domain
   //! which is solution.
-  const Handle(Adaptor2d_Curve2d)& Curve() const;
+  const occ::handle<Adaptor2d_Curve2d>& Curve() const;
 
   //! Returns True if there is a vertex (ThePathPoint) defining
   //! the lowest valid parameter on the arc.
-  Standard_Boolean HasFirstPoint() const;
+  bool HasFirstPoint() const;
 
   //! Returns the first point.
   const Contap_ThePathPointOfTheSearch& FirstPoint() const;
 
   //! Returns True if there is a vertex (ThePathPoint) defining
   //! the greatest valid parameter on the arc.
-  Standard_Boolean HasLastPoint() const;
+  bool HasLastPoint() const;
 
   //! Returns the last point.
   const Contap_ThePathPointOfTheSearch& LastPoint() const;
 
-protected:
 private:
-  Handle(Adaptor2d_Curve2d)      arc;
-  Standard_Boolean               hasfp;
+  occ::handle<Adaptor2d_Curve2d> arc;
+  bool                           hasfp;
   Contap_ThePathPointOfTheSearch thefp;
-  Standard_Boolean               haslp;
+  bool                           haslp;
   Contap_ThePathPointOfTheSearch thelp;
 };
 
-#define TheVertex Handle(Adaptor3d_HVertex)
-#define TheVertex_hxx <Adaptor3d_HVertex.hxx>
-#define TheArc Handle(Adaptor2d_Curve2d)
-#define TheArc_hxx <Adaptor2d_Curve2d.hxx>
-#define ThePathPoint Contap_ThePathPointOfTheSearch
-#define ThePathPoint_hxx <Contap_ThePathPointOfTheSearch.hxx>
-#define IntStart_Segment Contap_TheSegmentOfTheSearch
-#define IntStart_Segment_hxx <Contap_TheSegmentOfTheSearch.hxx>
+//=================================================================================================
+// Inline implementations
+//=================================================================================================
 
-#include <IntStart_Segment.lxx>
+inline void Contap_TheSegmentOfTheSearch::SetValue(const occ::handle<Adaptor2d_Curve2d>& A)
+{
+  hasfp = false;
+  haslp = false;
+  arc   = A;
+}
 
-#undef TheVertex
-#undef TheVertex_hxx
-#undef TheArc
-#undef TheArc_hxx
-#undef ThePathPoint
-#undef ThePathPoint_hxx
-#undef IntStart_Segment
-#undef IntStart_Segment_hxx
+inline const occ::handle<Adaptor2d_Curve2d>& Contap_TheSegmentOfTheSearch::Curve() const
+{
+  return arc;
+}
+
+inline bool Contap_TheSegmentOfTheSearch::HasFirstPoint() const
+{
+  return hasfp;
+}
+
+inline const Contap_ThePathPointOfTheSearch& Contap_TheSegmentOfTheSearch::FirstPoint() const
+{
+  if (!hasfp)
+  {
+    throw Standard_DomainError();
+  }
+  return thefp;
+}
+
+inline bool Contap_TheSegmentOfTheSearch::HasLastPoint() const
+{
+  return haslp;
+}
+
+inline const Contap_ThePathPointOfTheSearch& Contap_TheSegmentOfTheSearch::LastPoint() const
+{
+  if (!haslp)
+  {
+    throw Standard_DomainError();
+  }
+  return thelp;
+}
 
 #endif // _Contap_TheSegmentOfTheSearch_HeaderFile

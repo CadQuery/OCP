@@ -25,10 +25,8 @@ class gp_Circ;
 class gp_Pnt;
 class gp_Lin;
 
-//! Computes the  global properties of bounded curves
-//! in 3D space.
-//! It can be an elementary curve from package gp such as
-//! Lin, Circ, Elips, Parab .
+//! Computes the global properties of bounded curves in 3D space.
+//! Supports elementary curves from the gp package: Lin, Circ, Elips, Parab.
 class GProp_CelGProps : public GProp_GProps
 {
 public:
@@ -38,24 +36,21 @@ public:
 
   Standard_EXPORT GProp_CelGProps(const gp_Circ& C, const gp_Pnt& CLocation);
 
-  Standard_EXPORT GProp_CelGProps(const gp_Circ&      C,
-                                  const Standard_Real U1,
-                                  const Standard_Real U2,
-                                  const gp_Pnt&       CLocation);
+  Standard_EXPORT GProp_CelGProps(const gp_Circ& C,
+                                  const double   U1,
+                                  const double   U2,
+                                  const gp_Pnt&  CLocation);
 
-  Standard_EXPORT GProp_CelGProps(const gp_Lin&       C,
-                                  const Standard_Real U1,
-                                  const Standard_Real U2,
-                                  const gp_Pnt&       CLocation);
+  Standard_EXPORT GProp_CelGProps(const gp_Lin& C,
+                                  const double  U1,
+                                  const double  U2,
+                                  const gp_Pnt& CLocation);
 
   Standard_EXPORT void SetLocation(const gp_Pnt& CLocation);
 
-  Standard_EXPORT void Perform(const gp_Circ& C, const Standard_Real U1, const Standard_Real U2);
+  Standard_EXPORT void Perform(const gp_Circ& C, const double U1, const double U2);
 
-  Standard_EXPORT void Perform(const gp_Lin& C, const Standard_Real U1, const Standard_Real U2);
-
-protected:
-private:
+  Standard_EXPORT void Perform(const gp_Lin& C, const double U1, const double U2);
 };
 
 #endif // _GProp_CelGProps_HeaderFile

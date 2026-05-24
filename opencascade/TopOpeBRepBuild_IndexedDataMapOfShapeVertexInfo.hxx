@@ -1,7 +1,4 @@
-// Created on: 1993-06-17
-// Created by: Jean Yves LEBEY
-// Copyright (c) 1993-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,17 +11,31 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef TopOpeBRepBuild_IndexedDataMapOfShapeVertexInfo_HeaderFile
-#define TopOpeBRepBuild_IndexedDataMapOfShapeVertexInfo_HeaderFile
+//! @file TopOpeBRepBuild_IndexedDataMapOfShapeVertexInfo.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection_IndexedDataMap<TopoDS_Shape, TopOpeBRepBuild_VertexInfo,
+//!             TopTools_ShapeMapHasher> directly instead.
 
+#ifndef _TopOpeBRepBuild_IndexedDataMapOfShapeVertexInfo_hxx
+#define _TopOpeBRepBuild_IndexedDataMapOfShapeVertexInfo_hxx
+
+#include <Standard_Macro.hxx>
 #include <TopoDS_Shape.hxx>
 #include <TopOpeBRepBuild_VertexInfo.hxx>
 #include <TopTools_ShapeMapHasher.hxx>
 #include <NCollection_IndexedDataMap.hxx>
 
+Standard_HEADER_DEPRECATED("TopOpeBRepBuild_IndexedDataMapOfShapeVertexInfo.hxx is deprecated "
+                           "since OCCT 8.0.0. Use NCollection_IndexedDataMap<TopoDS_Shape, "
+                           "TopOpeBRepBuild_VertexInfo, TopTools_ShapeMapHasher> directly.")
+
+  Standard_DEPRECATED("TopOpeBRepBuild_IndexedDataMapOfShapeVertexInfo is deprecated, use "
+                      "NCollection_IndexedDataMap<TopoDS_Shape, TopOpeBRepBuild_VertexInfo, "
+                      "TopTools_ShapeMapHasher> directly")
 typedef NCollection_IndexedDataMap<TopoDS_Shape,
                                    TopOpeBRepBuild_VertexInfo,
                                    TopTools_ShapeMapHasher>
   TopOpeBRepBuild_IndexedDataMapOfShapeVertexInfo;
 
-#endif
+#endif // _TopOpeBRepBuild_IndexedDataMapOfShapeVertexInfo_hxx

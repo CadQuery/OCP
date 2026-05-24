@@ -1,7 +1,4 @@
-// Created on: 1998-07-21
-// Created by: data exchange team
-// Copyright (c) 1998-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,16 +11,31 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef ShapeExtend_DataMapOfTransientListOfMsg_HeaderFile
-#define ShapeExtend_DataMapOfTransientListOfMsg_HeaderFile
+//! @file ShapeExtend_DataMapOfTransientListOfMsg.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection types directly instead.
 
+#ifndef _ShapeExtend_DataMapOfTransientListOfMsg_hxx
+#define _ShapeExtend_DataMapOfTransientListOfMsg_hxx
+
+#include <Standard_Macro.hxx>
 #include <Standard_Transient.hxx>
 #include <Message_ListOfMsg.hxx>
 #include <NCollection_DataMap.hxx>
 
-typedef NCollection_DataMap<Handle(Standard_Transient), Message_ListOfMsg>
+Standard_HEADER_DEPRECATED("ShapeExtend_DataMapOfTransientListOfMsg.hxx is deprecated since OCCT "
+                           "8.0.0. Use NCollection types directly.")
+
+  Standard_DEPRECATED(
+    "ShapeExtend_DataMapOfTransientListOfMsg is deprecated, use "
+    "NCollection_DataMap<opencascade::handle<Standard_Transient>, Message_ListOfMsg> directly")
+typedef NCollection_DataMap<opencascade::handle<Standard_Transient>, Message_ListOfMsg>
   ShapeExtend_DataMapOfTransientListOfMsg;
-typedef NCollection_DataMap<Handle(Standard_Transient), Message_ListOfMsg>::Iterator
+Standard_DEPRECATED("ShapeExtend_DataMapIteratorOfDataMapOfTransientListOfMsg is deprecated, use "
+                    "NCollection_DataMap<opencascade::handle<Standard_Transient>, "
+                    "Message_ListOfMsg>::Iterator directly")
+typedef NCollection_DataMap<opencascade::handle<Standard_Transient>, Message_ListOfMsg>::Iterator
   ShapeExtend_DataMapIteratorOfDataMapOfTransientListOfMsg;
 
-#endif
+#endif // _ShapeExtend_DataMapOfTransientListOfMsg_hxx

@@ -1,6 +1,4 @@
-// Created on: 2003-05-04
-// Created by: Alexander Grigoriev (a-grigoriev@opencascade.com)
-// Copyright (c) 2003-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -13,12 +11,23 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _AIS_NListTransient_HeaderFile
-#define _AIS_NListTransient_HeaderFile
+//! @file AIS_NListOfEntityOwner.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection_List<opencascade::handle<SelectMgr_EntityOwner>> directly instead.
 
+#ifndef _AIS_NListOfEntityOwner_hxx
+#define _AIS_NListOfEntityOwner_hxx
+
+#include <Standard_Macro.hxx>
 #include <SelectMgr_EntityOwner.hxx>
 #include <NCollection_List.hxx>
 
-typedef NCollection_List<Handle(SelectMgr_EntityOwner)> AIS_NListOfEntityOwner;
+Standard_HEADER_DEPRECATED("AIS_NListOfEntityOwner.hxx is deprecated since OCCT 8.0.0. Use "
+                           "NCollection_List<opencascade::handle<SelectMgr_EntityOwner>> directly.")
 
-#endif
+  Standard_DEPRECATED("AIS_NListOfEntityOwner is deprecated, use "
+                      "NCollection_List<opencascade::handle<SelectMgr_EntityOwner>> directly")
+typedef NCollection_List<opencascade::handle<SelectMgr_EntityOwner>> AIS_NListOfEntityOwner;
+
+#endif // _AIS_NListOfEntityOwner_hxx

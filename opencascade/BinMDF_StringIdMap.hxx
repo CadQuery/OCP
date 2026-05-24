@@ -1,6 +1,4 @@
-// Created on: 2002-10-29
-// Created by: Michael SAZONOV
-// Copyright (c) 2002-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -13,11 +11,22 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _BinMDF_StringIdMap_HeaderFile
-#define _BinMDF_StringIdMap_HeaderFile
+//! @file BinMDF_StringIdMap.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection_DataMap<TCollection_AsciiString, int> directly instead.
 
+#ifndef _BinMDF_StringIdMap_hxx
+#define _BinMDF_StringIdMap_hxx
+
+#include <Standard_Macro.hxx>
 #include <TColStd_DataMapOfAsciiStringInteger.hxx>
 
-typedef TColStd_DataMapOfAsciiStringInteger BinMDF_StringIdMap;
+Standard_HEADER_DEPRECATED("BinMDF_StringIdMap.hxx is deprecated since OCCT 8.0.0. Use "
+                           "NCollection_DataMap<TCollection_AsciiString, int> directly.")
 
-#endif // _BinMDF_StringIdMap_HeaderFile
+  Standard_DEPRECATED("BinMDF_StringIdMap is deprecated, use "
+                      "NCollection_DataMap<TCollection_AsciiString, int> directly")
+typedef NCollection_DataMap<TCollection_AsciiString, int> BinMDF_StringIdMap;
+
+#endif // _BinMDF_StringIdMap_hxx

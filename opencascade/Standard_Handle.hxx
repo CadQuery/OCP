@@ -15,9 +15,11 @@
 #define _Standard_Handle_HeaderFile
 
 #include <Standard_Std.hxx>
-#include <Standard_Stream.hxx>
-#include <Standard_Transient.hxx>
 #include <Standard_Macro.hxx>
+#include <iostream>
+#include <iomanip>
+#include <fstream>
+#include <Standard_Transient.hxx>
 
 class Standard_Transient;
 
@@ -57,7 +59,7 @@ public:
 public:
   //! Empty constructor
   handle()
-      : entity(0)
+      : entity(nullptr)
   {
   }
 
@@ -76,7 +78,11 @@ public:
   }
 
   //! Move constructor
-  handle(handle&& theHandle) Standard_Noexcept : entity(theHandle.entity) { theHandle.entity = 0; }
+  handle(handle&& theHandle) noexcept
+      : entity(theHandle.entity)
+  {
+    theHandle.entity = nullptr;
+  }
 
   //! Destructor
   ~handle() { EndScope(); }
@@ -85,7 +91,7 @@ public:
   void Nullify() { EndScope(); }
 
   //! Check for being null
-  bool IsNull() const { return entity == 0; }
+  bool IsNull() const { return entity == nullptr; }
 
   //! Reset by new pointer
   void reset(T* thePtr) { Assign(thePtr); }
@@ -105,7 +111,7 @@ public:
   }
 
   //! Move operator
-  handle& operator=(handle&& theHandle) Standard_Noexcept
+  handle& operator=(handle&& theHandle) noexcept
   {
     std::swap(this->entity, theHandle.entity);
     return *this;
@@ -189,7 +195,6 @@ public:
   //! For compatibility, define down casting operator from non-base type, as deprecated
   template <class T2>
   Standard_DEPRECATED("down-casting from object of the same or unrelated type is meaningless")
-
   static handle DownCast(
     const handle<T2>& theObject,
     typename opencascade::std::enable_if<!is_base_but_not_same<T2, T>::value, void*>::type = 0)
@@ -200,7 +205,6 @@ public:
   //! For compatibility, define down casting operator from non-base type, as deprecated
   template <class T2>
   Standard_DEPRECATED("down-casting from object of the same or unrelated type is meaningless")
-
   static handle DownCast(
     const T2* thePtr,
     typename opencascade::std::enable_if<!is_base_but_not_same<T2, T>::value, void*>::type = 0)
@@ -350,7 +354,6 @@ public:
   template <class T2>
   Standard_DEPRECATED("Passing non-const reference to handle of base type in function is unsafe; "
                       "use variable of exact type")
-
   operator handle<T2>&()
   {
     // error "type is not a member of enable_if" will be generated if T2 is not sub-type of T
@@ -378,16 +381,16 @@ private:
   //! Increment reference counter of referred object
   void BeginScope()
   {
-    if (entity != 0)
+    if (entity != nullptr)
       entity->IncrementRefCounter();
   }
 
   //! Decrement reference counter and if 0, destroy referred object
   void EndScope()
   {
-    if (entity != 0 && entity->DecrementRefCounter() == 0)
+    if (entity != nullptr && entity->DecrementRefCounter() == 0)
       entity->Delete();
-    entity = 0;
+    entity = nullptr;
   }
 
   template <class T2>
@@ -398,6 +401,48 @@ private:
 };
 
 } // namespace opencascade
+
+//! @brief Modern namespace for Open CASCADE Technology (OCCT 8.0+).
+//!
+//! This namespace provides the modern C++ interface with template syntax:
+//! @code
+//! occ::handle<Geom_Circle> aCircle = new Geom_Circle(anAxis, aRadius);
+//! if (auto aLine = occ::down_cast<Geom_Line>(aCurve))
+//! {
+//!   // use aLine
+//! }
+//! @endcode
+namespace occ
+{
+
+//! @brief Intrusive smart pointer template for Standard_Transient descendants.
+//! This is an alias to opencascade::handle<T>.
+template <class T>
+using handle = opencascade::handle<T>;
+
+//! @brief Safe downcast from handle of base type to handle of derived type.
+//! @tparam TDerived Target derived type
+//! @tparam TBase Source base type (deduced)
+//! @param theObject Handle to object of base type
+//! @return Handle to derived type, or null handle if cast fails
+template <class TDerived, class TBase>
+inline handle<TDerived> down_cast(const handle<TBase>& theObject)
+{
+  return handle<TDerived>::DownCast(theObject);
+}
+
+//! @brief Safe downcast from raw pointer to handle of derived type.
+//! @tparam TDerived Target derived type
+//! @tparam TBase Source base type (deduced)
+//! @param thePtr Raw pointer to object of base type
+//! @return Handle to derived type, or null handle if cast fails
+template <class TDerived, class TBase>
+inline handle<TDerived> down_cast(const TBase* thePtr)
+{
+  return handle<TDerived>::DownCast(thePtr);
+}
+
+} // namespace occ
 
 //! Define Handle() macro
 #define Handle(Class) opencascade::handle<Class>

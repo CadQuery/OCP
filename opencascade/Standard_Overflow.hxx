@@ -17,13 +17,9 @@
 #ifndef _Standard_Overflow_HeaderFile
 #define _Standard_Overflow_HeaderFile
 
-#include <Standard_Type.hxx>
 #include <Standard_DefineException.hxx>
 #include <Standard_SStream.hxx>
 #include <Standard_NumericError.hxx>
-
-class Standard_Overflow;
-DEFINE_STANDARD_HANDLE(Standard_Overflow, Standard_NumericError)
 
 #if !defined No_Exception && !defined No_Standard_Overflow
   #define Standard_Overflow_Raise_if(CONDITION, MESSAGE)                                           \

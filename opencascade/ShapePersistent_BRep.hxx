@@ -17,15 +17,18 @@
 #include <ShapePersistent_TopoDS.hxx>
 #include <ShapePersistent_Geom2d.hxx>
 #include <ShapePersistent_Poly.hxx>
-#include <StdObjMgt_TransientPersistentMap.hxx>
+#include <NCollection_DataMap.hxx>
 #include <StdObject_Location.hxx>
 #include <StdObject_gp_Vectors.hxx>
 
-#include <BRep_ListOfPointRepresentation.hxx>
-#include <BRep_ListOfCurveRepresentation.hxx>
+#include <BRep_PointRepresentation.hxx>
+#include <NCollection_List.hxx>
+#include <BRep_CurveRepresentation.hxx>
 
 #include <gp_Pnt.hxx>
 #include <gp_Pnt2d.hxx>
+class Standard_Transient;
+class StdObjMgt_Persistent;
 
 class BRep_PointRepresentation;
 class BRep_CurveRepresentation;
@@ -48,27 +51,28 @@ public:
     }
 
     //! Read persistent data from a file.
-    Standard_EXPORT virtual void Read(StdObjMgt_ReadData& theReadData);
+    Standard_EXPORT void Read(StdObjMgt_ReadData& theReadData) override;
     //! Write persistent data to a file.
-    Standard_EXPORT virtual void Write(StdObjMgt_WriteData& theWriteData) const;
+    Standard_EXPORT void Write(StdObjMgt_WriteData& theWriteData) const override;
     //! Gets persistent child objects
-    virtual void PChildren(StdObjMgt_Persistent::SequenceOfPersistent& theChildren) const;
+    void PChildren(StdObjMgt_Persistent::SequenceOfPersistent& theChildren) const override;
 
     //! Returns persistent type name
-    virtual Standard_CString PName() const { return "PBRep_PointRepresentation"; }
+    const char* PName() const override { return "PBRep_PointRepresentation"; }
 
     //! Import transient object from the persistent data.
-    Standard_EXPORT void Import(BRep_ListOfPointRepresentation& thePoints) const;
+    Standard_EXPORT void Import(
+      NCollection_List<occ::handle<BRep_PointRepresentation>>& thePoints) const;
 
   protected:
-    virtual Handle(BRep_PointRepresentation) import() const;
+    virtual occ::handle<BRep_PointRepresentation> import() const;
 
   protected:
     StdObject_Location myLocation;
-    Standard_Real      myParameter;
+    double             myParameter;
 
   private:
-    Handle(PointRepresentation) myNext;
+    occ::handle<PointRepresentation> myNext;
   };
 
   class PointOnCurve : public PointRepresentation
@@ -76,13 +80,13 @@ public:
     friend class ShapePersistent_BRep;
 
   public:
-    virtual void Read(StdObjMgt_ReadData& theReadData);
-    virtual void Write(StdObjMgt_WriteData& theWriteData) const;
-    virtual void PChildren(StdObjMgt_Persistent::SequenceOfPersistent& theChildren) const;
+    void Read(StdObjMgt_ReadData& theReadData) override;
+    void Write(StdObjMgt_WriteData& theWriteData) const override;
+    void PChildren(StdObjMgt_Persistent::SequenceOfPersistent& theChildren) const override;
 
-    virtual Standard_CString PName() const { return "PBRep_PointOnCurve"; }
+    const char* PName() const override { return "PBRep_PointOnCurve"; }
 
-    virtual Handle(BRep_PointRepresentation) import() const;
+    occ::handle<BRep_PointRepresentation> import() const override;
 
   private:
     Handle(ShapePersistent_Geom::Curve) myCurve;
@@ -93,11 +97,11 @@ public:
     friend class ShapePersistent_BRep;
 
   public:
-    virtual void Read(StdObjMgt_ReadData& theReadData);
-    virtual void Write(StdObjMgt_WriteData& theWriteData) const;
-    virtual void PChildren(StdObjMgt_Persistent::SequenceOfPersistent& theChildren) const;
+    void Read(StdObjMgt_ReadData& theReadData) override;
+    void Write(StdObjMgt_WriteData& theWriteData) const override;
+    void PChildren(StdObjMgt_Persistent::SequenceOfPersistent& theChildren) const override;
 
-    virtual Standard_CString PName() const { return "PBRep_PointsOnSurface"; }
+    const char* PName() const override { return "PBRep_PointsOnSurface"; }
 
   protected:
     Handle(ShapePersistent_Geom::Surface) mySurface;
@@ -108,13 +112,13 @@ public:
     friend class ShapePersistent_BRep;
 
   public:
-    virtual void Read(StdObjMgt_ReadData& theReadData);
-    virtual void Write(StdObjMgt_WriteData& theWriteData) const;
-    virtual void PChildren(StdObjMgt_Persistent::SequenceOfPersistent& theChildren) const;
+    void Read(StdObjMgt_ReadData& theReadData) override;
+    void Write(StdObjMgt_WriteData& theWriteData) const override;
+    void PChildren(StdObjMgt_Persistent::SequenceOfPersistent& theChildren) const override;
 
-    virtual Standard_CString PName() const { return "PBRep_PointOnCurveOnSurface"; }
+    const char* PName() const override { return "PBRep_PointOnCurveOnSurface"; }
 
-    virtual Handle(BRep_PointRepresentation) import() const;
+    occ::handle<BRep_PointRepresentation> import() const override;
 
   private:
     Handle(ShapePersistent_Geom2d::Curve) myPCurve;
@@ -130,15 +134,15 @@ public:
     {
     }
 
-    virtual void Read(StdObjMgt_ReadData& theReadData);
-    virtual void Write(StdObjMgt_WriteData& theWriteData) const;
+    void Read(StdObjMgt_ReadData& theReadData) override;
+    void Write(StdObjMgt_WriteData& theWriteData) const override;
 
-    virtual Standard_CString PName() const { return "PBRep_PointOnSurface"; }
+    const char* PName() const override { return "PBRep_PointOnSurface"; }
 
-    virtual Handle(BRep_PointRepresentation) import() const;
+    occ::handle<BRep_PointRepresentation> import() const override;
 
   private:
-    Standard_Real myParameter2;
+    double myParameter2;
   };
 
   class CurveRepresentation : public StdObjMgt_Persistent
@@ -147,26 +151,27 @@ public:
 
   public:
     //! Read persistent data from a file.
-    Standard_EXPORT virtual void Read(StdObjMgt_ReadData& theReadData);
+    Standard_EXPORT void Read(StdObjMgt_ReadData& theReadData) override;
     //! Write persistent data from a file.
-    Standard_EXPORT virtual void Write(StdObjMgt_WriteData& theWriteData) const;
+    Standard_EXPORT void Write(StdObjMgt_WriteData& theWriteData) const override;
     //! Gets persistent child objects
-    virtual void PChildren(StdObjMgt_Persistent::SequenceOfPersistent& theChildren) const;
+    void PChildren(StdObjMgt_Persistent::SequenceOfPersistent& theChildren) const override;
 
     //! Returns persistent type name
-    virtual Standard_CString PName() const { return "PBRep_CurveRepresentation"; }
+    const char* PName() const override { return "PBRep_CurveRepresentation"; }
 
     //! Import transient object from the persistent data.
-    Standard_EXPORT void Import(BRep_ListOfCurveRepresentation& theCurves) const;
+    Standard_EXPORT void Import(
+      NCollection_List<occ::handle<BRep_CurveRepresentation>>& theCurves) const;
 
   protected:
-    virtual Handle(BRep_CurveRepresentation) import() const;
+    virtual occ::handle<BRep_CurveRepresentation> import() const;
 
   protected:
     StdObject_Location myLocation;
 
   private:
-    Handle(CurveRepresentation) myNext;
+    occ::handle<CurveRepresentation> myNext;
   };
 
   class GCurve : public CurveRepresentation
@@ -180,14 +185,14 @@ public:
     {
     }
 
-    virtual void Read(StdObjMgt_ReadData& theReadData);
-    virtual void Write(StdObjMgt_WriteData& theWriteData) const;
+    void Read(StdObjMgt_ReadData& theReadData) override;
+    void Write(StdObjMgt_WriteData& theWriteData) const override;
 
-    virtual Standard_CString PName() const { return "PBRep_GCurve"; }
+    const char* PName() const override { return "PBRep_GCurve"; }
 
   protected:
-    Standard_Real myFirst;
-    Standard_Real myLast;
+    double myFirst;
+    double myLast;
   };
 
   class Curve3D : public GCurve
@@ -195,13 +200,13 @@ public:
     friend class ShapePersistent_BRep;
 
   public:
-    virtual void Read(StdObjMgt_ReadData& theReadData);
-    virtual void Write(StdObjMgt_WriteData& theWriteData) const;
-    virtual void PChildren(StdObjMgt_Persistent::SequenceOfPersistent& theChildren) const;
+    void Read(StdObjMgt_ReadData& theReadData) override;
+    void Write(StdObjMgt_WriteData& theWriteData) const override;
+    void PChildren(StdObjMgt_Persistent::SequenceOfPersistent& theChildren) const override;
 
-    virtual Standard_CString PName() const { return "PBRep_Curve3D"; }
+    const char* PName() const override { return "PBRep_Curve3D"; }
 
-    virtual Handle(BRep_CurveRepresentation) import() const;
+    occ::handle<BRep_CurveRepresentation> import() const override;
 
   private:
     Handle(ShapePersistent_Geom::Curve) myCurve3D;
@@ -212,13 +217,13 @@ public:
     friend class ShapePersistent_BRep;
 
   public:
-    virtual void Read(StdObjMgt_ReadData& theReadData);
-    virtual void Write(StdObjMgt_WriteData& theWriteData) const;
-    virtual void PChildren(StdObjMgt_Persistent::SequenceOfPersistent& theChildren) const;
+    void Read(StdObjMgt_ReadData& theReadData) override;
+    void Write(StdObjMgt_WriteData& theWriteData) const override;
+    void PChildren(StdObjMgt_Persistent::SequenceOfPersistent& theChildren) const override;
 
-    virtual Standard_CString PName() const { return "PBRep_CurveOnSurface"; }
+    const char* PName() const override { return "PBRep_CurveOnSurface"; }
 
-    virtual Handle(BRep_CurveRepresentation) import() const;
+    occ::handle<BRep_CurveRepresentation> import() const override;
 
   protected:
     Handle(ShapePersistent_Geom2d::Curve) myPCurve;
@@ -237,17 +242,17 @@ public:
     {
     }
 
-    virtual void Read(StdObjMgt_ReadData& theReadData);
-    virtual void Write(StdObjMgt_WriteData& theWriteData) const;
-    virtual void PChildren(StdObjMgt_Persistent::SequenceOfPersistent& theChildren) const;
+    void Read(StdObjMgt_ReadData& theReadData) override;
+    void Write(StdObjMgt_WriteData& theWriteData) const override;
+    void PChildren(StdObjMgt_Persistent::SequenceOfPersistent& theChildren) const override;
 
-    virtual Standard_CString PName() const { return "PBRep_CurveOnClosedSurface"; }
+    const char* PName() const override { return "PBRep_CurveOnClosedSurface"; }
 
-    virtual Handle(BRep_CurveRepresentation) import() const;
+    occ::handle<BRep_CurveRepresentation> import() const override;
 
   private:
     Handle(ShapePersistent_Geom2d::Curve) myPCurve2;
-    Standard_Integer                      myContinuity;
+    int                                   myContinuity;
     gp_Pnt2d                              myUV21;
     gp_Pnt2d                              myUV22;
   };
@@ -257,13 +262,13 @@ public:
     friend class ShapePersistent_BRep;
 
   public:
-    virtual void Read(StdObjMgt_ReadData& theReadData);
-    virtual void Write(StdObjMgt_WriteData& theWriteData) const;
-    virtual void PChildren(StdObjMgt_Persistent::SequenceOfPersistent& theChildren) const;
+    void Read(StdObjMgt_ReadData& theReadData) override;
+    void Write(StdObjMgt_WriteData& theWriteData) const override;
+    void PChildren(StdObjMgt_Persistent::SequenceOfPersistent& theChildren) const override;
 
-    virtual Standard_CString PName() const { return "PBRep_Polygon3D"; }
+    const char* PName() const override { return "PBRep_Polygon3D"; }
 
-    virtual Handle(BRep_CurveRepresentation) import() const;
+    occ::handle<BRep_CurveRepresentation> import() const override;
 
   private:
     Handle(ShapePersistent_Poly::Polygon3D) myPolygon3D;
@@ -274,13 +279,13 @@ public:
     friend class ShapePersistent_BRep;
 
   public:
-    virtual void Read(StdObjMgt_ReadData& theReadData);
-    virtual void Write(StdObjMgt_WriteData& theWriteData) const;
-    virtual void PChildren(StdObjMgt_Persistent::SequenceOfPersistent& theChildren) const;
+    void Read(StdObjMgt_ReadData& theReadData) override;
+    void Write(StdObjMgt_WriteData& theWriteData) const override;
+    void PChildren(StdObjMgt_Persistent::SequenceOfPersistent& theChildren) const override;
 
-    virtual Standard_CString PName() const { return "PBRep_PolygonOnTriangulation"; }
+    const char* PName() const override { return "PBRep_PolygonOnTriangulation"; }
 
-    virtual Handle(BRep_CurveRepresentation) import() const;
+    occ::handle<BRep_CurveRepresentation> import() const override;
 
   protected:
     Handle(ShapePersistent_Poly::PolygonOnTriangulation) myPolygon;
@@ -292,13 +297,13 @@ public:
     friend class ShapePersistent_BRep;
 
   public:
-    virtual void Read(StdObjMgt_ReadData& theReadData);
-    virtual void Write(StdObjMgt_WriteData& theWriteData) const;
-    virtual void PChildren(StdObjMgt_Persistent::SequenceOfPersistent& theChildren) const;
+    void Read(StdObjMgt_ReadData& theReadData) override;
+    void Write(StdObjMgt_WriteData& theWriteData) const override;
+    void PChildren(StdObjMgt_Persistent::SequenceOfPersistent& theChildren) const override;
 
-    virtual Standard_CString PName() const { return "PBRep_PolygonOnClosedTriangulation"; }
+    const char* PName() const override { return "PBRep_PolygonOnClosedTriangulation"; }
 
-    virtual Handle(BRep_CurveRepresentation) import() const;
+    occ::handle<BRep_CurveRepresentation> import() const override;
 
   private:
     Handle(ShapePersistent_Poly::PolygonOnTriangulation) myPolygon2;
@@ -309,13 +314,13 @@ public:
     friend class ShapePersistent_BRep;
 
   public:
-    virtual void Read(StdObjMgt_ReadData& theReadData);
-    virtual void Write(StdObjMgt_WriteData& theWriteData) const;
-    virtual void PChildren(StdObjMgt_Persistent::SequenceOfPersistent& theChildren) const;
+    void Read(StdObjMgt_ReadData& theReadData) override;
+    void Write(StdObjMgt_WriteData& theWriteData) const override;
+    void PChildren(StdObjMgt_Persistent::SequenceOfPersistent& theChildren) const override;
 
-    virtual Standard_CString PName() const { return "PBRep_PolygonOnSurface"; }
+    const char* PName() const override { return "PBRep_PolygonOnSurface"; }
 
-    virtual Handle(BRep_CurveRepresentation) import() const;
+    occ::handle<BRep_CurveRepresentation> import() const override;
 
   protected:
     Handle(ShapePersistent_Poly::Polygon2D) myPolygon2D;
@@ -327,13 +332,13 @@ public:
     friend class ShapePersistent_BRep;
 
   public:
-    virtual void Read(StdObjMgt_ReadData& theReadData);
-    virtual void Write(StdObjMgt_WriteData& theWriteData) const;
-    virtual void PChildren(StdObjMgt_Persistent::SequenceOfPersistent& theChildren) const;
+    void Read(StdObjMgt_ReadData& theReadData) override;
+    void Write(StdObjMgt_WriteData& theWriteData) const override;
+    void PChildren(StdObjMgt_Persistent::SequenceOfPersistent& theChildren) const override;
 
-    virtual Standard_CString PName() const { return "PBRep_PolygonOnClosedSurface"; }
+    const char* PName() const override { return "PBRep_PolygonOnClosedSurface"; }
 
-    virtual Handle(BRep_CurveRepresentation) import() const;
+    occ::handle<BRep_CurveRepresentation> import() const override;
 
   private:
     Handle(ShapePersistent_Poly::Polygon2D) myPolygon2;
@@ -349,19 +354,19 @@ public:
     {
     }
 
-    virtual void Read(StdObjMgt_ReadData& theReadData);
-    virtual void Write(StdObjMgt_WriteData& theWriteData) const;
-    virtual void PChildren(StdObjMgt_Persistent::SequenceOfPersistent& theChildren) const;
+    void Read(StdObjMgt_ReadData& theReadData) override;
+    void Write(StdObjMgt_WriteData& theWriteData) const override;
+    void PChildren(StdObjMgt_Persistent::SequenceOfPersistent& theChildren) const override;
 
-    virtual Standard_CString PName() const { return "PBRep_CurveOn2Surfaces"; }
+    const char* PName() const override { return "PBRep_CurveOn2Surfaces"; }
 
-    virtual Handle(BRep_CurveRepresentation) import() const;
+    occ::handle<BRep_CurveRepresentation> import() const override;
 
   private:
     Handle(ShapePersistent_Geom::Surface) mySurface;
     Handle(ShapePersistent_Geom::Surface) mySurface2;
     StdObject_Location                    myLocation2;
-    Standard_Integer                      myContinuity;
+    int                                   myContinuity;
   };
 
 private:
@@ -393,15 +398,15 @@ private:
       theChildren.Append(myPoints);
     }
 
-    inline Standard_CString PName() const { return "PBRep_TVertex"; }
+    inline const char* PName() const { return "PBRep_TVertex"; }
 
   private:
-    virtual Handle(TopoDS_TShape) createTShape() const;
+    occ::handle<TopoDS_TShape> createTShape() const override;
 
   private:
-    Standard_Real               myTolerance;
-    gp_Pnt                      myPnt;
-    Handle(PointRepresentation) myPoints;
+    double                           myTolerance;
+    gp_Pnt                           myPnt;
+    occ::handle<PointRepresentation> myPoints;
   };
 
   class pTEdge : public pTBase
@@ -433,15 +438,15 @@ private:
       theChildren.Append(myCurves);
     }
 
-    inline Standard_CString PName() const { return "PBRep_TEdge"; }
+    inline const char* PName() const { return "PBRep_TEdge"; }
 
   private:
-    virtual Handle(TopoDS_TShape) createTShape() const;
+    occ::handle<TopoDS_TShape> createTShape() const override;
 
   private:
-    Standard_Real               myTolerance;
-    Standard_Integer            myFlags;
-    Handle(CurveRepresentation) myCurves;
+    double                           myTolerance;
+    int                              myFlags;
+    occ::handle<CurveRepresentation> myCurves;
   };
 
   class pTFace : public pTBase
@@ -451,7 +456,7 @@ private:
   public:
     pTFace()
         : myTolerance(0.0),
-          myNaturalRestriction(Standard_False)
+          myNaturalRestriction(false)
     {
     }
 
@@ -477,17 +482,17 @@ private:
       myLocation.PChildren(theChildren);
     }
 
-    inline Standard_CString PName() const { return "PBRep_TFace"; }
+    inline const char* PName() const { return "PBRep_TFace"; }
 
   private:
-    virtual Handle(TopoDS_TShape) createTShape() const;
+    occ::handle<TopoDS_TShape> createTShape() const override;
 
   private:
     Handle(ShapePersistent_Geom::Surface)       mySurface;
     Handle(ShapePersistent_Poly::Triangulation) myTriangulation;
     StdObject_Location                          myLocation;
-    Standard_Real                               myTolerance;
-    Standard_Boolean                            myNaturalRestriction;
+    double                                      myTolerance;
+    bool                                        myNaturalRestriction;
   };
 
 public:
@@ -502,97 +507,115 @@ public:
 public:
   //! Create a persistent object for a vertex
   Standard_EXPORT static Handle(TVertex::pTObjectT) Translate(
-    const TopoDS_Vertex&              theVertex,
-    StdObjMgt_TransientPersistentMap& theMap);
+    const TopoDS_Vertex& theVertex,
+    NCollection_DataMap<occ::handle<Standard_Transient>, occ::handle<StdObjMgt_Persistent>>&
+      theMap);
   //! Create a persistent object for an edge
   Standard_EXPORT static Handle(TEdge::pTObjectT) Translate(
-    const TopoDS_Edge&                theEdge,
-    StdObjMgt_TransientPersistentMap& theMap,
-    ShapePersistent_TriangleMode      theTriangleMode);
+    const TopoDS_Edge& theEdge,
+    NCollection_DataMap<occ::handle<Standard_Transient>, occ::handle<StdObjMgt_Persistent>>& theMap,
+    ShapePersistent_TriangleMode theTriangleMode);
   //! Create a persistent object for a face
   Standard_EXPORT static Handle(TFace::pTObjectT) Translate(
-    const TopoDS_Face&                theFace,
-    StdObjMgt_TransientPersistentMap& theMap,
-    ShapePersistent_TriangleMode      theTriangleMode);
+    const TopoDS_Face& theFace,
+    NCollection_DataMap<occ::handle<Standard_Transient>, occ::handle<StdObjMgt_Persistent>>& theMap,
+    ShapePersistent_TriangleMode theTriangleMode);
   //! Create a persistent object for a point on a 3D curve
-  Standard_EXPORT static Handle(PointOnCurve) Translate(Standard_Real                     theParam,
-                                                        const Handle(Geom_Curve)&         theCurve,
-                                                        const TopLoc_Location&            theLoc,
-                                                        StdObjMgt_TransientPersistentMap& theMap);
+  Standard_EXPORT static occ::handle<PointOnCurve> Translate(
+    double                         theParam,
+    const occ::handle<Geom_Curve>& theCurve,
+    const TopLoc_Location&         theLoc,
+    NCollection_DataMap<occ::handle<Standard_Transient>, occ::handle<StdObjMgt_Persistent>>&
+      theMap);
   //! Create a persistent object for a point on a 3D curve on a surface
-  Standard_EXPORT static Handle(PointOnCurveOnSurface) Translate(
-    Standard_Real                     theParam,
-    const Handle(Geom2d_Curve)&       theCurve,
-    const Handle(Geom_Surface)&       theSurf,
-    const TopLoc_Location&            theLoc,
-    StdObjMgt_TransientPersistentMap& theMap);
+  Standard_EXPORT static occ::handle<PointOnCurveOnSurface> Translate(
+    double                           theParam,
+    const occ::handle<Geom2d_Curve>& theCurve,
+    const occ::handle<Geom_Surface>& theSurf,
+    const TopLoc_Location&           theLoc,
+    NCollection_DataMap<occ::handle<Standard_Transient>, occ::handle<StdObjMgt_Persistent>>&
+      theMap);
   //! Create a persistent object for a point on a surface
-  Standard_EXPORT static Handle(PointOnSurface) Translate(Standard_Real               theParam,
-                                                          Standard_Real               theParam2,
-                                                          const Handle(Geom_Surface)& theSurf,
-                                                          const TopLoc_Location&      theLoc,
-                                                          StdObjMgt_TransientPersistentMap& theMap);
+  Standard_EXPORT static occ::handle<PointOnSurface> Translate(
+    double                           theParam,
+    double                           theParam2,
+    const occ::handle<Geom_Surface>& theSurf,
+    const TopLoc_Location&           theLoc,
+    NCollection_DataMap<occ::handle<Standard_Transient>, occ::handle<StdObjMgt_Persistent>>&
+      theMap);
   //! Create a persistent object for a curve on a surface
-  Standard_EXPORT static Handle(CurveOnSurface) Translate(const Handle(Geom2d_Curve)& theCurve,
-                                                          const Standard_Real         theFirstParam,
-                                                          const Standard_Real         theLastParam,
-                                                          const Handle(Geom_Surface)& theSurf,
-                                                          const TopLoc_Location&      theLoc,
-                                                          StdObjMgt_TransientPersistentMap& theMap);
+  Standard_EXPORT static occ::handle<CurveOnSurface> Translate(
+    const occ::handle<Geom2d_Curve>& theCurve,
+    const double                     theFirstParam,
+    const double                     theLastParam,
+    const occ::handle<Geom_Surface>& theSurf,
+    const TopLoc_Location&           theLoc,
+    NCollection_DataMap<occ::handle<Standard_Transient>, occ::handle<StdObjMgt_Persistent>>&
+      theMap);
   //! Create a persistent object for a curve on a closed surface
-  Standard_EXPORT static Handle(CurveOnClosedSurface) Translate(
-    const Handle(Geom2d_Curve)&       theCurve,
-    const Handle(Geom2d_Curve)&       theCurve2,
-    const Standard_Real               theFirstParam,
-    const Standard_Real               theLastParam,
-    const Handle(Geom_Surface)&       theSurf,
-    const TopLoc_Location&            theLoc,
-    const GeomAbs_Shape               theContinuity,
-    StdObjMgt_TransientPersistentMap& theMap);
+  Standard_EXPORT static occ::handle<CurveOnClosedSurface> Translate(
+    const occ::handle<Geom2d_Curve>& theCurve,
+    const occ::handle<Geom2d_Curve>& theCurve2,
+    const double                     theFirstParam,
+    const double                     theLastParam,
+    const occ::handle<Geom_Surface>& theSurf,
+    const TopLoc_Location&           theLoc,
+    const GeomAbs_Shape              theContinuity,
+    NCollection_DataMap<occ::handle<Standard_Transient>, occ::handle<StdObjMgt_Persistent>>&
+      theMap);
   //! Create a persistent object for a curve on two surfaces
-  Standard_EXPORT static Handle(CurveOn2Surfaces) Translate(
-    const Handle(Geom_Surface)&       theSurf,
-    const Handle(Geom_Surface)&       theSurf2,
-    const TopLoc_Location&            theLoc,
-    const TopLoc_Location&            theLoc2,
-    const GeomAbs_Shape               theContinuity,
-    StdObjMgt_TransientPersistentMap& theMap);
+  Standard_EXPORT static occ::handle<CurveOn2Surfaces> Translate(
+    const occ::handle<Geom_Surface>& theSurf,
+    const occ::handle<Geom_Surface>& theSurf2,
+    const TopLoc_Location&           theLoc,
+    const TopLoc_Location&           theLoc2,
+    const GeomAbs_Shape              theContinuity,
+    NCollection_DataMap<occ::handle<Standard_Transient>, occ::handle<StdObjMgt_Persistent>>&
+      theMap);
   //! Create a persistent object for a 3D curve
-  Standard_EXPORT static Handle(Curve3D) Translate(const Handle(Geom_Curve)&         theCurve,
-                                                   const Standard_Real               theFirstParam,
-                                                   const Standard_Real               theLastParam,
-                                                   const TopLoc_Location&            theLoc,
-                                                   StdObjMgt_TransientPersistentMap& theMap);
+  Standard_EXPORT static occ::handle<Curve3D> Translate(
+    const occ::handle<Geom_Curve>& theCurve,
+    const double                   theFirstParam,
+    const double                   theLastParam,
+    const TopLoc_Location&         theLoc,
+    NCollection_DataMap<occ::handle<Standard_Transient>, occ::handle<StdObjMgt_Persistent>>&
+      theMap);
   //! Create a persistent object for a 3D polygon
-  Standard_EXPORT static Handle(Polygon3D) Translate(const Handle(Poly_Polygon3D)&     thePoly,
-                                                     const TopLoc_Location&            theLoc,
-                                                     StdObjMgt_TransientPersistentMap& theMap);
+  Standard_EXPORT static occ::handle<Polygon3D> Translate(
+    const occ::handle<Poly_Polygon3D>& thePoly,
+    const TopLoc_Location&             theLoc,
+    NCollection_DataMap<occ::handle<Standard_Transient>, occ::handle<StdObjMgt_Persistent>>&
+      theMap);
   //! Create a persistent object for a polygon on a closed surface
-  Standard_EXPORT static Handle(PolygonOnClosedSurface) Translate(
-    const Handle(Poly_Polygon2D)&     thePoly,
-    const Handle(Poly_Polygon2D)&     thePoly2,
-    const Handle(Geom_Surface)&       theSurf,
-    const TopLoc_Location&            theLoc,
-    StdObjMgt_TransientPersistentMap& theMap);
+  Standard_EXPORT static occ::handle<PolygonOnClosedSurface> Translate(
+    const occ::handle<Poly_Polygon2D>& thePoly,
+    const occ::handle<Poly_Polygon2D>& thePoly2,
+    const occ::handle<Geom_Surface>&   theSurf,
+    const TopLoc_Location&             theLoc,
+    NCollection_DataMap<occ::handle<Standard_Transient>, occ::handle<StdObjMgt_Persistent>>&
+      theMap);
   //! Create a persistent object for a polygon on a surface
-  Standard_EXPORT static Handle(PolygonOnSurface) Translate(
-    const Handle(Poly_Polygon2D)&     thePoly,
-    const Handle(Geom_Surface)&       theSurf,
-    const TopLoc_Location&            theLoc,
-    StdObjMgt_TransientPersistentMap& theMap);
+  Standard_EXPORT static occ::handle<PolygonOnSurface> Translate(
+    const occ::handle<Poly_Polygon2D>& thePoly,
+    const occ::handle<Geom_Surface>&   theSurf,
+    const TopLoc_Location&             theLoc,
+    NCollection_DataMap<occ::handle<Standard_Transient>, occ::handle<StdObjMgt_Persistent>>&
+      theMap);
   //! Create a persistent object for a polygon on a surface
-  Standard_EXPORT static Handle(PolygonOnClosedTriangulation) Translate(
-    const Handle(Poly_PolygonOnTriangulation)& thePolyOnTriang,
-    const Handle(Poly_PolygonOnTriangulation)& thePolyOnTriang2,
-    const Handle(Poly_Triangulation)&          thePolyTriang,
-    const TopLoc_Location&                     theLoc,
-    StdObjMgt_TransientPersistentMap&          theMap);
+  Standard_EXPORT static occ::handle<PolygonOnClosedTriangulation> Translate(
+    const occ::handle<Poly_PolygonOnTriangulation>& thePolyOnTriang,
+    const occ::handle<Poly_PolygonOnTriangulation>& thePolyOnTriang2,
+    const occ::handle<Poly_Triangulation>&          thePolyTriang,
+    const TopLoc_Location&                          theLoc,
+    NCollection_DataMap<occ::handle<Standard_Transient>, occ::handle<StdObjMgt_Persistent>>&
+      theMap);
   //! Create a persistent object for a polygon on a surface
-  Standard_EXPORT static Handle(PolygonOnTriangulation) Translate(
-    const Handle(Poly_PolygonOnTriangulation)& thePolyOnTriang,
-    const Handle(Poly_Triangulation)&          thePolyTriang,
-    const TopLoc_Location&                     theLoc,
-    StdObjMgt_TransientPersistentMap&          theMap);
+  Standard_EXPORT static occ::handle<PolygonOnTriangulation> Translate(
+    const occ::handle<Poly_PolygonOnTriangulation>& thePolyOnTriang,
+    const occ::handle<Poly_Triangulation>&          thePolyTriang,
+    const TopLoc_Location&                          theLoc,
+    NCollection_DataMap<occ::handle<Standard_Transient>, occ::handle<StdObjMgt_Persistent>>&
+      theMap);
 };
 
 #endif

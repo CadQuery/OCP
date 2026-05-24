@@ -57,9 +57,10 @@ public:
 
   //! Creates an object corresponding to the reference
   //! coordinate system (OXYZ).
-  gp_Ax2()
-      : vydir(0., 1., 0.)
-  // vxdir(1.,0.,0.) use default ctor of gp_Dir, as it creates the same dir(1,0,0)
+  constexpr gp_Ax2() noexcept
+      : vydir(gp_Dir::D::Y),
+        vxdir(gp_Dir::D::X)
+  // axis uses default ctor which creates Z axis at origin
   {
   }
 
@@ -78,10 +79,37 @@ public:
     vydir.Cross(vxdir);
   }
 
-  //! Creates -   a coordinate system with an origin P, where V
+  //! Creates an axis placement with standard directions.
+  constexpr gp_Ax2(const gp_Pnt& theP, const gp_Dir::D theN, const gp_Dir::D theVx) noexcept
+      : axis(theP, theN),
+        vydir(crossStandardDir(theN, theVx)), // Y = Z x X (right-handed)
+        vxdir(theVx)
+  {
+    // Note: For standard directions, cross product is computed at compile time
+    // This constructor assumes theN and theVx are orthogonal standard directions
+  }
+
+  //! Creates a coordinate system with an origin P, where V
   //! gives the "main Direction" (here, "X Direction" and "Y
   //! Direction" are defined automatically).
   Standard_EXPORT gp_Ax2(const gp_Pnt& P, const gp_Dir& V);
+
+  //! Creates a coordinate system with an origin P and standard main direction.
+  constexpr gp_Ax2(const gp_Pnt& theP, const gp_Dir::D theV) noexcept
+      : axis(theP, theV),
+        vydir(getPerpendicularYDir(theV)),
+        vxdir(getPerpendicularXDir(theV))
+  {
+  }
+
+  //! Creates a coordinate system at the origin with the given standard main direction.
+  //! Replaces gp::XOY(), gp::YOZ(), gp::ZOX() static functions.
+  constexpr explicit gp_Ax2(const gp_Dir::D theV) noexcept
+      : axis(gp_Pnt(0., 0., 0.), theV),
+        vydir(getPerpendicularYDir(theV)),
+        vxdir(getPerpendicularXDir(theV))
+  {
+  }
 
   //! Assigns the origin and "main Direction" of the axis A1 to
   //! this coordinate system, then recomputes its "X Direction" and "Y Direction".
@@ -103,7 +131,7 @@ public:
   void SetDirection(const gp_Dir& V);
 
   //! Changes the "Location" point (origin) of <me>.
-  void SetLocation(const gp_Pnt& theP) { axis.SetLocation(theP); }
+  constexpr void SetLocation(const gp_Pnt& theP) noexcept { axis.SetLocation(theP); }
 
   //! Changes the "Xdirection" of <me>. The main direction
   //! "Direction" is not modified, the "Ydirection" is modified.
@@ -121,7 +149,7 @@ public:
   //! Changes the "Ydirection" of <me>. The main direction is not
   //! modified but the "Xdirection" is changed.
   //! If <Vy> is not normal to the main direction then "YDirection"
-  //! is computed as  follows
+  //! is computed as follows
   //! YDirection = Direction ^ (<Vy> ^ Direction).
   //! Exceptions
   //! Standard_ConstructionError if Vx or Vy is parallel to
@@ -135,36 +163,36 @@ public:
   //! Computes the angular value, in radians, between the main direction of
   //! <me> and the main direction of <theOther>. Returns the angle
   //! between 0 and PI in radians.
-  Standard_Real Angle(const gp_Ax2& theOther) const { return axis.Angle(theOther.axis); }
+  double Angle(const gp_Ax2& theOther) const { return axis.Angle(theOther.axis); }
 
   //! Returns the main axis of <me>. It is the "Location" point
   //! and the main "Direction".
-  const gp_Ax1& Axis() const { return axis; }
+  constexpr const gp_Ax1& Axis() const noexcept { return axis; }
 
   //! Returns the main direction of <me>.
-  const gp_Dir& Direction() const { return axis.Direction(); }
+  constexpr const gp_Dir& Direction() const noexcept { return axis.Direction(); }
 
   //! Returns the "Location" point (origin) of <me>.
-  const gp_Pnt& Location() const { return axis.Location(); }
+  constexpr const gp_Pnt& Location() const noexcept { return axis.Location(); }
 
   //! Returns the "XDirection" of <me>.
-  const gp_Dir& XDirection() const { return vxdir; }
+  constexpr const gp_Dir& XDirection() const noexcept { return vxdir; }
 
   //! Returns the "YDirection" of <me>.
-  const gp_Dir& YDirection() const { return vydir; }
+  constexpr const gp_Dir& YDirection() const noexcept { return vydir; }
 
-  Standard_Boolean IsCoplanar(const gp_Ax2&       Other,
-                              const Standard_Real LinearTolerance,
-                              const Standard_Real AngularTolerance) const;
+  bool IsCoplanar(const gp_Ax2& Other,
+                  const double  LinearTolerance,
+                  const double  AngularTolerance) const;
 
-  //! Returns True if
+  //! Returns True if:
   //! . the distance between <me> and the "Location" point of A1
   //! is lower of equal to LinearTolerance and
   //! . the main direction of <me> and the direction of A1 are normal.
   //! Note: the tolerance criterion for angular equality is given by AngularTolerance.
-  Standard_Boolean IsCoplanar(const gp_Ax1&       A1,
-                              const Standard_Real LinearTolerance,
-                              const Standard_Real AngularTolerance) const;
+  bool IsCoplanar(const gp_Ax1& A1,
+                  const double  LinearTolerance,
+                  const double  AngularTolerance) const;
 
   //! Performs a symmetrical transformation of this coordinate
   //! system with respect to:
@@ -178,10 +206,10 @@ public:
   //! -   the transformation is applied to the "X Direction"
   //! and the "Y Direction", then
   //! -   the "main Direction" is recomputed as the cross
-  //! product "X Direction" ^ "Y   Direction".
+  //! product "X Direction" ^ "Y Direction".
   //! This maintains the right-handed property of the
   //! coordinate system.
-  Standard_EXPORT void Mirror(const gp_Pnt& P);
+  Standard_EXPORT void Mirror(const gp_Pnt& P) noexcept;
 
   //! Performs a symmetrical transformation of this coordinate
   //! system with respect to:
@@ -195,14 +223,14 @@ public:
   //! -   the transformation is applied to the "X Direction"
   //! and the "Y Direction", then
   //! -   the "main Direction" is recomputed as the cross
-  //! product "X Direction" ^ "Y   Direction".
+  //! product "X Direction" ^ "Y Direction".
   //! This maintains the right-handed property of the
   //! coordinate system.
-  Standard_NODISCARD Standard_EXPORT gp_Ax2 Mirrored(const gp_Pnt& P) const;
+  [[nodiscard]] Standard_EXPORT gp_Ax2 Mirrored(const gp_Pnt& P) const noexcept;
 
   //! Performs a symmetrical transformation of this coordinate
   //! system with respect to:
-  //! -   the axis A1, and assigns the result to this coordinate systeme.
+  //! -   the axis A1, and assigns the result to this coordinate system.
   //! Warning
   //! This transformation is always performed on the origin.
   //! In case of a reflection with respect to a point:
@@ -212,14 +240,14 @@ public:
   //! -   the transformation is applied to the "X Direction"
   //! and the "Y Direction", then
   //! -   the "main Direction" is recomputed as the cross
-  //! product "X Direction" ^ "Y   Direction".
+  //! product "X Direction" ^ "Y Direction".
   //! This maintains the right-handed property of the
   //! coordinate system.
   Standard_EXPORT void Mirror(const gp_Ax1& A1);
 
   //! Performs a symmetrical transformation of this coordinate
   //! system with respect to:
-  //! -   the axis A1, and  creates a new one.
+  //! -   the axis A1, and creates a new one.
   //! Warning
   //! This transformation is always performed on the origin.
   //! In case of a reflection with respect to a point:
@@ -229,15 +257,15 @@ public:
   //! -   the transformation is applied to the "X Direction"
   //! and the "Y Direction", then
   //! -   the "main Direction" is recomputed as the cross
-  //! product "X Direction" ^ "Y   Direction".
+  //! product "X Direction" ^ "Y Direction".
   //! This maintains the right-handed property of the
   //! coordinate system.
-  Standard_NODISCARD Standard_EXPORT gp_Ax2 Mirrored(const gp_Ax1& A1) const;
+  [[nodiscard]] Standard_EXPORT gp_Ax2 Mirrored(const gp_Ax1& A1) const;
 
   //! Performs a symmetrical transformation of this coordinate
   //! system with respect to:
   //! -   the plane defined by the origin, "X Direction" and "Y
-  //! Direction" of coordinate system A2 and  assigns the result to this coordinate systeme.
+  //! Direction" of coordinate system A2 and assigns the result to this coordinate system.
   //! Warning
   //! This transformation is always performed on the origin.
   //! In case of a reflection with respect to a point:
@@ -247,7 +275,7 @@ public:
   //! -   the transformation is applied to the "X Direction"
   //! and the "Y Direction", then
   //! -   the "main Direction" is recomputed as the cross
-  //! product "X Direction" ^ "Y   Direction".
+  //! product "X Direction" ^ "Y Direction".
   //! This maintains the right-handed property of the
   //! coordinate system.
   Standard_EXPORT void Mirror(const gp_Ax2& A2);
@@ -265,12 +293,12 @@ public:
   //! -   the transformation is applied to the "X Direction"
   //! and the "Y Direction", then
   //! -   the "main Direction" is recomputed as the cross
-  //! product "X Direction" ^ "Y   Direction".
+  //! product "X Direction" ^ "Y Direction".
   //! This maintains the right-handed property of the
   //! coordinate system.
-  Standard_NODISCARD Standard_EXPORT gp_Ax2 Mirrored(const gp_Ax2& A2) const;
+  [[nodiscard]] Standard_EXPORT gp_Ax2 Mirrored(const gp_Ax2& A2) const;
 
-  void Rotate(const gp_Ax1& theA1, const Standard_Real theAng)
+  void Rotate(const gp_Ax1& theA1, const double theAng)
   {
     gp_Pnt aTemp = axis.Location();
     aTemp.Rotate(theA1, theAng);
@@ -282,14 +310,14 @@ public:
 
   //! Rotates an axis placement. <theA1> is the axis of the rotation.
   //! theAng is the angular value of the rotation in radians.
-  Standard_NODISCARD gp_Ax2 Rotated(const gp_Ax1& theA1, const Standard_Real theAng) const
+  [[nodiscard]] gp_Ax2 Rotated(const gp_Ax1& theA1, const double theAng) const
   {
     gp_Ax2 aTemp = *this;
     aTemp.Rotate(theA1, theAng);
     return aTemp;
   }
 
-  void Scale(const gp_Pnt& theP, const Standard_Real theS)
+  constexpr void Scale(const gp_Pnt& theP, const double theS) noexcept
   {
     gp_Pnt aTemp = axis.Location();
     aTemp.Scale(theP, theS);
@@ -303,12 +331,12 @@ public:
 
   //! Applies a scaling transformation on the axis placement.
   //! The "Location" point of the axisplacement is modified.
-  //! Warnings :
-  //! If the scale <S> is negative :
+  //! Warnings:
+  //! If the scale <S> is negative:
   //! . the main direction of the axis placement is not changed.
   //! . The "XDirection" and the "YDirection" are reversed.
   //! So the axis placement stay right handed.
-  Standard_NODISCARD gp_Ax2 Scaled(const gp_Pnt& theP, const Standard_Real theS) const
+  [[nodiscard]] constexpr gp_Ax2 Scaled(const gp_Pnt& theP, const double theS) const noexcept
   {
     gp_Ax2 aTemp = *this;
     aTemp.Scale(theP, theS);
@@ -329,28 +357,31 @@ public:
   //! The "Location" point, the "XDirection" and the "YDirection" are transformed with theT.
   //! The resulting main "Direction" of <me> is the cross product between
   //! the "XDirection" and the "YDirection" after transformation.
-  Standard_NODISCARD gp_Ax2 Transformed(const gp_Trsf& theT) const
+  [[nodiscard]] gp_Ax2 Transformed(const gp_Trsf& theT) const
   {
     gp_Ax2 aTemp = *this;
     aTemp.Transform(theT);
     return aTemp;
   }
 
-  void Translate(const gp_Vec& theV) { axis.Translate(theV); }
+  constexpr void Translate(const gp_Vec& theV) noexcept { axis.Translate(theV); }
 
   //! Translates an axis plaxement in the direction of the vector <theV>.
   //! The magnitude of the translation is the vector's magnitude.
-  Standard_NODISCARD gp_Ax2 Translated(const gp_Vec& theV) const
+  [[nodiscard]] constexpr gp_Ax2 Translated(const gp_Vec& theV) const noexcept
   {
     gp_Ax2 aTemp = *this;
     aTemp.Translate(theV);
     return aTemp;
   }
 
-  void Translate(const gp_Pnt& theP1, const gp_Pnt& theP2) { axis.Translate(theP1, theP2); }
+  constexpr void Translate(const gp_Pnt& theP1, const gp_Pnt& theP2) noexcept
+  {
+    axis.Translate(theP1, theP2);
+  }
 
   //! Translates an axis placement from the point <theP1> to the point <theP2>.
-  Standard_NODISCARD gp_Ax2 Translated(const gp_Pnt& theP1, const gp_Pnt& theP2) const
+  [[nodiscard]] constexpr gp_Ax2 Translated(const gp_Pnt& theP1, const gp_Pnt& theP2) const noexcept
   {
     gp_Ax2 aTemp = *this;
     aTemp.Translate(theP1, theP2);
@@ -358,11 +389,20 @@ public:
   }
 
   //! Dumps the content of me into the stream
-  Standard_EXPORT void DumpJson(Standard_OStream& theOStream, Standard_Integer theDepth = -1) const;
+  Standard_EXPORT void DumpJson(Standard_OStream& theOStream, int theDepth = -1) const;
 
   //! Inits the content of me from the stream
-  Standard_EXPORT Standard_Boolean InitFromJson(const Standard_SStream& theSStream,
-                                                Standard_Integer&       theStreamPos);
+  Standard_EXPORT bool InitFromJson(const Standard_SStream& theSStream, int& theStreamPos);
+
+protected:
+  //! Helper to compute perpendicular X direction for standard main directions
+  static constexpr gp_Dir::D getPerpendicularXDir(const gp_Dir::D theMainDir) noexcept;
+
+  //! Helper to compute Y direction (main x X) for standard directions
+  static constexpr gp_Dir::D getPerpendicularYDir(const gp_Dir::D theMainDir) noexcept;
+
+  //! Helper to compute cross product of two standard directions (right-handed: A x B)
+  static constexpr gp_Dir::D crossStandardDir(const gp_Dir::D theA, const gp_Dir::D theB) noexcept;
 
 private:
   gp_Ax1 axis;
@@ -370,14 +410,118 @@ private:
   gp_Dir vxdir;
 };
 
-// =======================================================================
-// function : SetAxis
-// purpose  :
-// =======================================================================
+//=================================================================================================
+
+inline constexpr gp_Dir::D gp_Ax2::getPerpendicularXDir(const gp_Dir::D theMainDir) noexcept
+{
+  return (theMainDir == gp_Dir::D::X || theMainDir == gp_Dir::D::NX)   ? gp_Dir::D::Y
+         : (theMainDir == gp_Dir::D::Y || theMainDir == gp_Dir::D::NY) ? gp_Dir::D::Z
+                                                                       : gp_Dir::D::X;
+}
+
+//=================================================================================================
+
+inline constexpr gp_Dir::D gp_Ax2::getPerpendicularYDir(const gp_Dir::D theMainDir) noexcept
+{
+  return (theMainDir == gp_Dir::D::Z)    ? gp_Dir::D::Y
+         : (theMainDir == gp_Dir::D::NZ) ? gp_Dir::D::NY
+         : (theMainDir == gp_Dir::D::X)  ? gp_Dir::D::Z
+         : (theMainDir == gp_Dir::D::NX) ? gp_Dir::D::NZ
+         : (theMainDir == gp_Dir::D::Y)  ? gp_Dir::D::X
+                                         : gp_Dir::D::NX; // NY case
+}
+
+//=================================================================================================
+
+inline constexpr gp_Dir::D gp_Ax2::crossStandardDir(const gp_Dir::D theA,
+                                                    const gp_Dir::D theB) noexcept
+{
+  // Handle positive directions first
+  if (theA == gp_Dir::D::X)
+  {
+    if (theB == gp_Dir::D::Y)
+      return gp_Dir::D::Z;
+    if (theB == gp_Dir::D::Z)
+      return gp_Dir::D::NY;
+    if (theB == gp_Dir::D::NY)
+      return gp_Dir::D::NZ;
+    if (theB == gp_Dir::D::NZ)
+      return gp_Dir::D::Y;
+    // X x X = 0, X x NX = 0 (parallel, should not happen)
+    return gp_Dir::D::Z; // fallback
+  }
+  if (theA == gp_Dir::D::Y)
+  {
+    if (theB == gp_Dir::D::Z)
+      return gp_Dir::D::X;
+    if (theB == gp_Dir::D::X)
+      return gp_Dir::D::NZ;
+    if (theB == gp_Dir::D::NX)
+      return gp_Dir::D::Z;
+    if (theB == gp_Dir::D::NZ)
+      return gp_Dir::D::NX;
+    // Y x Y = 0, Y x NY = 0 (parallel, should not happen)
+    return gp_Dir::D::X; // fallback
+  }
+  if (theA == gp_Dir::D::Z)
+  {
+    if (theB == gp_Dir::D::X)
+      return gp_Dir::D::Y;
+    if (theB == gp_Dir::D::Y)
+      return gp_Dir::D::NX;
+    if (theB == gp_Dir::D::NX)
+      return gp_Dir::D::NY;
+    if (theB == gp_Dir::D::NY)
+      return gp_Dir::D::X;
+    // Z x Z = 0, Z x NZ = 0 (parallel, should not happen)
+    return gp_Dir::D::Y; // fallback
+  }
+  // Handle negative directions: -A x B = -(A x B)
+  if (theA == gp_Dir::D::NX)
+  {
+    if (theB == gp_Dir::D::Y)
+      return gp_Dir::D::NZ;
+    if (theB == gp_Dir::D::Z)
+      return gp_Dir::D::Y;
+    if (theB == gp_Dir::D::NY)
+      return gp_Dir::D::Z;
+    if (theB == gp_Dir::D::NZ)
+      return gp_Dir::D::NY;
+    return gp_Dir::D::NZ; // fallback
+  }
+  if (theA == gp_Dir::D::NY)
+  {
+    if (theB == gp_Dir::D::Z)
+      return gp_Dir::D::NX;
+    if (theB == gp_Dir::D::X)
+      return gp_Dir::D::Z;
+    if (theB == gp_Dir::D::NX)
+      return gp_Dir::D::NZ;
+    if (theB == gp_Dir::D::NZ)
+      return gp_Dir::D::X;
+    return gp_Dir::D::NX; // fallback
+  }
+  if (theA == gp_Dir::D::NZ)
+  {
+    if (theB == gp_Dir::D::X)
+      return gp_Dir::D::NY;
+    if (theB == gp_Dir::D::Y)
+      return gp_Dir::D::X;
+    if (theB == gp_Dir::D::NX)
+      return gp_Dir::D::Y;
+    if (theB == gp_Dir::D::NY)
+      return gp_Dir::D::NX;
+    return gp_Dir::D::NY; // fallback
+  }
+  return gp_Dir::D::Z; // fallback
+}
+
+//=================================================================================================
+
 inline void gp_Ax2::SetAxis(const gp_Ax1& theA1)
 {
-  Standard_Real a = theA1.Direction() * vxdir;
-  if (Abs(Abs(a) - 1.) <= Precision::Angular())
+  double a = theA1.Direction() * vxdir;
+  if (std::abs(std::abs(a) - 1.) <= Precision::Angular())
   {
     if (a > 0.)
     {
@@ -399,14 +543,12 @@ inline void gp_Ax2::SetAxis(const gp_Ax1& theA1)
   }
 }
 
-// =======================================================================
-// function : SetDirection
-// purpose  :
-// =======================================================================
+//=================================================================================================
+
 inline void gp_Ax2::SetDirection(const gp_Dir& theV)
 {
-  Standard_Real a = theV * vxdir;
-  if (Abs(Abs(a) - 1.) <= Precision::Angular())
+  double a = theV * vxdir;
+  if (std::abs(std::abs(a) - 1.) <= Precision::Angular())
   {
     if (a > 0.)
     {
@@ -428,18 +570,16 @@ inline void gp_Ax2::SetDirection(const gp_Dir& theV)
   }
 }
 
-// =======================================================================
-// function : IsCoplanar
-// purpose  :
-// =======================================================================
-inline Standard_Boolean gp_Ax2::IsCoplanar(const gp_Ax2&       theOther,
-                                           const Standard_Real theLinearTolerance,
-                                           const Standard_Real theAngularTolerance) const
+//=================================================================================================
+
+inline bool gp_Ax2::IsCoplanar(const gp_Ax2& theOther,
+                               const double  theLinearTolerance,
+                               const double  theAngularTolerance) const
 {
   const gp_Dir& DD = axis.Direction();
   const gp_Pnt& PP = axis.Location();
   const gp_Pnt& OP = theOther.axis.Location();
-  Standard_Real D1 =
+  double        D1 =
     (DD.X() * (OP.X() - PP.X()) + DD.Y() * (OP.Y() - PP.Y()) + DD.Z() * (OP.Z() - PP.Z()));
   if (D1 < 0)
   {
@@ -448,18 +588,16 @@ inline Standard_Boolean gp_Ax2::IsCoplanar(const gp_Ax2&       theOther,
   return D1 <= theLinearTolerance && axis.IsParallel(theOther.axis, theAngularTolerance);
 }
 
-// =======================================================================
-// function : IsCoplanar
-// purpose  :
-// =======================================================================
-inline Standard_Boolean gp_Ax2::IsCoplanar(const gp_Ax1&       theA,
-                                           const Standard_Real theLinearTolerance,
-                                           const Standard_Real theAngularTolerance) const
+//=================================================================================================
+
+inline bool gp_Ax2::IsCoplanar(const gp_Ax1& theA,
+                               const double  theLinearTolerance,
+                               const double  theAngularTolerance) const
 {
   const gp_Dir& DD = axis.Direction();
   const gp_Pnt& PP = axis.Location();
   const gp_Pnt& AP = theA.Location();
-  Standard_Real D1 =
+  double        D1 =
     (DD.X() * (AP.X() - PP.X()) + DD.Y() * (AP.Y() - PP.Y()) + DD.Z() * (AP.Z() - PP.Z()));
   if (D1 < 0)
   {

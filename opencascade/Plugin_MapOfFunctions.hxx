@@ -1,7 +1,4 @@
-// Created on: 1997-02-28
-// Created by: Jean-Louis Frenkel
-// Copyright (c) 1997-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,15 +11,28 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef Plugin_MapOfFunctions_HeaderFile
-#define Plugin_MapOfFunctions_HeaderFile
+//! @file Plugin_MapOfFunctions.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection types directly instead.
 
+#ifndef _Plugin_MapOfFunctions_hxx
+#define _Plugin_MapOfFunctions_hxx
+
+#include <Standard_Macro.hxx>
 #include <OSD_Function.hxx>
 #include <TCollection_AsciiString.hxx>
 #include <NCollection_DataMap.hxx>
 
+Standard_HEADER_DEPRECATED(
+  "Plugin_MapOfFunctions.hxx is deprecated since OCCT 8.0.0. Use NCollection types directly.")
+
+  Standard_DEPRECATED("Plugin_MapOfFunctions is deprecated, use "
+                      "NCollection_DataMap<TCollection_AsciiString, OSD_Function> directly")
 typedef NCollection_DataMap<TCollection_AsciiString, OSD_Function> Plugin_MapOfFunctions;
+Standard_DEPRECATED("Plugin_DataMapIteratorOfMapOfFunctions is deprecated, use "
+                    "NCollection_DataMap<TCollection_AsciiString, OSD_Function>::Iterator directly")
 typedef NCollection_DataMap<TCollection_AsciiString, OSD_Function>::Iterator
   Plugin_DataMapIteratorOfMapOfFunctions;
 
-#endif
+#endif // _Plugin_MapOfFunctions_hxx

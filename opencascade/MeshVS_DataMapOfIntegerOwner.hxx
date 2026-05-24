@@ -1,6 +1,4 @@
-// Created on: 2003-10-10
-// Created by: Alexander SOLOVYOV
-// Copyright (c) 2003-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -13,16 +11,30 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef MeshVS_DataMapOfIntegerOwner_HeaderFile
-#define MeshVS_DataMapOfIntegerOwner_HeaderFile
+//! @file MeshVS_DataMapOfIntegerOwner.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection types directly instead.
 
+#ifndef _MeshVS_DataMapOfIntegerOwner_hxx
+#define _MeshVS_DataMapOfIntegerOwner_hxx
+
+#include <Standard_Macro.hxx>
 #include <Standard_Integer.hxx>
 #include <SelectMgr_EntityOwner.hxx>
 #include <NCollection_DataMap.hxx>
 
-typedef NCollection_DataMap<Standard_Integer, Handle(SelectMgr_EntityOwner)>
+Standard_HEADER_DEPRECATED("MeshVS_DataMapOfIntegerOwner.hxx is deprecated since OCCT 8.0.0. Use "
+                           "NCollection types directly.")
+
+  Standard_DEPRECATED("MeshVS_DataMapOfIntegerOwner is deprecated, use NCollection_DataMap<int, "
+                      "opencascade::handle<SelectMgr_EntityOwner>> directly")
+typedef NCollection_DataMap<int, opencascade::handle<SelectMgr_EntityOwner>>
   MeshVS_DataMapOfIntegerOwner;
-typedef NCollection_DataMap<Standard_Integer, Handle(SelectMgr_EntityOwner)>::Iterator
+Standard_DEPRECATED(
+  "MeshVS_DataMapIteratorOfDataMapOfIntegerOwner is deprecated, use NCollection_DataMap<int, "
+  "opencascade::handle<SelectMgr_EntityOwner>>::Iterator directly")
+typedef NCollection_DataMap<int, opencascade::handle<SelectMgr_EntityOwner>>::Iterator
   MeshVS_DataMapIteratorOfDataMapOfIntegerOwner;
 
-#endif
+#endif // _MeshVS_DataMapOfIntegerOwner_hxx

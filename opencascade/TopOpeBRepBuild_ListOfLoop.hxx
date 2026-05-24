@@ -1,7 +1,4 @@
-// Created on: 1993-06-17
-// Created by: Jean Yves LEBEY
-// Copyright (c) 1993-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,14 +11,28 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef TopOpeBRepBuild_ListOfLoop_HeaderFile
-#define TopOpeBRepBuild_ListOfLoop_HeaderFile
+//! @file TopOpeBRepBuild_ListOfLoop.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection types directly instead.
 
+#ifndef _TopOpeBRepBuild_ListOfLoop_hxx
+#define _TopOpeBRepBuild_ListOfLoop_hxx
+
+#include <Standard_Macro.hxx>
 #include <TopOpeBRepBuild_Loop.hxx>
 #include <NCollection_List.hxx>
 
-typedef NCollection_List<Handle(TopOpeBRepBuild_Loop)> TopOpeBRepBuild_ListOfLoop;
-typedef NCollection_List<Handle(TopOpeBRepBuild_Loop)>::Iterator
+Standard_HEADER_DEPRECATED(
+  "TopOpeBRepBuild_ListOfLoop.hxx is deprecated since OCCT 8.0.0. Use NCollection types directly.")
+
+  Standard_DEPRECATED("TopOpeBRepBuild_ListOfLoop is deprecated, use "
+                      "NCollection_List<opencascade::handle<TopOpeBRepBuild_Loop>> directly")
+typedef NCollection_List<opencascade::handle<TopOpeBRepBuild_Loop>> TopOpeBRepBuild_ListOfLoop;
+Standard_DEPRECATED(
+  "TopOpeBRepBuild_ListIteratorOfListOfLoop is deprecated, use "
+  "NCollection_List<opencascade::handle<TopOpeBRepBuild_Loop>>::Iterator directly")
+typedef NCollection_List<opencascade::handle<TopOpeBRepBuild_Loop>>::Iterator
   TopOpeBRepBuild_ListIteratorOfListOfLoop;
 
-#endif
+#endif // _TopOpeBRepBuild_ListOfLoop_hxx

@@ -17,13 +17,9 @@
 #ifndef _Expr_NotAssigned_HeaderFile
 #define _Expr_NotAssigned_HeaderFile
 
-#include <Standard_Type.hxx>
 #include <Standard_DefineException.hxx>
 #include <Standard_SStream.hxx>
 #include <Expr_ExprFailure.hxx>
-
-class Expr_NotAssigned;
-DEFINE_STANDARD_HANDLE(Expr_NotAssigned, Expr_ExprFailure)
 
 #if !defined No_Exception && !defined No_Expr_NotAssigned
   #define Expr_NotAssigned_Raise_if(CONDITION, MESSAGE)                                            \

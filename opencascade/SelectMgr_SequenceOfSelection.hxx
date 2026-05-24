@@ -1,6 +1,4 @@
-// Created on: 2015-02-13
-// Created by: Varvara POSKONINA
-// Copyright (c) 2005-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -13,12 +11,25 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _SelectMgr_SequenceOfSelection_HeaderFile
-#define _SelectMgr_SequenceOfSelection_HeaderFile
+//! @file SelectMgr_SequenceOfSelection.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection_Sequence<opencascade::handle<SelectMgr_Selection>> directly instead.
 
+#ifndef _SelectMgr_SequenceOfSelection_hxx
+#define _SelectMgr_SequenceOfSelection_hxx
+
+#include <Standard_Macro.hxx>
 #include <NCollection_Sequence.hxx>
 #include <SelectMgr_Selection.hxx>
 
-typedef NCollection_Sequence<Handle(SelectMgr_Selection)> SelectMgr_SequenceOfSelection;
+Standard_HEADER_DEPRECATED(
+  "SelectMgr_SequenceOfSelection.hxx is deprecated since OCCT 8.0.0. Use "
+  "NCollection_Sequence<opencascade::handle<SelectMgr_Selection>> directly.")
 
-#endif // _SelectMgr_SequenceOfSelection_HeaderFile
+  Standard_DEPRECATED("SelectMgr_SequenceOfSelection is deprecated, use "
+                      "NCollection_Sequence<opencascade::handle<SelectMgr_Selection>> directly")
+typedef NCollection_Sequence<opencascade::handle<SelectMgr_Selection>>
+  SelectMgr_SequenceOfSelection;
+
+#endif // _SelectMgr_SequenceOfSelection_hxx

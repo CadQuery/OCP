@@ -1,7 +1,4 @@
-// Created on: 1998-06-03
-// Created by: data exchange team
-// Copyright (c) 1998-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,12 +11,23 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef ShapeFix_SequenceOfWireSegment_HeaderFile
-#define ShapeFix_SequenceOfWireSegment_HeaderFile
+//! @file ShapeFix_SequenceOfWireSegment.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection_Sequence<ShapeFix_WireSegment> directly instead.
 
+#ifndef _ShapeFix_SequenceOfWireSegment_hxx
+#define _ShapeFix_SequenceOfWireSegment_hxx
+
+#include <Standard_Macro.hxx>
 #include <ShapeFix_WireSegment.hxx>
 #include <NCollection_Sequence.hxx>
 
+Standard_HEADER_DEPRECATED("ShapeFix_SequenceOfWireSegment.hxx is deprecated since OCCT 8.0.0. Use "
+                           "NCollection_Sequence<ShapeFix_WireSegment> directly.")
+
+  Standard_DEPRECATED("ShapeFix_SequenceOfWireSegment is deprecated, use "
+                      "NCollection_Sequence<ShapeFix_WireSegment> directly")
 typedef NCollection_Sequence<ShapeFix_WireSegment> ShapeFix_SequenceOfWireSegment;
 
-#endif
+#endif // _ShapeFix_SequenceOfWireSegment_hxx

@@ -1,6 +1,4 @@
-// Created by: DAUTRY Philippe
-// Copyright (c) 1997-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -13,13 +11,25 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef TDF_LabelList_HeaderFile
-#define TDF_LabelList_HeaderFile
+//! @file TDF_LabelList.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection types directly instead.
 
+#ifndef _TDF_LabelList_hxx
+#define _TDF_LabelList_hxx
+
+#include <Standard_Macro.hxx>
 #include <TDF_Label.hxx>
 #include <NCollection_List.hxx>
 
-typedef NCollection_List<TDF_Label>           TDF_LabelList;
+Standard_HEADER_DEPRECATED(
+  "TDF_LabelList.hxx is deprecated since OCCT 8.0.0. Use NCollection types directly.")
+
+  Standard_DEPRECATED("TDF_LabelList is deprecated, use NCollection_List<TDF_Label> directly")
+typedef NCollection_List<TDF_Label> TDF_LabelList;
+Standard_DEPRECATED(
+  "TDF_ListIteratorOfLabelList is deprecated, use NCollection_List<TDF_Label>::Iterator directly")
 typedef NCollection_List<TDF_Label>::Iterator TDF_ListIteratorOfLabelList;
 
-#endif
+#endif // _TDF_LabelList_hxx

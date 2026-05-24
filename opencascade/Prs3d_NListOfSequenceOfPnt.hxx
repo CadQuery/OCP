@@ -1,6 +1,4 @@
-// Created on: 2006-04-20
-// Created by: Sergey Kochetkov
-// Copyright (c) 2006-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -13,12 +11,23 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef Prs3d_NListOfSequenceOfPnt_HeaderFile
-#define Prs3d_NListOfSequenceOfPnt_HeaderFile
+//! @file Prs3d_NListOfSequenceOfPnt.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection_List<opencascade::handle<TColgp_HSequenceOfPnt>> directly instead.
 
+#ifndef _Prs3d_NListOfSequenceOfPnt_hxx
+#define _Prs3d_NListOfSequenceOfPnt_hxx
+
+#include <Standard_Macro.hxx>
 #include <TColgp_HSequenceOfPnt.hxx>
 #include <NCollection_List.hxx>
 
-typedef NCollection_List<Handle(TColgp_HSequenceOfPnt)> Prs3d_NListOfSequenceOfPnt;
+Standard_HEADER_DEPRECATED("Prs3d_NListOfSequenceOfPnt.hxx is deprecated since OCCT 8.0.0. Use "
+                           "NCollection_List<opencascade::handle<TColgp_HSequenceOfPnt>> directly.")
 
-#endif
+  Standard_DEPRECATED("Prs3d_NListOfSequenceOfPnt is deprecated, use "
+                      "NCollection_List<opencascade::handle<TColgp_HSequenceOfPnt>> directly")
+typedef NCollection_List<opencascade::handle<TColgp_HSequenceOfPnt>> Prs3d_NListOfSequenceOfPnt;
+
+#endif // _Prs3d_NListOfSequenceOfPnt_hxx

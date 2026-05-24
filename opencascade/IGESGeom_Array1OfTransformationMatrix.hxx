@@ -1,7 +1,4 @@
-// Created on: 1993-01-11
-// Created by: CKY / Contract Toubro-Larsen ( Kiran )
-// Copyright (c) 1993-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,13 +11,27 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef IGESGeom_Array1OfTransformationMatrix_HeaderFile
-#define IGESGeom_Array1OfTransformationMatrix_HeaderFile
+//! @file IGESGeom_Array1OfTransformationMatrix.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection_Array1<opencascade::handle<IGESGeom_TransformationMatrix>> directly
+//!             instead.
 
+#ifndef _IGESGeom_Array1OfTransformationMatrix_hxx
+#define _IGESGeom_Array1OfTransformationMatrix_hxx
+
+#include <Standard_Macro.hxx>
 #include <IGESGeom_TransformationMatrix.hxx>
 #include <NCollection_Array1.hxx>
 
-typedef NCollection_Array1<Handle(IGESGeom_TransformationMatrix)>
+Standard_HEADER_DEPRECATED(
+  "IGESGeom_Array1OfTransformationMatrix.hxx is deprecated since OCCT 8.0.0. Use "
+  "NCollection_Array1<opencascade::handle<IGESGeom_TransformationMatrix>> directly.")
+
+  Standard_DEPRECATED(
+    "IGESGeom_Array1OfTransformationMatrix is deprecated, use "
+    "NCollection_Array1<opencascade::handle<IGESGeom_TransformationMatrix>> directly")
+typedef NCollection_Array1<opencascade::handle<IGESGeom_TransformationMatrix>>
   IGESGeom_Array1OfTransformationMatrix;
 
-#endif
+#endif // _IGESGeom_Array1OfTransformationMatrix_hxx

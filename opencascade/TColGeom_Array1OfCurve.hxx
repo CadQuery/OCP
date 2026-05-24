@@ -1,7 +1,4 @@
-// Created on: 1993-03-09
-// Created by: Philippe DAUTRY
-// Copyright (c) 1993-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,12 +11,23 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef TColGeom_Array1OfCurve_HeaderFile
-#define TColGeom_Array1OfCurve_HeaderFile
+//! @file TColGeom_Array1OfCurve.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection_Array1<opencascade::handle<Geom_Curve>> directly instead.
 
+#ifndef _TColGeom_Array1OfCurve_hxx
+#define _TColGeom_Array1OfCurve_hxx
+
+#include <Standard_Macro.hxx>
 #include <Geom_Curve.hxx>
 #include <NCollection_Array1.hxx>
 
-typedef NCollection_Array1<Handle(Geom_Curve)> TColGeom_Array1OfCurve;
+Standard_HEADER_DEPRECATED("TColGeom_Array1OfCurve.hxx is deprecated since OCCT 8.0.0. Use "
+                           "NCollection_Array1<opencascade::handle<Geom_Curve>> directly.")
 
-#endif
+  Standard_DEPRECATED("TColGeom_Array1OfCurve is deprecated, use "
+                      "NCollection_Array1<opencascade::handle<Geom_Curve>> directly")
+typedef NCollection_Array1<opencascade::handle<Geom_Curve>> TColGeom_Array1OfCurve;
+
+#endif // _TColGeom_Array1OfCurve_hxx

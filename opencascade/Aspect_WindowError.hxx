@@ -16,13 +16,9 @@
 #ifndef _Aspect_WindowError_HeaderFile
 #define _Aspect_WindowError_HeaderFile
 
-#include <Standard_Type.hxx>
 #include <Standard_DefineException.hxx>
 #include <Standard_SStream.hxx>
 #include <Standard_OutOfRange.hxx>
-
-class Aspect_WindowError;
-DEFINE_STANDARD_HANDLE(Aspect_WindowError, Standard_OutOfRange)
 
 #if !defined No_Exception && !defined No_Aspect_WindowError
   #define Aspect_WindowError_Raise_if(CONDITION, MESSAGE)                                          \

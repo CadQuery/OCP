@@ -1,7 +1,4 @@
-// Created on: 1995-12-01
-// Created by: EXPRESS->CDL V0.2 Translator
-// Copyright (c) 1995-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,12 +11,26 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef StepBasic_HArray1OfProductContext_HeaderFile
-#define StepBasic_HArray1OfProductContext_HeaderFile
+//! @file StepBasic_HArray1OfProductContext.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection_HArray1<opencascade::handle<StepBasic_ProductContext>> directly
+//!             instead.
 
+#ifndef _StepBasic_HArray1OfProductContext_hxx
+#define _StepBasic_HArray1OfProductContext_hxx
+
+#include <Standard_Macro.hxx>
 #include <StepBasic_Array1OfProductContext.hxx>
-#include <NCollection_DefineHArray1.hxx>
+#include <NCollection_HArray1.hxx>
 
-DEFINE_HARRAY1(StepBasic_HArray1OfProductContext, StepBasic_Array1OfProductContext)
+Standard_HEADER_DEPRECATED(
+  "StepBasic_HArray1OfProductContext.hxx is deprecated since OCCT 8.0.0. Use "
+  "NCollection_HArray1<opencascade::handle<StepBasic_ProductContext>> directly.")
 
-#endif
+  Standard_DEPRECATED("StepBasic_HArray1OfProductContext is deprecated, use "
+                      "NCollection_HArray1<opencascade::handle<StepBasic_ProductContext>> directly")
+typedef NCollection_HArray1<opencascade::handle<StepBasic_ProductContext>>
+  StepBasic_HArray1OfProductContext;
+
+#endif // _StepBasic_HArray1OfProductContext_hxx

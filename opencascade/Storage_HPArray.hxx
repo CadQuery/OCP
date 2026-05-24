@@ -1,7 +1,4 @@
-// Created on: 1996-04-30
-// Created by: cle
-// Copyright (c) 1996-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,12 +11,24 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef Storage_HPArray_HeaderFile
-#define Storage_HPArray_HeaderFile
+//! @file Storage_HPArray.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection_HArray1<opencascade::handle<Standard_Persistent>> directly instead.
 
+#ifndef _Storage_HPArray_hxx
+#define _Storage_HPArray_hxx
+
+#include <Standard_Macro.hxx>
 #include <Storage_PArray.hxx>
-#include <NCollection_DefineHArray1.hxx>
+#include <NCollection_HArray1.hxx>
 
-DEFINE_HARRAY1(Storage_HPArray, Storage_PArray)
+Standard_HEADER_DEPRECATED(
+  "Storage_HPArray.hxx is deprecated since OCCT 8.0.0. Use "
+  "NCollection_HArray1<opencascade::handle<Standard_Persistent>> directly.")
 
-#endif
+  Standard_DEPRECATED("Storage_HPArray is deprecated, use "
+                      "NCollection_HArray1<opencascade::handle<Standard_Persistent>> directly")
+typedef NCollection_HArray1<opencascade::handle<Standard_Persistent>> Storage_HPArray;
+
+#endif // _Storage_HPArray_hxx

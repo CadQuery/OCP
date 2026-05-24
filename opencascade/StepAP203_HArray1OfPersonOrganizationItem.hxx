@@ -1,7 +1,4 @@
-// Created on: 1999-11-09
-// Created by: data exchange team
-// Copyright (c) 1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,12 +11,25 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef StepAP203_HArray1OfPersonOrganizationItem_HeaderFile
-#define StepAP203_HArray1OfPersonOrganizationItem_HeaderFile
+//! @file StepAP203_HArray1OfPersonOrganizationItem.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection_HArray1<StepAP203_PersonOrganizationItem> directly instead.
 
+#ifndef _StepAP203_HArray1OfPersonOrganizationItem_hxx
+#define _StepAP203_HArray1OfPersonOrganizationItem_hxx
+
+#include <Standard_Macro.hxx>
 #include <StepAP203_Array1OfPersonOrganizationItem.hxx>
-#include <NCollection_DefineHArray1.hxx>
+#include <NCollection_HArray1.hxx>
 
-DEFINE_HARRAY1(StepAP203_HArray1OfPersonOrganizationItem, StepAP203_Array1OfPersonOrganizationItem)
+Standard_HEADER_DEPRECATED(
+  "StepAP203_HArray1OfPersonOrganizationItem.hxx is deprecated since OCCT 8.0.0. Use "
+  "NCollection_HArray1<StepAP203_PersonOrganizationItem> directly.")
 
-#endif
+  Standard_DEPRECATED("StepAP203_HArray1OfPersonOrganizationItem is deprecated, use "
+                      "NCollection_HArray1<StepAP203_PersonOrganizationItem> directly")
+typedef NCollection_HArray1<StepAP203_PersonOrganizationItem>
+  StepAP203_HArray1OfPersonOrganizationItem;
+
+#endif // _StepAP203_HArray1OfPersonOrganizationItem_hxx

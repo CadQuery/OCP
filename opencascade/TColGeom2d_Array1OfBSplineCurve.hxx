@@ -1,7 +1,4 @@
-// Created on: 1993-04-15
-// Created by: Philippe DAUTRY
-// Copyright (c) 1993-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,12 +11,25 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef TColGeom2d_Array1OfBSplineCurve_HeaderFile
-#define TColGeom2d_Array1OfBSplineCurve_HeaderFile
+//! @file TColGeom2d_Array1OfBSplineCurve.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection_Array1<opencascade::handle<Geom2d_BSplineCurve>> directly instead.
 
+#ifndef _TColGeom2d_Array1OfBSplineCurve_hxx
+#define _TColGeom2d_Array1OfBSplineCurve_hxx
+
+#include <Standard_Macro.hxx>
 #include <Geom2d_BSplineCurve.hxx>
 #include <NCollection_Array1.hxx>
 
-typedef NCollection_Array1<Handle(Geom2d_BSplineCurve)> TColGeom2d_Array1OfBSplineCurve;
+Standard_HEADER_DEPRECATED(
+  "TColGeom2d_Array1OfBSplineCurve.hxx is deprecated since OCCT 8.0.0. Use "
+  "NCollection_Array1<opencascade::handle<Geom2d_BSplineCurve>> directly.")
 
-#endif
+  Standard_DEPRECATED("TColGeom2d_Array1OfBSplineCurve is deprecated, use "
+                      "NCollection_Array1<opencascade::handle<Geom2d_BSplineCurve>> directly")
+typedef NCollection_Array1<opencascade::handle<Geom2d_BSplineCurve>>
+  TColGeom2d_Array1OfBSplineCurve;
+
+#endif // _TColGeom2d_Array1OfBSplineCurve_hxx

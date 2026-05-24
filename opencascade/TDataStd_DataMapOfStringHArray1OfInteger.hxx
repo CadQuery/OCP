@@ -1,7 +1,4 @@
-// Created on: 1995-05-10
-// Created by: Denis PASCAL
-// Copyright (c) 1995-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,16 +11,33 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef TDataStd_DataMapOfStringHArray1OfInteger_HeaderFile
-#define TDataStd_DataMapOfStringHArray1OfInteger_HeaderFile
+//! @file TDataStd_DataMapOfStringHArray1OfInteger.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection types directly instead.
 
+#ifndef _TDataStd_DataMapOfStringHArray1OfInteger_hxx
+#define _TDataStd_DataMapOfStringHArray1OfInteger_hxx
+
+#include <Standard_Macro.hxx>
 #include <TCollection_ExtendedString.hxx>
 #include <TColStd_HArray1OfInteger.hxx>
 #include <NCollection_DataMap.hxx>
 
-typedef NCollection_DataMap<TCollection_ExtendedString, Handle(TColStd_HArray1OfInteger)>
+Standard_HEADER_DEPRECATED("TDataStd_DataMapOfStringHArray1OfInteger.hxx is deprecated since OCCT "
+                           "8.0.0. Use NCollection types directly.")
+
+  Standard_DEPRECATED("TDataStd_DataMapOfStringHArray1OfInteger is deprecated, use "
+                      "NCollection_DataMap<TCollection_ExtendedString, "
+                      "opencascade::handle<TColStd_HArray1OfInteger>> directly")
+typedef NCollection_DataMap<TCollection_ExtendedString,
+                            opencascade::handle<TColStd_HArray1OfInteger>>
   TDataStd_DataMapOfStringHArray1OfInteger;
-typedef NCollection_DataMap<TCollection_ExtendedString, Handle(TColStd_HArray1OfInteger)>::Iterator
+Standard_DEPRECATED("TDataStd_DataMapIteratorOfDataMapOfStringHArray1OfInteger is deprecated, use "
+                    "NCollection_DataMap<TCollection_ExtendedString, "
+                    "opencascade::handle<TColStd_HArray1OfInteger>>::Iterator directly")
+typedef NCollection_DataMap<TCollection_ExtendedString,
+                            opencascade::handle<TColStd_HArray1OfInteger>>::Iterator
   TDataStd_DataMapIteratorOfDataMapOfStringHArray1OfInteger;
 
-#endif
+#endif // _TDataStd_DataMapOfStringHArray1OfInteger_hxx

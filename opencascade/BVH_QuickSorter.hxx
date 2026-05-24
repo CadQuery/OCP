@@ -17,71 +17,73 @@
 #define _BVH_QuickSorter_Header
 
 #include <BVH_Sorter.hxx>
+#include <NCollection_LinearVector.hxx>
+
+#include <algorithm>
 
 //! Performs centroid-based sorting of abstract set along
-//! the given axis (X - 0, Y - 1, Z - 2) using quick sort.
+//! the given axis (X - 0, Y - 1, Z - 2) using std::sort.
+//! Uses introsort algorithm which guarantees O(n log n) complexity.
 template <class T, int N>
 class BVH_QuickSorter : public BVH_Sorter<T, N>
 {
 public:
   //! Creates new BVH quick sorter for the given axis.
-  BVH_QuickSorter(const Standard_Integer theAxis = 0)
+  BVH_QuickSorter(const int theAxis = 0)
       : myAxis(theAxis)
   {
   }
 
   //! Sorts the set.
-  virtual void Perform(BVH_Set<T, N>* theSet) Standard_OVERRIDE
-  {
-    Perform(theSet, 0, theSet->Size() - 1);
-  }
+  void Perform(BVH_Set<T, N>* theSet) override { Perform(theSet, 0, theSet->Size() - 1); }
 
   //! Sorts the given (inclusive) range in the set.
-  virtual void Perform(BVH_Set<T, N>*         theSet,
-                       const Standard_Integer theStart,
-                       const Standard_Integer theFinal) Standard_OVERRIDE
+  void Perform(BVH_Set<T, N>* theSet, const int theStart, const int theFinal) override
   {
-    Standard_Integer aLft = theStart;
-    Standard_Integer aRgh = theFinal;
-
-    T aPivot = theSet->Center((aRgh + aLft) / 2, myAxis);
-    while (aLft < aRgh)
+    const int aSize = theFinal - theStart + 1;
+    if (aSize <= 1)
     {
-      while (theSet->Center(aLft, myAxis) < aPivot && aLft < theFinal)
-      {
-        ++aLft;
-      }
-
-      while (theSet->Center(aRgh, myAxis) > aPivot && aRgh > theStart)
-      {
-        --aRgh;
-      }
-
-      if (aLft <= aRgh)
-      {
-        if (aLft != aRgh)
-        {
-          theSet->Swap(aLft, aRgh);
-        }
-        ++aLft;
-        --aRgh;
-      }
+      return;
     }
 
-    if (aRgh > theStart)
+    // Create index array for sorting
+    NCollection_LinearVector<int> anIndices;
+    anIndices.Resize(aSize);
+    for (int i = 0; i < aSize; ++i)
     {
-      Perform(theSet, theStart, aRgh);
+      anIndices[i] = i;
     }
 
-    if (aLft < theFinal)
+    // Sort indices by center value using std::sort (introsort - O(n log n) guaranteed)
+    const int anAxis = myAxis;
+    std::sort(anIndices.begin(), anIndices.end(), [theSet, theStart, anAxis](int a, int b) {
+      return theSet->Center(theStart + a, anAxis) < theSet->Center(theStart + b, anAxis);
+    });
+
+    // Compute inverse permutation: invPerm[i] = where element i should go
+    NCollection_LinearVector<int> anInvPerm;
+    anInvPerm.Resize(aSize);
+    for (int i = 0; i < aSize; ++i)
     {
-      Perform(theSet, aLft, theFinal);
+      anInvPerm[anIndices[i]] = i;
+    }
+
+    // Apply permutation using cycle-based algorithm - O(n) swaps total
+    for (int i = 0; i < aSize; ++i)
+    {
+      // Follow the cycle starting at position i
+      while (anInvPerm[i] != i)
+      {
+        int j = anInvPerm[i];
+        theSet->Swap(theStart + i, theStart + j);
+        std::swap(anInvPerm[i], anInvPerm[j]);
+      }
     }
   }
 
 protected:
   //! Axis used to arrange the primitives (X - 0, Y - 1, Z - 2).
-  Standard_Integer myAxis;
+  int myAxis;
 };
 
 #endif // _BVH_QuickSorter_Header

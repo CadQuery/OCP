@@ -1,7 +1,4 @@
-// Created on: 1995-10-12
-// Created by: Bruno DUMORTIER
-// Copyright (c) 1995-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,13 +11,26 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef BRepOffset_ListOfInterval_HeaderFile
-#define BRepOffset_ListOfInterval_HeaderFile
+//! @file BRepOffset_ListOfInterval.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection types directly instead.
 
+#ifndef _BRepOffset_ListOfInterval_hxx
+#define _BRepOffset_ListOfInterval_hxx
+
+#include <Standard_Macro.hxx>
 #include <BRepOffset_Interval.hxx>
 #include <NCollection_List.hxx>
 
-typedef NCollection_List<BRepOffset_Interval>           BRepOffset_ListOfInterval;
+Standard_HEADER_DEPRECATED(
+  "BRepOffset_ListOfInterval.hxx is deprecated since OCCT 8.0.0. Use NCollection types directly.")
+
+  Standard_DEPRECATED(
+    "BRepOffset_ListOfInterval is deprecated, use NCollection_List<BRepOffset_Interval> directly")
+typedef NCollection_List<BRepOffset_Interval> BRepOffset_ListOfInterval;
+Standard_DEPRECATED("BRepOffset_ListIteratorOfListOfInterval is deprecated, use "
+                    "NCollection_List<BRepOffset_Interval>::Iterator directly")
 typedef NCollection_List<BRepOffset_Interval>::Iterator BRepOffset_ListIteratorOfListOfInterval;
 
-#endif
+#endif // _BRepOffset_ListOfInterval_hxx

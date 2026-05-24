@@ -24,9 +24,9 @@
 class Geom2d_BSplineCurve;
 class Geom_BSplineCurve;
 
-//! This  is used to  reparameterize Rational  BSpline
-//! Curves so that we can   concatenate them later to
-//! build C1 Curves  It builds and 1D-reparameterizing
+//! This is used to reparameterize Rational BSpline
+//! Curves so that we can concatenate them later to
+//! build C1 Curves It builds and 1D-reparameterizing
 //! function starting from an Hermite interpolation and
 //! adding knots and modifying poles of the 1D BSpline
 //! obtained that way. The goal is to build a(u) so that
@@ -48,26 +48,26 @@ public:
 
   //! returns the correct spline a(u) which will
   //! be multiplicated with BS later.
-  Standard_EXPORT static Handle(Geom2d_BSplineCurve) Solution(
-    const Handle(Geom_BSplineCurve)& BS,
-    const Standard_Real              TolPoles = 0.000001,
-    const Standard_Real              TolKnots = 0.000001);
+  Standard_EXPORT static occ::handle<Geom2d_BSplineCurve> Solution(
+    const occ::handle<Geom_BSplineCurve>& BS,
+    const double                          TolPoles = 0.000001,
+    const double                          TolKnots = 0.000001);
 
   //! returns the correct spline a(u) which will
   //! be multiplicated with BS later.
-  Standard_EXPORT static Handle(Geom2d_BSplineCurve) Solution(
-    const Handle(Geom2d_BSplineCurve)& BS,
-    const Standard_Real                TolPoles = 0.000001,
-    const Standard_Real                TolKnots = 0.000001);
+  Standard_EXPORT static occ::handle<Geom2d_BSplineCurve> Solution(
+    const occ::handle<Geom2d_BSplineCurve>& BS,
+    const double                            TolPoles = 0.000001,
+    const double                            TolKnots = 0.000001);
 
   //! returns the knots to insert to a(u) to
   //! stay with a constant sign and in the
   //! tolerances.
-  Standard_EXPORT static void Solutionbis(const Handle(Geom_BSplineCurve)& BS,
-                                          Standard_Real&                   Knotmin,
-                                          Standard_Real&                   Knotmax,
-                                          const Standard_Real              TolPoles = 0.000001,
-                                          const Standard_Real              TolKnots = 0.000001);
+  Standard_EXPORT static void Solutionbis(const occ::handle<Geom_BSplineCurve>& BS,
+                                          double&                               Knotmin,
+                                          double&                               Knotmax,
+                                          const double                          TolPoles = 0.000001,
+                                          const double TolKnots = 0.000001);
 };
 
 #endif // _Hermit_HeaderFile

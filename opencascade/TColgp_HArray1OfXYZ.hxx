@@ -1,7 +1,4 @@
-// Created on: 1993-03-10
-// Created by: Philippe DAUTRY
-// Copyright (c) 1993-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,12 +11,22 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef TColgp_HArray1OfXYZ_HeaderFile
-#define TColgp_HArray1OfXYZ_HeaderFile
+//! @file TColgp_HArray1OfXYZ.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection_HArray1<gp_XYZ> directly instead.
 
+#ifndef _TColgp_HArray1OfXYZ_hxx
+#define _TColgp_HArray1OfXYZ_hxx
+
+#include <Standard_Macro.hxx>
 #include <TColgp_Array1OfXYZ.hxx>
-#include <NCollection_DefineHArray1.hxx>
+#include <NCollection_HArray1.hxx>
 
-DEFINE_HARRAY1(TColgp_HArray1OfXYZ, TColgp_Array1OfXYZ)
+Standard_HEADER_DEPRECATED("TColgp_HArray1OfXYZ.hxx is deprecated since OCCT 8.0.0. Use "
+                           "NCollection_HArray1<gp_XYZ> directly.")
 
-#endif
+  Standard_DEPRECATED("TColgp_HArray1OfXYZ is deprecated, use NCollection_HArray1<gp_XYZ> directly")
+typedef NCollection_HArray1<gp_XYZ> TColgp_HArray1OfXYZ;
+
+#endif // _TColgp_HArray1OfXYZ_hxx

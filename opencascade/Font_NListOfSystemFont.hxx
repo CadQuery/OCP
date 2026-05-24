@@ -1,6 +1,4 @@
-// Created on: 2009-01-20
-// Created by: Alexander A. BORODIN
-// Copyright (c) 2009-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -13,17 +11,23 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _Font_NListOfSystemFont_HeaderFile
-#define _Font_NListOfSystemFont_HeaderFile
+//! @file Font_NListOfSystemFont.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection_List<opencascade::handle<Font_SystemFont>> directly instead.
 
+#ifndef _Font_NListOfSystemFont_hxx
+#define _Font_NListOfSystemFont_hxx
+
+#include <Standard_Macro.hxx>
 #include <NCollection_List.hxx>
 #include <Font_SystemFont.hxx>
 
-typedef NCollection_List<Handle(Font_SystemFont)> Font_NListOfSystemFont;
+Standard_HEADER_DEPRECATED("Font_NListOfSystemFont.hxx is deprecated since OCCT 8.0.0. Use "
+                           "NCollection_List<opencascade::handle<Font_SystemFont>> directly.")
 
-inline Standard_Boolean IsEqual(const Handle(Font_SystemFont)& theFirstFont,
-                                const Handle(Font_SystemFont)& theSecondFont)
-{
-  return theFirstFont->IsEqual(theSecondFont);
-}
-#endif
+  Standard_DEPRECATED("Font_NListOfSystemFont is deprecated, use "
+                      "NCollection_List<opencascade::handle<Font_SystemFont>> directly")
+typedef NCollection_List<opencascade::handle<Font_SystemFont>> Font_NListOfSystemFont;
+
+#endif // _Font_NListOfSystemFont_hxx

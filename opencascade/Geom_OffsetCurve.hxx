@@ -23,16 +23,14 @@
 #include <gp_Dir.hxx>
 #include <GeomAbs_Shape.hxx>
 #include <Geom_Curve.hxx>
-#include <Standard_Integer.hxx>
-#include <GeomEvaluator_OffsetCurve.hxx>
 
-class gp_Pnt;
-class gp_Vec;
 class gp_Trsf;
 class Geom_Geometry;
 
-class Geom_OffsetCurve;
-DEFINE_STANDARD_HANDLE(Geom_OffsetCurve, Geom_Curve)
+namespace GeomEval_RepCurveDesc
+{
+class Base;
+}
 
 //! This class implements the basis services for an offset curve
 //! in 3D space. The Offset curve in this package can be a self
@@ -43,7 +41,7 @@ DEFINE_STANDARD_HANDLE(Geom_OffsetCurve, Geom_Curve)
 //! a basis curve in a reference direction V. The offset curve
 //! takes its parametrization from the basis curve.
 //! The Offset curve is in the direction of the normal N
-//! defined with the cross product  T^V, where the vector T
+//! defined with the cross product T^V, where the vector T
 //! is given by the first derivative on the basis curve with
 //! non zero length.
 //! The distance offset may be positive or negative to indicate the
@@ -84,8 +82,8 @@ public:
   //! direction (offset direction). If P is a point on the basis
   //! curve and T the first derivative with non zero length
   //! at this point, the corresponding point on the offset curve is
-  //! in the direction of the vector-product N = V ^ T   where
-  //! N is a unitary vector.
+  //! in the direction of the vector-product N = V ^ T
+  //! where N is a unitary vector.
   //! If isNotCheckC0 = TRUE checking if basis curve has C0-continuity
   //! is not made.
   //! Warnings :
@@ -96,10 +94,28 @@ public:
   //! Raised if the basis curve C is not at least C1.
   //! Warnings :
   //! No check is done to know if ||V^T|| != 0.0 at any point.
-  Standard_EXPORT Geom_OffsetCurve(const Handle(Geom_Curve)& C,
-                                   const Standard_Real       Offset,
-                                   const gp_Dir&             V,
-                                   const Standard_Boolean    isNotCheckC0 = Standard_False);
+  Standard_EXPORT Geom_OffsetCurve(const occ::handle<Geom_Curve>& C,
+                                   const double                   Offset,
+                                   const gp_Dir&                  V,
+                                   const bool                     isNotCheckC0 = false);
+
+  //! Copy constructor for optimized copying without validation.
+  //! @param[in] theOther the offset curve to copy from
+  Standard_EXPORT Geom_OffsetCurve(const Geom_OffsetCurve& theOther);
+
+  //! Returns true if an evaluation representation is attached.
+  bool HasEvalRepresentation() const { return !myEvalRep.IsNull(); }
+
+  //! Returns the current evaluation representation descriptor (may be null).
+  const occ::handle<GeomEval_RepCurveDesc::Base>& EvalRepresentation() const { return myEvalRep; }
+
+  //! Sets a new evaluation representation.
+  //! Validates descriptor data and ensures no circular references.
+  Standard_EXPORT void SetEvalRepresentation(
+    const occ::handle<GeomEval_RepCurveDesc::Base>& theDesc);
+
+  //! Removes the evaluation representation.
+  void ClearEvalRepresentation() { myEvalRep.Nullify(); }
 
   //! Changes the orientation of this offset curve.
   //! As a result:
@@ -109,11 +125,11 @@ public:
   //! - the end point of the initial curve becomes the
   //! start point of the reversed curve, and
   //! - the first and last parameters are recomputed.
-  Standard_EXPORT void Reverse() Standard_OVERRIDE;
+  Standard_EXPORT void Reverse() final;
 
   //! Computes the parameter on the reversed curve for
   //! the point of parameter U on this offset curve.
-  Standard_EXPORT Standard_Real ReversedParameter(const Standard_Real U) const Standard_OVERRIDE;
+  Standard_EXPORT double ReversedParameter(const double U) const final;
 
   //! Changes this offset curve by assigning C
   //! as the basis curve from which it is built.
@@ -121,19 +137,19 @@ public:
   //! has C0-continuity is not made.
   //! Exceptions
   //! Standard_ConstructionError if the curve C is not at least "C1" continuous.
-  Standard_EXPORT void SetBasisCurve(const Handle(Geom_Curve)& C,
-                                     const Standard_Boolean    isNotCheckC0 = Standard_False);
+  Standard_EXPORT void SetBasisCurve(const occ::handle<Geom_Curve>& C,
+                                     const bool                     isNotCheckC0 = false);
 
   //! Changes this offset curve by assigning V as the
   //! reference vector used to compute the offset direction.
   Standard_EXPORT void SetDirection(const gp_Dir& V);
 
   //! Changes this offset curve by assigning D as the offset value.
-  Standard_EXPORT void SetOffsetValue(const Standard_Real D);
+  Standard_EXPORT void SetOffsetValue(const double D);
 
   //! Returns the basis curve of this offset curve.
   //! Note: The basis curve can be an offset curve.
-  Standard_EXPORT Handle(Geom_Curve) BasisCurve() const;
+  Standard_EXPORT occ::handle<Geom_Curve> BasisCurve() const;
 
   //! Returns the global continuity of this offset curve as a
   //! value of the GeomAbs_Shape enumeration.
@@ -151,7 +167,7 @@ public:
   //! Returns the continuity of the basis curve - 1.
   //! The offset curve must have a unique offset direction defined
   //! at any point.
-  Standard_EXPORT GeomAbs_Shape Continuity() const Standard_OVERRIDE;
+  Standard_EXPORT GeomAbs_Shape Continuity() const final;
 
   //! Returns the reference vector of this offset curve.
   //! Value and derivatives
@@ -169,28 +185,21 @@ public:
   //! Warning! this should not be called
   //! if the basis curve is not at least C1. Nevertheless
   //! if used on portion where the curve is C1, it is OK
-  Standard_EXPORT void D0(const Standard_Real U, gp_Pnt& P) const Standard_OVERRIDE;
+  Standard_EXPORT gp_Pnt EvalD0(const double U) const final;
 
   //! Warning! this should not be called
   //! if the continuity of the basis curve is not C2.
-  //! Nevertheless, it's OK to use it  on portion
+  //! Nevertheless, it's OK to use it on a portion
   //! where the curve is C2
-  Standard_EXPORT void D1(const Standard_Real U, gp_Pnt& P, gp_Vec& V1) const Standard_OVERRIDE;
+  Standard_EXPORT Geom_Curve::ResD1 EvalD1(const double U) const final;
 
   //! Warning! this should not be called
   //! if the continuity of the basis curve is not C3.
-  //! Nevertheless, it's OK to use it  on portion
+  //! Nevertheless, it's OK to use it on a portion
   //! where the curve is C3
-  Standard_EXPORT void D2(const Standard_Real U,
-                          gp_Pnt&             P,
-                          gp_Vec&             V1,
-                          gp_Vec&             V2) const Standard_OVERRIDE;
+  Standard_EXPORT Geom_Curve::ResD2 EvalD2(const double U) const final;
 
-  Standard_EXPORT void D3(const Standard_Real U,
-                          gp_Pnt&             P,
-                          gp_Vec&             V1,
-                          gp_Vec&             V2,
-                          gp_Vec&             V3) const Standard_OVERRIDE;
+  Standard_EXPORT Geom_Curve::ResD3 EvalD3(const double U) const final;
 
   //! The returned vector gives the value of the derivative
   //! for the order of derivation N.
@@ -206,94 +215,88 @@ public:
   //! raised if it is not possible to compute a unique offset
   //! direction.
   //! Raised if N < 1.
-  Standard_EXPORT gp_Vec DN(const Standard_Real    U,
-                            const Standard_Integer N) const Standard_OVERRIDE;
+  Standard_EXPORT gp_Vec EvalDN(const double U, const int N) const final;
 
   //! Returns the value of the first parameter of this
   //! offset curve. The first parameter corresponds to the
   //! start point of the curve.
   //! Note: the first and last parameters of this offset curve
   //! are also the ones of its basis curve.
-  Standard_EXPORT Standard_Real FirstParameter() const Standard_OVERRIDE;
+  Standard_EXPORT double FirstParameter() const final;
 
   //! Returns the value of the last parameter of this
   //! offset curve. The last parameter
   //! corresponds to the end point.
   //! Note: the first and last parameters of this offset curve
   //! are also the ones of its basis curve.
-  Standard_EXPORT Standard_Real LastParameter() const Standard_OVERRIDE;
+  Standard_EXPORT double LastParameter() const final;
 
   //! Returns the offset value of this offset curve.
-  Standard_EXPORT Standard_Real Offset() const;
+  Standard_EXPORT double Offset() const;
 
   //! Returns True if the distance between the start point
   //! and the end point of the curve is lower or equal to
   //! Resolution from package gp.
-  Standard_EXPORT Standard_Boolean IsClosed() const Standard_OVERRIDE;
+  Standard_EXPORT bool IsClosed() const final;
 
   //! Returns true if the degree of continuity of the basis
   //! curve of this offset curve is at least N + 1.
   //! This method answer True if the continuity of the basis curve
-  //! is N + 1.  We suppose in this class that a normal direction
+  //! is N + 1. We suppose in this class that a normal direction
   //! to the basis curve (used to compute the offset curve) is
   //! defined at any point on the basis curve.
   //! Raised if N < 0.
-  Standard_EXPORT Standard_Boolean IsCN(const Standard_Integer N) const Standard_OVERRIDE;
+  Standard_EXPORT bool IsCN(const int N) const final;
 
   //! Returns true if this offset curve is periodic, i.e. if the
   //! basis curve of this offset curve is periodic.
-  Standard_EXPORT Standard_Boolean IsPeriodic() const Standard_OVERRIDE;
+  Standard_EXPORT bool IsPeriodic() const final;
 
   //! Returns the period of this offset curve, i.e. the period
   //! of the basis curve of this offset curve.
   //! Exceptions
   //! Standard_NoSuchObject if the basis curve is not periodic.
-  Standard_EXPORT virtual Standard_Real Period() const Standard_OVERRIDE;
+  Standard_EXPORT double Period() const final;
 
   //! Applies the transformation T to this offset curve.
   //! Note: the basis curve is also modified.
-  Standard_EXPORT void Transform(const gp_Trsf& T) Standard_OVERRIDE;
+  Standard_EXPORT void Transform(const gp_Trsf& T) final;
 
-  //! Returns the  parameter on the  transformed  curve for
+  //! Returns the parameter on the transformed curve for
   //! the transform of the point of parameter U on <me>.
   //! me->Transformed(T)->Value(me->TransformedParameter(U,T))
   //! is the same point as
   //! me->Value(U).Transformed(T)
   //! This methods calls the basis curve method.
-  Standard_EXPORT virtual Standard_Real TransformedParameter(const Standard_Real U,
-                                                             const gp_Trsf&      T) const
-    Standard_OVERRIDE;
+  Standard_EXPORT double TransformedParameter(const double U, const gp_Trsf& T) const final;
 
-  //! Returns a  coefficient to compute the parameter on
-  //! the transformed  curve  for  the transform  of the
+  //! Returns a coefficient to compute the parameter on
+  //! the transformed curve for the transform of the
   //! point on <me>.
   //!
   //! Transformed(T)->Value(U * ParametricTransformation(T))
   //! is the same point as
   //! Value(U).Transformed(T)
   //! This methods calls the basis curve method.
-  Standard_EXPORT virtual Standard_Real ParametricTransformation(const gp_Trsf& T) const
-    Standard_OVERRIDE;
+  Standard_EXPORT double ParametricTransformation(const gp_Trsf& T) const final;
 
   //! Creates a new object which is a copy of this offset curve.
-  Standard_EXPORT Handle(Geom_Geometry) Copy() const Standard_OVERRIDE;
+  Standard_EXPORT occ::handle<Geom_Geometry> Copy() const final;
 
   //! Returns continuity of the basis curve.
   Standard_EXPORT GeomAbs_Shape GetBasisCurveContinuity() const;
 
   //! Dumps the content of me into the stream
-  Standard_EXPORT virtual void DumpJson(Standard_OStream& theOStream,
-                                        Standard_Integer  theDepth = -1) const Standard_OVERRIDE;
+  Standard_EXPORT void DumpJson(Standard_OStream& theOStream, int theDepth = -1) const final;
 
   DEFINE_STANDARD_RTTIEXT(Geom_OffsetCurve, Geom_Curve)
 
-protected:
 private:
-  Handle(Geom_Curve)                basisCurve;
-  gp_Dir                            direction;
-  Standard_Real                     offsetValue;
-  GeomAbs_Shape                     myBasisCurveContinuity;
-  Handle(GeomEvaluator_OffsetCurve) myEvaluator;
+  occ::handle<Geom_Curve>                  basisCurve;
+  occ::handle<GeomEval_RepCurveDesc::Base> myEvalRep;
+  gp_Dir                                   direction;
+  double                                   offsetValue;
+  GeomAbs_Shape                            myBasisCurveContinuity;
 };
 
 #endif // _Geom_OffsetCurve_HeaderFile

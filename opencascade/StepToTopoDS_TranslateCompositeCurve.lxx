@@ -15,12 +15,9 @@
 
 #include <StepToTopoDS_TranslateCompositeCurve.hxx>
 
-//=======================================================================
-// function : IsInfiniteSegment
-// purpose  :
-//=======================================================================
+//=================================================================================================
 
-inline Standard_Boolean StepToTopoDS_TranslateCompositeCurve::IsInfiniteSegment() const
+inline bool StepToTopoDS_TranslateCompositeCurve::IsInfiniteSegment() const
 {
   return myInfiniteSegment;
 }

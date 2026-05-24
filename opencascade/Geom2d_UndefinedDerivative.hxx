@@ -17,13 +17,9 @@
 #ifndef _Geom2d_UndefinedDerivative_HeaderFile
 #define _Geom2d_UndefinedDerivative_HeaderFile
 
-#include <Standard_Type.hxx>
 #include <Standard_DefineException.hxx>
 #include <Standard_SStream.hxx>
 #include <Standard_DomainError.hxx>
-
-class Geom2d_UndefinedDerivative;
-DEFINE_STANDARD_HANDLE(Geom2d_UndefinedDerivative, Standard_DomainError)
 
 #if !defined No_Exception && !defined No_Geom2d_UndefinedDerivative
   #define Geom2d_UndefinedDerivative_Raise_if(CONDITION, MESSAGE)                                  \

@@ -24,10 +24,10 @@
 #include <Standard_OStream.hxx>
 class TopoDS_Shape;
 
-//! The  TopTools package provides   utilities for the
+//! The TopTools package provides utilities for the
 //! topological data structure.
 //!
-//! * ShapeMapHasher. Hash a  Shape base on the TShape
+//! * ShapeMapHasher. Hash a Shape base on the TShape
 //! and the Location. The Orientation is not used.
 //!
 //! * OrientedShapeMapHasher. Hash a Shape base on the
@@ -57,28 +57,28 @@ class TopoDS_Shape;
 //! IndexedDataMapOfShapeAddress
 //! DataMapOfOrientedShapeShape
 //!
-//! * LocationSet : to write sets of locations.
+//! * LocationSet: to write sets of locations.
 //!
-//! * ShapeSet : to writes sets of TShapes.
+//! * ShapeSet: to writes sets of TShapes.
 //!
-//! Package Methods :
+//! Package Methods:
 //!
-//! Dump : To dump the topology of a Shape.
+//! Dump: To dump the topology of a Shape.
 class TopTools
 {
 public:
   DEFINE_STANDARD_ALLOC
 
   //! A set of Shapes. Can be dump, wrote or read.
-  //! Dumps the topological structure  of <Sh>  on the
+  //! Dumps the topological structure of <Sh> on the
   //! stream <S>.
   Standard_EXPORT static void Dump(const TopoDS_Shape& Sh, Standard_OStream& S);
 
   //! This is to bypass an extraction bug. It will force
-  //! the  inclusion    of  Standard_Integer.hxx  itself
-  //! including Standard_OStream.hxx  at   the   correct
+  //! the inclusion of int.hxx itself
+  //! including Standard_OStream.hxx at the correct
   //! position.
-  Standard_EXPORT static void Dummy(const Standard_Integer I);
+  Standard_EXPORT static void Dummy(const int I);
 };
 
 #endif // _TopTools_HeaderFile

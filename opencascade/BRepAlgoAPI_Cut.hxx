@@ -33,7 +33,7 @@ public:
 
   //! Empty constructor
   Standard_EXPORT BRepAlgoAPI_Cut();
-  Standard_EXPORT virtual ~BRepAlgoAPI_Cut();
+  Standard_EXPORT ~BRepAlgoAPI_Cut() override;
 
   //! Empty constructor
   //! <PF> - PaveFiller object that is carried out
@@ -57,11 +57,8 @@ public:
   Standard_EXPORT BRepAlgoAPI_Cut(const TopoDS_Shape&          S1,
                                   const TopoDS_Shape&          S2,
                                   const BOPAlgo_PaveFiller&    aDSF,
-                                  const Standard_Boolean       bFWD     = Standard_True,
+                                  const bool                   bFWD     = true,
                                   const Message_ProgressRange& theRange = Message_ProgressRange());
-
-protected:
-private:
 };
 
 #endif // _BRepAlgoAPI_Cut_HeaderFile

@@ -1,7 +1,4 @@
-// Created on: 1996-04-30
-// Created by: cle
-// Copyright (c) 1996-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,15 +11,31 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef Storage_MapOfPers_HeaderFile
-#define Storage_MapOfPers_HeaderFile
+//! @file Storage_MapOfPers.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection types directly instead.
 
+#ifndef _Storage_MapOfPers_hxx
+#define _Storage_MapOfPers_hxx
+
+#include <Standard_Macro.hxx>
 #include <Storage_Root.hxx>
 #include <TCollection_AsciiString.hxx>
 #include <NCollection_DataMap.hxx>
 
-typedef NCollection_DataMap<TCollection_AsciiString, Handle(Storage_Root)> Storage_MapOfPers;
-typedef NCollection_DataMap<TCollection_AsciiString, Handle(Storage_Root)>::Iterator
+Standard_HEADER_DEPRECATED(
+  "Storage_MapOfPers.hxx is deprecated since OCCT 8.0.0. Use NCollection types directly.")
+
+  Standard_DEPRECATED(
+    "Storage_MapOfPers is deprecated, use NCollection_DataMap<TCollection_AsciiString, "
+    "opencascade::handle<Storage_Root>> directly")
+typedef NCollection_DataMap<TCollection_AsciiString, opencascade::handle<Storage_Root>>
+  Storage_MapOfPers;
+Standard_DEPRECATED("Storage_DataMapIteratorOfMapOfPers is deprecated, use "
+                    "NCollection_DataMap<TCollection_AsciiString, "
+                    "opencascade::handle<Storage_Root>>::Iterator directly")
+typedef NCollection_DataMap<TCollection_AsciiString, opencascade::handle<Storage_Root>>::Iterator
   Storage_DataMapIteratorOfMapOfPers;
 
-#endif
+#endif // _Storage_MapOfPers_hxx

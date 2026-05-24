@@ -24,7 +24,8 @@
 #include <BRepAlgo_NormalProjection.hxx>
 #include <BRepBuilderAPI_MakeShape.hxx>
 #include <GeomAbs_Shape.hxx>
-#include <TopTools_ListOfShape.hxx>
+#include <TopoDS_Shape.hxx>
+#include <NCollection_List.hxx>
 class TopoDS_Shape;
 class TopoDS_Edge;
 
@@ -58,36 +59,36 @@ public:
   //! Standard_ConstructionError if ToProj is not added.
   Standard_EXPORT void Add(const TopoDS_Shape& ToProj);
 
-  //! Sets the parameters  used  for computation
-  //! Tol3 is the required  tolerance between the  3d projected
-  //! curve  and     its    2d    representation
-  //! InternalContinuity  is the order of constraints
-  //! used for  approximation
+  //! Sets the parameters used for computation
+  //! Tol3 is the required tolerance between the 3d projected
+  //! curve and its 2d representation
+  //! InternalContinuity is the order of constraints
+  //! used for approximation
   //! MaxDeg and MaxSeg are the maximum degree and the maximum
   //! number of segment for BSpline resulting of an approximation.
-  Standard_EXPORT void SetParams(const Standard_Real    Tol3D,
-                                 const Standard_Real    Tol2D,
-                                 const GeomAbs_Shape    InternalContinuity,
-                                 const Standard_Integer MaxDegree,
-                                 const Standard_Integer MaxSeg);
+  Standard_EXPORT void SetParams(const double        Tol3D,
+                                 const double        Tol2D,
+                                 const GeomAbs_Shape InternalContinuity,
+                                 const int           MaxDegree,
+                                 const int           MaxSeg);
 
   //! Sets the maximum distance between target shape and
   //! shape to project. If this condition is not satisfied then corresponding
   //! part of solution is discarded.
   //! if MaxDist < 0 then this method does not affect the algorithm
-  Standard_EXPORT void SetMaxDistance(const Standard_Real MaxDist);
+  Standard_EXPORT void SetMaxDistance(const double MaxDist);
 
-  //! Manage  limitation  of  projected  edges.
-  Standard_EXPORT void SetLimit(const Standard_Boolean FaceBoundaries = Standard_True);
+  //! Manage limitation of projected edges.
+  Standard_EXPORT void SetLimit(const bool FaceBoundaries = true);
 
   //! Returns true if a 3D curve is computed. If not, false is
   //! returned and an initial 3D curve is kept to build the resulting edges.
-  Standard_EXPORT void Compute3d(const Standard_Boolean With3d = Standard_True);
+  Standard_EXPORT void Compute3d(const bool With3d = true);
 
   //! Builds the result of the projection as a compound of
   //! wires. Tries to build oriented wires.
-  Standard_EXPORT virtual void Build(
-    const Message_ProgressRange& theRange = Message_ProgressRange()) Standard_OVERRIDE;
+  Standard_EXPORT void Build(
+    const Message_ProgressRange& theRange = Message_ProgressRange()) override;
 
   //! Returns true if the object was correctly built by the shape
   //! construction algorithm.
@@ -96,7 +97,7 @@ public:
   //! IsDone returns false and therefore protects the use of
   //! functions to access the result of the construction
   //! (typically the Shape function).
-  Standard_EXPORT Standard_Boolean IsDone() const Standard_OVERRIDE;
+  Standard_EXPORT bool IsDone() const override;
 
   //! Performs the projection.
   //! The construction of the result is performed by Build.
@@ -111,10 +112,9 @@ public:
   //! E has already been found.
   Standard_EXPORT const TopoDS_Shape& Couple(const TopoDS_Edge& E) const;
 
-  //! Returns the  list   of shapes generated   from the
+  //! Returns the list of shapes generated from the
   //! shape <S>.
-  Standard_EXPORT virtual const TopTools_ListOfShape& Generated(const TopoDS_Shape& S)
-    Standard_OVERRIDE;
+  Standard_EXPORT const NCollection_List<TopoDS_Shape>& Generated(const TopoDS_Shape& S) override;
 
   //! Returns the initial edge corresponding to the edge E
   //! resulting from the computation of the projection.
@@ -126,9 +126,8 @@ public:
 
   //! build the result as a list of wire if possible in --
   //! a first returns a wire only if there is only a wire.
-  Standard_EXPORT Standard_Boolean BuildWire(TopTools_ListOfShape& Liste) const;
+  Standard_EXPORT bool BuildWire(NCollection_List<TopoDS_Shape>& Liste) const;
 
-protected:
 private:
   BRepAlgo_NormalProjection myNormalProjector;
 };

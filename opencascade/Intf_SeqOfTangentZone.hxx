@@ -1,7 +1,4 @@
-// Created on: 1991-05-23
-// Created by: Didier PIFFAULT
-// Copyright (c) 1991-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,12 +11,23 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef Intf_SeqOfTangentZone_HeaderFile
-#define Intf_SeqOfTangentZone_HeaderFile
+//! @file Intf_SeqOfTangentZone.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection_Sequence<Intf_TangentZone> directly instead.
 
+#ifndef _Intf_SeqOfTangentZone_hxx
+#define _Intf_SeqOfTangentZone_hxx
+
+#include <Standard_Macro.hxx>
 #include <Intf_TangentZone.hxx>
 #include <NCollection_Sequence.hxx>
 
+Standard_HEADER_DEPRECATED("Intf_SeqOfTangentZone.hxx is deprecated since OCCT 8.0.0. Use "
+                           "NCollection_Sequence<Intf_TangentZone> directly.")
+
+  Standard_DEPRECATED(
+    "Intf_SeqOfTangentZone is deprecated, use NCollection_Sequence<Intf_TangentZone> directly")
 typedef NCollection_Sequence<Intf_TangentZone> Intf_SeqOfTangentZone;
 
-#endif
+#endif // _Intf_SeqOfTangentZone_hxx

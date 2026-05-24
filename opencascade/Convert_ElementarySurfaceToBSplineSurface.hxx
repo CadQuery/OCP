@@ -20,135 +20,126 @@
 #include <Standard.hxx>
 #include <Standard_DefineAlloc.hxx>
 #include <Standard_Handle.hxx>
+#include <Standard_Macro.hxx>
 
-#include <TColgp_Array2OfPnt.hxx>
-#include <TColStd_Array2OfReal.hxx>
-#include <TColStd_Array1OfReal.hxx>
-#include <TColStd_Array1OfInteger.hxx>
-#include <Standard_Boolean.hxx>
-class gp_Pnt;
+#include <gp_Pnt.hxx>
+#include <NCollection_Array1.hxx>
+#include <NCollection_Array2.hxx>
 
 //! Root class for algorithms which convert an elementary
-//! surface (cylinder, cone, sphere or torus) into a BSpline
-//! surface (CylinderToBSplineSurface, ConeToBSplineSurface,
-//! SphereToBSplineSurface, TorusToBSplineSurface).
+//! surface (cylinder, cone, sphere or torus) into a BSpline surface.
 //! These algorithms all work on elementary surfaces from
 //! the gp package and compute all the data needed to
 //! construct a BSpline surface equivalent to the cylinder,
-//! cone, sphere or torus. This data consists of the following:
-//! -   degrees in the u and v parametric directions,
-//! -   periodic characteristics in the u and v parametric directions,
-//! -   a poles table with associated weights,
-//! -   a knots table (for the u and v parametric directions)
-//! with associated multiplicities.
-//! The abstract class
-//! ElementarySurfaceToBSplineSurface provides a
-//! framework for storing and consulting this computed data.
-//! This data may then be used to construct a
-//! Geom_BSplineSurface surface, for example.
-//! All those classes define algorithms to convert an
-//! ElementarySurface into a B-spline surface.
-//! This abstract class implements the methods to get
-//! the geometric representation of the B-spline surface.
-//! The B-spline representation is computed at the creation
-//! time in the sub classes.
-//! The B-spline surface is defined with its degree in the
-//! parametric U and V directions, its control points (Poles),
-//! its weights, its knots and their multiplicity.
-//! KeyWords :
-//! Convert, ElementarySurface, BSplineSurface.
+//! cone, sphere or torus.
 class Convert_ElementarySurfaceToBSplineSurface
 {
 public:
   DEFINE_STANDARD_ALLOC
 
-  Standard_EXPORT Standard_Integer UDegree() const;
+  //! Returns the degree in the U parametric direction.
+  [[nodiscard]] Standard_EXPORT int UDegree() const;
 
-  //! Returns the degree for the u or v parametric direction of
-  //! the BSpline surface whose data is computed in this framework.
-  Standard_EXPORT Standard_Integer VDegree() const;
+  //! Returns the degree in the V parametric direction.
+  [[nodiscard]] Standard_EXPORT int VDegree() const;
 
-  Standard_EXPORT Standard_Integer NbUPoles() const;
+  //! Returns the number of poles in the U parametric direction.
+  [[nodiscard]] Standard_EXPORT int NbUPoles() const;
 
-  //! Returns the number of poles for the u or v parametric
-  //! direction of the BSpline surface whose data is computed in this framework.
-  Standard_EXPORT Standard_Integer NbVPoles() const;
+  //! Returns the number of poles in the V parametric direction.
+  [[nodiscard]] Standard_EXPORT int NbVPoles() const;
 
-  Standard_EXPORT Standard_Integer NbUKnots() const;
+  //! Returns the number of knots in the U parametric direction.
+  [[nodiscard]] Standard_EXPORT int NbUKnots() const;
 
-  //! Returns the number of knots for the u or v parametric
-  //! direction of the BSpline surface whose data is computed in this framework .
-  Standard_EXPORT Standard_Integer NbVKnots() const;
+  //! Returns the number of knots in the V parametric direction.
+  [[nodiscard]] Standard_EXPORT int NbVKnots() const;
 
-  Standard_EXPORT Standard_Boolean IsUPeriodic() const;
+  //! Returns true if the surface is periodic in the U parametric direction.
+  [[nodiscard]] Standard_EXPORT bool IsUPeriodic() const;
 
-  //! Returns true if the BSpline surface whose data is computed
-  //! in this framework is periodic in the u or v parametric direction.
-  Standard_EXPORT Standard_Boolean IsVPeriodic() const;
+  //! Returns true if the surface is periodic in the V parametric direction.
+  [[nodiscard]] Standard_EXPORT bool IsVPeriodic() const;
 
-  //! Returns the pole of index (UIndex,VIndex) to the poles
-  //! table of the BSpline surface whose data is computed in this framework.
-  //! Exceptions
-  //! Standard_OutOfRange if, for the BSpline surface whose
-  //! data is computed in this framework:
-  //! -   UIndex is outside the bounds of the poles table in the u
-  //! parametric direction, or
-  //! -   VIndex is outside the bounds of the poles table in the v
-  //! parametric direction.
-  Standard_EXPORT gp_Pnt Pole(const Standard_Integer UIndex, const Standard_Integer VIndex) const;
+  //! Returns the pole of index (UIndex, VIndex).
+  //! @throws Standard_OutOfRange if indices are out of bounds
+  Standard_DEPRECATED("Use Poles() batch accessor instead")
+  Standard_EXPORT gp_Pnt Pole(const int UIndex, const int VIndex) const;
 
-  //! Returns the weight of the pole of index (UIndex,VIndex) to
-  //! the poles table of the BSpline surface whose data is computed in this framework.
-  //! Exceptions
-  //! Standard_OutOfRange if, for the BSpline surface whose
-  //! data is computed in this framework:
-  //! -   UIndex is outside the bounds of the poles table in the u
-  //! parametric direction, or
-  //! -   VIndex is outside the bounds of the poles table in the v
-  //! parametric direction.
-  Standard_EXPORT Standard_Real Weight(const Standard_Integer UIndex,
-                                       const Standard_Integer VIndex) const;
+  //! Returns the weight of the pole of index (UIndex, VIndex).
+  //! @throws Standard_OutOfRange if indices are out of bounds
+  Standard_DEPRECATED("Use Weights() batch accessor instead")
+  Standard_EXPORT double Weight(const int UIndex, const int VIndex) const;
 
   //! Returns the U-knot of range UIndex.
-  //! Raised if UIndex < 1 or UIndex > NbUKnots.
-  Standard_EXPORT Standard_Real UKnot(const Standard_Integer UIndex) const;
+  //! @throws Standard_OutOfRange if UIndex is out of bounds
+  Standard_DEPRECATED("Use UKnots() batch accessor instead")
+  Standard_EXPORT double UKnot(const int UIndex) const;
 
   //! Returns the V-knot of range VIndex.
-  //! Raised if VIndex < 1 or VIndex > NbVKnots.
-  Standard_EXPORT Standard_Real VKnot(const Standard_Integer UIndex) const;
+  //! @throws Standard_OutOfRange if VIndex is out of bounds
+  Standard_DEPRECATED("Use VKnots() batch accessor instead")
+  Standard_EXPORT double VKnot(const int VIndex) const;
 
   //! Returns the multiplicity of the U-knot of range UIndex.
-  //! Raised if UIndex < 1 or UIndex > NbUKnots.
-  Standard_EXPORT Standard_Integer UMultiplicity(const Standard_Integer UIndex) const;
+  //! @throws Standard_OutOfRange if UIndex is out of bounds
+  Standard_DEPRECATED("Use UMultiplicities() batch accessor instead")
+  Standard_EXPORT int UMultiplicity(const int UIndex) const;
 
   //! Returns the multiplicity of the V-knot of range VIndex.
-  //! Raised if VIndex < 1 or VIndex > NbVKnots.
-  Standard_EXPORT Standard_Integer VMultiplicity(const Standard_Integer VIndex) const;
+  //! @throws Standard_OutOfRange if VIndex is out of bounds
+  Standard_DEPRECATED("Use VMultiplicities() batch accessor instead")
+  Standard_EXPORT int VMultiplicity(const int VIndex) const;
+
+  //! Returns the poles of the BSpline surface.
+  [[nodiscard]] Standard_EXPORT const NCollection_Array2<gp_Pnt>& Poles() const;
+
+  //! Returns the weights of the BSpline surface.
+  [[nodiscard]] Standard_EXPORT const NCollection_Array2<double>& Weights() const;
+
+  //! Returns the U-knots of the BSpline surface.
+  [[nodiscard]] Standard_EXPORT const NCollection_Array1<double>& UKnots() const;
+
+  //! Returns the V-knots of the BSpline surface.
+  [[nodiscard]] Standard_EXPORT const NCollection_Array1<double>& VKnots() const;
+
+  //! Returns the U-multiplicities of the BSpline surface.
+  [[nodiscard]] Standard_EXPORT const NCollection_Array1<int>& UMultiplicities() const;
+
+  //! Returns the V-multiplicities of the BSpline surface.
+  [[nodiscard]] Standard_EXPORT const NCollection_Array1<int>& VMultiplicities() const;
 
 protected:
-  Standard_EXPORT Convert_ElementarySurfaceToBSplineSurface(const Standard_Integer NumberOfUPoles,
-                                                            const Standard_Integer NumberOfVPoles,
-                                                            const Standard_Integer NumberOfUKnots,
-                                                            const Standard_Integer NumberOfVKnots,
-                                                            const Standard_Integer UDegree,
-                                                            const Standard_Integer VDegree);
+  Standard_EXPORT Convert_ElementarySurfaceToBSplineSurface(const int theNbUPoles,
+                                                            const int theNbVPoles,
+                                                            const int theNbUKnots,
+                                                            const int theNbVKnots,
+                                                            const int theUDegree,
+                                                            const int theVDegree);
 
-  TColgp_Array2OfPnt      poles;
-  TColStd_Array2OfReal    weights;
-  TColStd_Array1OfReal    uknots;
-  TColStd_Array1OfInteger umults;
-  TColStd_Array1OfReal    vknots;
-  TColStd_Array1OfInteger vmults;
-  Standard_Integer        udegree;
-  Standard_Integer        vdegree;
-  Standard_Integer        nbUPoles;
-  Standard_Integer        nbVPoles;
-  Standard_Integer        nbUKnots;
-  Standard_Integer        nbVKnots;
-  Standard_Boolean        isuperiodic;
-  Standard_Boolean        isvperiodic;
+  //! Resizes internal arrays (poles, weights, knots, multiplicities)
+  //! to match the actual sizes stored in myNbUPoles, myNbVPoles,
+  //! myNbUKnots, and myNbVKnots. This is intended to be called at the
+  //! end of derived class constructors when the base class constructor
+  //! allocates arrays with maximum possible sizes but the derived
+  //! constructor uses fewer elements.
+  Standard_EXPORT void Finalize();
 
-private:
+protected:
+  NCollection_Array2<gp_Pnt> myPoles;
+  NCollection_Array2<double> myWeights;
+  NCollection_Array1<double> myUKnots;
+  NCollection_Array1<double> myVKnots;
+  NCollection_Array1<int>    myUMults;
+  NCollection_Array1<int>    myVMults;
+  int                        myUDegree     = 0;
+  int                        myVDegree     = 0;
+  bool                       myIsUPeriodic = false;
+  bool                       myIsVPeriodic = false;
+  int                        myNbUPoles;
+  int                        myNbVPoles;
+  int                        myNbUKnots;
+  int                        myNbVKnots;
 };
 
 #endif // _Convert_ElementarySurfaceToBSplineSurface_HeaderFile

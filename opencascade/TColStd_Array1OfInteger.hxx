@@ -1,5 +1,4 @@
-// Copyright (c) 1998-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -12,12 +11,22 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef TColStd_Array1OfInteger_HeaderFile
-#define TColStd_Array1OfInteger_HeaderFile
+//! @file TColStd_Array1OfInteger.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection_Array1<int> directly instead.
 
+#ifndef _TColStd_Array1OfInteger_hxx
+#define _TColStd_Array1OfInteger_hxx
+
+#include <Standard_Macro.hxx>
 #include <Standard_Integer.hxx>
 #include <NCollection_Array1.hxx>
 
-typedef NCollection_Array1<Standard_Integer> TColStd_Array1OfInteger;
+Standard_HEADER_DEPRECATED("TColStd_Array1OfInteger.hxx is deprecated since OCCT 8.0.0. Use "
+                           "NCollection_Array1<int> directly.")
 
-#endif
+  Standard_DEPRECATED("TColStd_Array1OfInteger is deprecated, use NCollection_Array1<int> directly")
+typedef NCollection_Array1<int> TColStd_Array1OfInteger;
+
+#endif // _TColStd_Array1OfInteger_hxx

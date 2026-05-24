@@ -1,7 +1,4 @@
-// Created on: 1995-10-17
-// Created by: Andre LIEUTIER
-// Copyright (c) 1995-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,12 +11,23 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef Plate_SequenceOfPinpointConstraint_HeaderFile
-#define Plate_SequenceOfPinpointConstraint_HeaderFile
+//! @file Plate_SequenceOfPinpointConstraint.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection_Sequence<Plate_PinpointConstraint> directly instead.
 
+#ifndef _Plate_SequenceOfPinpointConstraint_hxx
+#define _Plate_SequenceOfPinpointConstraint_hxx
+
+#include <Standard_Macro.hxx>
 #include <Plate_PinpointConstraint.hxx>
 #include <NCollection_Sequence.hxx>
 
+Standard_HEADER_DEPRECATED("Plate_SequenceOfPinpointConstraint.hxx is deprecated since OCCT 8.0.0. "
+                           "Use NCollection_Sequence<Plate_PinpointConstraint> directly.")
+
+  Standard_DEPRECATED("Plate_SequenceOfPinpointConstraint is deprecated, use "
+                      "NCollection_Sequence<Plate_PinpointConstraint> directly")
 typedef NCollection_Sequence<Plate_PinpointConstraint> Plate_SequenceOfPinpointConstraint;
 
-#endif
+#endif // _Plate_SequenceOfPinpointConstraint_hxx

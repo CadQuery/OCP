@@ -1,7 +1,4 @@
-// Created on: 1993-08-11
-// Created by: Bruno DUMORTIER
-// Copyright (c) 1993-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,12 +11,26 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef ProjLib_HSequenceOfHSequenceOfPnt_HeaderFile
-#define ProjLib_HSequenceOfHSequenceOfPnt_HeaderFile
+//! @file ProjLib_HSequenceOfHSequenceOfPnt.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection_HSequence<opencascade::handle<TColgp_HSequenceOfPnt>> directly
+//!             instead.
 
+#ifndef _ProjLib_HSequenceOfHSequenceOfPnt_hxx
+#define _ProjLib_HSequenceOfHSequenceOfPnt_hxx
+
+#include <Standard_Macro.hxx>
 #include <ProjLib_SequenceOfHSequenceOfPnt.hxx>
-#include <NCollection_DefineHSequence.hxx>
+#include <NCollection_HSequence.hxx>
 
-DEFINE_HSEQUENCE(ProjLib_HSequenceOfHSequenceOfPnt, ProjLib_SequenceOfHSequenceOfPnt)
+Standard_HEADER_DEPRECATED(
+  "ProjLib_HSequenceOfHSequenceOfPnt.hxx is deprecated since OCCT 8.0.0. Use "
+  "NCollection_HSequence<opencascade::handle<TColgp_HSequenceOfPnt>> directly.")
 
-#endif
+  Standard_DEPRECATED("ProjLib_HSequenceOfHSequenceOfPnt is deprecated, use "
+                      "NCollection_HSequence<opencascade::handle<TColgp_HSequenceOfPnt>> directly")
+typedef NCollection_HSequence<opencascade::handle<TColgp_HSequenceOfPnt>>
+  ProjLib_HSequenceOfHSequenceOfPnt;
+
+#endif // _ProjLib_HSequenceOfHSequenceOfPnt_hxx

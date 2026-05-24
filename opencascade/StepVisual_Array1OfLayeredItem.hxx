@@ -1,7 +1,4 @@
-// Created on: 1995-12-01
-// Created by: EXPRESS->CDL V0.2 Translator
-// Copyright (c) 1995-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,12 +11,23 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef StepVisual_Array1OfLayeredItem_HeaderFile
-#define StepVisual_Array1OfLayeredItem_HeaderFile
+//! @file StepVisual_Array1OfLayeredItem.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection_Array1<StepVisual_LayeredItem> directly instead.
 
+#ifndef _StepVisual_Array1OfLayeredItem_hxx
+#define _StepVisual_Array1OfLayeredItem_hxx
+
+#include <Standard_Macro.hxx>
 #include <StepVisual_LayeredItem.hxx>
 #include <NCollection_Array1.hxx>
 
+Standard_HEADER_DEPRECATED("StepVisual_Array1OfLayeredItem.hxx is deprecated since OCCT 8.0.0. Use "
+                           "NCollection_Array1<StepVisual_LayeredItem> directly.")
+
+  Standard_DEPRECATED("StepVisual_Array1OfLayeredItem is deprecated, use "
+                      "NCollection_Array1<StepVisual_LayeredItem> directly")
 typedef NCollection_Array1<StepVisual_LayeredItem> StepVisual_Array1OfLayeredItem;
 
-#endif
+#endif // _StepVisual_Array1OfLayeredItem_hxx

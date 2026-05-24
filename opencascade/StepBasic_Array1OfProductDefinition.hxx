@@ -1,7 +1,4 @@
-// Created on: 1995-12-01
-// Created by: EXPRESS->CDL V0.2 Translator
-// Copyright (c) 1995-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,12 +11,27 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef StepBasic_Array1OfProductDefinition_HeaderFile
-#define StepBasic_Array1OfProductDefinition_HeaderFile
+//! @file StepBasic_Array1OfProductDefinition.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection_Array1<opencascade::handle<StepBasic_ProductDefinition>> directly
+//!             instead.
 
+#ifndef _StepBasic_Array1OfProductDefinition_hxx
+#define _StepBasic_Array1OfProductDefinition_hxx
+
+#include <Standard_Macro.hxx>
 #include <StepBasic_ProductDefinition.hxx>
 #include <NCollection_Array1.hxx>
 
-typedef NCollection_Array1<Handle(StepBasic_ProductDefinition)> StepBasic_Array1OfProductDefinition;
+Standard_HEADER_DEPRECATED(
+  "StepBasic_Array1OfProductDefinition.hxx is deprecated since OCCT 8.0.0. Use "
+  "NCollection_Array1<opencascade::handle<StepBasic_ProductDefinition>> directly.")
 
-#endif
+  Standard_DEPRECATED(
+    "StepBasic_Array1OfProductDefinition is deprecated, use "
+    "NCollection_Array1<opencascade::handle<StepBasic_ProductDefinition>> directly")
+typedef NCollection_Array1<opencascade::handle<StepBasic_ProductDefinition>>
+  StepBasic_Array1OfProductDefinition;
+
+#endif // _StepBasic_Array1OfProductDefinition_hxx

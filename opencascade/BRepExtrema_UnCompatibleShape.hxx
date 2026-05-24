@@ -17,13 +17,9 @@
 #ifndef _BRepExtrema_UnCompatibleShape_HeaderFile
 #define _BRepExtrema_UnCompatibleShape_HeaderFile
 
-#include <Standard_Type.hxx>
 #include <Standard_DefineException.hxx>
 #include <Standard_SStream.hxx>
 #include <Standard_DomainError.hxx>
-
-class BRepExtrema_UnCompatibleShape;
-DEFINE_STANDARD_HANDLE(BRepExtrema_UnCompatibleShape, Standard_DomainError)
 
 #if !defined No_Exception && !defined No_BRepExtrema_UnCompatibleShape
   #define BRepExtrema_UnCompatibleShape_Raise_if(CONDITION, MESSAGE)                               \

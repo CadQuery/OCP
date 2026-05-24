@@ -1,7 +1,4 @@
-// Created on: 1999-11-09
-// Created by: data exchange team
-// Copyright (c) 1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,12 +11,23 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef StepAP203_HArray1OfChangeRequestItem_HeaderFile
-#define StepAP203_HArray1OfChangeRequestItem_HeaderFile
+//! @file StepAP203_HArray1OfChangeRequestItem.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection_HArray1<StepAP203_ChangeRequestItem> directly instead.
 
+#ifndef _StepAP203_HArray1OfChangeRequestItem_hxx
+#define _StepAP203_HArray1OfChangeRequestItem_hxx
+
+#include <Standard_Macro.hxx>
 #include <StepAP203_Array1OfChangeRequestItem.hxx>
-#include <NCollection_DefineHArray1.hxx>
+#include <NCollection_HArray1.hxx>
 
-DEFINE_HARRAY1(StepAP203_HArray1OfChangeRequestItem, StepAP203_Array1OfChangeRequestItem)
+Standard_HEADER_DEPRECATED("StepAP203_HArray1OfChangeRequestItem.hxx is deprecated since OCCT "
+                           "8.0.0. Use NCollection_HArray1<StepAP203_ChangeRequestItem> directly.")
 
-#endif
+  Standard_DEPRECATED("StepAP203_HArray1OfChangeRequestItem is deprecated, use "
+                      "NCollection_HArray1<StepAP203_ChangeRequestItem> directly")
+typedef NCollection_HArray1<StepAP203_ChangeRequestItem> StepAP203_HArray1OfChangeRequestItem;
+
+#endif // _StepAP203_HArray1OfChangeRequestItem_hxx

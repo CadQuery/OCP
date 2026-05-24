@@ -1,7 +1,4 @@
-// Created on: 1991-01-14
-// Created by: Arnaud BOUZY
-// Copyright (c) 1991-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,12 +11,26 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef Expr_SequenceOfGeneralRelation_HeaderFile
-#define Expr_SequenceOfGeneralRelation_HeaderFile
+//! @file Expr_SequenceOfGeneralRelation.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection_Sequence<opencascade::handle<Expr_GeneralRelation>> directly
+//!             instead.
 
+#ifndef _Expr_SequenceOfGeneralRelation_hxx
+#define _Expr_SequenceOfGeneralRelation_hxx
+
+#include <Standard_Macro.hxx>
 #include <Expr_GeneralRelation.hxx>
 #include <NCollection_Sequence.hxx>
 
-typedef NCollection_Sequence<Handle(Expr_GeneralRelation)> Expr_SequenceOfGeneralRelation;
+Standard_HEADER_DEPRECATED(
+  "Expr_SequenceOfGeneralRelation.hxx is deprecated since OCCT 8.0.0. Use "
+  "NCollection_Sequence<opencascade::handle<Expr_GeneralRelation>> directly.")
 
-#endif
+  Standard_DEPRECATED("Expr_SequenceOfGeneralRelation is deprecated, use "
+                      "NCollection_Sequence<opencascade::handle<Expr_GeneralRelation>> directly")
+typedef NCollection_Sequence<opencascade::handle<Expr_GeneralRelation>>
+  Expr_SequenceOfGeneralRelation;
+
+#endif // _Expr_SequenceOfGeneralRelation_hxx

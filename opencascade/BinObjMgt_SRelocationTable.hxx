@@ -1,6 +1,4 @@
-// Created on: 2002-10-29
-// Created by: Michael SAZONOV
-// Copyright (c) 2002-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -13,11 +11,24 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _BinObjMgt_SRelocationTable_HeaderFile
-#define _BinObjMgt_SRelocationTable_HeaderFile
+//! @file BinObjMgt_SRelocationTable.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection_IndexedMap<opencascade::handle<Standard_Transient>> directly
+//!             instead.
 
+#ifndef _BinObjMgt_SRelocationTable_hxx
+#define _BinObjMgt_SRelocationTable_hxx
+
+#include <Standard_Macro.hxx>
 #include <TColStd_IndexedMapOfTransient.hxx>
 
-typedef TColStd_IndexedMapOfTransient BinObjMgt_SRelocationTable;
+Standard_HEADER_DEPRECATED(
+  "BinObjMgt_SRelocationTable.hxx is deprecated since OCCT 8.0.0. Use "
+  "NCollection_IndexedMap<opencascade::handle<Standard_Transient>> directly.")
 
-#endif // _BinObjMgt_SRelocationTable_HeaderFile
+  Standard_DEPRECATED("BinObjMgt_SRelocationTable is deprecated, use "
+                      "NCollection_IndexedMap<opencascade::handle<Standard_Transient>> directly")
+typedef NCollection_IndexedMap<opencascade::handle<Standard_Transient>> BinObjMgt_SRelocationTable;
+
+#endif // _BinObjMgt_SRelocationTable_hxx

@@ -17,13 +17,9 @@
 #ifndef _LProp_BadContinuity_HeaderFile
 #define _LProp_BadContinuity_HeaderFile
 
-#include <Standard_Type.hxx>
 #include <Standard_DefineException.hxx>
 #include <Standard_SStream.hxx>
 #include <Standard_Failure.hxx>
-
-class LProp_BadContinuity;
-DEFINE_STANDARD_HANDLE(LProp_BadContinuity, Standard_Failure)
 
 #if !defined No_Exception && !defined No_LProp_BadContinuity
   #define LProp_BadContinuity_Raise_if(CONDITION, MESSAGE)                                         \

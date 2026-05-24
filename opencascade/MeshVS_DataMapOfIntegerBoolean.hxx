@@ -1,6 +1,4 @@
-// Created on: 2003-10-10
-// Created by: Alexander SOLOVYOV
-// Copyright (c) 2003-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -13,14 +11,26 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef MeshVS_DataMapOfIntegerBoolean_HeaderFile
-#define MeshVS_DataMapOfIntegerBoolean_HeaderFile
+//! @file MeshVS_DataMapOfIntegerBoolean.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection types directly instead.
 
+#ifndef _MeshVS_DataMapOfIntegerBoolean_hxx
+#define _MeshVS_DataMapOfIntegerBoolean_hxx
+
+#include <Standard_Macro.hxx>
 #include <Standard_Integer.hxx>
 #include <NCollection_DataMap.hxx>
 
-typedef NCollection_DataMap<Standard_Integer, Standard_Boolean> MeshVS_DataMapOfIntegerBoolean;
-typedef NCollection_DataMap<Standard_Integer, Standard_Boolean>::Iterator
-  MeshVS_DataMapIteratorOfDataMapOfIntegerBoolean;
+Standard_HEADER_DEPRECATED("MeshVS_DataMapOfIntegerBoolean.hxx is deprecated since OCCT 8.0.0. Use "
+                           "NCollection types directly.")
 
-#endif
+  Standard_DEPRECATED(
+    "MeshVS_DataMapOfIntegerBoolean is deprecated, use NCollection_DataMap<int, bool> directly")
+typedef NCollection_DataMap<int, bool> MeshVS_DataMapOfIntegerBoolean;
+Standard_DEPRECATED("MeshVS_DataMapIteratorOfDataMapOfIntegerBoolean is deprecated, use "
+                    "NCollection_DataMap<int, bool>::Iterator directly")
+typedef NCollection_DataMap<int, bool>::Iterator MeshVS_DataMapIteratorOfDataMapOfIntegerBoolean;
+
+#endif // _MeshVS_DataMapOfIntegerBoolean_hxx

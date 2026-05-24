@@ -18,6 +18,7 @@
 #include <Message_AlertExtended.hxx>
 #include <Message_Gravity.hxx>
 #include <Message_Messenger.hxx>
+#include <TCollection_AsciiString.hxx>
 
 #include <Standard.hxx>
 
@@ -40,19 +41,20 @@ public:
   //! Constructor.
   //! One string key is used for all alert meters.
   //! The perf meter is not started automatically, it will be done in AddAlert() method
-  Standard_EXPORT Message_Level(const TCollection_AsciiString& theName = TCollection_AsciiString());
+  Standard_EXPORT Message_Level(
+    const TCollection_AsciiString& theName = TCollection_AsciiString::EmptyString());
 
   //! Assures stopping upon destruction
   Standard_EXPORT ~Message_Level();
 
   //! Returns root alert of the level
   //! @return alert instance or NULL
-  const Handle(Message_AlertExtended)& RootAlert() const { return myRootAlert; }
+  const occ::handle<Message_AlertExtended>& RootAlert() const { return myRootAlert; }
 
   //! Sets the root alert. Starts collects alert metrics if active.
   //! @param theAlert an alert
-  Standard_EXPORT void SetRootAlert(const Handle(Message_AlertExtended)& theAlert,
-                                    const Standard_Boolean               isRequiredToStart);
+  Standard_EXPORT void SetRootAlert(const occ::handle<Message_AlertExtended>& theAlert,
+                                    const bool                                isRequiredToStart);
 
   //! Adds new alert on the level. Stops the last alert metric, appends the alert and starts the
   //! alert metrics collecting. Sets root alert beforehand this method using, if the root is NULL,
@@ -60,8 +62,8 @@ public:
   //! @param theGravity an alert gravity
   //! @param theAlert an alert
   //! @return true if alert is added
-  Standard_EXPORT Standard_Boolean AddAlert(const Message_Gravity        theGravity,
-                                            const Handle(Message_Alert)& theAlert);
+  Standard_EXPORT bool AddAlert(const Message_Gravity             theGravity,
+                                const occ::handle<Message_Alert>& theAlert);
 
 private:
   //! Remove the current level from the report. It stops metric collecting for the last and the root
@@ -69,8 +71,8 @@ private:
   Standard_EXPORT void remove();
 
 private:
-  Handle(Message_AlertExtended) myRootAlert; //!< root alert
-  Handle(Message_AlertExtended) myLastAlert; //!< last added alert on the root alert
+  occ::handle<Message_AlertExtended> myRootAlert; //!< root alert
+  occ::handle<Message_AlertExtended> myLastAlert; //!< last added alert on the root alert
 };
 
 //! @def MESSAGE_NEW_LEVEL

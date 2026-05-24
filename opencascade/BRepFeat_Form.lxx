@@ -14,95 +14,71 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-//=======================================================================
-// function : BRepFeatForm
-// purpose  :
-//=======================================================================
+//=================================================================================================
 
 inline BRepFeat_Form::BRepFeat_Form()
-    : myFuse(Standard_False),
-      myModify(Standard_False),
+    : myFuse(false),
+      myModify(false),
       myPerfSelection(BRepFeat_NoSelection),
-      myJustGluer(Standard_False),
-      myJustFeat(Standard_False),
-      mySbOK(Standard_False),
-      mySkOK(Standard_False),
-      myGSOK(Standard_False),
-      mySFOK(Standard_False),
-      mySUOK(Standard_False),
-      myGFOK(Standard_False),
-      myPSOK(Standard_False),
+      myJustGluer(false),
+      myJustFeat(false),
+      mySbOK(false),
+      mySkOK(false),
+      myGSOK(false),
+      mySFOK(false),
+      mySUOK(false),
+      myGFOK(false),
+      myPSOK(false),
       myStatusError(BRepFeat_NotInitialized)
 
 {
 }
 
-//=======================================================================
-// function : BasisShapeValid
-// purpose  :
-//=======================================================================
+//=================================================================================================
 
 inline void BRepFeat_Form::BasisShapeValid()
 {
-  mySbOK = Standard_True;
+  mySbOK = true;
 }
 
-//=======================================================================
-// function : PerfSelectionValid
-// purpose  :
-//=======================================================================
+//=================================================================================================
 
 inline void BRepFeat_Form::PerfSelectionValid()
 {
-  myPSOK = Standard_True;
+  myPSOK = true;
 }
 
-//=======================================================================
-// function : GeneratedShapeValid
-// purpose  :
-//=======================================================================
+//=================================================================================================
 
 inline void BRepFeat_Form::GeneratedShapeValid()
 {
-  myGSOK = Standard_True;
+  myGSOK = true;
 }
 
-//=======================================================================
-// function : ShapeFromValid
-// purpose  :
-//=======================================================================
+//=================================================================================================
 
 inline void BRepFeat_Form::ShapeFromValid()
 {
-  mySFOK = Standard_True;
+  mySFOK = true;
 }
 
-//=======================================================================
-// function : ShapeUntilValid
-// purpose  :
-//=======================================================================
+//=================================================================================================
 
 inline void BRepFeat_Form::ShapeUntilValid()
 {
-  mySUOK = Standard_True;
+  mySUOK = true;
 }
 
-//=======================================================================
-// function : GluedFacesValid
-// purpose  :
-//=======================================================================
+//=================================================================================================
 
 inline void BRepFeat_Form::GluedFacesValid()
 {
-  myGFOK = Standard_True;
+  myGFOK = true;
 }
 
-//=======================================================================
-// function : SketchFaceValid
-// purpose  :
-//=======================================================================
+//=================================================================================================
 
 inline void BRepFeat_Form::SketchFaceValid()
 {
-  mySkOK = Standard_True;
+  mySkOK = true;
 }

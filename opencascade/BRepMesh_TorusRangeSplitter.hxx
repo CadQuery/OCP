@@ -25,27 +25,27 @@ class BRepMesh_TorusRangeSplitter : public BRepMesh_UVParamRangeSplitter
 {
 public:
   //! Constructor.
-  BRepMesh_TorusRangeSplitter() {}
+  BRepMesh_TorusRangeSplitter() = default;
 
   //! Destructor.
-  virtual ~BRepMesh_TorusRangeSplitter() {}
+  ~BRepMesh_TorusRangeSplitter() override = default;
 
   //! Returns list of nodes generated using surface data and specified parameters.
-  Standard_EXPORT virtual Handle(IMeshData::ListOfPnt2d) GenerateSurfaceNodes(
-    const IMeshTools_Parameters& theParameters) const Standard_OVERRIDE;
+  Standard_EXPORT Handle(IMeshData::ListOfPnt2d) GenerateSurfaceNodes(
+    const IMeshTools_Parameters& theParameters) const override;
 
   //! Registers border point.
-  Standard_EXPORT virtual void AddPoint(const gp_Pnt2d& thePoint) Standard_OVERRIDE;
+  Standard_EXPORT void AddPoint(const gp_Pnt2d& thePoint) override;
 
 private:
   Handle(IMeshData::SequenceOfReal) fillParams(
-    const IMeshData::IMapOfReal&                   theParams,
-    const std::pair<Standard_Real, Standard_Real>& theRange,
-    const Standard_Integer                         theStepsNb,
-    const Standard_Real                            theScale,
-    const Handle(NCollection_IncAllocator)&        theAllocator) const;
+    const IMeshData::IMapOfReal&                 theParams,
+    const std::pair<double, double>&             theRange,
+    const int                                    theStepsNb,
+    const double                                 theScale,
+    const occ::handle<NCollection_IncAllocator>& theAllocator) const;
 
-  Standard_Real FUN_CalcAverageDUV(TColStd_Array1OfReal& P, const Standard_Integer PLen) const;
+  double FUN_CalcAverageDUV(NCollection_Array1<double>& P, const int PLen) const;
 };
 
 #endif

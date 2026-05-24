@@ -25,11 +25,10 @@
 #include <AppBlend_Approx.hxx>
 #include <GeomAbs_Shape.hxx>
 #include <Standard_Integer.hxx>
-#include <TColgp_Array2OfPnt.hxx>
-#include <TColStd_Array2OfReal.hxx>
-#include <TColStd_Array1OfReal.hxx>
-#include <TColStd_Array1OfInteger.hxx>
-#include <TColgp_Array1OfPnt2d.hxx>
+#include <gp_Pnt.hxx>
+#include <NCollection_Array2.hxx>
+#include <NCollection_Array1.hxx>
+#include <gp_Pnt2d.hxx>
 #include <Standard_OStream.hxx>
 class Approx_SweepFunction;
 
@@ -39,88 +38,85 @@ class BRepBlend_AppSurface : public AppBlend_Approx
 public:
   DEFINE_STANDARD_ALLOC
 
-  //! Approximation     of   the   new  Surface  (and
-  //! eventually the  2d    Curves   on the   support
+  //! Approximation of the new Surface (and
+  //! eventually the 2d Curves on the support
   //! surfaces).
-  //! Normally     the  2d    curve are
-  //! approximated  with an  tolerance   given  by   the
-  //! resolution on   support surfaces,  but  if this
-  //! tolerance is too large Tol2d  is used.
-  Standard_EXPORT BRepBlend_AppSurface(const Handle(Approx_SweepFunction)& Funct,
-                                       const Standard_Real                 First,
-                                       const Standard_Real                 Last,
-                                       const Standard_Real                 Tol3d,
-                                       const Standard_Real                 Tol2d,
-                                       const Standard_Real                 TolAngular,
-                                       const GeomAbs_Shape                 Continuity = GeomAbs_C0,
-                                       const Standard_Integer              Degmax     = 11,
-                                       const Standard_Integer              Segmax     = 50);
+  //! Normally the 2d curve are
+  //! approximated with a tolerance given by the
+  //! resolution on support surfaces, but if this
+  //! tolerance is too large Tol2d is used.
+  Standard_EXPORT BRepBlend_AppSurface(const occ::handle<Approx_SweepFunction>& Funct,
+                                       const double                             First,
+                                       const double                             Last,
+                                       const double                             Tol3d,
+                                       const double                             Tol2d,
+                                       const double                             TolAngular,
+                                       const GeomAbs_Shape Continuity = GeomAbs_C0,
+                                       const int           Degmax     = 11,
+                                       const int           Segmax     = 50);
 
-  Standard_Boolean IsDone() const;
+  bool IsDone() const override;
 
-  Standard_EXPORT void SurfShape(Standard_Integer& UDegree,
-                                 Standard_Integer& VDegree,
-                                 Standard_Integer& NbUPoles,
-                                 Standard_Integer& NbVPoles,
-                                 Standard_Integer& NbUKnots,
-                                 Standard_Integer& NbVKnots) const;
+  Standard_EXPORT void SurfShape(int& UDegree,
+                                 int& VDegree,
+                                 int& NbUPoles,
+                                 int& NbVPoles,
+                                 int& NbUKnots,
+                                 int& NbVKnots) const override;
 
-  Standard_EXPORT void Surface(TColgp_Array2OfPnt&      TPoles,
-                               TColStd_Array2OfReal&    TWeights,
-                               TColStd_Array1OfReal&    TUKnots,
-                               TColStd_Array1OfReal&    TVKnots,
-                               TColStd_Array1OfInteger& TUMults,
-                               TColStd_Array1OfInteger& TVMults) const;
+  Standard_EXPORT void Surface(NCollection_Array2<gp_Pnt>& TPoles,
+                               NCollection_Array2<double>& TWeights,
+                               NCollection_Array1<double>& TUKnots,
+                               NCollection_Array1<double>& TVKnots,
+                               NCollection_Array1<int>&    TUMults,
+                               NCollection_Array1<int>&    TVMults) const override;
 
-  Standard_Integer UDegree() const;
+  int UDegree() const override;
 
-  Standard_Integer VDegree() const;
+  int VDegree() const override;
 
-  const TColgp_Array2OfPnt& SurfPoles() const;
+  const NCollection_Array2<gp_Pnt>& SurfPoles() const override;
 
-  const TColStd_Array2OfReal& SurfWeights() const;
+  const NCollection_Array2<double>& SurfWeights() const override;
 
-  const TColStd_Array1OfReal& SurfUKnots() const;
+  const NCollection_Array1<double>& SurfUKnots() const override;
 
-  const TColStd_Array1OfReal& SurfVKnots() const;
+  const NCollection_Array1<double>& SurfVKnots() const override;
 
-  const TColStd_Array1OfInteger& SurfUMults() const;
+  const NCollection_Array1<int>& SurfUMults() const override;
 
-  const TColStd_Array1OfInteger& SurfVMults() const;
+  const NCollection_Array1<int>& SurfVMults() const override;
 
   //! returns the maximum error in the surface approximation.
-  Standard_EXPORT Standard_Real MaxErrorOnSurf() const;
+  Standard_EXPORT double MaxErrorOnSurf() const;
 
-  Standard_Integer NbCurves2d() const;
+  int NbCurves2d() const override;
 
-  Standard_EXPORT void Curves2dShape(Standard_Integer& Degree,
-                                     Standard_Integer& NbPoles,
-                                     Standard_Integer& NbKnots) const;
+  Standard_EXPORT void Curves2dShape(int& Degree, int& NbPoles, int& NbKnots) const override;
 
-  Standard_EXPORT void Curve2d(const Standard_Integer   Index,
-                               TColgp_Array1OfPnt2d&    TPoles,
-                               TColStd_Array1OfReal&    TKnots,
-                               TColStd_Array1OfInteger& TMults) const;
+  Standard_EXPORT void Curve2d(const int                     Index,
+                               NCollection_Array1<gp_Pnt2d>& TPoles,
+                               NCollection_Array1<double>&   TKnots,
+                               NCollection_Array1<int>&      TMults) const override;
 
-  Standard_Integer Curves2dDegree() const;
+  int Curves2dDegree() const override;
 
-  const TColgp_Array1OfPnt2d& Curve2dPoles(const Standard_Integer Index) const;
+  const NCollection_Array1<gp_Pnt2d>& Curve2dPoles(const int Index) const override;
 
-  const TColStd_Array1OfReal& Curves2dKnots() const;
+  const NCollection_Array1<double>& Curves2dKnots() const override;
 
-  const TColStd_Array1OfInteger& Curves2dMults() const;
+  const NCollection_Array1<int>& Curves2dMults() const override;
 
-  Standard_EXPORT void TolReached(Standard_Real& Tol3d, Standard_Real& Tol2d) const;
+  Standard_EXPORT void TolReached(double& Tol3d, double& Tol2d) const override;
 
   //! returns the maximum error in the <Index> 2d curve approximation.
-  Standard_EXPORT Standard_Real Max2dError(const Standard_Integer Index) const;
+  Standard_EXPORT double Max2dError(const int Index) const;
 
-  Standard_EXPORT Standard_Real TolCurveOnSurf(const Standard_Integer Index) const;
+  Standard_EXPORT double TolCurveOnSurf(const int Index) const override;
 
   //! display information on approximation.
   Standard_EXPORT void Dump(Standard_OStream& o) const;
 
-protected:
 private:
   Approx_SweepApproximation approx;
 };

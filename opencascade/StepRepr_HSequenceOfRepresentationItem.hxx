@@ -1,7 +1,4 @@
-// Created on: 1995-12-01
-// Created by: EXPRESS->CDL V0.2 Translator
-// Copyright (c) 1995-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,13 +11,28 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef StepRepr_HSequenceOfRepresentationItem_HeaderFile
-#define StepRepr_HSequenceOfRepresentationItem_HeaderFile
+//! @file StepRepr_HSequenceOfRepresentationItem.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection_HSequence<opencascade::handle<StepRepr_RepresentationItem>> directly
+//!             instead.
 
+#ifndef _StepRepr_HSequenceOfRepresentationItem_hxx
+#define _StepRepr_HSequenceOfRepresentationItem_hxx
+
+#include <Standard_Macro.hxx>
 #include <StepRepr_RepresentationItem.hxx>
 #include <StepRepr_SequenceOfRepresentationItem.hxx>
-#include <NCollection_DefineHSequence.hxx>
+#include <NCollection_HSequence.hxx>
 
-DEFINE_HSEQUENCE(StepRepr_HSequenceOfRepresentationItem, StepRepr_SequenceOfRepresentationItem)
+Standard_HEADER_DEPRECATED(
+  "StepRepr_HSequenceOfRepresentationItem.hxx is deprecated since OCCT 8.0.0. Use "
+  "NCollection_HSequence<opencascade::handle<StepRepr_RepresentationItem>> directly.")
 
-#endif
+  Standard_DEPRECATED(
+    "StepRepr_HSequenceOfRepresentationItem is deprecated, use "
+    "NCollection_HSequence<opencascade::handle<StepRepr_RepresentationItem>> directly")
+typedef NCollection_HSequence<opencascade::handle<StepRepr_RepresentationItem>>
+  StepRepr_HSequenceOfRepresentationItem;
+
+#endif // _StepRepr_HSequenceOfRepresentationItem_hxx

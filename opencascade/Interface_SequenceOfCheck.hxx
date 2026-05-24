@@ -1,7 +1,4 @@
-// Created on: 1992-02-03
-// Created by: Christian CAILLET
-// Copyright (c) 1992-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,12 +11,23 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef Interface_SequenceOfCheck_HeaderFile
-#define Interface_SequenceOfCheck_HeaderFile
+//! @file Interface_SequenceOfCheck.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection_Sequence<opencascade::handle<Interface_Check>> directly instead.
 
+#ifndef _Interface_SequenceOfCheck_hxx
+#define _Interface_SequenceOfCheck_hxx
+
+#include <Standard_Macro.hxx>
 #include <Interface_Check.hxx>
 #include <NCollection_Sequence.hxx>
 
-typedef NCollection_Sequence<Handle(Interface_Check)> Interface_SequenceOfCheck;
+Standard_HEADER_DEPRECATED("Interface_SequenceOfCheck.hxx is deprecated since OCCT 8.0.0. Use "
+                           "NCollection_Sequence<opencascade::handle<Interface_Check>> directly.")
 
-#endif
+  Standard_DEPRECATED("Interface_SequenceOfCheck is deprecated, use "
+                      "NCollection_Sequence<opencascade::handle<Interface_Check>> directly")
+typedef NCollection_Sequence<opencascade::handle<Interface_Check>> Interface_SequenceOfCheck;
+
+#endif // _Interface_SequenceOfCheck_hxx

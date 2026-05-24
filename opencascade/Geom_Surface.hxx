@@ -18,14 +18,11 @@
 #define _Geom_Surface_HeaderFile
 
 #include <Geom_Curve.hxx>
+#include <Geom_UndefinedDerivative.hxx>
+#include <Geom_UndefinedValue.hxx>
 
 class gp_Trsf;
 class gp_GTrsf2d;
-class gp_Pnt;
-class gp_Vec;
-
-class Geom_Surface;
-DEFINE_STANDARD_HANDLE(Geom_Surface, Geom_Geometry)
 
 //! Describes the common behavior of surfaces in 3D space.
 //! The Geom package provides many implementations of concrete derived surfaces,
@@ -53,6 +50,40 @@ class Geom_Surface : public Geom_Geometry
 {
 
 public:
+  //! Result of D1 evaluation: point and partial first derivatives.
+  struct ResD1
+  {
+    gp_Pnt Point;
+    gp_Vec D1U;
+    gp_Vec D1V;
+  };
+
+  //! Result of D2 evaluation: point and partial derivatives up to 2nd order.
+  struct ResD2
+  {
+    gp_Pnt Point;
+    gp_Vec D1U;
+    gp_Vec D1V;
+    gp_Vec D2U;
+    gp_Vec D2V;
+    gp_Vec D2UV;
+  };
+
+  //! Result of D3 evaluation: point and partial derivatives up to 3rd order.
+  struct ResD3
+  {
+    gp_Pnt Point;
+    gp_Vec D1U;
+    gp_Vec D1V;
+    gp_Vec D2U;
+    gp_Vec D2V;
+    gp_Vec D2UV;
+    gp_Vec D3U;
+    gp_Vec D3V;
+    gp_Vec D3UUV;
+    gp_Vec D3UVV;
+  };
+
   //! Reverses the U direction of parametrization of <me>.
   //! The bounds of the surface are not modified.
   Standard_EXPORT virtual void UReverse() = 0;
@@ -60,9 +91,9 @@ public:
   //! Reverses the U direction of parametrization of <me>.
   //! The bounds of the surface are not modified.
   //! A copy of <me> is returned.
-  Standard_NODISCARD Standard_EXPORT Handle(Geom_Surface) UReversed() const;
+  [[nodiscard]] Standard_EXPORT occ::handle<Geom_Surface> UReversed() const;
 
-  //! Returns the  parameter on the  Ureversed surface for
+  //! Returns the parameter on the Ureversed surface for
   //! the point of parameter U on <me>.
   //! @code
   //!   me->UReversed()->Value(me->UReversedParameter(U),V)
@@ -71,7 +102,7 @@ public:
   //! @code
   //!   me->Value(U,V)
   //! @endcode
-  Standard_EXPORT virtual Standard_Real UReversedParameter(const Standard_Real U) const = 0;
+  Standard_EXPORT virtual double UReversedParameter(const double U) const = 0;
 
   //! Reverses the V direction of parametrization of <me>.
   //! The bounds of the surface are not modified.
@@ -80,9 +111,9 @@ public:
   //! Reverses the V direction of parametrization of <me>.
   //! The bounds of the surface are not modified.
   //! A copy of <me> is returned.
-  Standard_NODISCARD Standard_EXPORT Handle(Geom_Surface) VReversed() const;
+  [[nodiscard]] Standard_EXPORT occ::handle<Geom_Surface> VReversed() const;
 
-  //! Returns the  parameter on the  Vreversed surface for
+  //! Returns the parameter on the Vreversed surface for
   //! the point of parameter V on <me>.
   //! @code
   //!   me->VReversed()->Value(U,me->VReversedParameter(V))
@@ -91,9 +122,9 @@ public:
   //! @code
   //!   me->Value(U,V)
   //! @endcode
-  Standard_EXPORT virtual Standard_Real VReversedParameter(const Standard_Real V) const = 0;
+  Standard_EXPORT virtual double VReversedParameter(const double V) const = 0;
 
-  //! Computes the  parameters on the  transformed  surface for
+  //! Computes the parameters on the transformed surface for
   //! the transform of the point of parameters U,V on <me>.
   //! @code
   //!   me->Transformed(T)->Value(U',V')
@@ -108,13 +139,11 @@ public:
   //! @endcode
   //! This method does not change <U> and <V>
   //!
-  //! It  can be redefined.  For  example on  the Plane,
+  //! It can be redefined. For example on the Plane,
   //! Cylinder, Cone, Revolved and Extruded surfaces.
-  Standard_EXPORT virtual void TransformParameters(Standard_Real& U,
-                                                   Standard_Real& V,
-                                                   const gp_Trsf& T) const;
+  Standard_EXPORT virtual void TransformParameters(double& U, double& V, const gp_Trsf& T) const;
 
-  //! Returns a 2d transformation  used to find the  new
+  //! Returns a 2d transformation used to find the new
   //! parameters of a point on the transformed surface.
   //! @code
   //!   me->Transformed(T)->Value(U',V')
@@ -123,24 +152,21 @@ public:
   //! @code
   //!   me->Value(U,V).Transformed(T)
   //! @endcode
-  //! Where U',V' are  obtained by transforming U,V with
+  //! Where U',V' are obtained by transforming U,V with
   //! the 2d transformation returned by
   //! @code
   //!   me->ParametricTransformation(T)
   //! @endcode
   //! This method returns an identity transformation
   //!
-  //! It  can be redefined.  For  example on  the Plane,
+  //! It can be redefined. For example on the Plane,
   //! Cylinder, Cone, Revolved and Extruded surfaces.
   Standard_EXPORT virtual gp_GTrsf2d ParametricTransformation(const gp_Trsf& T) const;
 
   //! Returns the parametric bounds U1, U2, V1 and V2 of this surface.
   //! If the surface is infinite, this function can return a value
-  //! equal to Precision::Infinite: instead of Standard_Real::LastReal.
-  Standard_EXPORT virtual void Bounds(Standard_Real& U1,
-                                      Standard_Real& U2,
-                                      Standard_Real& V1,
-                                      Standard_Real& V2) const = 0;
+  //! equal to Precision::Infinite: instead of double::LastReal.
+  Standard_EXPORT virtual void Bounds(double& U1, double& U2, double& V1, double& V2) const = 0;
 
   //! Checks whether this surface is closed in the u parametric direction.
   //! Returns true if, in the u parametric direction:
@@ -148,14 +174,14 @@ public:
   //! the u parametric direction, for each parameter v,
   //! the distance between the points P(uFirst, v) and
   //! P(uLast, v) is less than or equal to gp::Resolution().
-  Standard_EXPORT virtual Standard_Boolean IsUClosed() const = 0;
+  Standard_EXPORT virtual bool IsUClosed() const = 0;
 
   //! Checks whether this surface is closed in the u parametric direction.
   //! Returns true if, in the v parametric direction:
   //! taking vFirst and vLast as the parametric bounds in the v parametric direction,
   //! for each parameter u, the distance between the points
   //! P(u, vFirst) and P(u, vLast) is less than or equal to gp::Resolution().
-  Standard_EXPORT virtual Standard_Boolean IsVClosed() const = 0;
+  Standard_EXPORT virtual bool IsVClosed() const = 0;
 
   //! Checks if this surface is periodic in the u parametric direction.
   //! Returns true if:
@@ -165,11 +191,11 @@ public:
   //!   (or the points P (u, v) and P (u, v + T)) is less than or equal to gp::Resolution().
   //!
   //! Note: T is the parametric period in the u parametric direction.
-  Standard_EXPORT virtual Standard_Boolean IsUPeriodic() const = 0;
+  Standard_EXPORT virtual bool IsUPeriodic() const = 0;
 
   //! Returns the period of this surface in the u parametric direction.
   //! Raises if the surface is not uperiodic.
-  Standard_EXPORT virtual Standard_Real UPeriod() const;
+  Standard_EXPORT virtual double UPeriod() const;
 
   //! Checks if this surface is periodic in the v parametric direction.
   //! Returns true if:
@@ -179,17 +205,17 @@ public:
   //!   (or the points P (u, v) and P (u, v + T)) is less than or equal to gp::Resolution().
   //!
   //! Note: T is the parametric period in the v parametric direction.
-  Standard_EXPORT virtual Standard_Boolean IsVPeriodic() const = 0;
+  Standard_EXPORT virtual bool IsVPeriodic() const = 0;
 
   //! Returns the period of this surface in the v parametric direction.
   //! raises if the surface is not vperiodic.
-  Standard_EXPORT virtual Standard_Real VPeriod() const;
+  Standard_EXPORT virtual double VPeriod() const;
 
   //! Computes the U isoparametric curve.
-  Standard_EXPORT virtual Handle(Geom_Curve) UIso(const Standard_Real U) const = 0;
+  Standard_EXPORT virtual occ::handle<Geom_Curve> UIso(const double U) const = 0;
 
   //! Computes the V isoparametric curve.
-  Standard_EXPORT virtual Handle(Geom_Curve) VIso(const Standard_Real V) const = 0;
+  Standard_EXPORT virtual occ::handle<Geom_Curve> VIso(const double V) const = 0;
 
   //! Returns the Global Continuity of the surface in direction U and V :
   //! - C0: only geometric continuity,
@@ -207,79 +233,104 @@ public:
 
   //! Returns the order of continuity of the surface in the U parametric direction.
   //! Raised if N < 0.
-  Standard_EXPORT virtual Standard_Boolean IsCNu(const Standard_Integer N) const = 0;
+  Standard_EXPORT virtual bool IsCNu(const int N) const = 0;
 
   //! Returns the order of continuity of the surface in the V parametric direction.
   //! Raised if N < 0.
-  Standard_EXPORT virtual Standard_Boolean IsCNv(const Standard_Integer N) const = 0;
-
-  //! Computes the point of parameter U,V on the surface.
-  //!
-  //! Raised only for an "OffsetSurface" if it is not possible to
-  //! compute the current point.
-  Standard_EXPORT virtual void D0(const Standard_Real U,
-                                  const Standard_Real V,
-                                  gp_Pnt&             P) const = 0;
-
-  //! Computes the point P and the first derivatives in the directions U and V at this point.
-  //! Raised if the continuity of the surface is not C1.
-  //!
-  //! Tip: use GeomLib::NormEstim() to calculate surface normal at specified (U, V) point.
-  Standard_EXPORT virtual void D1(const Standard_Real U,
-                                  const Standard_Real V,
-                                  gp_Pnt&             P,
-                                  gp_Vec&             D1U,
-                                  gp_Vec&             D1V) const = 0;
-
-  //! Computes the point P, the first and the second derivatives in
-  //! the directions U and V at this point.
-  //! Raised if the continuity of the surface is not C2.
-  Standard_EXPORT virtual void D2(const Standard_Real U,
-                                  const Standard_Real V,
-                                  gp_Pnt&             P,
-                                  gp_Vec&             D1U,
-                                  gp_Vec&             D1V,
-                                  gp_Vec&             D2U,
-                                  gp_Vec&             D2V,
-                                  gp_Vec&             D2UV) const = 0;
-
-  //! Computes the point P, the first,the second and the third
-  //! derivatives in the directions U and V at this point.
-  //! Raised if the continuity of the surface is not C2.
-  Standard_EXPORT virtual void D3(const Standard_Real U,
-                                  const Standard_Real V,
-                                  gp_Pnt&             P,
-                                  gp_Vec&             D1U,
-                                  gp_Vec&             D1V,
-                                  gp_Vec&             D2U,
-                                  gp_Vec&             D2V,
-                                  gp_Vec&             D2UV,
-                                  gp_Vec&             D3U,
-                                  gp_Vec&             D3V,
-                                  gp_Vec&             D3UUV,
-                                  gp_Vec&             D3UVV) const = 0;
-
-  //! Computes the derivative of order Nu in the direction U and Nv in the direction V at the point
-  //! P(U, V).
-  //!
-  //! Raised if the continuity of the surface is not CNu in the U direction or not CNv in the V
-  //! direction. Raised if Nu + Nv < 1 or Nu < 0 or Nv < 0.
-  Standard_EXPORT virtual gp_Vec DN(const Standard_Real    U,
-                                    const Standard_Real    V,
-                                    const Standard_Integer Nu,
-                                    const Standard_Integer Nv) const = 0;
+  Standard_EXPORT virtual bool IsCNv(const int N) const = 0;
 
   //! Computes the point of parameter (U, V) on the surface.
-  //!
-  //! It is implemented with D0.
-  //! Tip: use GeomLib::NormEstim() to calculate surface normal at specified (U, V) point.
-  //!
-  //! Raised only for an "OffsetSurface" if it is not possible to compute the current point.
-  Standard_EXPORT gp_Pnt Value(const Standard_Real U, const Standard_Real V) const;
+  //! Raises an exception on failure.
+  [[nodiscard]] Standard_EXPORT virtual gp_Pnt EvalD0(const double U, const double V) const = 0;
+
+  //! Computes the point and first partial derivatives at (U, V).
+  //! Raises an exception if the surface continuity is not C1.
+  [[nodiscard]] Standard_EXPORT virtual ResD1 EvalD1(const double U, const double V) const = 0;
+
+  //! Computes the point and partial derivatives up to 2nd order at (U, V).
+  //! Raises an exception if the surface continuity is not C2.
+  [[nodiscard]] Standard_EXPORT virtual ResD2 EvalD2(const double U, const double V) const = 0;
+
+  //! Computes the point and partial derivatives up to 3rd order at (U, V).
+  //! Raises an exception if the surface continuity is not C3.
+  [[nodiscard]] Standard_EXPORT virtual ResD3 EvalD3(const double U, const double V) const = 0;
+
+  //! Computes the derivative of order Nu in U and Nv in V at the point (U, V).
+  //! Raises an exception on failure.
+  [[nodiscard]] Standard_EXPORT virtual gp_Vec EvalDN(const double U,
+                                                      const double V,
+                                                      const int    Nu,
+                                                      const int    Nv) const = 0;
+
+  //! Computes the point of parameter (U, V).
+  inline void D0(const double U, const double V, gp_Pnt& P) const { P = EvalD0(U, V); }
+
+  //! Computes the point and first partial derivatives.
+  inline void D1(const double U, const double V, gp_Pnt& P, gp_Vec& D1U, gp_Vec& D1V) const
+  {
+    const ResD1 aR = EvalD1(U, V);
+    P              = aR.Point;
+    D1U            = aR.D1U;
+    D1V            = aR.D1V;
+  }
+
+  //! Computes the point and partial derivatives up to 2nd order.
+  inline void D2(const double U,
+                 const double V,
+                 gp_Pnt&      P,
+                 gp_Vec&      D1U,
+                 gp_Vec&      D1V,
+                 gp_Vec&      D2U,
+                 gp_Vec&      D2V,
+                 gp_Vec&      D2UV) const
+  {
+    const ResD2 aR = EvalD2(U, V);
+    P              = aR.Point;
+    D1U            = aR.D1U;
+    D1V            = aR.D1V;
+    D2U            = aR.D2U;
+    D2V            = aR.D2V;
+    D2UV           = aR.D2UV;
+  }
+
+  //! Computes the point and partial derivatives up to 3rd order.
+  inline void D3(const double U,
+                 const double V,
+                 gp_Pnt&      P,
+                 gp_Vec&      D1U,
+                 gp_Vec&      D1V,
+                 gp_Vec&      D2U,
+                 gp_Vec&      D2V,
+                 gp_Vec&      D2UV,
+                 gp_Vec&      D3U,
+                 gp_Vec&      D3V,
+                 gp_Vec&      D3UUV,
+                 gp_Vec&      D3UVV) const
+  {
+    const ResD3 aR = EvalD3(U, V);
+    P              = aR.Point;
+    D1U            = aR.D1U;
+    D1V            = aR.D1V;
+    D2U            = aR.D2U;
+    D2V            = aR.D2V;
+    D2UV           = aR.D2UV;
+    D3U            = aR.D3U;
+    D3V            = aR.D3V;
+    D3UUV          = aR.D3UUV;
+    D3UVV          = aR.D3UVV;
+  }
+
+  //! Computes the derivative of order Nu in U and Nv in V.
+  inline gp_Vec DN(const double U, const double V, const int Nu, const int Nv) const
+  {
+    return EvalDN(U, V, Nu, Nv);
+  }
+
+  //! Computes the point of parameter (U, V) on the surface.
+  gp_Pnt Value(const double U, const double V) const { return EvalD0(U, V); }
 
   //! Dumps the content of me into the stream
-  Standard_EXPORT virtual void DumpJson(Standard_OStream& theOStream,
-                                        Standard_Integer  theDepth = -1) const Standard_OVERRIDE;
+  Standard_EXPORT void DumpJson(Standard_OStream& theOStream, int theDepth = -1) const override;
 
   DEFINE_STANDARD_RTTIEXT(Geom_Surface, Geom_Geometry)
 };

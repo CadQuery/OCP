@@ -1,6 +1,4 @@
-// Created on: 2016-11-14
-// Created by: Irina KRYLOVA
-// Copyright (c) 2016 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -13,12 +11,27 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _StepVisual_Array1OfCameraModelD3MultiClippingUnionSelect_HeaderFile
-#define _StepVisual_Array1OfCameraModelD3MultiClippingUnionSelect_HeaderFile
+//! @file StepVisual_Array1OfCameraModelD3MultiClippingUnionSelect.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection_Array1<StepVisual_CameraModelD3MultiClippingUnionSelect> directly
+//!             instead.
 
+#ifndef _StepVisual_Array1OfCameraModelD3MultiClippingUnionSelect_hxx
+#define _StepVisual_Array1OfCameraModelD3MultiClippingUnionSelect_hxx
+
+#include <Standard_Macro.hxx>
 #include <StepVisual_CameraModelD3MultiClippingUnionSelect.hxx>
 #include <NCollection_Array1.hxx>
 
+Standard_HEADER_DEPRECATED(
+  "StepVisual_Array1OfCameraModelD3MultiClippingUnionSelect.hxx is deprecated since OCCT 8.0.0. "
+  "Use NCollection_Array1<StepVisual_CameraModelD3MultiClippingUnionSelect> directly.")
+
+  Standard_DEPRECATED(
+    "StepVisual_Array1OfCameraModelD3MultiClippingUnionSelect is deprecated, use "
+    "NCollection_Array1<StepVisual_CameraModelD3MultiClippingUnionSelect> directly")
 typedef NCollection_Array1<StepVisual_CameraModelD3MultiClippingUnionSelect>
   StepVisual_Array1OfCameraModelD3MultiClippingUnionSelect;
-#endif // _StepVisual_Array1OfCameraModelD3MultiClippingUnionSelect_HeaderFile
+
+#endif // _StepVisual_Array1OfCameraModelD3MultiClippingUnionSelect_hxx

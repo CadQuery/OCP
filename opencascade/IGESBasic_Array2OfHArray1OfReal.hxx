@@ -1,7 +1,4 @@
-// Created on: 1993-01-09
-// Created by: CKY / Contract Toubro-Larsen (Arun MENON)
-// Copyright (c) 1993-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,12 +11,25 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef IGESBasic_Array2OfHArray1OfReal_HeaderFile
-#define IGESBasic_Array2OfHArray1OfReal_HeaderFile
+//! @file IGESBasic_Array2OfHArray1OfReal.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection_Array2<opencascade::handle<TColStd_HArray1OfReal>> directly instead.
 
+#ifndef _IGESBasic_Array2OfHArray1OfReal_hxx
+#define _IGESBasic_Array2OfHArray1OfReal_hxx
+
+#include <Standard_Macro.hxx>
 #include <TColStd_HArray1OfReal.hxx>
 #include <NCollection_Array2.hxx>
 
-typedef NCollection_Array2<Handle(TColStd_HArray1OfReal)> IGESBasic_Array2OfHArray1OfReal;
+Standard_HEADER_DEPRECATED(
+  "IGESBasic_Array2OfHArray1OfReal.hxx is deprecated since OCCT 8.0.0. Use "
+  "NCollection_Array2<opencascade::handle<TColStd_HArray1OfReal>> directly.")
 
-#endif
+  Standard_DEPRECATED("IGESBasic_Array2OfHArray1OfReal is deprecated, use "
+                      "NCollection_Array2<opencascade::handle<TColStd_HArray1OfReal>> directly")
+typedef NCollection_Array2<opencascade::handle<TColStd_HArray1OfReal>>
+  IGESBasic_Array2OfHArray1OfReal;
+
+#endif // _IGESBasic_Array2OfHArray1OfReal_hxx

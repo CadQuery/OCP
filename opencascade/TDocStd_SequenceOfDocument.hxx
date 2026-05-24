@@ -1,7 +1,4 @@
-// Created on: 1999-04-07
-// Created by: Denis PASCAL
-// Copyright (c) 1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,12 +11,23 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef TDocStd_SequenceOfDocument_HeaderFile
-#define TDocStd_SequenceOfDocument_HeaderFile
+//! @file TDocStd_SequenceOfDocument.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection_Sequence<opencascade::handle<TDocStd_Document>> directly instead.
 
+#ifndef _TDocStd_SequenceOfDocument_hxx
+#define _TDocStd_SequenceOfDocument_hxx
+
+#include <Standard_Macro.hxx>
 #include <TDocStd_Document.hxx>
 #include <NCollection_Sequence.hxx>
 
-typedef NCollection_Sequence<Handle(TDocStd_Document)> TDocStd_SequenceOfDocument;
+Standard_HEADER_DEPRECATED("TDocStd_SequenceOfDocument.hxx is deprecated since OCCT 8.0.0. Use "
+                           "NCollection_Sequence<opencascade::handle<TDocStd_Document>> directly.")
 
-#endif
+  Standard_DEPRECATED("TDocStd_SequenceOfDocument is deprecated, use "
+                      "NCollection_Sequence<opencascade::handle<TDocStd_Document>> directly")
+typedef NCollection_Sequence<opencascade::handle<TDocStd_Document>> TDocStd_SequenceOfDocument;
+
+#endif // _TDocStd_SequenceOfDocument_hxx

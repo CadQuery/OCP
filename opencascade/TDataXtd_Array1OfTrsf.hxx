@@ -1,6 +1,4 @@
-// Created on: 2008-05-29
-// Created by: Sergey ZARITCHNY
-// Copyright (c) 2008-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -13,12 +11,23 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef TDataXtd_Array1OfTrsf_HeaderFile
-#define TDataXtd_Array1OfTrsf_HeaderFile
+//! @file TDataXtd_Array1OfTrsf.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection_Array1<gp_Trsf> directly instead.
 
+#ifndef _TDataXtd_Array1OfTrsf_hxx
+#define _TDataXtd_Array1OfTrsf_hxx
+
+#include <Standard_Macro.hxx>
 #include <gp_Trsf.hxx>
 #include <NCollection_Array1.hxx>
 
+Standard_HEADER_DEPRECATED("TDataXtd_Array1OfTrsf.hxx is deprecated since OCCT 8.0.0. Use "
+                           "NCollection_Array1<gp_Trsf> directly.")
+
+  Standard_DEPRECATED(
+    "TDataXtd_Array1OfTrsf is deprecated, use NCollection_Array1<gp_Trsf> directly")
 typedef NCollection_Array1<gp_Trsf> TDataXtd_Array1OfTrsf;
 
-#endif
+#endif // _TDataXtd_Array1OfTrsf_hxx

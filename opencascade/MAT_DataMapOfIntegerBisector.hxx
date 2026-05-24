@@ -1,7 +1,4 @@
-// Created on: 1992-09-22
-// Created by: Gilles DEBARBOUILLE
-// Copyright (c) 1992-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,15 +11,29 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef MAT_DataMapOfIntegerBisector_HeaderFile
-#define MAT_DataMapOfIntegerBisector_HeaderFile
+//! @file MAT_DataMapOfIntegerBisector.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection types directly instead.
 
+#ifndef _MAT_DataMapOfIntegerBisector_hxx
+#define _MAT_DataMapOfIntegerBisector_hxx
+
+#include <Standard_Macro.hxx>
 #include <Standard_Integer.hxx>
 #include <MAT_Bisector.hxx>
 #include <NCollection_DataMap.hxx>
 
-typedef NCollection_DataMap<Standard_Integer, Handle(MAT_Bisector)> MAT_DataMapOfIntegerBisector;
-typedef NCollection_DataMap<Standard_Integer, Handle(MAT_Bisector)>::Iterator
+Standard_HEADER_DEPRECATED("MAT_DataMapOfIntegerBisector.hxx is deprecated since OCCT 8.0.0. Use "
+                           "NCollection types directly.")
+
+  Standard_DEPRECATED("MAT_DataMapOfIntegerBisector is deprecated, use NCollection_DataMap<int, "
+                      "opencascade::handle<MAT_Bisector>> directly")
+typedef NCollection_DataMap<int, opencascade::handle<MAT_Bisector>> MAT_DataMapOfIntegerBisector;
+Standard_DEPRECATED(
+  "MAT_DataMapIteratorOfDataMapOfIntegerBisector is deprecated, use NCollection_DataMap<int, "
+  "opencascade::handle<MAT_Bisector>>::Iterator directly")
+typedef NCollection_DataMap<int, opencascade::handle<MAT_Bisector>>::Iterator
   MAT_DataMapIteratorOfDataMapOfIntegerBisector;
 
-#endif
+#endif // _MAT_DataMapOfIntegerBisector_hxx

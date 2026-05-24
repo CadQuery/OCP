@@ -1,7 +1,4 @@
-// Created on: 1993-03-09
-// Created by: Philippe DAUTRY
-// Copyright (c) 1993-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,12 +11,23 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef TColGeom_SequenceOfSurface_HeaderFile
-#define TColGeom_SequenceOfSurface_HeaderFile
+//! @file TColGeom_SequenceOfSurface.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection_Sequence<opencascade::handle<Geom_Surface>> directly instead.
 
+#ifndef _TColGeom_SequenceOfSurface_hxx
+#define _TColGeom_SequenceOfSurface_hxx
+
+#include <Standard_Macro.hxx>
 #include <Geom_Surface.hxx>
 #include <NCollection_Sequence.hxx>
 
-typedef NCollection_Sequence<Handle(Geom_Surface)> TColGeom_SequenceOfSurface;
+Standard_HEADER_DEPRECATED("TColGeom_SequenceOfSurface.hxx is deprecated since OCCT 8.0.0. Use "
+                           "NCollection_Sequence<opencascade::handle<Geom_Surface>> directly.")
 
-#endif
+  Standard_DEPRECATED("TColGeom_SequenceOfSurface is deprecated, use "
+                      "NCollection_Sequence<opencascade::handle<Geom_Surface>> directly")
+typedef NCollection_Sequence<opencascade::handle<Geom_Surface>> TColGeom_SequenceOfSurface;
+
+#endif // _TColGeom_SequenceOfSurface_hxx

@@ -33,7 +33,7 @@ public:
 
   //! Empty constructor
   Standard_EXPORT BRepAlgoAPI_Common();
-  Standard_EXPORT virtual ~BRepAlgoAPI_Common();
+  Standard_EXPORT ~BRepAlgoAPI_Common() override;
 
   //! Empty constructor
   //! <PF> - PaveFiller object that is carried out
@@ -60,9 +60,6 @@ public:
     const TopoDS_Shape&          S2,
     const BOPAlgo_PaveFiller&    PF,
     const Message_ProgressRange& theRange = Message_ProgressRange());
-
-protected:
-private:
 };
 
 #endif // _BRepAlgoAPI_Common_HeaderFile

@@ -1,7 +1,4 @@
-// Created on: 1993-07-06
-// Created by: Yves FRICAUD
-// Copyright (c) 1993-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,16 +11,30 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef MAT2d_DataMapOfBiIntSequenceOfInteger_HeaderFile
-#define MAT2d_DataMapOfBiIntSequenceOfInteger_HeaderFile
+//! @file MAT2d_DataMapOfBiIntSequenceOfInteger.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection types directly instead.
 
+#ifndef _MAT2d_DataMapOfBiIntSequenceOfInteger_hxx
+#define _MAT2d_DataMapOfBiIntSequenceOfInteger_hxx
+
+#include <Standard_Macro.hxx>
 #include <MAT2d_BiInt.hxx>
 #include <TColStd_SequenceOfInteger.hxx>
 #include <NCollection_DataMap.hxx>
 
+Standard_HEADER_DEPRECATED("MAT2d_DataMapOfBiIntSequenceOfInteger.hxx is deprecated since OCCT "
+                           "8.0.0. Use NCollection types directly.")
+
+  Standard_DEPRECATED("MAT2d_DataMapOfBiIntSequenceOfInteger is deprecated, use "
+                      "NCollection_DataMap<MAT2d_BiInt, TColStd_SequenceOfInteger> directly")
 typedef NCollection_DataMap<MAT2d_BiInt, TColStd_SequenceOfInteger>
   MAT2d_DataMapOfBiIntSequenceOfInteger;
+Standard_DEPRECATED(
+  "MAT2d_DataMapIteratorOfDataMapOfBiIntSequenceOfInteger is deprecated, use "
+  "NCollection_DataMap<MAT2d_BiInt, TColStd_SequenceOfInteger>::Iterator directly")
 typedef NCollection_DataMap<MAT2d_BiInt, TColStd_SequenceOfInteger>::Iterator
   MAT2d_DataMapIteratorOfDataMapOfBiIntSequenceOfInteger;
 
-#endif
+#endif // _MAT2d_DataMapOfBiIntSequenceOfInteger_hxx

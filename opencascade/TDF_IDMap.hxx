@@ -1,6 +1,4 @@
-// Created by: DAUTRY Philippe
-// Copyright (c) 1997-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -13,13 +11,25 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef TDF_IDMap_HeaderFile
-#define TDF_IDMap_HeaderFile
+//! @file TDF_IDMap.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection types directly instead.
 
+#ifndef _TDF_IDMap_hxx
+#define _TDF_IDMap_hxx
+
+#include <Standard_Macro.hxx>
 #include <Standard_GUID.hxx>
 #include <NCollection_Map.hxx>
 
-typedef NCollection_Map<Standard_GUID>           TDF_IDMap;
+Standard_HEADER_DEPRECATED(
+  "TDF_IDMap.hxx is deprecated since OCCT 8.0.0. Use NCollection types directly.")
+
+  Standard_DEPRECATED("TDF_IDMap is deprecated, use NCollection_Map<Standard_GUID> directly")
+typedef NCollection_Map<Standard_GUID> TDF_IDMap;
+Standard_DEPRECATED(
+  "TDF_MapIteratorOfIDMap is deprecated, use NCollection_Map<Standard_GUID>::Iterator directly")
 typedef NCollection_Map<Standard_GUID>::Iterator TDF_MapIteratorOfIDMap;
 
-#endif
+#endif // _TDF_IDMap_hxx

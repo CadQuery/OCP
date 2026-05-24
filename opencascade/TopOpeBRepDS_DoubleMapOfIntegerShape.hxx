@@ -1,7 +1,4 @@
-// Created on: 1993-06-17
-// Created by: Jean Yves LEBEY
-// Copyright (c) 1993-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,18 +11,36 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef TopOpeBRepDS_DoubleMapOfIntegerShape_HeaderFile
-#define TopOpeBRepDS_DoubleMapOfIntegerShape_HeaderFile
+//! @file TopOpeBRepDS_DoubleMapOfIntegerShape.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection types directly instead.
 
+#ifndef _TopOpeBRepDS_DoubleMapOfIntegerShape_hxx
+#define _TopOpeBRepDS_DoubleMapOfIntegerShape_hxx
+
+#include <Standard_Macro.hxx>
 #include <TopTools_ShapeMapHasher.hxx>
 #include <NCollection_DoubleMap.hxx>
 
-typedef NCollection_DoubleMap<Standard_Integer,
+Standard_HEADER_DEPRECATED("TopOpeBRepDS_DoubleMapOfIntegerShape.hxx is deprecated since OCCT "
+                           "8.0.0. Use NCollection types directly.")
+
+  Standard_DEPRECATED(
+    "TopOpeBRepDS_DoubleMapOfIntegerShape is deprecated, use NCollection_DoubleMap<int, "
+    "TopoDS_Shape, NCollection_DefaultHasher<int>, TopTools_ShapeMapHasher> directly")
+typedef NCollection_DoubleMap<int,
                               TopoDS_Shape,
                               NCollection_DefaultHasher<int>,
                               TopTools_ShapeMapHasher>
   TopOpeBRepDS_DoubleMapOfIntegerShape;
-typedef TopOpeBRepDS_DoubleMapOfIntegerShape::Iterator
+Standard_DEPRECATED("TopOpeBRepDS_DoubleMapIteratorOfDoubleMapOfIntegerShape is deprecated, use "
+                    "NCollection_DoubleMap<int, TopoDS_Shape, NCollection_DefaultHasher<int>, "
+                    "TopTools_ShapeMapHasher>::Iterator directly")
+typedef NCollection_DoubleMap<int,
+                              TopoDS_Shape,
+                              NCollection_DefaultHasher<int>,
+                              TopTools_ShapeMapHasher>::Iterator
   TopOpeBRepDS_DoubleMapIteratorOfDoubleMapOfIntegerShape;
 
-#endif
+#endif // _TopOpeBRepDS_DoubleMapOfIntegerShape_hxx

@@ -21,10 +21,9 @@
 #include <StdObjMgt_ReadData.hxx>
 #include <StdObjMgt_WriteData.hxx>
 
-#include <TColStd_HArray2OfInteger.hxx>
-#include <TColStd_HArray2OfReal.hxx>
-
-DEFINE_HARRAY2(StdLPersistent_HArray2OfPersistent, NCollection_Array2<Handle(StdObjMgt_Persistent)>)
+#include <NCollection_HArray2.hxx>
+#include <Standard_Integer.hxx>
+#include <NCollection_Array2.hxx>
 
 class StdLPersistent_HArray2
 {
@@ -32,25 +31,23 @@ class StdLPersistent_HArray2
   {
   public:
     //! Read persistent data from a file.
-    Standard_EXPORT virtual void Read(StdObjMgt_ReadData& theReadData);
+    Standard_EXPORT void Read(StdObjMgt_ReadData& theReadData) override;
 
     //! Read persistent data from a file.
-    Standard_EXPORT virtual void Write(StdObjMgt_WriteData& theWriteData) const;
+    Standard_EXPORT void Write(StdObjMgt_WriteData& theWriteData) const override;
 
   protected:
-    virtual void lowerBound(Standard_Integer& theRow, Standard_Integer& theCol) const = 0;
-    virtual void upperBound(Standard_Integer& theRow, Standard_Integer& theCol) const = 0;
-    virtual void createArray(const Standard_Integer theLowerRow,
-                             const Standard_Integer theLowerCol,
-                             const Standard_Integer theUpperRow,
-                             const Standard_Integer theUpperCol)                      = 0;
+    virtual void lowerBound(int& theRow, int& theCol) const = 0;
+    virtual void upperBound(int& theRow, int& theCol) const = 0;
+    virtual void createArray(const int theLowerRow,
+                             const int theLowerCol,
+                             const int theUpperRow,
+                             const int theUpperCol)         = 0;
 
-    virtual void readValue(StdObjMgt_ReadData&    theReadData,
-                           const Standard_Integer theRow,
-                           const Standard_Integer theCol)        = 0;
-    virtual void writeValue(StdObjMgt_WriteData&   theWriteData,
-                            const Standard_Integer theRow,
-                            const Standard_Integer theCol) const = 0;
+    virtual void readValue(StdObjMgt_ReadData& theReadData, const int theRow, const int theCol) = 0;
+    virtual void writeValue(StdObjMgt_WriteData& theWriteData,
+                            const int            theRow,
+                            const int            theCol) const                                             = 0;
   };
 
 protected:
@@ -60,64 +57,61 @@ protected:
     friend class StdLPersistent_HArray2;
 
   public:
-    typedef Handle(ArrayClass) ArrayHandle;
+    typedef occ::handle<ArrayClass> ArrayHandle;
 
   public:
     //! Get the array.
-    const Handle(ArrayClass)& Array() const { return myArray; }
+    const occ::handle<ArrayClass>& Array() const { return myArray; }
 
   protected:
-    virtual void lowerBound(Standard_Integer& theRow, Standard_Integer& theCol) const
+    void lowerBound(int& theRow, int& theCol) const override
     {
       theRow = myArray->LowerRow();
       theCol = myArray->LowerCol();
     }
 
-    virtual void upperBound(Standard_Integer& theRow, Standard_Integer& theCol) const
+    void upperBound(int& theRow, int& theCol) const override
     {
       theRow = myArray->UpperRow();
       theCol = myArray->UpperCol();
     }
 
-    virtual void createArray(const Standard_Integer theLowerRow,
-                             const Standard_Integer theLowerCol,
-                             const Standard_Integer theUpperRow,
-                             const Standard_Integer theUpperCol)
+    void createArray(const int theLowerRow,
+                     const int theLowerCol,
+                     const int theUpperRow,
+                     const int theUpperCol) override
     {
       myArray = new ArrayClass(theLowerRow, theUpperRow, theLowerCol, theUpperCol);
     }
 
-    virtual void readValue(StdObjMgt_ReadData&    theReadData,
-                           const Standard_Integer theRow,
-                           const Standard_Integer theCol)
+    void readValue(StdObjMgt_ReadData& theReadData, const int theRow, const int theCol) override
     {
       theReadData >> myArray->ChangeValue(theRow, theCol);
     }
 
-    virtual void writeValue(StdObjMgt_WriteData&   theWriteData,
-                            const Standard_Integer theRow,
-                            const Standard_Integer theCol) const
+    void writeValue(StdObjMgt_WriteData& theWriteData,
+                    const int            theRow,
+                    const int            theCol) const override
     {
       theWriteData << myArray->Value(theRow, theCol);
     }
 
-    virtual void PChildren(StdObjMgt_Persistent::SequenceOfPersistent& theChildren) const
+    void PChildren(StdObjMgt_Persistent::SequenceOfPersistent& theChildren) const override
     {
       return PChildrenT(theChildren);
     }
 
-    virtual Standard_CString PName() const { return PNameT(); }
+    const char* PName() const override { return PNameT(); }
 
-    Standard_CString PNameT() const
+    const char* PNameT() const
     {
-      Standard_NotImplemented::Raise("StdLPersistent_HArray2::instance::PName - not implemented");
-      return "";
+      throw Standard_NotImplemented("StdLPersistent_HArray2::instance::PName - not implemented");
     }
 
     void PChildrenT(StdObjMgt_Persistent::SequenceOfPersistent&) const {}
 
   protected:
-    Handle(ArrayClass) myArray;
+    occ::handle<ArrayClass> myArray;
   };
 
   template <class ArrayClass>
@@ -126,7 +120,7 @@ protected:
     friend class StdLPersistent_HArray2;
 
   public:
-    virtual Standard_CString PName() const
+    const char* PName() const override
     {
       Standard_NullValue_Raise_if(!myPName,
                                   "StdLPersistent_HArray2::named_instance::PName - name not set");
@@ -134,18 +128,18 @@ protected:
     }
 
   protected:
-    named_instance(Standard_CString thePName)
+    named_instance(const char* thePName)
         : myPName(thePName)
     {
     }
 
-    Standard_CString myPName;
+    const char* myPName;
   };
 
 public:
-  typedef instance<TColStd_HArray2OfInteger>           Integer;
-  typedef instance<TColStd_HArray2OfReal>              Real;
-  typedef instance<StdLPersistent_HArray2OfPersistent> Persistent;
+  typedef instance<NCollection_HArray2<int>>                               Integer;
+  typedef instance<NCollection_HArray2<double>>                            Real;
+  typedef instance<NCollection_HArray2<occ::handle<StdObjMgt_Persistent>>> Persistent;
 
 public:
   template <class ArrayClass>
@@ -156,46 +150,46 @@ public:
                                       theArray.UpperRow(),
                                       theArray.LowerCol(),
                                       theArray.UpperCol());
-    for (Standard_Integer i = theArray.LowerRow(); i <= theArray.UpperRow(); ++i)
-      for (Standard_Integer j = theArray.LowerCol(); j <= theArray.UpperCol(); ++j)
+    for (int i = theArray.LowerRow(); i <= theArray.UpperRow(); ++i)
+      for (int j = theArray.LowerCol(); j <= theArray.UpperCol(); ++j)
         aPArray->myArray->ChangeValue(i, j) = theArray.Value(i, j);
     return aPArray;
   }
 
   template <class ArrayClass>
-  static Handle(instance<ArrayClass>) Translate(Standard_CString  thePName,
-                                                const ArrayClass& theArray)
+  static Handle(instance<ArrayClass>) Translate(const char* thePName, const ArrayClass& theArray)
   {
     Handle(named_instance<ArrayClass>) aPArray = new named_instance<ArrayClass>(thePName);
     aPArray->myArray                           = new ArrayClass(theArray.LowerRow(),
                                       theArray.UpperRow(),
                                       theArray.LowerCol(),
                                       theArray.UpperCol());
-    for (Standard_Integer i = theArray.LowerRow(); i <= theArray.UpperRow(); ++i)
-      for (Standard_Integer j = theArray.LowerCol(); j <= theArray.UpperCol(); ++j)
+    for (int i = theArray.LowerRow(); i <= theArray.UpperRow(); ++i)
+      for (int j = theArray.LowerCol(); j <= theArray.UpperCol(); ++j)
         aPArray->myArray->ChangeValue(i, j) = theArray.Value(i, j);
     return aPArray;
   }
 };
 
 template <>
-inline Standard_CString StdLPersistent_HArray2::instance<TColStd_HArray2OfInteger>::PNameT() const
+inline const char* StdLPersistent_HArray2::instance<NCollection_HArray2<int>>::PNameT() const
 {
   return "PColStd_HArray2OfInteger";
 }
 
 template <>
-inline Standard_CString StdLPersistent_HArray2::instance<TColStd_HArray2OfReal>::PNameT() const
+inline const char* StdLPersistent_HArray2::instance<NCollection_HArray2<double>>::PNameT() const
 {
   return "PColStd_HArray2OfReal";
 }
 
 template <>
-inline void StdLPersistent_HArray2::instance<StdLPersistent_HArray2OfPersistent>::PChildrenT(
-  StdObjMgt_Persistent::SequenceOfPersistent& theChildren) const
+inline void StdLPersistent_HArray2::
+  instance<NCollection_HArray2<occ::handle<StdObjMgt_Persistent>>>::PChildrenT(
+    StdObjMgt_Persistent::SequenceOfPersistent& theChildren) const
 {
-  for (Standard_Integer i = myArray->LowerRow(); i <= myArray->UpperRow(); ++i)
-    for (Standard_Integer j = myArray->LowerCol(); j <= myArray->UpperCol(); ++j)
+  for (int i = myArray->LowerRow(); i <= myArray->UpperRow(); ++i)
+    for (int j = myArray->LowerCol(); j <= myArray->UpperCol(); ++j)
       theChildren.Append(myArray->Value(i, j));
 }
 

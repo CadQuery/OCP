@@ -1,7 +1,4 @@
-// Created on: 1993-07-28
-// Created by: Martine LANGLOIS
-// Copyright (c) 1993-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,16 +11,32 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef StepToTopoDS_DataMapOfTRI_HeaderFile
-#define StepToTopoDS_DataMapOfTRI_HeaderFile
+//! @file StepToTopoDS_DataMapOfTRI.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection types directly instead.
 
+#ifndef _StepToTopoDS_DataMapOfTRI_hxx
+#define _StepToTopoDS_DataMapOfTRI_hxx
+
+#include <Standard_Macro.hxx>
 #include <StepShape_TopologicalRepresentationItem.hxx>
 #include <TopoDS_Shape.hxx>
 #include <NCollection_DataMap.hxx>
 
-typedef NCollection_DataMap<Handle(StepShape_TopologicalRepresentationItem), TopoDS_Shape>
-  StepToTopoDS_DataMapOfTRI;
-typedef NCollection_DataMap<Handle(StepShape_TopologicalRepresentationItem), TopoDS_Shape>::Iterator
-  StepToTopoDS_DataMapIteratorOfDataMapOfTRI;
+Standard_HEADER_DEPRECATED(
+  "StepToTopoDS_DataMapOfTRI.hxx is deprecated since OCCT 8.0.0. Use NCollection types directly.")
 
-#endif
+  Standard_DEPRECATED("StepToTopoDS_DataMapOfTRI is deprecated, use "
+                      "NCollection_DataMap<opencascade::handle<StepShape_"
+                      "TopologicalRepresentationItem>, TopoDS_Shape> directly")
+typedef NCollection_DataMap<opencascade::handle<StepShape_TopologicalRepresentationItem>,
+                            TopoDS_Shape>
+  StepToTopoDS_DataMapOfTRI;
+Standard_DEPRECATED("StepToTopoDS_DataMapIteratorOfDataMapOfTRI is deprecated, use "
+                    "NCollection_DataMap<opencascade::handle<StepShape_"
+                    "TopologicalRepresentationItem>, TopoDS_Shape>::Iterator directly")
+typedef NCollection_DataMap<opencascade::handle<StepShape_TopologicalRepresentationItem>,
+                            TopoDS_Shape>::Iterator StepToTopoDS_DataMapIteratorOfDataMapOfTRI;
+
+#endif // _StepToTopoDS_DataMapOfTRI_hxx

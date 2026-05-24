@@ -1,5 +1,4 @@
-// Created by: Peter KURNEV
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -12,13 +11,25 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef BOPDS_ListOfPave_HeaderFile
-#define BOPDS_ListOfPave_HeaderFile
+//! @file BOPDS_ListOfPave.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection types directly instead.
 
+#ifndef _BOPDS_ListOfPave_hxx
+#define _BOPDS_ListOfPave_hxx
+
+#include <Standard_Macro.hxx>
 #include <NCollection_List.hxx>
 #include <BOPDS_Pave.hxx>
 
-typedef NCollection_List<BOPDS_Pave> BOPDS_ListOfPave;
-typedef BOPDS_ListOfPave::Iterator   BOPDS_ListIteratorOfListOfPave;
+Standard_HEADER_DEPRECATED(
+  "BOPDS_ListOfPave.hxx is deprecated since OCCT 8.0.0. Use NCollection types directly.")
 
-#endif
+  Standard_DEPRECATED("BOPDS_ListOfPave is deprecated, use NCollection_List<BOPDS_Pave> directly")
+typedef NCollection_List<BOPDS_Pave> BOPDS_ListOfPave;
+Standard_DEPRECATED("BOPDS_ListIteratorOfListOfPave is deprecated, use "
+                    "NCollection_List<BOPDS_Pave>::Iterator directly")
+typedef NCollection_List<BOPDS_Pave>::Iterator BOPDS_ListIteratorOfListOfPave;
+
+#endif // _BOPDS_ListOfPave_hxx

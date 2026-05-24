@@ -1,6 +1,4 @@
-// Created on: 2015-05-13
-// Created by: Denis BOGOLEPOV
-// Copyright (c) 2015 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -13,14 +11,25 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _BRepExtrema_MapOfIntegerPackedMapOfInteger_HeaderFile
-#define _BRepExtrema_MapOfIntegerPackedMapOfInteger_HeaderFile
+//! @file BRepExtrema_MapOfIntegerPackedMapOfInteger.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection_DataMap<int, TColStd_PackedMapOfInteger> directly instead.
 
+#ifndef _BRepExtrema_MapOfIntegerPackedMapOfInteger_hxx
+#define _BRepExtrema_MapOfIntegerPackedMapOfInteger_hxx
+
+#include <Standard_Macro.hxx>
 #include <NCollection_DataMap.hxx>
 #include <TColStd_PackedMapOfInteger.hxx>
 
-//! Set of overlapped sub-shapes.
-typedef NCollection_DataMap<Standard_Integer, TColStd_PackedMapOfInteger>
+Standard_HEADER_DEPRECATED(
+  "BRepExtrema_MapOfIntegerPackedMapOfInteger.hxx is deprecated since OCCT 8.0.0. Use "
+  "NCollection_DataMap<int, TColStd_PackedMapOfInteger> directly.")
+
+  Standard_DEPRECATED("BRepExtrema_MapOfIntegerPackedMapOfInteger is deprecated, use "
+                      "NCollection_DataMap<int, TColStd_PackedMapOfInteger> directly")
+typedef NCollection_DataMap<int, TColStd_PackedMapOfInteger>
   BRepExtrema_MapOfIntegerPackedMapOfInteger;
 
-#endif // _BRepExtrema_MapOfIntegerPackedMapOfInteger_HeaderFile
+#endif // _BRepExtrema_MapOfIntegerPackedMapOfInteger_hxx

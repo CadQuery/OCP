@@ -1,6 +1,4 @@
-// Created on: 2015-08-06
-// Created by: Ilya Novikov
-// Copyright (c) 2004-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -13,13 +11,25 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef XCAFDimTolObjects_GeomToleranceModifiersSequence_HeaderFile
-#define XCAFDimTolObjects_GeomToleranceModifiersSequence_HeaderFile
+//! @file XCAFDimTolObjects_GeomToleranceModifiersSequence.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection_Sequence<XCAFDimTolObjects_GeomToleranceModif> directly instead.
 
+#ifndef _XCAFDimTolObjects_GeomToleranceModifiersSequence_hxx
+#define _XCAFDimTolObjects_GeomToleranceModifiersSequence_hxx
+
+#include <Standard_Macro.hxx>
 #include <NCollection_Sequence.hxx>
 #include <XCAFDimTolObjects_GeomToleranceModif.hxx>
 
+Standard_HEADER_DEPRECATED(
+  "XCAFDimTolObjects_GeomToleranceModifiersSequence.hxx is deprecated since OCCT 8.0.0. Use "
+  "NCollection_Sequence<XCAFDimTolObjects_GeomToleranceModif> directly.")
+
+  Standard_DEPRECATED("XCAFDimTolObjects_GeomToleranceModifiersSequence is deprecated, use "
+                      "NCollection_Sequence<XCAFDimTolObjects_GeomToleranceModif> directly")
 typedef NCollection_Sequence<XCAFDimTolObjects_GeomToleranceModif>
   XCAFDimTolObjects_GeomToleranceModifiersSequence;
 
-#endif
+#endif // _XCAFDimTolObjects_GeomToleranceModifiersSequence_hxx

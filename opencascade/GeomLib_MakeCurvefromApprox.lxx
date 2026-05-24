@@ -14,12 +14,9 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-//=======================================================================
-// function : IsDone
-// purpose  :
-//=======================================================================
+//=================================================================================================
 
-inline Standard_Boolean GeomLib_MakeCurvefromApprox::IsDone() const
+inline bool GeomLib_MakeCurvefromApprox::IsDone() const
 {
   return myApprox.IsDone();
 }

@@ -1,7 +1,4 @@
-// Created on: 1992-06-30
-// Created by: Laurent BUCHARD
-// Copyright (c) 1992-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,13 +11,26 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef IntAna_ListOfCurve_HeaderFile
-#define IntAna_ListOfCurve_HeaderFile
+//! @file IntAna_ListOfCurve.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection types directly instead.
 
+#ifndef _IntAna_ListOfCurve_hxx
+#define _IntAna_ListOfCurve_hxx
+
+#include <Standard_Macro.hxx>
 #include <IntAna_Curve.hxx>
 #include <NCollection_List.hxx>
 
-typedef NCollection_List<IntAna_Curve>           IntAna_ListOfCurve;
+Standard_HEADER_DEPRECATED(
+  "IntAna_ListOfCurve.hxx is deprecated since OCCT 8.0.0. Use NCollection types directly.")
+
+  Standard_DEPRECATED(
+    "IntAna_ListOfCurve is deprecated, use NCollection_List<IntAna_Curve> directly")
+typedef NCollection_List<IntAna_Curve> IntAna_ListOfCurve;
+Standard_DEPRECATED("IntAna_ListIteratorOfListOfCurve is deprecated, use "
+                    "NCollection_List<IntAna_Curve>::Iterator directly")
 typedef NCollection_List<IntAna_Curve>::Iterator IntAna_ListIteratorOfListOfCurve;
 
-#endif
+#endif // _IntAna_ListOfCurve_hxx

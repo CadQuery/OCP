@@ -1,7 +1,4 @@
-// Created on: 1993-06-17
-// Created by: Jean Yves LEBEY
-// Copyright (c) 1993-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,15 +11,28 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef TopOpeBRepDS_MapOfCurve_HeaderFile
-#define TopOpeBRepDS_MapOfCurve_HeaderFile
+//! @file TopOpeBRepDS_MapOfCurve.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection types directly instead.
 
+#ifndef _TopOpeBRepDS_MapOfCurve_hxx
+#define _TopOpeBRepDS_MapOfCurve_hxx
+
+#include <Standard_Macro.hxx>
 #include <Standard_Integer.hxx>
 #include <TopOpeBRepDS_CurveData.hxx>
 #include <NCollection_DataMap.hxx>
 
-typedef NCollection_DataMap<Standard_Integer, TopOpeBRepDS_CurveData> TopOpeBRepDS_MapOfCurve;
-typedef NCollection_DataMap<Standard_Integer, TopOpeBRepDS_CurveData>::Iterator
+Standard_HEADER_DEPRECATED(
+  "TopOpeBRepDS_MapOfCurve.hxx is deprecated since OCCT 8.0.0. Use NCollection types directly.")
+
+  Standard_DEPRECATED("TopOpeBRepDS_MapOfCurve is deprecated, use NCollection_DataMap<int, "
+                      "TopOpeBRepDS_CurveData> directly")
+typedef NCollection_DataMap<int, TopOpeBRepDS_CurveData> TopOpeBRepDS_MapOfCurve;
+Standard_DEPRECATED("TopOpeBRepDS_DataMapIteratorOfMapOfCurve is deprecated, use "
+                    "NCollection_DataMap<int, TopOpeBRepDS_CurveData>::Iterator directly")
+typedef NCollection_DataMap<int, TopOpeBRepDS_CurveData>::Iterator
   TopOpeBRepDS_DataMapIteratorOfMapOfCurve;
 
-#endif
+#endif // _TopOpeBRepDS_MapOfCurve_hxx

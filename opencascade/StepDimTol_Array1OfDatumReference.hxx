@@ -1,6 +1,4 @@
-// Created on: 2003-06-02
-// Created by: EXPRESS->CDL V0.2 Translator
-// Copyright (c) 2003-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -13,12 +11,26 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef StepDimTol_Array1OfDatumReference_HeaderFile
-#define StepDimTol_Array1OfDatumReference_HeaderFile
+//! @file StepDimTol_Array1OfDatumReference.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection_Array1<opencascade::handle<StepDimTol_DatumReference>> directly
+//!             instead.
 
+#ifndef _StepDimTol_Array1OfDatumReference_hxx
+#define _StepDimTol_Array1OfDatumReference_hxx
+
+#include <Standard_Macro.hxx>
 #include <StepDimTol_DatumReference.hxx>
 #include <NCollection_Array1.hxx>
 
-typedef NCollection_Array1<Handle(StepDimTol_DatumReference)> StepDimTol_Array1OfDatumReference;
+Standard_HEADER_DEPRECATED(
+  "StepDimTol_Array1OfDatumReference.hxx is deprecated since OCCT 8.0.0. Use "
+  "NCollection_Array1<opencascade::handle<StepDimTol_DatumReference>> directly.")
 
-#endif
+  Standard_DEPRECATED("StepDimTol_Array1OfDatumReference is deprecated, use "
+                      "NCollection_Array1<opencascade::handle<StepDimTol_DatumReference>> directly")
+typedef NCollection_Array1<opencascade::handle<StepDimTol_DatumReference>>
+  StepDimTol_Array1OfDatumReference;
+
+#endif // _StepDimTol_Array1OfDatumReference_hxx

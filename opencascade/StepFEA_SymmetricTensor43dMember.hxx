@@ -23,10 +23,7 @@
 #include <Standard_Boolean.hxx>
 #include <Standard_CString.hxx>
 
-class StepFEA_SymmetricTensor43dMember;
-DEFINE_STANDARD_HANDLE(StepFEA_SymmetricTensor43dMember, StepData_SelectArrReal)
-
-//! Representation of member for  STEP SELECT type SymmetricTensor43d
+//! Representation of member for STEP SELECT type SymmetricTensor43d
 class StepFEA_SymmetricTensor43dMember : public StepData_SelectArrReal
 {
 
@@ -35,23 +32,21 @@ public:
   Standard_EXPORT StepFEA_SymmetricTensor43dMember();
 
   //! Returns True if has name
-  Standard_EXPORT virtual Standard_Boolean HasName() const Standard_OVERRIDE;
+  Standard_EXPORT bool HasName() const override;
 
   //! Returns set name
-  Standard_EXPORT virtual Standard_CString Name() const Standard_OVERRIDE;
+  Standard_EXPORT const char* Name() const override;
 
   //! Set name
-  Standard_EXPORT virtual Standard_Boolean SetName(const Standard_CString name) Standard_OVERRIDE;
+  Standard_EXPORT bool SetName(const char* const name) override;
 
   //! Tells if the name of a SelectMember matches a given one;
-  Standard_EXPORT virtual Standard_Boolean Matches(const Standard_CString name) const
-    Standard_OVERRIDE;
+  Standard_EXPORT bool Matches(const char* const name) const override;
 
   DEFINE_STANDARD_RTTIEXT(StepFEA_SymmetricTensor43dMember, StepData_SelectArrReal)
 
-protected:
 private:
-  Standard_Integer mycase;
+  int mycase;
 };
 
 #endif // _StepFEA_SymmetricTensor43dMember_HeaderFile

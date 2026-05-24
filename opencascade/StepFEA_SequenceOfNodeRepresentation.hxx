@@ -1,4 +1,4 @@
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,13 +11,27 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef StepFEA_SequenceOfNodeRepresentation_HeaderFile
-#define StepFEA_SequenceOfNodeRepresentation_HeaderFile
+//! @file StepFEA_SequenceOfNodeRepresentation.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection_Sequence<opencascade::handle<StepFEA_NodeRepresentation>> directly
+//!             instead.
 
+#ifndef _StepFEA_SequenceOfNodeRepresentation_hxx
+#define _StepFEA_SequenceOfNodeRepresentation_hxx
+
+#include <Standard_Macro.hxx>
 #include <StepFEA_NodeRepresentation.hxx>
 #include <NCollection_Sequence.hxx>
 
-typedef NCollection_Sequence<Handle(StepFEA_NodeRepresentation)>
+Standard_HEADER_DEPRECATED(
+  "StepFEA_SequenceOfNodeRepresentation.hxx is deprecated since OCCT 8.0.0. Use "
+  "NCollection_Sequence<opencascade::handle<StepFEA_NodeRepresentation>> directly.")
+
+  Standard_DEPRECATED(
+    "StepFEA_SequenceOfNodeRepresentation is deprecated, use "
+    "NCollection_Sequence<opencascade::handle<StepFEA_NodeRepresentation>> directly")
+typedef NCollection_Sequence<opencascade::handle<StepFEA_NodeRepresentation>>
   StepFEA_SequenceOfNodeRepresentation;
 
-#endif
+#endif // _StepFEA_SequenceOfNodeRepresentation_hxx

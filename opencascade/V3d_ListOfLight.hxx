@@ -1,4 +1,4 @@
-// Copyright (c) 2016 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,12 +11,25 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _V3d_ListOfLight_HeaderFile
-#define _V3d_ListOfLight_HeaderFile
+//! @file V3d_ListOfLight.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection types directly instead.
 
+#ifndef _V3d_ListOfLight_hxx
+#define _V3d_ListOfLight_hxx
+
+#include <Standard_Macro.hxx>
 #include <V3d_Light.hxx>
 
-typedef NCollection_List<Handle(Graphic3d_CLight)> V3d_ListOfLight;
-typedef V3d_ListOfLight::Iterator                  V3d_ListOfLightIterator;
+Standard_HEADER_DEPRECATED(
+  "V3d_ListOfLight.hxx is deprecated since OCCT 8.0.0. Use NCollection types directly.")
 
-#endif // _V3d_ListOfLight_HeaderFile
+  Standard_DEPRECATED("V3d_ListOfLight is deprecated, use "
+                      "NCollection_List<opencascade::handle<Graphic3d_CLight>> directly")
+typedef NCollection_List<opencascade::handle<Graphic3d_CLight>> V3d_ListOfLight;
+Standard_DEPRECATED("V3d_ListOfLightIterator is deprecated, use "
+                    "NCollection_List<opencascade::handle<Graphic3d_CLight>>::Iterator directly")
+typedef NCollection_List<opencascade::handle<Graphic3d_CLight>>::Iterator V3d_ListOfLightIterator;
+
+#endif // _V3d_ListOfLight_hxx

@@ -20,13 +20,14 @@
 #include <Standard_DefineAlloc.hxx>
 #include <Standard_Handle.hxx>
 
-#include <TDF_IDList.hxx>
+#include <Standard_GUID.hxx>
+#include <NCollection_List.hxx>
 #include <Standard_OStream.hxx>
 #include <TDataXtd_GeometryEnum.hxx>
 #include <TDataXtd_ConstraintEnum.hxx>
 
-//! This  package  defines  extension of standard attributes for
-//! modelling  (mainly for work with geometry).
+//! This package defines extension of standard attributes for
+//! modelling (mainly for work with geometry).
 class TDataXtd
 {
 public:
@@ -37,7 +38,7 @@ public:
   //! cleared before use.
   //! Print of TDataExt enumeration
   //! =============================
-  Standard_EXPORT static void IDList(TDF_IDList& anIDList);
+  Standard_EXPORT static void IDList(NCollection_List<Standard_GUID>& anIDList);
 
   //! Prints the name of the geometry dimension <GEO> as a String on
   //! the Stream <S> and returns <S>.
@@ -49,7 +50,6 @@ public:
   Standard_EXPORT static Standard_OStream& Print(const TDataXtd_ConstraintEnum CTR,
                                                  Standard_OStream&             S);
 
-protected:
 private:
   friend class TDataXtd_Position;
   friend class TDataXtd_Constraint;

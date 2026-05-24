@@ -16,10 +16,11 @@
 
 #include <Standard_Transient.hxx>
 #include <OSD_Thread.hxx>
-#include <Standard_Mutex.hxx>
 #include <Select3D_SensitiveEntity.hxx>
 #include <Standard_Condition.hxx>
 #include <Message_Messenger.hxx>
+
+#include <mutex>
 
 //! Class defining a thread pool for building BVH for the list of Select3D_SensitiveEntity within
 //! background thread(s).
@@ -28,10 +29,10 @@ class SelectMgr_BVHThreadPool : public Standard_Transient
   DEFINE_STANDARD_RTTIEXT(SelectMgr_BVHThreadPool, Standard_Transient)
 public:
   //! Main constructor
-  Standard_EXPORT SelectMgr_BVHThreadPool(Standard_Integer theNbThreads);
+  Standard_EXPORT SelectMgr_BVHThreadPool(int theNbThreads);
 
   //! Destructor
-  Standard_EXPORT virtual ~SelectMgr_BVHThreadPool();
+  Standard_EXPORT ~SelectMgr_BVHThreadPool() override;
 
 public:
   //! Thread with back reference to thread pool and thread mutex in it.
@@ -41,23 +42,22 @@ public:
 
   public:
     BVHThread()
-        : OSD_Thread(),
-          myPool(nullptr),
-          myMutex(),
-          myToCatchFpe(Standard_False)
+        : myPool(nullptr),
+
+          myToCatchFpe(false)
     {
     }
 
     BVHThread(const BVHThread& theOther)
         : OSD_Thread(theOther),
           myPool(theOther.myPool),
-          myMutex(),
+
           myToCatchFpe(theOther.myToCatchFpe)
     {
     }
 
     //! Returns mutex used for BVH building
-    Standard_Mutex& BVHMutex() { return myMutex; }
+    std::mutex& BVHMutex() { return myMutex; }
 
     //! Assignment operator.
     BVHThread& operator=(const BVHThread& theCopy)
@@ -79,17 +79,17 @@ public:
     void performThread();
 
     //! Method is executed in the context of thread.
-    static Standard_Address runThread(Standard_Address theTask);
+    static void* runThread(void* theTask);
 
   private:
     SelectMgr_BVHThreadPool* myPool;
-    Standard_Mutex           myMutex;
+    std::mutex               myMutex;
     bool                     myToCatchFpe;
   };
 
 public:
   //! Queue a sensitive entity to build its BVH
-  Standard_EXPORT void AddEntity(const Handle(Select3D_SensitiveEntity)& theEntity);
+  Standard_EXPORT void AddEntity(const occ::handle<Select3D_SensitiveEntity>& theEntity);
 
   //! Stops threads
   Standard_EXPORT void StopThreads();
@@ -106,7 +106,7 @@ public:
   {
   public:
     //! Constructor - initializes the sentry object and locks list of mutexes immediately
-    Sentry(const Handle(SelectMgr_BVHThreadPool)& thePool)
+    Sentry(const occ::handle<SelectMgr_BVHThreadPool>& thePool)
         : myPool(thePool)
     {
       Lock();
@@ -120,9 +120,9 @@ public:
     {
       if (!myPool.IsNull())
       {
-        for (Standard_Integer i = myPool->Threads().Lower(); i <= myPool->Threads().Upper(); ++i)
+        for (int i = myPool->Threads().Lower(); i <= myPool->Threads().Upper(); ++i)
         {
-          myPool->Threads().ChangeValue(i).BVHMutex().Lock();
+          myPool->Threads().ChangeValue(i).BVHMutex().lock();
         }
       }
     }
@@ -132,9 +132,9 @@ public:
     {
       if (!myPool.IsNull())
       {
-        for (Standard_Integer i = myPool->Threads().Lower(); i <= myPool->Threads().Upper(); ++i)
+        for (int i = myPool->Threads().Lower(); i <= myPool->Threads().Upper(); ++i)
         {
-          myPool->Threads().ChangeValue(i).BVHMutex().Unlock();
+          myPool->Threads().ChangeValue(i).BVHMutex().unlock();
         }
       }
     }
@@ -145,18 +145,18 @@ public:
     Sentry& operator=(const Sentry&);
 
   private:
-    Handle(SelectMgr_BVHThreadPool) myPool;
+    occ::handle<SelectMgr_BVHThreadPool> myPool;
   };
 
 protected:
   // clang-format off
-  NCollection_List<Handle(Select3D_SensitiveEntity)> myBVHToBuildList; //!< list of queued sensitive entities
+  NCollection_List<occ::handle<Select3D_SensitiveEntity>> myBVHToBuildList; //!< list of queued sensitive entities
   NCollection_Array1<BVHThread> myBVHThreads;                          //!< threads to build BVH
-  Standard_Boolean myToStopBVHThread;                                  //!< flag to stop BVH threads
-  Standard_Mutex myBVHListMutex;                                       //!< mutex for interaction with myBVHToBuildList
+  bool myToStopBVHThread;                                  //!< flag to stop BVH threads
+  std::mutex myBVHListMutex;                                           //!< mutex for interaction with myBVHToBuildList
   Standard_Condition myWakeEvent;                                      //!< raises when any sensitive is added to the BVH list
   Standard_Condition myIdleEvent;                                      //!< raises when BVH list become empty
-  Standard_Boolean myIsStarted;                                        //!< indicates that threads are running
+  bool myIsStarted;                                        //!< indicates that threads are running
   // clang-format on
 };
 

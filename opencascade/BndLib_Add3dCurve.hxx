@@ -36,20 +36,20 @@ public:
   //! B is then enlarged by the tolerance value Tol.
   //! Note: depending on the type of curve, one of the following
   //! representations of the curve C is used to include it in the bounding box B:
-  //! -   an exact representation if C is built from a line, a circle   or a conic curve,
-  //! -   the poles of the curve if C is built from a Bezier curve or   a BSpline curve,
+  //! -   an exact representation if C is built from a line, a circle or a conic curve,
+  //! -   the poles of the curve if C is built from a Bezier curve or a BSpline curve,
   //! if not, the points of an approximation of the curve C.
   //! Warning
   //! C is an adapted curve, that is, an object which is an interface between:
-  //! -   the services provided by a 3D curve from the package   Geom
+  //! -   the services provided by a 3D curve from the package Geom
   //! -   and those required of the curve by the computation algorithm.
   //! The adapted curve is created in the following way:
-  //! Handle(Geom_Curve) mycurve = ... ;
+  //! occ::handle<Geom_Curve> mycurve = ... ;
   //! GeomAdaptor_Curve C(mycurve);
   //! The bounding box B is then enlarged by adding it:
   //! Bnd_Box B;
   //! // ...
-  //! Standard_Real Tol = ... ;
+  //! double Tol = ... ;
   //! Add3dCurve::Add ( C, Tol, B );
   //! Exceptions
   //! Standard_Failure if the curve is built from:
@@ -58,26 +58,26 @@ public:
   //! -   a Geom_Hyperbola,
   //! and P1 and P2 are either two negative infinite real
   //! numbers, or two positive infinite real numbers.
-  Standard_EXPORT static void Add(const Adaptor3d_Curve& C, const Standard_Real Tol, Bnd_Box& B);
+  Standard_EXPORT static void Add(const Adaptor3d_Curve& C, const double Tol, Bnd_Box& B);
 
   //! Adds to the bounding box B the curve C
   //! the arc of the curve C limited by the two parameter values P1 and P2.
   //! Note: depending on the type of curve, one of the following
   //! representations of the curve C is used to include it in the bounding box B:
-  //! -   an exact representation if C is built from a line, a circle   or a conic curve,
-  //! -   the poles of the curve if C is built from a Bezier curve or   a BSpline curve,
+  //! -   an exact representation if C is built from a line, a circle or a conic curve,
+  //! -   the poles of the curve if C is built from a Bezier curve or a BSpline curve,
   //! if not, the points of an approximation of the curve C.
   //! Warning
   //! C is an adapted curve, that is, an object which is an interface between:
-  //! -   the services provided by a 3D curve from the package   Geom
+  //! -   the services provided by a 3D curve from the package Geom
   //! -   and those required of the curve by the computation algorithm.
   //! The adapted curve is created in the following way:
-  //! Handle(Geom_Curve) mycurve = ... ;
+  //! occ::handle<Geom_Curve> mycurve = ... ;
   //! GeomAdaptor_Curve C(mycurve);
   //! The bounding box B is then enlarged by adding it:
   //! Bnd_Box B;
   //! // ...
-  //! Standard_Real Tol = ... ;
+  //! double Tol = ... ;
   //! Add3dCurve::Add ( C, Tol, B );
   //! Exceptions
   //! Standard_Failure if the curve is built from:
@@ -87,34 +87,20 @@ public:
   //! and P1 and P2 are either two negative infinite real
   //! numbers, or two positive infinite real numbers.
   Standard_EXPORT static void Add(const Adaptor3d_Curve& C,
-                                  const Standard_Real    U1,
-                                  const Standard_Real    U2,
-                                  const Standard_Real    Tol,
+                                  const double           U1,
+                                  const double           U2,
+                                  const double           Tol,
                                   Bnd_Box&               B);
 
   //! Adds to the bounding box B the curve C
   //! These methods use more precise algorithms for building bnd box
   //! then methods Add(...)
+  Standard_EXPORT static void AddOptimal(const Adaptor3d_Curve& C, const double Tol, Bnd_Box& B);
   Standard_EXPORT static void AddOptimal(const Adaptor3d_Curve& C,
-                                         const Standard_Real    Tol,
+                                         const double           U1,
+                                         const double           U2,
+                                         const double           Tol,
                                          Bnd_Box&               B);
-  Standard_EXPORT static void AddOptimal(const Adaptor3d_Curve& C,
-                                         const Standard_Real    U1,
-                                         const Standard_Real    U2,
-                                         const Standard_Real    Tol,
-                                         Bnd_Box&               B);
-  //! Adds to the bounding box B the curve C
-  //! using numerical minimization algorithms
-  //! This method is used in AddOptimal for not analytical curves.
-  //! if Tol < Precision::Confusion(), Precision:;Confusion is used as computation tolerance
-  Standard_EXPORT static void AddGenCurv(const Adaptor3d_Curve& C,
-                                         const Standard_Real    UMin,
-                                         const Standard_Real    UMax,
-                                         const Standard_Real    Tol,
-                                         Bnd_Box&               B);
-
-protected:
-private:
 };
 
 #endif // _BndLib_Add3dCurve_HeaderFile

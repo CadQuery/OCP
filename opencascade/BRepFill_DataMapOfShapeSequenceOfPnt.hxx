@@ -1,7 +1,4 @@
-// Created on: 1994-03-03
-// Created by: Joelle CHAUVET
-// Copyright (c) 1994-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,17 +11,32 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef BRepFill_DataMapOfShapeSequenceOfPnt_HeaderFile
-#define BRepFill_DataMapOfShapeSequenceOfPnt_HeaderFile
+//! @file BRepFill_DataMapOfShapeSequenceOfPnt.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection types directly instead.
 
+#ifndef _BRepFill_DataMapOfShapeSequenceOfPnt_hxx
+#define _BRepFill_DataMapOfShapeSequenceOfPnt_hxx
+
+#include <Standard_Macro.hxx>
 #include <TopoDS_Shape.hxx>
 #include <TColgp_SequenceOfPnt.hxx>
 #include <TopTools_ShapeMapHasher.hxx>
 #include <NCollection_DataMap.hxx>
 
+Standard_HEADER_DEPRECATED("BRepFill_DataMapOfShapeSequenceOfPnt.hxx is deprecated since OCCT "
+                           "8.0.0. Use NCollection types directly.")
+
+  Standard_DEPRECATED(
+    "BRepFill_DataMapOfShapeSequenceOfPnt is deprecated, use NCollection_DataMap<TopoDS_Shape, "
+    "TColgp_SequenceOfPnt, TopTools_ShapeMapHasher> directly")
 typedef NCollection_DataMap<TopoDS_Shape, TColgp_SequenceOfPnt, TopTools_ShapeMapHasher>
   BRepFill_DataMapOfShapeSequenceOfPnt;
+Standard_DEPRECATED("BRepFill_DataMapIteratorOfDataMapOfShapeSequenceOfPnt is deprecated, use "
+                    "NCollection_DataMap<TopoDS_Shape, TColgp_SequenceOfPnt, "
+                    "TopTools_ShapeMapHasher>::Iterator directly")
 typedef NCollection_DataMap<TopoDS_Shape, TColgp_SequenceOfPnt, TopTools_ShapeMapHasher>::Iterator
   BRepFill_DataMapIteratorOfDataMapOfShapeSequenceOfPnt;
 
-#endif
+#endif // _BRepFill_DataMapOfShapeSequenceOfPnt_hxx

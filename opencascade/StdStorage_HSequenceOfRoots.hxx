@@ -1,4 +1,4 @@
-// Copyright (c) 2017 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,12 +11,23 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef StdStorage_HSequenceOfRoots_HeaderFile
-#define StdStorage_HSequenceOfRoots_HeaderFile
+//! @file StdStorage_HSequenceOfRoots.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection_HSequence<opencascade::handle<StdStorage_Root>> directly instead.
 
+#ifndef _StdStorage_HSequenceOfRoots_hxx
+#define _StdStorage_HSequenceOfRoots_hxx
+
+#include <Standard_Macro.hxx>
 #include <StdStorage_SequenceOfRoots.hxx>
-#include <NCollection_DefineHSequence.hxx>
+#include <NCollection_HSequence.hxx>
 
-DEFINE_HSEQUENCE(StdStorage_HSequenceOfRoots, StdStorage_SequenceOfRoots)
+Standard_HEADER_DEPRECATED("StdStorage_HSequenceOfRoots.hxx is deprecated since OCCT 8.0.0. Use "
+                           "NCollection_HSequence<opencascade::handle<StdStorage_Root>> directly.")
 
-#endif // StdStorage_HSequenceOfRoots_HeaderFile
+  Standard_DEPRECATED("StdStorage_HSequenceOfRoots is deprecated, use "
+                      "NCollection_HSequence<opencascade::handle<StdStorage_Root>> directly")
+typedef NCollection_HSequence<opencascade::handle<StdStorage_Root>> StdStorage_HSequenceOfRoots;
+
+#endif // _StdStorage_HSequenceOfRoots_hxx

@@ -1,7 +1,4 @@
-// Created on: 1992-04-03
-// Created by: Laurent BUCHARD
-// Copyright (c) 1992-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,12 +11,24 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef IntRes2d_SequenceOfIntersectionSegment_HeaderFile
-#define IntRes2d_SequenceOfIntersectionSegment_HeaderFile
+//! @file IntRes2d_SequenceOfIntersectionSegment.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection_Sequence<IntRes2d_IntersectionSegment> directly instead.
 
+#ifndef _IntRes2d_SequenceOfIntersectionSegment_hxx
+#define _IntRes2d_SequenceOfIntersectionSegment_hxx
+
+#include <Standard_Macro.hxx>
 #include <IntRes2d_IntersectionSegment.hxx>
 #include <NCollection_Sequence.hxx>
 
+Standard_HEADER_DEPRECATED(
+  "IntRes2d_SequenceOfIntersectionSegment.hxx is deprecated since OCCT 8.0.0. Use "
+  "NCollection_Sequence<IntRes2d_IntersectionSegment> directly.")
+
+  Standard_DEPRECATED("IntRes2d_SequenceOfIntersectionSegment is deprecated, use "
+                      "NCollection_Sequence<IntRes2d_IntersectionSegment> directly")
 typedef NCollection_Sequence<IntRes2d_IntersectionSegment> IntRes2d_SequenceOfIntersectionSegment;
 
-#endif
+#endif // _IntRes2d_SequenceOfIntersectionSegment_hxx

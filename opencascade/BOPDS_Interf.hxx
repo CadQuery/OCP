@@ -17,8 +17,11 @@
 
 #include <IntTools_CommonPrt.hxx>
 #include <NCollection_BaseAllocator.hxx>
-#include <BOPDS_VectorOfCurve.hxx>
-#include <BOPDS_VectorOfPoint.hxx>
+#include <NCollection_DynamicArray.hxx>
+#include <BOPDS_Curve.hxx>
+#include <BOPDS_Point.hxx>
+
+#include <optional>
 
 /**
  * The class BOPDS_Interf stores the information about
@@ -26,10 +29,8 @@
  * The class BOPDS_Interf is root class
  *
  */
-//=======================================================================
-// function : BOPDS_Interf
-// purpose  :
-//=======================================================================
+//=================================================================================================
+
 class BOPDS_Interf
 {
 public:
@@ -41,7 +42,7 @@ public:
    * @param theIndex2
    *   index of the second shape
    */
-  void SetIndices(const Standard_Integer theIndex1, const Standard_Integer theIndex2)
+  void SetIndices(const int theIndex1, const int theIndex2)
   {
     myIndex1 = theIndex1;
     myIndex2 = theIndex2;
@@ -55,7 +56,7 @@ public:
    * @param theIndex2
    *   index of the second shape
    */
-  void Indices(Standard_Integer& theIndex1, Standard_Integer& theIndex2) const
+  void Indices(int& theIndex1, int& theIndex2) const
   {
     theIndex1 = myIndex1;
     theIndex2 = myIndex2;
@@ -67,7 +68,7 @@ public:
    * @param theIndex
    *   index of the first shape
    */
-  void SetIndex1(const Standard_Integer theIndex) { myIndex1 = theIndex; }
+  void SetIndex1(const int theIndex) { myIndex1 = theIndex; }
 
   //
   /**
@@ -75,7 +76,7 @@ public:
    * @param theIndex
    *   index of the second shape
    */
-  void SetIndex2(const Standard_Integer theIndex) { myIndex2 = theIndex; }
+  void SetIndex2(const int theIndex) { myIndex2 = theIndex; }
 
   //
   /**
@@ -83,7 +84,7 @@ public:
    * @return
    *   index of the first shape
    */
-  Standard_Integer Index1() const { return myIndex1; }
+  int Index1() const { return myIndex1; }
 
   //
   /**
@@ -91,7 +92,7 @@ public:
    * @return
    *   index of the second shape
    */
-  Standard_Integer Index2() const { return myIndex2; }
+  int Index2() const { return myIndex2; }
 
   //
   /**
@@ -101,7 +102,7 @@ public:
    * @return
    *   index of opposite shape
    */
-  Standard_Integer OppositeIndex(const Standard_Integer theI) const
+  int OppositeIndex(const int theI) const
   {
     if (theI == myIndex1)
     {
@@ -125,10 +126,7 @@ public:
    * @return
    *   true if the interference contains given index
    */
-  Standard_Boolean Contains(const Standard_Integer theIndex) const
-  {
-    return (myIndex1 == theIndex || myIndex2 == theIndex);
-  }
+  bool Contains(const int theIndex) const { return (myIndex1 == theIndex || myIndex2 == theIndex); }
 
   //
   /**
@@ -136,7 +134,7 @@ public:
    * @param theIndex
    *   the index
    */
-  void SetIndexNew(const Standard_Integer theIndex) { myIndexNew = theIndex; }
+  void SetIndexNew(const int theIndex) { myIndexNew = theIndex; }
 
   //
   //
@@ -145,7 +143,7 @@ public:
    * @return theIndex
    *   the index of new shape
    */
-  Standard_Integer IndexNew() const { return myIndexNew; }
+  int IndexNew() const { return myIndexNew; }
 
   //
   /**
@@ -156,7 +154,7 @@ public:
    * @return true if the interference has index of new shape
    * that is equal to the given index
    */
-  Standard_Boolean HasIndexNew(Standard_Integer& theIndex) const
+  bool HasIndexNew(int& theIndex) const
   {
     theIndex = myIndexNew;
     return (myIndexNew >= 0);
@@ -168,7 +166,14 @@ public:
    *   the index
    * @return true if the interference has index of new shape
    */
-  Standard_Boolean HasIndexNew() const { return (myIndexNew + 1) != 0; }
+  bool HasIndexNew() const { return myIndexNew != -1; }
+
+  //! Returns the index of new shape.
+  //! If the index is not set, returns std::nullopt.
+  std::optional<int> GetIndexNew() const
+  {
+    return myIndexNew != -1 ? std::optional<int>(myIndexNew) : std::nullopt;
+  }
 
   //
 protected:
@@ -181,7 +186,7 @@ protected:
   }
 
   //
-  BOPDS_Interf(const Handle(NCollection_BaseAllocator)& theAllocator)
+  BOPDS_Interf(const occ::handle<NCollection_BaseAllocator>& theAllocator)
       : myIndex1(-1),
         myIndex2(-1),
         myIndexNew(-1),
@@ -190,23 +195,21 @@ protected:
   }
 
   //
-  virtual ~BOPDS_Interf() {}
+  virtual ~BOPDS_Interf() = default;
 
 protected:
-  Standard_Integer                  myIndex1;
-  Standard_Integer                  myIndex2;
-  Standard_Integer                  myIndexNew;
-  Handle(NCollection_BaseAllocator) myAllocator;
+  int                                    myIndex1;
+  int                                    myIndex2;
+  int                                    myIndexNew;
+  occ::handle<NCollection_BaseAllocator> myAllocator;
 };
 
 /**
  * The class BOPDS_InterfVV stores the information about
  * the interference of the type vertex/vertex.
  */
-//=======================================================================
-// function : BOPDS_InterfVV
-// purpose  :
-//=======================================================================
+//=================================================================================================
+
 class BOPDS_InterfVV : public BOPDS_Interf
 {
 public:
@@ -215,9 +218,8 @@ public:
    *  Constructor
    */
   BOPDS_InterfVV()
-      : BOPDS_Interf()
-  {
-  }
+
+    = default;
 
   //
   /**
@@ -225,7 +227,7 @@ public:
    * @param theAllocator
    *   allocator to manage the memory
    */
-  BOPDS_InterfVV(const Handle(NCollection_BaseAllocator)& theAllocator)
+  BOPDS_InterfVV(const occ::handle<NCollection_BaseAllocator>& theAllocator)
       : BOPDS_Interf(theAllocator)
   {
   }
@@ -234,7 +236,7 @@ public:
   /**
    *  Destructor
    */
-  virtual ~BOPDS_InterfVV() {}
+  ~BOPDS_InterfVV() override = default;
 
   //
 };
@@ -243,10 +245,8 @@ public:
  * The class BOPDS_InterfVE stores the information about
  * the interference of the type vertex/edge.
  */
-//=======================================================================
-// function : BOPDS_InterfVE
-// purpose  :
-//=======================================================================
+//=================================================================================================
+
 class BOPDS_InterfVE : public BOPDS_Interf
 {
 public:
@@ -255,8 +255,7 @@ public:
    *  Constructor
    */
   BOPDS_InterfVE()
-      : BOPDS_Interf(),
-        myParameter(0.)
+      : myParameter(0.)
   {
   }
 
@@ -266,7 +265,7 @@ public:
    * @param theAllocator
    *   allocator to manage the memory
    */
-  BOPDS_InterfVE(const Handle(NCollection_BaseAllocator)& theAllocator)
+  BOPDS_InterfVE(const occ::handle<NCollection_BaseAllocator>& theAllocator)
       : BOPDS_Interf(theAllocator),
         myParameter(0.)
   {
@@ -276,7 +275,7 @@ public:
   /**
    *  Destructor
    */
-  virtual ~BOPDS_InterfVE() {}
+  ~BOPDS_InterfVE() override = default;
 
   //
   /**
@@ -287,7 +286,7 @@ public:
    * @param theT
    *   value of parameter
    */
-  void SetParameter(const Standard_Real theT) { myParameter = theT; }
+  void SetParameter(const double theT) { myParameter = theT; }
 
   //
   /**
@@ -298,20 +297,18 @@ public:
    * @return
    *   value of parameter
    */
-  Standard_Real Parameter() const { return myParameter; }
+  double Parameter() const { return myParameter; }
 
 protected:
-  Standard_Real myParameter;
+  double myParameter;
 };
 
 /**
  * The class BOPDS_InterfVF stores the information about
  * the interference of the type vertex/face
  */
-//=======================================================================
-// function : BOPDS_InterfVF
-// purpose  :
-//=======================================================================
+//=================================================================================================
+
 class BOPDS_InterfVF : public BOPDS_Interf
 {
 public:
@@ -320,8 +317,7 @@ public:
    *  Constructor
    */
   BOPDS_InterfVF()
-      : BOPDS_Interf(),
-        myU(0.),
+      : myU(0.),
         myV(0.)
   {
   }
@@ -332,7 +328,7 @@ public:
    * @param theAllocator
    *   allocator to manage the memory
    */
-  BOPDS_InterfVF(const Handle(NCollection_BaseAllocator)& theAllocator)
+  BOPDS_InterfVF(const occ::handle<NCollection_BaseAllocator>& theAllocator)
       : BOPDS_Interf(theAllocator),
         myU(0.),
         myV(0.)
@@ -343,7 +339,7 @@ public:
   /**
    *  Destructor
    */
-  virtual ~BOPDS_InterfVF() {}
+  ~BOPDS_InterfVF() override = default;
 
   //
   /**
@@ -356,7 +352,7 @@ public:
    * @param theV
    *   value of U parameter
    */
-  void SetUV(const Standard_Real theU, const Standard_Real theV)
+  void SetUV(const double theU, const double theV)
   {
     myU = theU;
     myV = theV;
@@ -373,25 +369,23 @@ public:
    * @param theV
    *   value of U parameter
    */
-  void UV(Standard_Real& theU, Standard_Real& theV) const
+  void UV(double& theU, double& theV) const
   {
     theU = myU;
     theV = myV;
   }
 
 protected:
-  Standard_Real myU;
-  Standard_Real myV;
+  double myU;
+  double myV;
 };
 
 /**
  * The class BOPDS_InterfEE stores the information about
  * the interference of the type edge/edge.
  */
-//=======================================================================
-// function : BOPDS_InterfEE
-// purpose  :
-//=======================================================================
+//=================================================================================================
+
 class BOPDS_InterfEE : public BOPDS_Interf
 {
 public:
@@ -400,9 +394,8 @@ public:
    *  Constructor
    */
   BOPDS_InterfEE()
-      : BOPDS_Interf()
-  {
-  }
+
+    = default;
 
   //
   /**
@@ -410,7 +403,7 @@ public:
    * @param theAllocator
    *   allocator to manage the memory
    */
-  BOPDS_InterfEE(const Handle(NCollection_BaseAllocator)& theAllocator)
+  BOPDS_InterfEE(const occ::handle<NCollection_BaseAllocator>& theAllocator)
       : BOPDS_Interf(theAllocator)
   {
   }
@@ -419,7 +412,7 @@ public:
   /**
    *  Destructor
    */
-  virtual ~BOPDS_InterfEE() {}
+  ~BOPDS_InterfEE() override = default;
 
   //
   /**
@@ -447,10 +440,8 @@ protected:
  * The class BOPDS_InterfEF stores the information about
  * the interference of the type edge/face.
  */
-//=======================================================================
-// function : BOPDS_InterfEF
-// purpose  :
-//=======================================================================
+//=================================================================================================
+
 class BOPDS_InterfEF : public BOPDS_Interf
 {
 public:
@@ -459,9 +450,8 @@ public:
    *  Constructor
    */
   BOPDS_InterfEF()
-      : BOPDS_Interf()
-  {
-  }
+
+    = default;
 
   //
   /**
@@ -474,7 +464,7 @@ public:
    * @param theAllocator
    *   allocator to manage the memory
    */
-  BOPDS_InterfEF(const Handle(NCollection_BaseAllocator)& theAllocator)
+  BOPDS_InterfEF(const occ::handle<NCollection_BaseAllocator>& theAllocator)
       : BOPDS_Interf(theAllocator)
   {
   }
@@ -483,7 +473,7 @@ public:
   /**
    *  Destructor
    */
-  virtual ~BOPDS_InterfEF() {}
+  ~BOPDS_InterfEF() override = default;
 
   //
   /**
@@ -513,10 +503,8 @@ protected:
  */
 ;
 
-//=======================================================================
-// function : BOPDS_InterfFF
-// purpose  :
-//=======================================================================
+//=================================================================================================
+
 class BOPDS_InterfFF : public BOPDS_Interf
 {
 public:
@@ -525,8 +513,7 @@ public:
    *  Constructor
    */
   BOPDS_InterfFF()
-      : BOPDS_Interf(),
-        myTangentFaces(Standard_False),
+      : myTangentFaces(false),
         myCurves(0, myAllocator),
         myPoints(0, myAllocator)
   {
@@ -536,7 +523,7 @@ public:
   /**
    *  Destructor
    */
-  virtual ~BOPDS_InterfFF() {}
+  ~BOPDS_InterfFF() override = default;
 
   //
   /**
@@ -547,7 +534,7 @@ public:
    *   number of intersection points
    */
 
-  void Init(const Standard_Integer theNbCurves, const Standard_Integer theNbPoints)
+  void Init(const int theNbCurves, const int theNbPoints)
   {
     if (theNbCurves > 0)
     {
@@ -565,7 +552,7 @@ public:
    * @param theFlag
    *   the flag
    */
-  void SetTangentFaces(const Standard_Boolean theFlag) { myTangentFaces = theFlag; }
+  void SetTangentFaces(const bool theFlag) { myTangentFaces = theFlag; }
 
   /**
    * Selector
@@ -573,7 +560,7 @@ public:
    * @return
    *   the flag
    */
-  Standard_Boolean TangentFaces() const { return myTangentFaces; }
+  bool TangentFaces() const { return myTangentFaces; }
 
   //
   /**
@@ -582,7 +569,7 @@ public:
    * @return
    *   intersection curves
    */
-  const BOPDS_VectorOfCurve& Curves() const { return myCurves; }
+  const NCollection_DynamicArray<BOPDS_Curve>& Curves() const { return myCurves; }
 
   //
   /**
@@ -591,7 +578,7 @@ public:
    * @return
    *   intersection curves
    */
-  BOPDS_VectorOfCurve& ChangeCurves() { return myCurves; }
+  NCollection_DynamicArray<BOPDS_Curve>& ChangeCurves() { return myCurves; }
 
   //
   /**
@@ -600,7 +587,7 @@ public:
    * @return
    *   intersection points
    */
-  const BOPDS_VectorOfPoint& Points() const { return myPoints; }
+  const NCollection_DynamicArray<BOPDS_Point>& Points() const { return myPoints; }
 
   //
   /**
@@ -609,23 +596,21 @@ public:
    * @return
    *   intersection points
    */
-  BOPDS_VectorOfPoint& ChangePoints() { return myPoints; }
+  NCollection_DynamicArray<BOPDS_Point>& ChangePoints() { return myPoints; }
 
   //
 protected:
-  Standard_Boolean    myTangentFaces;
-  BOPDS_VectorOfCurve myCurves;
-  BOPDS_VectorOfPoint myPoints;
+  bool                                  myTangentFaces;
+  NCollection_DynamicArray<BOPDS_Curve> myCurves;
+  NCollection_DynamicArray<BOPDS_Point> myPoints;
 };
 
 /**
  * The class BOPDS_InterfVZ stores the information about
  * the interference of the type vertex/solid.
  */
-//=======================================================================
-// function : BOPDS_InterfVZ
-// purpose  :
-//=======================================================================
+//=================================================================================================
+
 class BOPDS_InterfVZ : public BOPDS_Interf
 {
 public:
@@ -633,21 +618,20 @@ public:
   /**
    *  Constructor
    */
-  BOPDS_InterfVZ()
-      : BOPDS_Interf() {};
+  BOPDS_InterfVZ() = default;
   //
   /**
    *  Constructor
    * @param theAllocator
    *   allocator to manage the memory
    */
-  BOPDS_InterfVZ(const Handle(NCollection_BaseAllocator)& theAllocator)
+  BOPDS_InterfVZ(const occ::handle<NCollection_BaseAllocator>& theAllocator)
       : BOPDS_Interf(theAllocator) {};
   //
   /**
    *  Destructor
    */
-  virtual ~BOPDS_InterfVZ() {};
+  ~BOPDS_InterfVZ() override = default;
   //
 };
 
@@ -655,10 +639,8 @@ public:
  * The class BOPDS_InterfEZ stores the information about
  * the interference of the type edge/solid.
  */
-//=======================================================================
-// function : BOPDS_InterfEZ
-// purpose  :
-//=======================================================================
+//=================================================================================================
+
 class BOPDS_InterfEZ : public BOPDS_Interf
 {
 public:
@@ -666,21 +648,20 @@ public:
   /**
    *  Constructor
    */
-  BOPDS_InterfEZ()
-      : BOPDS_Interf() {};
+  BOPDS_InterfEZ() = default;
   //
   /**
    *  Constructor
    * @param theAllocator
    *   allocator to manage the memory
    */
-  BOPDS_InterfEZ(const Handle(NCollection_BaseAllocator)& theAllocator)
+  BOPDS_InterfEZ(const occ::handle<NCollection_BaseAllocator>& theAllocator)
       : BOPDS_Interf(theAllocator) {};
   //
   /**
    *  Destructor
    */
-  virtual ~BOPDS_InterfEZ() {};
+  ~BOPDS_InterfEZ() override = default;
   //
 };
 
@@ -688,10 +669,8 @@ public:
  * The class BOPDS_InterfFZ stores the information about
  * the interference of the type face/solid.
  */
-//=======================================================================
-// function : BOPDS_InterfFZ
-// purpose  :
-//=======================================================================
+//=================================================================================================
+
 class BOPDS_InterfFZ : public BOPDS_Interf
 {
 public:
@@ -699,21 +678,20 @@ public:
   /**
    *  Constructor
    */
-  BOPDS_InterfFZ()
-      : BOPDS_Interf() {};
+  BOPDS_InterfFZ() = default;
   //
   /**
    *  Constructor
    * @param theAllocator
    *   allocator to manage the memory
    */
-  BOPDS_InterfFZ(const Handle(NCollection_BaseAllocator)& theAllocator)
+  BOPDS_InterfFZ(const occ::handle<NCollection_BaseAllocator>& theAllocator)
       : BOPDS_Interf(theAllocator) {};
   //
   /**
    *  Destructor
    */
-  virtual ~BOPDS_InterfFZ() {};
+  ~BOPDS_InterfFZ() override = default;
   //
 };
 
@@ -721,10 +699,8 @@ public:
  * The class BOPDS_InterfZZ stores the information about
  * the interference of the type solid/solid.
  */
-//=======================================================================
-// function : BOPDS_InterfZZ
-// purpose  :
-//=======================================================================
+//=================================================================================================
+
 class BOPDS_InterfZZ : public BOPDS_Interf
 {
 public:
@@ -732,21 +708,20 @@ public:
   /**
    *  Constructor
    */
-  BOPDS_InterfZZ()
-      : BOPDS_Interf() {};
+  BOPDS_InterfZZ() = default;
   //
   /**
    *  Constructor
    * @param theAllocator
    *   allocator to manage the memory
    */
-  BOPDS_InterfZZ(const Handle(NCollection_BaseAllocator)& theAllocator)
+  BOPDS_InterfZZ(const occ::handle<NCollection_BaseAllocator>& theAllocator)
       : BOPDS_Interf(theAllocator) {};
   //
   /**
    *  Destructor
    */
-  virtual ~BOPDS_InterfZZ() {};
+  ~BOPDS_InterfZZ() override = default;
   //
 };
 

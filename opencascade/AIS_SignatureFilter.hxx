@@ -25,21 +25,18 @@
 #include <AIS_KindOfInteractive.hxx>
 class SelectMgr_EntityOwner;
 
-class AIS_SignatureFilter;
-DEFINE_STANDARD_HANDLE(AIS_SignatureFilter, AIS_TypeFilter)
-
 //! Selects Interactive Objects through their signatures
 //! and types. The signature provides an
-//! additional   characterization of an object's type, and
+//! additional characterization of an object's type, and
 //! takes the form of an index. The filter questions each
 //! Interactive Object in local context to determine
 //! whether it has an non-null owner, and if so, whether
 //! it has the desired signature. If the object returns true
 //! in each case, it is kept. If not, it is rejected.
-//! By default, the   interactive object has a None   type
+//! By default, the interactive object has a None type
 //! and a signature of 0. If you want to give a particular
 //! type and signature to your Interactive Object, you
-//! must redefine two virtual methods:   Type and Signature.
+//! must redefine two virtual methods: Type and Signature.
 //! This filter is only used in an open local contexts.
 //! In the Collector viewer, you can only locate
 //! Interactive Objects which answer positively to the
@@ -63,19 +60,17 @@ public:
   //! specification, aGivenSignature, to that for type,
   //! aGivenKind, in AIS_TypeFilter.
   Standard_EXPORT AIS_SignatureFilter(const AIS_KindOfInteractive aGivenKind,
-                                      const Standard_Integer      aGivenSignature);
+                                      const int                   aGivenSignature);
 
   //! Returns False if the transient is not an AIS_InteractiveObject.
   //! Returns False if the signature of InteractiveObject
   //! is not the same as the stored one in the filter...
-  Standard_EXPORT Standard_Boolean
-    IsOk(const Handle(SelectMgr_EntityOwner)& anobj) const Standard_OVERRIDE;
+  Standard_EXPORT bool IsOk(const occ::handle<SelectMgr_EntityOwner>& anobj) const override;
 
   DEFINE_STANDARD_RTTIEXT(AIS_SignatureFilter, AIS_TypeFilter)
 
-protected:
 private:
-  Standard_Integer mySig;
+  int mySig;
 };
 
 #endif // _AIS_SignatureFilter_HeaderFile

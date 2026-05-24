@@ -17,15 +17,11 @@
 #ifndef _TopoDS_UnCompatibleShapes_HeaderFile
 #define _TopoDS_UnCompatibleShapes_HeaderFile
 
-#include <Standard_Type.hxx>
 #include <Standard_DefineException.hxx>
 #include <Standard_SStream.hxx>
 #include <Standard_DomainError.hxx>
 
 //! An incorrect insertion was attempted.
-
-class TopoDS_UnCompatibleShapes;
-DEFINE_STANDARD_HANDLE(TopoDS_UnCompatibleShapes, Standard_DomainError)
 
 #if !defined No_Exception && !defined No_TopoDS_UnCompatibleShapes
   #define TopoDS_UnCompatibleShapes_Raise_if(CONDITION, MESSAGE)                                   \

@@ -97,14 +97,14 @@ public:
 
   Standard_EXPORT static gp_Lin2d Project(const gp_Torus& To, const gp_Circ& Ci);
 
-  //! Make empty  P-Curve <aC> of relevant to <PC> type
+  //! Make empty P-Curve <aC> of relevant to <PC> type
   Standard_EXPORT static void MakePCurveOfType(const ProjLib_ProjectedCurve& PC,
-                                               Handle(Geom2d_Curve)&         aC);
+                                               occ::handle<Geom2d_Curve>&    aC);
 
   //! Returns "true" if surface is analytical, that is it can be
   //! Plane, Cylinder, Cone, Sphere, Torus.
   //! For all other types of surface method returns "false".
-  Standard_EXPORT static Standard_Boolean IsAnaSurf(const Handle(Adaptor3d_Surface)& theAS);
+  Standard_EXPORT static bool IsAnaSurf(const occ::handle<Adaptor3d_Surface>& theAS);
 };
 
 #endif // _ProjLib_HeaderFile

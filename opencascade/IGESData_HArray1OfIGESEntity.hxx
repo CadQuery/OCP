@@ -1,7 +1,4 @@
-// Created on: 1992-04-06
-// Created by: Christian CAILLET
-// Copyright (c) 1992-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,12 +11,24 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef IGESData_HArray1OfIGESEntity_HeaderFile
-#define IGESData_HArray1OfIGESEntity_HeaderFile
+//! @file IGESData_HArray1OfIGESEntity.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection_HArray1<opencascade::handle<IGESData_IGESEntity>> directly instead.
 
+#ifndef _IGESData_HArray1OfIGESEntity_hxx
+#define _IGESData_HArray1OfIGESEntity_hxx
+
+#include <Standard_Macro.hxx>
 #include <IGESData_Array1OfIGESEntity.hxx>
-#include <NCollection_DefineHArray1.hxx>
+#include <NCollection_HArray1.hxx>
 
-DEFINE_HARRAY1(IGESData_HArray1OfIGESEntity, IGESData_Array1OfIGESEntity)
+Standard_HEADER_DEPRECATED(
+  "IGESData_HArray1OfIGESEntity.hxx is deprecated since OCCT 8.0.0. Use "
+  "NCollection_HArray1<opencascade::handle<IGESData_IGESEntity>> directly.")
 
-#endif
+  Standard_DEPRECATED("IGESData_HArray1OfIGESEntity is deprecated, use "
+                      "NCollection_HArray1<opencascade::handle<IGESData_IGESEntity>> directly")
+typedef NCollection_HArray1<opencascade::handle<IGESData_IGESEntity>> IGESData_HArray1OfIGESEntity;
+
+#endif // _IGESData_HArray1OfIGESEntity_hxx

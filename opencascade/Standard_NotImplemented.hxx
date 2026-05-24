@@ -17,13 +17,9 @@
 #ifndef _Standard_NotImplemented_HeaderFile
 #define _Standard_NotImplemented_HeaderFile
 
-#include <Standard_Type.hxx>
 #include <Standard_DefineException.hxx>
 #include <Standard_SStream.hxx>
 #include <Standard_ProgramError.hxx>
-
-class Standard_NotImplemented;
-DEFINE_STANDARD_HANDLE(Standard_NotImplemented, Standard_ProgramError)
 
 #if !defined No_Exception && !defined No_Standard_NotImplemented
   #define Standard_NotImplemented_Raise_if(CONDITION, MESSAGE)                                     \

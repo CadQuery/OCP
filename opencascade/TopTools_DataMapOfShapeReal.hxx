@@ -1,7 +1,4 @@
-// Created on: 1993-01-14
-// Created by: Remi LEQUETTE
-// Copyright (c) 1993-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,16 +11,30 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef TopTools_DataMapOfShapeReal_HeaderFile
-#define TopTools_DataMapOfShapeReal_HeaderFile
+//! @file TopTools_DataMapOfShapeReal.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection types directly instead.
 
+#ifndef _TopTools_DataMapOfShapeReal_hxx
+#define _TopTools_DataMapOfShapeReal_hxx
+
+#include <Standard_Macro.hxx>
 #include <TopoDS_Shape.hxx>
 #include <TopTools_ShapeMapHasher.hxx>
 #include <NCollection_DataMap.hxx>
 
-typedef NCollection_DataMap<TopoDS_Shape, Standard_Real, TopTools_ShapeMapHasher>
+Standard_HEADER_DEPRECATED(
+  "TopTools_DataMapOfShapeReal.hxx is deprecated since OCCT 8.0.0. Use NCollection types directly.")
+
+  Standard_DEPRECATED("TopTools_DataMapOfShapeReal is deprecated, use "
+                      "NCollection_DataMap<TopoDS_Shape, double, TopTools_ShapeMapHasher> directly")
+typedef NCollection_DataMap<TopoDS_Shape, double, TopTools_ShapeMapHasher>
   TopTools_DataMapOfShapeReal;
-typedef NCollection_DataMap<TopoDS_Shape, Standard_Real, TopTools_ShapeMapHasher>::Iterator
+Standard_DEPRECATED(
+  "TopTools_DataMapIteratorOfDataMapOfShapeReal is deprecated, use "
+  "NCollection_DataMap<TopoDS_Shape, double, TopTools_ShapeMapHasher>::Iterator directly")
+typedef NCollection_DataMap<TopoDS_Shape, double, TopTools_ShapeMapHasher>::Iterator
   TopTools_DataMapIteratorOfDataMapOfShapeReal;
 
-#endif
+#endif // _TopTools_DataMapOfShapeReal_hxx

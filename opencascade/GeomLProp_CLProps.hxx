@@ -20,25 +20,35 @@
 #include <Standard.hxx>
 #include <Standard_DefineAlloc.hxx>
 #include <Standard_Handle.hxx>
+#include <Standard_OutOfRange.hxx>
 
-#include <Standard_Real.hxx>
-#include <Standard_Integer.hxx>
 #include <gp_Pnt.hxx>
+#include <gp_Pnt2d.hxx>
 #include <gp_Vec.hxx>
+#include <gp_Vec2d.hxx>
 #include <gp_Dir.hxx>
+#include <gp_Dir2d.hxx>
 #include <LProp_Status.hxx>
-#include <Standard_Boolean.hxx>
-class Geom_Curve;
-class LProp_BadContinuity;
-class Standard_DomainError;
-class Standard_OutOfRange;
-class LProp_NotDefined;
-class gp_Vec;
-class gp_Pnt;
-class gp_Dir;
-class GeomLProp_CurveTool;
 
-class GeomLProp_CLProps
+#include <Geom_Curve.hxx>
+#include <Geom2d_Curve.hxx>
+#include <LProp_CurveUtils.hxx>
+
+//! Implementation class for computing local properties of a curve:
+//! point, derivatives up to order 3, tangent, curvature, normal,
+//! and centre of curvature.
+//! Parameterized by geometric types (Pnt/Vec/Dir) and curve type.
+//! @tparam Pnt the point type (gp_Pnt for 3D, gp_Pnt2d for 2D)
+//! @tparam Vec the vector type (gp_Vec for 3D, gp_Vec2d for 2D)
+//! @tparam Dir the direction type (gp_Dir for 3D, gp_Dir2d for 2D)
+//! @tparam CurveType the curve storage type
+//! @tparam Access the access policy for evaluating curve derivatives
+template <typename Pnt,
+          typename Vec,
+          typename Dir,
+          typename CurveType,
+          typename Access = LProp_CurveUtils::DirectAccess>
+class GeomLProp_CLPropsBase
 {
 public:
   DEFINE_STANDARD_ALLOC
@@ -52,17 +62,30 @@ public:
   //! only the tangent, N should be equal to 1.
   //! <Resolution> is the linear tolerance (it is used to test
   //! if a vector is null).
-  Standard_EXPORT GeomLProp_CLProps(const Handle(Geom_Curve)& C,
-                                    const Standard_Integer    N,
-                                    const Standard_Real       Resolution);
+  GeomLProp_CLPropsBase(const CurveType& C, const int N, const double Resolution)
+      : myCurve(C),
+        myU(RealLast()),
+        myDerOrder(N),
+        myCN(4),
+        myLinTol(Resolution),
+        myTangentStatus(LProp_Undecided)
+  {
+    Standard_OutOfRange_Raise_if(N < 0 || N > 3, "GeomLProp_CLProps::GeomLProp_CLProps()");
+  }
 
   //! Same as previous constructor but here the parameter is
   //! set to the value <U>.
   //! All the computations done will be related to <C> and <U>.
-  Standard_EXPORT GeomLProp_CLProps(const Handle(Geom_Curve)& C,
-                                    const Standard_Real       U,
-                                    const Standard_Integer    N,
-                                    const Standard_Real       Resolution);
+  GeomLProp_CLPropsBase(const CurveType& C, const double U, const int N, const double Resolution)
+      : myCurve(C),
+        myDerOrder(N),
+        myCN(4),
+        myLinTol(Resolution),
+        myTangentStatus(LProp_Undecided)
+  {
+    Standard_OutOfRange_Raise_if(N < 0 || N > 3, "GeomLProp_CLProps::GeomLProp_CLProps()");
+    SetParameter(U);
+  }
 
   //! Same as previous constructor but here the parameter is
   //! set to the value <U> and the curve is set
@@ -70,61 +93,133 @@ public:
   //! the curve can have a empty constructor
   //! All the computations done will be related to <C> and <U>
   //! when the functions "set" will be done.
-  Standard_EXPORT GeomLProp_CLProps(const Standard_Integer N, const Standard_Real Resolution);
+  GeomLProp_CLPropsBase(const int N, const double Resolution)
+      : myCurve{},
+        myU(RealLast()),
+        myDerOrder(N),
+        myCN(0),
+        myLinTol(Resolution),
+        myTangentStatus(LProp_Undecided)
+  {
+    Standard_OutOfRange_Raise_if(N < 0 || N > 3, "GeomLProp_CLProps() - invalid input");
+  }
 
   //! Initializes the local properties of the curve
   //! for the parameter value <U>.
-  Standard_EXPORT void SetParameter(const Standard_Real U);
+  void SetParameter(const double U)
+  {
+    LProp_CurveUtils::SetParameter<Access>(myCurve,
+                                           U,
+                                           myU,
+                                           myDerOrder,
+                                           myPnt,
+                                           myDerivArr,
+                                           myTangentStatus);
+  }
 
   //! Initializes the local properties of the curve
   //! for the new curve.
-  Standard_EXPORT void SetCurve(const Handle(Geom_Curve)& C);
+  void SetCurve(const CurveType& C)
+  {
+    myCurve = C;
+    myCN    = 4;
+  }
 
   //! Returns the Point.
-  Standard_EXPORT const gp_Pnt& Value() const;
+  const Pnt& Value() const { return myPnt; }
 
   //! Returns the first derivative.
   //! The derivative is computed if it has not been yet.
-  Standard_EXPORT const gp_Vec& D1();
+  const Vec& D1()
+  {
+    return LProp_CurveUtils::EnsureDeriv<Access>(myCurve, myU, myDerOrder, 1, myPnt, myDerivArr);
+  }
 
   //! Returns the second derivative.
   //! The derivative is computed if it has not been yet.
-  Standard_EXPORT const gp_Vec& D2();
+  const Vec& D2()
+  {
+    return LProp_CurveUtils::EnsureDeriv<Access>(myCurve, myU, myDerOrder, 2, myPnt, myDerivArr);
+  }
 
   //! Returns the third derivative.
   //! The derivative is computed if it has not been yet.
-  Standard_EXPORT const gp_Vec& D3();
+  const Vec& D3()
+  {
+    return LProp_CurveUtils::EnsureDeriv<Access>(myCurve, myU, myDerOrder, 3, myPnt, myDerivArr);
+  }
 
   //! Returns True if the tangent is defined.
   //! For example, the tangent is not defined if the
   //! three first derivatives are all null.
-  Standard_EXPORT Standard_Boolean IsTangentDefined();
+  bool IsTangentDefined()
+  {
+    return LProp_CurveUtils::IsTangentDefined<Vec>(*this,
+                                                   myCN,
+                                                   myLinTol,
+                                                   mySignificantFirstDerivativeOrder,
+                                                   myTangentStatus);
+  }
 
-  //! output  the tangent direction <D>
-  Standard_EXPORT void Tangent(gp_Dir& D);
+  //! output the tangent direction <D>.
+  void Tangent(Dir& D)
+  {
+    LProp_CurveUtils::Tangent<Access>(*this,
+                                      myCurve,
+                                      myU,
+                                      myDerivArr,
+                                      myPnt,
+                                      mySignificantFirstDerivativeOrder,
+                                      D);
+  }
 
   //! Returns the curvature.
-  Standard_EXPORT Standard_Real Curvature();
+  double Curvature()
+  {
+    return LProp_CurveUtils::Curvature(*this,
+                                       myDerivArr[0],
+                                       myDerivArr[1],
+                                       myLinTol,
+                                       mySignificantFirstDerivativeOrder,
+                                       myCurvature);
+  }
 
   //! Returns the normal direction <N>.
-  Standard_EXPORT void Normal(gp_Dir& N);
+  void Normal(Dir& N)
+  {
+    LProp_CurveUtils::Normal(*this, myDerivArr[0], myDerivArr[1], myLinTol, N);
+  }
 
   //! Returns the centre of curvature <P>.
-  Standard_EXPORT void CentreOfCurvature(gp_Pnt& P);
+  void CentreOfCurvature(Pnt& P)
+  {
+    LProp_CurveUtils::CentreOfCurvature(*this,
+                                        myPnt,
+                                        myDerivArr[0],
+                                        myDerivArr[1],
+                                        myLinTol,
+                                        myCurvature,
+                                        P);
+  }
 
-protected:
 private:
-  Handle(Geom_Curve) myCurve;
-  Standard_Real      myU;
-  Standard_Integer   myDerOrder;
-  Standard_Real      myCN;
-  Standard_Real      myLinTol;
-  gp_Pnt             myPnt;
-  gp_Vec             myDerivArr[3];
-  gp_Dir             myTangent;
-  Standard_Real      myCurvature;
-  LProp_Status       myTangentStatus;
-  Standard_Integer   mySignificantFirstDerivativeOrder;
+  CurveType    myCurve;
+  double       myU;
+  int          myDerOrder;
+  int          myCN;
+  double       myLinTol;
+  Pnt          myPnt;
+  Vec          myDerivArr[3];
+  double       myCurvature = 0.0;
+  LProp_Status myTangentStatus;
+  int          mySignificantFirstDerivativeOrder = 0;
 };
+
+//! Default 3D curve local properties class using occ::handle<Geom_Curve>.
+using GeomLProp_CLProps = GeomLProp_CLPropsBase<gp_Pnt, gp_Vec, gp_Dir, occ::handle<Geom_Curve>>;
+
+//! Default 2D curve local properties class using occ::handle<Geom2d_Curve>.
+using GeomLProp_CLProps2d =
+  GeomLProp_CLPropsBase<gp_Pnt2d, gp_Vec2d, gp_Dir2d, occ::handle<Geom2d_Curve>>;
 
 #endif // _GeomLProp_CLProps_HeaderFile

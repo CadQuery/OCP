@@ -1,7 +1,4 @@
-// Created on: 1993-01-11
-// Created by: SIVA
-// Copyright (c) 1993-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,12 +11,23 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef IGESSolid_Array1OfLoop_HeaderFile
-#define IGESSolid_Array1OfLoop_HeaderFile
+//! @file IGESSolid_Array1OfLoop.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection_Array1<opencascade::handle<IGESSolid_Loop>> directly instead.
 
+#ifndef _IGESSolid_Array1OfLoop_hxx
+#define _IGESSolid_Array1OfLoop_hxx
+
+#include <Standard_Macro.hxx>
 #include <IGESSolid_Loop.hxx>
 #include <NCollection_Array1.hxx>
 
-typedef NCollection_Array1<Handle(IGESSolid_Loop)> IGESSolid_Array1OfLoop;
+Standard_HEADER_DEPRECATED("IGESSolid_Array1OfLoop.hxx is deprecated since OCCT 8.0.0. Use "
+                           "NCollection_Array1<opencascade::handle<IGESSolid_Loop>> directly.")
 
-#endif
+  Standard_DEPRECATED("IGESSolid_Array1OfLoop is deprecated, use "
+                      "NCollection_Array1<opencascade::handle<IGESSolid_Loop>> directly")
+typedef NCollection_Array1<opencascade::handle<IGESSolid_Loop>> IGESSolid_Array1OfLoop;
+
+#endif // _IGESSolid_Array1OfLoop_hxx

@@ -1,7 +1,4 @@
-// Created on: 1997-10-29
-// Created by: Roman BORISOV
-// Copyright (c) 1997-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,13 +11,26 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef FEmTool_HAssemblyTable_HeaderFile
-#define FEmTool_HAssemblyTable_HeaderFile
+//! @file FEmTool_HAssemblyTable.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection_HArray2<opencascade::handle<TColStd_HArray1OfInteger>> directly
+//!             instead.
 
+#ifndef _FEmTool_HAssemblyTable_hxx
+#define _FEmTool_HAssemblyTable_hxx
+
+#include <Standard_Macro.hxx>
 #include <TColStd_HArray1OfInteger.hxx>
 #include <FEmTool_AssemblyTable.hxx>
-#include <NCollection_DefineHArray2.hxx>
+#include <NCollection_HArray2.hxx>
 
-DEFINE_HARRAY2(FEmTool_HAssemblyTable, FEmTool_AssemblyTable)
+Standard_HEADER_DEPRECATED(
+  "FEmTool_HAssemblyTable.hxx is deprecated since OCCT 8.0.0. Use "
+  "NCollection_HArray2<opencascade::handle<TColStd_HArray1OfInteger>> directly.")
 
-#endif
+  Standard_DEPRECATED("FEmTool_HAssemblyTable is deprecated, use "
+                      "NCollection_HArray2<opencascade::handle<TColStd_HArray1OfInteger>> directly")
+typedef NCollection_HArray2<opencascade::handle<TColStd_HArray1OfInteger>> FEmTool_HAssemblyTable;
+
+#endif // _FEmTool_HAssemblyTable_hxx

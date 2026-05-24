@@ -15,12 +15,8 @@
 #ifndef _OSD_SIGBUS_HeaderFile
 #define _OSD_SIGBUS_HeaderFile
 
-#include <Standard_Type.hxx>
 #include <Standard_SStream.hxx>
 #include <OSD_Signal.hxx>
-
-class OSD_SIGBUS;
-DEFINE_STANDARD_HANDLE(OSD_SIGBUS, OSD_Signal)
 
 #if !defined No_Exception && !defined No_OSD_SIGBUS
   #define OSD_SIGBUS_Raise_if(CONDITION, MESSAGE)                                                  \

@@ -1,7 +1,4 @@
-// Created on: 1995-12-01
-// Created by: EXPRESS->CDL V0.2 Translator
-// Copyright (c) 1995-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,12 +11,23 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef StepShape_Array1OfValueQualifier_HeaderFile
-#define StepShape_Array1OfValueQualifier_HeaderFile
+//! @file StepShape_Array1OfValueQualifier.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection_Array1<StepShape_ValueQualifier> directly instead.
 
+#ifndef _StepShape_Array1OfValueQualifier_hxx
+#define _StepShape_Array1OfValueQualifier_hxx
+
+#include <Standard_Macro.hxx>
 #include <StepShape_ValueQualifier.hxx>
 #include <NCollection_Array1.hxx>
 
+Standard_HEADER_DEPRECATED("StepShape_Array1OfValueQualifier.hxx is deprecated since OCCT 8.0.0. "
+                           "Use NCollection_Array1<StepShape_ValueQualifier> directly.")
+
+  Standard_DEPRECATED("StepShape_Array1OfValueQualifier is deprecated, use "
+                      "NCollection_Array1<StepShape_ValueQualifier> directly")
 typedef NCollection_Array1<StepShape_ValueQualifier> StepShape_Array1OfValueQualifier;
 
-#endif
+#endif // _StepShape_Array1OfValueQualifier_hxx

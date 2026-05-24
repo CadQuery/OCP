@@ -1,6 +1,4 @@
-// Created on: 2000-05-18
-// Created by: Peter KURNEV
-// Copyright (c) 2000-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -13,12 +11,23 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef IntTools_SequenceOfRanges_HeaderFile
-#define IntTools_SequenceOfRanges_HeaderFile
+//! @file IntTools_SequenceOfRanges.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection_Sequence<IntTools_Range> directly instead.
 
+#ifndef _IntTools_SequenceOfRanges_hxx
+#define _IntTools_SequenceOfRanges_hxx
+
+#include <Standard_Macro.hxx>
 #include <IntTools_Range.hxx>
 #include <NCollection_Sequence.hxx>
 
+Standard_HEADER_DEPRECATED("IntTools_SequenceOfRanges.hxx is deprecated since OCCT 8.0.0. Use "
+                           "NCollection_Sequence<IntTools_Range> directly.")
+
+  Standard_DEPRECATED(
+    "IntTools_SequenceOfRanges is deprecated, use NCollection_Sequence<IntTools_Range> directly")
 typedef NCollection_Sequence<IntTools_Range> IntTools_SequenceOfRanges;
 
-#endif
+#endif // _IntTools_SequenceOfRanges_hxx

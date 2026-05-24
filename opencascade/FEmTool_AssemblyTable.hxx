@@ -1,7 +1,4 @@
-// Created on: 1997-10-29
-// Created by: Roman BORISOV
-// Copyright (c) 1997-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,15 +11,25 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef FEmTool_AssemblyTable_HeaderFile
-#define FEmTool_AssemblyTable_HeaderFile
+//! @file FEmTool_AssemblyTable.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection_Array2<opencascade::handle<TColStd_HArray1OfInteger>> directly
+//!             instead.
 
+#ifndef _FEmTool_AssemblyTable_hxx
+#define _FEmTool_AssemblyTable_hxx
+
+#include <Standard_Macro.hxx>
 #include <TColStd_HArray1OfInteger.hxx>
 #include <NCollection_Array2.hxx>
 
-//! To define the  table  [Freedom's degree] [Dimension,Element]
-//! which gives Index  of Freedom's degree in the assembly problem.
+Standard_HEADER_DEPRECATED(
+  "FEmTool_AssemblyTable.hxx is deprecated since OCCT 8.0.0. Use "
+  "NCollection_Array2<opencascade::handle<TColStd_HArray1OfInteger>> directly.")
 
-typedef NCollection_Array2<Handle(TColStd_HArray1OfInteger)> FEmTool_AssemblyTable;
+  Standard_DEPRECATED("FEmTool_AssemblyTable is deprecated, use "
+                      "NCollection_Array2<opencascade::handle<TColStd_HArray1OfInteger>> directly")
+typedef NCollection_Array2<opencascade::handle<TColStd_HArray1OfInteger>> FEmTool_AssemblyTable;
 
-#endif
+#endif // _FEmTool_AssemblyTable_hxx

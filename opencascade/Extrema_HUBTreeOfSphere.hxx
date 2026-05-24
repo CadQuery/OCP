@@ -1,6 +1,4 @@
-// Created on: 2005-03-17
-// Created by: OPEN CASCADE Support
-// Copyright (c) 2005-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -13,15 +11,30 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _Extrema_HUBTreeOfSphere_HeaderFile
-#define _Extrema_HUBTreeOfSphere_HeaderFile
+//! @file Extrema_HUBTreeOfSphere.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection types directly instead.
 
+#ifndef _Extrema_HUBTreeOfSphere_hxx
+#define _Extrema_HUBTreeOfSphere_hxx
+
+#include <Standard_Macro.hxx>
 #include <NCollection_UBTreeFiller.hxx>
 #include <NCollection_Handle.hxx>
 #include <Bnd_Sphere.hxx>
 
-typedef NCollection_UBTree<Standard_Integer, Bnd_Sphere>       Extrema_UBTreeOfSphere;
-typedef NCollection_UBTreeFiller<Standard_Integer, Bnd_Sphere> Extrema_UBTreeFillerOfSphere;
-typedef NCollection_Handle<Extrema_UBTreeOfSphere>             Extrema_HUBTreeOfSphere;
+Standard_HEADER_DEPRECATED(
+  "Extrema_HUBTreeOfSphere.hxx is deprecated since OCCT 8.0.0. Use NCollection types directly.")
 
-#endif //_Extrema_HUBTreeOfSphere_HeaderFile
+  Standard_DEPRECATED(
+    "Extrema_UBTreeOfSphere is deprecated, use NCollection_UBTree<int, Bnd_Sphere> directly")
+typedef NCollection_UBTree<int, Bnd_Sphere> Extrema_UBTreeOfSphere;
+Standard_DEPRECATED("Extrema_UBTreeFillerOfSphere is deprecated, use NCollection_UBTreeFiller<int, "
+                    "Bnd_Sphere> directly")
+typedef NCollection_UBTreeFiller<int, Bnd_Sphere> Extrema_UBTreeFillerOfSphere;
+Standard_DEPRECATED(
+  "Extrema_HUBTreeOfSphere is deprecated, use NCollection_Handle<Extrema_UBTreeOfSphere> directly")
+typedef NCollection_Handle<Extrema_UBTreeOfSphere> Extrema_HUBTreeOfSphere;
+
+#endif // _Extrema_HUBTreeOfSphere_hxx

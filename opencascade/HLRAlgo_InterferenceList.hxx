@@ -1,7 +1,4 @@
-// Created on: 1992-02-18
-// Created by: Christophe MARION
-// Copyright (c) 1992-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,13 +11,26 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef HLRAlgo_InterferenceList_HeaderFile
-#define HLRAlgo_InterferenceList_HeaderFile
+//! @file HLRAlgo_InterferenceList.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection types directly instead.
 
+#ifndef _HLRAlgo_InterferenceList_hxx
+#define _HLRAlgo_InterferenceList_hxx
+
+#include <Standard_Macro.hxx>
 #include <HLRAlgo_Interference.hxx>
 #include <NCollection_List.hxx>
 
-typedef NCollection_List<HLRAlgo_Interference>           HLRAlgo_InterferenceList;
+Standard_HEADER_DEPRECATED(
+  "HLRAlgo_InterferenceList.hxx is deprecated since OCCT 8.0.0. Use NCollection types directly.")
+
+  Standard_DEPRECATED(
+    "HLRAlgo_InterferenceList is deprecated, use NCollection_List<HLRAlgo_Interference> directly")
+typedef NCollection_List<HLRAlgo_Interference> HLRAlgo_InterferenceList;
+Standard_DEPRECATED("HLRAlgo_ListIteratorOfInterferenceList is deprecated, use "
+                    "NCollection_List<HLRAlgo_Interference>::Iterator directly")
 typedef NCollection_List<HLRAlgo_Interference>::Iterator HLRAlgo_ListIteratorOfInterferenceList;
 
-#endif
+#endif // _HLRAlgo_InterferenceList_hxx

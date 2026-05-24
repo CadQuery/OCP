@@ -16,12 +16,10 @@
 #ifndef IntWalk_VectorOfInteger_HeaderFile
 #define IntWalk_VectorOfInteger_HeaderFile
 
-#include <vector>
-#include <NCollection_OccAllocator.hxx>
+#include <NCollection_LinearVector.hxx>
 
 // Defines a dynamic vector of integer.
 
-typedef std::vector<Standard_Integer, NCollection_OccAllocator<Standard_Integer>>
-  IntWalk_VectorOfInteger;
+typedef NCollection_LinearVector<int> IntWalk_VectorOfInteger;
 
 #endif

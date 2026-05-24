@@ -1,6 +1,4 @@
-// Created on: 2007-07-22
-// Created by: Alexander GRIGORIEV
-// Copyright (c) 2007-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -13,16 +11,23 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef VrmlData_MapOfNode_HeaderFile
-#define VrmlData_MapOfNode_HeaderFile
+//! @file VrmlData_MapOfNode.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection_Map<opencascade::handle<VrmlData_Node>> directly instead.
 
+#ifndef _VrmlData_MapOfNode_hxx
+#define _VrmlData_MapOfNode_hxx
+
+#include <Standard_Macro.hxx>
 #include <NCollection_Map.hxx>
 #include <VrmlData_Node.hxx>
 
-/**
- * Container of Map type, holding handles to VrmlData_Node objects
- */
+Standard_HEADER_DEPRECATED("VrmlData_MapOfNode.hxx is deprecated since OCCT 8.0.0. Use "
+                           "NCollection_Map<opencascade::handle<VrmlData_Node>> directly.")
 
-typedef NCollection_Map<Handle(VrmlData_Node)> VrmlData_MapOfNode;
+  Standard_DEPRECATED("VrmlData_MapOfNode is deprecated, use "
+                      "NCollection_Map<opencascade::handle<VrmlData_Node>> directly")
+typedef NCollection_Map<opencascade::handle<VrmlData_Node>> VrmlData_MapOfNode;
 
-#endif
+#endif // _VrmlData_MapOfNode_hxx

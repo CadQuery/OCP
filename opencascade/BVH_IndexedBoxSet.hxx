@@ -32,7 +32,7 @@
 //! \tparam NumType Numeric data type
 //! \tparam Dimension Vector dimension
 //! \tparam DataType Type of elements on which the boxes are built
-template <class NumType, int Dimension, class DataType = Standard_Integer>
+template <class NumType, int Dimension, class DataType = int>
 class BVH_IndexedBoxSet : public BVH_BoxSet<NumType, Dimension, DataType>
 {
 public: //! @name Constructors
@@ -50,26 +50,25 @@ public: //! @name Constructors
 
 public: //! @name Setting expected size of the BVH
   //! Sets the expected size of BVH tree
-  virtual void SetSize(const Standard_Size theSize) Standard_OVERRIDE
+  void SetSize(const size_t theSize) override
   {
-    myIndices.reserve(theSize);
+    myIndices.Reserve(theSize);
     BVH_BoxSet<NumType, Dimension, DataType>::SetSize(theSize);
   }
 
 public: //! @name Adding elements in BVH
   //! Adds the element into BVH
-  virtual void Add(const DataType&                    theElement,
-                   const BVH_Box<NumType, Dimension>& theBox) Standard_OVERRIDE
+  void Add(const DataType& theElement, const BVH_Box<NumType, Dimension>& theBox) override
   {
-    myIndices.push_back(static_cast<Standard_Integer>(myIndices.size()));
+    myIndices.Append(static_cast<int>(myIndices.Size()));
     BVH_BoxSet<NumType, Dimension, DataType>::Add(theElement, theBox);
   }
 
 public: //! @name Clearing the elements and boxes
   //! Clears the vectors of elements and boxes
-  virtual void Clear() Standard_OVERRIDE
+  void Clear() override
   {
-    myIndices.clear();
+    myIndices.Clear();
     BVH_BoxSet<NumType, Dimension, DataType>::Clear();
   }
 
@@ -78,26 +77,25 @@ public: //! @name Necessary overrides for BVH construction
   using BVH_BoxSet<NumType, Dimension, DataType>::Box;
 
   //! Returns the bounding box with the given index.
-  virtual BVH_Box<NumType, Dimension> Box(const Standard_Integer theIndex) const Standard_OVERRIDE
+  BVH_Box<NumType, Dimension> Box(const int theIndex) const override
   {
     return this->myBoxes[myIndices[theIndex]];
   }
 
   //! Swaps indices of two specified boxes.
-  virtual void Swap(const Standard_Integer theIndex1,
-                    const Standard_Integer theIndex2) Standard_OVERRIDE
+  void Swap(const int theIndex1, const int theIndex2) override
   {
     std::swap(myIndices[theIndex1], myIndices[theIndex2]);
   }
 
   //! Returns the Element with the index theIndex.
-  virtual DataType Element(const Standard_Integer theIndex) const Standard_OVERRIDE
+  DataType Element(const int theIndex) const override
   {
     return this->myElements[myIndices[theIndex]];
   }
 
 protected: //! @name Fields
-  std::vector<Standard_Integer> myIndices;
+  NCollection_LinearVector<int> myIndices;
 };
 
 #endif // _BVH_IndexedBoxSet_Header

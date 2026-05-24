@@ -21,15 +21,11 @@
 #include <StepVisual_CoordinatesList.hxx>
 #include <StepVisual_TessellatedItem.hxx>
 
-#include <NCollection_Vector.hxx>
+#include <NCollection_DynamicArray.hxx>
 #include <NCollection_Handle.hxx>
-#include <StepVisual_CoordinatesList.hxx>
-#include <TColStd_HSequenceOfInteger.hxx>
-
-typedef NCollection_Vector<Handle(TColStd_HSequenceOfInteger)>
-  StepVisual_VectorOfHSequenceOfInteger;
-
-DEFINE_STANDARD_HANDLE(StepVisual_TessellatedCurveSet, StepVisual_TessellatedItem)
+#include <Standard_Integer.hxx>
+#include <NCollection_Sequence.hxx>
+#include <NCollection_HSequence.hxx>
 
 class StepVisual_TessellatedCurveSet : public StepVisual_TessellatedItem
 {
@@ -40,16 +36,19 @@ public:
   Standard_EXPORT StepVisual_TessellatedCurveSet();
 
   Standard_EXPORT void Init(
-    const Handle(TCollection_HAsciiString)&                          theName,
-    const Handle(StepVisual_CoordinatesList)&                        theCoordList,
-    const NCollection_Handle<StepVisual_VectorOfHSequenceOfInteger>& theCurves);
+    const occ::handle<TCollection_HAsciiString>&   theName,
+    const occ::handle<StepVisual_CoordinatesList>& theCoordList,
+    const NCollection_Handle<NCollection_DynamicArray<occ::handle<NCollection_HSequence<int>>>>&
+      theCurves);
 
-  Standard_EXPORT Handle(StepVisual_CoordinatesList) CoordList() const;
-  Standard_EXPORT NCollection_Handle<StepVisual_VectorOfHSequenceOfInteger> Curves() const;
+  Standard_EXPORT occ::handle<StepVisual_CoordinatesList> CoordList() const;
+  Standard_EXPORT                                         NCollection_Handle<
+                                            NCollection_DynamicArray<occ::handle<NCollection_HSequence<int>>>>
+    Curves() const;
 
 private:
-  Handle(StepVisual_CoordinatesList)                        myCoordList;
-  NCollection_Handle<StepVisual_VectorOfHSequenceOfInteger> myCurves;
+  occ::handle<StepVisual_CoordinatesList>                                               myCoordList;
+  NCollection_Handle<NCollection_DynamicArray<occ::handle<NCollection_HSequence<int>>>> myCurves;
 
 public:
   DEFINE_STANDARD_RTTIEXT(StepVisual_TessellatedCurveSet, StepVisual_TessellatedItem)

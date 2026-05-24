@@ -1,7 +1,4 @@
-// Created on: 1993-06-17
-// Created by: Jean Yves LEBEY
-// Copyright (c) 1993-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,12 +11,23 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef TopOpeBRep_SequenceOfPoint2d_HeaderFile
-#define TopOpeBRep_SequenceOfPoint2d_HeaderFile
+//! @file TopOpeBRep_SequenceOfPoint2d.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection_Sequence<TopOpeBRep_Point2d> directly instead.
 
+#ifndef _TopOpeBRep_SequenceOfPoint2d_hxx
+#define _TopOpeBRep_SequenceOfPoint2d_hxx
+
+#include <Standard_Macro.hxx>
 #include <TopOpeBRep_Point2d.hxx>
 #include <NCollection_Sequence.hxx>
 
+Standard_HEADER_DEPRECATED("TopOpeBRep_SequenceOfPoint2d.hxx is deprecated since OCCT 8.0.0. Use "
+                           "NCollection_Sequence<TopOpeBRep_Point2d> directly.")
+
+  Standard_DEPRECATED("TopOpeBRep_SequenceOfPoint2d is deprecated, use "
+                      "NCollection_Sequence<TopOpeBRep_Point2d> directly")
 typedef NCollection_Sequence<TopOpeBRep_Point2d> TopOpeBRep_SequenceOfPoint2d;
 
-#endif
+#endif // _TopOpeBRep_SequenceOfPoint2d_hxx

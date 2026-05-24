@@ -1,7 +1,4 @@
-// Created on: 1993-09-28
-// Created by: Bruno DUMORTIER
-// Copyright (c) 1993-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,12 +11,23 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef GeomFill_SequenceOfAx2_HeaderFile
-#define GeomFill_SequenceOfAx2_HeaderFile
+//! @file GeomFill_SequenceOfAx2.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection_Sequence<gp_Ax2> directly instead.
 
+#ifndef _GeomFill_SequenceOfAx2_hxx
+#define _GeomFill_SequenceOfAx2_hxx
+
+#include <Standard_Macro.hxx>
 #include <gp_Ax2.hxx>
 #include <NCollection_Sequence.hxx>
 
+Standard_HEADER_DEPRECATED("GeomFill_SequenceOfAx2.hxx is deprecated since OCCT 8.0.0. Use "
+                           "NCollection_Sequence<gp_Ax2> directly.")
+
+  Standard_DEPRECATED(
+    "GeomFill_SequenceOfAx2 is deprecated, use NCollection_Sequence<gp_Ax2> directly")
 typedef NCollection_Sequence<gp_Ax2> GeomFill_SequenceOfAx2;
 
-#endif
+#endif // _GeomFill_SequenceOfAx2_hxx

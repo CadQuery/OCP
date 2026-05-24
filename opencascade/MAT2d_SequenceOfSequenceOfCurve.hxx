@@ -1,7 +1,4 @@
-// Created on: 1993-07-06
-// Created by: Yves FRICAUD
-// Copyright (c) 1993-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,12 +11,23 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef MAT2d_SequenceOfSequenceOfCurve_HeaderFile
-#define MAT2d_SequenceOfSequenceOfCurve_HeaderFile
+//! @file MAT2d_SequenceOfSequenceOfCurve.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection_Sequence<TColGeom2d_SequenceOfCurve> directly instead.
 
+#ifndef _MAT2d_SequenceOfSequenceOfCurve_hxx
+#define _MAT2d_SequenceOfSequenceOfCurve_hxx
+
+#include <Standard_Macro.hxx>
 #include <TColGeom2d_SequenceOfCurve.hxx>
 #include <NCollection_Sequence.hxx>
 
+Standard_HEADER_DEPRECATED("MAT2d_SequenceOfSequenceOfCurve.hxx is deprecated since OCCT 8.0.0. "
+                           "Use NCollection_Sequence<TColGeom2d_SequenceOfCurve> directly.")
+
+  Standard_DEPRECATED("MAT2d_SequenceOfSequenceOfCurve is deprecated, use "
+                      "NCollection_Sequence<TColGeom2d_SequenceOfCurve> directly")
 typedef NCollection_Sequence<TColGeom2d_SequenceOfCurve> MAT2d_SequenceOfSequenceOfCurve;
 
-#endif
+#endif // _MAT2d_SequenceOfSequenceOfCurve_hxx

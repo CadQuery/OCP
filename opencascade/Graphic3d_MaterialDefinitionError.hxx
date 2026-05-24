@@ -17,13 +17,9 @@
 #ifndef _Graphic3d_MaterialDefinitionError_HeaderFile
 #define _Graphic3d_MaterialDefinitionError_HeaderFile
 
-#include <Standard_Type.hxx>
 #include <Standard_DefineException.hxx>
 #include <Standard_SStream.hxx>
 #include <Standard_OutOfRange.hxx>
-
-class Graphic3d_MaterialDefinitionError;
-DEFINE_STANDARD_HANDLE(Graphic3d_MaterialDefinitionError, Standard_OutOfRange)
 
 #if !defined No_Exception && !defined No_Graphic3d_MaterialDefinitionError
   #define Graphic3d_MaterialDefinitionError_Raise_if(CONDITION, MESSAGE)                           \

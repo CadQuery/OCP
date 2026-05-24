@@ -28,25 +28,25 @@ class BOPAlgo_PaveFiller;
 
 //!
 //! The class represents the Building part of the Boolean Operations
-//! algorithm.<br>
+//! algorithm.
 //! The arguments of the algorithms are divided in two groups - *Objects*
-//! and *Tools*.<br>
+//! and *Tools*.
 //! The algorithm builds the splits of the given arguments using the intersection
-//! results and combines the result of Boolean Operation of given type:<br>
-//! - *FUSE* - union of two groups of objects;<br>
-//! - *COMMON* - intersection of two groups of objects;<br>
-//! - *CUT* - subtraction of one group from the other.<br>
+//! results and combines the result of Boolean Operation of given type:
+//! - *FUSE* - union of two groups of objects;
+//! - *COMMON* - intersection of two groups of objects;
+//! - *CUT* - subtraction of one group from the other.
 //!
-//! The rules for the arguments and type of the operation are the following:<br>
-//! - For Boolean operation *FUSE* all arguments should have equal dimensions;<br>
+//! The rules for the arguments and type of the operation are the following:
+//! - For Boolean operation *FUSE* all arguments should have equal dimensions;
 //! - For Boolean operation *CUT* the minimal dimension of *Tools* should not be
-//!   less than the maximal dimension of *Objects*;<br>
-//! - For Boolean operation *COMMON* the arguments can have any dimension.<br>
+//!   less than the maximal dimension of *Objects*;
+//! - For Boolean operation *COMMON* the arguments can have any dimension.
 //!
 //! The class is a General Fuse based algorithm. Thus, all options
 //! of the General Fuse algorithm such as Fuzzy mode, safe processing mode,
 //! parallel processing mode, gluing mode and history support are also
-//! available in this algorithm.<br>
+//! available in this algorithm.
 //!
 //! Additionally to the Warnings of the parent class the algorithm returns
 //! the following warnings:
@@ -67,30 +67,29 @@ public:
 
   //! Empty constructor
   Standard_EXPORT BOPAlgo_BOP();
-  Standard_EXPORT virtual ~BOPAlgo_BOP();
+  Standard_EXPORT ~BOPAlgo_BOP() override;
 
-  Standard_EXPORT BOPAlgo_BOP(const Handle(NCollection_BaseAllocator)& theAllocator);
+  Standard_EXPORT BOPAlgo_BOP(const occ::handle<NCollection_BaseAllocator>& theAllocator);
 
   //! Clears internal fields and arguments
-  Standard_EXPORT virtual void Clear() Standard_OVERRIDE;
+  Standard_EXPORT void Clear() override;
 
   Standard_EXPORT void SetOperation(const BOPAlgo_Operation theOperation);
 
   Standard_EXPORT BOPAlgo_Operation Operation() const;
 
-  Standard_EXPORT virtual void Perform(
-    const Message_ProgressRange& theRange = Message_ProgressRange()) Standard_OVERRIDE;
+  Standard_EXPORT void Perform(
+    const Message_ProgressRange& theRange = Message_ProgressRange()) override;
 
 protected:
-  Standard_EXPORT virtual void CheckData() Standard_OVERRIDE;
+  Standard_EXPORT void CheckData() override;
 
   //! Performs calculations using prepared Filler
   //! object <thePF>
-  Standard_EXPORT virtual void PerformInternal1(const BOPAlgo_PaveFiller&    thePF,
-                                                const Message_ProgressRange& theRange)
-    Standard_OVERRIDE;
+  Standard_EXPORT void PerformInternal1(const BOPAlgo_PaveFiller&    thePF,
+                                        const Message_ProgressRange& theRange) override;
 
-  Standard_EXPORT virtual void BuildResult(const TopAbs_ShapeEnum theType) Standard_OVERRIDE;
+  Standard_EXPORT void BuildResult(const TopAbs_ShapeEnum theType) override;
 
   Standard_EXPORT void BuildShape(const Message_ProgressRange& theRange);
 
@@ -98,16 +97,16 @@ protected:
 
   Standard_EXPORT void BuildSolid(const Message_ProgressRange& theRange);
 
-  //! Treatment of the cases with empty shapes.<br>
+  //! Treatment of the cases with empty shapes.
   //! It returns TRUE if there is nothing to do, i.e.
   //! all shapes in one of the groups are empty shapes.
-  Standard_EXPORT Standard_Boolean TreatEmptyShape();
+  Standard_EXPORT bool TreatEmptyShape();
 
   //! Checks if the arguments of Boolean Operation on solids
   //! contain any open solids, for which the building of the splits
   //! has failed. In case of positive check, run different procedure
   //! for building the result shape.
-  Standard_EXPORT virtual Standard_Boolean CheckArgsForOpenSolid();
+  Standard_EXPORT virtual bool CheckArgsForOpenSolid();
 
 protected:
   //! Extend list of operations to be supported by the Progress Indicator
@@ -118,12 +117,12 @@ protected:
   };
 
   //! Fill PI steps
-  Standard_EXPORT virtual void fillPIConstants(const Standard_Real theWhole,
-                                               BOPAlgo_PISteps& theSteps) const Standard_OVERRIDE;
+  Standard_EXPORT void fillPIConstants(const double     theWhole,
+                                       BOPAlgo_PISteps& theSteps) const override;
 
 protected:
   BOPAlgo_Operation myOperation;
-  Standard_Integer  myDims[2];
+  int               myDims[2];
   TopoDS_Shape      myRC;
 };
 

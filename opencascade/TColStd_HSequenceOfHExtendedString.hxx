@@ -1,5 +1,4 @@
-// Copyright (c) 1998-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -12,12 +11,27 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef TColStd_HSequenceOfHExtendedString_HeaderFile
-#define TColStd_HSequenceOfHExtendedString_HeaderFile
+//! @file TColStd_HSequenceOfHExtendedString.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection_HSequence<opencascade::handle<TCollection_HExtendedString>> directly
+//!             instead.
 
+#ifndef _TColStd_HSequenceOfHExtendedString_hxx
+#define _TColStd_HSequenceOfHExtendedString_hxx
+
+#include <Standard_Macro.hxx>
 #include <TColStd_SequenceOfHExtendedString.hxx>
-#include <NCollection_DefineHSequence.hxx>
+#include <NCollection_HSequence.hxx>
 
-DEFINE_HSEQUENCE(TColStd_HSequenceOfHExtendedString, TColStd_SequenceOfHExtendedString)
+Standard_HEADER_DEPRECATED(
+  "TColStd_HSequenceOfHExtendedString.hxx is deprecated since OCCT 8.0.0. Use "
+  "NCollection_HSequence<opencascade::handle<TCollection_HExtendedString>> directly.")
 
-#endif
+  Standard_DEPRECATED(
+    "TColStd_HSequenceOfHExtendedString is deprecated, use "
+    "NCollection_HSequence<opencascade::handle<TCollection_HExtendedString>> directly")
+typedef NCollection_HSequence<opencascade::handle<TCollection_HExtendedString>>
+  TColStd_HSequenceOfHExtendedString;
+
+#endif // _TColStd_HSequenceOfHExtendedString_hxx

@@ -1,7 +1,4 @@
-// Created on: 1991-04-11
-// Created by: Laurent PAINNOT
-// Copyright (c) 1991-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,13 +11,24 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef AppParCurves_HArray1OfMultiPoint_HeaderFile
-#define AppParCurves_HArray1OfMultiPoint_HeaderFile
+//! @file AppParCurves_HArray1OfMultiPoint.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection_HArray1<AppParCurves_MultiPoint> directly instead.
 
+#ifndef _AppParCurves_HArray1OfMultiPoint_hxx
+#define _AppParCurves_HArray1OfMultiPoint_hxx
+
+#include <Standard_Macro.hxx>
 #include <AppParCurves_MultiPoint.hxx>
 #include <AppParCurves_Array1OfMultiPoint.hxx>
-#include <NCollection_DefineHArray1.hxx>
+#include <NCollection_HArray1.hxx>
 
-DEFINE_HARRAY1(AppParCurves_HArray1OfMultiPoint, AppParCurves_Array1OfMultiPoint)
+Standard_HEADER_DEPRECATED("AppParCurves_HArray1OfMultiPoint.hxx is deprecated since OCCT 8.0.0. "
+                           "Use NCollection_HArray1<AppParCurves_MultiPoint> directly.")
 
-#endif
+  Standard_DEPRECATED("AppParCurves_HArray1OfMultiPoint is deprecated, use "
+                      "NCollection_HArray1<AppParCurves_MultiPoint> directly")
+typedef NCollection_HArray1<AppParCurves_MultiPoint> AppParCurves_HArray1OfMultiPoint;
+
+#endif // _AppParCurves_HArray1OfMultiPoint_hxx

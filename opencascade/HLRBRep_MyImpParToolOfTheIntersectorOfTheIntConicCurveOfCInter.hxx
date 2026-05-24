@@ -21,6 +21,7 @@
 #include <Standard_DefineAlloc.hxx>
 #include <Standard_Handle.hxx>
 
+#include <HLRBRep_TypeDef.hxx>
 #include <IntCurve_IConicTool.hxx>
 #include <math_FunctionWithDerivative.hxx>
 #include <Standard_Boolean.hxx>
@@ -36,27 +37,22 @@ public:
   //! Constructor of the class.
   Standard_EXPORT HLRBRep_MyImpParToolOfTheIntersectorOfTheIntConicCurveOfCInter(
     const IntCurve_IConicTool& IT,
-    const Standard_Address&    PC);
+    const HLRBRep_CurvePtr&    PC);
 
   //! Computes the value of the signed distance between
   //! the implicit curve and the point at parameter Param
   //! on the parametrised curve.
-  Standard_EXPORT Standard_Boolean Value(const Standard_Real Param,
-                                         Standard_Real&      F) Standard_OVERRIDE;
+  Standard_EXPORT bool Value(const double Param, double& F) override;
 
   //! Computes the derivative of the previous function at
   //! parameter Param.
-  Standard_EXPORT Standard_Boolean Derivative(const Standard_Real Param,
-                                              Standard_Real&      D) Standard_OVERRIDE;
+  Standard_EXPORT bool Derivative(const double Param, double& D) override;
 
   //! Computes the value and the derivative of the function.
-  Standard_EXPORT Standard_Boolean Values(const Standard_Real Param,
-                                          Standard_Real&      F,
-                                          Standard_Real&      D) Standard_OVERRIDE;
+  Standard_EXPORT bool Values(const double Param, double& F, double& D) override;
 
-protected:
 private:
-  Standard_Address    TheParCurve;
+  HLRBRep_CurvePtr    TheParCurve;
   IntCurve_IConicTool TheImpTool;
 };
 

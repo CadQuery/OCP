@@ -1,7 +1,4 @@
-// Created on: 1991-03-05
-// Created by: Remy GILET
-// Copyright (c) 1991-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,12 +11,23 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef GccEnt_Array1OfPosition_HeaderFile
-#define GccEnt_Array1OfPosition_HeaderFile
+//! @file GccEnt_Array1OfPosition.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection_Array1<GccEnt_Position> directly instead.
 
+#ifndef _GccEnt_Array1OfPosition_hxx
+#define _GccEnt_Array1OfPosition_hxx
+
+#include <Standard_Macro.hxx>
 #include <GccEnt_Position.hxx>
 #include <NCollection_Array1.hxx>
 
+Standard_HEADER_DEPRECATED("GccEnt_Array1OfPosition.hxx is deprecated since OCCT 8.0.0. Use "
+                           "NCollection_Array1<GccEnt_Position> directly.")
+
+  Standard_DEPRECATED(
+    "GccEnt_Array1OfPosition is deprecated, use NCollection_Array1<GccEnt_Position> directly")
 typedef NCollection_Array1<GccEnt_Position> GccEnt_Array1OfPosition;
 
-#endif
+#endif // _GccEnt_Array1OfPosition_hxx

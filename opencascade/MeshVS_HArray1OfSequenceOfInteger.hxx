@@ -1,6 +1,4 @@
-// Created on: 2003-10-10
-// Created by: Alexander SOLOVYOV
-// Copyright (c) 2003-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -13,12 +11,23 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef MeshVS_HArray1OfSequenceOfInteger_HeaderFile
-#define MeshVS_HArray1OfSequenceOfInteger_HeaderFile
+//! @file MeshVS_HArray1OfSequenceOfInteger.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection_HArray1<TColStd_SequenceOfInteger> directly instead.
 
+#ifndef _MeshVS_HArray1OfSequenceOfInteger_hxx
+#define _MeshVS_HArray1OfSequenceOfInteger_hxx
+
+#include <Standard_Macro.hxx>
 #include <MeshVS_Array1OfSequenceOfInteger.hxx>
-#include <NCollection_DefineHArray1.hxx>
+#include <NCollection_HArray1.hxx>
 
-DEFINE_HARRAY1(MeshVS_HArray1OfSequenceOfInteger, MeshVS_Array1OfSequenceOfInteger)
+Standard_HEADER_DEPRECATED("MeshVS_HArray1OfSequenceOfInteger.hxx is deprecated since OCCT 8.0.0. "
+                           "Use NCollection_HArray1<TColStd_SequenceOfInteger> directly.")
 
-#endif
+  Standard_DEPRECATED("MeshVS_HArray1OfSequenceOfInteger is deprecated, use "
+                      "NCollection_HArray1<TColStd_SequenceOfInteger> directly")
+typedef NCollection_HArray1<TColStd_SequenceOfInteger> MeshVS_HArray1OfSequenceOfInteger;
+
+#endif // _MeshVS_HArray1OfSequenceOfInteger_hxx

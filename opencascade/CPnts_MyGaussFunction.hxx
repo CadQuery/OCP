@@ -33,17 +33,16 @@ public:
 
   CPnts_MyGaussFunction();
 
-  //! F  is a pointer on a  function  D is a client data
+  //! F is a pointer on a function D is a client data
   //!
   //! Each value is computed with F(D)
-  Standard_EXPORT void Init(const CPnts_RealFunction& F, const Standard_Address D);
+  Standard_EXPORT void Init(const CPnts_RealFunction& F, void* const D);
 
-  Standard_EXPORT Standard_Boolean Value(const Standard_Real X, Standard_Real& F);
+  Standard_EXPORT bool Value(const double X, double& F) override;
 
-protected:
 private:
   CPnts_RealFunction myFunction;
-  Standard_Address   myData;
+  void*              myData;
 };
 
 #include <CPnts_MyGaussFunction.lxx>

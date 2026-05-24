@@ -1,6 +1,4 @@
-// Created on: 2000-04-09
-// Created by: Sergey MOZOKHIN
-// Copyright (c) 2000-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -13,21 +11,37 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef STEPCAFControl_DataMapOfShapePD_HeaderFile
-#define STEPCAFControl_DataMapOfShapePD_HeaderFile
+//! @file STEPCAFControl_DataMapOfShapePD.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection types directly instead.
 
+#ifndef _STEPCAFControl_DataMapOfShapePD_hxx
+#define _STEPCAFControl_DataMapOfShapePD_hxx
+
+#include <Standard_Macro.hxx>
 #include <TopoDS_Shape.hxx>
 #include <StepBasic_ProductDefinition.hxx>
 #include <TopTools_ShapeMapHasher.hxx>
 #include <NCollection_DataMap.hxx>
 
+Standard_HEADER_DEPRECATED("STEPCAFControl_DataMapOfShapePD.hxx is deprecated since OCCT 8.0.0. "
+                           "Use NCollection types directly.")
+
+  Standard_DEPRECATED(
+    "STEPCAFControl_DataMapOfShapePD is deprecated, use NCollection_DataMap<TopoDS_Shape, "
+    "opencascade::handle<StepBasic_ProductDefinition>, TopTools_ShapeMapHasher> directly")
 typedef NCollection_DataMap<TopoDS_Shape,
-                            Handle(StepBasic_ProductDefinition),
+                            opencascade::handle<StepBasic_ProductDefinition>,
                             TopTools_ShapeMapHasher>
   STEPCAFControl_DataMapOfShapePD;
+Standard_DEPRECATED(
+  "STEPCAFControl_DataMapIteratorOfDataMapOfShapePD is deprecated, use "
+  "NCollection_DataMap<TopoDS_Shape, opencascade::handle<StepBasic_ProductDefinition>, "
+  "TopTools_ShapeMapHasher>::Iterator directly")
 typedef NCollection_DataMap<TopoDS_Shape,
-                            Handle(StepBasic_ProductDefinition),
+                            opencascade::handle<StepBasic_ProductDefinition>,
                             TopTools_ShapeMapHasher>::Iterator
   STEPCAFControl_DataMapIteratorOfDataMapOfShapePD;
 
-#endif
+#endif // _STEPCAFControl_DataMapOfShapePD_hxx

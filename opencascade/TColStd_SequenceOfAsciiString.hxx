@@ -1,5 +1,4 @@
-// Copyright (c) 1998-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -12,12 +11,23 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef TColStd_SequenceOfAsciiString_HeaderFile
-#define TColStd_SequenceOfAsciiString_HeaderFile
+//! @file TColStd_SequenceOfAsciiString.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection_Sequence<TCollection_AsciiString> directly instead.
 
+#ifndef _TColStd_SequenceOfAsciiString_hxx
+#define _TColStd_SequenceOfAsciiString_hxx
+
+#include <Standard_Macro.hxx>
 #include <TCollection_AsciiString.hxx>
 #include <NCollection_Sequence.hxx>
 
+Standard_HEADER_DEPRECATED("TColStd_SequenceOfAsciiString.hxx is deprecated since OCCT 8.0.0. Use "
+                           "NCollection_Sequence<TCollection_AsciiString> directly.")
+
+  Standard_DEPRECATED("TColStd_SequenceOfAsciiString is deprecated, use "
+                      "NCollection_Sequence<TCollection_AsciiString> directly")
 typedef NCollection_Sequence<TCollection_AsciiString> TColStd_SequenceOfAsciiString;
 
-#endif
+#endif // _TColStd_SequenceOfAsciiString_hxx

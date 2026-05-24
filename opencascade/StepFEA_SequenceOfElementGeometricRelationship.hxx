@@ -1,4 +1,4 @@
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,13 +11,27 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef StepFEA_SequenceOfElementGeometricRelationship_HeaderFile
-#define StepFEA_SequenceOfElementGeometricRelationship_HeaderFile
+//! @file StepFEA_SequenceOfElementGeometricRelationship.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection_Sequence<opencascade::handle<StepFEA_ElementGeometricRelationship>>
+//!             directly instead.
 
+#ifndef _StepFEA_SequenceOfElementGeometricRelationship_hxx
+#define _StepFEA_SequenceOfElementGeometricRelationship_hxx
+
+#include <Standard_Macro.hxx>
 #include <StepFEA_ElementGeometricRelationship.hxx>
 #include <NCollection_Sequence.hxx>
 
-typedef NCollection_Sequence<Handle(StepFEA_ElementGeometricRelationship)>
+Standard_HEADER_DEPRECATED(
+  "StepFEA_SequenceOfElementGeometricRelationship.hxx is deprecated since OCCT 8.0.0. Use "
+  "NCollection_Sequence<opencascade::handle<StepFEA_ElementGeometricRelationship>> directly.")
+
+  Standard_DEPRECATED(
+    "StepFEA_SequenceOfElementGeometricRelationship is deprecated, use "
+    "NCollection_Sequence<opencascade::handle<StepFEA_ElementGeometricRelationship>> directly")
+typedef NCollection_Sequence<opencascade::handle<StepFEA_ElementGeometricRelationship>>
   StepFEA_SequenceOfElementGeometricRelationship;
 
-#endif
+#endif // _StepFEA_SequenceOfElementGeometricRelationship_hxx

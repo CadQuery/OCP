@@ -1,6 +1,4 @@
-// Created on: 2000-05-18
-// Created by: Peter KURNEV
-// Copyright (c) 2000-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -13,16 +11,29 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef IntTools_DataMapOfSurfaceSampleBox_HeaderFile
-#define IntTools_DataMapOfSurfaceSampleBox_HeaderFile
+//! @file IntTools_DataMapOfSurfaceSampleBox.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection types directly instead.
 
+#ifndef _IntTools_DataMapOfSurfaceSampleBox_hxx
+#define _IntTools_DataMapOfSurfaceSampleBox_hxx
+
+#include <Standard_Macro.hxx>
 #include <IntTools_SurfaceRangeSample.hxx>
 #include <Bnd_Box.hxx>
 #include <NCollection_DataMap.hxx>
 
+Standard_HEADER_DEPRECATED("IntTools_DataMapOfSurfaceSampleBox.hxx is deprecated since OCCT 8.0.0. "
+                           "Use NCollection types directly.")
+
+  Standard_DEPRECATED("IntTools_DataMapOfSurfaceSampleBox is deprecated, use "
+                      "NCollection_DataMap<IntTools_SurfaceRangeSample, Bnd_Box> directly")
 typedef NCollection_DataMap<IntTools_SurfaceRangeSample, Bnd_Box>
   IntTools_DataMapOfSurfaceSampleBox;
+Standard_DEPRECATED("IntTools_DataMapIteratorOfDataMapOfSurfaceSampleBox is deprecated, use "
+                    "NCollection_DataMap<IntTools_SurfaceRangeSample, Bnd_Box>::Iterator directly")
 typedef NCollection_DataMap<IntTools_SurfaceRangeSample, Bnd_Box>::Iterator
   IntTools_DataMapIteratorOfDataMapOfSurfaceSampleBox;
 
-#endif
+#endif // _IntTools_DataMapOfSurfaceSampleBox_hxx

@@ -1,6 +1,4 @@
-// Created on: 2015-07-21
-// Created by: Irina KRYLOVA
-// Copyright (c) 2015 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -13,12 +11,25 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _StepDimTol_HArray1OfDatumSystemOrReference_HeaderFile
-#define _StepDimTol_HArray1OfDatumSystemOrReference_HeaderFile
+//! @file StepDimTol_HArray1OfDatumSystemOrReference.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection_HArray1<StepDimTol_DatumSystemOrReference> directly instead.
 
+#ifndef _StepDimTol_HArray1OfDatumSystemOrReference_hxx
+#define _StepDimTol_HArray1OfDatumSystemOrReference_hxx
+
+#include <Standard_Macro.hxx>
 #include <StepDimTol_Array1OfDatumSystemOrReference.hxx>
-#include <NCollection_DefineHArray1.hxx>
+#include <NCollection_HArray1.hxx>
 
-DEFINE_HARRAY1(StepDimTol_HArray1OfDatumSystemOrReference,
-               StepDimTol_Array1OfDatumSystemOrReference)
-#endif // _StepDimTol_HArray1OfDatumSystemOrReference_HeaderFile
+Standard_HEADER_DEPRECATED(
+  "StepDimTol_HArray1OfDatumSystemOrReference.hxx is deprecated since OCCT 8.0.0. Use "
+  "NCollection_HArray1<StepDimTol_DatumSystemOrReference> directly.")
+
+  Standard_DEPRECATED("StepDimTol_HArray1OfDatumSystemOrReference is deprecated, use "
+                      "NCollection_HArray1<StepDimTol_DatumSystemOrReference> directly")
+typedef NCollection_HArray1<StepDimTol_DatumSystemOrReference>
+  StepDimTol_HArray1OfDatumSystemOrReference;
+
+#endif // _StepDimTol_HArray1OfDatumSystemOrReference_hxx

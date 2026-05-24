@@ -1,5 +1,4 @@
-// Copyright (c) 1998-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -12,16 +11,28 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef TColStd_DataMapOfIntegerListOfInteger_HeaderFile
-#define TColStd_DataMapOfIntegerListOfInteger_HeaderFile
+//! @file TColStd_DataMapOfIntegerListOfInteger.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection types directly instead.
 
+#ifndef _TColStd_DataMapOfIntegerListOfInteger_hxx
+#define _TColStd_DataMapOfIntegerListOfInteger_hxx
+
+#include <Standard_Macro.hxx>
 #include <Standard_Integer.hxx>
 #include <TColStd_ListOfInteger.hxx>
 #include <NCollection_DataMap.hxx>
 
-typedef NCollection_DataMap<Standard_Integer, TColStd_ListOfInteger>
-  TColStd_DataMapOfIntegerListOfInteger;
-typedef NCollection_DataMap<Standard_Integer, TColStd_ListOfInteger>::Iterator
+Standard_HEADER_DEPRECATED("TColStd_DataMapOfIntegerListOfInteger.hxx is deprecated since OCCT "
+                           "8.0.0. Use NCollection types directly.")
+
+  Standard_DEPRECATED("TColStd_DataMapOfIntegerListOfInteger is deprecated, use "
+                      "NCollection_DataMap<int, TColStd_ListOfInteger> directly")
+typedef NCollection_DataMap<int, TColStd_ListOfInteger> TColStd_DataMapOfIntegerListOfInteger;
+Standard_DEPRECATED("TColStd_DataMapIteratorOfDataMapOfIntegerListOfInteger is deprecated, use "
+                    "NCollection_DataMap<int, TColStd_ListOfInteger>::Iterator directly")
+typedef NCollection_DataMap<int, TColStd_ListOfInteger>::Iterator
   TColStd_DataMapIteratorOfDataMapOfIntegerListOfInteger;
 
-#endif
+#endif // _TColStd_DataMapOfIntegerListOfInteger_hxx

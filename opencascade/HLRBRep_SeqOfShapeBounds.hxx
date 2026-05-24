@@ -1,7 +1,4 @@
-// Created on: 1992-10-14
-// Created by: Christophe MARION
-// Copyright (c) 1992-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,12 +11,23 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef HLRBRep_SeqOfShapeBounds_HeaderFile
-#define HLRBRep_SeqOfShapeBounds_HeaderFile
+//! @file HLRBRep_SeqOfShapeBounds.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection_Sequence<HLRBRep_ShapeBounds> directly instead.
 
+#ifndef _HLRBRep_SeqOfShapeBounds_hxx
+#define _HLRBRep_SeqOfShapeBounds_hxx
+
+#include <Standard_Macro.hxx>
 #include <HLRBRep_ShapeBounds.hxx>
 #include <NCollection_Sequence.hxx>
 
+Standard_HEADER_DEPRECATED("HLRBRep_SeqOfShapeBounds.hxx is deprecated since OCCT 8.0.0. Use "
+                           "NCollection_Sequence<HLRBRep_ShapeBounds> directly.")
+
+  Standard_DEPRECATED("HLRBRep_SeqOfShapeBounds is deprecated, use "
+                      "NCollection_Sequence<HLRBRep_ShapeBounds> directly")
 typedef NCollection_Sequence<HLRBRep_ShapeBounds> HLRBRep_SeqOfShapeBounds;
 
-#endif
+#endif // _HLRBRep_SeqOfShapeBounds_hxx

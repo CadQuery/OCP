@@ -1,4 +1,4 @@
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,14 +11,28 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef StepFEA_HSequenceOfCurve3dElementProperty_HeaderFile
-#define StepFEA_HSequenceOfCurve3dElementProperty_HeaderFile
+//! @file StepFEA_HSequenceOfCurve3dElementProperty.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection_HSequence<opencascade::handle<StepFEA_Curve3dElementProperty>>
+//!             directly instead.
 
+#ifndef _StepFEA_HSequenceOfCurve3dElementProperty_hxx
+#define _StepFEA_HSequenceOfCurve3dElementProperty_hxx
+
+#include <Standard_Macro.hxx>
 #include <StepFEA_Curve3dElementProperty.hxx>
 #include <StepFEA_SequenceOfCurve3dElementProperty.hxx>
-#include <NCollection_DefineHSequence.hxx>
+#include <NCollection_HSequence.hxx>
 
-DEFINE_HSEQUENCE(StepFEA_HSequenceOfCurve3dElementProperty,
-                 StepFEA_SequenceOfCurve3dElementProperty)
+Standard_HEADER_DEPRECATED(
+  "StepFEA_HSequenceOfCurve3dElementProperty.hxx is deprecated since OCCT 8.0.0. Use "
+  "NCollection_HSequence<opencascade::handle<StepFEA_Curve3dElementProperty>> directly.")
 
-#endif
+  Standard_DEPRECATED(
+    "StepFEA_HSequenceOfCurve3dElementProperty is deprecated, use "
+    "NCollection_HSequence<opencascade::handle<StepFEA_Curve3dElementProperty>> directly")
+typedef NCollection_HSequence<opencascade::handle<StepFEA_Curve3dElementProperty>>
+  StepFEA_HSequenceOfCurve3dElementProperty;
+
+#endif // _StepFEA_HSequenceOfCurve3dElementProperty_hxx

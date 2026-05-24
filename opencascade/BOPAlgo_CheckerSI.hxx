@@ -39,27 +39,27 @@ public:
   DEFINE_STANDARD_ALLOC
 
   Standard_EXPORT BOPAlgo_CheckerSI();
-  Standard_EXPORT virtual ~BOPAlgo_CheckerSI();
+  Standard_EXPORT ~BOPAlgo_CheckerSI() override;
 
-  Standard_EXPORT virtual void Perform(
-    const Message_ProgressRange& theRange = Message_ProgressRange()) Standard_OVERRIDE;
+  Standard_EXPORT void Perform(
+    const Message_ProgressRange& theRange = Message_ProgressRange()) override;
 
-  //! Sets the level of checking shape on self-interference.<br>
-  //! It defines which interferences will be checked:<br>
-  //! 0 - only V/V;<br>
-  //! 1 - V/V and V/E;<br>
-  //! 2 - V/V, V/E and E/E;<br>
-  //! 3 - V/V, V/E, E/E and V/F;<br>
-  //! 4 - V/V, V/E, E/E, V/F and E/F;<br>
-  //! 5 - V/V, V/E, E/E, V/F, E/F and F/F;<br>
-  //! 6 - V/V, V/E, E/E, V/F, E/F, F/F and V/S;<br>
-  //! 7 - V/V, V/E, E/E, V/F, E/F, F/F, V/S and E/S;<br>
-  //! 8 - V/V, V/E, E/E, V/F, E/F, F/F, V/S, E/S and F/S;<br>
+  //! Sets the level of checking shape on self-interference.
+  //! It defines which interferences will be checked:
+  //! 0 - only V/V;
+  //! 1 - V/V and V/E;
+  //! 2 - V/V, V/E and E/E;
+  //! 3 - V/V, V/E, E/E and V/F;
+  //! 4 - V/V, V/E, E/E, V/F and E/F;
+  //! 5 - V/V, V/E, E/E, V/F, E/F and F/F;
+  //! 6 - V/V, V/E, E/E, V/F, E/F, F/F and V/S;
+  //! 7 - V/V, V/E, E/E, V/F, E/F, F/F, V/S and E/S;
+  //! 8 - V/V, V/E, E/E, V/F, E/F, F/F, V/S, E/S and F/S;
   //! 9 - V/V, V/E, E/E, V/F, E/F, F/F, V/S, E/S, F/S and S/S - all interferences (Default value)
-  Standard_EXPORT void SetLevelOfCheck(const Standard_Integer theLevel);
+  Standard_EXPORT void SetLevelOfCheck(const int theLevel);
 
 protected:
-  Standard_EXPORT virtual void Init(const Message_ProgressRange& theRange) Standard_OVERRIDE;
+  Standard_EXPORT void Init(const Message_ProgressRange& theRange) override;
 
   //! Treats the intersection results
   Standard_EXPORT void PostTreat();
@@ -84,9 +84,7 @@ protected:
   Standard_EXPORT virtual void PerformSZ(const TopAbs_ShapeEnum       aTS,
                                          const Message_ProgressRange& theRange);
 
-  Standard_Integer myLevelOfCheck;
-
-private:
+  int myLevelOfCheck;
 };
 
 #endif // _BOPAlgo_CheckerSI_HeaderFile

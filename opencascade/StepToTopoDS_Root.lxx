@@ -16,52 +16,37 @@
 
 #include <StepToTopoDS_Root.hxx>
 
-//=======================================================================
-// function : IsDone
-// purpose  :
-//=======================================================================
+//=================================================================================================
 
-inline Standard_Boolean StepToTopoDS_Root::IsDone() const
+inline bool StepToTopoDS_Root::IsDone() const
 {
   return done;
 }
 
-//=======================================================================
-// function : Precision
-// purpose  :
-//=======================================================================
+//=================================================================================================
 
-inline Standard_Real StepToTopoDS_Root::Precision() const
+inline double StepToTopoDS_Root::Precision() const
 {
   return myPrecision;
 }
 
-//=======================================================================
-// function : SetPrecision
-// purpose  :
-//=======================================================================
+//=================================================================================================
 
-inline void StepToTopoDS_Root::SetPrecision(const Standard_Real preci)
+inline void StepToTopoDS_Root::SetPrecision(const double preci)
 {
   myPrecision = preci;
 }
 
-//=======================================================================
-// function : MaxTol
-// purpose  :
-//=======================================================================
+//=================================================================================================
 
-inline Standard_Real StepToTopoDS_Root::MaxTol() const
+inline double StepToTopoDS_Root::MaxTol() const
 {
   return myMaxTol;
 }
 
-//=======================================================================
-// function : SetMaxTol
-// purpose  :
-//=======================================================================
+//=================================================================================================
 
-inline void StepToTopoDS_Root::SetMaxTol(const Standard_Real maxpreci)
+inline void StepToTopoDS_Root::SetMaxTol(const double maxpreci)
 {
   myMaxTol = maxpreci;
 }

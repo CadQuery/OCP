@@ -1,7 +1,4 @@
-// Created on: 1993-01-11
-// Created by: SIVA
-// Copyright (c) 1993-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,12 +11,25 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef IGESSolid_HArray1OfVertexList_HeaderFile
-#define IGESSolid_HArray1OfVertexList_HeaderFile
+//! @file IGESSolid_HArray1OfVertexList.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection_HArray1<opencascade::handle<IGESSolid_VertexList>> directly instead.
 
+#ifndef _IGESSolid_HArray1OfVertexList_hxx
+#define _IGESSolid_HArray1OfVertexList_hxx
+
+#include <Standard_Macro.hxx>
 #include <IGESSolid_Array1OfVertexList.hxx>
-#include <NCollection_DefineHArray1.hxx>
+#include <NCollection_HArray1.hxx>
 
-DEFINE_HARRAY1(IGESSolid_HArray1OfVertexList, IGESSolid_Array1OfVertexList)
+Standard_HEADER_DEPRECATED(
+  "IGESSolid_HArray1OfVertexList.hxx is deprecated since OCCT 8.0.0. Use "
+  "NCollection_HArray1<opencascade::handle<IGESSolid_VertexList>> directly.")
 
-#endif
+  Standard_DEPRECATED("IGESSolid_HArray1OfVertexList is deprecated, use "
+                      "NCollection_HArray1<opencascade::handle<IGESSolid_VertexList>> directly")
+typedef NCollection_HArray1<opencascade::handle<IGESSolid_VertexList>>
+  IGESSolid_HArray1OfVertexList;
+
+#endif // _IGESSolid_HArray1OfVertexList_hxx

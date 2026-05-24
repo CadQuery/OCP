@@ -1,4 +1,4 @@
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,13 +11,27 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef StepElement_Array2OfCurveElementPurposeMember_HeaderFile
-#define StepElement_Array2OfCurveElementPurposeMember_HeaderFile
+//! @file StepElement_Array2OfCurveElementPurposeMember.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection_Array2<opencascade::handle<StepElement_CurveElementPurposeMember>>
+//!             directly instead.
 
+#ifndef _StepElement_Array2OfCurveElementPurposeMember_hxx
+#define _StepElement_Array2OfCurveElementPurposeMember_hxx
+
+#include <Standard_Macro.hxx>
 #include <StepElement_CurveElementPurposeMember.hxx>
 #include <NCollection_Array2.hxx>
 
-typedef NCollection_Array2<Handle(StepElement_CurveElementPurposeMember)>
+Standard_HEADER_DEPRECATED(
+  "StepElement_Array2OfCurveElementPurposeMember.hxx is deprecated since OCCT 8.0.0. Use "
+  "NCollection_Array2<opencascade::handle<StepElement_CurveElementPurposeMember>> directly.")
+
+  Standard_DEPRECATED(
+    "StepElement_Array2OfCurveElementPurposeMember is deprecated, use "
+    "NCollection_Array2<opencascade::handle<StepElement_CurveElementPurposeMember>> directly")
+typedef NCollection_Array2<opencascade::handle<StepElement_CurveElementPurposeMember>>
   StepElement_Array2OfCurveElementPurposeMember;
 
-#endif
+#endif // _StepElement_Array2OfCurveElementPurposeMember_hxx

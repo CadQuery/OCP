@@ -1,6 +1,4 @@
-// Created on: 2017-06-26
-// Created by: Andrey Betenev
-// Copyright (c) 2017 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -13,12 +11,23 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _Message_ListOfAlert_HeaderFile
-#define _Message_ListOfAlert_HeaderFile
+//! @file Message_ListOfAlert.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection_List<opencascade::handle<Message_Alert>> directly instead.
 
+#ifndef _Message_ListOfAlert_hxx
+#define _Message_ListOfAlert_hxx
+
+#include <Standard_Macro.hxx>
 #include <Message_Alert.hxx>
 #include <NCollection_List.hxx>
 
-typedef NCollection_List<Handle(Message_Alert)> Message_ListOfAlert;
+Standard_HEADER_DEPRECATED("Message_ListOfAlert.hxx is deprecated since OCCT 8.0.0. Use "
+                           "NCollection_List<opencascade::handle<Message_Alert>> directly.")
 
-#endif // _Message_ListOfAlert_HeaderFile
+  Standard_DEPRECATED("Message_ListOfAlert is deprecated, use "
+                      "NCollection_List<opencascade::handle<Message_Alert>> directly")
+typedef NCollection_List<opencascade::handle<Message_Alert>> Message_ListOfAlert;
+
+#endif // _Message_ListOfAlert_hxx
