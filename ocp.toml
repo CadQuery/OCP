@@ -569,6 +569,14 @@ py::implicitly_convertible<std::string, TCollection_AsciiString>();"""
 
         exclude_typedefs = ["IntPolyh_ArrayOfEdges","IntPolyh_ArrayOfTriangles","IntPolyh_ArrayOfPointNormal","IntPolyh_ArrayOfSectionLines","IntPolyh","IntPolyh_ArrayOfTangentZones","IntPolyh_ArrayOfPoints"]
 
+    [Modules.BRep]
+
+        [Modules.BRep.Classes.BRep_Tool.additional_static_methods.CurveOnSurface_r]
+
+            body = "[](const TopoDS_Edge& E, const TopoDS_Face& F){ Standard_Real first, last; auto curve = BRep_Tool::CurveOnSurface(E, F, first, last); return std::make_tuple(curve, first, last); }"
+            help = "Returns (pcurve, first, last): the 2D curve of edge E on face F and its parameter range."
+            arguments = ["E", "F"]
+
     [Modules.BRepBuilderAPI]
 
         exclude_typedefs = ["BRepBuilderAPI_CellFilter","BRepBuilderAPI_BndBoxTree"]
