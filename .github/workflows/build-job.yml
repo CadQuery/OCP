@@ -31,7 +31,7 @@ jobs:
       output_dir: ${{ steps.conf.outputs.OUTPUT }}
     
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 #v7.0.1
         with:
           submodules: true
 
@@ -66,7 +66,7 @@ jobs:
 
       - name: Restore OCP_src cache
         id: cache-ocp-src-restore
-        uses: actions/cache/restore@v4
+        uses: actions/cache/restore@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 #v6.1.0
         with:
           path: ${{ steps.conf.outputs.OUTPUT }}
           key: OCP-src-${{ inputs.platform }}-
@@ -102,7 +102,7 @@ jobs:
 
       - name: Cache OCP_src
         id: cache-ocp-src-save
-        uses: actions/cache/save@v4
+        uses: actions/cache/save@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 #v6.1.0
         with:
           path: ${{ steps.conf.outputs.OUTPUT }}
           key: ${{ steps.cache-ocp-src-restore.outputs.cache-primary-key }}
@@ -117,14 +117,14 @@ jobs:
       # --- Artifact Upload ---
       - name: Upload Sources
         # if: steps.cache-ocp-src-restore.outputs.cache-hit != 'true'
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a #v7.0.1
         with:
           name: OCP_src_${{ inputs.platform }}
           path: ${{ steps.conf.outputs.OUTPUT }}
 
       - name: Upload Pickles
         if: steps.cache-ocp-src-restore.outputs.cache-hit != 'true'
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a #v7.0.1
         with:
           name: OCP_pkl_${{ inputs.platform }}
           path: ${{ steps.conf.outputs.OUTPUT }}_pkl
@@ -150,21 +150,21 @@ jobs:
       ANACONDA_TOKEN: ${{ secrets.ANACONDA_TOKEN }}
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 #v7.0.1
         with:
           submodules: true
 
       # rely on source artifact??
       # - name: Restore OCP_src cache
       #   id: cache-ocp-src-restore
-      #   uses: actions/cache/restore@v4
+      #   uses: actions/cache/restore@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 #v6.1.0
       #   with:
       #     path: ${{ steps.conf.outputs.OUTPUT }}
       #     key: OCP-src-${{ inputs.platform }}-
 
       # --- Download Artifacts ---
       - name: Download Source Artifact
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c #v8.0.1
         with:
           name: OCP_src_${{ inputs.platform }}
           path: ../${{ env.OCP_src }}
@@ -178,7 +178,7 @@ jobs:
           sudo tar -xf MacOSX10.15.sdk.tar.xz -C /opt
 
       # --- Setup Environment ---
-      - uses: mamba-org/setup-micromamba@v3
+      - uses: mamba-org/setup-micromamba@ce51e99f4bb8a82ab7158c4dc59ef4634c59c4f9 #v3.1.0
         env:
           ACTIONS_STEP_DEBUG: true
         with:
@@ -234,7 +234,7 @@ jobs:
           CXX: "cl.exe"
 
       - name: Upload Compilation Artifacts
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a #v7.0.1
         with:
           name: OCP_${{ inputs.platform }}_py3${{ matrix.py_min }}
           path: build
@@ -251,7 +251,7 @@ jobs:
           cp -r OCP-stubs ../upload/
 
       - name: Upload Stubs Artifacts
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a #v7.0.1
         with:
           name: OCP_src_stubs_${{ inputs.platform }}_py3${{ matrix.py_min }}
           path: upload
