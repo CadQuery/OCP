@@ -72,13 +72,13 @@ if(${CMAKE_SYSTEM_NAME} STREQUAL "Darwin")
   list(APPEND CXX_INCLUDES -i /opt/usr/local/include/c++/v1/ -i
        /opt/usr/local/include/)
 
-  # Linux-like
+# Linux-like (including FreeBSD)
 elseif(NOT PLATFORM STREQUAL "Windows")
   foreach(inc IN LISTS CMAKE_CXX_IMPLICIT_INCLUDE_DIRECTORIES)
     list(APPEND CXX_INCLUDES -i ${inc}/)
   endforeach()
 
-  # X-generation from Linux to Windows
+# X-generation from Linux to Windows
 else()
   # download part of msvc 16 and winsdk
   if(NOT EXISTS ${CMAKE_BINARY_DIR}/msvc)
@@ -103,11 +103,13 @@ else()
   message(STATUS "Platform not specified.")
 
   if(${CMAKE_SYSTEM_NAME} STREQUAL "Windows")
-    set(PLATFORM Windows)
+      set(PLATFORM Windows)
   elseif(${CMAKE_SYSTEM_NAME} STREQUAL "Darwin")
-    set(PLATFORM OSX)
+      set(PLATFORM OSX)
+  elseif(${CMAKE_SYSTEM_NAME} STREQUAL "FreeBSD")
+      set(PLATFORM FreeBSD)
   else()
-    set(PLATFORM Linux)
+      set(PLATFORM Linux)
   endif()
 endif()
 

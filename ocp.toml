@@ -1390,6 +1390,10 @@ class Adaptor3d_Surface;
     exclude_classes = ["Handle_*"]
     symbols = "symbols_mangled_win.dat"
 
+[FreeBSD]
+    modules = ["Xw"]
+    symbols = "symbols_mangled_freebsd.dat"
+
 [OSX]
     modules = ["Cocoa"]
     symbols = "symbols_mangled_mac.dat"
