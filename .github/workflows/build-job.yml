@@ -20,9 +20,7 @@ on:
         required: false
 
 jobs:
-  # -----------------------------------------------------------------------------
-  # PHASE 1: Generate Bindings (Python wrapper generation)
-  # -----------------------------------------------------------------------------
+  # Run pywrap and generate sources
   generate:
     name: Generate ${{ inputs.name }}
     runs-on: ${{ inputs.runner_generate }}
@@ -47,7 +45,6 @@ jobs:
           sudo ln -s /opt/MacOSX11.3.sdk/usr/include /opt/usr/local/include
           sudo ln -s /opt/MacOSX11.3.sdk/System/Library/Frameworks/OpenGL.framework/Headers /usr/local/include/OpenGL
 
-      # --- Setup Environment ---
       - name: install conda-devenv
         run: micromamba install mamba conda-devenv
 
@@ -63,7 +60,6 @@ jobs:
           OUTPUT=`micromamba run -n cpp-py-bindgen python -c'import toml; print(toml.load("ocp.toml")["output_folder"])'`
           echo "OUTPUT=$OUTPUT" >> $GITHUB_OUTPUT
       
-      # Windows Special Case (Running on Linux targeting Windows)
       - name: Generate (Windows on Linux)
         if: inputs.platform == 'Windows'
         run: |
@@ -78,7 +74,6 @@ jobs:
           cmake --build . -- -v
           ls -lRht
 
-      # Standard Case (Linux/Mac)
       - name: Generate (Standard)
         if: inputs.platform != 'Windows'
         run: |
@@ -107,14 +102,11 @@ jobs:
           name: OCP_pkl_${{ inputs.platform }}
           path: ${{ steps.conf.outputs.OUTPUT }}_pkl
 
-  # -----------------------------------------------------------------------------
-  # PHASE 2: Compile (Matrix)
-  # -----------------------------------------------------------------------------
+  # Compile
   compile:
     needs: generate
     name: Compile ${{ inputs.name }} (3.${{ matrix.py_min }})
     runs-on: ${{ inputs.runner_compile }}
-    # timeout-minutes: 360
     strategy:
       fail-fast: false
       matrix:
@@ -132,14 +124,12 @@ jobs:
         with:
           submodules: true
 
-      # --- Download Artifacts ---
       - name: Download Source Artifact
         uses: actions/download-artifact@v4
         with:
           name: OCP_src_${{ inputs.platform }}
           path: ../${{ env.OCP_src }}
 
-      # --- Mac SDK Hack (Compile Phase) ---
       - name: SDK install (Mac)
         if: contains(inputs.runner_compile, 'mac')
         run: |
@@ -147,15 +137,11 @@ jobs:
           sudo mkdir -p /opt
           sudo tar -xf MacOSX10.15.sdk.tar.xz -C /opt
 
-      # --- Setup Environment ---
       - uses: mamba-org/setup-micromamba@v3
         env:
           ACTIONS_STEP_DEBUG: true
         with:
-          # micromamba-version: '1.5.8-0'
-          # REMOVE: environment-file: environment.devenv.yml
           environment-name: placeholder
-          # Create a minimal environment with mamba-devenv
           init-shell: bash
           create-args: >-
             python=${{ env.PYTHON_VERSION }}
@@ -163,35 +149,27 @@ jobs:
             mamba
 
       - name: Prepare conda environment
-        shell: bash -l {0}
         run: |
           export CONDA_DEVENV_ENV_MANAGER=mamba
           mamba create -n cpp-py-bindgen
           mamba-devenv -f environment.devenv.yml
 
-      # --- Compilation ---
-      
-      # Ubuntu Compile
       - name: Compile (Ubuntu)
         if: contains(inputs.runner_compile, 'ubuntu')
-        shell: bash -l {0}
         run: |
           micromamba activate cpp-py-bindgen
           cmake -B build -S "../${OCP_src}" -G Ninja -DCMAKE_BUILD_TYPE=Release
           cmake --build build -j 2 -- -k 0
           rm -rf build/CMakeFiles
 
-      # Mac Compile
       - name: Compile (Mac)
         if: contains(inputs.runner_compile, 'mac')
-        shell: bash -l {0}
         run: |
           micromamba activate cpp-py-bindgen
           cmake -B build -S "../${OCP_src}" -G Ninja -DCMAKE_BUILD_TYPE=Release -DCMAKE_OSX_SYSROOT=/opt/MacOSX10.15.sdk/
           cmake --build build -j 2 -- -k 0
           rm -rf build/CMakeFiles
 
-      # Windows Compile
       - name: Compile (Windows)
         if: contains(inputs.runner_compile, 'windows')
         shell: powershell
@@ -209,15 +187,13 @@ jobs:
           name: OCP_${{ inputs.platform }}_py3${{ matrix.py_min }}
           path: build
 
-      # --- Stubs & Test ---
       - name: Generate stubs
-        shell: bash -l {0}
         run: |
           micromamba activate cpp-py-bindgen
           cd build
           python -m pybind11_stubgen -o . OCP
           rm -rf OCP-stubs/setup.py OCP-stubs/__pycache__ OCP-stubs/MANIFEST.in
-          cp -r "../../$(OCP_src)" ../upload
+          cp -r "../../${OCP_src}" ../upload
           cp -r OCP-stubs ../upload/
 
       - name: Upload Stubs Artifacts
@@ -227,7 +203,6 @@ jobs:
           path: upload
 
       - name: Test Import
-        shell: bash -l {0}
         run: |
           micromamba activate cpp-py-bindgen
           cd build
@@ -238,9 +213,7 @@ jobs:
              python -c"import OCP"
           fi
 
-      # --- Conda Packaging ---
       - name: Build Conda Package
-        shell: bash -l {0}
         env:
           BUILD_STRING: "1"
           TOKEN: ${{ secrets.ANACONDA_TOKEN }}
