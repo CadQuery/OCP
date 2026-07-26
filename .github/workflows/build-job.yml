@@ -1,4 +1,4 @@
-name: Build Bindings Logic
+name: Generate sources and compile
 
 on:
   workflow_call:
@@ -18,6 +18,10 @@ on:
     secrets:
       ANACONDA_TOKEN:
         required: false
+
+defaults:
+  run:
+    shell: bash
 
 jobs:
   # Run pywrap and generate sources
