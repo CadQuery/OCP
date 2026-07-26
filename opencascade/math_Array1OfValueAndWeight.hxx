@@ -1,7 +1,4 @@
-// Created on: 1991-01-21
-// Created by: Isabelle GRIGNON
-// Copyright (c) 1991-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,12 +11,23 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef math_Array1OfValueAndWeight_HeaderFile
-#define math_Array1OfValueAndWeight_HeaderFile
+//! @file math_Array1OfValueAndWeight.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection_Array1<math_ValueAndWeight> directly instead.
 
+#ifndef _math_Array1OfValueAndWeight_hxx
+#define _math_Array1OfValueAndWeight_hxx
+
+#include <Standard_Macro.hxx>
 #include <math_ValueAndWeight.hxx>
 #include <NCollection_Array1.hxx>
 
+Standard_HEADER_DEPRECATED("math_Array1OfValueAndWeight.hxx is deprecated since OCCT 8.0.0. Use "
+                           "NCollection_Array1<math_ValueAndWeight> directly.")
+
+  Standard_DEPRECATED("math_Array1OfValueAndWeight is deprecated, use "
+                      "NCollection_Array1<math_ValueAndWeight> directly")
 typedef NCollection_Array1<math_ValueAndWeight> math_Array1OfValueAndWeight;
 
-#endif
+#endif // _math_Array1OfValueAndWeight_hxx

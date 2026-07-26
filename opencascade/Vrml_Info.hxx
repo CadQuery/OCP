@@ -26,9 +26,9 @@
 
 //! defines a Info node of VRML specifying properties of geometry
 //! and its appearance.
-//! It  is  used  to  store  information  in  the  scene  graph,
-//! Typically  for  application-specific  purposes,  copyright  messages,
-//! or  other  strings.
+//! It is used to store information in the scene graph,
+//! Typically for application-specific purposes, copyright messages,
+//! or other strings.
 class Vrml_Info
 {
 public:
@@ -42,7 +42,6 @@ public:
 
   Standard_EXPORT Standard_OStream& Print(Standard_OStream& anOStream) const;
 
-protected:
 private:
   TCollection_AsciiString myString;
 };

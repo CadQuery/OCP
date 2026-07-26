@@ -27,18 +27,18 @@
 #include <TopAbs_State.hxx>
 
 //! This package gives resources for Topology oriented
-//! applications such as : Topological Data Structure,
+//! applications such as: Topological Data Structure,
 //! Topological Algorithms.
 //!
-//! It contains :
+//! It contains the:
 //!
-//! * The ShapeEnum   enumeration  to  describe  the
+//! * ShapeEnum enumeration to describe the
 //! different topological shapes.
 //!
-//! * The  Orientation  enumeration to  describe the
+//! * Orientation enumeration to describe the
 //! orientation of a topological shape.
 //!
-//! * The  State    enumeration  to  describes  the
+//! * State enumeration to describes the
 //! position of a point relative to a Shape.
 //!
 //! * Methods to manage the enumerations.
@@ -48,12 +48,12 @@ class TopAbs
 public:
   DEFINE_STANDARD_ALLOC
 
-  //! Compose  the Orientation    <Or1>  and  <Or2>.    This
-  //! composition is not symmetric (if  you switch <Or1> and
-  //! <Or2> the result  is different). It assumes that <Or1>
+  //! Compose the Orientation <Or1> and <Or2>. This
+  //! composition is not symmetric (if you switch <Or1> and
+  //! <Or2> the result is different). It assumes that <Or1>
   //! is the Orientation of a Shape S1 containing a Shape S2
-  //! of Orientation   Or2.  The result    is the  cumulated
-  //! orientation of S2 in S1.  The composition law is :
+  //! of Orientation Or2. The result is the cumulated
+  //! orientation of S2 in S1. The composition law is:
   //!
   //! \ Or2     FORWARD  REVERSED INTERNAL EXTERNAL
   //! Or1       -------------------------------------
@@ -66,10 +66,18 @@ public:
   //! EXTERNAL  | EXTERNAL EXTERNAL EXTERNAL EXTERNAL
   //! Note: The top corner in the table is the most important
   //! for the purposes of Open CASCADE topology and shape sharing.
-  Standard_EXPORT static TopAbs_Orientation Compose(const TopAbs_Orientation Or1,
-                                                    const TopAbs_Orientation Or2);
+  static TopAbs_Orientation Compose(const TopAbs_Orientation Or1,
+                                    const TopAbs_Orientation Or2) noexcept
+  {
+    static constexpr TopAbs_Orientation aTable[4][4] = {
+      {TopAbs_FORWARD, TopAbs_REVERSED, TopAbs_INTERNAL, TopAbs_EXTERNAL},
+      {TopAbs_REVERSED, TopAbs_FORWARD, TopAbs_INTERNAL, TopAbs_EXTERNAL},
+      {TopAbs_INTERNAL, TopAbs_INTERNAL, TopAbs_INTERNAL, TopAbs_INTERNAL},
+      {TopAbs_EXTERNAL, TopAbs_EXTERNAL, TopAbs_EXTERNAL, TopAbs_EXTERNAL}};
+    return aTable[static_cast<int>(Or2)][static_cast<int>(Or1)];
+  }
 
-  //! xchanges the interior/exterior status of the two
+  //! Exchanges the interior/exterior status of the two
   //! sides. This is what happens when the sense of
   //! direction is reversed. The following rules apply:
   //!
@@ -79,7 +87,14 @@ public:
   //! EXTERNAL         EXTERNAL
   //!
   //! Reverse exchange the material sides.
-  Standard_EXPORT static TopAbs_Orientation Reverse(const TopAbs_Orientation Or);
+  static TopAbs_Orientation Reverse(const TopAbs_Orientation Or) noexcept
+  {
+    static constexpr TopAbs_Orientation aTable[4] = {TopAbs_REVERSED,
+                                                     TopAbs_FORWARD,
+                                                     TopAbs_INTERNAL,
+                                                     TopAbs_EXTERNAL};
+    return aTable[static_cast<int>(Or)];
+  }
 
   //! Reverses the interior/exterior status of each side of
   //! the object. So, to take the complement of an object
@@ -92,9 +107,16 @@ public:
   //! INTERNAL         EXTERNAL
   //! EXTERNAL         INTERNAL
   //!
-  //! Complement  complements   the  material  side.  Inside
-  //! becomes outside.
-  Standard_EXPORT static TopAbs_Orientation Complement(const TopAbs_Orientation Or);
+  //! Complement complements the material side.
+  //! Inside becomes outside.
+  static TopAbs_Orientation Complement(const TopAbs_Orientation Or) noexcept
+  {
+    static constexpr TopAbs_Orientation aTable[4] = {TopAbs_REVERSED,
+                                                     TopAbs_FORWARD,
+                                                     TopAbs_EXTERNAL,
+                                                     TopAbs_INTERNAL};
+    return aTable[static_cast<int>(Or)];
+  }
 
   //! Prints the name of Shape type as a String on the Stream.
   static Standard_OStream& Print(const TopAbs_ShapeEnum theShapeType, Standard_OStream& theStream)
@@ -117,12 +139,12 @@ public:
   //! @param theType shape type
   //! @return string identifier from the list COMPOUND, COMPSOLID, SOLID, SHELL, FACE, WIRE, EDGE,
   //! VERTEX, SHAPE
-  Standard_EXPORT static Standard_CString ShapeTypeToString(TopAbs_ShapeEnum theType);
+  Standard_EXPORT static const char* ShapeTypeToString(TopAbs_ShapeEnum theType);
 
   //! Returns the shape type from the given string identifier (using case-insensitive comparison).
   //! @param theTypeString string identifier
   //! @return shape type or TopAbs_SHAPE if string identifier is invalid
-  static TopAbs_ShapeEnum ShapeTypeFromString(Standard_CString theTypeString)
+  static TopAbs_ShapeEnum ShapeTypeFromString(const char* theTypeString)
   {
     TopAbs_ShapeEnum aType = TopAbs_SHAPE;
     ShapeTypeFromString(theTypeString, aType);
@@ -134,20 +156,19 @@ public:
   //! @param theTypeString string identifier
   //! @param theType detected shape type
   //! @return TRUE if string identifier is known
-  Standard_EXPORT static Standard_Boolean ShapeTypeFromString(Standard_CString  theTypeString,
-                                                              TopAbs_ShapeEnum& theType);
+  Standard_EXPORT static bool ShapeTypeFromString(const char*       theTypeString,
+                                                  TopAbs_ShapeEnum& theType);
 
   //! Returns the string name for a given shape orientation.
   //! @param theOrientation shape orientation
   //! @return string identifier from the list FORWARD, REVERSED, INTERNAL, EXTERNAL
-  Standard_EXPORT static Standard_CString ShapeOrientationToString(
-    TopAbs_Orientation theOrientation);
+  Standard_EXPORT static const char* ShapeOrientationToString(TopAbs_Orientation theOrientation);
 
   //! Returns the shape orientation from the given string identifier (using case-insensitive
   //! comparison).
   //! @param theOrientationString string identifier
   //! @return shape orientation or TopAbs_FORWARD if string identifier is invalid
-  static TopAbs_Orientation ShapeOrientationFromString(const Standard_CString theOrientationString)
+  static TopAbs_Orientation ShapeOrientationFromString(const char* const theOrientationString)
   {
     TopAbs_Orientation aType = TopAbs_FORWARD;
     ShapeOrientationFromString(theOrientationString, aType);
@@ -159,9 +180,8 @@ public:
   //! @param theOrientationString string identifier
   //! @param theOrientation detected shape orientation
   //! @return TRUE if string identifier is known
-  Standard_EXPORT static Standard_Boolean ShapeOrientationFromString(
-    const Standard_CString theOrientationString,
-    TopAbs_Orientation&    theOrientation);
+  Standard_EXPORT static bool ShapeOrientationFromString(const char* const   theOrientationString,
+                                                         TopAbs_Orientation& theOrientation);
 };
 
 #endif // _TopAbs_HeaderFile

@@ -1,6 +1,4 @@
-// Created on: 2015-10-29
-// Created by: Irina KRYLOVA
-// Copyright (c) 2015 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -13,12 +11,25 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _StepVisual_HArray1OfAnnotationPlaneElement_HeaderFile
-#define _StepVisual_HArray1OfAnnotationPlaneElement_HeaderFile
+//! @file StepVisual_HArray1OfAnnotationPlaneElement.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection_HArray1<StepVisual_AnnotationPlaneElement> directly instead.
 
+#ifndef _StepVisual_HArray1OfAnnotationPlaneElement_hxx
+#define _StepVisual_HArray1OfAnnotationPlaneElement_hxx
+
+#include <Standard_Macro.hxx>
 #include <StepVisual_Array1OfAnnotationPlaneElement.hxx>
-#include <NCollection_DefineHArray1.hxx>
+#include <NCollection_HArray1.hxx>
 
-DEFINE_HARRAY1(StepVisual_HArray1OfAnnotationPlaneElement,
-               StepVisual_Array1OfAnnotationPlaneElement)
-#endif // _StepVisual_HArray1OfAnnotationPlaneElement_HeaderFile
+Standard_HEADER_DEPRECATED(
+  "StepVisual_HArray1OfAnnotationPlaneElement.hxx is deprecated since OCCT 8.0.0. Use "
+  "NCollection_HArray1<StepVisual_AnnotationPlaneElement> directly.")
+
+  Standard_DEPRECATED("StepVisual_HArray1OfAnnotationPlaneElement is deprecated, use "
+                      "NCollection_HArray1<StepVisual_AnnotationPlaneElement> directly")
+typedef NCollection_HArray1<StepVisual_AnnotationPlaneElement>
+  StepVisual_HArray1OfAnnotationPlaneElement;
+
+#endif // _StepVisual_HArray1OfAnnotationPlaneElement_hxx

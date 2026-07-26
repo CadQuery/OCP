@@ -1,7 +1,4 @@
-// Created on: 1995-05-10
-// Created by: Denis PASCAL
-// Copyright (c) 1995-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,13 +11,24 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef TDataStd_HLabelArray1_HeaderFile
-#define TDataStd_HLabelArray1_HeaderFile
+//! @file TDataStd_HLabelArray1.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection_HArray1<TDF_Label> directly instead.
 
+#ifndef _TDataStd_HLabelArray1_hxx
+#define _TDataStd_HLabelArray1_hxx
+
+#include <Standard_Macro.hxx>
 #include <TDF_Label.hxx>
 #include <TDataStd_LabelArray1.hxx>
-#include <NCollection_DefineHArray1.hxx>
+#include <NCollection_HArray1.hxx>
 
-DEFINE_HARRAY1(TDataStd_HLabelArray1, TDataStd_LabelArray1)
+Standard_HEADER_DEPRECATED("TDataStd_HLabelArray1.hxx is deprecated since OCCT 8.0.0. Use "
+                           "NCollection_HArray1<TDF_Label> directly.")
 
-#endif
+  Standard_DEPRECATED(
+    "TDataStd_HLabelArray1 is deprecated, use NCollection_HArray1<TDF_Label> directly")
+typedef NCollection_HArray1<TDF_Label> TDataStd_HLabelArray1;
+
+#endif // _TDataStd_HLabelArray1_hxx

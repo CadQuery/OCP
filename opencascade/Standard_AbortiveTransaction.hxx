@@ -17,13 +17,9 @@
 #ifndef _Standard_AbortiveTransaction_HeaderFile
 #define _Standard_AbortiveTransaction_HeaderFile
 
-#include <Standard_Type.hxx>
 #include <Standard_DefineException.hxx>
 #include <Standard_SStream.hxx>
 #include <Standard_Failure.hxx>
-
-class Standard_AbortiveTransaction;
-DEFINE_STANDARD_HANDLE(Standard_AbortiveTransaction, Standard_Failure)
 
 #if !defined No_Exception && !defined No_Standard_AbortiveTransaction
   #define Standard_AbortiveTransaction_Raise_if(CONDITION, MESSAGE)                                \

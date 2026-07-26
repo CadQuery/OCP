@@ -33,33 +33,31 @@ public:
   // ---------- PUBLIC METHODS ----------
 
   LDOMString()
-      : myPtrDoc(NULL)
+      : myPtrDoc(nullptr)
   {
   }
 
   //    Empty constructor
 
   LDOMString(const LDOMString& anOther)
-      : LDOMBasicString(anOther),
-        myPtrDoc(anOther.myPtrDoc)
-  {
-  }
+
+    = default;
 
   //    Copy constructor
 
-  LDOMString(const Standard_Integer aValue)
+  LDOMString(const int aValue)
       : LDOMBasicString(aValue),
-        myPtrDoc(NULL)
+        myPtrDoc(nullptr)
   {
   }
 
   //    Integer => LDOMString
 
-  //  Standard_EXPORT LDOMString (const Standard_Real aValue);
+  //  Standard_EXPORT LDOMString (const double aValue);
 
   LDOMString(const char* aValue)
       : LDOMBasicString(aValue),
-        myPtrDoc(NULL)
+        myPtrDoc(nullptr)
   {
   }
 
@@ -73,12 +71,7 @@ public:
     return *this;
   }
 
-  LDOMString& operator=(const LDOMString& anOther)
-  {
-    myPtrDoc = anOther.myPtrDoc;
-    LDOMBasicString::operator=(anOther);
-    return *this;
-  }
+  LDOMString& operator=(const LDOMString& anOther) = default;
 
 private:
   friend class LDOM_Document;
@@ -98,7 +91,7 @@ private:
 
   //    Plain copy from LDOMBasicString
 
-  LDOMString(const LDOMBasicString& anOther, const Handle(LDOM_MemManager)& aDoc);
+  LDOMString(const LDOMBasicString& anOther, const occ::handle<LDOM_MemManager>& aDoc);
   //    Copy from another string with allocation in the document space
 
 private:

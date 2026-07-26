@@ -1,7 +1,4 @@
-// Created on: 1993-01-11
-// Created by: CKY / Contract Toubro-Larsen (TCD)
-// Copyright (c) 1993-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,12 +11,26 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef IGESGraph_HArray1OfTextFontDef_HeaderFile
-#define IGESGraph_HArray1OfTextFontDef_HeaderFile
+//! @file IGESGraph_HArray1OfTextFontDef.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection_HArray1<opencascade::handle<IGESGraph_TextFontDef>> directly
+//!             instead.
 
+#ifndef _IGESGraph_HArray1OfTextFontDef_hxx
+#define _IGESGraph_HArray1OfTextFontDef_hxx
+
+#include <Standard_Macro.hxx>
 #include <IGESGraph_Array1OfTextFontDef.hxx>
-#include <NCollection_DefineHArray1.hxx>
+#include <NCollection_HArray1.hxx>
 
-DEFINE_HARRAY1(IGESGraph_HArray1OfTextFontDef, IGESGraph_Array1OfTextFontDef)
+Standard_HEADER_DEPRECATED(
+  "IGESGraph_HArray1OfTextFontDef.hxx is deprecated since OCCT 8.0.0. Use "
+  "NCollection_HArray1<opencascade::handle<IGESGraph_TextFontDef>> directly.")
 
-#endif
+  Standard_DEPRECATED("IGESGraph_HArray1OfTextFontDef is deprecated, use "
+                      "NCollection_HArray1<opencascade::handle<IGESGraph_TextFontDef>> directly")
+typedef NCollection_HArray1<opencascade::handle<IGESGraph_TextFontDef>>
+  IGESGraph_HArray1OfTextFontDef;
+
+#endif // _IGESGraph_HArray1OfTextFontDef_hxx

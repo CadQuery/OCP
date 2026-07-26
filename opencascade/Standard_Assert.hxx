@@ -94,10 +94,10 @@ inline void Standard_ASSERT_DO_NOTHING() {}
 
 // use debug CRT built-in function that show up message box to user
 // with formatted assert description and 3 possible actions
-inline Standard_Boolean Standard_ASSERT_REPORT_(const char* theFile,
-                                                const int   theLine,
-                                                const char* theExpr,
-                                                const char* theDesc)
+inline bool Standard_ASSERT_REPORT_(const char* theFile,
+                                    const int   theLine,
+                                    const char* theExpr,
+                                    const char* theDesc)
 {
   // 1 means user pressed Retry button
   return _CrtDbgReport(_CRT_ASSERT,
@@ -111,10 +111,10 @@ inline Standard_Boolean Standard_ASSERT_REPORT_(const char* theFile,
 }
   #else
 // just log assertion description into standard error stream
-inline Standard_Boolean Standard_ASSERT_REPORT_(const char* theFile,
-                                                const int   theLine,
-                                                const char* theExpr,
-                                                const char* theDesc)
+inline bool Standard_ASSERT_REPORT_(const char* theFile,
+                                    const int   theLine,
+                                    const char* theExpr,
+                                    const char* theDesc)
 {
   std::cerr << "ERROR: statement '" << theExpr << "' is not TRUE!\n"
             << "\nFile: '" << theFile << "'"
@@ -123,7 +123,7 @@ inline Standard_Boolean Standard_ASSERT_REPORT_(const char* theFile,
     std::cerr << "Description: " << theDesc << "\n";
 
   std::cerr << std::flush;
-  return Standard_True;
+  return true;
 }
   #endif
 
@@ -145,8 +145,10 @@ inline Standard_Boolean Standard_ASSERT_REPORT_(const char* theFile,
     }                                                                                              \
     else                                                                                           \
       Standard_ASSERT_DO_NOTHING()
-  #define Standard_ASSERT_SKIP(theExpr, theDesc) Standard_ASSERT(theExpr, theDesc, )
-  #define Standard_ASSERT_VOID(theExpr, theDesc) Standard_ASSERT(theExpr, theDesc, )
+  #define Standard_ASSERT_SKIP(theExpr, theDesc)                                                   \
+    Standard_ASSERT(theExpr, theDesc, Standard_VOID_RETURN)
+  #define Standard_ASSERT_VOID(theExpr, theDesc)                                                   \
+    Standard_ASSERT(theExpr, theDesc, Standard_VOID_RETURN)
 #else
 
   // dummy block
@@ -172,8 +174,14 @@ inline Standard_Boolean Standard_ASSERT_REPORT_(const char* theFile,
                   throw Standard_ProgramError("*** ERROR: ASSERT in file '" __FILE__               \
                                               "': \n" theDesc " (" #theExpr ")"))
 
-//! Return from the current function with specified value (empty
-//! if the function returns void)
+//! Empty return value for use with Standard_ASSERT_RETURN in void functions.
+//! Using this macro instead of empty argument prevents clang-tidy from corrupting the code.
+// NOLINTBEGIN(modernize-use-nullptr)
+#define Standard_VOID_RETURN
+// NOLINTEND(modernize-use-nullptr)
+
+//! Return from the current function with specified value.
+//! Use Standard_VOID_RETURN as theReturnValue for void functions.
 #define Standard_ASSERT_RETURN(theExpr, theDesc, theReturnValue)                                   \
   Standard_ASSERT(theExpr, theDesc, return theReturnValue)
 

@@ -17,13 +17,9 @@
 #ifndef _Storage_StreamReadError_HeaderFile
 #define _Storage_StreamReadError_HeaderFile
 
-#include <Standard_Type.hxx>
 #include <Standard_DefineException.hxx>
 #include <Standard_SStream.hxx>
 #include <Standard_Failure.hxx>
-
-class Storage_StreamReadError;
-DEFINE_STANDARD_HANDLE(Storage_StreamReadError, Standard_Failure)
 
 #if !defined No_Exception && !defined No_Storage_StreamReadError
   #define Storage_StreamReadError_Raise_if(CONDITION, MESSAGE)                                     \

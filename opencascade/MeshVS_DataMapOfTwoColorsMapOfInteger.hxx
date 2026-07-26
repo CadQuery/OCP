@@ -1,6 +1,4 @@
-// Created on: 2003-10-10
-// Created by: Alexander SOLOVYOV
-// Copyright (c) 2003-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -13,16 +11,30 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef MeshVS_DataMapOfTwoColorsMapOfInteger_HeaderFile
-#define MeshVS_DataMapOfTwoColorsMapOfInteger_HeaderFile
+//! @file MeshVS_DataMapOfTwoColorsMapOfInteger.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection types directly instead.
 
+#ifndef _MeshVS_DataMapOfTwoColorsMapOfInteger_hxx
+#define _MeshVS_DataMapOfTwoColorsMapOfInteger_hxx
+
+#include <Standard_Macro.hxx>
 #include <MeshVS_TwoColors.hxx>
 #include <TColStd_MapOfInteger.hxx>
 #include <NCollection_DataMap.hxx>
 
+Standard_HEADER_DEPRECATED("MeshVS_DataMapOfTwoColorsMapOfInteger.hxx is deprecated since OCCT "
+                           "8.0.0. Use NCollection types directly.")
+
+  Standard_DEPRECATED("MeshVS_DataMapOfTwoColorsMapOfInteger is deprecated, use "
+                      "NCollection_DataMap<MeshVS_TwoColors, TColStd_MapOfInteger> directly")
 typedef NCollection_DataMap<MeshVS_TwoColors, TColStd_MapOfInteger>
   MeshVS_DataMapOfTwoColorsMapOfInteger;
+Standard_DEPRECATED(
+  "MeshVS_DataMapIteratorOfDataMapOfTwoColorsMapOfInteger is deprecated, use "
+  "NCollection_DataMap<MeshVS_TwoColors, TColStd_MapOfInteger>::Iterator directly")
 typedef NCollection_DataMap<MeshVS_TwoColors, TColStd_MapOfInteger>::Iterator
   MeshVS_DataMapIteratorOfDataMapOfTwoColorsMapOfInteger;
 
-#endif
+#endif // _MeshVS_DataMapOfTwoColorsMapOfInteger_hxx

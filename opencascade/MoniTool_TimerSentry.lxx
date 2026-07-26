@@ -13,23 +13,17 @@
 
 #include <MoniTool_Timer.hxx>
 
-//=======================================================================
-// function : MoniTool_TimerSentry
-// purpose  :
-//=======================================================================
+//=================================================================================================
 
-inline MoniTool_TimerSentry::MoniTool_TimerSentry(const Standard_CString cname)
+inline MoniTool_TimerSentry::MoniTool_TimerSentry(const char* const cname)
     : myTimer(MoniTool_Timer::Timer(cname))
 {
   myTimer->Start();
 }
 
-//=======================================================================
-// function : MoniTool_TimerSentry
-// purpose  :
-//=======================================================================
+//=================================================================================================
 
-inline MoniTool_TimerSentry::MoniTool_TimerSentry(const Handle(MoniTool_Timer)& timer)
+inline MoniTool_TimerSentry::MoniTool_TimerSentry(const occ::handle<MoniTool_Timer>& timer)
 {
   myTimer = timer;
   myTimer->Start();
@@ -46,20 +40,14 @@ inline MoniTool_TimerSentry::~MoniTool_TimerSentry()
     myTimer->Stop();
 }
 
-//=======================================================================
-// function : Timer
-// purpose  :
-//=======================================================================
+//=================================================================================================
 
-inline Handle(MoniTool_Timer) MoniTool_TimerSentry::Timer() const
+inline occ::handle<MoniTool_Timer> MoniTool_TimerSentry::Timer() const
 {
   return myTimer;
 }
 
-//=======================================================================
-// function : Stop
-// purpose  :
-//=======================================================================
+//=================================================================================================
 
 inline void MoniTool_TimerSentry::Stop()
 {

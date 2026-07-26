@@ -17,13 +17,9 @@
 #ifndef _Expr_NotEvaluable_HeaderFile
 #define _Expr_NotEvaluable_HeaderFile
 
-#include <Standard_Type.hxx>
 #include <Standard_DefineException.hxx>
 #include <Standard_SStream.hxx>
 #include <Expr_ExprFailure.hxx>
-
-class Expr_NotEvaluable;
-DEFINE_STANDARD_HANDLE(Expr_NotEvaluable, Expr_ExprFailure)
 
 #if !defined No_Exception && !defined No_Expr_NotEvaluable
   #define Expr_NotEvaluable_Raise_if(CONDITION, MESSAGE)                                           \

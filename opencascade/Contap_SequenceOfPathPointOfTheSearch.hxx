@@ -1,7 +1,4 @@
-// Created on: 1993-02-05
-// Created by: Jacques GOUSSARD
-// Copyright (c) 1993-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,12 +11,24 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _Contap_SequenceOfPathPointOfTheSearch_HeaderFile
-#define _Contap_SequenceOfPathPointOfTheSearch_HeaderFile
+//! @file Contap_SequenceOfPathPointOfTheSearch.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection_Sequence<Contap_ThePathPointOfTheSearch> directly instead.
 
+#ifndef _Contap_SequenceOfPathPointOfTheSearch_hxx
+#define _Contap_SequenceOfPathPointOfTheSearch_hxx
+
+#include <Standard_Macro.hxx>
 #include <Contap_ThePathPointOfTheSearch.hxx>
 #include <NCollection_Sequence.hxx>
 
+Standard_HEADER_DEPRECATED(
+  "Contap_SequenceOfPathPointOfTheSearch.hxx is deprecated since OCCT 8.0.0. Use "
+  "NCollection_Sequence<Contap_ThePathPointOfTheSearch> directly.")
+
+  Standard_DEPRECATED("Contap_SequenceOfPathPointOfTheSearch is deprecated, use "
+                      "NCollection_Sequence<Contap_ThePathPointOfTheSearch> directly")
 typedef NCollection_Sequence<Contap_ThePathPointOfTheSearch> Contap_SequenceOfPathPointOfTheSearch;
 
-#endif // _Contap_SequenceOfPathPointOfTheSearch_HeaderFile
+#endif // _Contap_SequenceOfPathPointOfTheSearch_hxx

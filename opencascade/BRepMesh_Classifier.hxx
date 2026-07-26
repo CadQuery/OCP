@@ -33,7 +33,7 @@ public:
   Standard_EXPORT BRepMesh_Classifier();
 
   //! Destructor.
-  Standard_EXPORT virtual ~BRepMesh_Classifier();
+  Standard_EXPORT ~BRepMesh_Classifier() override;
 
   //! Performs classification of the given point regarding to face internals.
   //! @param thePoint Point in parametric space to be classified.
@@ -48,16 +48,16 @@ public:
   //! @param theUmax Upper U boundary of the face in parametric space.
   //! @param theVmin Lower V boundary of the face in parametric space.
   //! @param theVmax Upper V boundary of the face in parametric space.
-  Standard_EXPORT void RegisterWire(const NCollection_Sequence<const gp_Pnt2d*>&   theWire,
-                                    const std::pair<Standard_Real, Standard_Real>& theTolUV,
-                                    const std::pair<Standard_Real, Standard_Real>& theRangeU,
-                                    const std::pair<Standard_Real, Standard_Real>& theRangeV);
+  Standard_EXPORT void RegisterWire(const NCollection_Sequence<const gp_Pnt2d*>& theWire,
+                                    const std::pair<double, double>&             theTolUV,
+                                    const std::pair<double, double>&             theRangeU,
+                                    const std::pair<double, double>&             theRangeV);
 
   DEFINE_STANDARD_RTTIEXT(BRepMesh_Classifier, Standard_Transient)
 
 private:
-  NCollection_Vector<NCollection_Handle<CSLib_Class2d>> myTabClass;
-  IMeshData::VectorOfBoolean                            myTabOrient;
+  NCollection_DynamicArray<NCollection_Handle<CSLib_Class2d>> myTabClass;
+  IMeshData::VectorOfBoolean                                  myTabOrient;
 };
 
 #endif

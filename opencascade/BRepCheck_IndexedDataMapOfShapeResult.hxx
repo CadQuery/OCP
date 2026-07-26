@@ -1,7 +1,4 @@
-// Created on: 1995-12-06
-// Created by: Jacques GOUSSARD
-// Copyright (c) 1995-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,14 +11,28 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef BRepCheck_DataMapOfShapeResult_HeaderFile
-#define BRepCheck_DataMapOfShapeResult_HeaderFile
+//! @file BRepCheck_IndexedDataMapOfShapeResult.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection_IndexedDataMap<TopoDS_Shape, opencascade::handle<BRepCheck_Result>>
+//!             directly instead.
 
+#ifndef _BRepCheck_IndexedDataMapOfShapeResult_hxx
+#define _BRepCheck_IndexedDataMapOfShapeResult_hxx
+
+#include <Standard_Macro.hxx>
 #include <TopoDS_Shape.hxx>
 #include <BRepCheck_Result.hxx>
 #include <NCollection_IndexedDataMap.hxx>
 
-typedef NCollection_IndexedDataMap<TopoDS_Shape, Handle(BRepCheck_Result)>
+Standard_HEADER_DEPRECATED(
+  "BRepCheck_IndexedDataMapOfShapeResult.hxx is deprecated since OCCT 8.0.0. Use "
+  "NCollection_IndexedDataMap<TopoDS_Shape, opencascade::handle<BRepCheck_Result>> directly.")
+
+  Standard_DEPRECATED(
+    "BRepCheck_IndexedDataMapOfShapeResult is deprecated, use "
+    "NCollection_IndexedDataMap<TopoDS_Shape, opencascade::handle<BRepCheck_Result>> directly")
+typedef NCollection_IndexedDataMap<TopoDS_Shape, opencascade::handle<BRepCheck_Result>>
   BRepCheck_IndexedDataMapOfShapeResult;
 
-#endif
+#endif // _BRepCheck_IndexedDataMapOfShapeResult_hxx

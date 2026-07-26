@@ -47,58 +47,57 @@ public:
   {
   public:
     //! Import transient attribute from the persistent data.
-    Standard_EXPORT virtual void ImportAttribute();
+    Standard_EXPORT void ImportAttribute() override;
   };
 
   class Position : public StdObjMgt_Attribute<TDataXtd_Position>::Simple<gp_Pnt>
   {
   public:
     //! Import transient attribute from the persistent data.
-    Standard_EXPORT virtual void ImportAttribute();
+    Standard_EXPORT void ImportAttribute() override;
   };
 };
 
 template <>
-inline Standard_CString StdLPersistent_Void::instance<TDataXtd_Shape>::PName() const
+inline const char* StdLPersistent_Void::instance<TDataXtd_Shape>::PName() const
 {
   return "PDataXtd_Shape";
 }
 
 template <>
-inline Standard_CString StdLPersistent_Void::instance<TDataXtd_Point>::PName() const
+inline const char* StdLPersistent_Void::instance<TDataXtd_Point>::PName() const
 {
   return "PDataXtd_Point";
 }
 
 template <>
-inline Standard_CString StdLPersistent_Void::instance<TDataXtd_Axis>::PName() const
+inline const char* StdLPersistent_Void::instance<TDataXtd_Axis>::PName() const
 {
   return "PDataXtd_Axis";
 }
 
 template <>
-inline Standard_CString StdLPersistent_Void::instance<TDataXtd_Plane>::PName() const
+inline const char* StdLPersistent_Void::instance<TDataXtd_Plane>::PName() const
 {
   return "PDataXtd_Plane";
 }
 
 template <>
-inline Standard_CString StdLPersistent_Void::instance<TDataXtd_Placement>::PName() const
+inline const char* StdLPersistent_Void::instance<TDataXtd_Placement>::PName() const
 {
   return "PDataXtd_Placement";
 }
 
 template <>
 template <>
-inline Standard_CString StdObjMgt_Attribute<TDataXtd_Geometry>::Simple<Standard_Integer>::PName()
-  const
+inline const char* StdObjMgt_Attribute<TDataXtd_Geometry>::Simple<int>::PName() const
 {
   return "PDataXtd_Geometry";
 }
 
 template <>
 template <>
-inline Standard_CString StdObjMgt_Attribute<TDataXtd_Position>::Simple<gp_Pnt>::PName() const
+inline const char* StdObjMgt_Attribute<TDataXtd_Position>::Simple<gp_Pnt>::PName() const
 {
   return "PDataXtd_Position";
 }

@@ -1,6 +1,4 @@
-// Created on: 2015-07-13
-// Created by: Irina KRYLOVA
-// Copyright (c) 2015 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -13,11 +11,24 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _StepDimTol_Array1OfToleranceZoneTarget_HeaderFile
-#define _StepDimTol_Array1OfToleranceZoneTarget_HeaderFile
+//! @file StepDimTol_Array1OfToleranceZoneTarget.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection_Array1<StepDimTol_ToleranceZoneTarget> directly instead.
 
+#ifndef _StepDimTol_Array1OfToleranceZoneTarget_hxx
+#define _StepDimTol_Array1OfToleranceZoneTarget_hxx
+
+#include <Standard_Macro.hxx>
 #include <StepDimTol_ToleranceZoneTarget.hxx>
 #include <NCollection_Array1.hxx>
 
+Standard_HEADER_DEPRECATED(
+  "StepDimTol_Array1OfToleranceZoneTarget.hxx is deprecated since OCCT 8.0.0. Use "
+  "NCollection_Array1<StepDimTol_ToleranceZoneTarget> directly.")
+
+  Standard_DEPRECATED("StepDimTol_Array1OfToleranceZoneTarget is deprecated, use "
+                      "NCollection_Array1<StepDimTol_ToleranceZoneTarget> directly")
 typedef NCollection_Array1<StepDimTol_ToleranceZoneTarget> StepDimTol_Array1OfToleranceZoneTarget;
-#endif // _StepDimTol_Array1OfToleranceZoneTarget_HeaderFile
+
+#endif // _StepDimTol_Array1OfToleranceZoneTarget_hxx

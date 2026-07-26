@@ -32,13 +32,13 @@ public:
   DEFINE_STANDARD_ALLOC
 
   //! Virtual destructor, for safe inheritance
-  virtual ~math_Function() {}
+  virtual ~math_Function() = default;
 
   //! Computes the value of the function <F> for a given value of
   //! variable <X>.
   //! returns True if the computation was done successfully,
   //! False otherwise.
-  Standard_EXPORT virtual Standard_Boolean Value(const Standard_Real X, Standard_Real& F) = 0;
+  Standard_EXPORT virtual bool Value(const double X, double& F) = 0;
 
   //! returns the state of the function corresponding to the
   //! latest call of any methods associated with the function.
@@ -54,7 +54,7 @@ public:
   //! responsibility of the programmer to decide if he needs
   //! to save the current state of the function and to return
   //! an Integer that allows retrieval of the state.
-  Standard_EXPORT virtual Standard_Integer GetStateNumber();
+  Standard_EXPORT virtual int GetStateNumber();
 };
 
 #endif // _math_Function_HeaderFile

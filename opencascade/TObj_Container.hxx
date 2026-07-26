@@ -1,6 +1,4 @@
-// Created on: 2004-11-22
-// Created by: Pavel TELKOV
-// Copyright (c) 2004-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -13,23 +11,37 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-// The original implementation Copyright: (C) RINA S.p.A
+//! @file TObj_Container.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection types directly instead.
 
-#ifndef TObj_Container_HeaderFile
-#define TObj_Container_HeaderFile
+#ifndef _TObj_Container_hxx
+#define _TObj_Container_hxx
 
+#include <Standard_Macro.hxx>
 #include <NCollection_DataMap.hxx>
 #include <TCollection_AsciiString.hxx>
 #include <TCollection_HExtendedString.hxx>
 #include <TDF_Label.hxx>
-
 #include <TObj_SequenceOfObject.hxx>
 
-typedef NCollection_DataMap<Handle(TCollection_HExtendedString), TDF_Label> TObj_DataMapOfNameLabel;
+Standard_HEADER_DEPRECATED(
+  "TObj_Container.hxx is deprecated since OCCT 8.0.0. Use NCollection types directly.")
 
-typedef NCollection_DataMap<Handle(TObj_Object), Handle(TObj_HSequenceOfObject)>
+  Standard_DEPRECATED(
+    "TObj_DataMapOfNameLabel is deprecated, use "
+    "NCollection_DataMap<opencascade::handle<TCollection_HExtendedString>, TDF_Label> directly")
+typedef NCollection_DataMap<opencascade::handle<TCollection_HExtendedString>, TDF_Label>
+  TObj_DataMapOfNameLabel;
+Standard_DEPRECATED("TObj_DataMapOfObjectHSequenceOcafObjects is deprecated, use "
+                    "NCollection_DataMap<opencascade::handle<TObj_Object>, "
+                    "opencascade::handle<TObj_HSequenceOfObject>> directly")
+typedef NCollection_DataMap<opencascade::handle<TObj_Object>,
+                            opencascade::handle<TObj_HSequenceOfObject>>
   TObj_DataMapOfObjectHSequenceOcafObjects;
+Standard_DEPRECATED("TObj_DataMapOfStringPointer is deprecated, use "
+                    "NCollection_DataMap<TCollection_AsciiString, void*> directly")
+typedef NCollection_DataMap<TCollection_AsciiString, void*> TObj_DataMapOfStringPointer;
 
-typedef NCollection_DataMap<TCollection_AsciiString, Standard_Address> TObj_DataMapOfStringPointer;
-
-#endif
+#endif // _TObj_Container_hxx

@@ -1,7 +1,4 @@
-// Created on: 1993-11-17
-// Created by: Isabelle GRIGNON
-// Copyright (c) 1993-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,13 +11,26 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef ChFiDS_Regularities_HeaderFile
-#define ChFiDS_Regularities_HeaderFile
+//! @file ChFiDS_Regularities.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection types directly instead.
 
+#ifndef _ChFiDS_Regularities_hxx
+#define _ChFiDS_Regularities_hxx
+
+#include <Standard_Macro.hxx>
 #include <ChFiDS_Regul.hxx>
 #include <NCollection_List.hxx>
 
-typedef NCollection_List<ChFiDS_Regul>           ChFiDS_Regularities;
+Standard_HEADER_DEPRECATED(
+  "ChFiDS_Regularities.hxx is deprecated since OCCT 8.0.0. Use NCollection types directly.")
+
+  Standard_DEPRECATED(
+    "ChFiDS_Regularities is deprecated, use NCollection_List<ChFiDS_Regul> directly")
+typedef NCollection_List<ChFiDS_Regul> ChFiDS_Regularities;
+Standard_DEPRECATED("ChFiDS_ListIteratorOfRegularities is deprecated, use "
+                    "NCollection_List<ChFiDS_Regul>::Iterator directly")
 typedef NCollection_List<ChFiDS_Regul>::Iterator ChFiDS_ListIteratorOfRegularities;
 
-#endif
+#endif // _ChFiDS_Regularities_hxx

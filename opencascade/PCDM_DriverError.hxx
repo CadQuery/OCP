@@ -17,13 +17,9 @@
 #ifndef _PCDM_DriverError_HeaderFile
 #define _PCDM_DriverError_HeaderFile
 
-#include <Standard_Type.hxx>
 #include <Standard_DefineException.hxx>
 #include <Standard_SStream.hxx>
 #include <Standard_Failure.hxx>
-
-class PCDM_DriverError;
-DEFINE_STANDARD_HANDLE(PCDM_DriverError, Standard_Failure)
 
 #if !defined No_Exception && !defined No_PCDM_DriverError
   #define PCDM_DriverError_Raise_if(CONDITION, MESSAGE)                                            \

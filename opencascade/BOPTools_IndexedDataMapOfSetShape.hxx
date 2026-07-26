@@ -1,5 +1,4 @@
-// Created by: Eugeny MALTCHIKOV
-// Copyright (c) 2017 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -12,13 +11,24 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef BOPTools_IndexedDataMapOfSetShape_HeaderFile
-#define BOPTools_IndexedDataMapOfSetShape_HeaderFile
+//! @file BOPTools_IndexedDataMapOfSetShape.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection_IndexedDataMap<BOPTools_Set, TopoDS_Shape> directly instead.
 
+#ifndef _BOPTools_IndexedDataMapOfSetShape_hxx
+#define _BOPTools_IndexedDataMapOfSetShape_hxx
+
+#include <Standard_Macro.hxx>
 #include <BOPTools_Set.hxx>
 #include <NCollection_IndexedDataMap.hxx>
 #include <TopoDS_Shape.hxx>
 
+Standard_HEADER_DEPRECATED("BOPTools_IndexedDataMapOfSetShape.hxx is deprecated since OCCT 8.0.0. "
+                           "Use NCollection_IndexedDataMap<BOPTools_Set, TopoDS_Shape> directly.")
+
+  Standard_DEPRECATED("BOPTools_IndexedDataMapOfSetShape is deprecated, use "
+                      "NCollection_IndexedDataMap<BOPTools_Set, TopoDS_Shape> directly")
 typedef NCollection_IndexedDataMap<BOPTools_Set, TopoDS_Shape> BOPTools_IndexedDataMapOfSetShape;
 
-#endif
+#endif // _BOPTools_IndexedDataMapOfSetShape_hxx

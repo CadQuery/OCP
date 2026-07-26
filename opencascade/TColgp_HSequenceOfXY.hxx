@@ -1,7 +1,4 @@
-// Created on: 1993-03-10
-// Created by: Philippe DAUTRY
-// Copyright (c) 1993-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,13 +11,24 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef TColgp_HSequenceOfXY_HeaderFile
-#define TColgp_HSequenceOfXY_HeaderFile
+//! @file TColgp_HSequenceOfXY.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection_HSequence<gp_XY> directly instead.
 
+#ifndef _TColgp_HSequenceOfXY_hxx
+#define _TColgp_HSequenceOfXY_hxx
+
+#include <Standard_Macro.hxx>
 #include <gp_XY.hxx>
 #include <TColgp_SequenceOfXY.hxx>
-#include <NCollection_DefineHSequence.hxx>
+#include <NCollection_HSequence.hxx>
 
-DEFINE_HSEQUENCE(TColgp_HSequenceOfXY, TColgp_SequenceOfXY)
+Standard_HEADER_DEPRECATED("TColgp_HSequenceOfXY.hxx is deprecated since OCCT 8.0.0. Use "
+                           "NCollection_HSequence<gp_XY> directly.")
 
-#endif
+  Standard_DEPRECATED(
+    "TColgp_HSequenceOfXY is deprecated, use NCollection_HSequence<gp_XY> directly")
+typedef NCollection_HSequence<gp_XY> TColgp_HSequenceOfXY;
+
+#endif // _TColgp_HSequenceOfXY_hxx

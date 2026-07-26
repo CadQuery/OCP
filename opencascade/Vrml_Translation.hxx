@@ -26,8 +26,8 @@
 
 //! defines a Translation of VRML specifying transform
 //! properties.
-//! This  node  defines  a  translation  by  3D  vector.
-//! By  default  :
+//! This node defines a translation by 3D vector.
+//! By default:
 //! myTranslation (0,0,0)
 class Vrml_Translation
 {
@@ -44,7 +44,6 @@ public:
 
   Standard_EXPORT Standard_OStream& Print(Standard_OStream& anOStream) const;
 
-protected:
 private:
   gp_Vec myTranslation;
 };

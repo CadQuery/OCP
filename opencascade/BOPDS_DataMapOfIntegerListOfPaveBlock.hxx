@@ -1,5 +1,4 @@
-// Created by: Eugeny MALTCHIKOV
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -12,13 +11,23 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef BOPDS_DataMapOfIntegerListOfPaveBlock_HeaderFile
-#define BOPDS_DataMapOfIntegerListOfPaveBlock_HeaderFile
+//! @file BOPDS_DataMapOfIntegerListOfPaveBlock.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection_DataMap<int, BOPDS_ListOfPaveBlock> directly instead.
 
+#ifndef _BOPDS_DataMapOfIntegerListOfPaveBlock_hxx
+#define _BOPDS_DataMapOfIntegerListOfPaveBlock_hxx
+
+#include <Standard_Macro.hxx>
 #include <NCollection_DataMap.hxx>
 #include <BOPDS_ListOfPaveBlock.hxx>
 
-typedef NCollection_DataMap<Standard_Integer, BOPDS_ListOfPaveBlock>
-  BOPDS_DataMapOfIntegerListOfPaveBlock;
+Standard_HEADER_DEPRECATED("BOPDS_DataMapOfIntegerListOfPaveBlock.hxx is deprecated since OCCT "
+                           "8.0.0. Use NCollection_DataMap<int, BOPDS_ListOfPaveBlock> directly.")
 
-#endif
+  Standard_DEPRECATED("BOPDS_DataMapOfIntegerListOfPaveBlock is deprecated, use "
+                      "NCollection_DataMap<int, BOPDS_ListOfPaveBlock> directly")
+typedef NCollection_DataMap<int, BOPDS_ListOfPaveBlock> BOPDS_DataMapOfIntegerListOfPaveBlock;
+
+#endif // _BOPDS_DataMapOfIntegerListOfPaveBlock_hxx

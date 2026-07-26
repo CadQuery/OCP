@@ -18,8 +18,9 @@
 #include <OSD_Parallel.hxx>
 #include <OSD_ThreadPool.hxx>
 #include <NCollection_DataMap.hxx>
-#include <Standard_Mutex.hxx>
 #include <OSD_Thread.hxx>
+
+#include <mutex>
 
 //! Implementation of Functors/Starters
 class BOPTools_Parallel
@@ -35,15 +36,15 @@ class BOPTools_Parallel
     }
 
     //! Defines functor interface.
-    void operator()(const Standard_Integer theIndex) const
+    void operator()(const int theIndex) const
     {
       typename TypeSolverVector::value_type& aSolver = mySolvers[theIndex];
       aSolver.Perform();
     }
 
   private:
-    Functor(const Functor&);
-    Functor& operator=(const Functor&);
+    Functor(const Functor&)            = delete;
+    Functor& operator=(const Functor&) = delete;
 
   private:
     TypeSolverVector& mySolvers;
@@ -82,13 +83,13 @@ class BOPTools_Parallel
       opencascade::handle<TypeContext> aContext =
         new TypeContext(NCollection_BaseAllocator::CommonBaseAllocator());
 
-      Standard_Mutex::Sentry aLocker(myMutex);
+      std::lock_guard<std::mutex> aLock(myMutex);
       myContextMap.Bind(aThreadID, aContext);
       return myContextMap(aThreadID);
     }
 
     //! Defines functor interface
-    void operator()(const Standard_Integer theIndex) const
+    void operator()(const int theIndex) const
     {
       const opencascade::handle<TypeContext>& aContext = GetThreadContext();
       typename TypeSolverVector::value_type&  aSolver  = mySolverVector[theIndex];
@@ -98,13 +99,13 @@ class BOPTools_Parallel
     }
 
   private:
-    ContextFunctor(const ContextFunctor&);
-    ContextFunctor& operator=(const ContextFunctor&);
+    ContextFunctor(const ContextFunctor&)            = delete;
+    ContextFunctor& operator=(const ContextFunctor&) = delete;
 
   private:
     TypeSolverVector&                                                                mySolverVector;
     mutable NCollection_DataMap<Standard_ThreadId, opencascade::handle<TypeContext>> myContextMap;
-    mutable Standard_Mutex                                                           myMutex;
+    mutable std::mutex                                                               myMutex;
   };
 
   //! Functor storing array of algorithm contexts per thread in pool
@@ -142,8 +143,8 @@ class BOPTools_Parallel
     }
 
   private:
-    ContextFunctor2(const ContextFunctor2&);
-    ContextFunctor2& operator=(const ContextFunctor2&);
+    ContextFunctor2(const ContextFunctor2&)            = delete;
+    ContextFunctor2& operator=(const ContextFunctor2&) = delete;
 
   private:
     TypeSolverVector&                                            mySolverVector;
@@ -153,7 +154,7 @@ class BOPTools_Parallel
 public:
   //! Pure version
   template <class TypeSolverVector>
-  static void Perform(Standard_Boolean theIsRunParallel, TypeSolverVector& theSolverVector)
+  static void Perform(bool theIsRunParallel, TypeSolverVector& theSolverVector)
   {
     Functor<TypeSolverVector> aFunctor(theSolverVector);
     OSD_Parallel::For(0, theSolverVector.Length(), aFunctor, !theIsRunParallel);
@@ -161,13 +162,13 @@ public:
 
   //! Context dependent version
   template <class TypeSolverVector, class TypeContext>
-  static void Perform(Standard_Boolean                  theIsRunParallel,
+  static void Perform(bool                              theIsRunParallel,
                       TypeSolverVector&                 theSolverVector,
                       opencascade::handle<TypeContext>& theContext)
   {
     if (OSD_Parallel::ToUseOcctThreads())
     {
-      const Handle(OSD_ThreadPool)&                  aThreadPool = OSD_ThreadPool::DefaultPool();
+      const occ::handle<OSD_ThreadPool>&             aThreadPool = OSD_ThreadPool::DefaultPool();
       OSD_ThreadPool::Launcher                       aPoolLauncher(*aThreadPool,
                                              theIsRunParallel ? theSolverVector.Length() : 0);
       ContextFunctor2<TypeSolverVector, TypeContext> aFunctor(theSolverVector, aPoolLauncher);

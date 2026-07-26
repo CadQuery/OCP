@@ -17,13 +17,9 @@
 #ifndef _Resource_NoSuchResource_HeaderFile
 #define _Resource_NoSuchResource_HeaderFile
 
-#include <Standard_Type.hxx>
 #include <Standard_DefineException.hxx>
 #include <Standard_SStream.hxx>
 #include <Standard_NoSuchObject.hxx>
-
-class Resource_NoSuchResource;
-DEFINE_STANDARD_HANDLE(Resource_NoSuchResource, Standard_NoSuchObject)
 
 #if !defined No_Exception && !defined No_Resource_NoSuchResource
   #define Resource_NoSuchResource_Raise_if(CONDITION, MESSAGE)                                     \

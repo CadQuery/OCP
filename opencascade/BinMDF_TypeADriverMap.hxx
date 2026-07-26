@@ -1,6 +1,4 @@
-// Created on: 2002-10-29
-// Created by: Michael SAZONOV
-// Copyright (c) 2002-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -13,15 +11,32 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef BinMDF_TypeADriverMap_HeaderFile
-#define BinMDF_TypeADriverMap_HeaderFile
+//! @file BinMDF_TypeADriverMap.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection types directly instead.
 
+#ifndef _BinMDF_TypeADriverMap_hxx
+#define _BinMDF_TypeADriverMap_hxx
+
+#include <Standard_Macro.hxx>
 #include <Standard_Type.hxx>
 #include <BinMDF_ADriver.hxx>
 #include <NCollection_DataMap.hxx>
 
-typedef NCollection_DataMap<Handle(Standard_Type), Handle(BinMDF_ADriver)> BinMDF_TypeADriverMap;
-typedef NCollection_DataMap<Handle(Standard_Type), Handle(BinMDF_ADriver)>::Iterator
+Standard_HEADER_DEPRECATED(
+  "BinMDF_TypeADriverMap.hxx is deprecated since OCCT 8.0.0. Use NCollection types directly.")
+
+  Standard_DEPRECATED("BinMDF_TypeADriverMap is deprecated, use "
+                      "NCollection_DataMap<opencascade::handle<Standard_Type>, "
+                      "opencascade::handle<BinMDF_ADriver>> directly")
+typedef NCollection_DataMap<opencascade::handle<Standard_Type>, opencascade::handle<BinMDF_ADriver>>
+  BinMDF_TypeADriverMap;
+Standard_DEPRECATED("BinMDF_DataMapIteratorOfTypeADriverMap is deprecated, use "
+                    "NCollection_DataMap<opencascade::handle<Standard_Type>, "
+                    "opencascade::handle<BinMDF_ADriver>>::Iterator directly")
+typedef NCollection_DataMap<opencascade::handle<Standard_Type>,
+                            opencascade::handle<BinMDF_ADriver>>::Iterator
   BinMDF_DataMapIteratorOfTypeADriverMap;
 
-#endif
+#endif // _BinMDF_TypeADriverMap_hxx

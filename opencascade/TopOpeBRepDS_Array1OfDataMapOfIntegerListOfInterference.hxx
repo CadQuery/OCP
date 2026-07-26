@@ -1,7 +1,4 @@
-// Created on: 1993-06-17
-// Created by: Jean Yves LEBEY
-// Copyright (c) 1993-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,13 +11,27 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef TopOpeBRepDS_Array1OfDataMapOfIntegerListOfInterference_HeaderFile
-#define TopOpeBRepDS_Array1OfDataMapOfIntegerListOfInterference_HeaderFile
+//! @file TopOpeBRepDS_Array1OfDataMapOfIntegerListOfInterference.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection_Array1<TopOpeBRepDS_DataMapOfIntegerListOfInterference> directly
+//!             instead.
 
+#ifndef _TopOpeBRepDS_Array1OfDataMapOfIntegerListOfInterference_hxx
+#define _TopOpeBRepDS_Array1OfDataMapOfIntegerListOfInterference_hxx
+
+#include <Standard_Macro.hxx>
 #include <TopOpeBRepDS_DataMapOfIntegerListOfInterference.hxx>
 #include <NCollection_Array1.hxx>
 
+Standard_HEADER_DEPRECATED(
+  "TopOpeBRepDS_Array1OfDataMapOfIntegerListOfInterference.hxx is deprecated since OCCT 8.0.0. Use "
+  "NCollection_Array1<TopOpeBRepDS_DataMapOfIntegerListOfInterference> directly.")
+
+  Standard_DEPRECATED(
+    "TopOpeBRepDS_Array1OfDataMapOfIntegerListOfInterference is deprecated, use "
+    "NCollection_Array1<TopOpeBRepDS_DataMapOfIntegerListOfInterference> directly")
 typedef NCollection_Array1<TopOpeBRepDS_DataMapOfIntegerListOfInterference>
   TopOpeBRepDS_Array1OfDataMapOfIntegerListOfInterference;
 
-#endif
+#endif // _TopOpeBRepDS_Array1OfDataMapOfIntegerListOfInterference_hxx

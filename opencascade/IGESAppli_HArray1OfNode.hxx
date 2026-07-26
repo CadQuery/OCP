@@ -1,7 +1,4 @@
-// Created on: 1993-01-11
-// Created by: CKY / Contract Toubro-Larsen (Anand NATRAJAN)
-// Copyright (c) 1993-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,12 +11,23 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef IGESAppli_HArray1OfNode_HeaderFile
-#define IGESAppli_HArray1OfNode_HeaderFile
+//! @file IGESAppli_HArray1OfNode.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection_HArray1<opencascade::handle<IGESAppli_Node>> directly instead.
 
+#ifndef _IGESAppli_HArray1OfNode_hxx
+#define _IGESAppli_HArray1OfNode_hxx
+
+#include <Standard_Macro.hxx>
 #include <IGESAppli_Array1OfNode.hxx>
-#include <NCollection_DefineHArray1.hxx>
+#include <NCollection_HArray1.hxx>
 
-DEFINE_HARRAY1(IGESAppli_HArray1OfNode, IGESAppli_Array1OfNode)
+Standard_HEADER_DEPRECATED("IGESAppli_HArray1OfNode.hxx is deprecated since OCCT 8.0.0. Use "
+                           "NCollection_HArray1<opencascade::handle<IGESAppli_Node>> directly.")
 
-#endif
+  Standard_DEPRECATED("IGESAppli_HArray1OfNode is deprecated, use "
+                      "NCollection_HArray1<opencascade::handle<IGESAppli_Node>> directly")
+typedef NCollection_HArray1<opencascade::handle<IGESAppli_Node>> IGESAppli_HArray1OfNode;
+
+#endif // _IGESAppli_HArray1OfNode_hxx

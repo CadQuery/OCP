@@ -14,12 +14,9 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-//=======================================================================
-// function : More
-// purpose  :
-//=======================================================================
+//=================================================================================================
 
-inline Standard_Boolean TNaming_SameShapeIterator::More() const
+inline bool TNaming_SameShapeIterator::More() const
 {
-  return (myNode != 0L);
+  return (myNode != nullptr);
 }

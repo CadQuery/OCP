@@ -1,3 +1,16 @@
+// Copyright (c) 2025 OPEN CASCADE SAS
+//
+// This file is part of Open CASCADE Technology software library.
+//
+// This library is free software; you can redistribute it and/or modify it under
+// the terms of the GNU Lesser General Public License version 2.1 as published
+// by the Free Software Foundation, with special exception defined in the file
+// OCCT_LGPL_EXCEPTION.txt. Consult the file LICENSE_LGPL_21.txt included in OCCT
+// distribution for complete text of the license and disclaimer of any warranty.
+//
+// Alternatively, this file may be used under the terms of Open CASCADE
+// commercial license or contractual agreement.
+
 // A Bison parser, made by GNU Bison 3.7.4.
 
 // Skeleton interface for Bison LALR(1) parsers in C++
@@ -29,6 +42,8 @@
 
 // This special exception was added by the Free Software Foundation in
 // version 2.2 of Bison.
+
+// NOLINTBEGIN - Bison-generated file, do not modify with clang-tidy
 
 /**
  ** \file StepFile/step.tab.hxx
@@ -789,7 +804,7 @@ private:
 // but only if this has not been done yet, to avoid redefinition
 #if !defined(yyFlexLexer) && !defined(FlexLexerOnce)
   #define yyFlexLexer stepFlexLexer
-  #include "FlexLexer.h"
+  #include <FlexLexer.h>
 #endif
 
 namespace step
@@ -804,7 +819,9 @@ namespace step
 class scanner : public stepFlexLexer
 {
 public:
-  explicit scanner(StepFile_ReadData* theDataModel, std::istream* in = 0, std::ostream* out = 0);
+  explicit scanner(StepFile_ReadData* theDataModel,
+                   std::istream*      in  = nullptr,
+                   std::ostream*      out = nullptr);
 
   int lex(step::parser::semantic_type* yylval);
 
@@ -812,5 +829,7 @@ public:
 };
 
 }; // namespace step
+
+// NOLINTEND
 
 #endif // !YY_STEP_STEPFILE_STEP_TAB_HXX_INCLUDED

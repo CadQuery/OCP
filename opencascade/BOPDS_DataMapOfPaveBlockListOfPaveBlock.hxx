@@ -1,5 +1,4 @@
-// Created by: Peter KURNEV
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -12,16 +11,31 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef BOPDS_DataMapOfPaveBlockListOfPaveBlock_HeaderFile
-#define BOPDS_DataMapOfPaveBlockListOfPaveBlock_HeaderFile
+//! @file BOPDS_DataMapOfPaveBlockListOfPaveBlock.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection types directly instead.
 
+#ifndef _BOPDS_DataMapOfPaveBlockListOfPaveBlock_hxx
+#define _BOPDS_DataMapOfPaveBlockListOfPaveBlock_hxx
+
+#include <Standard_Macro.hxx>
 #include <NCollection_DataMap.hxx>
 #include <BOPDS_PaveBlock.hxx>
 #include <BOPDS_ListOfPaveBlock.hxx>
 
-typedef NCollection_DataMap<Handle(BOPDS_PaveBlock), BOPDS_ListOfPaveBlock>
+Standard_HEADER_DEPRECATED("BOPDS_DataMapOfPaveBlockListOfPaveBlock.hxx is deprecated since OCCT "
+                           "8.0.0. Use NCollection types directly.")
+
+  Standard_DEPRECATED(
+    "BOPDS_DataMapOfPaveBlockListOfPaveBlock is deprecated, use "
+    "NCollection_DataMap<opencascade::handle<BOPDS_PaveBlock>, BOPDS_ListOfPaveBlock> directly")
+typedef NCollection_DataMap<opencascade::handle<BOPDS_PaveBlock>, BOPDS_ListOfPaveBlock>
   BOPDS_DataMapOfPaveBlockListOfPaveBlock;
-typedef BOPDS_DataMapOfPaveBlockListOfPaveBlock::Iterator
+Standard_DEPRECATED("BOPDS_DataMapIteratorOfDataMapOfPaveBlockListOfPaveBlock is deprecated, use "
+                    "NCollection_DataMap<opencascade::handle<BOPDS_PaveBlock>, "
+                    "BOPDS_ListOfPaveBlock>::Iterator directly")
+typedef NCollection_DataMap<opencascade::handle<BOPDS_PaveBlock>, BOPDS_ListOfPaveBlock>::Iterator
   BOPDS_DataMapIteratorOfDataMapOfPaveBlockListOfPaveBlock;
 
-#endif
+#endif // _BOPDS_DataMapOfPaveBlockListOfPaveBlock_hxx

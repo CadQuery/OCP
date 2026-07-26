@@ -1,6 +1,4 @@
-// Created on: 2003-10-10
-// Created by: Alexander SOLOVYOV
-// Copyright (c) 2003-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -13,16 +11,28 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef MeshVS_DataMapOfIntegerMaterial_HeaderFile
-#define MeshVS_DataMapOfIntegerMaterial_HeaderFile
+//! @file MeshVS_DataMapOfIntegerMaterial.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection types directly instead.
 
+#ifndef _MeshVS_DataMapOfIntegerMaterial_hxx
+#define _MeshVS_DataMapOfIntegerMaterial_hxx
+
+#include <Standard_Macro.hxx>
 #include <Standard_Integer.hxx>
 #include <Graphic3d_MaterialAspect.hxx>
 #include <NCollection_DataMap.hxx>
 
-typedef NCollection_DataMap<Standard_Integer, Graphic3d_MaterialAspect>
-  MeshVS_DataMapOfIntegerMaterial;
-typedef NCollection_DataMap<Standard_Integer, Graphic3d_MaterialAspect>::Iterator
+Standard_HEADER_DEPRECATED("MeshVS_DataMapOfIntegerMaterial.hxx is deprecated since OCCT 8.0.0. "
+                           "Use NCollection types directly.")
+
+  Standard_DEPRECATED("MeshVS_DataMapOfIntegerMaterial is deprecated, use NCollection_DataMap<int, "
+                      "Graphic3d_MaterialAspect> directly")
+typedef NCollection_DataMap<int, Graphic3d_MaterialAspect> MeshVS_DataMapOfIntegerMaterial;
+Standard_DEPRECATED("MeshVS_DataMapIteratorOfDataMapOfIntegerMaterial is deprecated, use "
+                    "NCollection_DataMap<int, Graphic3d_MaterialAspect>::Iterator directly")
+typedef NCollection_DataMap<int, Graphic3d_MaterialAspect>::Iterator
   MeshVS_DataMapIteratorOfDataMapOfIntegerMaterial;
 
-#endif
+#endif // _MeshVS_DataMapOfIntegerMaterial_hxx

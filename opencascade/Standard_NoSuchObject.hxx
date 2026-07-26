@@ -17,13 +17,9 @@
 #ifndef _Standard_NoSuchObject_HeaderFile
 #define _Standard_NoSuchObject_HeaderFile
 
-#include <Standard_Type.hxx>
 #include <Standard_DefineException.hxx>
 #include <Standard_SStream.hxx>
 #include <Standard_DomainError.hxx>
-
-class Standard_NoSuchObject;
-DEFINE_STANDARD_HANDLE(Standard_NoSuchObject, Standard_DomainError)
 
 #if !defined No_Exception && !defined No_Standard_NoSuchObject
   #define Standard_NoSuchObject_Raise_if(CONDITION, MESSAGE)                                       \

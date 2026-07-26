@@ -1,7 +1,4 @@
-// Created on: 1996-03-07
-// Created by: Stagiaire Frederic CALOONE
-// Copyright (c) 1996-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,12 +11,23 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef GeomPlate_Array1OfSequenceOfReal_HeaderFile
-#define GeomPlate_Array1OfSequenceOfReal_HeaderFile
+//! @file GeomPlate_Array1OfSequenceOfReal.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection_Array1<TColStd_SequenceOfReal> directly instead.
 
+#ifndef _GeomPlate_Array1OfSequenceOfReal_hxx
+#define _GeomPlate_Array1OfSequenceOfReal_hxx
+
+#include <Standard_Macro.hxx>
 #include <TColStd_SequenceOfReal.hxx>
 #include <NCollection_Array1.hxx>
 
+Standard_HEADER_DEPRECATED("GeomPlate_Array1OfSequenceOfReal.hxx is deprecated since OCCT 8.0.0. "
+                           "Use NCollection_Array1<TColStd_SequenceOfReal> directly.")
+
+  Standard_DEPRECATED("GeomPlate_Array1OfSequenceOfReal is deprecated, use "
+                      "NCollection_Array1<TColStd_SequenceOfReal> directly")
 typedef NCollection_Array1<TColStd_SequenceOfReal> GeomPlate_Array1OfSequenceOfReal;
 
-#endif
+#endif // _GeomPlate_Array1OfSequenceOfReal_hxx

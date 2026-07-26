@@ -21,13 +21,13 @@
 /**
  * Dynamically resizable sparse array of objects
  *
- * This class is similar to NCollection_Vector: it works like virtually
+ * This class is similar to NCollection_DynamicArray: it works like virtually
  * unlimited array of items accessible by index; however unlike simple
  * Vector it distinguishes items that have been set from the ones that
  * have not been set explicitly.
  *
  * This class can be also seen as equivalence of
- * NCollection_DataMap<Standard_Integer,TheItemType>
+ * NCollection_DataMap<int,TheItemType>
  * with the only one practical difference: it can be much less
  * memory-expensive if items are small (e.g. Integer or Handle).
  *
@@ -48,53 +48,59 @@ class NCollection_SparseArray : public NCollection_SparseArrayBase
 {
 public:
   //! Constructor; accepts size of blocks
-  explicit NCollection_SparseArray(Standard_Size theIncrement)
-      : NCollection_SparseArrayBase(sizeof(TheItemType), theIncrement)
+  explicit NCollection_SparseArray(size_t theIncrement) noexcept
+      : NCollection_SparseArrayBase(sizeof(TheItemType), theIncrement, destroyItemImpl)
   {
   }
 
   //! Explicit assignment operator
   NCollection_SparseArray& Assign(const NCollection_SparseArray& theOther)
   {
-    this->assign(theOther);
+    if (this == &theOther)
+      return *this;
+    this->assign(theOther, createItemImpl, destroyItemImpl, copyItemImpl);
     return *this;
   }
 
   //! Exchange the data of two arrays;
   //! can be used primarily to move contents of theOther into the new array
   //! in a fast way (without creation of duplicated data)
-  void Exchange(NCollection_SparseArray& theOther) { this->exchange(theOther); }
+  void Exchange(NCollection_SparseArray& theOther) noexcept { this->exchange(theOther); }
 
-  //! Destructor
-  virtual ~NCollection_SparseArray() { Clear(); }
+  //! Clears all the data
+  void Clear() { clearItems(destroyItemImpl); }
 
 public:
   //!@name Array-like interface (in addition to inherited methods)
   //!@{
 
   //! Direct const access to the item
-  const TheItemType& Value(const Standard_Size theIndex) const
+  const TheItemType& Value(const size_t theIndex) const
   {
     return *(const TheItemType*)this->getValue(theIndex);
   }
 
   //! Const access to the item - operator()
-  const TheItemType& operator()(const Standard_Size theIndex) const { return Value(theIndex); }
+  const TheItemType& operator()(const size_t theIndex) const { return Value(theIndex); }
 
   //! Modification access to the item
-  TheItemType& ChangeValue(const Standard_Size theIndex)
+  TheItemType& ChangeValue(const size_t theIndex)
   {
     return *(TheItemType*)(this->getValue(theIndex));
   }
 
   //! Access to the item - operator()
-  TheItemType& operator()(const Standard_Size theIndex) { return ChangeValue(theIndex); }
+  TheItemType& operator()(const size_t theIndex) { return ChangeValue(theIndex); }
 
   //! Set a value at specified index method
-  TheItemType& SetValue(const Standard_Size theIndex, const TheItemType& theValue)
+  TheItemType& SetValue(const size_t theIndex, const TheItemType& theValue)
   {
-    return *(TheItemType*)this->setValue(theIndex, (Standard_Address)&theValue);
+    return *(TheItemType*)this->setValue(theIndex, (void*)&theValue, createItemImpl, copyItemImpl);
   }
+
+  //! Deletes the item from the array;
+  //! returns True if that item was defined
+  bool UnsetValue(const size_t theIndex) { return this->unsetValue(theIndex, destroyItemImpl); }
 
   //!@}
 
@@ -103,28 +109,28 @@ public:
   //!@{
 
   //! Returns number of items in the array
-  Standard_Size Extent() const { return Size(); }
+  size_t Extent() const noexcept { return Size(); }
 
   //! Returns True if array is empty
-  Standard_Boolean IsEmpty() const { return Size() == 0; }
+  bool IsEmpty() const noexcept { return Size() == 0; }
 
   //! Direct const access to the item
-  const TheItemType& Find(const Standard_Size theIndex) const { return Value(theIndex); }
+  const TheItemType& Find(const size_t theIndex) const { return Value(theIndex); }
 
   //! Modification access to the item
-  TheItemType& ChangeFind(const Standard_Size theIndex) { return ChangeValue(theIndex); }
+  TheItemType& ChangeFind(const size_t theIndex) { return ChangeValue(theIndex); }
 
   //! Set a value as explicit method
-  TheItemType& Bind(const Standard_Size theIndex, const TheItemType& theValue)
+  TheItemType& Bind(const size_t theIndex, const TheItemType& theValue)
   {
     return SetValue(theIndex, theValue);
   }
 
   //! Returns True if the item is defined
-  Standard_Boolean IsBound(const Standard_Size theIndex) const { return this->HasValue(theIndex); }
+  bool IsBound(const size_t theIndex) const { return this->HasValue(theIndex); }
 
   //! Remove the item from array
-  Standard_Boolean UnBind(const Standard_Size theIndex) { return this->UnsetValue(theIndex); }
+  bool UnBind(const size_t theIndex) { return UnsetValue(theIndex); }
 
   //!@}
 
@@ -138,7 +144,7 @@ public:
   {
   public:
     //! Empty constructor - for later Init
-    ConstIterator() {}
+    ConstIterator() noexcept = default;
 
     //! Constructor with initialisation
     ConstIterator(const NCollection_SparseArray& theVector)
@@ -150,13 +156,13 @@ public:
     void Init(const NCollection_SparseArray& theVector) { this->init(&theVector); }
 
     //! Constant value access
-    const TheItemType& Value(void) const { return *(const TheItemType*)this->value(); }
+    const TheItemType& Value() const { return *(const TheItemType*)this->value(); }
 
     //! Constant value access operator
-    const TheItemType& operator()(void) const { return *(const TheItemType*)this->value(); }
+    const TheItemType& operator()() const { return *(const TheItemType*)this->value(); }
 
     //! Access current index with 'a-la map' interface
-    Standard_Size Key(void) const { return Index(); }
+    size_t Key() const noexcept { return Index(); }
   };
 
   /**
@@ -166,7 +172,7 @@ public:
   {
   public:
     //! Empty constructor - for later Init
-    Iterator() {}
+    Iterator() noexcept = default;
 
     //! Constructor with initialisation
     Iterator(NCollection_SparseArray& theVector)
@@ -178,39 +184,32 @@ public:
     void Init(const NCollection_SparseArray& theVector) { this->init(&theVector); }
 
     //! Value access
-    TheItemType& ChangeValue(void) { return *(TheItemType*)this->value(); }
+    TheItemType& ChangeValue() { return *(TheItemType*)this->value(); }
 
     //! Value access operator
-    TheItemType& operator()(void) { return *(TheItemType*)this->value(); }
+    TheItemType& operator()() { return *(TheItemType*)this->value(); }
 
     //! Const access operator - the same as in parent class
-    const TheItemType& operator()(void) const { return *(const TheItemType*)this->value(); }
+    const TheItemType& operator()() const { return *(const TheItemType*)this->value(); }
   };
 
 private:
-  // Implementation of virtual methods providing type-specific behaviour
+  // Static functions providing type-specific item operations
 
-  //! Create new item at the specified address with default constructor
-  //  virtual void createItem (Standard_Address theAddress)
-  //  {
-  //    new (theAddress) TheItemType;
-  //  }
-
-  //! Create new item at the specified address with copy constructor
-  //! from existing item
-  virtual void createItem(Standard_Address theAddress, Standard_Address theOther)
+  //! Copy-construct a new item from existing item
+  static void createItemImpl(void* theAddress, void* theOther)
   {
     new (theAddress) TheItemType(*(const TheItemType*)theOther);
   }
 
-  //! Call destructor to the item at given address
-  virtual void destroyItem(Standard_Address theAddress)
+  //! Call destructor on the item at given address
+  static void destroyItemImpl(void* theAddress)
   {
     ((TheItemType*)theAddress)->TheItemType::~TheItemType();
   }
 
-  //! Call assignment operator to the item
-  virtual void copyItem(Standard_Address theAddress, Standard_Address theOther)
+  //! Call assignment operator on the item
+  static void copyItemImpl(void* theAddress, void* theOther)
   {
     (*(TheItemType*)theAddress) = *(const TheItemType*)theOther;
   }

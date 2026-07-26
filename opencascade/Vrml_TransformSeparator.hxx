@@ -25,10 +25,10 @@
 #include <Standard_OStream.hxx>
 
 //! defines a TransformSeparator node of VRML specifying group properties.
-//! This  group  node  is  similar  to  separator  node  in  that it  saves state
-//! before  traversing  its  children  and  restores  it  afterwards.
-//! This  node  can  be  used  to  isolate  transformations  to  light  sources
-//! or  objects.
+//! This group node is similar to separator node in that it saves state
+//! before traversing its children and restores it afterwards.
+//! This node can be used to isolate transformations to light sources
+//! or objects.
 class Vrml_TransformSeparator
 {
 public:
@@ -38,9 +38,8 @@ public:
 
   Standard_EXPORT Standard_OStream& Print(Standard_OStream& anOStream);
 
-protected:
 private:
-  Standard_Boolean myFlagPrint;
+  bool myFlagPrint;
 };
 
 #endif // _Vrml_TransformSeparator_HeaderFile

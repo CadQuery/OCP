@@ -19,12 +19,14 @@
 
 #include <Standard.hxx>
 
-#include <Standard_Mutex.hxx>
 #include <Standard_Transient.hxx>
-#include <BRepCheck_DataMapOfShapeListOfStatus.hxx>
-#include <BRepCheck_ListOfStatus.hxx>
-
-DEFINE_STANDARD_HANDLE(BRepCheck_Result, Standard_Transient)
+#include <TopoDS_Shape.hxx>
+#include <BRepCheck_Status.hxx>
+#include <NCollection_List.hxx>
+#include <NCollection_Shared.hxx>
+#include <TopTools_ShapeMapHasher.hxx>
+#include <NCollection_DataMap.hxx>
+#include <mutex>
 
 class BRepCheck_Result : public Standard_Transient
 {
@@ -40,30 +42,31 @@ public:
 
   Standard_EXPORT void SetFailStatus(const TopoDS_Shape& S);
 
-  const BRepCheck_ListOfStatus& Status() const { return *myMap(myShape); }
+  const NCollection_List<BRepCheck_Status>& Status() const { return *myMap(myShape); }
 
-  Standard_Boolean IsMinimum() const { return myMin; }
+  bool IsMinimum() const { return myMin; }
 
-  Standard_Boolean IsBlind() const { return myBlind; }
+  bool IsBlind() const { return myBlind; }
 
   Standard_EXPORT void InitContextIterator();
 
-  Standard_Boolean MoreShapeInContext() const { return myIter.More(); }
+  bool MoreShapeInContext() const { return myIter.More(); }
 
   const TopoDS_Shape& ContextualShape() const { return myIter.Key(); }
 
-  const BRepCheck_ListOfStatus& StatusOnShape() const { return *myIter.Value(); }
+  const NCollection_List<BRepCheck_Status>& StatusOnShape() const { return *myIter.Value(); }
 
   Standard_EXPORT void NextShapeInContext();
 
-  Standard_EXPORT void SetParallel(Standard_Boolean theIsParallel);
+  //! Sets the parallel execution flag for sub-algorithms.
+  void SetParallel(const bool theIsParallel) { myIsParallel = theIsParallel; }
 
-  Standard_Boolean IsStatusOnShape(const TopoDS_Shape& theShape) const
-  {
-    return myMap.IsBound(theShape);
-  }
+  //! Returns TRUE if sub-algorithms should use parallel execution.
+  bool IsParallel() const { return myIsParallel; }
 
-  const BRepCheck_ListOfStatus& StatusOnShape(const TopoDS_Shape& theShape) const
+  bool IsStatusOnShape(const TopoDS_Shape& theShape) const { return myMap.IsBound(theShape); }
+
+  const NCollection_List<BRepCheck_Status>& StatusOnShape(const TopoDS_Shape& theShape) const
   {
     return *myMap.Find(theShape);
   }
@@ -76,17 +79,20 @@ protected:
   Standard_EXPORT BRepCheck_Result();
 
 protected:
-  TopoDS_Shape                         myShape;
-  Standard_Boolean                     myMin;
-  Standard_Boolean                     myBlind;
-  BRepCheck_DataMapOfShapeListOfStatus myMap;
-  mutable Handle(Standard_HMutex)      myMutex;
+  TopoDS_Shape myShape;
+  bool         myMin;
+  bool         myBlind;
+  bool         myIsParallel = false;
+  NCollection_DataMap<TopoDS_Shape,
+                      Handle(NCollection_Shared<NCollection_List<BRepCheck_Status>>),
+                      TopTools_ShapeMapHasher>
+                     myMap;
+  mutable std::mutex myMutex;
 
 private:
-  Standard_HMutex* GetMutex() { return myMutex.get(); }
-
-private:
-  BRepCheck_DataMapIteratorOfDataMapOfShapeListOfStatus myIter;
+  NCollection_DataMap<TopoDS_Shape,
+                      Handle(NCollection_Shared<NCollection_List<BRepCheck_Status>>),
+                      TopTools_ShapeMapHasher>::Iterator myIter;
 };
 
 #endif // _BRepCheck_Result_HeaderFile

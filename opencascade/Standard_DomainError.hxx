@@ -17,13 +17,9 @@
 #ifndef _Standard_DomainError_HeaderFile
 #define _Standard_DomainError_HeaderFile
 
-#include <Standard_Type.hxx>
 #include <Standard_DefineException.hxx>
 #include <Standard_SStream.hxx>
 #include <Standard_Failure.hxx>
-
-class Standard_DomainError;
-DEFINE_STANDARD_HANDLE(Standard_DomainError, Standard_Failure)
 
 #if !defined No_Exception && !defined No_Standard_DomainError
   #define Standard_DomainError_Raise_if(CONDITION, MESSAGE)                                        \

@@ -1,7 +1,4 @@
-// Created on: 1993-01-11
-// Created by: CKY / Contract Toubro-Larsen ( Kiran )
-// Copyright (c) 1993-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,12 +11,26 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef IGESGeom_HArray1OfCurveOnSurface_HeaderFile
-#define IGESGeom_HArray1OfCurveOnSurface_HeaderFile
+//! @file IGESGeom_HArray1OfCurveOnSurface.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection_HArray1<opencascade::handle<IGESGeom_CurveOnSurface>> directly
+//!             instead.
 
+#ifndef _IGESGeom_HArray1OfCurveOnSurface_hxx
+#define _IGESGeom_HArray1OfCurveOnSurface_hxx
+
+#include <Standard_Macro.hxx>
 #include <IGESGeom_Array1OfCurveOnSurface.hxx>
-#include <NCollection_DefineHArray1.hxx>
+#include <NCollection_HArray1.hxx>
 
-DEFINE_HARRAY1(IGESGeom_HArray1OfCurveOnSurface, IGESGeom_Array1OfCurveOnSurface)
+Standard_HEADER_DEPRECATED(
+  "IGESGeom_HArray1OfCurveOnSurface.hxx is deprecated since OCCT 8.0.0. Use "
+  "NCollection_HArray1<opencascade::handle<IGESGeom_CurveOnSurface>> directly.")
 
-#endif
+  Standard_DEPRECATED("IGESGeom_HArray1OfCurveOnSurface is deprecated, use "
+                      "NCollection_HArray1<opencascade::handle<IGESGeom_CurveOnSurface>> directly")
+typedef NCollection_HArray1<opencascade::handle<IGESGeom_CurveOnSurface>>
+  IGESGeom_HArray1OfCurveOnSurface;
+
+#endif // _IGESGeom_HArray1OfCurveOnSurface_hxx

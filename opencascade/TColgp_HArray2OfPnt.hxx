@@ -1,7 +1,4 @@
-// Created on: 1993-03-10
-// Created by: Philippe DAUTRY
-// Copyright (c) 1993-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,13 +11,23 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef TColgp_HArray2OfPnt_HeaderFile
-#define TColgp_HArray2OfPnt_HeaderFile
+//! @file TColgp_HArray2OfPnt.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection_HArray2<gp_Pnt> directly instead.
 
+#ifndef _TColgp_HArray2OfPnt_hxx
+#define _TColgp_HArray2OfPnt_hxx
+
+#include <Standard_Macro.hxx>
 #include <gp_Pnt.hxx>
 #include <TColgp_Array2OfPnt.hxx>
-#include <NCollection_DefineHArray2.hxx>
+#include <NCollection_HArray2.hxx>
 
-DEFINE_HARRAY2(TColgp_HArray2OfPnt, TColgp_Array2OfPnt)
+Standard_HEADER_DEPRECATED("TColgp_HArray2OfPnt.hxx is deprecated since OCCT 8.0.0. Use "
+                           "NCollection_HArray2<gp_Pnt> directly.")
 
-#endif
+  Standard_DEPRECATED("TColgp_HArray2OfPnt is deprecated, use NCollection_HArray2<gp_Pnt> directly")
+typedef NCollection_HArray2<gp_Pnt> TColgp_HArray2OfPnt;
+
+#endif // _TColgp_HArray2OfPnt_hxx

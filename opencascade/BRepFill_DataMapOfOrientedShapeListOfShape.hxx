@@ -1,7 +1,4 @@
-// Created on: 1994-03-03
-// Created by: Joelle CHAUVET
-// Copyright (c) 1994-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,16 +11,30 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef BRepFill_DataMapOfOrientedShapeListOfShape_HeaderFile
-#define BRepFill_DataMapOfOrientedShapeListOfShape_HeaderFile
+//! @file BRepFill_DataMapOfOrientedShapeListOfShape.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection types directly instead.
 
+#ifndef _BRepFill_DataMapOfOrientedShapeListOfShape_hxx
+#define _BRepFill_DataMapOfOrientedShapeListOfShape_hxx
+
+#include <Standard_Macro.hxx>
 #include <TopoDS_Shape.hxx>
 #include <TopTools_ListOfShape.hxx>
 #include <NCollection_DataMap.hxx>
 
+Standard_HEADER_DEPRECATED("BRepFill_DataMapOfOrientedShapeListOfShape.hxx is deprecated since "
+                           "OCCT 8.0.0. Use NCollection types directly.")
+
+  Standard_DEPRECATED("BRepFill_DataMapOfOrientedShapeListOfShape is deprecated, use "
+                      "NCollection_DataMap<TopoDS_Shape, TopTools_ListOfShape> directly")
 typedef NCollection_DataMap<TopoDS_Shape, TopTools_ListOfShape>
   BRepFill_DataMapOfOrientedShapeListOfShape;
+Standard_DEPRECATED(
+  "BRepFill_DataMapIteratorOfDataMapOfOrientedShapeListOfShape is deprecated, use "
+  "NCollection_DataMap<TopoDS_Shape, TopTools_ListOfShape>::Iterator directly")
 typedef NCollection_DataMap<TopoDS_Shape, TopTools_ListOfShape>::Iterator
   BRepFill_DataMapIteratorOfDataMapOfOrientedShapeListOfShape;
 
-#endif
+#endif // _BRepFill_DataMapOfOrientedShapeListOfShape_hxx

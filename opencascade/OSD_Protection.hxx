@@ -23,10 +23,10 @@
 
 #include <OSD_SingleProtection.hxx>
 
-//! This  class provides data to manage file protection
-//! Example:These rights are treated in a system dependent manner :
+//! This class provides data to manage file protection
+//! Example:These rights are treated in a system dependent manner:
 //! On UNIX you have User,Group and Other rights
-//! On VMS  you have Owner,Group,World and System rights
+//! On VMS you have Owner,Group,World and System rights
 //! An automatic conversion is done between OSD and UNIX/VMS.
 //!
 //! OSD	VMS	UNIX
@@ -99,12 +99,12 @@ public:
 
   //! Add a right to a single protection.
   //! ex: aProt = RWD
-  //! me.Add(aProt,X)  ->  aProt = RWXD
+  //! me.Add(aProt,X)  -> aProt = RWXD
   Standard_EXPORT void Add(OSD_SingleProtection& aProt, const OSD_SingleProtection aRight);
 
   //! Subtract a right to a single protection.
   //! ex: aProt = RWD
-  //! me.Sub(aProt,RW) ->  aProt = D
+  //! me.Sub(aProt,RW) -> aProt = D
   //! But me.Sub(aProt,RWX) is also valid and gives same result.
   Standard_EXPORT void Sub(OSD_SingleProtection& aProt, const OSD_SingleProtection aRight);
 
@@ -112,11 +112,10 @@ public:
   friend class OSD_File;
   friend class OSD_Directory;
 
-protected:
 private:
   //! Returns System dependent access rights
   //! this is a private method.
-  Standard_EXPORT Standard_Integer Internal() const;
+  Standard_EXPORT int Internal() const;
 
   OSD_SingleProtection s;
   OSD_SingleProtection u;

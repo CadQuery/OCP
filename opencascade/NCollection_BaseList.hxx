@@ -29,8 +29,10 @@
 #include <NCollection_DefineAlloc.hxx>
 #include <NCollection_ListNode.hxx>
 
+#include <utility>
+
 typedef void (*NCollection_DelListNode)(NCollection_ListNode*,
-                                        Handle(NCollection_BaseAllocator)& theAl);
+                                        occ::handle<NCollection_BaseAllocator>& theAl);
 
 // ********************************************************** BaseList class
 class NCollection_BaseList
@@ -45,43 +47,40 @@ public:
   {
   public:
     // ******** Empty constructor
-    Iterator(void)
-        : myCurrent(NULL),
-          myPrevious(NULL)
+    Iterator() noexcept
+        : myCurrent(nullptr),
+          myPrevious(nullptr)
     {
     }
 
     // ******** Constructor with initialisation
-    Iterator(const NCollection_BaseList& theList)
+    Iterator(const NCollection_BaseList& theList) noexcept
         : myCurrent(theList.myFirst),
-          myPrevious(NULL)
+          myPrevious(nullptr)
     {
     }
 
     // ******** Initialisation
-    void Init(const NCollection_BaseList& theList)
+    void Init(const NCollection_BaseList& theList) noexcept
     {
       myCurrent  = theList.myFirst;
-      myPrevious = NULL;
+      myPrevious = nullptr;
     }
 
     // ******** Initialisation
-    void Initialize(const NCollection_BaseList& theList) { Init(theList); }
+    void Initialize(const NCollection_BaseList& theList) noexcept { Init(theList); }
 
     // ******** More
-    Standard_Boolean More(void) const { return (myCurrent != NULL); }
+    bool More() const noexcept { return (myCurrent != nullptr); }
 
     // ******** Comparison operator
-    Standard_Boolean operator==(const Iterator& theIt) const
-    {
-      return myCurrent == theIt.myCurrent;
-    }
+    bool operator==(const Iterator& theIt) const noexcept { return myCurrent == theIt.myCurrent; }
 
     //! Performs comparison of two iterators
-    Standard_Boolean IsEqual(const Iterator& theOther) const { return *this == theOther; }
+    bool IsEqual(const Iterator& theOther) const noexcept { return *this == theOther; }
 
   protected:
-    void Init(const NCollection_BaseList& theList, NCollection_ListNode* const thePrev)
+    void Init(const NCollection_BaseList& theList, NCollection_ListNode* const thePrev) noexcept
     {
       myCurrent  = thePrev ? thePrev->Next() : (NCollection_ListNode*)theList.PLast();
       myPrevious = thePrev;
@@ -97,28 +96,34 @@ public:
   // ---------- PUBLIC METHODS ------------
   // ******** Extent
   // Purpose: Returns the number of nodes in the list
-  Standard_Integer Extent(void) const { return myLength; }
+  int Extent() const noexcept { return static_cast<int>(myLength); }
+
+  //! Length - number of nodes (legacy int-returning API, synonym of Extent()).
+  int Length() const noexcept { return static_cast<int>(myLength); }
+
+  //! Size - number of nodes.
+  size_t Size() const noexcept { return myLength; }
 
   // ******** IsEmpty
   // Purpose: Query if the list is empty
-  Standard_Boolean IsEmpty(void) const { return (myFirst == NULL); }
+  bool IsEmpty() const noexcept { return (myFirst == nullptr); }
 
   // ******** Allocator
   //! Returns attached allocator
-  const Handle(NCollection_BaseAllocator)& Allocator() const { return myAllocator; }
+  const occ::handle<NCollection_BaseAllocator>& Allocator() const noexcept { return myAllocator; }
 
   // ******** Destructor
   // Purpose: defines virtual interface
-  virtual ~NCollection_BaseList(void) {}
+  virtual ~NCollection_BaseList() = default;
 
 protected:
   // --------- PROTECTED METHODS ----------
 
   // ******** Constructor
   // Purpose: Initializes an empty list
-  NCollection_BaseList(const Handle(NCollection_BaseAllocator)& theAllocator = 0L)
-      : myFirst(NULL),
-        myLast(NULL),
+  NCollection_BaseList(const occ::handle<NCollection_BaseAllocator>& theAllocator = nullptr)
+      : myFirst(nullptr),
+        myLast(nullptr),
         myLength(0)
   {
     myAllocator =
@@ -131,19 +136,19 @@ protected:
 
   // ******** PFirst
   // Purpose: Returns pointer to the first node
-  const NCollection_ListNode* PFirst(void) const { return myFirst; }
+  const NCollection_ListNode* PFirst() const noexcept { return myFirst; }
 
   // ******** PLast
   // Purpose: Returns pointer to the last node
-  const NCollection_ListNode* PLast(void) const { return myLast; }
+  const NCollection_ListNode* PLast() const noexcept { return myLast; }
 
   // ******** PAppend
   // Purpose: Appends theNode at the end
-  Standard_EXPORT void PAppend(NCollection_ListNode* theNode);
+  Standard_EXPORT void PAppend(NCollection_ListNode* theNode) noexcept;
 
   // ******** PAppend
   // Purpose: Appends theNode at the end, returns iterator to the previous
-  void PAppend(NCollection_ListNode* theNode, Iterator& theIt)
+  void PAppend(NCollection_ListNode* theNode, Iterator& theIt) noexcept
   {
     NCollection_ListNode* aPrev = myLast;
     PAppend(theNode);
@@ -152,15 +157,15 @@ protected:
 
   // ******** PAppend
   // Purpose: Appends theOther list at the end (clearing it)
-  Standard_EXPORT void PAppend(NCollection_BaseList& theOther);
+  Standard_EXPORT void PAppend(NCollection_BaseList& theOther) noexcept;
 
   // ******** PPrepend
   // Purpose: Prepends theNode at the beginning
-  Standard_EXPORT void PPrepend(NCollection_ListNode* theNode);
+  Standard_EXPORT void PPrepend(NCollection_ListNode* theNode) noexcept;
 
   // ******** PPrepend
   // Purpose: Prepends theOther list at the beginning (clearing it)
-  Standard_EXPORT void PPrepend(NCollection_BaseList& theOther);
+  Standard_EXPORT void PPrepend(NCollection_BaseList& theOther) noexcept;
 
   // ******** PRemoveFirst
   // Purpose: Removes first node
@@ -188,14 +193,26 @@ protected:
 
   // ******** PReverse
   // Purpose: Reverse the list
-  Standard_EXPORT void PReverse();
+  Standard_EXPORT void PReverse() noexcept;
+
+  // ******** PExchange
+  // Purpose: Exchange contents with another list.
+  //          Swaps all internal state including allocators, ensuring that
+  //          nodes are always deallocated by their original allocator.
+  void PExchange(NCollection_BaseList& theOther) noexcept
+  {
+    std::swap(myAllocator, theOther.myAllocator);
+    std::swap(myFirst, theOther.myFirst);
+    std::swap(myLast, theOther.myLast);
+    std::swap(myLength, theOther.myLength);
+  }
 
 protected:
   // ------------ PROTECTED FIELDS ------------
-  Handle(NCollection_BaseAllocator) myAllocator;
-  NCollection_ListNode*             myFirst;  // Pointer to the head
-  NCollection_ListNode*             myLast;   // Pointer to the tail
-  Standard_Integer                  myLength; // Actual length
+  occ::handle<NCollection_BaseAllocator> myAllocator;
+  NCollection_ListNode*                  myFirst;  // Pointer to the head
+  NCollection_ListNode*                  myLast;   // Pointer to the tail
+  size_t                                 myLength; // Actual length
 
   // ------------ FRIEND CLASSES ------------
   friend class Iterator;

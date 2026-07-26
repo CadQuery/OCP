@@ -1,7 +1,4 @@
-// Created on: 1993-07-28
-// Created by: Martine LANGLOIS
-// Copyright (c) 1993-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,16 +11,31 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef StepToTopoDS_PointVertexMap_HeaderFile
-#define StepToTopoDS_PointVertexMap_HeaderFile
+//! @file StepToTopoDS_PointVertexMap.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection types directly instead.
 
+#ifndef _StepToTopoDS_PointVertexMap_hxx
+#define _StepToTopoDS_PointVertexMap_hxx
+
+#include <Standard_Macro.hxx>
 #include <StepGeom_CartesianPoint.hxx>
 #include <TopoDS_Vertex.hxx>
 #include <NCollection_DataMap.hxx>
 
-typedef NCollection_DataMap<Handle(StepGeom_CartesianPoint), TopoDS_Vertex>
+Standard_HEADER_DEPRECATED(
+  "StepToTopoDS_PointVertexMap.hxx is deprecated since OCCT 8.0.0. Use NCollection types directly.")
+
+  Standard_DEPRECATED(
+    "StepToTopoDS_PointVertexMap is deprecated, use "
+    "NCollection_DataMap<opencascade::handle<StepGeom_CartesianPoint>, TopoDS_Vertex> directly")
+typedef NCollection_DataMap<opencascade::handle<StepGeom_CartesianPoint>, TopoDS_Vertex>
   StepToTopoDS_PointVertexMap;
-typedef NCollection_DataMap<Handle(StepGeom_CartesianPoint), TopoDS_Vertex>::Iterator
+Standard_DEPRECATED("StepToTopoDS_DataMapIteratorOfPointVertexMap is deprecated, use "
+                    "NCollection_DataMap<opencascade::handle<StepGeom_CartesianPoint>, "
+                    "TopoDS_Vertex>::Iterator directly")
+typedef NCollection_DataMap<opencascade::handle<StepGeom_CartesianPoint>, TopoDS_Vertex>::Iterator
   StepToTopoDS_DataMapIteratorOfPointVertexMap;
 
-#endif
+#endif // _StepToTopoDS_PointVertexMap_hxx

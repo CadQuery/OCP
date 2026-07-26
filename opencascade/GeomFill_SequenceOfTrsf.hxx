@@ -1,7 +1,4 @@
-// Created on: 1993-09-28
-// Created by: Bruno DUMORTIER
-// Copyright (c) 1993-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,12 +11,23 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef GeomFill_SequenceOfTrsf_HeaderFile
-#define GeomFill_SequenceOfTrsf_HeaderFile
+//! @file GeomFill_SequenceOfTrsf.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection_Sequence<gp_Trsf> directly instead.
 
+#ifndef _GeomFill_SequenceOfTrsf_hxx
+#define _GeomFill_SequenceOfTrsf_hxx
+
+#include <Standard_Macro.hxx>
 #include <gp_Trsf.hxx>
 #include <NCollection_Sequence.hxx>
 
+Standard_HEADER_DEPRECATED("GeomFill_SequenceOfTrsf.hxx is deprecated since OCCT 8.0.0. Use "
+                           "NCollection_Sequence<gp_Trsf> directly.")
+
+  Standard_DEPRECATED(
+    "GeomFill_SequenceOfTrsf is deprecated, use NCollection_Sequence<gp_Trsf> directly")
 typedef NCollection_Sequence<gp_Trsf> GeomFill_SequenceOfTrsf;
 
-#endif
+#endif // _GeomFill_SequenceOfTrsf_hxx

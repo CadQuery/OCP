@@ -17,6 +17,7 @@
 #define _IMeshTools_ModelAlgo_HeaderFile
 
 #include <Standard_Transient.hxx>
+#include <Standard_ErrorHandler.hxx>
 #include <Message_ProgressRange.hxx>
 
 class IMeshData_Model;
@@ -27,12 +28,12 @@ class IMeshTools_ModelAlgo : public Standard_Transient
 {
 public:
   //! Destructor.
-  virtual ~IMeshTools_ModelAlgo() {}
+  ~IMeshTools_ModelAlgo() override = default;
 
   //! Exceptions protected processing of the given model.
-  Standard_Boolean Perform(const Handle(IMeshData_Model)& theModel,
-                           const IMeshTools_Parameters&   theParameters,
-                           const Message_ProgressRange&   theRange)
+  bool Perform(const occ::handle<IMeshData_Model>& theModel,
+               const IMeshTools_Parameters&        theParameters,
+               const Message_ProgressRange&        theRange)
   {
     try
     {
@@ -42,7 +43,7 @@ public:
     }
     catch (Standard_Failure const&)
     {
-      return Standard_False;
+      return false;
     }
   }
 
@@ -53,10 +54,9 @@ protected:
   IMeshTools_ModelAlgo() {}
 
   //! Performs processing of the given model.
-  Standard_EXPORT virtual Standard_Boolean performInternal(
-    const Handle(IMeshData_Model)& theModel,
-    const IMeshTools_Parameters&   theParameters,
-    const Message_ProgressRange&   theRange) = 0;
+  Standard_EXPORT virtual bool performInternal(const occ::handle<IMeshData_Model>& theModel,
+                                               const IMeshTools_Parameters&        theParameters,
+                                               const Message_ProgressRange&        theRange) = 0;
 };
 
 #endif

@@ -1,7 +1,4 @@
-// Created on: 1995-12-01
-// Created by: EXPRESS->CDL V0.2 Translator
-// Copyright (c) 1995-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,12 +11,23 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef StepAP214_HArray1OfDateItem_HeaderFile
-#define StepAP214_HArray1OfDateItem_HeaderFile
+//! @file StepAP214_HArray1OfDateItem.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection_HArray1<StepAP214_DateItem> directly instead.
 
+#ifndef _StepAP214_HArray1OfDateItem_hxx
+#define _StepAP214_HArray1OfDateItem_hxx
+
+#include <Standard_Macro.hxx>
 #include <StepAP214_Array1OfDateItem.hxx>
-#include <NCollection_DefineHArray1.hxx>
+#include <NCollection_HArray1.hxx>
 
-DEFINE_HARRAY1(StepAP214_HArray1OfDateItem, StepAP214_Array1OfDateItem)
+Standard_HEADER_DEPRECATED("StepAP214_HArray1OfDateItem.hxx is deprecated since OCCT 8.0.0. Use "
+                           "NCollection_HArray1<StepAP214_DateItem> directly.")
 
-#endif
+  Standard_DEPRECATED("StepAP214_HArray1OfDateItem is deprecated, use "
+                      "NCollection_HArray1<StepAP214_DateItem> directly")
+typedef NCollection_HArray1<StepAP214_DateItem> StepAP214_HArray1OfDateItem;
+
+#endif // _StepAP214_HArray1OfDateItem_hxx

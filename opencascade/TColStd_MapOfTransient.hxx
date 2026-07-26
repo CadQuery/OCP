@@ -1,5 +1,4 @@
-// Copyright (c) 1998-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -12,13 +11,27 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef TColStd_MapOfTransient_HeaderFile
-#define TColStd_MapOfTransient_HeaderFile
+//! @file TColStd_MapOfTransient.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection types directly instead.
 
+#ifndef _TColStd_MapOfTransient_hxx
+#define _TColStd_MapOfTransient_hxx
+
+#include <Standard_Macro.hxx>
 #include <Standard_Transient.hxx>
 #include <NCollection_Map.hxx>
 
-typedef NCollection_Map<Handle(Standard_Transient)>           TColStd_MapOfTransient;
-typedef NCollection_Map<Handle(Standard_Transient)>::Iterator TColStd_MapIteratorOfMapOfTransient;
+Standard_HEADER_DEPRECATED(
+  "TColStd_MapOfTransient.hxx is deprecated since OCCT 8.0.0. Use NCollection types directly.")
 
-#endif
+  Standard_DEPRECATED("TColStd_MapOfTransient is deprecated, use "
+                      "NCollection_Map<opencascade::handle<Standard_Transient>> directly")
+typedef NCollection_Map<opencascade::handle<Standard_Transient>> TColStd_MapOfTransient;
+Standard_DEPRECATED("TColStd_MapIteratorOfMapOfTransient is deprecated, use "
+                    "NCollection_Map<opencascade::handle<Standard_Transient>>::Iterator directly")
+typedef NCollection_Map<opencascade::handle<Standard_Transient>>::Iterator
+  TColStd_MapIteratorOfMapOfTransient;
+
+#endif // _TColStd_MapOfTransient_hxx

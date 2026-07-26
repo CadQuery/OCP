@@ -20,10 +20,12 @@
 #include <Standard.hxx>
 #include <Standard_DefineAlloc.hxx>
 
-#include <BRepTopAdaptor_SeqOfPtr.hxx>
-#include <TColStd_SequenceOfInteger.hxx>
+#include <CSLib_Class2d.hxx>
+#include <NCollection_Sequence.hxx>
+#include <Standard_Integer.hxx>
 #include <TopoDS_Face.hxx>
 #include <TopAbs_State.hxx>
+
 class gp_Pnt2d;
 
 class BRepTopAdaptor_FClass2d
@@ -31,12 +33,12 @@ class BRepTopAdaptor_FClass2d
 public:
   DEFINE_STANDARD_ALLOC
 
-  Standard_EXPORT BRepTopAdaptor_FClass2d(const TopoDS_Face& F, const Standard_Real Tol);
+  Standard_EXPORT BRepTopAdaptor_FClass2d(const TopoDS_Face& F, const double Tol);
 
   Standard_EXPORT TopAbs_State PerformInfinitePoint() const;
 
-  Standard_EXPORT TopAbs_State
-    Perform(const gp_Pnt2d& Puv, const Standard_Boolean RecadreOnPeriodic = Standard_True) const;
+  Standard_EXPORT TopAbs_State Perform(const gp_Pnt2d& Puv,
+                                       const bool      RecadreOnPeriodic = true) const;
 
   Standard_EXPORT void Destroy();
 
@@ -51,26 +53,24 @@ public:
 
   //! Test a point with +- an offset (Tol) and returns
   //! On if some points are OUT an some are IN
-  //! (Caution: Internal use . see the code for more details)
-  Standard_EXPORT TopAbs_State
-    TestOnRestriction(const gp_Pnt2d&        Puv,
-                      const Standard_Real    Tol,
-                      const Standard_Boolean RecadreOnPeriodic = Standard_True) const;
+  //! (Caution: Internal use. see the code for more details)
+  Standard_EXPORT TopAbs_State TestOnRestriction(const gp_Pnt2d& Puv,
+                                                 const double    Tol,
+                                                 const bool      RecadreOnPeriodic = true) const;
 
-protected:
 private:
-  BRepTopAdaptor_SeqOfPtr   TabClass;
-  TColStd_SequenceOfInteger TabOrien;
-  Standard_Real             Toluv;
-  TopoDS_Face               Face;
-  Standard_Real             U1;
-  Standard_Real             V1;
-  Standard_Real             U2;
-  Standard_Real             V2;
-  Standard_Real             Umin;
-  Standard_Real             Umax;
-  Standard_Real             Vmin;
-  Standard_Real             Vmax;
+  NCollection_Sequence<CSLib_Class2d> TabClass;
+  NCollection_Sequence<int>           TabOrien;
+  double                              Toluv;
+  TopoDS_Face                         Face;
+  double                              U1;
+  double                              V1;
+  double                              U2;
+  double                              V2;
+  double                              Umin;
+  double                              Umax;
+  double                              Vmin;
+  double                              Vmax;
 };
 
 #endif // _BRepTopAdaptor_FClass2d_HeaderFile

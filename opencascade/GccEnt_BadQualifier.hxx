@@ -17,13 +17,9 @@
 #ifndef _GccEnt_BadQualifier_HeaderFile
 #define _GccEnt_BadQualifier_HeaderFile
 
-#include <Standard_Type.hxx>
 #include <Standard_DefineException.hxx>
 #include <Standard_SStream.hxx>
 #include <Standard_DomainError.hxx>
-
-class GccEnt_BadQualifier;
-DEFINE_STANDARD_HANDLE(GccEnt_BadQualifier, Standard_DomainError)
 
 #if !defined No_Exception && !defined No_GccEnt_BadQualifier
   #define GccEnt_BadQualifier_Raise_if(CONDITION, MESSAGE)                                         \

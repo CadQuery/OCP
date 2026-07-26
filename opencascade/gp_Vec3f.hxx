@@ -1,6 +1,4 @@
-// Created on: 2021-02-16
-// Copyright (c) 2021 OPEN CASCADE SAS
-// Created by: Vlad Romashko
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -13,11 +11,21 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef gp_Vec3f_HeaderFile
-#define gp_Vec3f_HeaderFile
+//! @file gp_Vec3f.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection_Vec3<float> directly instead.
 
+#ifndef _gp_Vec3f_hxx
+#define _gp_Vec3f_hxx
+
+#include <Standard_Macro.hxx>
 #include <NCollection_Vec3.hxx>
 
-typedef NCollection_Vec3<Standard_ShortReal> gp_Vec3f;
+Standard_HEADER_DEPRECATED(
+  "gp_Vec3f.hxx is deprecated since OCCT 8.0.0. Use NCollection_Vec3<float> directly.")
 
-#endif
+  Standard_DEPRECATED("gp_Vec3f is deprecated, use NCollection_Vec3<float> directly")
+typedef NCollection_Vec3<float> gp_Vec3f;
+
+#endif // _gp_Vec3f_hxx

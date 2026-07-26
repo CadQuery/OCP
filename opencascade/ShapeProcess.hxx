@@ -20,9 +20,10 @@
 #include <Standard.hxx>
 #include <Standard_DefineAlloc.hxx>
 #include <Standard_Handle.hxx>
+#include <NCollection_LinearVector.hxx>
 
 #include <bitset>
-#include <vector>
+#include <utility>
 
 class ShapeProcess_Operator;
 class ShapeProcess_Context;
@@ -74,20 +75,20 @@ public:
 
 public:
   //! Registers operator to make it visible for Performer
-  Standard_EXPORT static Standard_Boolean RegisterOperator(const Standard_CString name,
-                                                           const Handle(ShapeProcess_Operator)& op);
+  Standard_EXPORT static bool RegisterOperator(const char* const                         name,
+                                               const occ::handle<ShapeProcess_Operator>& op);
 
   //! Finds operator by its name
-  Standard_EXPORT static Standard_Boolean FindOperator(const Standard_CString         name,
-                                                       Handle(ShapeProcess_Operator)& op);
+  Standard_EXPORT static bool FindOperator(const char* const                   name,
+                                           occ::handle<ShapeProcess_Operator>& op);
 
   //! Performs a specified sequence of operators on Context
   //! Resource file and other data should be already loaded
   //! to Context (including description of sequence seq)
-  Standard_EXPORT static Standard_Boolean Perform(
-    const Handle(ShapeProcess_Context)& context,
-    const Standard_CString              seq,
-    const Message_ProgressRange&        theProgress = Message_ProgressRange());
+  Standard_EXPORT static bool Perform(
+    const occ::handle<ShapeProcess_Context>& context,
+    const char* const                        seq,
+    const Message_ProgressRange&             theProgress = Message_ProgressRange());
 
   //! Performs a specified sequence of operators on @p theContext.
   //! @param theContext Context to perform operations on. Contains the shape to process
@@ -97,10 +98,10 @@ public:
   //! @param theOperations Bitset of operations to perform.
   //! @param theProgress Progress indicator.
   //! @return true if at least one operation was performed, false otherwise.
-  Standard_EXPORT static Standard_Boolean Perform(
-    const Handle(ShapeProcess_Context)& theContext,
-    const OperationsFlags&              theOperations,
-    const Message_ProgressRange&        theProgress = Message_ProgressRange());
+  Standard_EXPORT static bool Perform(
+    const occ::handle<ShapeProcess_Context>& theContext,
+    const OperationsFlags&                   theOperations,
+    const Message_ProgressRange&             theProgress = Message_ProgressRange());
 
   //! Converts operation name to operation flag.
   //! @param theName Operation name.
@@ -111,8 +112,8 @@ private:
   //! Returns operators to be performed according to the specified flags.
   //! @param theFlags Bitset of operations flags.
   //! @return List of operators to perform: pairs of operator name and operator handle.
-  static std::vector<std::pair<const char*, Handle(ShapeProcess_Operator)>> getOperators(
-    const OperationsFlags& theFlags);
+  static NCollection_LinearVector<std::pair<const char*, occ::handle<ShapeProcess_Operator>>>
+    getOperators(const OperationsFlags& theFlags);
 
   //! Converts operation flag to its name.
   //! @param theOperation Operation flag.

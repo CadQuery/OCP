@@ -1,5 +1,4 @@
-// Copyright (c) 1998-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -12,13 +11,24 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef TShort_HSequenceOfShortReal_HeaderFile
-#define TShort_HSequenceOfShortReal_HeaderFile
+//! @file TShort_HSequenceOfShortReal.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection_HSequence<float> directly instead.
 
+#ifndef _TShort_HSequenceOfShortReal_hxx
+#define _TShort_HSequenceOfShortReal_hxx
+
+#include <Standard_Macro.hxx>
 #include <Standard_ShortReal.hxx>
 #include <TShort_SequenceOfShortReal.hxx>
-#include <NCollection_DefineHSequence.hxx>
+#include <NCollection_HSequence.hxx>
 
-DEFINE_HSEQUENCE(TShort_HSequenceOfShortReal, TShort_SequenceOfShortReal)
+Standard_HEADER_DEPRECATED("TShort_HSequenceOfShortReal.hxx is deprecated since OCCT 8.0.0. Use "
+                           "NCollection_HSequence<float> directly.")
 
-#endif
+  Standard_DEPRECATED(
+    "TShort_HSequenceOfShortReal is deprecated, use NCollection_HSequence<float> directly")
+typedef NCollection_HSequence<float> TShort_HSequenceOfShortReal;
+
+#endif // _TShort_HSequenceOfShortReal_hxx

@@ -1,7 +1,4 @@
-// Created on: 1996-03-05
-// Created by: Joelle CHAUVET
-// Copyright (c) 1996-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,12 +11,23 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef AdvApp2Var_SequenceOfStrip_HeaderFile
-#define AdvApp2Var_SequenceOfStrip_HeaderFile
+//! @file AdvApp2Var_SequenceOfStrip.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection_Sequence<AdvApp2Var_Strip> directly instead.
 
+#ifndef _AdvApp2Var_SequenceOfStrip_hxx
+#define _AdvApp2Var_SequenceOfStrip_hxx
+
+#include <Standard_Macro.hxx>
 #include <AdvApp2Var_Strip.hxx>
 #include <NCollection_Sequence.hxx>
 
+Standard_HEADER_DEPRECATED("AdvApp2Var_SequenceOfStrip.hxx is deprecated since OCCT 8.0.0. Use "
+                           "NCollection_Sequence<AdvApp2Var_Strip> directly.")
+
+  Standard_DEPRECATED(
+    "AdvApp2Var_SequenceOfStrip is deprecated, use NCollection_Sequence<AdvApp2Var_Strip> directly")
 typedef NCollection_Sequence<AdvApp2Var_Strip> AdvApp2Var_SequenceOfStrip;
 
-#endif
+#endif // _AdvApp2Var_SequenceOfStrip_hxx

@@ -1,7 +1,4 @@
-// Created on: 1991-07-18
-// Created by: Arnaud BOUZY
-// Copyright (c) 1991-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,14 +11,29 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef ExprIntrp_StackOfGeneralRelation_HeaderFile
-#define ExprIntrp_StackOfGeneralRelation_HeaderFile
+//! @file ExprIntrp_StackOfGeneralRelation.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection types directly instead.
 
+#ifndef _ExprIntrp_StackOfGeneralRelation_hxx
+#define _ExprIntrp_StackOfGeneralRelation_hxx
+
+#include <Standard_Macro.hxx>
 #include <Expr_GeneralRelation.hxx>
 #include <NCollection_List.hxx>
 
-typedef NCollection_List<Handle(Expr_GeneralRelation)> ExprIntrp_StackOfGeneralRelation;
-typedef NCollection_List<Handle(Expr_GeneralRelation)>::Iterator
+Standard_HEADER_DEPRECATED("ExprIntrp_StackOfGeneralRelation.hxx is deprecated since OCCT 8.0.0. "
+                           "Use NCollection types directly.")
+
+  Standard_DEPRECATED("ExprIntrp_StackOfGeneralRelation is deprecated, use "
+                      "NCollection_List<opencascade::handle<Expr_GeneralRelation>> directly")
+typedef NCollection_List<opencascade::handle<Expr_GeneralRelation>>
+  ExprIntrp_StackOfGeneralRelation;
+Standard_DEPRECATED(
+  "ExprIntrp_ListIteratorOfStackOfGeneralRelation is deprecated, use "
+  "NCollection_List<opencascade::handle<Expr_GeneralRelation>>::Iterator directly")
+typedef NCollection_List<opencascade::handle<Expr_GeneralRelation>>::Iterator
   ExprIntrp_ListIteratorOfStackOfGeneralRelation;
 
-#endif
+#endif // _ExprIntrp_StackOfGeneralRelation_hxx

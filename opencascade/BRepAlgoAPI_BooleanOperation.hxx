@@ -46,8 +46,8 @@ class TopoDS_Shape;
 //! - For Boolean operation *SECTION* the arguments can be of any type.
 //!
 //! Additionally to the errors of the base class the algorithm returns
-//! the following Errors:<br>
-//! - *BOPAlgo_AlertBOPNotSet* - in case the type of Boolean Operation is not set.<br>
+//! the following Errors:
+//! - *BOPAlgo_AlertBOPNotSet* - in case the type of Boolean Operation is not set.
 class BRepAlgoAPI_BooleanOperation : public BRepAlgoAPI_BuilderAlgo
 {
 public:
@@ -70,10 +70,10 @@ public: //! @name Setting/getting arguments
   const TopoDS_Shape& Shape2() const { return myTools.First(); }
 
   //! Sets the Tool arguments
-  void SetTools(const TopTools_ListOfShape& theLS) { myTools = theLS; }
+  void SetTools(const NCollection_List<TopoDS_Shape>& theLS) { myTools = theLS; }
 
   //! Returns the Tools arguments
-  const TopTools_ListOfShape& Tools() const { return myTools; }
+  const NCollection_List<TopoDS_Shape>& Tools() const { return myTools; }
 
 public: //! @name Setting/Getting the type of Boolean operation
   //! Sets the type of Boolean operation
@@ -84,8 +84,8 @@ public: //! @name Setting/Getting the type of Boolean operation
 
 public: //! @name Performing the operation
   //! Performs the Boolean operation.
-  Standard_EXPORT virtual void Build(
-    const Message_ProgressRange& theRange = Message_ProgressRange()) Standard_OVERRIDE;
+  Standard_EXPORT void Build(
+    const Message_ProgressRange& theRange = Message_ProgressRange()) override;
 
 protected: //! @name Constructors
   //! Constructor to perform Boolean operation on only two arguments.
@@ -102,9 +102,9 @@ protected: //! @name Constructors
                                                const BOPAlgo_PaveFiller& thePF,
                                                const BOPAlgo_Operation   theOperation);
 
-protected:                          //! @name Fields
-  TopTools_ListOfShape myTools;     //!< Tool arguments of operation
-  BOPAlgo_Operation    myOperation; //!< Type of Boolean Operation
+protected:                                    //! @name Fields
+  NCollection_List<TopoDS_Shape> myTools;     //!< Tool arguments of operation
+  BOPAlgo_Operation              myOperation; //!< Type of Boolean Operation
 };
 
 #endif // _BRepAlgoAPI_BooleanOperation_HeaderFile

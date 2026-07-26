@@ -1,4 +1,4 @@
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,14 +11,26 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef StepElement_HArray2OfSurfaceElementPurpose_HeaderFile
-#define StepElement_HArray2OfSurfaceElementPurpose_HeaderFile
+//! @file StepElement_HArray2OfSurfaceElementPurpose.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection_HArray2<StepElement_SurfaceElementPurpose> directly instead.
 
+#ifndef _StepElement_HArray2OfSurfaceElementPurpose_hxx
+#define _StepElement_HArray2OfSurfaceElementPurpose_hxx
+
+#include <Standard_Macro.hxx>
 #include <StepElement_SurfaceElementPurpose.hxx>
 #include <StepElement_Array2OfSurfaceElementPurpose.hxx>
-#include <NCollection_DefineHArray2.hxx>
+#include <NCollection_HArray2.hxx>
 
-DEFINE_HARRAY2(StepElement_HArray2OfSurfaceElementPurpose,
-               StepElement_Array2OfSurfaceElementPurpose)
+Standard_HEADER_DEPRECATED(
+  "StepElement_HArray2OfSurfaceElementPurpose.hxx is deprecated since OCCT 8.0.0. Use "
+  "NCollection_HArray2<StepElement_SurfaceElementPurpose> directly.")
 
-#endif
+  Standard_DEPRECATED("StepElement_HArray2OfSurfaceElementPurpose is deprecated, use "
+                      "NCollection_HArray2<StepElement_SurfaceElementPurpose> directly")
+typedef NCollection_HArray2<StepElement_SurfaceElementPurpose>
+  StepElement_HArray2OfSurfaceElementPurpose;
+
+#endif // _StepElement_HArray2OfSurfaceElementPurpose_hxx

@@ -1,7 +1,4 @@
-// Created on: 1995-05-10
-// Created by: Denis PASCAL
-// Copyright (c) 1995-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,14 +11,27 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef TDataStd_DataMapOfStringReal_HeaderFile
-#define TDataStd_DataMapOfStringReal_HeaderFile
+//! @file TDataStd_DataMapOfStringReal.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection types directly instead.
 
+#ifndef _TDataStd_DataMapOfStringReal_hxx
+#define _TDataStd_DataMapOfStringReal_hxx
+
+#include <Standard_Macro.hxx>
 #include <TCollection_ExtendedString.hxx>
 #include <NCollection_DataMap.hxx>
 
-typedef NCollection_DataMap<TCollection_ExtendedString, Standard_Real> TDataStd_DataMapOfStringReal;
-typedef NCollection_DataMap<TCollection_ExtendedString, Standard_Real>::Iterator
+Standard_HEADER_DEPRECATED("TDataStd_DataMapOfStringReal.hxx is deprecated since OCCT 8.0.0. Use "
+                           "NCollection types directly.")
+
+  Standard_DEPRECATED("TDataStd_DataMapOfStringReal is deprecated, use "
+                      "NCollection_DataMap<TCollection_ExtendedString, double> directly")
+typedef NCollection_DataMap<TCollection_ExtendedString, double> TDataStd_DataMapOfStringReal;
+Standard_DEPRECATED("TDataStd_DataMapIteratorOfDataMapOfStringReal is deprecated, use "
+                    "NCollection_DataMap<TCollection_ExtendedString, double>::Iterator directly")
+typedef NCollection_DataMap<TCollection_ExtendedString, double>::Iterator
   TDataStd_DataMapIteratorOfDataMapOfStringReal;
 
-#endif
+#endif // _TDataStd_DataMapOfStringReal_hxx

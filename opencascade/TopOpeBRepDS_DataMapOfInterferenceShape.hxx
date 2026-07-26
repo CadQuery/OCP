@@ -1,7 +1,4 @@
-// Created on: 1993-06-17
-// Created by: Jean Yves LEBEY
-// Copyright (c) 1993-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,16 +11,31 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef TopOpeBRepDS_DataMapOfInterferenceShape_HeaderFile
-#define TopOpeBRepDS_DataMapOfInterferenceShape_HeaderFile
+//! @file TopOpeBRepDS_DataMapOfInterferenceShape.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection types directly instead.
 
+#ifndef _TopOpeBRepDS_DataMapOfInterferenceShape_hxx
+#define _TopOpeBRepDS_DataMapOfInterferenceShape_hxx
+
+#include <Standard_Macro.hxx>
 #include <TopOpeBRepDS_Interference.hxx>
 #include <TopoDS_Shape.hxx>
 #include <NCollection_DataMap.hxx>
 
-typedef NCollection_DataMap<Handle(TopOpeBRepDS_Interference), TopoDS_Shape>
+Standard_HEADER_DEPRECATED("TopOpeBRepDS_DataMapOfInterferenceShape.hxx is deprecated since OCCT "
+                           "8.0.0. Use NCollection types directly.")
+
+  Standard_DEPRECATED(
+    "TopOpeBRepDS_DataMapOfInterferenceShape is deprecated, use "
+    "NCollection_DataMap<opencascade::handle<TopOpeBRepDS_Interference>, TopoDS_Shape> directly")
+typedef NCollection_DataMap<opencascade::handle<TopOpeBRepDS_Interference>, TopoDS_Shape>
   TopOpeBRepDS_DataMapOfInterferenceShape;
-typedef NCollection_DataMap<Handle(TopOpeBRepDS_Interference), TopoDS_Shape>::Iterator
+Standard_DEPRECATED("TopOpeBRepDS_DataMapIteratorOfDataMapOfInterferenceShape is deprecated, use "
+                    "NCollection_DataMap<opencascade::handle<TopOpeBRepDS_Interference>, "
+                    "TopoDS_Shape>::Iterator directly")
+typedef NCollection_DataMap<opencascade::handle<TopOpeBRepDS_Interference>, TopoDS_Shape>::Iterator
   TopOpeBRepDS_DataMapIteratorOfDataMapOfInterferenceShape;
 
-#endif
+#endif // _TopOpeBRepDS_DataMapOfInterferenceShape_hxx

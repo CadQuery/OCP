@@ -1,7 +1,4 @@
-// Created on: 1996-03-07
-// Created by: Stagiaire Frederic CALOONE
-// Copyright (c) 1996-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,12 +11,23 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef GeomPlate_HArray1OfHCurve_HeaderFile
-#define GeomPlate_HArray1OfHCurve_HeaderFile
+//! @file GeomPlate_HArray1OfHCurve.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection_HArray1<opencascade::handle<Adaptor3d_Curve>> directly instead.
 
+#ifndef _GeomPlate_HArray1OfHCurve_hxx
+#define _GeomPlate_HArray1OfHCurve_hxx
+
+#include <Standard_Macro.hxx>
 #include <GeomPlate_Array1OfHCurve.hxx>
-#include <NCollection_DefineHArray1.hxx>
+#include <NCollection_HArray1.hxx>
 
-DEFINE_HARRAY1(GeomPlate_HArray1OfHCurve, GeomPlate_Array1OfHCurve)
+Standard_HEADER_DEPRECATED("GeomPlate_HArray1OfHCurve.hxx is deprecated since OCCT 8.0.0. Use "
+                           "NCollection_HArray1<opencascade::handle<Adaptor3d_Curve>> directly.")
 
-#endif
+  Standard_DEPRECATED("GeomPlate_HArray1OfHCurve is deprecated, use "
+                      "NCollection_HArray1<opencascade::handle<Adaptor3d_Curve>> directly")
+typedef NCollection_HArray1<opencascade::handle<Adaptor3d_Curve>> GeomPlate_HArray1OfHCurve;
+
+#endif // _GeomPlate_HArray1OfHCurve_hxx

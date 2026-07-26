@@ -1,4 +1,4 @@
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,13 +11,28 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef StepElement_HSequenceOfCurveElementSectionDefinition_HeaderFile
-#define StepElement_HSequenceOfCurveElementSectionDefinition_HeaderFile
+//! @file StepElement_HSequenceOfCurveElementSectionDefinition.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use
+//!             NCollection_HSequence<opencascade::handle<StepElement_CurveElementSectionDefinition>>
+//!             directly instead.
 
+#ifndef _StepElement_HSequenceOfCurveElementSectionDefinition_hxx
+#define _StepElement_HSequenceOfCurveElementSectionDefinition_hxx
+
+#include <Standard_Macro.hxx>
 #include <StepElement_SequenceOfCurveElementSectionDefinition.hxx>
-#include <NCollection_DefineHSequence.hxx>
+#include <NCollection_HSequence.hxx>
 
-DEFINE_HSEQUENCE(StepElement_HSequenceOfCurveElementSectionDefinition,
-                 StepElement_SequenceOfCurveElementSectionDefinition)
+Standard_HEADER_DEPRECATED(
+  "StepElement_HSequenceOfCurveElementSectionDefinition.hxx is deprecated since OCCT 8.0.0. Use "
+  "NCollection_HSequence<opencascade::handle<StepElement_CurveElementSectionDefinition>> directly.")
 
-#endif
+  Standard_DEPRECATED("StepElement_HSequenceOfCurveElementSectionDefinition is deprecated, use "
+                      "NCollection_HSequence<opencascade::handle<StepElement_"
+                      "CurveElementSectionDefinition>> directly")
+typedef NCollection_HSequence<opencascade::handle<StepElement_CurveElementSectionDefinition>>
+  StepElement_HSequenceOfCurveElementSectionDefinition;
+
+#endif // _StepElement_HSequenceOfCurveElementSectionDefinition_hxx

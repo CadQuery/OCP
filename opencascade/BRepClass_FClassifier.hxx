@@ -39,75 +39,47 @@ public:
   //! Empty constructor, undefined algorithm.
   Standard_EXPORT BRepClass_FClassifier();
 
-  //! Creates an algorithm to classify the Point  P with
+  //! Creates an algorithm to classify the Point P with
   //! Tolerance <T> on the face described by <F>.
   Standard_EXPORT BRepClass_FClassifier(BRepClass_FaceExplorer& F,
                                         const gp_Pnt2d&         P,
-                                        const Standard_Real     Tol);
+                                        const double            Tol);
 
-  //! Classify  the Point  P  with  Tolerance <T> on the
+  //! Classify the Point P with Tolerance <T> on the
   //! face described by <F>.
-  Standard_EXPORT void Perform(BRepClass_FaceExplorer& F,
-                               const gp_Pnt2d&         P,
-                               const Standard_Real     Tol);
+  Standard_EXPORT void Perform(BRepClass_FaceExplorer& F, const gp_Pnt2d& P, const double Tol);
 
   //! Returns the result of the classification.
   Standard_EXPORT TopAbs_State State() const;
 
-  //! Returns  True when  the   state was computed by  a
+  //! Returns True when the state was computed by a
   //! rejection. The state is OUT.
-  Standard_Boolean Rejected() const;
+  bool Rejected() const { return rejected; }
 
-  //! Returns True if  the face  contains  no wire.  The
+  //! Returns True if the face contains no wire. The
   //! state is IN.
-  Standard_Boolean NoWires() const;
+  bool NoWires() const { return nowires; }
 
-  //! Returns   the    Edge  used   to    determine  the
-  //! classification. When the State is ON  this  is the
+  //! Returns the Edge used to determine the
+  //! classification. When the State is ON this is the
   //! Edge containing the point.
   Standard_EXPORT const BRepClass_Edge& Edge() const;
 
-  //! Returns the parameter on Edge() used to determine  the
+  //! Returns the parameter on Edge() used to determine the
   //! classification.
-  Standard_EXPORT Standard_Real EdgeParameter() const;
+  Standard_EXPORT double EdgeParameter() const;
 
-  //! Returns the  position of  the   point on the  edge
+  //! Returns the position of the point on the edge
   //! returned by Edge.
-  IntRes2d_Position Position() const;
+  IntRes2d_Position Position() const { return myPosition; }
 
 protected:
   BRepClass_FClass2dOfFClassifier myClassifier;
   BRepClass_Edge                  myEdge;
-  Standard_Real                   myEdgeParameter;
+  double                          myEdgeParameter;
   IntRes2d_Position               myPosition;
-  Standard_Boolean                rejected;
-  Standard_Boolean                nowires;
-
-private:
+  bool                            rejected;
+  bool                            nowires;
 };
-
-#define TheFaceExplorer BRepClass_FaceExplorer
-#define TheFaceExplorer_hxx <BRepClass_FaceExplorer.hxx>
-#define TheEdge BRepClass_Edge
-#define TheEdge_hxx <BRepClass_Edge.hxx>
-#define TheIntersection2d BRepClass_Intersector
-#define TheIntersection2d_hxx <BRepClass_Intersector.hxx>
-#define TopClass_FClass2d BRepClass_FClass2dOfFClassifier
-#define TopClass_FClass2d_hxx <BRepClass_FClass2dOfFClassifier.hxx>
-#define TopClass_FaceClassifier BRepClass_FClassifier
-#define TopClass_FaceClassifier_hxx <BRepClass_FClassifier.hxx>
-
-#include <TopClass_FaceClassifier.lxx>
-
-#undef TheFaceExplorer
-#undef TheFaceExplorer_hxx
-#undef TheEdge
-#undef TheEdge_hxx
-#undef TheIntersection2d
-#undef TheIntersection2d_hxx
-#undef TopClass_FClass2d
-#undef TopClass_FClass2d_hxx
-#undef TopClass_FaceClassifier
-#undef TopClass_FaceClassifier_hxx
 
 #endif // _BRepClass_FClassifier_HeaderFile

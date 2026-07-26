@@ -17,13 +17,9 @@
 #ifndef _Expr_InvalidFunction_HeaderFile
 #define _Expr_InvalidFunction_HeaderFile
 
-#include <Standard_Type.hxx>
 #include <Standard_DefineException.hxx>
 #include <Standard_SStream.hxx>
 #include <Expr_ExprFailure.hxx>
-
-class Expr_InvalidFunction;
-DEFINE_STANDARD_HANDLE(Expr_InvalidFunction, Expr_ExprFailure)
 
 #if !defined No_Exception && !defined No_Expr_InvalidFunction
   #define Expr_InvalidFunction_Raise_if(CONDITION, MESSAGE)                                        \

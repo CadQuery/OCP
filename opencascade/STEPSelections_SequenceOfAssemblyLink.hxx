@@ -1,7 +1,4 @@
-// Created on: 1994-12-22
-// Created by: Christian CAILLET
-// Copyright (c) 1994-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,13 +11,27 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef STEPSelections_SequenceOfAssemblyLink_HeaderFile
-#define STEPSelections_SequenceOfAssemblyLink_HeaderFile
+//! @file STEPSelections_SequenceOfAssemblyLink.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection_Sequence<opencascade::handle<STEPSelections_AssemblyLink>> directly
+//!             instead.
 
+#ifndef _STEPSelections_SequenceOfAssemblyLink_hxx
+#define _STEPSelections_SequenceOfAssemblyLink_hxx
+
+#include <Standard_Macro.hxx>
 #include <STEPSelections_AssemblyLink.hxx>
 #include <NCollection_Sequence.hxx>
 
-typedef NCollection_Sequence<Handle(STEPSelections_AssemblyLink)>
+Standard_HEADER_DEPRECATED(
+  "STEPSelections_SequenceOfAssemblyLink.hxx is deprecated since OCCT 8.0.0. Use "
+  "NCollection_Sequence<opencascade::handle<STEPSelections_AssemblyLink>> directly.")
+
+  Standard_DEPRECATED(
+    "STEPSelections_SequenceOfAssemblyLink is deprecated, use "
+    "NCollection_Sequence<opencascade::handle<STEPSelections_AssemblyLink>> directly")
+typedef NCollection_Sequence<opencascade::handle<STEPSelections_AssemblyLink>>
   STEPSelections_SequenceOfAssemblyLink;
 
-#endif
+#endif // _STEPSelections_SequenceOfAssemblyLink_hxx

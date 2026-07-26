@@ -1,6 +1,4 @@
-// Created on: 2002-10-29
-// Created by: Michael SAZONOV
-// Copyright (c) 2002-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -13,15 +11,29 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef BinMDF_TypeIdMap_HeaderFile
-#define BinMDF_TypeIdMap_HeaderFile
+//! @file BinMDF_TypeIdMap.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection types directly instead.
 
+#ifndef _BinMDF_TypeIdMap_hxx
+#define _BinMDF_TypeIdMap_hxx
+
+#include <Standard_Macro.hxx>
 #include <Standard_Type.hxx>
 #include <Standard_Integer.hxx>
 #include <NCollection_DoubleMap.hxx>
 
-typedef NCollection_DoubleMap<Handle(Standard_Type), Standard_Integer> BinMDF_TypeIdMap;
-typedef NCollection_DoubleMap<Handle(Standard_Type), Standard_Integer>::Iterator
+Standard_HEADER_DEPRECATED(
+  "BinMDF_TypeIdMap.hxx is deprecated since OCCT 8.0.0. Use NCollection types directly.")
+
+  Standard_DEPRECATED("BinMDF_TypeIdMap is deprecated, use "
+                      "NCollection_DoubleMap<opencascade::handle<Standard_Type>, int> directly")
+typedef NCollection_DoubleMap<opencascade::handle<Standard_Type>, int> BinMDF_TypeIdMap;
+Standard_DEPRECATED(
+  "BinMDF_DoubleMapIteratorOfTypeIdMap is deprecated, use "
+  "NCollection_DoubleMap<opencascade::handle<Standard_Type>, int>::Iterator directly")
+typedef NCollection_DoubleMap<opencascade::handle<Standard_Type>, int>::Iterator
   BinMDF_DoubleMapIteratorOfTypeIdMap;
 
-#endif
+#endif // _BinMDF_TypeIdMap_hxx

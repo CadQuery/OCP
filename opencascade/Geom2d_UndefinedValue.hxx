@@ -17,13 +17,9 @@
 #ifndef _Geom2d_UndefinedValue_HeaderFile
 #define _Geom2d_UndefinedValue_HeaderFile
 
-#include <Standard_Type.hxx>
 #include <Standard_DefineException.hxx>
 #include <Standard_SStream.hxx>
 #include <Standard_DomainError.hxx>
-
-class Geom2d_UndefinedValue;
-DEFINE_STANDARD_HANDLE(Geom2d_UndefinedValue, Standard_DomainError)
 
 #if !defined No_Exception && !defined No_Geom2d_UndefinedValue
   #define Geom2d_UndefinedValue_Raise_if(CONDITION, MESSAGE)                                       \

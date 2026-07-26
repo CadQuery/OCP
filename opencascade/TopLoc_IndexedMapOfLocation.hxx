@@ -1,7 +1,4 @@
-// Created on: 1990-12-19
-// Created by: Christophe MARION
-// Copyright (c) 1990-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,12 +11,23 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef TopLoc_IndexedMapOfLocation_HeaderFile
-#define TopLoc_IndexedMapOfLocation_HeaderFile
+//! @file TopLoc_IndexedMapOfLocation.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection_IndexedMap<TopLoc_Location> directly instead.
 
+#ifndef _TopLoc_IndexedMapOfLocation_hxx
+#define _TopLoc_IndexedMapOfLocation_hxx
+
+#include <Standard_Macro.hxx>
 #include <TopLoc_Location.hxx>
 #include <NCollection_IndexedMap.hxx>
 
+Standard_HEADER_DEPRECATED("TopLoc_IndexedMapOfLocation.hxx is deprecated since OCCT 8.0.0. Use "
+                           "NCollection_IndexedMap<TopLoc_Location> directly.")
+
+  Standard_DEPRECATED("TopLoc_IndexedMapOfLocation is deprecated, use "
+                      "NCollection_IndexedMap<TopLoc_Location> directly")
 typedef NCollection_IndexedMap<TopLoc_Location> TopLoc_IndexedMapOfLocation;
 
-#endif
+#endif // _TopLoc_IndexedMapOfLocation_hxx

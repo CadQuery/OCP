@@ -37,9 +37,9 @@ public: //! @name mesher API
     gp_Pnt2d*           Point2; // / using indices.
 
     Segment()
-        : EdgePtr(NULL),
-          Point1(NULL),
-          Point2(NULL)
+        : EdgePtr(nullptr),
+          Point1(nullptr),
+          Point2(nullptr)
     {
     }
 
@@ -51,8 +51,8 @@ public: //! @name mesher API
     }
   };
 
-  typedef NCollection_Shared<NCollection_Vector<Segment>>                         Segments;
-  typedef NCollection_Shared<NCollection_Array1<Handle(Segments)>>                ArrayOfSegments;
+  typedef NCollection_Shared<NCollection_DynamicArray<Segment>>                   Segments;
+  typedef NCollection_Shared<NCollection_Array1<occ::handle<Segments>>>           ArrayOfSegments;
   typedef NCollection_Shared<NCollection_Array1<Handle(IMeshData::BndBox2dTree)>> ArrayOfBndBoxTree;
   typedef NCollection_Shared<NCollection_Array1<Handle(IMeshData::MapOfIEdgePtr)>>
     ArrayOfMapOfIEdgePtr;
@@ -62,11 +62,11 @@ public: //! @name mesher API
                                        const IMeshTools_Parameters&  theParameters);
 
   //! Destructor
-  Standard_EXPORT virtual ~BRepMesh_FaceChecker();
+  Standard_EXPORT ~BRepMesh_FaceChecker() override;
 
   //! Performs check wires of the face for intersections.
   //! @return True if there is no intersection, False elsewhere.
-  Standard_EXPORT Standard_Boolean Perform();
+  Standard_EXPORT bool Perform();
 
   //! Returns intersecting edges.
   const Handle(IMeshData::MapOfIEdgePtr)& GetIntersectingEdges() const
@@ -75,16 +75,13 @@ public: //! @name mesher API
   }
 
   //! Checks wire with the given index for intersection with others.
-  void operator()(const Standard_Integer theWireIndex) const { perform(theWireIndex); }
+  void operator()(const int theWireIndex) const { perform(theWireIndex); }
 
   DEFINE_STANDARD_RTTIEXT(BRepMesh_FaceChecker, Standard_Transient)
 
 private:
   //! Returns True in case if check can be performed in parallel mode.
-  Standard_Boolean isParallel() const
-  {
-    return (myParameters.InParallel && myDFace->WiresNb() > 1);
-  }
+  bool isParallel() const { return (myParameters.InParallel && myDFace->WiresNb() > 1); }
 
   //! Collects face segments.
   void collectSegments();
@@ -93,21 +90,21 @@ private:
   void collectResult();
 
   //! Checks wire with the given index for intersection with others.
-  void perform(const Standard_Integer theWireIndex) const;
+  void perform(const int theWireIndex) const;
 
 private:
-  BRepMesh_FaceChecker(const BRepMesh_FaceChecker& theOther);
+  BRepMesh_FaceChecker(const BRepMesh_FaceChecker& theOther) = delete;
 
-  void operator=(const BRepMesh_FaceChecker& theOther);
+  void operator=(const BRepMesh_FaceChecker& theOther) = delete;
 
 private:
   IMeshData::IFaceHandle       myDFace;
   const IMeshTools_Parameters& myParameters;
 
-  Handle(ArrayOfSegments)          myWiresSegments;
-  Handle(ArrayOfBndBoxTree)        myWiresBndBoxTree;
-  Handle(ArrayOfMapOfIEdgePtr)     myWiresIntersectingEdges;
-  Handle(IMeshData::MapOfIEdgePtr) myIntersectingEdges;
+  occ::handle<ArrayOfSegments>      myWiresSegments;
+  occ::handle<ArrayOfBndBoxTree>    myWiresBndBoxTree;
+  occ::handle<ArrayOfMapOfIEdgePtr> myWiresIntersectingEdges;
+  Handle(IMeshData::MapOfIEdgePtr)  myIntersectingEdges;
 };
 
 #endif

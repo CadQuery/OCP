@@ -24,9 +24,9 @@
 #include <GeomFill_Profiler.hxx>
 class Geom_Surface;
 
-//! Create a surface using generating lines.  Inherits
-//! profiler.  The  surface will be  a  BSplineSurface
-//! passing  by   all  the  curves  described  in  the
+//! Create a surface using generating lines. Inherits
+//! profiler. The surface will be a BSplineSurface
+//! passing by all the curves described in the
 //! generator. The VDegree of the resulting surface is
 //! 1.
 class GeomFill_Generator : public GeomFill_Profiler
@@ -40,13 +40,12 @@ public:
   //! Set them to the common profile.
   //! Compute the surface (degv = 1).
   //! <PTol> is used to compare 2 knots.
-  Standard_EXPORT virtual void Perform(const Standard_Real PTol) Standard_OVERRIDE;
+  Standard_EXPORT void Perform(const double PTol) override;
 
-  const Handle(Geom_Surface)& Surface() const;
+  const occ::handle<Geom_Surface>& Surface() const;
 
-protected:
 private:
-  Handle(Geom_Surface) mySurface;
+  occ::handle<Geom_Surface> mySurface;
 };
 
 #include <GeomFill_Generator.lxx>

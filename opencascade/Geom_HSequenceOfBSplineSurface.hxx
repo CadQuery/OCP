@@ -1,7 +1,4 @@
-// Created on: 1993-03-09
-// Created by: JCV
-// Copyright (c) 1993-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,12 +11,26 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef Geom_HSequenceOfBSplineSurface_HeaderFile
-#define Geom_HSequenceOfBSplineSurface_HeaderFile
+//! @file Geom_HSequenceOfBSplineSurface.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection_HSequence<opencascade::handle<Geom_BSplineSurface>> directly
+//!             instead.
 
+#ifndef _Geom_HSequenceOfBSplineSurface_hxx
+#define _Geom_HSequenceOfBSplineSurface_hxx
+
+#include <Standard_Macro.hxx>
 #include <Geom_SequenceOfBSplineSurface.hxx>
-#include <NCollection_DefineHSequence.hxx>
+#include <NCollection_HSequence.hxx>
 
-DEFINE_HSEQUENCE(Geom_HSequenceOfBSplineSurface, Geom_SequenceOfBSplineSurface)
+Standard_HEADER_DEPRECATED(
+  "Geom_HSequenceOfBSplineSurface.hxx is deprecated since OCCT 8.0.0. Use "
+  "NCollection_HSequence<opencascade::handle<Geom_BSplineSurface>> directly.")
 
-#endif
+  Standard_DEPRECATED("Geom_HSequenceOfBSplineSurface is deprecated, use "
+                      "NCollection_HSequence<opencascade::handle<Geom_BSplineSurface>> directly")
+typedef NCollection_HSequence<opencascade::handle<Geom_BSplineSurface>>
+  Geom_HSequenceOfBSplineSurface;
+
+#endif // _Geom_HSequenceOfBSplineSurface_hxx

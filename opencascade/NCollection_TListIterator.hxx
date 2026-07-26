@@ -29,41 +29,41 @@ class NCollection_TListIterator : public NCollection_BaseList::Iterator
 {
 public:
   //! Empty constructor - for later Init
-  NCollection_TListIterator(void)
+  NCollection_TListIterator() noexcept
       : NCollection_BaseList::Iterator()
   {
   }
 
   //! Constructor with initialisation
-  NCollection_TListIterator(const NCollection_BaseList& theList)
+  NCollection_TListIterator(const NCollection_BaseList& theList) noexcept
       : NCollection_BaseList::Iterator(theList)
   {
   }
 
   //! Check end
-  Standard_Boolean More(void) const { return (myCurrent != NULL); }
+  bool More() const noexcept { return (myCurrent != nullptr); }
 
   //! Make step
-  void Next(void)
+  void Next() noexcept
   {
     myPrevious = myCurrent;
     myCurrent  = myCurrent->Next();
   }
 
   //! Constant Value access
-  const TheItemType& Value(void) const
+  const TheItemType& Value() const noexcept
   {
     return ((const NCollection_TListNode<TheItemType>*)myCurrent)->Value();
   }
 
   //! Non-const Value access
-  TheItemType& Value(void)
+  TheItemType& Value() noexcept
   {
     return ((NCollection_TListNode<TheItemType>*)myCurrent)->ChangeValue();
   }
 
   //! Non-const Value access
-  TheItemType& ChangeValue(void) const
+  TheItemType& ChangeValue() const noexcept
   {
     return ((NCollection_TListNode<TheItemType>*)myCurrent)->ChangeValue();
   }

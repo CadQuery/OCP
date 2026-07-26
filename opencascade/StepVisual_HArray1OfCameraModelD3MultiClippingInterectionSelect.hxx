@@ -1,6 +1,4 @@
-// Created on: 2016-10-25
-// Created by: Irina KRYLOVA
-// Copyright (c) 2015 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -13,12 +11,28 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _StepVisual_HArray1OfCameraModelD3MultiClippingInterectionSelect_HeaderFile
-#define _StepVisual_HArray1OfCameraModelD3MultiClippingInterectionSelect_HeaderFile
+//! @file StepVisual_HArray1OfCameraModelD3MultiClippingInterectionSelect.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection_HArray1<StepVisual_CameraModelD3MultiClippingInterectionSelect>
+//!             directly instead.
 
+#ifndef _StepVisual_HArray1OfCameraModelD3MultiClippingInterectionSelect_hxx
+#define _StepVisual_HArray1OfCameraModelD3MultiClippingInterectionSelect_hxx
+
+#include <Standard_Macro.hxx>
 #include <StepVisual_Array1OfCameraModelD3MultiClippingInterectionSelect.hxx>
-#include <NCollection_DefineHArray1.hxx>
+#include <NCollection_HArray1.hxx>
 
-DEFINE_HARRAY1(StepVisual_HArray1OfCameraModelD3MultiClippingInterectionSelect,
-               StepVisual_Array1OfCameraModelD3MultiClippingInterectionSelect)
-#endif // _StepVisual_HArray1OfCameraModelD3MultiClippingInterectionSelect_HeaderFile
+Standard_HEADER_DEPRECATED(
+  "StepVisual_HArray1OfCameraModelD3MultiClippingInterectionSelect.hxx is deprecated since OCCT "
+  "8.0.0. Use NCollection_HArray1<StepVisual_CameraModelD3MultiClippingInterectionSelect> "
+  "directly.")
+
+  Standard_DEPRECATED(
+    "StepVisual_HArray1OfCameraModelD3MultiClippingInterectionSelect is deprecated, use "
+    "NCollection_HArray1<StepVisual_CameraModelD3MultiClippingInterectionSelect> directly")
+typedef NCollection_HArray1<StepVisual_CameraModelD3MultiClippingInterectionSelect>
+  StepVisual_HArray1OfCameraModelD3MultiClippingInterectionSelect;
+
+#endif // _StepVisual_HArray1OfCameraModelD3MultiClippingInterectionSelect_hxx

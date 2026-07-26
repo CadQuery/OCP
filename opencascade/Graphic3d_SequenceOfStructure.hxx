@@ -1,7 +1,4 @@
-// Created on: 1993-03-31
-// Created by: NW,JPB,CAL
-// Copyright (c) 1993-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,12 +11,25 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef Graphic3d_SequenceOfStructure_HeaderFile
-#define Graphic3d_SequenceOfStructure_HeaderFile
+//! @file Graphic3d_SequenceOfStructure.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection_Sequence<opencascade::handle<Graphic3d_Structure>> directly instead.
 
+#ifndef _Graphic3d_SequenceOfStructure_hxx
+#define _Graphic3d_SequenceOfStructure_hxx
+
+#include <Standard_Macro.hxx>
 #include <Graphic3d_Structure.hxx>
 #include <NCollection_Sequence.hxx>
 
-typedef NCollection_Sequence<Handle(Graphic3d_Structure)> Graphic3d_SequenceOfStructure;
+Standard_HEADER_DEPRECATED(
+  "Graphic3d_SequenceOfStructure.hxx is deprecated since OCCT 8.0.0. Use "
+  "NCollection_Sequence<opencascade::handle<Graphic3d_Structure>> directly.")
 
-#endif
+  Standard_DEPRECATED("Graphic3d_SequenceOfStructure is deprecated, use "
+                      "NCollection_Sequence<opencascade::handle<Graphic3d_Structure>> directly")
+typedef NCollection_Sequence<opencascade::handle<Graphic3d_Structure>>
+  Graphic3d_SequenceOfStructure;
+
+#endif // _Graphic3d_SequenceOfStructure_hxx

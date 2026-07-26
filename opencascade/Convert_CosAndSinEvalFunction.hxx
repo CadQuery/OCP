@@ -17,15 +17,17 @@
 #ifndef Convert_CosAndSinEvalFunction_HeaderFile
 #define Convert_CosAndSinEvalFunction_HeaderFile
 
-#include <TColgp_Array1OfPnt2d.hxx>
-#include <TColStd_Array1OfReal.hxx>
-#include <TColStd_Array1OfInteger.hxx>
+#include <gp_Pnt2d.hxx>
+#include <NCollection_Array1.hxx>
+#include <Standard_Integer.hxx>
 
-typedef void Convert_CosAndSinEvalFunction(Standard_Real,
-                                           const Standard_Integer,
-                                           const TColgp_Array1OfPnt2d&,
-                                           const TColStd_Array1OfReal&,
-                                           const TColStd_Array1OfInteger*,
-                                           Standard_Real Result[2]);
+//! Function type for evaluating cos and sin representations
+//! used in rational curve parameterization.
+using Convert_CosAndSinEvalFunction = void(double,
+                                           const int,
+                                           const NCollection_Array1<gp_Pnt2d>&,
+                                           const NCollection_Array1<double>&,
+                                           const NCollection_Array1<int>*,
+                                           double Result[2]);
 
 #endif

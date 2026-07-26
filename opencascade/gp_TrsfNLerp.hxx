@@ -34,7 +34,7 @@ class NCollection_Lerp<gp_Trsf>
 {
 public:
   //! Empty constructor
-  NCollection_Lerp() {}
+  NCollection_Lerp() = default;
 
   //! Main constructor.
   NCollection_Lerp(const gp_Trsf& theStart, const gp_Trsf& theEnd) { Init(theStart, theEnd); }
@@ -55,12 +55,12 @@ public:
   //! @param[out] theResult  interpolated value
   void Interpolate(double theT, gp_Trsf& theResult) const
   {
-    if (Abs(theT - 0.0) < Precision::Confusion())
+    if (std::abs(theT - 0.0) < Precision::Confusion())
     {
       theResult = myTrsfStart;
       return;
     }
-    else if (Abs(theT - 1.0) < Precision::Confusion())
+    else if (std::abs(theT - 1.0) < Precision::Confusion())
     {
       theResult = myTrsfEnd;
       return;
@@ -68,7 +68,7 @@ public:
 
     gp_XYZ        aLoc;
     gp_Quaternion aRot;
-    Standard_Real aScale = 1.0;
+    double        aScale = 1.0;
     myLocLerp.Interpolate(theT, aLoc);
     myRotLerp.Interpolate(theT, aRot);
     myScaleLerp.Interpolate(theT, aScale);
@@ -79,13 +79,11 @@ public:
   }
 
 private:
-  NCollection_Lerp<gp_XYZ>        myLocLerp;
-  NCollection_Lerp<Standard_Real> myScaleLerp;
-  gp_QuaternionNLerp              myRotLerp;
-  gp_Trsf                         myTrsfStart;
-  gp_Trsf                         myTrsfEnd;
+  NCollection_Lerp<gp_XYZ> myLocLerp;
+  NCollection_Lerp<double> myScaleLerp;
+  gp_QuaternionNLerp       myRotLerp;
+  gp_Trsf                  myTrsfStart;
+  gp_Trsf                  myTrsfEnd;
 };
-
-typedef NCollection_Lerp<gp_Trsf> gp_TrsfNLerp;
 
 #endif // _gp_TrsfNLerp_HeaderFile

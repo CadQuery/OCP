@@ -1,7 +1,4 @@
-// Created on: 1995-10-12
-// Created by: Bruno DUMORTIER
-// Copyright (c) 1995-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,17 +11,32 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef BRepOffset_DataMapOfShapeMapOfShape_HeaderFile
-#define BRepOffset_DataMapOfShapeMapOfShape_HeaderFile
+//! @file BRepOffset_DataMapOfShapeMapOfShape.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection types directly instead.
 
+#ifndef _BRepOffset_DataMapOfShapeMapOfShape_hxx
+#define _BRepOffset_DataMapOfShapeMapOfShape_hxx
+
+#include <Standard_Macro.hxx>
 #include <TopoDS_Shape.hxx>
 #include <TopTools_MapOfShape.hxx>
 #include <TopTools_ShapeMapHasher.hxx>
 #include <NCollection_DataMap.hxx>
 
+Standard_HEADER_DEPRECATED("BRepOffset_DataMapOfShapeMapOfShape.hxx is deprecated since OCCT "
+                           "8.0.0. Use NCollection types directly.")
+
+  Standard_DEPRECATED(
+    "BRepOffset_DataMapOfShapeMapOfShape is deprecated, use NCollection_DataMap<TopoDS_Shape, "
+    "TopTools_MapOfShape, TopTools_ShapeMapHasher> directly")
 typedef NCollection_DataMap<TopoDS_Shape, TopTools_MapOfShape, TopTools_ShapeMapHasher>
   BRepOffset_DataMapOfShapeMapOfShape;
+Standard_DEPRECATED("BRepOffset_DataMapIteratorOfDataMapOfShapeMapOfShape is deprecated, use "
+                    "NCollection_DataMap<TopoDS_Shape, TopTools_MapOfShape, "
+                    "TopTools_ShapeMapHasher>::Iterator directly")
 typedef NCollection_DataMap<TopoDS_Shape, TopTools_MapOfShape, TopTools_ShapeMapHasher>::Iterator
   BRepOffset_DataMapIteratorOfDataMapOfShapeMapOfShape;
 
-#endif
+#endif // _BRepOffset_DataMapOfShapeMapOfShape_hxx

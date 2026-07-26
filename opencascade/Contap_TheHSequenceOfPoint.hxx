@@ -1,7 +1,4 @@
-// Created on: 1993-02-05
-// Created by: Jacques GOUSSARD
-// Copyright (c) 1993-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,13 +11,24 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef Contap_TheHSequenceOfPoint_HeaderFile
-#define Contap_TheHSequenceOfPoint_HeaderFile
+//! @file Contap_TheHSequenceOfPoint.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection_HSequence<Contap_Point> directly instead.
 
+#ifndef _Contap_TheHSequenceOfPoint_hxx
+#define _Contap_TheHSequenceOfPoint_hxx
+
+#include <Standard_Macro.hxx>
 #include <Contap_Point.hxx>
 #include <Contap_TheSequenceOfPoint.hxx>
-#include <NCollection_DefineHSequence.hxx>
+#include <NCollection_HSequence.hxx>
 
-DEFINE_HSEQUENCE(Contap_TheHSequenceOfPoint, Contap_TheSequenceOfPoint)
+Standard_HEADER_DEPRECATED("Contap_TheHSequenceOfPoint.hxx is deprecated since OCCT 8.0.0. Use "
+                           "NCollection_HSequence<Contap_Point> directly.")
 
-#endif
+  Standard_DEPRECATED(
+    "Contap_TheHSequenceOfPoint is deprecated, use NCollection_HSequence<Contap_Point> directly")
+typedef NCollection_HSequence<Contap_Point> Contap_TheHSequenceOfPoint;
+
+#endif // _Contap_TheHSequenceOfPoint_hxx

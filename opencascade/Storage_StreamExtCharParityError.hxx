@@ -17,13 +17,9 @@
 #ifndef _Storage_StreamExtCharParityError_HeaderFile
 #define _Storage_StreamExtCharParityError_HeaderFile
 
-#include <Standard_Type.hxx>
 #include <Standard_DefineException.hxx>
 #include <Standard_SStream.hxx>
 #include <Storage_StreamReadError.hxx>
-
-class Storage_StreamExtCharParityError;
-DEFINE_STANDARD_HANDLE(Storage_StreamExtCharParityError, Storage_StreamReadError)
 
 #if !defined No_Exception && !defined No_Storage_StreamExtCharParityError
   #define Storage_StreamExtCharParityError_Raise_if(CONDITION, MESSAGE)                            \

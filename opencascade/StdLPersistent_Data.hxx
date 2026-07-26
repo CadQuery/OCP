@@ -28,28 +28,28 @@ public:
   }
 
   //! Read persistent data from a file.
-  Standard_EXPORT virtual void Read(StdObjMgt_ReadData& theReadData);
+  Standard_EXPORT void Read(StdObjMgt_ReadData& theReadData) override;
   //! Write persistent data to a file.
-  Standard_EXPORT virtual void Write(StdObjMgt_WriteData& theWriteData) const;
+  Standard_EXPORT void Write(StdObjMgt_WriteData& theWriteData) const override;
 
   //! Gets persistent child objects
-  virtual void PChildren(StdObjMgt_Persistent::SequenceOfPersistent& theChildren) const
+  void PChildren(StdObjMgt_Persistent::SequenceOfPersistent& theChildren) const override
   {
     theChildren.Append(myLabels);
     theChildren.Append(myAttributes);
   }
 
   //! Returns persistent type name
-  virtual Standard_CString PName() const { return "PDF_Data"; }
+  const char* PName() const override { return "PDF_Data"; }
 
   //! Import transient data from the persistent data.
-  Standard_EXPORT Handle(TDF_Data) Import() const;
+  Standard_EXPORT occ::handle<TDF_Data> Import() const;
 
 private:
   class Parser;
 
 private:
-  Standard_Integer                           myVersion;
+  int                                        myVersion;
   Handle(StdLPersistent_HArray1::Integer)    myLabels;
   Handle(StdLPersistent_HArray1::Persistent) myAttributes;
 };

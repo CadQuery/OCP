@@ -1,7 +1,4 @@
-// Created on: 1992-02-18
-// Created by: Christophe MARION
-// Copyright (c) 1992-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,12 +11,23 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef HLRAlgo_HArray1OfTData_HeaderFile
-#define HLRAlgo_HArray1OfTData_HeaderFile
+//! @file HLRAlgo_HArray1OfTData.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection_HArray1<HLRAlgo_TriangleData> directly instead.
 
+#ifndef _HLRAlgo_HArray1OfTData_hxx
+#define _HLRAlgo_HArray1OfTData_hxx
+
+#include <Standard_Macro.hxx>
 #include <HLRAlgo_Array1OfTData.hxx>
-#include <NCollection_DefineHArray1.hxx>
+#include <NCollection_HArray1.hxx>
 
-DEFINE_HARRAY1(HLRAlgo_HArray1OfTData, HLRAlgo_Array1OfTData)
+Standard_HEADER_DEPRECATED("HLRAlgo_HArray1OfTData.hxx is deprecated since OCCT 8.0.0. Use "
+                           "NCollection_HArray1<HLRAlgo_TriangleData> directly.")
 
-#endif
+  Standard_DEPRECATED(
+    "HLRAlgo_HArray1OfTData is deprecated, use NCollection_HArray1<HLRAlgo_TriangleData> directly")
+typedef NCollection_HArray1<HLRAlgo_TriangleData> HLRAlgo_HArray1OfTData;
+
+#endif // _HLRAlgo_HArray1OfTData_hxx

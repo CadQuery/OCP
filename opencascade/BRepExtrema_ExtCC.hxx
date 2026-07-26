@@ -26,51 +26,51 @@ class BRepExtrema_ExtCC
 public:
   DEFINE_STANDARD_ALLOC
 
-  BRepExtrema_ExtCC() {}
+  BRepExtrema_ExtCC() = default;
 
-  //! It calculates all the distances. <br>
+  //! It calculates all the distances.
   Standard_EXPORT BRepExtrema_ExtCC(const TopoDS_Edge& E1, const TopoDS_Edge& E2);
 
   Standard_EXPORT void Initialize(const TopoDS_Edge& E2);
-  //! An exception is raised if the fields have not been initialized. <br>
+  //! An exception is raised if the fields have not been initialized.
   Standard_EXPORT void Perform(const TopoDS_Edge& E1);
 
-  //! True if the distances are found. <br>
-  Standard_Boolean IsDone() const { return myExtCC.IsDone(); }
+  //! True if the distances are found.
+  bool IsDone() const { return myExtCC.IsDone(); }
 
-  //! Returns the number of extremum distances. <br>
-  Standard_Integer NbExt() const { return myExtCC.NbExt(); }
+  //! Returns the number of extremum distances.
+  int NbExt() const { return myExtCC.NbExt(); }
 
-  //! Returns True if E1 and E2 are parallel. <br>
-  Standard_Boolean IsParallel() const { return myExtCC.IsParallel(); }
+  //! Returns True if E1 and E2 are parallel.
+  bool IsParallel() const { return myExtCC.IsParallel(); }
 
-  //! Returns the value of the <N>th extremum square distance. <br>
-  Standard_Real SquareDistance(const Standard_Integer N) const { return myExtCC.SquareDistance(N); }
+  //! Returns the value of the <N>th extremum square distance.
+  double SquareDistance(const int N) const { return myExtCC.SquareDistance(N); }
 
-  //! Returns the parameter on the first edge of the <N>th extremum distance. <br>
-  Standard_EXPORT Standard_Real ParameterOnE1(const Standard_Integer N) const;
-  //! Returns the Point of the <N>th extremum distance on the edge E1. <br>
-  Standard_EXPORT gp_Pnt PointOnE1(const Standard_Integer N) const;
-  //! Returns the parameter on the second edge of the <N>th extremum distance. <br>
-  Standard_EXPORT Standard_Real ParameterOnE2(const Standard_Integer N) const;
-  //! Returns the Point of the <N>th extremum distance on the edge E2. <br>
-  Standard_EXPORT gp_Pnt PointOnE2(const Standard_Integer N) const;
-  //! if the edges is a trimmed curve, <br>
-  //! dist11 is a square distance between the point on E1 <br>
-  //! of parameter FirstParameter and the point of <br>
-  //! parameter FirstParameter on E2. <br>
-  Standard_EXPORT void TrimmedSquareDistances(Standard_Real& dist11,
-                                              Standard_Real& distP12,
-                                              Standard_Real& distP21,
-                                              Standard_Real& distP22,
-                                              gp_Pnt&        P11,
-                                              gp_Pnt&        P12,
-                                              gp_Pnt&        P21,
-                                              gp_Pnt&        P22) const;
+  //! Returns the parameter on the first edge of the <N>th extremum distance.
+  Standard_EXPORT double ParameterOnE1(const int N) const;
+  //! Returns the Point of the <N>th extremum distance on the edge E1.
+  Standard_EXPORT gp_Pnt PointOnE1(const int N) const;
+  //! Returns the parameter on the second edge of the <N>th extremum distance.
+  Standard_EXPORT double ParameterOnE2(const int N) const;
+  //! Returns the Point of the <N>th extremum distance on the edge E2.
+  Standard_EXPORT gp_Pnt PointOnE2(const int N) const;
+  //! if the edges is a trimmed curve,
+  //! dist11 is a square distance between the point on E1
+  //! of parameter FirstParameter and the point of
+  //! parameter FirstParameter on E2.
+  Standard_EXPORT void TrimmedSquareDistances(double& dist11,
+                                              double& distP12,
+                                              double& distP21,
+                                              double& distP22,
+                                              gp_Pnt& P11,
+                                              gp_Pnt& P12,
+                                              gp_Pnt& P21,
+                                              gp_Pnt& P22) const;
 
 private:
-  Extrema_ExtCC             myExtCC;
-  Handle(BRepAdaptor_Curve) myHC;
+  Extrema_ExtCC                  myExtCC;
+  occ::handle<BRepAdaptor_Curve> myHC;
 };
 
 #endif

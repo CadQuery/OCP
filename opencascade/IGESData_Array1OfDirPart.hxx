@@ -1,7 +1,4 @@
-// Created on: 1992-04-06
-// Created by: Christian CAILLET
-// Copyright (c) 1992-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,12 +11,23 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef IGESData_Array1OfDirPart_HeaderFile
-#define IGESData_Array1OfDirPart_HeaderFile
+//! @file IGESData_Array1OfDirPart.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection_Array1<IGESData_DirPart> directly instead.
 
+#ifndef _IGESData_Array1OfDirPart_hxx
+#define _IGESData_Array1OfDirPart_hxx
+
+#include <Standard_Macro.hxx>
 #include <IGESData_DirPart.hxx>
 #include <NCollection_Array1.hxx>
 
+Standard_HEADER_DEPRECATED("IGESData_Array1OfDirPart.hxx is deprecated since OCCT 8.0.0. Use "
+                           "NCollection_Array1<IGESData_DirPart> directly.")
+
+  Standard_DEPRECATED(
+    "IGESData_Array1OfDirPart is deprecated, use NCollection_Array1<IGESData_DirPart> directly")
 typedef NCollection_Array1<IGESData_DirPart> IGESData_Array1OfDirPart;
 
-#endif
+#endif // _IGESData_Array1OfDirPart_hxx

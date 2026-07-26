@@ -1,7 +1,4 @@
-// Created on: 1994-03-03
-// Created by: Joelle CHAUVET
-// Copyright (c) 1994-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,12 +11,23 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef BRepFill_SequenceOfEdgeFaceAndOrder_HeaderFile
-#define BRepFill_SequenceOfEdgeFaceAndOrder_HeaderFile
+//! @file BRepFill_SequenceOfEdgeFaceAndOrder.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection_Sequence<BRepFill_EdgeFaceAndOrder> directly instead.
 
+#ifndef _BRepFill_SequenceOfEdgeFaceAndOrder_hxx
+#define _BRepFill_SequenceOfEdgeFaceAndOrder_hxx
+
+#include <Standard_Macro.hxx>
 #include <BRepFill_EdgeFaceAndOrder.hxx>
 #include <NCollection_Sequence.hxx>
 
+Standard_HEADER_DEPRECATED("BRepFill_SequenceOfEdgeFaceAndOrder.hxx is deprecated since OCCT "
+                           "8.0.0. Use NCollection_Sequence<BRepFill_EdgeFaceAndOrder> directly.")
+
+  Standard_DEPRECATED("BRepFill_SequenceOfEdgeFaceAndOrder is deprecated, use "
+                      "NCollection_Sequence<BRepFill_EdgeFaceAndOrder> directly")
 typedef NCollection_Sequence<BRepFill_EdgeFaceAndOrder> BRepFill_SequenceOfEdgeFaceAndOrder;
 
-#endif
+#endif // _BRepFill_SequenceOfEdgeFaceAndOrder_hxx

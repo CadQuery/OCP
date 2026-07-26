@@ -1,7 +1,4 @@
-// Created on: 1994-03-03
-// Created by: Joelle CHAUVET
-// Copyright (c) 1994-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,13 +11,26 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef BRepFill_ListOfOffsetWire_HeaderFile
-#define BRepFill_ListOfOffsetWire_HeaderFile
+//! @file BRepFill_ListOfOffsetWire.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection types directly instead.
 
+#ifndef _BRepFill_ListOfOffsetWire_hxx
+#define _BRepFill_ListOfOffsetWire_hxx
+
+#include <Standard_Macro.hxx>
 #include <BRepFill_OffsetWire.hxx>
 #include <NCollection_List.hxx>
 
-typedef NCollection_List<BRepFill_OffsetWire>           BRepFill_ListOfOffsetWire;
+Standard_HEADER_DEPRECATED(
+  "BRepFill_ListOfOffsetWire.hxx is deprecated since OCCT 8.0.0. Use NCollection types directly.")
+
+  Standard_DEPRECATED(
+    "BRepFill_ListOfOffsetWire is deprecated, use NCollection_List<BRepFill_OffsetWire> directly")
+typedef NCollection_List<BRepFill_OffsetWire> BRepFill_ListOfOffsetWire;
+Standard_DEPRECATED("BRepFill_ListIteratorOfListOfOffsetWire is deprecated, use "
+                    "NCollection_List<BRepFill_OffsetWire>::Iterator directly")
 typedef NCollection_List<BRepFill_OffsetWire>::Iterator BRepFill_ListIteratorOfListOfOffsetWire;
 
-#endif
+#endif // _BRepFill_ListOfOffsetWire_hxx

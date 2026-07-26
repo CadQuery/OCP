@@ -1,7 +1,4 @@
-// Created on: 1993-03-09
-// Created by: Philippe DAUTRY
-// Copyright (c) 1993-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,12 +11,23 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef TColGeom_HSequenceOfCurve_HeaderFile
-#define TColGeom_HSequenceOfCurve_HeaderFile
+//! @file TColGeom_HSequenceOfCurve.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection_HSequence<opencascade::handle<Geom_Curve>> directly instead.
 
+#ifndef _TColGeom_HSequenceOfCurve_hxx
+#define _TColGeom_HSequenceOfCurve_hxx
+
+#include <Standard_Macro.hxx>
 #include <TColGeom_SequenceOfCurve.hxx>
-#include <NCollection_DefineHSequence.hxx>
+#include <NCollection_HSequence.hxx>
 
-DEFINE_HSEQUENCE(TColGeom_HSequenceOfCurve, TColGeom_SequenceOfCurve)
+Standard_HEADER_DEPRECATED("TColGeom_HSequenceOfCurve.hxx is deprecated since OCCT 8.0.0. Use "
+                           "NCollection_HSequence<opencascade::handle<Geom_Curve>> directly.")
 
-#endif
+  Standard_DEPRECATED("TColGeom_HSequenceOfCurve is deprecated, use "
+                      "NCollection_HSequence<opencascade::handle<Geom_Curve>> directly")
+typedef NCollection_HSequence<opencascade::handle<Geom_Curve>> TColGeom_HSequenceOfCurve;
+
+#endif // _TColGeom_HSequenceOfCurve_hxx

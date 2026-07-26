@@ -26,14 +26,14 @@
 #include <math_Vector.hxx>
 class math_Matrix;
 
-//! Deferred   class  for a  function  used  to compute  a
-//! blending surface between a  surface and a curve, using
-//! a  guide  line.   This   function is  used  to find  a
+//! Deferred class for a function used to compute a
+//! blending surface between a surface and a curve, using
+//! a guide line. This function is used to find a
 //! solution on a done restriction of the surface.
 //!
-//! The vector  <X> used in  Value, Values and Derivatives
-//! methods  has   to  be the   vector  of  the parametric
-//! coordinates  wguide, wcurv, wrst  where  wguide is the
+//! The vector <X> used in Value, Values and Derivatives
+//! methods has to be the vector of the parametric
+//! coordinates wguide, wcurv, wrst where wguide is the
 //! parameter on the guide line, wcurv is the parameter on
 //! the curve, wrst is the parameter on the restriction on
 //! the surface.
@@ -43,39 +43,36 @@ public:
   DEFINE_STANDARD_ALLOC
 
   //! Returns 3.
-  Standard_EXPORT Standard_Integer NbVariables() const;
+  Standard_EXPORT int NbVariables() const override;
 
   //! returns the number of equations of the function.
-  Standard_EXPORT virtual Standard_Integer NbEquations() const = 0;
+  Standard_EXPORT int NbEquations() const override = 0;
 
   //! computes the values <F> of the Functions for the
   //! variable <X>.
   //! Returns True if the computation was done successfully,
   //! False otherwise.
-  Standard_EXPORT virtual Standard_Boolean Value(const math_Vector& X, math_Vector& F) = 0;
+  Standard_EXPORT bool Value(const math_Vector& X, math_Vector& F) override = 0;
 
   //! returns the values <D> of the derivatives for the
   //! variable <X>.
   //! Returns True if the computation was done successfully,
   //! False otherwise.
-  Standard_EXPORT virtual Standard_Boolean Derivatives(const math_Vector& X, math_Matrix& D) = 0;
+  Standard_EXPORT bool Derivatives(const math_Vector& X, math_Matrix& D) override = 0;
 
   //! returns the values <F> of the functions and the derivatives
   //! <D> for the variable <X>.
   //! Returns True if the computation was done successfully,
   //! False otherwise.
-  Standard_EXPORT virtual Standard_Boolean Values(const math_Vector& X,
-                                                  math_Vector&       F,
-                                                  math_Matrix&       D) = 0;
+  Standard_EXPORT bool Values(const math_Vector& X, math_Vector& F, math_Matrix& D) override = 0;
 
   //! Set the Point on which a solution has to be found.
-  Standard_EXPORT virtual void Set(const Handle(Adaptor2d_Curve2d)& Rst) = 0;
+  Standard_EXPORT virtual void Set(const occ::handle<Adaptor2d_Curve2d>& Rst) = 0;
 
   //! Returns in the vector Tolerance the parametric tolerance
   //! for each of the 3 variables;
   //! Tol is the tolerance used in 3d space.
-  Standard_EXPORT virtual void GetTolerance(math_Vector&        Tolerance,
-                                            const Standard_Real Tol) const = 0;
+  Standard_EXPORT virtual void GetTolerance(math_Vector& Tolerance, const double Tol) const = 0;
 
   //! Returns in the vector InfBound the lowest values allowed
   //! for each of the 3 variables.
@@ -83,13 +80,9 @@ public:
   //! for each of the 3 variables.
   Standard_EXPORT virtual void GetBounds(math_Vector& InfBound, math_Vector& SupBound) const = 0;
 
-  //! Returns Standard_True if Sol is a zero of the function.
+  //! Returns true if Sol is a zero of the function.
   //! Tol is the tolerance used in 3d space.
-  Standard_EXPORT virtual Standard_Boolean IsSolution(const math_Vector&  Sol,
-                                                      const Standard_Real Tol) = 0;
-
-protected:
-private:
+  Standard_EXPORT virtual bool IsSolution(const math_Vector& Sol, const double Tol) = 0;
 };
 
 #endif // _Blend_SurfCurvFuncInv_HeaderFile

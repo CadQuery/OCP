@@ -1,7 +1,4 @@
-// Created on: 1991-02-26
-// Created by: Isabelle GRIGNON
-// Copyright (c) 1991-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,12 +11,23 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef Extrema_HArray1OfPOnSurf_HeaderFile
-#define Extrema_HArray1OfPOnSurf_HeaderFile
+//! @file Extrema_HArray1OfPOnSurf.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection_HArray1<Extrema_POnSurf> directly instead.
 
+#ifndef _Extrema_HArray1OfPOnSurf_hxx
+#define _Extrema_HArray1OfPOnSurf_hxx
+
+#include <Standard_Macro.hxx>
 #include <Extrema_Array1OfPOnSurf.hxx>
-#include <NCollection_DefineHArray1.hxx>
+#include <NCollection_HArray1.hxx>
 
-DEFINE_HARRAY1(Extrema_HArray1OfPOnSurf, Extrema_Array1OfPOnSurf)
+Standard_HEADER_DEPRECATED("Extrema_HArray1OfPOnSurf.hxx is deprecated since OCCT 8.0.0. Use "
+                           "NCollection_HArray1<Extrema_POnSurf> directly.")
 
-#endif
+  Standard_DEPRECATED(
+    "Extrema_HArray1OfPOnSurf is deprecated, use NCollection_HArray1<Extrema_POnSurf> directly")
+typedef NCollection_HArray1<Extrema_POnSurf> Extrema_HArray1OfPOnSurf;
+
+#endif // _Extrema_HArray1OfPOnSurf_hxx

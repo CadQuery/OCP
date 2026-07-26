@@ -15,13 +15,9 @@
 #ifndef _OSD_Exception_STACK_OVERFLOW_HeaderFile
 #define _OSD_Exception_STACK_OVERFLOW_HeaderFile
 
-#include <Standard_Type.hxx>
 #include <Standard_DefineException.hxx>
 #include <Standard_SStream.hxx>
 #include <OSD_Exception.hxx>
-
-class OSD_Exception_STACK_OVERFLOW;
-DEFINE_STANDARD_HANDLE(OSD_Exception_STACK_OVERFLOW, OSD_Exception)
 
 #if !defined No_Exception && !defined No_OSD_Exception_STACK_OVERFLOW
   #define OSD_Exception_STACK_OVERFLOW_Raise_if(CONDITION, MESSAGE)                                \

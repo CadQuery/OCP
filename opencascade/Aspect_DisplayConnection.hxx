@@ -37,13 +37,16 @@ public:
   Standard_EXPORT Aspect_DisplayConnection();
 
   //! Destructor. Close opened connection.
-  Standard_EXPORT virtual ~Aspect_DisplayConnection();
+  Standard_EXPORT ~Aspect_DisplayConnection() override;
 
   //! Constructor. Creates connection with display specified in theDisplayName.
   //! Display name should be in format "hostname:number" or "hostname:number.screen_number", where:
-  //! hostname      - Specifies the name of the host machine on which the display is physically
-  //! attached. number        - Specifies the number of the display server on that host machine.
-  //! screen_number - Specifies the screen to be used on that server. Optional variable.
+  //! hostname
+  //!   - Specifies the name of the host machine on which the display is physically attached.
+  //! number
+  //!   - Specifies the number of the display server on that host machine.
+  //! screen_number
+  //!   - Specifies the screen to be used on that server. Optional variable.
   Standard_EXPORT Aspect_DisplayConnection(const TCollection_AsciiString& theDisplayName);
 
   //! Constructor wrapping existing Display instance.
@@ -55,7 +58,7 @@ public:
   Aspect_XDisplay* GetDisplayAspect() { return myDisplay; }
 
   //! @return TRUE if X Display has been allocated by this class
-  Standard_Boolean IsOwnDisplay() const { return myIsOwnDisplay; }
+  bool IsOwnDisplay() const { return myIsOwnDisplay; }
 
   //! @return identifier(atom) for custom named property associated with windows that use current
   //! connection to X server.
@@ -119,14 +122,12 @@ private:
   Aspect_FBConfig                             myDefFBConfig;
   NCollection_DataMap<Aspect_XAtom, uint64_t> myAtoms;
   TCollection_AsciiString                     myDisplayName;
-  Standard_Boolean                            myIsOwnDisplay;
+  bool                                        myIsOwnDisplay;
 
 private:
   //! To protect the connection from closing copying allowed only through the handles.
-  Aspect_DisplayConnection(const Aspect_DisplayConnection&);
-  Aspect_DisplayConnection& operator=(const Aspect_DisplayConnection&);
+  Aspect_DisplayConnection(const Aspect_DisplayConnection&)            = delete;
+  Aspect_DisplayConnection& operator=(const Aspect_DisplayConnection&) = delete;
 };
-
-DEFINE_STANDARD_HANDLE(Aspect_DisplayConnection, Standard_Transient)
 
 #endif // _Aspect_DisplayConnection_H__

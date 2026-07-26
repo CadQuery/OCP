@@ -1,7 +1,4 @@
-// Created on: 1993-07-06
-// Created by: Yves FRICAUD
-// Copyright (c) 1993-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,16 +11,29 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef MAT2d_DataMapOfIntegerSequenceOfConnexion_HeaderFile
-#define MAT2d_DataMapOfIntegerSequenceOfConnexion_HeaderFile
+//! @file MAT2d_DataMapOfIntegerSequenceOfConnexion.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection types directly instead.
 
+#ifndef _MAT2d_DataMapOfIntegerSequenceOfConnexion_hxx
+#define _MAT2d_DataMapOfIntegerSequenceOfConnexion_hxx
+
+#include <Standard_Macro.hxx>
 #include <Standard_Integer.hxx>
 #include <MAT2d_SequenceOfConnexion.hxx>
 #include <NCollection_DataMap.hxx>
 
-typedef NCollection_DataMap<Standard_Integer, MAT2d_SequenceOfConnexion>
+Standard_HEADER_DEPRECATED("MAT2d_DataMapOfIntegerSequenceOfConnexion.hxx is deprecated since OCCT "
+                           "8.0.0. Use NCollection types directly.")
+
+  Standard_DEPRECATED("MAT2d_DataMapOfIntegerSequenceOfConnexion is deprecated, use "
+                      "NCollection_DataMap<int, MAT2d_SequenceOfConnexion> directly")
+typedef NCollection_DataMap<int, MAT2d_SequenceOfConnexion>
   MAT2d_DataMapOfIntegerSequenceOfConnexion;
-typedef NCollection_DataMap<Standard_Integer, MAT2d_SequenceOfConnexion>::Iterator
+Standard_DEPRECATED("MAT2d_DataMapIteratorOfDataMapOfIntegerSequenceOfConnexion is deprecated, use "
+                    "NCollection_DataMap<int, MAT2d_SequenceOfConnexion>::Iterator directly")
+typedef NCollection_DataMap<int, MAT2d_SequenceOfConnexion>::Iterator
   MAT2d_DataMapIteratorOfDataMapOfIntegerSequenceOfConnexion;
 
-#endif
+#endif // _MAT2d_DataMapOfIntegerSequenceOfConnexion_hxx

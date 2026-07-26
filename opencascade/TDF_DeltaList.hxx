@@ -1,6 +1,4 @@
-// Created by: DAUTRY Philippe
-// Copyright (c) 1997-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -13,13 +11,26 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef TDF_DeltaList_HeaderFile
-#define TDF_DeltaList_HeaderFile
+//! @file TDF_DeltaList.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection types directly instead.
 
+#ifndef _TDF_DeltaList_hxx
+#define _TDF_DeltaList_hxx
+
+#include <Standard_Macro.hxx>
 #include <TDF_Delta.hxx>
 #include <NCollection_List.hxx>
 
-typedef NCollection_List<Handle(TDF_Delta)>           TDF_DeltaList;
-typedef NCollection_List<Handle(TDF_Delta)>::Iterator TDF_ListIteratorOfDeltaList;
+Standard_HEADER_DEPRECATED(
+  "TDF_DeltaList.hxx is deprecated since OCCT 8.0.0. Use NCollection types directly.")
 
-#endif
+  Standard_DEPRECATED(
+    "TDF_DeltaList is deprecated, use NCollection_List<opencascade::handle<TDF_Delta>> directly")
+typedef NCollection_List<opencascade::handle<TDF_Delta>> TDF_DeltaList;
+Standard_DEPRECATED("TDF_ListIteratorOfDeltaList is deprecated, use "
+                    "NCollection_List<opencascade::handle<TDF_Delta>>::Iterator directly")
+typedef NCollection_List<opencascade::handle<TDF_Delta>>::Iterator TDF_ListIteratorOfDeltaList;
+
+#endif // _TDF_DeltaList_hxx

@@ -1,7 +1,4 @@
-// Created on: 1993-06-17
-// Created by: Jean Yves LEBEY
-// Copyright (c) 1993-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,16 +11,30 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef TopOpeBRepTool_IndexedDataMapOfSolidClassifier_HeaderFile
-#define TopOpeBRepTool_IndexedDataMapOfSolidClassifier_HeaderFile
+//! @file TopOpeBRepTool_IndexedDataMapOfSolidClassifier.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection_IndexedDataMap<TopoDS_Shape, BRepClass3d_SolidClassifier,
+//!             TopTools_ShapeMapHasher> directly instead.
 
+#ifndef _TopOpeBRepTool_IndexedDataMapOfSolidClassifier_hxx
+#define _TopOpeBRepTool_IndexedDataMapOfSolidClassifier_hxx
+
+#include <Standard_Macro.hxx>
 #include <BRepClass3d_SolidClassifier.hxx>
 #include <TopTools_ShapeMapHasher.hxx>
 #include <NCollection_IndexedDataMap.hxx>
 
+Standard_HEADER_DEPRECATED("TopOpeBRepTool_IndexedDataMapOfSolidClassifier.hxx is deprecated since "
+                           "OCCT 8.0.0. Use NCollection_IndexedDataMap<TopoDS_Shape, "
+                           "BRepClass3d_SolidClassifier, TopTools_ShapeMapHasher> directly.")
+
+  Standard_DEPRECATED("TopOpeBRepTool_IndexedDataMapOfSolidClassifier is deprecated, use "
+                      "NCollection_IndexedDataMap<TopoDS_Shape, BRepClass3d_SolidClassifier, "
+                      "TopTools_ShapeMapHasher> directly")
 typedef NCollection_IndexedDataMap<TopoDS_Shape,
                                    BRepClass3d_SolidClassifier,
                                    TopTools_ShapeMapHasher>
   TopOpeBRepTool_IndexedDataMapOfSolidClassifier;
 
-#endif
+#endif // _TopOpeBRepTool_IndexedDataMapOfSolidClassifier_hxx

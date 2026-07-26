@@ -20,7 +20,8 @@
 #include <Standard.hxx>
 #include <Standard_DefineAlloc.hxx>
 
-#include <TopLoc_IndexedMapOfLocation.hxx>
+#include <TopLoc_Location.hxx>
+#include <NCollection_IndexedMap.hxx>
 #include <Standard_Integer.hxx>
 #include <Standard_OStream.hxx>
 #include <Standard_IStream.hxx>
@@ -47,32 +48,32 @@ public:
   //! Clears the content of the set.
   Standard_EXPORT void Clear();
 
-  //! Incorporate a new Location in the  set and returns
+  //! Incorporate a new Location in the set and returns
   //! its index.
-  Standard_EXPORT Standard_Integer Add(const TopLoc_Location& L);
+  Standard_EXPORT int Add(const TopLoc_Location& L);
 
   //! Returns the location of index <I>.
-  Standard_EXPORT const TopLoc_Location& Location(const Standard_Integer I) const;
+  Standard_EXPORT const TopLoc_Location& Location(const int I) const;
 
   //! Returns the index of <L>.
-  Standard_EXPORT Standard_Integer Index(const TopLoc_Location& L) const;
+  Standard_EXPORT int Index(const TopLoc_Location& L) const;
 
   //! Dumps the content of me on the stream <OS>.
   Standard_EXPORT void Dump(Standard_OStream& OS) const;
 
-  //! Writes the content of  me  on the stream <OS> in a
+  //! Writes the content of me on the stream <OS> in a
   //! format that can be read back by Read.
   Standard_EXPORT void Write(
     Standard_OStream&            OS,
     const Message_ProgressRange& theProgress = Message_ProgressRange()) const;
 
-  //! Reads the content of me from the  stream  <IS>. me
+  //! Reads the content of me from the stream <IS>. me
   //! is first cleared.
   Standard_EXPORT void Read(Standard_IStream&            IS,
                             const Message_ProgressRange& theProgress = Message_ProgressRange());
 
 private:
-  TopLoc_IndexedMapOfLocation myMap;
+  NCollection_IndexedMap<TopLoc_Location> myMap;
 };
 
 #endif // _TopTools_LocationSet_HeaderFile

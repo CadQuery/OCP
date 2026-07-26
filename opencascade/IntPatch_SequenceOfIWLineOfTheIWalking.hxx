@@ -1,7 +1,4 @@
-// Created on: 1992-05-06
-// Created by: Jacques GOUSSARD
-// Copyright (c) 1992-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,13 +11,27 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _IntPatch_SequenceOfIWLineOfTheIWalking_HeaderFile
-#define _IntPatch_SequenceOfIWLineOfTheIWalking_HeaderFile
+//! @file IntPatch_SequenceOfIWLineOfTheIWalking.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection_Sequence<opencascade::handle<IntPatch_TheIWLineOfTheIWalking>>
+//!             directly instead.
 
+#ifndef _IntPatch_SequenceOfIWLineOfTheIWalking_hxx
+#define _IntPatch_SequenceOfIWLineOfTheIWalking_hxx
+
+#include <Standard_Macro.hxx>
 #include <IntPatch_TheIWLineOfTheIWalking.hxx>
 #include <NCollection_Sequence.hxx>
 
-typedef NCollection_Sequence<Handle(IntPatch_TheIWLineOfTheIWalking)>
+Standard_HEADER_DEPRECATED(
+  "IntPatch_SequenceOfIWLineOfTheIWalking.hxx is deprecated since OCCT 8.0.0. Use "
+  "NCollection_Sequence<opencascade::handle<IntPatch_TheIWLineOfTheIWalking>> directly.")
+
+  Standard_DEPRECATED(
+    "IntPatch_SequenceOfIWLineOfTheIWalking is deprecated, use "
+    "NCollection_Sequence<opencascade::handle<IntPatch_TheIWLineOfTheIWalking>> directly")
+typedef NCollection_Sequence<opencascade::handle<IntPatch_TheIWLineOfTheIWalking>>
   IntPatch_SequenceOfIWLineOfTheIWalking;
 
-#endif // _IntPatch_SequenceOfIWLineOfTheIWalking_HeaderFile
+#endif // _IntPatch_SequenceOfIWLineOfTheIWalking_hxx

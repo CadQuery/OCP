@@ -1,7 +1,4 @@
-// Created on: 1997-08-01
-// Created by: Jean-Louis Frenkel
-// Copyright (c) 1997-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,12 +11,23 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef PCDM_SequenceOfReference_HeaderFile
-#define PCDM_SequenceOfReference_HeaderFile
+//! @file PCDM_SequenceOfReference.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection_Sequence<PCDM_Reference> directly instead.
 
+#ifndef _PCDM_SequenceOfReference_hxx
+#define _PCDM_SequenceOfReference_hxx
+
+#include <Standard_Macro.hxx>
 #include <PCDM_Reference.hxx>
 #include <NCollection_Sequence.hxx>
 
+Standard_HEADER_DEPRECATED("PCDM_SequenceOfReference.hxx is deprecated since OCCT 8.0.0. Use "
+                           "NCollection_Sequence<PCDM_Reference> directly.")
+
+  Standard_DEPRECATED(
+    "PCDM_SequenceOfReference is deprecated, use NCollection_Sequence<PCDM_Reference> directly")
 typedef NCollection_Sequence<PCDM_Reference> PCDM_SequenceOfReference;
 
-#endif
+#endif // _PCDM_SequenceOfReference_hxx

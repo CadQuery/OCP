@@ -1,7 +1,4 @@
-// Created on: 1993-07-07
-// Created by: Jean Claude VAUTHIER
-// Copyright (c) 1993-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,12 +11,22 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef GeomLib_Array1OfMat_HeaderFile
-#define GeomLib_Array1OfMat_HeaderFile
+//! @file GeomLib_Array1OfMat.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection_Array1<gp_Mat> directly instead.
 
+#ifndef _GeomLib_Array1OfMat_hxx
+#define _GeomLib_Array1OfMat_hxx
+
+#include <Standard_Macro.hxx>
 #include <gp_Mat.hxx>
 #include <NCollection_Array1.hxx>
 
+Standard_HEADER_DEPRECATED("GeomLib_Array1OfMat.hxx is deprecated since OCCT 8.0.0. Use "
+                           "NCollection_Array1<gp_Mat> directly.")
+
+  Standard_DEPRECATED("GeomLib_Array1OfMat is deprecated, use NCollection_Array1<gp_Mat> directly")
 typedef NCollection_Array1<gp_Mat> GeomLib_Array1OfMat;
 
-#endif
+#endif // _GeomLib_Array1OfMat_hxx

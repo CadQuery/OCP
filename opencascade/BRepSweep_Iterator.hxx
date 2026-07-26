@@ -28,7 +28,7 @@ class TopoDS_Shape;
 
 //! This class provides iteration services required by
 //! the Generating Line (TopoDS Shape) of a BRepSweep.
-//! This   tool is  used  to   iterate  on the  direct
+//! This tool is used to iterate on the direct
 //! sub-shapes of a Shape.
 class BRepSweep_Iterator
 {
@@ -41,7 +41,7 @@ public:
   Standard_EXPORT void Init(const TopoDS_Shape& aShape);
 
   //! Returns True if there is a current sub-shape.
-  Standard_Boolean More() const;
+  bool More() const;
 
   //! Moves to the next sub-shape.
   Standard_EXPORT void Next();
@@ -52,7 +52,6 @@ public:
   //! Returns the orientation of the current sub-shape.
   TopAbs_Orientation Orientation() const;
 
-protected:
 private:
   TopoDS_Iterator myIterator;
 };

@@ -1,6 +1,4 @@
-// Created on: 2003-10-10
-// Created by: Alexander SOLOVYOV
-// Copyright (c) 2003-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -13,12 +11,23 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef MeshVS_SequenceOfPrsBuilder_HeaderFile
-#define MeshVS_SequenceOfPrsBuilder_HeaderFile
+//! @file MeshVS_SequenceOfPrsBuilder.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection_Sequence<opencascade::handle<MeshVS_PrsBuilder>> directly instead.
 
+#ifndef _MeshVS_SequenceOfPrsBuilder_hxx
+#define _MeshVS_SequenceOfPrsBuilder_hxx
+
+#include <Standard_Macro.hxx>
 #include <MeshVS_PrsBuilder.hxx>
 #include <NCollection_Sequence.hxx>
 
-typedef NCollection_Sequence<Handle(MeshVS_PrsBuilder)> MeshVS_SequenceOfPrsBuilder;
+Standard_HEADER_DEPRECATED("MeshVS_SequenceOfPrsBuilder.hxx is deprecated since OCCT 8.0.0. Use "
+                           "NCollection_Sequence<opencascade::handle<MeshVS_PrsBuilder>> directly.")
 
-#endif
+  Standard_DEPRECATED("MeshVS_SequenceOfPrsBuilder is deprecated, use "
+                      "NCollection_Sequence<opencascade::handle<MeshVS_PrsBuilder>> directly")
+typedef NCollection_Sequence<opencascade::handle<MeshVS_PrsBuilder>> MeshVS_SequenceOfPrsBuilder;
+
+#endif // _MeshVS_SequenceOfPrsBuilder_hxx

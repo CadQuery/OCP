@@ -1,7 +1,4 @@
-// Created on: 1993-09-28
-// Created by: Bruno DUMORTIER
-// Copyright (c) 1993-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,12 +11,24 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef GeomFill_Array1OfLocationLaw_HeaderFile
-#define GeomFill_Array1OfLocationLaw_HeaderFile
+//! @file GeomFill_Array1OfLocationLaw.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection_Array1<opencascade::handle<GeomFill_LocationLaw>> directly instead.
 
+#ifndef _GeomFill_Array1OfLocationLaw_hxx
+#define _GeomFill_Array1OfLocationLaw_hxx
+
+#include <Standard_Macro.hxx>
 #include <GeomFill_LocationLaw.hxx>
 #include <NCollection_Array1.hxx>
 
-typedef NCollection_Array1<Handle(GeomFill_LocationLaw)> GeomFill_Array1OfLocationLaw;
+Standard_HEADER_DEPRECATED(
+  "GeomFill_Array1OfLocationLaw.hxx is deprecated since OCCT 8.0.0. Use "
+  "NCollection_Array1<opencascade::handle<GeomFill_LocationLaw>> directly.")
 
-#endif
+  Standard_DEPRECATED("GeomFill_Array1OfLocationLaw is deprecated, use "
+                      "NCollection_Array1<opencascade::handle<GeomFill_LocationLaw>> directly")
+typedef NCollection_Array1<opencascade::handle<GeomFill_LocationLaw>> GeomFill_Array1OfLocationLaw;
+
+#endif // _GeomFill_Array1OfLocationLaw_hxx

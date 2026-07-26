@@ -1,7 +1,4 @@
-// Created on: 1992-02-03
-// Created by: Christian CAILLET
-// Copyright (c) 1992-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,12 +11,26 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef Interface_Array1OfHAsciiString_HeaderFile
-#define Interface_Array1OfHAsciiString_HeaderFile
+//! @file Interface_Array1OfHAsciiString.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection_Array1<opencascade::handle<TCollection_HAsciiString>> directly
+//!             instead.
 
+#ifndef _Interface_Array1OfHAsciiString_hxx
+#define _Interface_Array1OfHAsciiString_hxx
+
+#include <Standard_Macro.hxx>
 #include <TCollection_HAsciiString.hxx>
 #include <NCollection_Array1.hxx>
 
-typedef NCollection_Array1<Handle(TCollection_HAsciiString)> Interface_Array1OfHAsciiString;
+Standard_HEADER_DEPRECATED(
+  "Interface_Array1OfHAsciiString.hxx is deprecated since OCCT 8.0.0. Use "
+  "NCollection_Array1<opencascade::handle<TCollection_HAsciiString>> directly.")
 
-#endif
+  Standard_DEPRECATED("Interface_Array1OfHAsciiString is deprecated, use "
+                      "NCollection_Array1<opencascade::handle<TCollection_HAsciiString>> directly")
+typedef NCollection_Array1<opencascade::handle<TCollection_HAsciiString>>
+  Interface_Array1OfHAsciiString;
+
+#endif // _Interface_Array1OfHAsciiString_hxx

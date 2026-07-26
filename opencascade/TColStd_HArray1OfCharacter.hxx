@@ -1,5 +1,4 @@
-// Copyright (c) 1998-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -12,13 +11,24 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef TColStd_HArray1OfCharacter_HeaderFile
-#define TColStd_HArray1OfCharacter_HeaderFile
+//! @file TColStd_HArray1OfCharacter.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection_HArray1<char> directly instead.
 
+#ifndef _TColStd_HArray1OfCharacter_hxx
+#define _TColStd_HArray1OfCharacter_hxx
+
+#include <Standard_Macro.hxx>
 #include <Standard_Character.hxx>
 #include <TColStd_Array1OfCharacter.hxx>
-#include <NCollection_DefineHArray1.hxx>
+#include <NCollection_HArray1.hxx>
 
-DEFINE_HARRAY1(TColStd_HArray1OfCharacter, TColStd_Array1OfCharacter)
+Standard_HEADER_DEPRECATED("TColStd_HArray1OfCharacter.hxx is deprecated since OCCT 8.0.0. Use "
+                           "NCollection_HArray1<char> directly.")
 
-#endif
+  Standard_DEPRECATED(
+    "TColStd_HArray1OfCharacter is deprecated, use NCollection_HArray1<char> directly")
+typedef NCollection_HArray1<char> TColStd_HArray1OfCharacter;
+
+#endif // _TColStd_HArray1OfCharacter_hxx

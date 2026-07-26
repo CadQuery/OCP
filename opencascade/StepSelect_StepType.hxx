@@ -23,13 +23,14 @@
 #include <StepData_WriterLib.hxx>
 #include <IFSelect_Signature.hxx>
 #include <Standard_CString.hxx>
+#include <TCollection_AsciiString.hxx>
+
+#include <mutex>
+
 class StepData_Protocol;
 class Interface_Protocol;
 class Standard_Transient;
 class Interface_InterfaceModel;
-
-class StepSelect_StepType;
-DEFINE_STANDARD_HANDLE(StepSelect_StepType, IFSelect_Signature)
 
 //! StepType is a Signature specific to Step definitions : it
 //! considers the type as defined in STEP Schemas, the same which
@@ -51,13 +52,13 @@ public:
 
   //! Sets the StepType signature to work with a Protocol : this
   //! initialises the library
-  Standard_EXPORT void SetProtocol(const Handle(Interface_Protocol)& proto);
+  Standard_EXPORT void SetProtocol(const occ::handle<Interface_Protocol>& proto);
 
   //! Returns the Step Type defined from the Protocol (see above).
   //! If <ent> is not recognised, produces "..NOT FROM SCHEMA <name>.."
-  Standard_EXPORT Standard_CString
-    Value(const Handle(Standard_Transient)&       ent,
-          const Handle(Interface_InterfaceModel)& model) const Standard_OVERRIDE;
+  Standard_EXPORT const char* Value(
+    const occ::handle<Standard_Transient>&       ent,
+    const occ::handle<Interface_InterfaceModel>& model) const override;
 
   DEFINE_STANDARD_RTTIEXT(StepSelect_StepType, IFSelect_Signature)
 
@@ -65,7 +66,9 @@ protected:
   StepData_WriterLib thelib;
 
 private:
-  Handle(StepData_Protocol) theproto;
+  occ::handle<StepData_Protocol>  theproto;
+  mutable TCollection_AsciiString theLastValue;
+  mutable std::mutex              myMutex;
 };
 
 #endif // _StepSelect_StepType_HeaderFile

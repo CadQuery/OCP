@@ -19,6 +19,7 @@
 #include <Standard_Integer.hxx>
 #include <Standard_Boolean.hxx>
 #include <Standard_ErrorHandler.hxx>
+#include <Standard_Macro.hxx>
 #include <NCollection_Shared.hxx>
 
 #if defined(_WIN32)
@@ -31,6 +32,9 @@
 
 /**
  * @brief Mutex: a class to synchronize access to shared data.
+ *
+ * @deprecated This class is deprecated and will be removed in OCCT 8.0.0.
+ *             Use std::mutex or std::shared_mutex directly instead.
  *
  * This is simple encapsulation of tools provided by the
  * operating system to synchronize access to shared data
@@ -61,8 +65,9 @@
  * To use this feature, call RegisterCallback() after Lock() or successful
  * TryLock(), and UnregisterCallback() before Unlock() (or use Sentry classes).
  */
-
-class Standard_Mutex : public Standard_ErrorHandler::Callback
+class Standard_DEPRECATED(
+  "Standard_Mutex is deprecated; use std::mutex instead. Will be removed in OCCT 8.0.0")
+  Standard_Mutex : public Standard_ErrorHandler::Callback
 {
 public:
   /**
@@ -90,7 +95,7 @@ public:
     Sentry(Standard_Mutex* theMutex)
         : myMutex(theMutex)
     {
-      if (myMutex != NULL)
+      if (myMutex != nullptr)
       {
         Lock();
       }
@@ -99,7 +104,7 @@ public:
     //! Destructor - unlocks the mutex if already locked.
     ~Sentry()
     {
-      if (myMutex != NULL)
+      if (myMutex != nullptr)
       {
         Unlock();
       }
@@ -121,9 +126,9 @@ public:
     }
 
     //! This method should not be called (prohibited).
-    Sentry(const Sentry&);
+    Sentry(const Sentry&) = delete;
     //! This method should not be called (prohibited).
-    Sentry& operator=(const Sentry&);
+    Sentry& operator=(const Sentry&) = delete;
 
   private:
     Standard_Mutex* myMutex;
@@ -136,7 +141,7 @@ public:
   Standard_EXPORT Standard_Mutex();
 
   //! Destructor: destroys the mutex object
-  Standard_EXPORT ~Standard_Mutex();
+  Standard_EXPORT ~Standard_Mutex() override;
 
   //! Method to lock the mutex; waits until the mutex is released
   //! by other threads, locks it and then returns
@@ -145,19 +150,19 @@ public:
   //! Method to test the mutex; if the mutex is not hold by other thread,
   //! locks it and returns True; otherwise returns False without waiting
   //! mutex to be released.
-  Standard_EXPORT Standard_Boolean TryLock();
+  Standard_EXPORT bool TryLock();
 
   //! Method to unlock the mutex; releases it to other users
   void Unlock();
 
 private:
   //! Callback method to unlock the mutex if OCC exception or signal is raised
-  Standard_EXPORT virtual void DestroyCallback() Standard_OVERRIDE;
+  Standard_EXPORT void DestroyCallback() override;
 
   //! This method should not be called (prohibited).
-  Standard_Mutex(const Standard_Mutex&);
+  Standard_Mutex(const Standard_Mutex&) = delete;
   //! This method should not be called (prohibited).
-  Standard_Mutex& operator=(const Standard_Mutex&);
+  Standard_Mutex& operator=(const Standard_Mutex&) = delete;
 
 private:
 #if (defined(_WIN32) || defined(__WIN32__))
@@ -167,7 +172,14 @@ private:
 #endif
 };
 
+//! @deprecated Use std::shared_ptr<std::mutex> instead. Will be removed in OCCT 8.0.0.
+Standard_DISABLE_DEPRECATION_WARNINGS;
+
+Standard_DEPRECATED("Standard_HMutex is deprecated; use std::shared_ptr<std::mutex> instead. "
+                    "Will be removed in OCCT 8.0.0")
 typedef NCollection_Shared<Standard_Mutex> Standard_HMutex;
+
+Standard_ENABLE_DEPRECATION_WARNINGS;
 
 // Implementation of the method Unlock is inline, since it is
 // just a shortcut to system function

@@ -24,19 +24,19 @@
 class Geom2d_Curve;
 class Adaptor2d_Curve2d;
 
-//! this package  contains the geometric definition of
-//! 2d  curves compatible  with  the  Adaptor  package
+//! this package contains the geometric definition of
+//! 2d curves compatible with the Adaptor package
 //! templates.
 class Geom2dAdaptor
 {
 public:
   DEFINE_STANDARD_ALLOC
 
-  //! Inherited  from    GHCurve.   Provides a  curve
+  //! Inherited from GHCurve. Provides a curve
   //! handled by reference.
-  //! Creates  a 2d  curve  from  a  HCurve2d.  This
+  //! Creates a 2d curve from a HCurve2d. This
   //! cannot process the OtherCurves.
-  Standard_EXPORT static Handle(Geom2d_Curve) MakeCurve(const Adaptor2d_Curve2d& HC);
+  Standard_EXPORT static occ::handle<Geom2d_Curve> MakeCurve(const Adaptor2d_Curve2d& HC);
 };
 
 #endif // _Geom2dAdaptor_HeaderFile

@@ -31,14 +31,14 @@ class gp_Mat;
 //! geometric system (heterogeneous composition of the previous
 //! entities).
 //!
-//! Global properties are :
+//! Global properties are:
 //! . length, area, volume,
 //! . centre of mass,
 //! . axis of inertia,
 //! . moments of inertia,
 //! . radius of gyration.
 //!
-//! It provides  also a class to  compile the average point or
+//! It provides also a class to compile the average point or
 //! line of a set of points.
 class GProp
 {
@@ -48,20 +48,20 @@ public:
   //! methods of package
   //! Computes the matrix Operator, referred to as the
   //! "Huyghens Operator" of a geometric system at the
-  //! point Q of the space, using the following data :
+  //! point Q of the space, using the following data:
   //! - Mass, i.e. the mass of the system,
   //! - G, the center of mass of the system.
   //! The "Huyghens Operator" is used to compute
   //! Inertia/Q, the matrix of inertia of the system at
-  //! the point Q using Huyghens' theorem :
+  //! the point Q using Huyghens' theorem:
   //! Inertia/Q = Inertia/G + HOperator (Q, G, Mass)
   //! where Inertia/G is the matrix of inertia of the
   //! system relative to its center of mass as returned by
   //! the function MatrixOfInertia on any GProp_GProps object.
-  Standard_EXPORT static void HOperator(const gp_Pnt&       G,
-                                        const gp_Pnt&       Q,
-                                        const Standard_Real Mass,
-                                        gp_Mat&             Operator);
+  Standard_EXPORT static void HOperator(const gp_Pnt& G,
+                                        const gp_Pnt& Q,
+                                        const double  Mass,
+                                        gp_Mat&       Operator);
 };
 
 #endif // _GProp_HeaderFile

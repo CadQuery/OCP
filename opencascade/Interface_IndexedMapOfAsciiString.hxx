@@ -1,7 +1,4 @@
-// Created on: 1992-02-03
-// Created by: Christian CAILLET
-// Copyright (c) 1992-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,12 +11,23 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef Interface_IndexedMapOfAsciiString_HeaderFile
-#define Interface_IndexedMapOfAsciiString_HeaderFile
+//! @file Interface_IndexedMapOfAsciiString.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection_IndexedMap<TCollection_AsciiString> directly instead.
 
+#ifndef _Interface_IndexedMapOfAsciiString_hxx
+#define _Interface_IndexedMapOfAsciiString_hxx
+
+#include <Standard_Macro.hxx>
 #include <TCollection_AsciiString.hxx>
 #include <NCollection_IndexedMap.hxx>
 
+Standard_HEADER_DEPRECATED("Interface_IndexedMapOfAsciiString.hxx is deprecated since OCCT 8.0.0. "
+                           "Use NCollection_IndexedMap<TCollection_AsciiString> directly.")
+
+  Standard_DEPRECATED("Interface_IndexedMapOfAsciiString is deprecated, use "
+                      "NCollection_IndexedMap<TCollection_AsciiString> directly")
 typedef NCollection_IndexedMap<TCollection_AsciiString> Interface_IndexedMapOfAsciiString;
 
-#endif
+#endif // _Interface_IndexedMapOfAsciiString_hxx

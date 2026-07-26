@@ -17,13 +17,9 @@
 #ifndef _Standard_NumericError_HeaderFile
 #define _Standard_NumericError_HeaderFile
 
-#include <Standard_Type.hxx>
 #include <Standard_DefineException.hxx>
 #include <Standard_SStream.hxx>
 #include <Standard_Failure.hxx>
-
-class Standard_NumericError;
-DEFINE_STANDARD_HANDLE(Standard_NumericError, Standard_Failure)
 
 #if !defined No_Exception && !defined No_Standard_NumericError
   #define Standard_NumericError_Raise_if(CONDITION, MESSAGE)                                       \

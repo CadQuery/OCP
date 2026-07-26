@@ -1,6 +1,4 @@
-// Created on: 2011-11-24
-// Created by: ANNA MASALSKAYA
-// Copyright (c) 2011-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -13,11 +11,22 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _BRepBuilderAPI_CellFilter_HeaderFile
-#define _BRepBuilderAPI_CellFilter_HeaderFile
+//! @file BRepBuilderAPI_CellFilter.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection_CellFilter<BRepBuilderAPI_VertexInspector> directly instead.
 
+#ifndef _BRepBuilderAPI_CellFilter_hxx
+#define _BRepBuilderAPI_CellFilter_hxx
+
+#include <Standard_Macro.hxx>
 #include <BRepBuilderAPI_VertexInspector.hxx>
 
+Standard_HEADER_DEPRECATED("BRepBuilderAPI_CellFilter.hxx is deprecated since OCCT 8.0.0. Use "
+                           "NCollection_CellFilter<BRepBuilderAPI_VertexInspector> directly.")
+
+  Standard_DEPRECATED("BRepBuilderAPI_CellFilter is deprecated, use "
+                      "NCollection_CellFilter<BRepBuilderAPI_VertexInspector> directly")
 typedef NCollection_CellFilter<BRepBuilderAPI_VertexInspector> BRepBuilderAPI_CellFilter;
 
-#endif
+#endif // _BRepBuilderAPI_CellFilter_hxx

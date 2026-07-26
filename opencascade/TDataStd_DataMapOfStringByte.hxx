@@ -1,7 +1,4 @@
-// Created on: 1995-05-10
-// Created by: Denis PASCAL
-// Copyright (c) 1995-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,14 +11,27 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef TDataStd_DataMapOfStringByte_HeaderFile
-#define TDataStd_DataMapOfStringByte_HeaderFile
+//! @file TDataStd_DataMapOfStringByte.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection types directly instead.
 
+#ifndef _TDataStd_DataMapOfStringByte_hxx
+#define _TDataStd_DataMapOfStringByte_hxx
+
+#include <Standard_Macro.hxx>
 #include <TCollection_ExtendedString.hxx>
 #include <NCollection_DataMap.hxx>
 
-typedef NCollection_DataMap<TCollection_ExtendedString, Standard_Byte> TDataStd_DataMapOfStringByte;
-typedef NCollection_DataMap<TCollection_ExtendedString, Standard_Byte>::Iterator
+Standard_HEADER_DEPRECATED("TDataStd_DataMapOfStringByte.hxx is deprecated since OCCT 8.0.0. Use "
+                           "NCollection types directly.")
+
+  Standard_DEPRECATED("TDataStd_DataMapOfStringByte is deprecated, use "
+                      "NCollection_DataMap<TCollection_ExtendedString, uint8_t> directly")
+typedef NCollection_DataMap<TCollection_ExtendedString, uint8_t> TDataStd_DataMapOfStringByte;
+Standard_DEPRECATED("TDataStd_DataMapIteratorOfDataMapOfStringByte is deprecated, use "
+                    "NCollection_DataMap<TCollection_ExtendedString, uint8_t>::Iterator directly")
+typedef NCollection_DataMap<TCollection_ExtendedString, uint8_t>::Iterator
   TDataStd_DataMapIteratorOfDataMapOfStringByte;
 
-#endif
+#endif // _TDataStd_DataMapOfStringByte_hxx

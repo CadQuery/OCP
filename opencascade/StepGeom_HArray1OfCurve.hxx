@@ -1,7 +1,4 @@
-// Created on: 1995-12-01
-// Created by: EXPRESS->CDL V0.2 Translator
-// Copyright (c) 1995-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,13 +11,24 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef StepGeom_HArray1OfCurve_HeaderFile
-#define StepGeom_HArray1OfCurve_HeaderFile
+//! @file StepGeom_HArray1OfCurve.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection_HArray1<opencascade::handle<StepGeom_Curve>> directly instead.
 
+#ifndef _StepGeom_HArray1OfCurve_hxx
+#define _StepGeom_HArray1OfCurve_hxx
+
+#include <Standard_Macro.hxx>
 #include <StepGeom_Curve.hxx>
 #include <StepGeom_Array1OfCurve.hxx>
-#include <NCollection_DefineHArray1.hxx>
+#include <NCollection_HArray1.hxx>
 
-DEFINE_HARRAY1(StepGeom_HArray1OfCurve, StepGeom_Array1OfCurve)
+Standard_HEADER_DEPRECATED("StepGeom_HArray1OfCurve.hxx is deprecated since OCCT 8.0.0. Use "
+                           "NCollection_HArray1<opencascade::handle<StepGeom_Curve>> directly.")
 
-#endif
+  Standard_DEPRECATED("StepGeom_HArray1OfCurve is deprecated, use "
+                      "NCollection_HArray1<opencascade::handle<StepGeom_Curve>> directly")
+typedef NCollection_HArray1<opencascade::handle<StepGeom_Curve>> StepGeom_HArray1OfCurve;
+
+#endif // _StepGeom_HArray1OfCurve_hxx

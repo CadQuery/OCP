@@ -14,32 +14,23 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-//=======================================================================
-// function : FixFaceTool
-// purpose  :
-//=======================================================================
+//=================================================================================================
 
-inline Handle(ShapeFix_Face) ShapeFix_Shell::FixFaceTool()
+inline occ::handle<ShapeFix_Face> ShapeFix_Shell::FixFaceTool()
 {
   return myFixFace;
 }
 
-//=======================================================================
-// function : FixFaceMode
-// purpose  :
-//=======================================================================
+//=================================================================================================
 
-inline Standard_Integer& ShapeFix_Shell::FixFaceMode()
+inline int& ShapeFix_Shell::FixFaceMode()
 {
   return myFixFaceMode;
 }
 
-//=======================================================================
-// function : FixOrientationMode
-// purpose  :
-//=======================================================================
+//=================================================================================================
 
-inline Standard_Integer& ShapeFix_Shell::FixOrientationMode()
+inline int& ShapeFix_Shell::FixOrientationMode()
 {
   return myFixOrientationMode;
 }

@@ -1,7 +1,4 @@
-// Created on: 1991-01-14
-// Created by: Arnaud BOUZY
-// Copyright (c) 1991-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,12 +11,23 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef Expr_Array1OfSingleRelation_HeaderFile
-#define Expr_Array1OfSingleRelation_HeaderFile
+//! @file Expr_Array1OfSingleRelation.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection_Array1<opencascade::handle<Expr_SingleRelation>> directly instead.
 
+#ifndef _Expr_Array1OfSingleRelation_hxx
+#define _Expr_Array1OfSingleRelation_hxx
+
+#include <Standard_Macro.hxx>
 #include <Expr_SingleRelation.hxx>
 #include <NCollection_Array1.hxx>
 
-typedef NCollection_Array1<Handle(Expr_SingleRelation)> Expr_Array1OfSingleRelation;
+Standard_HEADER_DEPRECATED("Expr_Array1OfSingleRelation.hxx is deprecated since OCCT 8.0.0. Use "
+                           "NCollection_Array1<opencascade::handle<Expr_SingleRelation>> directly.")
 
-#endif
+  Standard_DEPRECATED("Expr_Array1OfSingleRelation is deprecated, use "
+                      "NCollection_Array1<opencascade::handle<Expr_SingleRelation>> directly")
+typedef NCollection_Array1<opencascade::handle<Expr_SingleRelation>> Expr_Array1OfSingleRelation;
+
+#endif // _Expr_Array1OfSingleRelation_hxx

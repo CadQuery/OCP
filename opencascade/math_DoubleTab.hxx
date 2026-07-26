@@ -20,60 +20,178 @@
 #include <Standard.hxx>
 #include <Standard_DefineAlloc.hxx>
 #include <Standard_Handle.hxx>
+#include <NCollection_Array2.hxx>
 
 #include <Standard_Real.hxx>
 #include <Standard_Boolean.hxx>
 
+#include <array>
+#include <utility>
+
 class math_DoubleTab
 {
+  static const int THE_BUFFER_SIZE = 64;
+
 public:
-  DEFINE_STANDARD_ALLOC
+  DEFINE_STANDARD_ALLOC;
+  DEFINE_NCOLLECTION_ALLOC;
 
-  Standard_EXPORT math_DoubleTab(const Standard_Integer LowerRow,
-                                 const Standard_Integer UpperRow,
-                                 const Standard_Integer LowerCol,
-                                 const Standard_Integer UpperCol);
-
-  Standard_EXPORT math_DoubleTab(const Standard_Address Tab,
-                                 const Standard_Integer LowerRow,
-                                 const Standard_Integer UpperRow,
-                                 const Standard_Integer LowerCol,
-                                 const Standard_Integer UpperCol);
-
-  Standard_EXPORT void Init(const Standard_Real InitValue);
-
-  Standard_EXPORT math_DoubleTab(const math_DoubleTab& Other);
-
-  void Copy(math_DoubleTab& Other) const;
-
-  Standard_EXPORT void SetLowerRow(const Standard_Integer LowerRow);
-
-  Standard_EXPORT void SetLowerCol(const Standard_Integer LowerCol);
-
-  Standard_Real& Value(const Standard_Integer RowIndex, const Standard_Integer ColIndex) const;
-
-  Standard_Real& operator()(const Standard_Integer RowIndex, const Standard_Integer ColIndex) const
+public:
+  //! Constructor for ranges [theLowerRow..theUpperRow, theLowerCol..theUpperCol]
+  math_DoubleTab(const int theLowerRow,
+                 const int theUpperRow,
+                 const int theLowerCol,
+                 const int theUpperCol)
+      : myBuffer{},
+        myArray((theUpperRow - theLowerRow + 1) * (theUpperCol - theLowerCol + 1) <= THE_BUFFER_SIZE
+                  ? NCollection_Array2<double>(*myBuffer.data(),
+                                               theLowerRow,
+                                               theUpperRow,
+                                               theLowerCol,
+                                               theUpperCol)
+                  : NCollection_Array2<double>(theLowerRow, theUpperRow, theLowerCol, theUpperCol))
   {
-    return Value(RowIndex, ColIndex);
   }
 
-  Standard_EXPORT void Free();
+public:
+  //! Constructor from external data array
+  math_DoubleTab(void* const theTab,
+                 const int   theLowerRow,
+                 const int   theUpperRow,
+                 const int   theLowerCol,
+                 const int   theUpperCol)
+      : myArray(*static_cast<const double*>(theTab),
+                theLowerRow,
+                theUpperRow,
+                theLowerCol,
+                theUpperCol)
+  {
+  }
 
-  ~math_DoubleTab() { Free(); }
+  //! Initialize all elements with theInitValue
+  void Init(const double theInitValue) { myArray.Init(theInitValue); }
 
-protected:
+  //! Copy constructor
+  math_DoubleTab(const math_DoubleTab& theOther)
+      : myArray(theOther.myArray)
+  {
+  }
+
+  //! Move constructor
+  math_DoubleTab(math_DoubleTab&& theOther) noexcept
+      : myBuffer{},
+        myArray(theOther.myArray.IsDeletable()
+                  ? std::move(theOther.myArray)
+                  : (theOther.NbRows() * theOther.NbColumns() <= THE_BUFFER_SIZE
+                       ? NCollection_Array2<double>(*myBuffer.data(),
+                                                    theOther.LowerRow(),
+                                                    theOther.UpperRow(),
+                                                    theOther.LowerCol(),
+                                                    theOther.UpperCol())
+                       : NCollection_Array2<double>(theOther.LowerRow(),
+                                                    theOther.UpperRow(),
+                                                    theOther.LowerCol(),
+                                                    theOther.UpperCol())))
+  {
+    if (!theOther.myArray.IsEmpty())
+    {
+      myArray.Assign(theOther.myArray);
+    }
+  }
+
+  //! Copy data to theOther
+  void Copy(math_DoubleTab& theOther) const { theOther.myArray.CopyValues(myArray); }
+
+  //! Returns true if the internal array is deletable (heap-allocated)
+  bool IsDeletable() const { return myArray.IsDeletable(); }
+
+  //! Set lower row index
+  void SetLowerRow(const int theLowerRow) { myArray.UpdateLowerRow(theLowerRow); }
+
+  //! Set lower column index
+  void SetLowerCol(const int theLowerCol) { myArray.UpdateLowerCol(theLowerCol); }
+
+  //! Get lower row index
+  int LowerRow() const noexcept { return myArray.LowerRow(); }
+
+  //! Get upper row index
+  int UpperRow() const noexcept { return myArray.UpperRow(); }
+
+  //! Get lower column index
+  int LowerCol() const noexcept { return myArray.LowerCol(); }
+
+  //! Get upper column index
+  int UpperCol() const noexcept { return myArray.UpperCol(); }
+
+  //! Get number of rows
+  int NbRows() const noexcept { return myArray.NbRows(); }
+
+  //! Get number of columns
+  int NbColumns() const noexcept { return myArray.NbColumns(); }
+
+  //! Access element at (theRowIndex, theColIndex)
+  const double& Value(const int theRowIndex, const int theColIndex) const
+  {
+    return myArray.Value(theRowIndex, theColIndex);
+  }
+
+  //! Change element at (theRowIndex, theColIndex)
+  double& Value(const int theRowIndex, const int theColIndex)
+  {
+    return myArray.ChangeValue(theRowIndex, theColIndex);
+  }
+
+  //! Operator() - alias to Value
+  const double& operator()(const int theRowIndex, const int theColIndex) const
+  {
+    return Value(theRowIndex, theColIndex);
+  }
+
+  //! Operator() - alias to ChangeValue
+  double& operator()(const int theRowIndex, const int theColIndex)
+  {
+    return Value(theRowIndex, theColIndex);
+  }
+
+  //! Assignment operator
+  math_DoubleTab& operator=(const math_DoubleTab& theOther)
+  {
+    if (this != &theOther)
+    {
+      myArray = theOther.myArray;
+    }
+    return *this;
+  }
+
+  //! Move assignment operator
+  math_DoubleTab& operator=(math_DoubleTab&& theOther) noexcept
+  {
+    if (this == &theOther)
+    {
+      return *this;
+    }
+
+    if (myArray.IsDeletable() && theOther.myArray.IsDeletable()
+        && myArray.NbRows() == theOther.myArray.NbRows()
+        && myArray.NbColumns() == theOther.myArray.NbColumns()
+        && myArray.LowerRow() == theOther.myArray.LowerRow()
+        && myArray.LowerCol() == theOther.myArray.LowerCol())
+    {
+      myArray.Move(theOther.myArray);
+    }
+    else
+    {
+      myArray = theOther.myArray;
+    }
+    return *this;
+  }
+
+  //! Destructor
+  ~math_DoubleTab() = default;
+
 private:
-  Standard_EXPORT void Allocate();
-
-  Standard_Address Addr;
-  Standard_Real    Buf[16]{};
-  Standard_Boolean isAllocated;
-  Standard_Integer LowR;
-  Standard_Integer UppR;
-  Standard_Integer LowC;
-  Standard_Integer UppC;
+  std::array<double, THE_BUFFER_SIZE> myBuffer;
+  NCollection_Array2<double>          myArray;
 };
-
-#include <math_DoubleTab.lxx>
 
 #endif // _math_DoubleTab_HeaderFile

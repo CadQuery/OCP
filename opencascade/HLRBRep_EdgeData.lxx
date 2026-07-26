@@ -14,22 +14,16 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-//=======================================================================
-// function : Selected
-// purpose  :
-//=======================================================================
+//=================================================================================================
 
-inline Standard_Boolean HLRBRep_EdgeData::Selected() const
+inline bool HLRBRep_EdgeData::Selected() const
 {
   return (myFlags & EMaskSelected) != 0;
 }
 
-//=======================================================================
-// function : Selected
-// purpose  :
-//=======================================================================
+//=================================================================================================
 
-inline void HLRBRep_EdgeData::Selected(const Standard_Boolean B)
+inline void HLRBRep_EdgeData::Selected(const bool B)
 {
   if (B)
     myFlags |= EMaskSelected;
@@ -37,22 +31,16 @@ inline void HLRBRep_EdgeData::Selected(const Standard_Boolean B)
     myFlags &= ~EMaskSelected;
 }
 
-//=======================================================================
-// function : Rg1Line
-// purpose  :
-//=======================================================================
+//=================================================================================================
 
-inline Standard_Boolean HLRBRep_EdgeData::Rg1Line() const
+inline bool HLRBRep_EdgeData::Rg1Line() const
 {
   return (myFlags & EMaskRg1Line) != 0;
 }
 
-//=======================================================================
-// function : Rg1Line
-// purpose  :
-//=======================================================================
+//=================================================================================================
 
-inline void HLRBRep_EdgeData::Rg1Line(const Standard_Boolean B)
+inline void HLRBRep_EdgeData::Rg1Line(const bool B)
 {
   if (B)
     myFlags |= EMaskRg1Line;
@@ -60,22 +48,16 @@ inline void HLRBRep_EdgeData::Rg1Line(const Standard_Boolean B)
     myFlags &= ~EMaskRg1Line;
 }
 
-//=======================================================================
-// function : RgNLine
-// purpose  :
-//=======================================================================
+//=================================================================================================
 
-inline Standard_Boolean HLRBRep_EdgeData::RgNLine() const
+inline bool HLRBRep_EdgeData::RgNLine() const
 {
   return (myFlags & EMaskRgNLine) != 0;
 }
 
-//=======================================================================
-// function : RgNLine
-// purpose  :
-//=======================================================================
+//=================================================================================================
 
-inline void HLRBRep_EdgeData::RgNLine(const Standard_Boolean B)
+inline void HLRBRep_EdgeData::RgNLine(const bool B)
 {
   if (B)
     myFlags |= EMaskRgNLine;
@@ -83,22 +65,16 @@ inline void HLRBRep_EdgeData::RgNLine(const Standard_Boolean B)
     myFlags &= ~EMaskRgNLine;
 }
 
-//=======================================================================
-// function : Vertical
-// purpose  :
-//=======================================================================
+//=================================================================================================
 
-inline Standard_Boolean HLRBRep_EdgeData::Vertical() const
+inline bool HLRBRep_EdgeData::Vertical() const
 {
   return (myFlags & EMaskVertical) != 0;
 }
 
-//=======================================================================
-// function : Vertical
-// purpose  :
-//=======================================================================
+//=================================================================================================
 
-inline void HLRBRep_EdgeData::Vertical(const Standard_Boolean B)
+inline void HLRBRep_EdgeData::Vertical(const bool B)
 {
   if (B)
     myFlags |= EMaskVertical;
@@ -106,22 +82,16 @@ inline void HLRBRep_EdgeData::Vertical(const Standard_Boolean B)
     myFlags &= ~EMaskVertical;
 }
 
-//=======================================================================
-// function : Simple
-// purpose  :
-//=======================================================================
+//=================================================================================================
 
-inline Standard_Boolean HLRBRep_EdgeData::Simple() const
+inline bool HLRBRep_EdgeData::Simple() const
 {
   return (myFlags & EMaskSimple) != 0;
 }
 
-//=======================================================================
-// function : Simple
-// purpose  :
-//=======================================================================
+//=================================================================================================
 
-inline void HLRBRep_EdgeData::Simple(const Standard_Boolean B)
+inline void HLRBRep_EdgeData::Simple(const bool B)
 {
   if (B)
     myFlags |= EMaskSimple;
@@ -129,22 +99,16 @@ inline void HLRBRep_EdgeData::Simple(const Standard_Boolean B)
     myFlags &= ~EMaskSimple;
 }
 
-//=======================================================================
-// function : OutLVSta
-// purpose  :
-//=======================================================================
+//=================================================================================================
 
-inline Standard_Boolean HLRBRep_EdgeData::OutLVSta() const
+inline bool HLRBRep_EdgeData::OutLVSta() const
 {
   return (myFlags & EMaskOutLVSta) != 0;
 }
 
-//=======================================================================
-// function : OutLVSta
-// purpose  :
-//=======================================================================
+//=================================================================================================
 
-inline void HLRBRep_EdgeData::OutLVSta(const Standard_Boolean B)
+inline void HLRBRep_EdgeData::OutLVSta(const bool B)
 {
   if (B)
     myFlags |= EMaskOutLVSta;
@@ -152,22 +116,16 @@ inline void HLRBRep_EdgeData::OutLVSta(const Standard_Boolean B)
     myFlags &= ~EMaskOutLVSta;
 }
 
-//=======================================================================
-// function : OutLVEnd
-// purpose  :
-//=======================================================================
+//=================================================================================================
 
-inline Standard_Boolean HLRBRep_EdgeData::OutLVEnd() const
+inline bool HLRBRep_EdgeData::OutLVEnd() const
 {
   return (myFlags & EMaskOutLVEnd) != 0;
 }
 
-//=======================================================================
-// function : OutLVEnd
-// purpose  :
-//=======================================================================
+//=================================================================================================
 
-inline void HLRBRep_EdgeData::OutLVEnd(const Standard_Boolean B)
+inline void HLRBRep_EdgeData::OutLVEnd(const bool B)
 {
   if (B)
     myFlags |= EMaskOutLVEnd;
@@ -175,22 +133,16 @@ inline void HLRBRep_EdgeData::OutLVEnd(const Standard_Boolean B)
     myFlags &= ~EMaskOutLVEnd;
 }
 
-//=======================================================================
-// function : CutAtSta
-// purpose  :
-//=======================================================================
+//=================================================================================================
 
-inline Standard_Boolean HLRBRep_EdgeData::CutAtSta() const
+inline bool HLRBRep_EdgeData::CutAtSta() const
 {
   return (myFlags & EMaskCutAtSta) != 0;
 }
 
-//=======================================================================
-// function : CutAtSta
-// purpose  :
-//=======================================================================
+//=================================================================================================
 
-inline void HLRBRep_EdgeData::CutAtSta(const Standard_Boolean B)
+inline void HLRBRep_EdgeData::CutAtSta(const bool B)
 {
   if (B)
     myFlags |= EMaskCutAtSta;
@@ -198,22 +150,16 @@ inline void HLRBRep_EdgeData::CutAtSta(const Standard_Boolean B)
     myFlags &= ~EMaskCutAtSta;
 }
 
-//=======================================================================
-// function : CutAtEnd
-// purpose  :
-//=======================================================================
+//=================================================================================================
 
-inline Standard_Boolean HLRBRep_EdgeData::CutAtEnd() const
+inline bool HLRBRep_EdgeData::CutAtEnd() const
 {
   return (myFlags & EMaskCutAtEnd) != 0;
 }
 
-//=======================================================================
-// function : CutAtEnd
-// purpose  :
-//=======================================================================
+//=================================================================================================
 
-inline void HLRBRep_EdgeData::CutAtEnd(const Standard_Boolean B)
+inline void HLRBRep_EdgeData::CutAtEnd(const bool B)
 {
   if (B)
     myFlags |= EMaskCutAtEnd;
@@ -221,22 +167,16 @@ inline void HLRBRep_EdgeData::CutAtEnd(const Standard_Boolean B)
     myFlags &= ~EMaskCutAtEnd;
 }
 
-//=======================================================================
-// function : VerAtSta
-// purpose  :
-//=======================================================================
+//=================================================================================================
 
-inline Standard_Boolean HLRBRep_EdgeData::VerAtSta() const
+inline bool HLRBRep_EdgeData::VerAtSta() const
 {
   return (myFlags & EMaskVerAtSta) != 0;
 }
 
-//=======================================================================
-// function : VerAtSta
-// purpose  :
-//=======================================================================
+//=================================================================================================
 
-inline void HLRBRep_EdgeData::VerAtSta(const Standard_Boolean B)
+inline void HLRBRep_EdgeData::VerAtSta(const bool B)
 {
   if (B)
     myFlags |= EMaskVerAtSta;
@@ -244,22 +184,16 @@ inline void HLRBRep_EdgeData::VerAtSta(const Standard_Boolean B)
     myFlags &= ~EMaskVerAtSta;
 }
 
-//=======================================================================
-// function : VerAtEnd
-// purpose  :
-//=======================================================================
+//=================================================================================================
 
-inline Standard_Boolean HLRBRep_EdgeData::VerAtEnd() const
+inline bool HLRBRep_EdgeData::VerAtEnd() const
 {
   return (myFlags & EMaskVerAtEnd) != 0;
 }
 
-//=======================================================================
-// function : VerAtEnd
-// purpose  :
-//=======================================================================
+//=================================================================================================
 
-inline void HLRBRep_EdgeData::VerAtEnd(const Standard_Boolean B)
+inline void HLRBRep_EdgeData::VerAtEnd(const bool B)
 {
   if (B)
     myFlags |= EMaskVerAtEnd;
@@ -267,22 +201,16 @@ inline void HLRBRep_EdgeData::VerAtEnd(const Standard_Boolean B)
     myFlags &= ~EMaskVerAtEnd;
 }
 
-//=======================================================================
-// function : AutoIntersectionDone
-// purpose  :
-//=======================================================================
+//=================================================================================================
 
-inline Standard_Boolean HLRBRep_EdgeData::AutoIntersectionDone() const
+inline bool HLRBRep_EdgeData::AutoIntersectionDone() const
 {
   return (myFlags & EMaskIntDone) != 0;
 }
 
-//=======================================================================
-// function : AutoIntersectionDone
-// purpose  :
-//=======================================================================
+//=================================================================================================
 
-inline void HLRBRep_EdgeData::AutoIntersectionDone(const Standard_Boolean B)
+inline void HLRBRep_EdgeData::AutoIntersectionDone(const bool B)
 {
   if (B)
     myFlags |= EMaskIntDone;
@@ -290,22 +218,16 @@ inline void HLRBRep_EdgeData::AutoIntersectionDone(const Standard_Boolean B)
     myFlags &= ~EMaskIntDone;
 }
 
-//=======================================================================
-// function : Used
-// purpose  :
-//=======================================================================
+//=================================================================================================
 
-inline Standard_Boolean HLRBRep_EdgeData::Used() const
+inline bool HLRBRep_EdgeData::Used() const
 {
   return (myFlags & EMaskUsed) != 0;
 }
 
-//=======================================================================
-// function : Used
-// purpose  :
-//=======================================================================
+//=================================================================================================
 
-inline void HLRBRep_EdgeData::Used(const Standard_Boolean B)
+inline void HLRBRep_EdgeData::Used(const bool B)
 {
   if (B)
     myFlags |= EMaskUsed;
@@ -313,102 +235,72 @@ inline void HLRBRep_EdgeData::Used(const Standard_Boolean B)
     myFlags &= ~EMaskUsed;
 }
 
-//=======================================================================
-// function : HideCount
-// purpose  :
-//=======================================================================
+//=================================================================================================
 
-inline Standard_Integer HLRBRep_EdgeData::HideCount() const
+inline int HLRBRep_EdgeData::HideCount() const
 {
   return myHideCount;
 }
 
-//=======================================================================
-// function : HideCount
-// purpose  :
-//=======================================================================
+//=================================================================================================
 
-inline void HLRBRep_EdgeData::HideCount(const Standard_Integer I)
+inline void HLRBRep_EdgeData::HideCount(const int I)
 {
   myHideCount = I;
 }
 
-//=======================================================================
-// function : VSta
-// purpose  :
-//=======================================================================
+//=================================================================================================
 
-inline Standard_Integer HLRBRep_EdgeData::VSta() const
+inline int HLRBRep_EdgeData::VSta() const
 {
   return myVSta;
 }
 
-//=======================================================================
-// function : VSta
-// purpose  :
-//=======================================================================
+//=================================================================================================
 
-inline void HLRBRep_EdgeData::VSta(const Standard_Integer I)
+inline void HLRBRep_EdgeData::VSta(const int I)
 {
   myVSta = I;
 }
 
-//=======================================================================
-// function : VEnd
-// purpose  :
-//=======================================================================
+//=================================================================================================
 
-inline Standard_Integer HLRBRep_EdgeData::VEnd() const
+inline int HLRBRep_EdgeData::VEnd() const
 {
   return myVEnd;
 }
 
-//=======================================================================
-// function : VEnd
-// purpose  :
-//=======================================================================
+//=================================================================================================
 
-inline void HLRBRep_EdgeData::VEnd(const Standard_Integer I)
+inline void HLRBRep_EdgeData::VEnd(const int I)
 {
   myVEnd = I;
 }
 
-//=======================================================================
-// function : Status
-// purpose  :
-//=======================================================================
+//=================================================================================================
 
 inline HLRAlgo_EdgeStatus& HLRBRep_EdgeData::Status()
 {
   return myStatus;
 }
 
-//=======================================================================
-// function : ChangeGeometry
-// purpose  :
-//=======================================================================
+//=================================================================================================
 
 inline HLRBRep_Curve& HLRBRep_EdgeData::ChangeGeometry()
 {
   return myGeometry;
 }
 
-//=======================================================================
-// function : Geometry
-// purpose  :
-//=======================================================================
+//=================================================================================================
 
 inline const HLRBRep_Curve& HLRBRep_EdgeData::Geometry() const
 {
   return myGeometry;
 }
 
-//=======================================================================
-// function : Tolerance
-// purpose  :
-//=======================================================================
+//=================================================================================================
 
-inline Standard_ShortReal HLRBRep_EdgeData::Tolerance() const
+inline float HLRBRep_EdgeData::Tolerance() const
 {
   return myTolerance;
 }

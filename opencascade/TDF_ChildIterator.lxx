@@ -19,9 +19,9 @@
 // Version	Date		Purpose
 //		0.0	Feb  7 1997	Creation
 
-inline Standard_Boolean TDF_ChildIterator::More() const
+inline bool TDF_ChildIterator::More() const
 {
-  return (myNode != NULL);
+  return (myNode != nullptr);
 }
 
 inline const TDF_Label TDF_ChildIterator::Value() const

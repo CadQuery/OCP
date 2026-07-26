@@ -1,5 +1,4 @@
-// Created by: Eugeny MALTCHIKOV
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -12,12 +11,23 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef BOPDS_VectorOfPave_HeaderFile
-#define BOPDS_VectorOfPave_HeaderFile
+//! @file BOPDS_VectorOfPave.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection_Array1<BOPDS_Pave> directly instead.
 
+#ifndef _BOPDS_VectorOfPave_hxx
+#define _BOPDS_VectorOfPave_hxx
+
+#include <Standard_Macro.hxx>
 #include <NCollection_Array1.hxx>
 #include <BOPDS_Pave.hxx>
 
+Standard_HEADER_DEPRECATED("BOPDS_VectorOfPave.hxx is deprecated since OCCT 8.0.0. Use "
+                           "NCollection_Array1<BOPDS_Pave> directly.")
+
+  Standard_DEPRECATED(
+    "BOPDS_VectorOfPave is deprecated, use NCollection_Array1<BOPDS_Pave> directly")
 typedef NCollection_Array1<BOPDS_Pave> BOPDS_VectorOfPave;
 
-#endif
+#endif // _BOPDS_VectorOfPave_hxx

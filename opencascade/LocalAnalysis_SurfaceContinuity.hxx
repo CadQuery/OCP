@@ -25,51 +25,51 @@
 #include <LocalAnalysis_StatusErrorType.hxx>
 class Geom_Surface;
 class Geom2d_Curve;
-class GeomLProp_SLProps;
+#include <GeomLProp_SLProps.hxx>
 
 //! This class gives tools to check local continuity C0
-//! C1 C2 G1 G2 between  two points situated on two surfaces
+//! C1 C2 G1 G2 between two points situated on two surfaces
 class LocalAnalysis_SurfaceContinuity
 {
 public:
   DEFINE_STANDARD_ALLOC
 
-  //! -u1,v1 are  the parameters of the point on Surf1
-  //! -u2,v2  are  the  parameters of the point on Surf2
-  //! -Order  is the required continuity:
-  //! GeomAbs_C0    GeomAbs_C1  GeomAbs_C2
+  //! -u1,v1 are the parameters of the point on Surf1
+  //! -u2,v2 are the parameters of the point on Surf2
+  //! -Order is the required continuity:
+  //! GeomAbs_C0 GeomAbs_C1 GeomAbs_C2
   //! GeomAbs_G1 GeomAbs_G2
   //!
-  //! -EpsNul  is  used to  detect a  a vector with nul
+  //! -EpsNul is used to detect a a vector with nul
   //! magnitude
   //!
-  //! -EpsC0 is used for C0  continuity to confuse two
+  //! -EpsC0 is used for C0 continuity to confuse two
   //! points (in mm)
   //!
-  //! -EpsC1 is  an angular  tolerance in radians  used
-  //! for C1 continuity  to compare the angle between
+  //! -EpsC1 is an angular tolerance in radians used
+  //! for C1 continuity to compare the angle between
   //! the first derivatives
   //!
-  //! -EpsC2 is an   angular tolerance in radians  used
-  //! for C2  continuity to  compare the angle  between
+  //! -EpsC2 is an angular tolerance in radians used
+  //! for C2 continuity to compare the angle between
   //! the second derivatives
   //!
-  //! -EpsG1 is an  angular  tolerance in radians  used
-  //! for G1  continuity to compare  the angle  between
-  //! the  normals
+  //! -EpsG1 is an angular tolerance in radians used
+  //! for G1 continuity to compare the angle between
+  //! the normals
   //!
-  //! -Percent  : percentage of  curvature variation (unitless)
+  //! -Percent: percentage of curvature variation (unitless)
   //! used for G2 continuity
   //!
-  //! - Maxlen is the maximum length of Surf1 or Surf2  in
+  //! - Maxlen is the maximum length of Surf1 or Surf2 in
   //! meters used to detect null curvature (in mm)
   //!
-  //! the constructor computes the quantities  which are
+  //! the constructor computes the quantities which are
   //! necessary to check the continuity in the following cases:
   //!
-  //! case  C0
+  //! case C0
   //! --------
-  //! - the distance between P1 and P2  with P1=Surf (u1,v1)  and
+  //! - the distance between P1 and P2 with P1=Surf (u1,v1) and
   //! P2=Surfv2(u2,v2)
   //!
   //! case C1
@@ -89,116 +89,115 @@ public:
   //! --------         and         ---------
   //! dv                           dv
   //!
-  //! - the ratio between  the magnitudes of  the first derivatives  in  u
-  //! - the  ratio  between  the magnitudes of the first derivatives in v
+  //! - the ratio between the magnitudes of the first derivatives in u
+  //! - the ratio between the magnitudes of the first derivatives in v
   //!
-  //! the angle value is between  0 and pi/2
+  //! the angle value is between 0 and pi/2
   //!
-  //! case  C2
+  //! case C2
   //! -------
-  //! - the  angle  between the second derivatives in u
+  //! - the angle between the second derivatives in u
   //! 2                  2
   //! d Surf1(u1,v1)    d  Surf2(u2,v2)
   //! ----------        ----------
   //! 2                  2
   //! d u               d  u
   //!
-  //! - the ratio between the  magnitudes of the second derivatives in  u
-  //! - the  ratio between the  magnitudes of the  second derivatives in v
+  //! - the ratio between the magnitudes of the second derivatives in u
+  //! - the ratio between the magnitudes of the second derivatives in v
   //!
   //! the angle value is between 0 and PI/2
   //!
   //! case G1
   //! -------
-  //! -the angle between  the normals  at each point
+  //! -the angle between the normals at each point
   //! the angle value is between 0 and PI/2
   //!
-  //! case  G2
+  //! case G2
   //! -------
-  //! - the maximum  normal curvature gap between the two
+  //! - the maximum normal curvature gap between the two
   //! points
-  Standard_EXPORT LocalAnalysis_SurfaceContinuity(const Handle(Geom_Surface)& Surf1,
-                                                  const Standard_Real         u1,
-                                                  const Standard_Real         v1,
-                                                  const Handle(Geom_Surface)& Surf2,
-                                                  const Standard_Real         u2,
-                                                  const Standard_Real         v2,
-                                                  const GeomAbs_Shape         Order,
-                                                  const Standard_Real         EpsNul  = 0.001,
-                                                  const Standard_Real         EpsC0   = 0.001,
-                                                  const Standard_Real         EpsC1   = 0.001,
-                                                  const Standard_Real         EpsC2   = 0.001,
-                                                  const Standard_Real         EpsG1   = 0.001,
-                                                  const Standard_Real         Percent = 0.01,
-                                                  const Standard_Real         Maxlen  = 10000);
+  Standard_EXPORT LocalAnalysis_SurfaceContinuity(const occ::handle<Geom_Surface>& Surf1,
+                                                  const double                     u1,
+                                                  const double                     v1,
+                                                  const occ::handle<Geom_Surface>& Surf2,
+                                                  const double                     u2,
+                                                  const double                     v2,
+                                                  const GeomAbs_Shape              Order,
+                                                  const double                     EpsNul  = 0.001,
+                                                  const double                     EpsC0   = 0.001,
+                                                  const double                     EpsC1   = 0.001,
+                                                  const double                     EpsC2   = 0.001,
+                                                  const double                     EpsG1   = 0.001,
+                                                  const double                     Percent = 0.01,
+                                                  const double                     Maxlen  = 10000);
 
-  Standard_EXPORT LocalAnalysis_SurfaceContinuity(const Handle(Geom2d_Curve)& curv1,
-                                                  const Handle(Geom2d_Curve)& curv2,
-                                                  const Standard_Real         U,
-                                                  const Handle(Geom_Surface)& Surf1,
-                                                  const Handle(Geom_Surface)& Surf2,
-                                                  const GeomAbs_Shape         Order,
-                                                  const Standard_Real         EpsNul  = 0.001,
-                                                  const Standard_Real         EpsC0   = 0.001,
-                                                  const Standard_Real         EpsC1   = 0.001,
-                                                  const Standard_Real         EpsC2   = 0.001,
-                                                  const Standard_Real         EpsG1   = 0.001,
-                                                  const Standard_Real         Percent = 0.01,
-                                                  const Standard_Real         Maxlen  = 10000);
+  Standard_EXPORT LocalAnalysis_SurfaceContinuity(const occ::handle<Geom2d_Curve>& curv1,
+                                                  const occ::handle<Geom2d_Curve>& curv2,
+                                                  const double                     U,
+                                                  const occ::handle<Geom_Surface>& Surf1,
+                                                  const occ::handle<Geom_Surface>& Surf2,
+                                                  const GeomAbs_Shape              Order,
+                                                  const double                     EpsNul  = 0.001,
+                                                  const double                     EpsC0   = 0.001,
+                                                  const double                     EpsC1   = 0.001,
+                                                  const double                     EpsC2   = 0.001,
+                                                  const double                     EpsG1   = 0.001,
+                                                  const double                     Percent = 0.01,
+                                                  const double                     Maxlen  = 10000);
 
-  //! This  constructor  is  used  when  we  want  to compute  many  analysis.
-  //! After  we  use  the  method  ComputeAnalysis
-  Standard_EXPORT LocalAnalysis_SurfaceContinuity(const Standard_Real EpsNul  = 0.001,
-                                                  const Standard_Real EpsC0   = 0.001,
-                                                  const Standard_Real EpsC1   = 0.001,
-                                                  const Standard_Real EpsC2   = 0.001,
-                                                  const Standard_Real EpsG1   = 0.001,
-                                                  const Standard_Real Percent = 0.01,
-                                                  const Standard_Real Maxlen  = 10000);
+  //! This constructor is used when we want to compute many analysis.
+  //! After we use the method ComputeAnalysis
+  Standard_EXPORT LocalAnalysis_SurfaceContinuity(const double EpsNul  = 0.001,
+                                                  const double EpsC0   = 0.001,
+                                                  const double EpsC1   = 0.001,
+                                                  const double EpsC2   = 0.001,
+                                                  const double EpsG1   = 0.001,
+                                                  const double Percent = 0.01,
+                                                  const double Maxlen  = 10000);
 
   Standard_EXPORT void ComputeAnalysis(GeomLProp_SLProps&  Surf1,
                                        GeomLProp_SLProps&  Surf2,
                                        const GeomAbs_Shape Order);
 
-  Standard_EXPORT Standard_Boolean IsDone() const;
+  Standard_EXPORT bool IsDone() const;
 
   Standard_EXPORT GeomAbs_Shape ContinuityStatus() const;
 
   Standard_EXPORT LocalAnalysis_StatusErrorType StatusError() const;
 
-  Standard_EXPORT Standard_Real C0Value() const;
+  Standard_EXPORT double C0Value() const;
 
-  Standard_EXPORT Standard_Real C1UAngle() const;
+  Standard_EXPORT double C1UAngle() const;
 
-  Standard_EXPORT Standard_Real C1URatio() const;
+  Standard_EXPORT double C1URatio() const;
 
-  Standard_EXPORT Standard_Real C1VAngle() const;
+  Standard_EXPORT double C1VAngle() const;
 
-  Standard_EXPORT Standard_Real C1VRatio() const;
+  Standard_EXPORT double C1VRatio() const;
 
-  Standard_EXPORT Standard_Real C2UAngle() const;
+  Standard_EXPORT double C2UAngle() const;
 
-  Standard_EXPORT Standard_Real C2URatio() const;
+  Standard_EXPORT double C2URatio() const;
 
-  Standard_EXPORT Standard_Real C2VAngle() const;
+  Standard_EXPORT double C2VAngle() const;
 
-  Standard_EXPORT Standard_Real C2VRatio() const;
+  Standard_EXPORT double C2VRatio() const;
 
-  Standard_EXPORT Standard_Real G1Angle() const;
+  Standard_EXPORT double G1Angle() const;
 
-  Standard_EXPORT Standard_Real G2CurvatureGap() const;
+  Standard_EXPORT double G2CurvatureGap() const;
 
-  Standard_EXPORT Standard_Boolean IsC0() const;
+  Standard_EXPORT bool IsC0() const;
 
-  Standard_EXPORT Standard_Boolean IsC1() const;
+  Standard_EXPORT bool IsC1() const;
 
-  Standard_EXPORT Standard_Boolean IsC2() const;
+  Standard_EXPORT bool IsC2() const;
 
-  Standard_EXPORT Standard_Boolean IsG1() const;
+  Standard_EXPORT bool IsG1() const;
 
-  Standard_EXPORT Standard_Boolean IsG2() const;
+  Standard_EXPORT bool IsG2() const;
 
-protected:
 private:
   Standard_EXPORT void SurfC0(const GeomLProp_SLProps& Surf1, const GeomLProp_SLProps& Surf2);
 
@@ -210,33 +209,33 @@ private:
 
   Standard_EXPORT void SurfG2(GeomLProp_SLProps& Surf1, GeomLProp_SLProps& Surf2);
 
-  Standard_Real                 myContC0;
-  Standard_Real                 myContC1U;
-  Standard_Real                 myContC1V;
-  Standard_Real                 myContC2U;
-  Standard_Real                 myContC2V;
-  Standard_Real                 myContG1;
-  Standard_Real                 myLambda1U;
-  Standard_Real                 myLambda2U;
-  Standard_Real                 myLambda1V;
-  Standard_Real                 myLambda2V;
-  Standard_Real                 myETA1;
-  Standard_Real                 myETA2;
-  Standard_Real                 myETA;
-  Standard_Real                 myZETA1;
-  Standard_Real                 myZETA2;
-  Standard_Real                 myZETA;
-  Standard_Real                 myAlpha;
+  double                        myContC0;
+  double                        myContC1U;
+  double                        myContC1V;
+  double                        myContC2U;
+  double                        myContC2V;
+  double                        myContG1;
+  double                        myLambda1U;
+  double                        myLambda2U;
+  double                        myLambda1V;
+  double                        myLambda2V;
+  double                        myETA1;
+  double                        myETA2;
+  double                        myETA;
+  double                        myZETA1;
+  double                        myZETA2;
+  double                        myZETA;
+  double                        myAlpha;
   GeomAbs_Shape                 myTypeCont;
-  Standard_Real                 myepsC0;
-  Standard_Real                 myepsnul;
-  Standard_Real                 myepsC1;
-  Standard_Real                 myepsC2;
-  Standard_Real                 myepsG1;
-  Standard_Real                 myperce;
-  Standard_Real                 mymaxlen;
-  Standard_Real                 myGap;
-  Standard_Boolean              myIsDone;
+  double                        myepsC0;
+  double                        myepsnul;
+  double                        myepsC1;
+  double                        myepsC2;
+  double                        myepsG1;
+  double                        myperce;
+  double                        mymaxlen;
+  double                        myGap;
+  bool                          myIsDone;
   LocalAnalysis_StatusErrorType myErrorStatus;
 };
 

@@ -1,7 +1,4 @@
-// Created on: 1996-03-05
-// Created by: Joelle CHAUVET
-// Copyright (c) 1996-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,14 +11,23 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef AdvApp2Var_Strip_HeaderFile
-#define AdvApp2Var_Strip_HeaderFile
+//! @file AdvApp2Var_Strip.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection_Sequence<opencascade::handle<AdvApp2Var_Iso>> directly instead.
 
+#ifndef _AdvApp2Var_Strip_hxx
+#define _AdvApp2Var_Strip_hxx
+
+#include <Standard_Macro.hxx>
 #include <AdvApp2Var_Iso.hxx>
 #include <NCollection_Sequence.hxx>
 
-//! Set of constraints along a same type of Iso on the same level
+Standard_HEADER_DEPRECATED("AdvApp2Var_Strip.hxx is deprecated since OCCT 8.0.0. Use "
+                           "NCollection_Sequence<opencascade::handle<AdvApp2Var_Iso>> directly.")
 
-typedef NCollection_Sequence<Handle(AdvApp2Var_Iso)> AdvApp2Var_Strip;
+  Standard_DEPRECATED("AdvApp2Var_Strip is deprecated, use "
+                      "NCollection_Sequence<opencascade::handle<AdvApp2Var_Iso>> directly")
+typedef NCollection_Sequence<opencascade::handle<AdvApp2Var_Iso>> AdvApp2Var_Strip;
 
-#endif
+#endif // _AdvApp2Var_Strip_hxx

@@ -1,7 +1,4 @@
-// Created on: 1993-07-06
-// Created by: Yves FRICAUD
-// Copyright (c) 1993-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,14 +11,27 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef MAT2d_DataMapOfIntegerBisec_HeaderFile
-#define MAT2d_DataMapOfIntegerBisec_HeaderFile
+//! @file MAT2d_DataMapOfIntegerBisec.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection types directly instead.
 
+#ifndef _MAT2d_DataMapOfIntegerBisec_hxx
+#define _MAT2d_DataMapOfIntegerBisec_hxx
+
+#include <Standard_Macro.hxx>
 #include <Bisector_Bisec.hxx>
 #include <NCollection_DataMap.hxx>
 
-typedef NCollection_DataMap<Standard_Integer, Bisector_Bisec> MAT2d_DataMapOfIntegerBisec;
-typedef NCollection_DataMap<Standard_Integer, Bisector_Bisec>::Iterator
+Standard_HEADER_DEPRECATED(
+  "MAT2d_DataMapOfIntegerBisec.hxx is deprecated since OCCT 8.0.0. Use NCollection types directly.")
+
+  Standard_DEPRECATED("MAT2d_DataMapOfIntegerBisec is deprecated, use NCollection_DataMap<int, "
+                      "Bisector_Bisec> directly")
+typedef NCollection_DataMap<int, Bisector_Bisec> MAT2d_DataMapOfIntegerBisec;
+Standard_DEPRECATED("MAT2d_DataMapIteratorOfDataMapOfIntegerBisec is deprecated, use "
+                    "NCollection_DataMap<int, Bisector_Bisec>::Iterator directly")
+typedef NCollection_DataMap<int, Bisector_Bisec>::Iterator
   MAT2d_DataMapIteratorOfDataMapOfIntegerBisec;
 
-#endif
+#endif // _MAT2d_DataMapOfIntegerBisec_hxx

@@ -1,7 +1,4 @@
-// Created on: 1995-12-06
-// Created by: Jacques GOUSSARD
-// Copyright (c) 1995-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,22 +11,38 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef BRepCheck_DataMapOfShapeListOfStatus_HeaderFile
-#define BRepCheck_DataMapOfShapeListOfStatus_HeaderFile
+//! @file BRepCheck_DataMapOfShapeListOfStatus.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection types directly instead.
 
+#ifndef _BRepCheck_DataMapOfShapeListOfStatus_hxx
+#define _BRepCheck_DataMapOfShapeListOfStatus_hxx
+
+#include <Standard_Macro.hxx>
 #include <TopoDS_Shape.hxx>
 #include <BRepCheck_ListOfStatus.hxx>
 #include <TopTools_ShapeMapHasher.hxx>
 #include <NCollection_DataMap.hxx>
 #include <NCollection_Shared.hxx>
 
+Standard_HEADER_DEPRECATED("BRepCheck_DataMapOfShapeListOfStatus.hxx is deprecated since OCCT "
+                           "8.0.0. Use NCollection types directly.")
+
+  Standard_DEPRECATED(
+    "BRepCheck_DataMapOfShapeListOfStatus is deprecated, use NCollection_DataMap<TopoDS_Shape, "
+    "Handle(NCollection_Shared<BRepCheck_ListOfStatus>), TopTools_ShapeMapHasher> directly")
 typedef NCollection_DataMap<TopoDS_Shape,
                             Handle(NCollection_Shared<BRepCheck_ListOfStatus>),
                             TopTools_ShapeMapHasher>
   BRepCheck_DataMapOfShapeListOfStatus;
+Standard_DEPRECATED(
+  "BRepCheck_DataMapIteratorOfDataMapOfShapeListOfStatus is deprecated, use "
+  "NCollection_DataMap<TopoDS_Shape, Handle(NCollection_Shared<BRepCheck_ListOfStatus>), "
+  "TopTools_ShapeMapHasher>::Iterator directly")
 typedef NCollection_DataMap<TopoDS_Shape,
                             Handle(NCollection_Shared<BRepCheck_ListOfStatus>),
                             TopTools_ShapeMapHasher>::Iterator
   BRepCheck_DataMapIteratorOfDataMapOfShapeListOfStatus;
 
-#endif
+#endif // _BRepCheck_DataMapOfShapeListOfStatus_hxx

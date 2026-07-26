@@ -16,46 +16,34 @@
 
 // Modified by jag, Tue May 30 09:47:02 1995
 
-//=======================================================================
-// function : BRepFeat_MakeCylindricalHole
-// purpose  :
-//=======================================================================
+//=================================================================================================
 
 inline BRepFeat_MakeCylindricalHole::BRepFeat_MakeCylindricalHole()
-    : myAxDef(Standard_False),
+    : myAxDef(false),
       myStatus(BRepFeat_NoError),
-      myIsBlind(Standard_False),
-      myValidate(Standard_False)
+      myIsBlind(false),
+      myValidate(false)
 {
 }
 
-//=======================================================================
-// function : Init
-// purpose  :
-//=======================================================================
+//=================================================================================================
 
 inline void BRepFeat_MakeCylindricalHole::Init(const gp_Ax1& Axis)
 {
   myAxis  = Axis;
-  myAxDef = Standard_True;
+  myAxDef = true;
 }
 
-//=======================================================================
-// function : Init
-// purpose  :
-//=======================================================================
+//=================================================================================================
 
 inline void BRepFeat_MakeCylindricalHole::Init(const TopoDS_Shape& S, const gp_Ax1& Axis)
 {
   BRepFeat_Builder::Init(S);
   myAxis  = Axis;
-  myAxDef = Standard_True;
+  myAxDef = true;
 }
 
-//=======================================================================
-// function : Status
-// purpose  :
-//=======================================================================
+//=================================================================================================
 
 inline BRepFeat_Status BRepFeat_MakeCylindricalHole::Status() const
 {

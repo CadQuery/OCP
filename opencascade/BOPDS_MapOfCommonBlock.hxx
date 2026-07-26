@@ -1,5 +1,4 @@
-// Created by: Peter KURNEV
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -12,13 +11,27 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef BOPDS_MapOfCommonBlock_HeaderFile
-#define BOPDS_MapOfCommonBlock_HeaderFile
+//! @file BOPDS_MapOfCommonBlock.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection types directly instead.
 
+#ifndef _BOPDS_MapOfCommonBlock_hxx
+#define _BOPDS_MapOfCommonBlock_hxx
+
+#include <Standard_Macro.hxx>
 #include <NCollection_Map.hxx>
 #include <BOPDS_CommonBlock.hxx>
 
-typedef NCollection_Map<Handle(BOPDS_CommonBlock)> BOPDS_MapOfCommonBlock;
-typedef BOPDS_MapOfCommonBlock::Iterator           BOPDS_MapIteratorOfMapOfCommonBlock;
+Standard_HEADER_DEPRECATED(
+  "BOPDS_MapOfCommonBlock.hxx is deprecated since OCCT 8.0.0. Use NCollection types directly.")
 
-#endif
+  Standard_DEPRECATED("BOPDS_MapOfCommonBlock is deprecated, use "
+                      "NCollection_Map<opencascade::handle<BOPDS_CommonBlock>> directly")
+typedef NCollection_Map<opencascade::handle<BOPDS_CommonBlock>> BOPDS_MapOfCommonBlock;
+Standard_DEPRECATED("BOPDS_MapIteratorOfMapOfCommonBlock is deprecated, use "
+                    "NCollection_Map<opencascade::handle<BOPDS_CommonBlock>>::Iterator directly")
+typedef NCollection_Map<opencascade::handle<BOPDS_CommonBlock>>::Iterator
+  BOPDS_MapIteratorOfMapOfCommonBlock;
+
+#endif // _BOPDS_MapOfCommonBlock_hxx

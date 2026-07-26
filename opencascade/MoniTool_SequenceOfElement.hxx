@@ -1,7 +1,4 @@
-// Created on: 1998-04-01
-// Created by: Christian CAILLET
-// Copyright (c) 1998-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,12 +11,23 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef MoniTool_SequenceOfElement_HeaderFile
-#define MoniTool_SequenceOfElement_HeaderFile
+//! @file MoniTool_SequenceOfElement.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection_Sequence<opencascade::handle<MoniTool_Element>> directly instead.
 
+#ifndef _MoniTool_SequenceOfElement_hxx
+#define _MoniTool_SequenceOfElement_hxx
+
+#include <Standard_Macro.hxx>
 #include <MoniTool_Element.hxx>
 #include <NCollection_Sequence.hxx>
 
-typedef NCollection_Sequence<Handle(MoniTool_Element)> MoniTool_SequenceOfElement;
+Standard_HEADER_DEPRECATED("MoniTool_SequenceOfElement.hxx is deprecated since OCCT 8.0.0. Use "
+                           "NCollection_Sequence<opencascade::handle<MoniTool_Element>> directly.")
 
-#endif
+  Standard_DEPRECATED("MoniTool_SequenceOfElement is deprecated, use "
+                      "NCollection_Sequence<opencascade::handle<MoniTool_Element>> directly")
+typedef NCollection_Sequence<opencascade::handle<MoniTool_Element>> MoniTool_SequenceOfElement;
+
+#endif // _MoniTool_SequenceOfElement_hxx

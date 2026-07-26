@@ -17,13 +17,9 @@
 #ifndef _ExprIntrp_SyntaxError_HeaderFile
 #define _ExprIntrp_SyntaxError_HeaderFile
 
-#include <Standard_Type.hxx>
 #include <Standard_DefineException.hxx>
 #include <Standard_SStream.hxx>
 #include <Standard_Failure.hxx>
-
-class ExprIntrp_SyntaxError;
-DEFINE_STANDARD_HANDLE(ExprIntrp_SyntaxError, Standard_Failure)
 
 #if !defined No_Exception && !defined No_ExprIntrp_SyntaxError
   #define ExprIntrp_SyntaxError_Raise_if(CONDITION, MESSAGE)                                       \

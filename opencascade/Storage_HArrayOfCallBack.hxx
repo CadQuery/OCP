@@ -1,7 +1,4 @@
-// Created on: 1996-04-30
-// Created by: cle
-// Copyright (c) 1996-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,12 +11,23 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef Storage_HArrayOfCallBack_HeaderFile
-#define Storage_HArrayOfCallBack_HeaderFile
+//! @file Storage_HArrayOfCallBack.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection_HArray1<opencascade::handle<Storage_CallBack>> directly instead.
 
+#ifndef _Storage_HArrayOfCallBack_hxx
+#define _Storage_HArrayOfCallBack_hxx
+
+#include <Standard_Macro.hxx>
 #include <Storage_ArrayOfCallBack.hxx>
-#include <NCollection_DefineHArray1.hxx>
+#include <NCollection_HArray1.hxx>
 
-DEFINE_HARRAY1(Storage_HArrayOfCallBack, Storage_ArrayOfCallBack)
+Standard_HEADER_DEPRECATED("Storage_HArrayOfCallBack.hxx is deprecated since OCCT 8.0.0. Use "
+                           "NCollection_HArray1<opencascade::handle<Storage_CallBack>> directly.")
 
-#endif
+  Standard_DEPRECATED("Storage_HArrayOfCallBack is deprecated, use "
+                      "NCollection_HArray1<opencascade::handle<Storage_CallBack>> directly")
+typedef NCollection_HArray1<opencascade::handle<Storage_CallBack>> Storage_HArrayOfCallBack;
+
+#endif // _Storage_HArrayOfCallBack_hxx

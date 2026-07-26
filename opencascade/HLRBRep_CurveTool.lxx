@@ -25,46 +25,34 @@
 #include <gp_Hypr2d.hxx>
 #include <Geom2d_BezierCurve.hxx>
 #include <Geom2d_BSplineCurve.hxx>
-#include <TColStd_Array1OfReal.hxx>
+#include <NCollection_Array1.hxx>
 
 #define IS_C2_COMPOSITE 0
 
-//=======================================================================
-// function : FirstParameter
-// purpose  :
-//=======================================================================
+//=================================================================================================
 
-inline Standard_Real HLRBRep_CurveTool::FirstParameter(const Standard_Address C)
+inline double HLRBRep_CurveTool::FirstParameter(const HLRBRep_CurvePtr C)
 {
   return (((HLRBRep_Curve*)C)->FirstParameter());
 }
 
-//=======================================================================
-// function : LastParameter
-// purpose  :
-//=======================================================================
+//=================================================================================================
 
-inline Standard_Real HLRBRep_CurveTool::LastParameter(const Standard_Address C)
+inline double HLRBRep_CurveTool::LastParameter(const HLRBRep_CurvePtr C)
 {
   return (((HLRBRep_Curve*)C)->LastParameter());
 }
 
-//=======================================================================
-// function : Continuity
-// purpose  :
-//=======================================================================
+//=================================================================================================
 
-inline GeomAbs_Shape HLRBRep_CurveTool::Continuity(const Standard_Address C)
+inline GeomAbs_Shape HLRBRep_CurveTool::Continuity(const HLRBRep_CurvePtr C)
 {
   return (((HLRBRep_Curve*)C)->Continuity());
 }
 
-//=======================================================================
-// function : NbIntervals
-// purpose  :
-//=======================================================================
+//=================================================================================================
 
-inline Standard_Integer HLRBRep_CurveTool::NbIntervals(const Standard_Address C)
+inline int HLRBRep_CurveTool::NbIntervals(const HLRBRep_CurvePtr C)
 {
 #if IS_C2_COMPOSITE
   return (((HLRBRep_Curve*)C)->NbIntervals(GeomAbs_C2));
@@ -73,12 +61,9 @@ inline Standard_Integer HLRBRep_CurveTool::NbIntervals(const Standard_Address C)
 #endif
 }
 
-//=======================================================================
-// function : Intervals
-// purpose  :
-//=======================================================================
+//=================================================================================================
 
-inline void HLRBRep_CurveTool::Intervals(const Standard_Address C, TColStd_Array1OfReal& Tab)
+inline void HLRBRep_CurveTool::Intervals(const HLRBRep_CurvePtr C, NCollection_Array1<double>& Tab)
 {
 #if IS_C2_COMPOSITE
   ((HLRBRep_Curve*)C)->Intervals(Tab, GeomAbs_C2);
@@ -87,91 +72,67 @@ inline void HLRBRep_CurveTool::Intervals(const Standard_Address C, TColStd_Array
 #endif
 }
 
-//=======================================================================
-// function : GetInterval
-// purpose  :
-//=======================================================================
+//=================================================================================================
 
-inline void HLRBRep_CurveTool::GetInterval(const Standard_Address /*C*/,
-                                           const Standard_Integer      i,
-                                           const TColStd_Array1OfReal& Tab,
-                                           Standard_Real&              a,
-                                           Standard_Real&              b)
+inline void HLRBRep_CurveTool::GetInterval(const HLRBRep_CurvePtr /*C*/,
+                                           const int                         i,
+                                           const NCollection_Array1<double>& Tab,
+                                           double&                           a,
+                                           double&                           b)
 {
   a = Tab.Value(i);
   b = Tab.Value(i + 1);
 }
 
-//=======================================================================
-// function : IsClosed
-// purpose  :
-//=======================================================================
+//=================================================================================================
 
-inline Standard_Boolean HLRBRep_CurveTool::IsClosed(const Standard_Address C)
+inline bool HLRBRep_CurveTool::IsClosed(const HLRBRep_CurvePtr C)
 {
   return (((HLRBRep_Curve*)C)->IsClosed());
 }
 
-//=======================================================================
-// function : IsPeriodic
-// purpose  :
-//=======================================================================
+//=================================================================================================
 
-inline Standard_Boolean HLRBRep_CurveTool::IsPeriodic(const Standard_Address C)
+inline bool HLRBRep_CurveTool::IsPeriodic(const HLRBRep_CurvePtr C)
 {
   return (((HLRBRep_Curve*)C)->IsPeriodic());
 }
 
-//=======================================================================
-// function : Period
-// purpose  :
-//=======================================================================
+//=================================================================================================
 
-inline Standard_Real HLRBRep_CurveTool::Period(const Standard_Address C)
+inline double HLRBRep_CurveTool::Period(const HLRBRep_CurvePtr C)
 {
   return (((HLRBRep_Curve*)C)->Period());
 }
 
-//=======================================================================
-// function : Value
-// purpose  :
-//=======================================================================
+//=================================================================================================
 
-inline gp_Pnt2d HLRBRep_CurveTool::Value(const Standard_Address C, const Standard_Real U)
+inline gp_Pnt2d HLRBRep_CurveTool::Value(const HLRBRep_CurvePtr C, const double U)
 {
   return (((HLRBRep_Curve*)C)->Value(U));
 }
 
-//=======================================================================
-// function : D0
-// purpose  :
-//=======================================================================
+//=================================================================================================
 
-inline void HLRBRep_CurveTool::D0(const Standard_Address C, const Standard_Real U, gp_Pnt2d& P)
+inline void HLRBRep_CurveTool::D0(const HLRBRep_CurvePtr C, const double U, gp_Pnt2d& P)
 {
   ((HLRBRep_Curve*)C)->D0(U, P);
 }
 
-//=======================================================================
-// function : D1
-// purpose  :
-//=======================================================================
+//=================================================================================================
 
-inline void HLRBRep_CurveTool::D1(const Standard_Address C,
-                                  const Standard_Real    U,
+inline void HLRBRep_CurveTool::D1(const HLRBRep_CurvePtr C,
+                                  const double           U,
                                   gp_Pnt2d&              P,
                                   gp_Vec2d&              T)
 {
   ((HLRBRep_Curve*)C)->D1(U, P, T);
 }
 
-//=======================================================================
-// function : D2
-// purpose  :
-//=======================================================================
+//=================================================================================================
 
-inline void HLRBRep_CurveTool::D2(const Standard_Address C,
-                                  const Standard_Real    U,
+inline void HLRBRep_CurveTool::D2(const HLRBRep_CurvePtr C,
+                                  const double           U,
                                   gp_Pnt2d&              P,
                                   gp_Vec2d&              T,
                                   gp_Vec2d&              N)
@@ -179,13 +140,10 @@ inline void HLRBRep_CurveTool::D2(const Standard_Address C,
   ((HLRBRep_Curve*)C)->D2(U, P, T, N);
 }
 
-//=======================================================================
-// function : D3
-// purpose  :
-//=======================================================================
+//=================================================================================================
 
-inline void HLRBRep_CurveTool::D3(const Standard_Address C,
-                                  const Standard_Real    U,
+inline void HLRBRep_CurveTool::D3(const HLRBRep_CurvePtr C,
+                                  const double           U,
                                   gp_Pnt2d&              P,
                                   gp_Vec2d&              V1,
                                   gp_Vec2d&              V2,
@@ -194,143 +152,101 @@ inline void HLRBRep_CurveTool::D3(const Standard_Address C,
   ((HLRBRep_Curve*)C)->D3(U, P, V1, V2, V3);
 }
 
-//=======================================================================
-// function : DN
-// purpose  :
-//=======================================================================
+//=================================================================================================
 
-inline gp_Vec2d HLRBRep_CurveTool::DN(const Standard_Address C,
-                                      const Standard_Real    U,
-                                      const Standard_Integer N)
+inline gp_Vec2d HLRBRep_CurveTool::DN(const HLRBRep_CurvePtr C, const double U, const int N)
 {
   return (((HLRBRep_Curve*)C)->DN(U, N));
 }
 
-//=======================================================================
-// function : Resolution
-// purpose  :
-//=======================================================================
+//=================================================================================================
 
-inline Standard_Real HLRBRep_CurveTool::Resolution(const Standard_Address C,
-                                                   const Standard_Real    R3d)
+inline double HLRBRep_CurveTool::Resolution(const HLRBRep_CurvePtr C, const double R3d)
 {
   return (((HLRBRep_Curve*)C)->Resolution(R3d));
 }
 
-//=======================================================================
-// function : GetType
-// purpose  :
-//=======================================================================
+//=================================================================================================
 
-inline GeomAbs_CurveType HLRBRep_CurveTool::GetType(const Standard_Address C)
+inline GeomAbs_CurveType HLRBRep_CurveTool::GetType(const HLRBRep_CurvePtr C)
 {
   return (((HLRBRep_Curve*)C)->GetType());
 }
 
-//=======================================================================
-// function : TheType
-// purpose  :
-//=======================================================================
+//=================================================================================================
 
-inline GeomAbs_CurveType HLRBRep_CurveTool::TheType(const Standard_Address C)
+inline GeomAbs_CurveType HLRBRep_CurveTool::TheType(const HLRBRep_CurvePtr C)
 {
   return (((HLRBRep_Curve*)C)->GetType());
 }
 
-//=======================================================================
-// function : Line
-// purpose  :
-//=======================================================================
+//=================================================================================================
 
-inline gp_Lin2d HLRBRep_CurveTool::Line(const Standard_Address C)
+inline gp_Lin2d HLRBRep_CurveTool::Line(const HLRBRep_CurvePtr C)
 {
   return (((HLRBRep_Curve*)C)->Line());
 }
 
-//=======================================================================
-// function : Circle
-// purpose  :
-//=======================================================================
+//=================================================================================================
 
-inline gp_Circ2d HLRBRep_CurveTool::Circle(const Standard_Address C)
+inline gp_Circ2d HLRBRep_CurveTool::Circle(const HLRBRep_CurvePtr C)
 {
   return (((HLRBRep_Curve*)C)->Circle());
 }
 
-//=======================================================================
-// function : Ellipse
-// purpose  :
-//=======================================================================
+//=================================================================================================
 
-inline gp_Elips2d HLRBRep_CurveTool::Ellipse(const Standard_Address C)
+inline gp_Elips2d HLRBRep_CurveTool::Ellipse(const HLRBRep_CurvePtr C)
 {
   return (((HLRBRep_Curve*)C)->Ellipse());
 }
 
-//=======================================================================
-// function : Parabola
-// purpose  :
-//=======================================================================
+//=================================================================================================
 
-inline gp_Parab2d HLRBRep_CurveTool::Parabola(const Standard_Address C)
+inline gp_Parab2d HLRBRep_CurveTool::Parabola(const HLRBRep_CurvePtr C)
 {
   return (((HLRBRep_Curve*)C)->Parabola());
 }
 
-//=======================================================================
-// function : Hyperbola
-// purpose  :
-//=======================================================================
+//=================================================================================================
 
-inline gp_Hypr2d HLRBRep_CurveTool::Hyperbola(const Standard_Address C)
+inline gp_Hypr2d HLRBRep_CurveTool::Hyperbola(const HLRBRep_CurvePtr C)
 {
   return (((HLRBRep_Curve*)C)->Hyperbola());
 }
 
-//=======================================================================
-// function : Bezier
-// purpose  :
-//=======================================================================
+//=================================================================================================
 
-inline Handle(Geom2d_BezierCurve) HLRBRep_CurveTool::Bezier(const Standard_Address /*C*/)
+inline occ::handle<Geom2d_BezierCurve> HLRBRep_CurveTool::Bezier(const HLRBRep_CurvePtr /*C*/)
 {
 #ifdef OCCT_DEBUG
   std::cout << "  HLRBRep_CurveTool::Bezier : Not Implemented " << std::endl;
 #endif
   //-- return(((HLRBRep_Curve *)C)->Bezier());
-  return (0);
+  return (nullptr);
 }
 
-//=======================================================================
-// function : BSpline
-// purpose  :
-//=======================================================================
+//=================================================================================================
 
-inline Handle(Geom2d_BSplineCurve) HLRBRep_CurveTool::BSpline(const Standard_Address /*C*/)
+inline occ::handle<Geom2d_BSplineCurve> HLRBRep_CurveTool::BSpline(const HLRBRep_CurvePtr /*C*/)
 {
 #ifdef OCCT_DEBUG
   std::cout << "  HLRBRep_CurveTool::BSpline : Not Implemented " << std::endl;
 #endif
   //-- return(((HLRBRep_Curve *)C)->BSpline());
-  return (0);
+  return (nullptr);
 }
 
-//=======================================================================
-// function : EpsX
-// purpose  :
-//=======================================================================
+//=================================================================================================
 
-inline Standard_Real HLRBRep_CurveTool::EpsX(const Standard_Address /*C*/)
+inline double HLRBRep_CurveTool::EpsX(const HLRBRep_CurvePtr /*C*/)
 {
   return (1e-10);
 }
 
-//=======================================================================
-// function : Degree
-// purpose  :
-//=======================================================================
+//=================================================================================================
 
-inline Standard_Integer HLRBRep_CurveTool::Degree(const Standard_Address C)
+inline int HLRBRep_CurveTool::Degree(const HLRBRep_CurvePtr C)
 {
   return (((HLRBRep_Curve*)C)->Degree());
 }

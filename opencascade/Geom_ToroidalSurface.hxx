@@ -21,18 +21,12 @@
 #include <Standard_Type.hxx>
 
 #include <Geom_ElementarySurface.hxx>
-#include <TColStd_Array1OfReal.hxx>
-#include <Standard_Integer.hxx>
+#include <NCollection_Array1.hxx>
+
 class gp_Ax3;
 class gp_Torus;
-class Geom_Curve;
-class gp_Pnt;
-class gp_Vec;
 class gp_Trsf;
 class Geom_Geometry;
-
-class Geom_ToroidalSurface;
-DEFINE_STANDARD_HANDLE(Geom_ToroidalSurface, Geom_ElementarySurface)
 
 //! Describes a torus.
 //! A torus is defined by its major and minor radii, and
@@ -93,9 +87,9 @@ public:
   //! MajorRadius = MinorRadius = 0.0
   //!
   //! Raised if MinorRadius < 0.0 or if MajorRadius < 0.0
-  Standard_EXPORT Geom_ToroidalSurface(const gp_Ax3&       A3,
-                                       const Standard_Real MajorRadius,
-                                       const Standard_Real MinorRadius);
+  Standard_EXPORT Geom_ToroidalSurface(const gp_Ax3& A3,
+                                       const double  MajorRadius,
+                                       const double  MinorRadius);
 
   //! Creates a ToroidalSurface from a non transient Torus from
   //! package gp.
@@ -107,7 +101,7 @@ public:
   //! - MajorRadius is negative, or
   //! - MajorRadius - r is less than or equal to
   //! gp::Resolution(), where r is the minor radius of this torus.
-  Standard_EXPORT void SetMajorRadius(const Standard_Real MajorRadius);
+  Standard_EXPORT void SetMajorRadius(const double MajorRadius);
 
   //! Modifies this torus by changing its minor radius.
   //! Exceptions
@@ -115,7 +109,7 @@ public:
   //! - MinorRadius is negative, or
   //! - R - MinorRadius is less than or equal to
   //! gp::Resolution(), where R is the major radius of this torus.
-  Standard_EXPORT void SetMinorRadius(const Standard_Real MinorRadius);
+  Standard_EXPORT void SetMinorRadius(const double MinorRadius);
 
   //! Converts the gp_Torus torus T into this torus.
   Standard_EXPORT void SetTorus(const gp_Torus& T);
@@ -124,25 +118,22 @@ public:
   //! properties as <me>.
   Standard_EXPORT gp_Torus Torus() const;
 
-  //! Return the  parameter on the  Ureversed surface for
+  //! Return the parameter on the Ureversed surface for
   //! the point of parameter U on <me>.
   //! Return 2.PI - U.
-  Standard_EXPORT Standard_Real UReversedParameter(const Standard_Real U) const Standard_OVERRIDE;
+  Standard_EXPORT double UReversedParameter(const double U) const final;
 
-  //! Return the  parameter on the  Ureversed surface for
+  //! Return the parameter on the Ureversed surface for
   //! the point of parameter U on <me>.
   //! Return 2.PI - U.
-  Standard_EXPORT Standard_Real VReversedParameter(const Standard_Real U) const Standard_OVERRIDE;
+  Standard_EXPORT double VReversedParameter(const double U) const final;
 
-  //! Computes the aera of the surface.
-  Standard_EXPORT Standard_Real Area() const;
+  //! Computes the area of the surface.
+  Standard_EXPORT double Area() const;
 
   //! Returns the parametric bounds U1, U2, V1 and V2 of this torus.
   //! For a torus: U1 = V1 = 0 and U2 = V2 = 2*PI .
-  Standard_EXPORT void Bounds(Standard_Real& U1,
-                              Standard_Real& U2,
-                              Standard_Real& V1,
-                              Standard_Real& V2) const Standard_OVERRIDE;
+  Standard_EXPORT void Bounds(double& U1, double& U2, double& V1, double& V2) const final;
 
   //! Returns the coefficients of the implicit equation of the surface
   //! in the absolute cartesian coordinate system :
@@ -155,121 +146,95 @@ public:
   //! Coef(18) * Y**2 * X + Coef(19) * Y**2 * Z + Coef(20) * Z**2 * X +
   //! Coef(21) * Z**2 * Y + Coef(22) * X**2 + Coef(23) * Y**2 +
   //! Coef(24) * Z**2 + Coef(25) * X * Y + Coef(26) * X * Z +
-  //! Coef(27) * Y * Z + Coef(28) * X + Coef(29) * Y + Coef(30) *  Z +
+  //! Coef(27) * Y * Z + Coef(28) * X + Coef(29) * Y + Coef(30) * Z +
   //! Coef(31) = 0.0
   //! Raised if the length of Coef is lower than 31.
-  Standard_EXPORT void Coefficients(TColStd_Array1OfReal& Coef) const;
+  Standard_EXPORT void Coefficients(NCollection_Array1<double>& Coef) const;
 
   //! Returns the major radius, or the minor radius, of this torus.
-  Standard_EXPORT Standard_Real MajorRadius() const;
+  Standard_EXPORT double MajorRadius() const;
 
   //! Returns the major radius, or the minor radius, of this torus.
-  Standard_EXPORT Standard_Real MinorRadius() const;
+  Standard_EXPORT double MinorRadius() const;
 
   //! Computes the volume.
-  Standard_EXPORT Standard_Real Volume() const;
+  Standard_EXPORT double Volume() const;
 
   //! Returns True.
-  Standard_EXPORT Standard_Boolean IsUClosed() const Standard_OVERRIDE;
+  Standard_EXPORT bool IsUClosed() const final;
 
   //! Returns True.
-  Standard_EXPORT Standard_Boolean IsVClosed() const Standard_OVERRIDE;
+  Standard_EXPORT bool IsVClosed() const final;
 
   //! Returns True.
-  Standard_EXPORT Standard_Boolean IsUPeriodic() const Standard_OVERRIDE;
+  Standard_EXPORT bool IsUPeriodic() const final;
 
   //! Returns True.
-  Standard_EXPORT Standard_Boolean IsVPeriodic() const Standard_OVERRIDE;
+  Standard_EXPORT bool IsVPeriodic() const final;
 
   //! Computes the U isoparametric curve.
   //!
   //! For a toroidal surface the UIso curve is a circle.
   //! The center of the Uiso circle is at the distance MajorRadius
   //! from the location point of the toroidal surface.
-  //! Warnings :
+  //! Warnings:
   //! The radius of the circle can be zero if for the surface
   //! MinorRadius = 0.0
-  Standard_EXPORT Handle(Geom_Curve) UIso(const Standard_Real U) const Standard_OVERRIDE;
+  Standard_EXPORT occ::handle<Geom_Curve> UIso(const double U) const final;
 
   //! Computes the V isoparametric curve.
   //!
   //! For a ToroidalSurface the VIso curve is a circle.
   //! The axis of the circle is the main axis (ZAxis) of the
-  //! toroidal  surface.
-  //! Warnings :
+  //! toroidal surface.
+  //! Warnings:
   //! The radius of the circle can be zero if for the surface
   //! MajorRadius = MinorRadius
-  Standard_EXPORT Handle(Geom_Curve) VIso(const Standard_Real V) const Standard_OVERRIDE;
+  Standard_EXPORT occ::handle<Geom_Curve> VIso(const double V) const final;
 
-  //! Computes the  point P (U, V) on the surface.
+  //! Computes the point P (U, V) on the surface.
   //! P (U, V) = Loc + MinorRadius * Sin (V) * Zdir +
-  //! (MajorRadius + MinorRadius * Cos(V)) *
+  //! (MajorRadius + MinorRadius * std::cos(V)) *
   //! (cos (U) * XDir + sin (U) * YDir)
   //! where Loc is the origin of the placement plane (XAxis, YAxis)
   //! XDir is the direction of the XAxis and YDir the direction of
   //! the YAxis and ZDir the direction of the ZAxis.
-  Standard_EXPORT void D0(const Standard_Real U,
-                          const Standard_Real V,
-                          gp_Pnt&             P) const Standard_OVERRIDE;
+  Standard_EXPORT gp_Pnt EvalD0(const double U, const double V) const final;
 
   //! Computes the current point and the first derivatives in
   //! the directions U and V.
-  Standard_EXPORT void D1(const Standard_Real U,
-                          const Standard_Real V,
-                          gp_Pnt&             P,
-                          gp_Vec&             D1U,
-                          gp_Vec&             D1V) const Standard_OVERRIDE;
+  Standard_EXPORT Geom_Surface::ResD1 EvalD1(const double U, const double V) const final;
 
   //! Computes the current point, the first and the second derivatives
   //! in the directions U and V.
-  Standard_EXPORT void D2(const Standard_Real U,
-                          const Standard_Real V,
-                          gp_Pnt&             P,
-                          gp_Vec&             D1U,
-                          gp_Vec&             D1V,
-                          gp_Vec&             D2U,
-                          gp_Vec&             D2V,
-                          gp_Vec&             D2UV) const Standard_OVERRIDE;
+  Standard_EXPORT Geom_Surface::ResD2 EvalD2(const double U, const double V) const final;
 
   //! Computes the current point, the first,the second and the
   //! third derivatives in the directions U and V.
-  Standard_EXPORT void D3(const Standard_Real U,
-                          const Standard_Real V,
-                          gp_Pnt&             P,
-                          gp_Vec&             D1U,
-                          gp_Vec&             D1V,
-                          gp_Vec&             D2U,
-                          gp_Vec&             D2V,
-                          gp_Vec&             D2UV,
-                          gp_Vec&             D3U,
-                          gp_Vec&             D3V,
-                          gp_Vec&             D3UUV,
-                          gp_Vec&             D3UVV) const Standard_OVERRIDE;
+  Standard_EXPORT Geom_Surface::ResD3 EvalD3(const double U, const double V) const final;
 
   //! Computes the derivative of order Nu in the direction u and
   //! Nv in the direction v.
   //! Raised if Nu + Nv < 1 or Nu < 0 or Nv < 0.
-  Standard_EXPORT gp_Vec DN(const Standard_Real    U,
-                            const Standard_Real    V,
-                            const Standard_Integer Nu,
-                            const Standard_Integer Nv) const Standard_OVERRIDE;
+  Standard_EXPORT gp_Vec EvalDN(const double U,
+                                const double V,
+                                const int    Nu,
+                                const int    Nv) const final;
 
   //! Applies the transformation T to this torus.
-  Standard_EXPORT void Transform(const gp_Trsf& T) Standard_OVERRIDE;
+  Standard_EXPORT void Transform(const gp_Trsf& T) final;
 
   //! Creates a new object which is a copy of this torus.
-  Standard_EXPORT Handle(Geom_Geometry) Copy() const Standard_OVERRIDE;
+  Standard_EXPORT occ::handle<Geom_Geometry> Copy() const final;
 
   //! Dumps the content of me into the stream
-  Standard_EXPORT virtual void DumpJson(Standard_OStream& theOStream,
-                                        Standard_Integer  theDepth = -1) const Standard_OVERRIDE;
+  Standard_EXPORT void DumpJson(Standard_OStream& theOStream, int theDepth = -1) const final;
 
   DEFINE_STANDARD_RTTIEXT(Geom_ToroidalSurface, Geom_ElementarySurface)
 
-protected:
 private:
-  Standard_Real majorRadius;
-  Standard_Real minorRadius;
+  double majorRadius;
+  double minorRadius;
 };
 
 #endif // _Geom_ToroidalSurface_HeaderFile

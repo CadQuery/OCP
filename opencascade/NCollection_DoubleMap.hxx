@@ -20,8 +20,12 @@
 #include <NCollection_TListNode.hxx>
 #include <Standard_MultiplyDefined.hxx>
 #include <Standard_NoSuchObject.hxx>
+#include <Standard_OutOfRange.hxx>
 
 #include <NCollection_DefaultHasher.hxx>
+
+#include <type_traits>
+#include <utility>
 
 /**
  * Purpose:     The DoubleMap  is used to  bind  pairs (Key1,Key2)
@@ -59,17 +63,66 @@ public:
     {
     }
 
-    //! Key1
-    const TheKey1Type& Key1(void) { return myKey1; }
+    //! Constructor with 'Next' (move Key1)
+    DoubleMapNode(TheKey1Type&&         theKey1,
+                  const TheKey2Type&    theKey2,
+                  NCollection_ListNode* theNext1,
+                  NCollection_ListNode* theNext2)
+        : NCollection_TListNode<TheKey2Type>(theKey2, theNext1),
+          myKey1(std::forward<TheKey1Type>(theKey1)),
+          myNext2((DoubleMapNode*)theNext2)
+    {
+    }
+
+    //! Constructor with 'Next' (move Key2)
+    DoubleMapNode(const TheKey1Type&    theKey1,
+                  TheKey2Type&&         theKey2,
+                  NCollection_ListNode* theNext1,
+                  NCollection_ListNode* theNext2)
+        : NCollection_TListNode<TheKey2Type>(std::forward<TheKey2Type>(theKey2), theNext1),
+          myKey1(theKey1),
+          myNext2((DoubleMapNode*)theNext2)
+    {
+    }
+
+    //! Constructor with 'Next' (move both keys)
+    DoubleMapNode(TheKey1Type&&         theKey1,
+                  TheKey2Type&&         theKey2,
+                  NCollection_ListNode* theNext1,
+                  NCollection_ListNode* theNext2)
+        : NCollection_TListNode<TheKey2Type>(std::forward<TheKey2Type>(theKey2), theNext1),
+          myKey1(std::forward<TheKey1Type>(theKey1)),
+          myNext2((DoubleMapNode*)theNext2)
+    {
+    }
+
+    //! Constructor with in-place Key2 construction
+    template <typename K1, typename... Args2>
+    DoubleMapNode(K1&& theKey1,
+                  std::in_place_t,
+                  NCollection_ListNode* theNext1,
+                  NCollection_ListNode* theNext2,
+                  Args2&&... theArgs2)
+        : NCollection_TListNode<TheKey2Type>(std::in_place,
+                                             theNext1,
+                                             std::forward<Args2>(theArgs2)...),
+          myKey1(std::forward<K1>(theKey1)),
+          myNext2((DoubleMapNode*)theNext2)
+    {
+    }
+
+    //! Key1 (mutable for destroy+reconstruct)
+    TheKey1Type& Key1() noexcept { return myKey1; }
 
     //! Key2
-    const TheKey2Type& Key2(void) { return this->myValue; }
+    const TheKey2Type& Key2() noexcept { return this->myValue; }
 
     //! Next2
-    DoubleMapNode*& Next2(void) { return myNext2; }
+    DoubleMapNode*& Next2() noexcept { return myNext2; }
 
     //! Static deleter to be passed to BaseList
-    static void delNode(NCollection_ListNode* theNode, Handle(NCollection_BaseAllocator)& theAl)
+    static void delNode(NCollection_ListNode*                   theNode,
+                        occ::handle<NCollection_BaseAllocator>& theAl) noexcept
     {
       ((DoubleMapNode*)theNode)->~DoubleMapNode();
       theAl->Free(theNode);
@@ -86,7 +139,7 @@ public:
   {
   public:
     //! Empty constructor
-    Iterator(void) {}
+    Iterator() = default;
 
     //! Constructor
     Iterator(const NCollection_DoubleMap& theMap)
@@ -95,27 +148,27 @@ public:
     }
 
     //! Query if the end of collection is reached by iterator
-    Standard_Boolean More(void) const { return PMore(); }
+    bool More() const noexcept { return PMore(); }
 
     //! Make a step along the collection
-    void Next(void) { PNext(); }
+    void Next() noexcept { PNext(); }
 
     //! Key1 inquiry
-    const TheKey1Type& Key1(void) const
+    const TheKey1Type& Key1() const
     {
       Standard_NoSuchObject_Raise_if(!More(), "NCollection_DoubleMap::Iterator::Key1");
       return ((DoubleMapNode*)myNode)->Key1();
     }
 
     //! Key2 inquiry
-    const TheKey2Type& Key2(void) const
+    const TheKey2Type& Key2() const
     {
       Standard_NoSuchObject_Raise_if(!More(), "NCollection_DoubleMap::Iterator::Key2");
       return ((DoubleMapNode*)myNode)->Key2();
     }
 
     //! Value access
-    const TheKey2Type& Value(void) const
+    const TheKey2Type& Value() const
     {
       Standard_NoSuchObject_Raise_if(!More(), "NCollection_DoubleMap::Iterator::Value");
       return ((DoubleMapNode*)myNode)->Value();
@@ -127,27 +180,36 @@ public:
 
   //! Empty constructor.
   NCollection_DoubleMap()
-      : NCollection_BaseMap(1, Standard_False, Handle(NCollection_BaseAllocator)())
+      : NCollection_BaseMap(1, false, occ::handle<NCollection_BaseAllocator>())
   {
   }
 
   //! Constructor
-  explicit NCollection_DoubleMap(const Standard_Integer                   theNbBuckets,
-                                 const Handle(NCollection_BaseAllocator)& theAllocator = 0L)
-      : NCollection_BaseMap(theNbBuckets, Standard_False, theAllocator)
+  explicit NCollection_DoubleMap(
+    const size_t                                  theNbBuckets,
+    const occ::handle<NCollection_BaseAllocator>& theAllocator = nullptr)
+      : NCollection_BaseMap(theNbBuckets, false, theAllocator)
+  {
+  }
+
+  //! Constructor (legacy int-taking).
+  explicit NCollection_DoubleMap(
+    const int                                     theNbBuckets,
+    const occ::handle<NCollection_BaseAllocator>& theAllocator = nullptr)
+      : NCollection_DoubleMap(NCollection_BaseMap::NbBucketsFromInt(theNbBuckets), theAllocator)
   {
   }
 
   //! Copy constructor
   NCollection_DoubleMap(const NCollection_DoubleMap& theOther)
-      : NCollection_BaseMap(theOther.NbBuckets(), Standard_False, theOther.myAllocator)
+      : NCollection_BaseMap(theOther.NbBuckets(), false, theOther.myAllocator)
   {
     *this = theOther;
   }
 
   //! Exchange the content of two maps without re-allocations.
   //! Notice that allocators will be swapped as well!
-  void Exchange(NCollection_DoubleMap& theOther) { this->exchangeMapsData(theOther); }
+  void Exchange(NCollection_DoubleMap& theOther) noexcept { this->exchangeMapsData(theOther); }
 
   //! Assignment.
   //! This method does not change the internal allocator.
@@ -157,7 +219,7 @@ public:
       return *this;
 
     Clear();
-    Standard_Integer anExt = theOther.Extent();
+    int anExt = theOther.Extent();
     if (anExt)
     {
       ReSize(anExt - 1);
@@ -185,17 +247,17 @@ public:
   }
 
   //! ReSize
-  void ReSize(const Standard_Integer N)
+  void ReSize(const size_t N)
   {
-    NCollection_ListNode** ppNewData1 = NULL;
-    NCollection_ListNode** ppNewData2 = NULL;
-    Standard_Integer       newBuck;
+    NCollection_ListNode** ppNewData1 = nullptr;
+    NCollection_ListNode** ppNewData2 = nullptr;
+    size_t                 newBuck;
     if (BeginResize(N, newBuck, ppNewData1, ppNewData2))
     {
       if (myData1)
       {
         DoubleMapNode *p, *q;
-        for (int i = 0; i <= NbBuckets(); i++)
+        for (size_t i = 0; i <= NbBuckets(); ++i)
         {
           if (myData1[i])
           {
@@ -218,39 +280,91 @@ public:
     }
   }
 
-  //! Bind
+  void ReSize(const int N)
+  {
+    Standard_OutOfRange_Raise_if(N < 0, "NCollection_DoubleMap::ReSize: negative size");
+    ReSize(static_cast<size_t>(N));
+  }
+
+  //! Bind binds the pair (Key1, Key2).
+  //! @throw Standard_MultiplyDefined if Key1 or Key2 is already bound
   void Bind(const TheKey1Type& theKey1, const TheKey2Type& theKey2)
   {
-    if (Resizable())
-      ReSize(Extent());
-    const size_t   iK1 = HashCode1(theKey1, NbBuckets());
-    const size_t   iK2 = HashCode2(theKey2, NbBuckets());
-    DoubleMapNode* pNode;
-    pNode = (DoubleMapNode*)myData1[iK1];
-    while (pNode)
-    {
-      if (IsEqual1(pNode->Key1(), theKey1))
-        throw Standard_MultiplyDefined("NCollection_DoubleMap:Bind");
-      pNode = (DoubleMapNode*)pNode->Next();
-    }
-    pNode = (DoubleMapNode*)myData2[iK2];
-    while (pNode)
-    {
-      if (IsEqual2(pNode->Key2(), theKey2))
-        throw Standard_MultiplyDefined("NCollection_DoubleMap:Bind");
-      pNode = (DoubleMapNode*)pNode->Next();
-    }
-    pNode = new (this->myAllocator) DoubleMapNode(theKey1, theKey2, myData1[iK1], myData2[iK2]);
-    myData1[iK1] = pNode;
-    myData2[iK2] = pNode;
-    Increment();
+    bindImpl(theKey1, theKey2, std::false_type{});
+  }
+
+  //! Bind binds the pair (Key1, Key2).
+  //! @throw Standard_MultiplyDefined if Key1 or Key2 is already bound
+  void Bind(TheKey1Type&& theKey1, const TheKey2Type& theKey2)
+  {
+    bindImpl(std::move(theKey1), theKey2, std::false_type{});
+  }
+
+  //! Bind binds the pair (Key1, Key2).
+  //! @throw Standard_MultiplyDefined if Key1 or Key2 is already bound
+  void Bind(const TheKey1Type& theKey1, TheKey2Type&& theKey2)
+  {
+    bindImpl(theKey1, std::move(theKey2), std::false_type{});
+  }
+
+  //! Bind binds the pair (Key1, Key2).
+  //! @throw Standard_MultiplyDefined if Key1 or Key2 is already bound
+  void Bind(TheKey1Type&& theKey1, TheKey2Type&& theKey2)
+  {
+    bindImpl(std::move(theKey1), std::move(theKey2), std::false_type{});
+  }
+
+  //! TryBind binds the pair (Key1, Key2) only if neither key is already bound.
+  //! @param theKey1 first key to bind
+  //! @param theKey2 second key to bind
+  //! @return true if pair was successfully bound, false if either key already exists
+  bool TryBind(const TheKey1Type& theKey1, const TheKey2Type& theKey2)
+  {
+    return bindImpl(theKey1, theKey2, std::true_type{});
+  }
+
+  //! TryBind binds the pair (Key1, Key2) only if neither key is already bound.
+  //! @param theKey1 first key to bind
+  //! @param theKey2 second key to bind
+  //! @return true if pair was successfully bound, false if either key already exists
+  bool TryBind(TheKey1Type&& theKey1, const TheKey2Type& theKey2)
+  {
+    return bindImpl(std::move(theKey1), theKey2, std::true_type{});
+  }
+
+  //! TryBind binds the pair (Key1, Key2) only if neither key is already bound.
+  //! @param theKey1 first key to bind
+  //! @param theKey2 second key to bind
+  //! @return true if pair was successfully bound, false if either key already exists
+  bool TryBind(const TheKey1Type& theKey1, TheKey2Type&& theKey2)
+  {
+    return bindImpl(theKey1, std::move(theKey2), std::true_type{});
+  }
+
+  //! TryBind binds the pair (Key1, Key2) only if neither key is already bound.
+  //! @param theKey1 first key to bind
+  //! @param theKey2 second key to bind
+  //! @return true if pair was successfully bound, false if either key already exists
+  bool TryBind(TheKey1Type&& theKey1, TheKey2Type&& theKey2)
+  {
+    return bindImpl(std::move(theKey1), std::move(theKey2), std::true_type{});
+  }
+
+  //! TryEmplace constructs keys in-place only if neither key is already bound.
+  //! @param theKey1 first key to bind
+  //! @param theKey2 second key to bind
+  //! @return true if pair was successfully bound, false if either key already exists
+  template <typename K1, typename K2>
+  bool TryEmplace(K1&& theKey1, K2&& theKey2)
+  {
+    return bindImpl(std::forward<K1>(theKey1), std::forward<K2>(theKey2), std::true_type{});
   }
 
   //!* AreBound
-  Standard_Boolean AreBound(const TheKey1Type& theKey1, const TheKey2Type& theKey2) const
+  bool AreBound(const TheKey1Type& theKey1, const TheKey2Type& theKey2) const
   {
     if (IsEmpty())
-      return Standard_False;
+      return false;
     const size_t   iK1 = HashCode1(theKey1, NbBuckets());
     const size_t   iK2 = HashCode2(theKey2, NbBuckets());
     DoubleMapNode *pNode1, *pNode2;
@@ -262,7 +376,7 @@ public:
       pNode1 = (DoubleMapNode*)pNode1->Next();
     }
     if (pNode1 == NULL)
-      return Standard_False;
+      return false;
     pNode2 = (DoubleMapNode*)myData2[iK2];
     while (pNode2)
     {
@@ -271,53 +385,53 @@ public:
       pNode2 = (DoubleMapNode*)pNode2->Next();
     }
     if (pNode2 == NULL)
-      return Standard_False;
+      return false;
 
     return (pNode1 == pNode2);
   }
 
   //! IsBound1
-  Standard_Boolean IsBound1(const TheKey1Type& theKey1) const
+  bool IsBound1(const TheKey1Type& theKey1) const
   {
     if (IsEmpty())
-      return Standard_False;
+      return false;
     const size_t   iK1 = HashCode1(theKey1, NbBuckets());
     DoubleMapNode* pNode1;
     pNode1 = (DoubleMapNode*)myData1[iK1];
     while (pNode1)
     {
       if (IsEqual1(pNode1->Key1(), theKey1))
-        return Standard_True;
+        return true;
       pNode1 = (DoubleMapNode*)pNode1->Next();
     }
-    return Standard_False;
+    return false;
   }
 
   //! IsBound2
-  Standard_Boolean IsBound2(const TheKey2Type& theKey2) const
+  bool IsBound2(const TheKey2Type& theKey2) const
   {
     if (IsEmpty())
-      return Standard_False;
+      return false;
     const size_t   iK2 = HashCode2(theKey2, NbBuckets());
     DoubleMapNode* pNode2;
     pNode2 = (DoubleMapNode*)myData2[iK2];
     while (pNode2)
     {
       if (IsEqual2(pNode2->Key2(), theKey2))
-        return Standard_True;
+        return true;
       pNode2 = (DoubleMapNode*)pNode2->Next2();
     }
-    return Standard_False;
+    return false;
   }
 
   //! UnBind1
-  Standard_Boolean UnBind1(const TheKey1Type& theKey1)
+  bool UnBind1(const TheKey1Type& theKey1)
   {
     if (IsEmpty())
-      return Standard_False;
+      return false;
     const size_t   iK1 = HashCode1(theKey1, NbBuckets());
     DoubleMapNode *p1, *p2, *q1, *q2;
-    q1 = q2 = NULL;
+    q1 = q2 = nullptr;
     p1      = (DoubleMapNode*)myData1[iK1];
     while (p1)
     {
@@ -347,22 +461,22 @@ public:
         p1->~DoubleMapNode();
         this->myAllocator->Free(p1);
         Decrement();
-        return Standard_True;
+        return true;
       }
       q1 = p1;
       p1 = (DoubleMapNode*)p1->Next();
     }
-    return Standard_False;
+    return false;
   }
 
   //! UnBind2
-  Standard_Boolean UnBind2(const TheKey2Type& theKey2)
+  bool UnBind2(const TheKey2Type& theKey2)
   {
     if (IsEmpty())
-      return Standard_False;
+      return false;
     const size_t   iK2 = HashCode2(theKey2, NbBuckets());
     DoubleMapNode *p1, *p2, *q1, *q2;
-    q1 = q2 = NULL;
+    q1 = q2 = nullptr;
     p2      = (DoubleMapNode*)myData2[iK2];
     while (p2)
     {
@@ -394,12 +508,12 @@ public:
         p2->~DoubleMapNode();
         this->myAllocator->Free(p2);
         Decrement();
-        return Standard_True;
+        return true;
       }
       q2 = p2;
       p2 = (DoubleMapNode*)p2->Next2();
     }
-    return Standard_False;
+    return false;
   }
 
   //! Find the Key1 and return Key2 value.
@@ -417,7 +531,7 @@ public:
   //! @param[in]   theKey1 Key1 to find
   //! @param[out]  theKey2 Key2 to return
   //! @return TRUE if Key1 has been found
-  Standard_Boolean Find1(const TheKey1Type& theKey1, TheKey2Type& theKey2) const
+  bool Find1(const TheKey1Type& theKey1, TheKey2Type& theKey2) const
   {
     if (const TheKey2Type* aKey2 = Seek1(theKey1))
     {
@@ -433,8 +547,8 @@ public:
   const TheKey2Type* Seek1(const TheKey1Type& theKey1) const
   {
     for (DoubleMapNode* aNode1 =
-           !IsEmpty() ? (DoubleMapNode*)myData1[HashCode1(theKey1, NbBuckets())] : NULL;
-         aNode1 != NULL;
+           !IsEmpty() ? (DoubleMapNode*)myData1[HashCode1(theKey1, NbBuckets())] : nullptr;
+         aNode1 != nullptr;
          aNode1 = (DoubleMapNode*)aNode1->Next())
     {
       if (IsEqual1(aNode1->Key1(), theKey1))
@@ -442,7 +556,7 @@ public:
         return &aNode1->Key2();
       }
     }
-    return NULL;
+    return nullptr;
   }
 
   //! Find the Key2 and return Key1 value.
@@ -460,14 +574,14 @@ public:
   //! @param[in]   theKey2 Key2 to find
   //! @param[out]  theKey1 Key1 to return
   //! @return TRUE if Key2 has been found
-  Standard_Boolean Find2(const TheKey2Type& theKey2, TheKey1Type& theKey1) const
+  bool Find2(const TheKey2Type& theKey2, TheKey1Type& theKey1) const
   {
     if (const TheKey1Type* aVal1 = Seek2(theKey2))
     {
       theKey1 = *aVal1;
-      return Standard_True;
+      return true;
     }
-    return Standard_False;
+    return false;
   }
 
   //! Find the Key2 and return pointer to Key1 or NULL if not bound.
@@ -476,8 +590,8 @@ public:
   const TheKey1Type* Seek2(const TheKey2Type& theKey2) const
   {
     for (DoubleMapNode* aNode2 =
-           !IsEmpty() ? (DoubleMapNode*)myData2[HashCode2(theKey2, NbBuckets())] : NULL;
-         aNode2 != NULL;
+           !IsEmpty() ? (DoubleMapNode*)myData2[HashCode2(theKey2, NbBuckets())] : nullptr;
+         aNode2 != nullptr;
          aNode2 = (DoubleMapNode*)aNode2->Next2())
     {
       if (IsEqual2(aNode2->Key2(), theKey2))
@@ -485,18 +599,18 @@ public:
         return &aNode2->Key1();
       }
     }
-    return NULL;
+    return nullptr;
   }
 
   //! Clear data. If doReleaseMemory is false then the table of
   //! buckets is not released and will be reused.
-  void Clear(const Standard_Boolean doReleaseMemory = Standard_False)
+  void Clear(const bool doReleaseMemory = false)
   {
     Destroy(DoubleMapNode::delNode, doReleaseMemory);
   }
 
   //! Clear data and reset allocator
-  void Clear(const Handle(NCollection_BaseAllocator)& theAllocator)
+  void Clear(const occ::handle<NCollection_BaseAllocator>& theAllocator)
   {
     Clear(true);
     this->myAllocator =
@@ -504,10 +618,7 @@ public:
   }
 
   //! Destructor
-  ~NCollection_DoubleMap(void) { Clear(true); }
-
-  //! Size
-  Standard_Integer Size(void) const { return Extent(); }
+  ~NCollection_DoubleMap() override { Clear(true); }
 
 protected:
   bool IsEqual1(const TheKey1Type& theKey1, const TheKey1Type& theKey2) const
@@ -515,7 +626,7 @@ protected:
     return myHasher1(theKey1, theKey2);
   }
 
-  size_t HashCode1(const TheKey1Type& theKey, const int theUpperBound) const
+  size_t HashCode1(const TheKey1Type& theKey, const size_t theUpperBound) const
   {
     return myHasher1(theKey) % theUpperBound + 1;
   }
@@ -525,9 +636,86 @@ protected:
     return myHasher2(theKey1, theKey2);
   }
 
-  size_t HashCode2(const TheKey2Type& theKey, const int theUpperBound) const
+  size_t HashCode2(const TheKey2Type& theKey, const size_t theUpperBound) const
   {
     return myHasher2(theKey) % theUpperBound + 1;
+  }
+
+  //! Lookup for particular key1 in map.
+  //! @param[in] theKey1 key to search
+  //! @param[out] theNode the detected node with equal key. Can be null.
+  //! @param[out] theHash computed bounded hash code for current key.
+  //! @return true if key1 is found
+  bool lookup1(const TheKey1Type& theKey1, DoubleMapNode*& theNode, size_t& theHash) const
+  {
+    theHash = HashCode1(theKey1, NbBuckets());
+    if (IsEmpty())
+      return false;
+    for (theNode = (DoubleMapNode*)myData1[theHash]; theNode;
+         theNode = (DoubleMapNode*)theNode->Next())
+    {
+      if (IsEqual1(theNode->Key1(), theKey1))
+        return true;
+    }
+    return false;
+  }
+
+  //! Lookup for particular key2 in map.
+  //! @param[in] theKey2 key to search
+  //! @param[out] theNode the detected node with equal key. Can be null.
+  //! @param[out] theHash computed bounded hash code for current key.
+  //! @return true if key2 is found
+  bool lookup2(const TheKey2Type& theKey2, DoubleMapNode*& theNode, size_t& theHash) const
+  {
+    theHash = HashCode2(theKey2, NbBuckets());
+    if (IsEmpty())
+      return false;
+    for (theNode = (DoubleMapNode*)myData2[theHash]; theNode;
+         theNode = (DoubleMapNode*)theNode->Next2())
+    {
+      if (IsEqual2(theNode->Key2(), theKey2))
+        return true;
+    }
+    return false;
+  }
+
+  //! Implementation helper for Bind/TryBind.
+  //! @tparam K1 forwarding reference type for key1
+  //! @tparam K2 forwarding reference type for key2
+  //! @tparam IsTry if true, returns false on existing key; if false, throws exception
+  //! @param theKey1 first key to bind
+  //! @param theKey2 second key to bind
+  //! @return true if pair was successfully bound, false if either key already exists (only for
+  //! IsTry=true)
+  template <typename K1, typename K2, bool IsTry>
+  bool bindImpl(K1&& theKey1, K2&& theKey2, std::bool_constant<IsTry>)
+  {
+    if (Resizable())
+      ReSize(Extent());
+    DoubleMapNode* aNode;
+    size_t         iK1, iK2;
+    if (lookup1(theKey1, aNode, iK1))
+    {
+      if constexpr (IsTry)
+        return false;
+      else
+        throw Standard_MultiplyDefined("NCollection_DoubleMap:Bind");
+    }
+    if (lookup2(theKey2, aNode, iK2))
+    {
+      if constexpr (IsTry)
+        return false;
+      else
+        throw Standard_MultiplyDefined("NCollection_DoubleMap:Bind");
+    }
+    DoubleMapNode* pNode = new (this->myAllocator) DoubleMapNode(std::forward<K1>(theKey1),
+                                                                 std::forward<K2>(theKey2),
+                                                                 myData1[iK1],
+                                                                 myData2[iK2]);
+    myData1[iK1]         = pNode;
+    myData2[iK2]         = pNode;
+    Increment();
+    return true;
   }
 
 protected:

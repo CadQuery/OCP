@@ -19,9 +19,6 @@
 #include <TDataStd_GenericEmpty.hxx>
 class TDF_Label;
 
-class TDataXtd_Placement;
-DEFINE_STANDARD_HANDLE(TDataXtd_Placement, TDataStd_GenericEmpty)
-
 class TDataXtd_Placement : public TDataStd_GenericEmpty
 {
 
@@ -30,22 +27,19 @@ public:
   //! =============
   Standard_EXPORT static const Standard_GUID& GetID();
 
-  //! Find, or    create,   an Placement  attribute.     the
+  //! Find, or create, a Placement attribute.
   //! Placement attribute is returned.
   //! Placement methods
   //! =================
-  Standard_EXPORT static Handle(TDataXtd_Placement) Set(const TDF_Label& label);
+  Standard_EXPORT static occ::handle<TDataXtd_Placement> Set(const TDF_Label& label);
 
   Standard_EXPORT TDataXtd_Placement();
 
-  Standard_EXPORT const Standard_GUID& ID() const Standard_OVERRIDE;
+  Standard_EXPORT const Standard_GUID& ID() const override;
 
-  Standard_EXPORT virtual Standard_OStream& Dump(Standard_OStream& anOS) const Standard_OVERRIDE;
+  Standard_EXPORT Standard_OStream& Dump(Standard_OStream& anOS) const override;
 
   DEFINE_DERIVED_ATTRIBUTE(TDataXtd_Placement, TDataStd_GenericEmpty)
-
-protected:
-private:
 };
 
 #endif // _TDataXtd_Placement_HeaderFile

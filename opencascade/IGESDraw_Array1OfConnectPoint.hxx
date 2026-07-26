@@ -1,7 +1,4 @@
-// Created on: 1993-01-11
-// Created by: CKY / Contract Toubro-Larsen (Niraj RANGWALA)
-// Copyright (c) 1993-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,12 +11,25 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef IGESDraw_Array1OfConnectPoint_HeaderFile
-#define IGESDraw_Array1OfConnectPoint_HeaderFile
+//! @file IGESDraw_Array1OfConnectPoint.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection_Array1<opencascade::handle<IGESDraw_ConnectPoint>> directly instead.
 
+#ifndef _IGESDraw_Array1OfConnectPoint_hxx
+#define _IGESDraw_Array1OfConnectPoint_hxx
+
+#include <Standard_Macro.hxx>
 #include <IGESDraw_ConnectPoint.hxx>
 #include <NCollection_Array1.hxx>
 
-typedef NCollection_Array1<Handle(IGESDraw_ConnectPoint)> IGESDraw_Array1OfConnectPoint;
+Standard_HEADER_DEPRECATED(
+  "IGESDraw_Array1OfConnectPoint.hxx is deprecated since OCCT 8.0.0. Use "
+  "NCollection_Array1<opencascade::handle<IGESDraw_ConnectPoint>> directly.")
 
-#endif
+  Standard_DEPRECATED("IGESDraw_Array1OfConnectPoint is deprecated, use "
+                      "NCollection_Array1<opencascade::handle<IGESDraw_ConnectPoint>> directly")
+typedef NCollection_Array1<opencascade::handle<IGESDraw_ConnectPoint>>
+  IGESDraw_Array1OfConnectPoint;
+
+#endif // _IGESDraw_Array1OfConnectPoint_hxx

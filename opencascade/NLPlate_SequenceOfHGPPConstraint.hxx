@@ -1,7 +1,4 @@
-// Created on: 1998-04-08
-// Created by: Andre LIEUTIER
-// Copyright (c) 1998-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,12 +11,26 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef NLPlate_SequenceOfHGPPConstraint_HeaderFile
-#define NLPlate_SequenceOfHGPPConstraint_HeaderFile
+//! @file NLPlate_SequenceOfHGPPConstraint.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection_Sequence<opencascade::handle<NLPlate_HGPPConstraint>> directly
+//!             instead.
 
+#ifndef _NLPlate_SequenceOfHGPPConstraint_hxx
+#define _NLPlate_SequenceOfHGPPConstraint_hxx
+
+#include <Standard_Macro.hxx>
 #include <NLPlate_HGPPConstraint.hxx>
 #include <NCollection_Sequence.hxx>
 
-typedef NCollection_Sequence<Handle(NLPlate_HGPPConstraint)> NLPlate_SequenceOfHGPPConstraint;
+Standard_HEADER_DEPRECATED(
+  "NLPlate_SequenceOfHGPPConstraint.hxx is deprecated since OCCT 8.0.0. Use "
+  "NCollection_Sequence<opencascade::handle<NLPlate_HGPPConstraint>> directly.")
 
-#endif
+  Standard_DEPRECATED("NLPlate_SequenceOfHGPPConstraint is deprecated, use "
+                      "NCollection_Sequence<opencascade::handle<NLPlate_HGPPConstraint>> directly")
+typedef NCollection_Sequence<opencascade::handle<NLPlate_HGPPConstraint>>
+  NLPlate_SequenceOfHGPPConstraint;
+
+#endif // _NLPlate_SequenceOfHGPPConstraint_hxx

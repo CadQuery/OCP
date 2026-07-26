@@ -26,19 +26,18 @@ class BRepMesh_ConstrainedBaseMeshAlgo : public BRepMesh_BaseMeshAlgo
 {
 public:
   //! Constructor.
-  BRepMesh_ConstrainedBaseMeshAlgo() {}
+  BRepMesh_ConstrainedBaseMeshAlgo() = default;
 
   //! Destructor.
-  virtual ~BRepMesh_ConstrainedBaseMeshAlgo() {}
+  ~BRepMesh_ConstrainedBaseMeshAlgo() override = default;
 
   DEFINE_STANDARD_RTTIEXT(BRepMesh_ConstrainedBaseMeshAlgo, BRepMesh_BaseMeshAlgo)
 
 protected:
   //! Returns size of cell to be used by acceleration circles grid structure.
-  virtual std::pair<Standard_Integer, Standard_Integer> getCellsCount(
-    const Standard_Integer /*theVerticesNb*/)
+  virtual std::pair<int, int> getCellsCount(const int /*theVerticesNb*/)
   {
-    return std::pair<Standard_Integer, Standard_Integer>(-1, -1);
+    return std::pair<int, int>(-1, -1);
   }
 
   //! Performs processing of generated mesh.

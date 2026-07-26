@@ -52,7 +52,7 @@ public:
   DEFINE_STANDARD_ALLOC
 
   //! Creates an indefinite ellipse.
-  gp_Elips()
+  constexpr gp_Elips() noexcept
       : majorRadius(RealLast()),
         minorRadius(RealSmall())
   {
@@ -66,9 +66,7 @@ public:
   //! It is not forbidden to create an ellipse with theMajorRadius =
   //! theMinorRadius.
   //! Raises ConstructionError if theMajorRadius < theMinorRadius or theMinorRadius < 0.
-  gp_Elips(const gp_Ax2&       theA2,
-           const Standard_Real theMajorRadius,
-           const Standard_Real theMinorRadius)
+  constexpr gp_Elips(const gp_Ax2& theA2, const double theMajorRadius, const double theMinorRadius)
       : pos(theA2),
         majorRadius(theMajorRadius),
         minorRadius(theMinorRadius)
@@ -90,12 +88,12 @@ public:
 
   //! Modifies this ellipse, by redefining its local coordinate
   //! so that its origin becomes theP.
-  void SetLocation(const gp_Pnt& theP) { pos.SetLocation(theP); }
+  constexpr void SetLocation(const gp_Pnt& theP) noexcept { pos.SetLocation(theP); }
 
   //! The major radius of the ellipse is on the "XAxis" (major axis)
   //! of the ellipse.
   //! Raises ConstructionError if theMajorRadius < MinorRadius.
-  void SetMajorRadius(const Standard_Real theMajorRadius)
+  void SetMajorRadius(const double theMajorRadius)
   {
     Standard_ConstructionError_Raise_if(
       theMajorRadius < minorRadius,
@@ -106,7 +104,7 @@ public:
   //! The minor radius of the ellipse is on the "YAxis" (minor axis)
   //! of the ellipse.
   //! Raises ConstructionError if theMinorRadius > MajorRadius or MinorRadius < 0.
-  void SetMinorRadius(const Standard_Real theMinorRadius)
+  void SetMinorRadius(const double theMinorRadius)
   {
     Standard_ConstructionError_Raise_if(theMinorRadius < 0.0 || majorRadius < theMinorRadius,
                                         "gp_Elips::SetMinorRadius() - minor radius should be a "
@@ -116,13 +114,13 @@ public:
 
   //! Modifies this ellipse, by redefining its local coordinate
   //! so that it becomes theA2.
-  void SetPosition(const gp_Ax2& theA2) { pos = theA2; }
+  constexpr void SetPosition(const gp_Ax2& theA2) noexcept { pos = theA2; }
 
   //! Computes the area of the Ellipse.
-  Standard_Real Area() const { return M_PI * majorRadius * minorRadius; }
+  constexpr double Area() const noexcept { return M_PI * majorRadius * minorRadius; }
 
   //! Computes the axis normal to the plane of the ellipse.
-  const gp_Ax1& Axis() const { return pos.Axis(); }
+  constexpr const gp_Ax1& Axis() const noexcept { return pos.Axis(); }
 
   //! Computes the first or second directrix of this ellipse.
   //! These are the lines, in the plane of the ellipse, normal to
@@ -147,18 +145,15 @@ public:
   //! (the ellipse has degenerated into a circle).
   gp_Ax1 Directrix2() const;
 
-  //! Returns the eccentricity of the ellipse  between 0.0 and 1.0
+  //! Returns the eccentricity of the ellipse between 0.0 and 1.0
   //! If f is the distance between the center of the ellipse and
   //! the Focus1 then the eccentricity e = f / MajorRadius.
   //! Raises ConstructionError if MajorRadius = 0.0
-  Standard_Real Eccentricity() const;
+  double Eccentricity() const;
 
   //! Computes the focal distance. It is the distance between the
   //! two focus focus1 and focus2 of the ellipse.
-  Standard_Real Focal() const
-  {
-    return 2.0 * sqrt(majorRadius * majorRadius - minorRadius * minorRadius);
-  }
+  double Focal() const { return 2.0 * sqrt(majorRadius * majorRadius - minorRadius * minorRadius); }
 
   //! Returns the first focus of the ellipse. This focus is on the
   //! positive side of the "XAxis" of the ellipse.
@@ -170,87 +165,91 @@ public:
 
   //! Returns the center of the ellipse. It is the "Location"
   //! point of the coordinate system of the ellipse.
-  const gp_Pnt& Location() const { return pos.Location(); }
+  constexpr const gp_Pnt& Location() const noexcept { return pos.Location(); }
 
   //! Returns the major radius of the ellipse.
-  Standard_Real MajorRadius() const { return majorRadius; }
+  constexpr double MajorRadius() const noexcept { return majorRadius; }
 
   //! Returns the minor radius of the ellipse.
-  Standard_Real MinorRadius() const { return minorRadius; }
+  constexpr double MinorRadius() const noexcept { return minorRadius; }
 
   //! Returns p = (1 - e * e) * MajorRadius where e is the eccentricity
   //! of the ellipse.
   //! Returns 0 if MajorRadius = 0
-  Standard_Real Parameter() const;
+  double Parameter() const;
 
   //! Returns the coordinate system of the ellipse.
-  const gp_Ax2& Position() const { return pos; }
+  constexpr const gp_Ax2& Position() const noexcept { return pos; }
 
   //! Returns the "XAxis" of the ellipse whose origin
   //! is the center of this ellipse. It is the major axis of the
   //! ellipse.
-  gp_Ax1 XAxis() const { return gp_Ax1(pos.Location(), pos.XDirection()); }
+  constexpr gp_Ax1 XAxis() const noexcept { return gp_Ax1(pos.Location(), pos.XDirection()); }
 
   //! Returns the "YAxis" of the ellipse whose unit vector is the "X Direction" or the "Y Direction"
   //! of the local coordinate system of this ellipse.
   //! This is the minor axis of the ellipse.
-  gp_Ax1 YAxis() const { return gp_Ax1(pos.Location(), pos.YDirection()); }
+  constexpr gp_Ax1 YAxis() const noexcept { return gp_Ax1(pos.Location(), pos.YDirection()); }
 
-  Standard_EXPORT void Mirror(const gp_Pnt& theP);
+  Standard_EXPORT void Mirror(const gp_Pnt& theP) noexcept;
 
   //! Performs the symmetrical transformation of an ellipse with
   //! respect to the point theP which is the center of the symmetry.
-  Standard_NODISCARD Standard_EXPORT gp_Elips Mirrored(const gp_Pnt& theP) const;
+  [[nodiscard]] Standard_EXPORT gp_Elips Mirrored(const gp_Pnt& theP) const noexcept;
 
   Standard_EXPORT void Mirror(const gp_Ax1& theA1);
 
   //! Performs the symmetrical transformation of an ellipse with
   //! respect to an axis placement which is the axis of the symmetry.
-  Standard_NODISCARD Standard_EXPORT gp_Elips Mirrored(const gp_Ax1& theA1) const;
+  [[nodiscard]] Standard_EXPORT gp_Elips Mirrored(const gp_Ax1& theA1) const;
 
   Standard_EXPORT void Mirror(const gp_Ax2& theA2);
 
   //! Performs the symmetrical transformation of an ellipse with
   //! respect to a plane. The axis placement theA2 locates the plane
   //! of the symmetry (Location, XDirection, YDirection).
-  Standard_NODISCARD Standard_EXPORT gp_Elips Mirrored(const gp_Ax2& theA2) const;
+  [[nodiscard]] Standard_EXPORT gp_Elips Mirrored(const gp_Ax2& theA2) const;
 
-  void Rotate(const gp_Ax1& theA1, const Standard_Real theAng) { pos.Rotate(theA1, theAng); }
+  void Rotate(const gp_Ax1& theA1, const double theAng) { pos.Rotate(theA1, theAng); }
 
   //! Rotates an ellipse. theA1 is the axis of the rotation.
   //! theAng is the angular value of the rotation in radians.
-  Standard_NODISCARD gp_Elips Rotated(const gp_Ax1& theA1, const Standard_Real theAng) const
+  [[nodiscard]] gp_Elips Rotated(const gp_Ax1& theA1, const double theAng) const
   {
     gp_Elips anE = *this;
     anE.pos.Rotate(theA1, theAng);
     return anE;
   }
 
-  void Scale(const gp_Pnt& theP, const Standard_Real theS);
+  void Scale(const gp_Pnt& theP, const double theS);
 
   //! Scales an ellipse. theS is the scaling value.
-  Standard_NODISCARD gp_Elips Scaled(const gp_Pnt& theP, const Standard_Real theS) const;
+  [[nodiscard]] gp_Elips Scaled(const gp_Pnt& theP, const double theS) const;
 
   void Transform(const gp_Trsf& theT);
 
   //! Transforms an ellipse with the transformation theT from class Trsf.
-  Standard_NODISCARD gp_Elips Transformed(const gp_Trsf& theT) const;
+  [[nodiscard]] gp_Elips Transformed(const gp_Trsf& theT) const;
 
-  void Translate(const gp_Vec& theV) { pos.Translate(theV); }
+  constexpr void Translate(const gp_Vec& theV) noexcept { pos.Translate(theV); }
 
   //! Translates an ellipse in the direction of the vector theV.
   //! The magnitude of the translation is the vector's magnitude.
-  Standard_NODISCARD gp_Elips Translated(const gp_Vec& theV) const
+  [[nodiscard]] constexpr gp_Elips Translated(const gp_Vec& theV) const noexcept
   {
     gp_Elips anE = *this;
     anE.pos.Translate(theV);
     return anE;
   }
 
-  void Translate(const gp_Pnt& theP1, const gp_Pnt& theP2) { pos.Translate(theP1, theP2); }
+  constexpr void Translate(const gp_Pnt& theP1, const gp_Pnt& theP2) noexcept
+  {
+    pos.Translate(theP1, theP2);
+  }
 
   //! Translates an ellipse from the point theP1 to the point theP2.
-  Standard_NODISCARD gp_Elips Translated(const gp_Pnt& theP1, const gp_Pnt& theP2) const
+  [[nodiscard]] constexpr gp_Elips Translated(const gp_Pnt& theP1,
+                                              const gp_Pnt& theP2) const noexcept
   {
     gp_Elips anE = *this;
     anE.pos.Translate(theP1, theP2);
@@ -258,18 +257,16 @@ public:
   }
 
 private:
-  gp_Ax2        pos;
-  Standard_Real majorRadius;
-  Standard_Real minorRadius;
+  gp_Ax2 pos;
+  double majorRadius;
+  double minorRadius;
 };
 
-// =======================================================================
-// function : Directrix1
-// purpose  :
-// =======================================================================
+//=================================================================================================
+
 inline gp_Ax1 gp_Elips::Directrix1() const
 {
-  Standard_Real anE = Eccentricity();
+  double anE = Eccentricity();
   Standard_ConstructionError_Raise_if(anE <= gp::Resolution(),
                                       "gp_Elips::Directrix1() - zero eccentricity");
   gp_XYZ anOrig = pos.XDirection().XYZ();
@@ -278,13 +275,11 @@ inline gp_Ax1 gp_Elips::Directrix1() const
   return gp_Ax1(gp_Pnt(anOrig), pos.YDirection());
 }
 
-// =======================================================================
-// function : Directrix2
-// purpose  :
-// =======================================================================
+//=================================================================================================
+
 inline gp_Ax1 gp_Elips::Directrix2() const
 {
-  Standard_Real anE = Eccentricity();
+  double anE = Eccentricity();
   Standard_ConstructionError_Raise_if(anE <= gp::Resolution(),
                                       "gp_Elips::Directrix2() - zero eccentricity");
   gp_XYZ anOrig = pos.XDirection().XYZ();
@@ -293,11 +288,9 @@ inline gp_Ax1 gp_Elips::Directrix2() const
   return gp_Ax1(gp_Pnt(anOrig), pos.YDirection());
 }
 
-// =======================================================================
-// function : Eccentricity
-// purpose  :
-// =======================================================================
-inline Standard_Real gp_Elips::Eccentricity() const
+//=================================================================================================
+
+inline double gp_Elips::Eccentricity() const
 {
   if (majorRadius == 0.0)
   {
@@ -309,35 +302,29 @@ inline Standard_Real gp_Elips::Eccentricity() const
   }
 }
 
-// =======================================================================
-// function : Focus1
-// purpose  :
-// =======================================================================
+//=================================================================================================
+
 inline gp_Pnt gp_Elips::Focus1() const
 {
-  Standard_Real aC  = sqrt(majorRadius * majorRadius - minorRadius * minorRadius);
+  double        aC  = sqrt(majorRadius * majorRadius - minorRadius * minorRadius);
   const gp_Pnt& aPP = pos.Location();
   const gp_Dir& aDD = pos.XDirection();
   return gp_Pnt(aPP.X() + aC * aDD.X(), aPP.Y() + aC * aDD.Y(), aPP.Z() + aC * aDD.Z());
 }
 
-// =======================================================================
-// function : Focus2
-// purpose  :
-// =======================================================================
+//=================================================================================================
+
 inline gp_Pnt gp_Elips::Focus2() const
 {
-  Standard_Real aC  = sqrt(majorRadius * majorRadius - minorRadius * minorRadius);
+  double        aC  = sqrt(majorRadius * majorRadius - minorRadius * minorRadius);
   const gp_Pnt& aPP = pos.Location();
   const gp_Dir& aDD = pos.XDirection();
   return gp_Pnt(aPP.X() - aC * aDD.X(), aPP.Y() - aC * aDD.Y(), aPP.Z() - aC * aDD.Z());
 }
 
-// =======================================================================
-// function : Parameter
-// purpose  :
-// =======================================================================
-inline Standard_Real gp_Elips::Parameter() const
+//=================================================================================================
+
+inline double gp_Elips::Parameter() const
 {
   if (majorRadius == 0.0)
   {
@@ -349,11 +336,9 @@ inline Standard_Real gp_Elips::Parameter() const
   }
 }
 
-// =======================================================================
-// function : Scale
-// purpose  :
-// =======================================================================
-inline void gp_Elips::Scale(const gp_Pnt& theP, const Standard_Real theS)
+//=================================================================================================
+
+inline void gp_Elips::Scale(const gp_Pnt& theP, const double theS)
 //  Modified by skv - Fri Apr  8 10:28:10 2005 OCC8559 Begin
 // { pos.Scale(P, S); }
 {
@@ -372,11 +357,9 @@ inline void gp_Elips::Scale(const gp_Pnt& theP, const Standard_Real theS)
 
 //  Modified by skv - Fri Apr  8 10:28:10 2005 OCC8559 End
 
-// =======================================================================
-// function : Scaled
-// purpose  :
-// =======================================================================
-inline gp_Elips gp_Elips::Scaled(const gp_Pnt& theP, const Standard_Real theS) const
+//=================================================================================================
+
+inline gp_Elips gp_Elips::Scaled(const gp_Pnt& theP, const double theS) const
 {
   gp_Elips anE = *this;
   anE.majorRadius *= theS;
@@ -393,10 +376,8 @@ inline gp_Elips gp_Elips::Scaled(const gp_Pnt& theP, const Standard_Real theS) c
   return anE;
 }
 
-// =======================================================================
-// function : Transform
-// purpose  :
-// =======================================================================
+//=================================================================================================
+
 inline void gp_Elips::Transform(const gp_Trsf& theT)
 {
   majorRadius *= theT.ScaleFactor();
@@ -412,10 +393,8 @@ inline void gp_Elips::Transform(const gp_Trsf& theT)
   pos.Transform(theT);
 }
 
-// =======================================================================
-// function : Transformed
-// purpose  :
-// =======================================================================
+//=================================================================================================
+
 inline gp_Elips gp_Elips::Transformed(const gp_Trsf& theT) const
 {
   gp_Elips anE = *this;

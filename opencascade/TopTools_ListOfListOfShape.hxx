@@ -1,5 +1,4 @@
-// Created by: Eugeny MALTCHIKOV
-// Copyright (c) 2017 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -12,12 +11,25 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef TopTools_ListOfListOfShape_HeaderFile
-#define TopTools_ListOfListOfShape_HeaderFile
+//! @file TopTools_ListOfListOfShape.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection types directly instead.
 
+#ifndef _TopTools_ListOfListOfShape_hxx
+#define _TopTools_ListOfListOfShape_hxx
+
+#include <Standard_Macro.hxx>
 #include <TopTools_ListOfShape.hxx>
 
-typedef NCollection_List<TopTools_ListOfShape> TopTools_ListOfListOfShape;
-typedef TopTools_ListOfListOfShape::Iterator   TopTools_ListIteratorOfListOfListOfShape;
+Standard_HEADER_DEPRECATED(
+  "TopTools_ListOfListOfShape.hxx is deprecated since OCCT 8.0.0. Use NCollection types directly.")
 
-#endif
+  Standard_DEPRECATED(
+    "TopTools_ListOfListOfShape is deprecated, use NCollection_List<TopTools_ListOfShape> directly")
+typedef NCollection_List<TopTools_ListOfShape> TopTools_ListOfListOfShape;
+Standard_DEPRECATED("TopTools_ListIteratorOfListOfListOfShape is deprecated, use "
+                    "NCollection_List<TopTools_ListOfShape>::Iterator directly")
+typedef NCollection_List<TopTools_ListOfShape>::Iterator TopTools_ListIteratorOfListOfListOfShape;
+
+#endif // _TopTools_ListOfListOfShape_hxx

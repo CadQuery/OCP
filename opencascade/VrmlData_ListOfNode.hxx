@@ -1,6 +1,4 @@
-// Created on: 2006-11-06
-// Created by: Alexander GRIGORIEV
-// Copyright (c) 2006-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -13,16 +11,23 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef VrmlData_ListOfNode_HeaderFile
-#define VrmlData_ListOfNode_HeaderFile
+//! @file VrmlData_ListOfNode.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection_List<opencascade::handle<VrmlData_Node>> directly instead.
 
+#ifndef _VrmlData_ListOfNode_hxx
+#define _VrmlData_ListOfNode_hxx
+
+#include <Standard_Macro.hxx>
 #include <NCollection_List.hxx>
 #include <VrmlData_Node.hxx>
 
-/**
- * Container of List type, holding handles to VrmlData_Node objects
- */
+Standard_HEADER_DEPRECATED("VrmlData_ListOfNode.hxx is deprecated since OCCT 8.0.0. Use "
+                           "NCollection_List<opencascade::handle<VrmlData_Node>> directly.")
 
-typedef NCollection_List<Handle(VrmlData_Node)> VrmlData_ListOfNode;
+  Standard_DEPRECATED("VrmlData_ListOfNode is deprecated, use "
+                      "NCollection_List<opencascade::handle<VrmlData_Node>> directly")
+typedef NCollection_List<opencascade::handle<VrmlData_Node>> VrmlData_ListOfNode;
 
-#endif
+#endif // _VrmlData_ListOfNode_hxx

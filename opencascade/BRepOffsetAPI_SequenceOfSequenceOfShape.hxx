@@ -1,7 +1,4 @@
-// Created on: 1999-10-11
-// Created by: Atelier CAS2000
-// Copyright (c) 1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,12 +11,23 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef BRepOffsetAPI_SequenceOfSequenceOfShape_HeaderFile
-#define BRepOffsetAPI_SequenceOfSequenceOfShape_HeaderFile
+//! @file BRepOffsetAPI_SequenceOfSequenceOfShape.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection_Sequence<TopTools_SequenceOfShape> directly instead.
 
+#ifndef _BRepOffsetAPI_SequenceOfSequenceOfShape_hxx
+#define _BRepOffsetAPI_SequenceOfSequenceOfShape_hxx
+
+#include <Standard_Macro.hxx>
 #include <TopTools_SequenceOfShape.hxx>
 #include <NCollection_Sequence.hxx>
 
+Standard_HEADER_DEPRECATED("BRepOffsetAPI_SequenceOfSequenceOfShape.hxx is deprecated since OCCT "
+                           "8.0.0. Use NCollection_Sequence<TopTools_SequenceOfShape> directly.")
+
+  Standard_DEPRECATED("BRepOffsetAPI_SequenceOfSequenceOfShape is deprecated, use "
+                      "NCollection_Sequence<TopTools_SequenceOfShape> directly")
 typedef NCollection_Sequence<TopTools_SequenceOfShape> BRepOffsetAPI_SequenceOfSequenceOfShape;
 
-#endif
+#endif // _BRepOffsetAPI_SequenceOfSequenceOfShape_hxx

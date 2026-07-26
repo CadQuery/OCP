@@ -1,5 +1,4 @@
-// Created by: Eugeny MALTCHIKOV
-// Copyright (c) 2017 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -12,13 +11,25 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef BOPDS_MapOfPair_HeaderFile
-#define BOPDS_MapOfPair_HeaderFile
+//! @file BOPDS_MapOfPair.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection types directly instead.
 
+#ifndef _BOPDS_MapOfPair_hxx
+#define _BOPDS_MapOfPair_hxx
+
+#include <Standard_Macro.hxx>
 #include <NCollection_Map.hxx>
 #include <BOPDS_Pair.hxx>
 
-typedef NCollection_Map<BOPDS_Pair> BOPDS_MapOfPair;
-typedef BOPDS_MapOfPair::Iterator   BOPDS_MapIteratorOfMapOfPair;
+Standard_HEADER_DEPRECATED(
+  "BOPDS_MapOfPair.hxx is deprecated since OCCT 8.0.0. Use NCollection types directly.")
 
-#endif
+  Standard_DEPRECATED("BOPDS_MapOfPair is deprecated, use NCollection_Map<BOPDS_Pair> directly")
+typedef NCollection_Map<BOPDS_Pair> BOPDS_MapOfPair;
+Standard_DEPRECATED(
+  "BOPDS_MapIteratorOfMapOfPair is deprecated, use NCollection_Map<BOPDS_Pair>::Iterator directly")
+typedef NCollection_Map<BOPDS_Pair>::Iterator BOPDS_MapIteratorOfMapOfPair;
+
+#endif // _BOPDS_MapOfPair_hxx

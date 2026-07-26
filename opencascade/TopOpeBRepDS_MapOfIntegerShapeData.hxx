@@ -1,7 +1,4 @@
-// Created on: 1993-06-17
-// Created by: Jean Yves LEBEY
-// Copyright (c) 1993-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,15 +11,27 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef TopOpeBRepDS_MapOfIntegerShapeData_HeaderFile
-#define TopOpeBRepDS_MapOfIntegerShapeData_HeaderFile
+//! @file TopOpeBRepDS_MapOfIntegerShapeData.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection types directly instead.
 
+#ifndef _TopOpeBRepDS_MapOfIntegerShapeData_hxx
+#define _TopOpeBRepDS_MapOfIntegerShapeData_hxx
+
+#include <Standard_Macro.hxx>
 #include <TopOpeBRepDS_ShapeData.hxx>
 #include <NCollection_DataMap.hxx>
 
-typedef NCollection_DataMap<Standard_Integer, TopOpeBRepDS_ShapeData>
-  TopOpeBRepDS_MapOfIntegerShapeData;
-typedef NCollection_DataMap<Standard_Integer, TopOpeBRepDS_ShapeData>::Iterator
+Standard_HEADER_DEPRECATED("TopOpeBRepDS_MapOfIntegerShapeData.hxx is deprecated since OCCT 8.0.0. "
+                           "Use NCollection types directly.")
+
+  Standard_DEPRECATED("TopOpeBRepDS_MapOfIntegerShapeData is deprecated, use "
+                      "NCollection_DataMap<int, TopOpeBRepDS_ShapeData> directly")
+typedef NCollection_DataMap<int, TopOpeBRepDS_ShapeData> TopOpeBRepDS_MapOfIntegerShapeData;
+Standard_DEPRECATED("TopOpeBRepDS_DataMapIteratorOfMapOfIntegerShapeData is deprecated, use "
+                    "NCollection_DataMap<int, TopOpeBRepDS_ShapeData>::Iterator directly")
+typedef NCollection_DataMap<int, TopOpeBRepDS_ShapeData>::Iterator
   TopOpeBRepDS_DataMapIteratorOfMapOfIntegerShapeData;
 
-#endif
+#endif // _TopOpeBRepDS_MapOfIntegerShapeData_hxx

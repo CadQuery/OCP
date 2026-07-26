@@ -17,13 +17,9 @@
 #ifndef _Storage_StreamTypeMismatchError_HeaderFile
 #define _Storage_StreamTypeMismatchError_HeaderFile
 
-#include <Standard_Type.hxx>
 #include <Standard_DefineException.hxx>
 #include <Standard_SStream.hxx>
 #include <Storage_StreamReadError.hxx>
-
-class Storage_StreamTypeMismatchError;
-DEFINE_STANDARD_HANDLE(Storage_StreamTypeMismatchError, Storage_StreamReadError)
 
 #if !defined No_Exception && !defined No_Storage_StreamTypeMismatchError
   #define Storage_StreamTypeMismatchError_Raise_if(CONDITION, MESSAGE)                             \

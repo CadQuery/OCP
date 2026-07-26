@@ -1,7 +1,4 @@
-// Created on: 1997-05-06
-// Created by: Jean-Louis Frenkel, Remi Lequette
-// Copyright (c) 1997-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,13 +11,26 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef CDM_MapOfDocument_HeaderFile
-#define CDM_MapOfDocument_HeaderFile
+//! @file CDM_MapOfDocument.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection types directly instead.
 
+#ifndef _CDM_MapOfDocument_hxx
+#define _CDM_MapOfDocument_hxx
+
+#include <Standard_Macro.hxx>
 #include <CDM_Document.hxx>
 #include <NCollection_Map.hxx>
 
-typedef NCollection_Map<Handle(CDM_Document)>           CDM_MapOfDocument;
-typedef NCollection_Map<Handle(CDM_Document)>::Iterator CDM_MapIteratorOfMapOfDocument;
+Standard_HEADER_DEPRECATED(
+  "CDM_MapOfDocument.hxx is deprecated since OCCT 8.0.0. Use NCollection types directly.")
 
-#endif
+  Standard_DEPRECATED("CDM_MapOfDocument is deprecated, use "
+                      "NCollection_Map<opencascade::handle<CDM_Document>> directly")
+typedef NCollection_Map<opencascade::handle<CDM_Document>> CDM_MapOfDocument;
+Standard_DEPRECATED("CDM_MapIteratorOfMapOfDocument is deprecated, use "
+                    "NCollection_Map<opencascade::handle<CDM_Document>>::Iterator directly")
+typedef NCollection_Map<opencascade::handle<CDM_Document>>::Iterator CDM_MapIteratorOfMapOfDocument;
+
+#endif // _CDM_MapOfDocument_hxx

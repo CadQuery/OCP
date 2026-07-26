@@ -1,4 +1,4 @@
-// Copyright (c) 2013 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,12 +11,22 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _Graphic3d_Mat4d_HeaderFile
-#define _Graphic3d_Mat4d_HeaderFile
+//! @file Graphic3d_Mat4d.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection_Mat4<double> directly instead.
 
+#ifndef _Graphic3d_Mat4d_hxx
+#define _Graphic3d_Mat4d_hxx
+
+#include <Standard_Macro.hxx>
 #include <NCollection_Mat4.hxx>
 #include <Standard_TypeDef.hxx>
 
-typedef NCollection_Mat4<Standard_Real> Graphic3d_Mat4d;
+Standard_HEADER_DEPRECATED(
+  "Graphic3d_Mat4d.hxx is deprecated since OCCT 8.0.0. Use NCollection_Mat4<double> directly.")
 
-#endif // _Graphic3d_Mat4d_HeaderFile
+  Standard_DEPRECATED("Graphic3d_Mat4d is deprecated, use NCollection_Mat4<double> directly")
+typedef NCollection_Mat4<double> Graphic3d_Mat4d;
+
+#endif // _Graphic3d_Mat4d_hxx

@@ -1,7 +1,4 @@
-// Created on: 1996-03-07
-// Created by: Stagiaire Frederic CALOONE
-// Copyright (c) 1996-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,12 +11,23 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef GeomPlate_SequenceOfAij_HeaderFile
-#define GeomPlate_SequenceOfAij_HeaderFile
+//! @file GeomPlate_SequenceOfAij.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection_Sequence<GeomPlate_Aij> directly instead.
 
+#ifndef _GeomPlate_SequenceOfAij_hxx
+#define _GeomPlate_SequenceOfAij_hxx
+
+#include <Standard_Macro.hxx>
 #include <GeomPlate_Aij.hxx>
 #include <NCollection_Sequence.hxx>
 
+Standard_HEADER_DEPRECATED("GeomPlate_SequenceOfAij.hxx is deprecated since OCCT 8.0.0. Use "
+                           "NCollection_Sequence<GeomPlate_Aij> directly.")
+
+  Standard_DEPRECATED(
+    "GeomPlate_SequenceOfAij is deprecated, use NCollection_Sequence<GeomPlate_Aij> directly")
 typedef NCollection_Sequence<GeomPlate_Aij> GeomPlate_SequenceOfAij;
 
-#endif
+#endif // _GeomPlate_SequenceOfAij_hxx

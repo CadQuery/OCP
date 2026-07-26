@@ -1,7 +1,4 @@
-// Created on: 1992-08-28
-// Created by: Remi LEQUETTE
-// Copyright (c) 1992-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,16 +11,31 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef BRepTools_MapOfVertexPnt2d_HeaderFile
-#define BRepTools_MapOfVertexPnt2d_HeaderFile
+//! @file BRepTools_MapOfVertexPnt2d.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection types directly instead.
 
+#ifndef _BRepTools_MapOfVertexPnt2d_hxx
+#define _BRepTools_MapOfVertexPnt2d_hxx
+
+#include <Standard_Macro.hxx>
 #include <TColgp_SequenceOfPnt2d.hxx>
 #include <TopTools_ShapeMapHasher.hxx>
 #include <NCollection_DataMap.hxx>
 
+Standard_HEADER_DEPRECATED(
+  "BRepTools_MapOfVertexPnt2d.hxx is deprecated since OCCT 8.0.0. Use NCollection types directly.")
+
+  Standard_DEPRECATED(
+    "BRepTools_MapOfVertexPnt2d is deprecated, use NCollection_DataMap<TopoDS_Shape, "
+    "TColgp_SequenceOfPnt2d, TopTools_ShapeMapHasher> directly")
 typedef NCollection_DataMap<TopoDS_Shape, TColgp_SequenceOfPnt2d, TopTools_ShapeMapHasher>
   BRepTools_MapOfVertexPnt2d;
+Standard_DEPRECATED("BRepTools_DataMapIteratorOfMapOfVertexPnt2d is deprecated, use "
+                    "NCollection_DataMap<TopoDS_Shape, TColgp_SequenceOfPnt2d, "
+                    "TopTools_ShapeMapHasher>::Iterator directly")
 typedef NCollection_DataMap<TopoDS_Shape, TColgp_SequenceOfPnt2d, TopTools_ShapeMapHasher>::Iterator
   BRepTools_DataMapIteratorOfMapOfVertexPnt2d;
 
-#endif
+#endif // _BRepTools_MapOfVertexPnt2d_hxx

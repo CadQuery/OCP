@@ -62,7 +62,7 @@ public: //! @name Data accessors
   //! Checks if the internal OccShape pointer is the same the argument.
   //! @param[in]  shape OccShape pointer to be checked.
   //! @return true if the two OccShape instances are the same, and false otherwise.
-  Standard_Boolean Contains(const IVtkOCC_Shape::Handle& theOccShape) const;
+  bool Contains(const IVtkOCC_Shape::Handle& theOccShape) const;
 
   //! Access to the shape's sub-shape ids array
   //! @returns the array cast to vtkIdTypeArray
@@ -77,9 +77,9 @@ protected: //! @name Interface to override
   //! @param[in] theInputVector  the input data. As adata source is the start
   //! stage of the VTK pipeline, theInputVector is empty and not used (no input port).
   //! @param[in] theOutputVector  the pointer to output data, that is filled in this method.
-  virtual int RequestData(vtkInformation*        theRequest,
-                          vtkInformationVector** theInputVector,
-                          vtkInformationVector*  theOutputVector) Standard_OVERRIDE;
+  int RequestData(vtkInformation*        theRequest,
+                  vtkInformationVector** theInputVector,
+                  vtkInformationVector*  theOutputVector) override;
 
 protected: //! @name Internals
   //! Transforms the passed polygonal data by the given OCCT transformation
@@ -91,11 +91,11 @@ protected: //! @name Internals
 
 protected:
   IVtkTools_ShapeDataSource();
-  virtual ~IVtkTools_ShapeDataSource();
+  ~IVtkTools_ShapeDataSource() override;
 
 private:
-  IVtkTools_ShapeDataSource(const IVtkTools_ShapeDataSource&);
-  IVtkTools_ShapeDataSource& operator=(const IVtkTools_ShapeDataSource&);
+  IVtkTools_ShapeDataSource(const IVtkTools_ShapeDataSource&)            = delete;
+  IVtkTools_ShapeDataSource& operator=(const IVtkTools_ShapeDataSource&) = delete;
 
 protected:
   IVtkOCC_Shape::Handle     myOccShape; //!< Shape wrapper used as an input.
@@ -105,12 +105,12 @@ protected:
   //! enabled. If so, data source does not re-compute the discrete model for
   //! the input topological shape. It rather uses the already existing one
   //! and applies the necessary transformation to it.
-  Standard_Boolean myIsFastTransformMode;
+  bool myIsFastTransformMode;
 
   //! Internal flag indicating that the current working shape is just a
   //! transformed copy of the previously processed one. This flag is used in
   //! a couple with "fast transformation" mode flag.
-  Standard_Boolean myIsTransformOnly;
+  bool myIsTransformOnly;
 };
 
 #ifdef _MSC_VER

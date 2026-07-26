@@ -28,19 +28,19 @@ protected:
   {
   public:
     //! Read persistent data from a file.
-    virtual void Read(StdObjMgt_ReadData&) {}
+    void Read(StdObjMgt_ReadData&) override {}
 
     //! Write persistent data to a file.
-    virtual void Write(StdObjMgt_WriteData&) const {}
+    void Write(StdObjMgt_WriteData&) const override {}
 
     //! Gets persistent child objects
-    inline void PChildren(StdObjMgt_Persistent::SequenceOfPersistent&) const {}
+    inline void PChildren(StdObjMgt_Persistent::SequenceOfPersistent&) const override {}
 
     //! Returns persistent type name
-    Standard_CString PName() const;
+    const char* PName() const override;
 
     //! Import transient attribute from the persistent data
-    virtual void ImportAttribute() {}
+    void ImportAttribute() override {}
   };
 
 public:
@@ -50,19 +50,19 @@ public:
 };
 
 template <>
-inline Standard_CString StdLPersistent_Void::instance<TDataStd_Directory>::PName() const
+inline const char* StdLPersistent_Void::instance<TDataStd_Directory>::PName() const
 {
   return "PDataStd_Directory";
 }
 
 template <>
-inline Standard_CString StdLPersistent_Void::instance<TDataStd_Tick>::PName() const
+inline const char* StdLPersistent_Void::instance<TDataStd_Tick>::PName() const
 {
   return "PDataStd_Tick";
 }
 
 template <>
-inline Standard_CString StdLPersistent_Void::instance<TDataStd_NoteBook>::PName() const
+inline const char* StdLPersistent_Void::instance<TDataStd_NoteBook>::PName() const
 {
   return "PDataStd_Notebook";
 }

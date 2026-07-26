@@ -1,7 +1,4 @@
-// Created on: 1991-01-14
-// Created by: Arnaud BOUZY
-// Copyright (c) 1991-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,12 +11,24 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef Expr_MapOfNamedUnknown_HeaderFile
-#define Expr_MapOfNamedUnknown_HeaderFile
+//! @file Expr_MapOfNamedUnknown.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection_IndexedMap<opencascade::handle<Expr_NamedUnknown>> directly instead.
 
+#ifndef _Expr_MapOfNamedUnknown_hxx
+#define _Expr_MapOfNamedUnknown_hxx
+
+#include <Standard_Macro.hxx>
 #include <Expr_NamedUnknown.hxx>
 #include <NCollection_IndexedMap.hxx>
 
-typedef NCollection_IndexedMap<Handle(Expr_NamedUnknown)> Expr_MapOfNamedUnknown;
+Standard_HEADER_DEPRECATED(
+  "Expr_MapOfNamedUnknown.hxx is deprecated since OCCT 8.0.0. Use "
+  "NCollection_IndexedMap<opencascade::handle<Expr_NamedUnknown>> directly.")
 
-#endif
+  Standard_DEPRECATED("Expr_MapOfNamedUnknown is deprecated, use "
+                      "NCollection_IndexedMap<opencascade::handle<Expr_NamedUnknown>> directly")
+typedef NCollection_IndexedMap<opencascade::handle<Expr_NamedUnknown>> Expr_MapOfNamedUnknown;
+
+#endif // _Expr_MapOfNamedUnknown_hxx

@@ -1,7 +1,4 @@
-// Created on: 1992-05-06
-// Created by: Jacques GOUSSARD
-// Copyright (c) 1992-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,12 +11,23 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef IntPatch_SequenceOfLine_HeaderFile
-#define IntPatch_SequenceOfLine_HeaderFile
+//! @file IntPatch_SequenceOfLine.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection_Sequence<opencascade::handle<IntPatch_Line>> directly instead.
 
+#ifndef _IntPatch_SequenceOfLine_hxx
+#define _IntPatch_SequenceOfLine_hxx
+
+#include <Standard_Macro.hxx>
 #include <IntPatch_Line.hxx>
 #include <NCollection_Sequence.hxx>
 
-typedef NCollection_Sequence<Handle(IntPatch_Line)> IntPatch_SequenceOfLine;
+Standard_HEADER_DEPRECATED("IntPatch_SequenceOfLine.hxx is deprecated since OCCT 8.0.0. Use "
+                           "NCollection_Sequence<opencascade::handle<IntPatch_Line>> directly.")
 
-#endif
+  Standard_DEPRECATED("IntPatch_SequenceOfLine is deprecated, use "
+                      "NCollection_Sequence<opencascade::handle<IntPatch_Line>> directly")
+typedef NCollection_Sequence<opencascade::handle<IntPatch_Line>> IntPatch_SequenceOfLine;
+
+#endif // _IntPatch_SequenceOfLine_hxx

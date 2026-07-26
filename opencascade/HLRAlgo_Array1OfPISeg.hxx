@@ -1,7 +1,4 @@
-// Created on: 1992-02-18
-// Created by: Christophe MARION
-// Copyright (c) 1992-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,12 +11,23 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef HLRAlgo_Array1OfPISeg_HeaderFile
-#define HLRAlgo_Array1OfPISeg_HeaderFile
+//! @file HLRAlgo_Array1OfPISeg.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection_Array1<HLRAlgo_PolyInternalSegment> directly instead.
 
+#ifndef _HLRAlgo_Array1OfPISeg_hxx
+#define _HLRAlgo_Array1OfPISeg_hxx
+
+#include <Standard_Macro.hxx>
 #include <HLRAlgo_PolyInternalSegment.hxx>
 #include <NCollection_Array1.hxx>
 
+Standard_HEADER_DEPRECATED("HLRAlgo_Array1OfPISeg.hxx is deprecated since OCCT 8.0.0. Use "
+                           "NCollection_Array1<HLRAlgo_PolyInternalSegment> directly.")
+
+  Standard_DEPRECATED("HLRAlgo_Array1OfPISeg is deprecated, use "
+                      "NCollection_Array1<HLRAlgo_PolyInternalSegment> directly")
 typedef NCollection_Array1<HLRAlgo_PolyInternalSegment> HLRAlgo_Array1OfPISeg;
 
-#endif
+#endif // _HLRAlgo_Array1OfPISeg_hxx

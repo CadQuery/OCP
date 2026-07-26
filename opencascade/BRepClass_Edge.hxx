@@ -20,13 +20,16 @@
 #include <Standard.hxx>
 #include <Standard_DefineAlloc.hxx>
 #include <Standard_Handle.hxx>
-#include <TopTools_IndexedDataMapOfShapeListOfShape.hxx>
+#include <TopoDS_Shape.hxx>
+#include <NCollection_List.hxx>
+#include <TopTools_ShapeMapHasher.hxx>
+#include <NCollection_IndexedDataMap.hxx>
 
 #include <TopoDS_Edge.hxx>
 #include <TopoDS_Face.hxx>
 
-//! This class  is used to send  the  description of an
-//! Edge to the classifier. It  contains  an Edge and a
+//! This class is used to send the description of an
+//! Edge to the classifier. It contains an Edge and a
 //! Face. So the PCurve of the Edge can be found.
 class BRepClass_Edge
 {
@@ -38,43 +41,45 @@ public:
   Standard_EXPORT BRepClass_Edge(const TopoDS_Edge& E, const TopoDS_Face& F);
 
   //! Returns the current Edge
-  TopoDS_Edge&       Edge();
-  const TopoDS_Edge& Edge() const;
+  TopoDS_Edge& Edge() { return myEdge; }
+
+  const TopoDS_Edge& Edge() const { return myEdge; }
 
   //! Returns the Face for the current Edge
-  TopoDS_Face&       Face();
-  const TopoDS_Face& Face() const;
+  TopoDS_Face& Face() { return myFace; }
+
+  const TopoDS_Face& Face() const { return myFace; }
 
   //! Returns the next Edge
   const TopoDS_Edge& NextEdge() const { return myNextEdge; }
 
   //! Finds and sets the next Edge for the current
-  Standard_EXPORT void SetNextEdge(const TopTools_IndexedDataMapOfShapeListOfShape& theMapVE);
+  Standard_EXPORT void SetNextEdge(
+    const NCollection_IndexedDataMap<TopoDS_Shape,
+                                     NCollection_List<TopoDS_Shape>,
+                                     TopTools_ShapeMapHasher>& theMapVE);
 
   //! Returns the maximum tolerance
-  Standard_Real MaxTolerance() const { return myMaxTolerance; }
+  double MaxTolerance() const { return myMaxTolerance; }
 
   //! Sets the maximum tolerance at
   //! which to start checking in the intersector
-  void SetMaxTolerance(const Standard_Real theValue) { myMaxTolerance = theValue; }
+  void SetMaxTolerance(const double theValue) { myMaxTolerance = theValue; }
 
   //! Returns true if we are using boxes
   //! in the intersector
-  Standard_Boolean UseBndBox() const { return myUseBndBox; }
+  bool UseBndBox() const { return myUseBndBox; }
 
   //! Sets the status of whether we are
   //! using boxes or not
-  void SetUseBndBox(const Standard_Boolean theValue) { myUseBndBox = theValue; }
+  void SetUseBndBox(const bool theValue) { myUseBndBox = theValue; }
 
-protected:
 private:
-  TopoDS_Edge      myEdge;
-  TopoDS_Face      myFace;
-  TopoDS_Edge      myNextEdge;
-  Standard_Real    myMaxTolerance;
-  Standard_Boolean myUseBndBox;
+  TopoDS_Edge myEdge;
+  TopoDS_Face myFace;
+  TopoDS_Edge myNextEdge;
+  double      myMaxTolerance;
+  bool        myUseBndBox;
 };
-
-#include <BRepClass_Edge.lxx>
 
 #endif // _BRepClass_Edge_HeaderFile

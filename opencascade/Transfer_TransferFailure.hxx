@@ -17,13 +17,9 @@
 #ifndef _Transfer_TransferFailure_HeaderFile
 #define _Transfer_TransferFailure_HeaderFile
 
-#include <Standard_Type.hxx>
 #include <Standard_DefineException.hxx>
 #include <Standard_SStream.hxx>
 #include <Interface_InterfaceError.hxx>
-
-class Transfer_TransferFailure;
-DEFINE_STANDARD_HANDLE(Transfer_TransferFailure, Interface_InterfaceError)
 
 #if !defined No_Exception && !defined No_Transfer_TransferFailure
   #define Transfer_TransferFailure_Raise_if(CONDITION, MESSAGE)                                    \

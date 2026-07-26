@@ -31,25 +31,23 @@ public:
   }
 
   //! Destructor.
-  virtual ~IMeshData_ParametersListArrayAdaptor() {}
+  ~IMeshData_ParametersListArrayAdaptor() override = default;
 
   //! Returns lower index in parameters array.
-  Standard_Integer Lower() const { return 0; }
+  int Lower() const { return 0; }
 
   //! Returns upper index in parameters array.
-  Standard_Integer Upper() const { return myParameters->ParametersNb() - 1; }
+  int Upper() const { return myParameters->ParametersNb() - 1; }
 
   //! Returns value of the given index.
-  Standard_Real Value(const Standard_Integer theIndex) const
-  {
-    return myParameters->GetParameter(theIndex);
-  }
+  double Value(const int theIndex) const { return myParameters->GetParameter(theIndex); }
 
 private:
   IMeshData_ParametersListArrayAdaptor(
-    const IMeshData_ParametersListArrayAdaptor<ParametersListPtrType>& theOther);
+    const IMeshData_ParametersListArrayAdaptor<ParametersListPtrType>& theOther) = delete;
 
-  void operator=(const IMeshData_ParametersListArrayAdaptor<ParametersListPtrType>& theOther);
+  void operator=(const IMeshData_ParametersListArrayAdaptor<ParametersListPtrType>& theOther) =
+    delete;
 
   const ParametersListPtrType myParameters;
 };

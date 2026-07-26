@@ -1,7 +1,4 @@
-// Created on: 1992-02-03
-// Created by: Christian CAILLET
-// Copyright (c) 1992-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,12 +11,23 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef Transfer_HSequenceOfFinder_HeaderFile
-#define Transfer_HSequenceOfFinder_HeaderFile
+//! @file Transfer_HSequenceOfFinder.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection_HSequence<opencascade::handle<Transfer_Finder>> directly instead.
 
+#ifndef _Transfer_HSequenceOfFinder_hxx
+#define _Transfer_HSequenceOfFinder_hxx
+
+#include <Standard_Macro.hxx>
 #include <Transfer_SequenceOfFinder.hxx>
-#include <NCollection_DefineHSequence.hxx>
+#include <NCollection_HSequence.hxx>
 
-DEFINE_HSEQUENCE(Transfer_HSequenceOfFinder, Transfer_SequenceOfFinder)
+Standard_HEADER_DEPRECATED("Transfer_HSequenceOfFinder.hxx is deprecated since OCCT 8.0.0. Use "
+                           "NCollection_HSequence<opencascade::handle<Transfer_Finder>> directly.")
 
-#endif
+  Standard_DEPRECATED("Transfer_HSequenceOfFinder is deprecated, use "
+                      "NCollection_HSequence<opencascade::handle<Transfer_Finder>> directly")
+typedef NCollection_HSequence<opencascade::handle<Transfer_Finder>> Transfer_HSequenceOfFinder;
+
+#endif // _Transfer_HSequenceOfFinder_hxx

@@ -18,23 +18,17 @@
 #define _PLib_HermitJacobi_HeaderFile
 
 #include <Standard.hxx>
-#include <Standard_Type.hxx>
 
-#include <math_Matrix.hxx>
-#include <TColStd_Array1OfReal.hxx>
-#include <PLib_Base.hxx>
+#include <NCollection_Array1.hxx>
 #include <Standard_Integer.hxx>
 #include <GeomAbs_Shape.hxx>
-class PLib_JacobiPolynomial;
+#include <PLib_JacobiPolynomial.hxx>
 
-class PLib_HermitJacobi;
-DEFINE_STANDARD_HANDLE(PLib_HermitJacobi, PLib_Base)
-
-//! This class provides method  to work with Jacobi Polynomials
+//! This class provides method to work with Jacobi Polynomials
 //! relatively to an order of constraint
 //! q = myWorkDegree-2*(myNivConstr+1)
 //! Jk(t) for k=0,q compose the Jacobi Polynomial base relatively to the weight W(t)
-//! iorder is the integer  value for the constraints:
+//! iorder is the integer value for the constraints:
 //! iorder = 0 <=> ConstraintOrder = GeomAbs_C0
 //! iorder = 1 <=> ConstraintOrder = GeomAbs_C1
 //! iorder = 2 <=> ConstraintOrder = GeomAbs_C2
@@ -51,7 +45,7 @@ DEFINE_STANDARD_HANDLE(PLib_HermitJacobi, PLib_Base)
 //! c0(1)                  c0(2) ....            c0(Dimension)
 //! c2*ordre+1(1)                ...          c2*ordre+1(dimension)
 //! @endcode
-//! represents the  part  of the polynomial in  the
+//! represents the part of the polynomial in the
 //! Hermit's base: H(t)
 //! @code
 //! H(t) = c0H00(t) + c1H01(t) + ...c(iordre)H(0 ;iorder)+ c(iordre+1)H10(t)+...
@@ -61,7 +55,7 @@ DEFINE_STANDARD_HANDLE(PLib_HermitJacobi, PLib_Base)
 //! @code
 //! Q(t) = c2*iordre+2  J0(t) + ...+ cDegree JDegree-2*iordre-2
 //! @endcode
-class PLib_HermitJacobi : public PLib_Base
+class PLib_HermitJacobi
 {
 
 public:
@@ -70,87 +64,79 @@ public:
   //! ConstraintOrder has to be GeomAbs_C0
   //! GeomAbs_C1
   //! GeomAbs_C2
-  Standard_EXPORT PLib_HermitJacobi(const Standard_Integer WorkDegree,
-                                    const GeomAbs_Shape    ConstraintOrder);
+  Standard_EXPORT PLib_HermitJacobi(const int WorkDegree, const GeomAbs_Shape ConstraintOrder);
 
-  //! This  method computes the  maximum  error on the polynomial
+  //! This method computes the maximum error on the polynomial
   //! W(t) Q(t) obtained by missing the coefficients of JacCoeff from
   //! NewDegree +1 to Degree
-  Standard_EXPORT Standard_Real MaxError(const Standard_Integer Dimension,
-                                         Standard_Real&         HermJacCoeff,
-                                         const Standard_Integer NewDegree) const;
+  Standard_EXPORT double MaxError(const int Dimension,
+                                  double&   HermJacCoeff,
+                                  const int NewDegree) const;
 
   //! Compute NewDegree <= MaxDegree so that MaxError is lower
   //! than Tol.
   //! MaxError can be greater than Tol if it is not possible
   //! to find a NewDegree <= MaxDegree.
   //! In this case NewDegree = MaxDegree
-  Standard_EXPORT void ReduceDegree(const Standard_Integer Dimension,
-                                    const Standard_Integer MaxDegree,
-                                    const Standard_Real    Tol,
-                                    Standard_Real&         HermJacCoeff,
-                                    Standard_Integer&      NewDegree,
-                                    Standard_Real&         MaxError) const Standard_OVERRIDE;
+  Standard_EXPORT void ReduceDegree(const int    Dimension,
+                                    const int    MaxDegree,
+                                    const double Tol,
+                                    double&      HermJacCoeff,
+                                    int&         NewDegree,
+                                    double&      MaxError) const;
 
-  Standard_EXPORT Standard_Real AverageError(const Standard_Integer Dimension,
-                                             Standard_Real&         HermJacCoeff,
-                                             const Standard_Integer NewDegree) const;
+  Standard_EXPORT double AverageError(const int Dimension,
+                                      double&   HermJacCoeff,
+                                      const int NewDegree) const;
 
   //! Convert the polynomial P(t) = H(t) + W(t) Q(t) in the canonical base.
-  Standard_EXPORT void ToCoefficients(const Standard_Integer      Dimension,
-                                      const Standard_Integer      Degree,
-                                      const TColStd_Array1OfReal& HermJacCoeff,
-                                      TColStd_Array1OfReal& Coefficients) const Standard_OVERRIDE;
+  Standard_EXPORT void ToCoefficients(const int                         Dimension,
+                                      const int                         Degree,
+                                      const NCollection_Array1<double>& HermJacCoeff,
+                                      NCollection_Array1<double>&       Coefficients) const;
 
   //! Compute the values of the basis functions in u
-  Standard_EXPORT void D0(const Standard_Real   U,
-                          TColStd_Array1OfReal& BasisValue) Standard_OVERRIDE;
+  Standard_EXPORT void D0(const double U, NCollection_Array1<double>& BasisValue) const;
 
   //! Compute the values and the derivatives values of
   //! the basis functions in u
-  Standard_EXPORT void D1(const Standard_Real   U,
-                          TColStd_Array1OfReal& BasisValue,
-                          TColStd_Array1OfReal& BasisD1) Standard_OVERRIDE;
+  Standard_EXPORT void D1(const double                U,
+                          NCollection_Array1<double>& BasisValue,
+                          NCollection_Array1<double>& BasisD1) const;
 
   //! Compute the values and the derivatives values of
   //! the basis functions in u
-  Standard_EXPORT void D2(const Standard_Real   U,
-                          TColStd_Array1OfReal& BasisValue,
-                          TColStd_Array1OfReal& BasisD1,
-                          TColStd_Array1OfReal& BasisD2) Standard_OVERRIDE;
+  Standard_EXPORT void D2(const double                U,
+                          NCollection_Array1<double>& BasisValue,
+                          NCollection_Array1<double>& BasisD1,
+                          NCollection_Array1<double>& BasisD2) const;
 
   //! Compute the values and the derivatives values of
   //! the basis functions in u
-  Standard_EXPORT void D3(const Standard_Real   U,
-                          TColStd_Array1OfReal& BasisValue,
-                          TColStd_Array1OfReal& BasisD1,
-                          TColStd_Array1OfReal& BasisD2,
-                          TColStd_Array1OfReal& BasisD3) Standard_OVERRIDE;
+  Standard_EXPORT void D3(const double                U,
+                          NCollection_Array1<double>& BasisValue,
+                          NCollection_Array1<double>& BasisD1,
+                          NCollection_Array1<double>& BasisD2,
+                          NCollection_Array1<double>& BasisD3) const;
 
   //! returns WorkDegree
-  Standard_Integer WorkDegree() const Standard_OVERRIDE;
+  int WorkDegree() const noexcept { return myJacobi.WorkDegree(); }
 
   //! returns NivConstr
-  Standard_Integer NivConstr() const;
-
-  DEFINE_STANDARD_RTTIEXT(PLib_HermitJacobi, PLib_Base)
+  int NivConstr() const noexcept { return myJacobi.NivConstr(); }
 
 protected:
-private:
   //! Compute the values and the derivatives values of
   //! the basis functions in u
-  Standard_EXPORT void D0123(const Standard_Integer NDerive,
-                             const Standard_Real    U,
-                             TColStd_Array1OfReal&  BasisValue,
-                             TColStd_Array1OfReal&  BasisD1,
-                             TColStd_Array1OfReal&  BasisD2,
-                             TColStd_Array1OfReal&  BasisD3);
+  Standard_EXPORT void D0123(const int                   NDerive,
+                             const double                U,
+                             NCollection_Array1<double>& BasisValue,
+                             NCollection_Array1<double>& BasisD1,
+                             NCollection_Array1<double>& BasisD2,
+                             NCollection_Array1<double>& BasisD3) const;
 
-  math_Matrix                   myH;
-  Handle(PLib_JacobiPolynomial) myJacobi;
-  TColStd_Array1OfReal          myWCoeff;
+private:
+  const PLib_JacobiPolynomial myJacobi;
 };
-
-#include <PLib_HermitJacobi.lxx>
 
 #endif // _PLib_HermitJacobi_HeaderFile

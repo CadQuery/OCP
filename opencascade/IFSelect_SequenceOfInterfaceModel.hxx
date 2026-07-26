@@ -1,7 +1,4 @@
-// Created on: 1992-09-21
-// Created by: Christian CAILLET
-// Copyright (c) 1992-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,12 +11,27 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef IFSelect_SequenceOfInterfaceModel_HeaderFile
-#define IFSelect_SequenceOfInterfaceModel_HeaderFile
+//! @file IFSelect_SequenceOfInterfaceModel.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection_Sequence<opencascade::handle<Interface_InterfaceModel>> directly
+//!             instead.
 
+#ifndef _IFSelect_SequenceOfInterfaceModel_hxx
+#define _IFSelect_SequenceOfInterfaceModel_hxx
+
+#include <Standard_Macro.hxx>
 #include <Interface_InterfaceModel.hxx>
 #include <NCollection_Sequence.hxx>
 
-typedef NCollection_Sequence<Handle(Interface_InterfaceModel)> IFSelect_SequenceOfInterfaceModel;
+Standard_HEADER_DEPRECATED(
+  "IFSelect_SequenceOfInterfaceModel.hxx is deprecated since OCCT 8.0.0. Use "
+  "NCollection_Sequence<opencascade::handle<Interface_InterfaceModel>> directly.")
 
-#endif
+  Standard_DEPRECATED(
+    "IFSelect_SequenceOfInterfaceModel is deprecated, use "
+    "NCollection_Sequence<opencascade::handle<Interface_InterfaceModel>> directly")
+typedef NCollection_Sequence<opencascade::handle<Interface_InterfaceModel>>
+  IFSelect_SequenceOfInterfaceModel;
+
+#endif // _IFSelect_SequenceOfInterfaceModel_hxx

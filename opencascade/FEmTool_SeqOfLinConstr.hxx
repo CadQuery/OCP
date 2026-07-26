@@ -1,7 +1,4 @@
-// Created on: 1997-10-29
-// Created by: Roman BORISOV
-// Copyright (c) 1997-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,14 +11,23 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef FEmTool_SeqOfLinConstr_HeaderFile
-#define FEmTool_SeqOfLinConstr_HeaderFile
+//! @file FEmTool_SeqOfLinConstr.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection_Sequence<FEmTool_ListOfVectors> directly instead.
 
+#ifndef _FEmTool_SeqOfLinConstr_hxx
+#define _FEmTool_SeqOfLinConstr_hxx
+
+#include <Standard_Macro.hxx>
 #include <FEmTool_ListOfVectors.hxx>
 #include <NCollection_Sequence.hxx>
 
-//! To  define  sequence  of  constraints
+Standard_HEADER_DEPRECATED("FEmTool_SeqOfLinConstr.hxx is deprecated since OCCT 8.0.0. Use "
+                           "NCollection_Sequence<FEmTool_ListOfVectors> directly.")
 
+  Standard_DEPRECATED("FEmTool_SeqOfLinConstr is deprecated, use "
+                      "NCollection_Sequence<FEmTool_ListOfVectors> directly")
 typedef NCollection_Sequence<FEmTool_ListOfVectors> FEmTool_SeqOfLinConstr;
 
-#endif
+#endif // _FEmTool_SeqOfLinConstr_hxx

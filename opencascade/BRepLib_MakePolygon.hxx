@@ -38,8 +38,8 @@ class TopoDS_Wire;
 //!
 //! - any number of vertices.
 //!
-//! When a point or vertex is added to the  polygon if
-//! it is identic  to the previous  point no  edge  is
+//! When a point or vertex is added to the polygon if
+//! it is identic to the previous point no edge is
 //! built. The method added can be used to test it.
 class BRepLib_MakePolygon : public BRepLib_MakeShape
 {
@@ -51,37 +51,37 @@ public:
 
   Standard_EXPORT BRepLib_MakePolygon(const gp_Pnt& P1, const gp_Pnt& P2);
 
-  Standard_EXPORT BRepLib_MakePolygon(const gp_Pnt&          P1,
-                                      const gp_Pnt&          P2,
-                                      const gp_Pnt&          P3,
-                                      const Standard_Boolean Close = Standard_False);
+  Standard_EXPORT BRepLib_MakePolygon(const gp_Pnt& P1,
+                                      const gp_Pnt& P2,
+                                      const gp_Pnt& P3,
+                                      const bool    Close = false);
 
-  Standard_EXPORT BRepLib_MakePolygon(const gp_Pnt&          P1,
-                                      const gp_Pnt&          P2,
-                                      const gp_Pnt&          P3,
-                                      const gp_Pnt&          P4,
-                                      const Standard_Boolean Close = Standard_False);
+  Standard_EXPORT BRepLib_MakePolygon(const gp_Pnt& P1,
+                                      const gp_Pnt& P2,
+                                      const gp_Pnt& P3,
+                                      const gp_Pnt& P4,
+                                      const bool    Close = false);
 
   Standard_EXPORT BRepLib_MakePolygon(const TopoDS_Vertex& V1, const TopoDS_Vertex& V2);
 
-  Standard_EXPORT BRepLib_MakePolygon(const TopoDS_Vertex&   V1,
-                                      const TopoDS_Vertex&   V2,
-                                      const TopoDS_Vertex&   V3,
-                                      const Standard_Boolean Close = Standard_False);
+  Standard_EXPORT BRepLib_MakePolygon(const TopoDS_Vertex& V1,
+                                      const TopoDS_Vertex& V2,
+                                      const TopoDS_Vertex& V3,
+                                      const bool           Close = false);
 
-  Standard_EXPORT BRepLib_MakePolygon(const TopoDS_Vertex&   V1,
-                                      const TopoDS_Vertex&   V2,
-                                      const TopoDS_Vertex&   V3,
-                                      const TopoDS_Vertex&   V4,
-                                      const Standard_Boolean Close = Standard_False);
+  Standard_EXPORT BRepLib_MakePolygon(const TopoDS_Vertex& V1,
+                                      const TopoDS_Vertex& V2,
+                                      const TopoDS_Vertex& V3,
+                                      const TopoDS_Vertex& V4,
+                                      const bool           Close = false);
 
   Standard_EXPORT void Add(const gp_Pnt& P);
 
   Standard_EXPORT void Add(const TopoDS_Vertex& V);
 
-  //! Returns  True if  the last   vertex  or point  was
+  //! Returns True if the last vertex or point was
   //! successfully added.
-  Standard_EXPORT Standard_Boolean Added() const;
+  Standard_EXPORT bool Added() const;
 
   Standard_EXPORT void Close();
 
@@ -96,7 +96,6 @@ public:
   Standard_EXPORT const TopoDS_Wire& Wire();
   Standard_EXPORT                    operator TopoDS_Wire();
 
-protected:
 private:
   TopoDS_Vertex myFirstVertex;
   TopoDS_Vertex myLastVertex;

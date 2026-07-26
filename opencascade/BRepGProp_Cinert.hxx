@@ -24,7 +24,7 @@
 class BRepAdaptor_Curve;
 class gp_Pnt;
 
-//! Computes the  global properties of bounded curves
+//! Computes the global properties of bounded curves
 //! in 3D space. The curve must have at least a continuity C1.
 //! It can be a curve as defined in the template CurveTool from
 //! package GProp. This template gives the minimum of methods
@@ -42,9 +42,6 @@ public:
   Standard_EXPORT void SetLocation(const gp_Pnt& CLocation);
 
   Standard_EXPORT void Perform(const BRepAdaptor_Curve& C);
-
-protected:
-private:
 };
 
 #endif // _BRepGProp_Cinert_HeaderFile

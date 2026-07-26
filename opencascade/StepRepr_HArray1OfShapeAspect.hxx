@@ -1,6 +1,4 @@
-// Created on: 2015-07-13
-// Created by: Irina KRYLOVA
-// Copyright (c) 2015 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -13,11 +11,25 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _StepRepr_HArray1OfShapeAspect_HeaderFile
-#define _StepRepr_HArray1OfShapeAspect_HeaderFile
+//! @file StepRepr_HArray1OfShapeAspect.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection_HArray1<opencascade::handle<StepRepr_ShapeAspect>> directly instead.
 
+#ifndef _StepRepr_HArray1OfShapeAspect_hxx
+#define _StepRepr_HArray1OfShapeAspect_hxx
+
+#include <Standard_Macro.hxx>
 #include <StepRepr_Array1OfShapeAspect.hxx>
-#include <NCollection_DefineHArray1.hxx>
+#include <NCollection_HArray1.hxx>
 
-DEFINE_HARRAY1(StepRepr_HArray1OfShapeAspect, StepRepr_Array1OfShapeAspect)
-#endif // _StepRepr_HArray1OfShapeAspect_HeaderFile
+Standard_HEADER_DEPRECATED(
+  "StepRepr_HArray1OfShapeAspect.hxx is deprecated since OCCT 8.0.0. Use "
+  "NCollection_HArray1<opencascade::handle<StepRepr_ShapeAspect>> directly.")
+
+  Standard_DEPRECATED("StepRepr_HArray1OfShapeAspect is deprecated, use "
+                      "NCollection_HArray1<opencascade::handle<StepRepr_ShapeAspect>> directly")
+typedef NCollection_HArray1<opencascade::handle<StepRepr_ShapeAspect>>
+  StepRepr_HArray1OfShapeAspect;
+
+#endif // _StepRepr_HArray1OfShapeAspect_hxx

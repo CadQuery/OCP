@@ -1,7 +1,4 @@
-// Created on: 1995-04-25
-// Created by: Jacques GOUSSARD
-// Copyright (c) 1995-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,15 +11,29 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef LocOpe_DataMapOfShapePnt_HeaderFile
-#define LocOpe_DataMapOfShapePnt_HeaderFile
+//! @file LocOpe_DataMapOfShapePnt.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection types directly instead.
 
+#ifndef _LocOpe_DataMapOfShapePnt_hxx
+#define _LocOpe_DataMapOfShapePnt_hxx
+
+#include <Standard_Macro.hxx>
 #include <gp_Pnt.hxx>
 #include <TopTools_ShapeMapHasher.hxx>
 #include <NCollection_DataMap.hxx>
 
+Standard_HEADER_DEPRECATED(
+  "LocOpe_DataMapOfShapePnt.hxx is deprecated since OCCT 8.0.0. Use NCollection types directly.")
+
+  Standard_DEPRECATED("LocOpe_DataMapOfShapePnt is deprecated, use "
+                      "NCollection_DataMap<TopoDS_Shape, gp_Pnt, TopTools_ShapeMapHasher> directly")
 typedef NCollection_DataMap<TopoDS_Shape, gp_Pnt, TopTools_ShapeMapHasher> LocOpe_DataMapOfShapePnt;
+Standard_DEPRECATED(
+  "LocOpe_DataMapIteratorOfDataMapOfShapePnt is deprecated, use NCollection_DataMap<TopoDS_Shape, "
+  "gp_Pnt, TopTools_ShapeMapHasher>::Iterator directly")
 typedef NCollection_DataMap<TopoDS_Shape, gp_Pnt, TopTools_ShapeMapHasher>::Iterator
   LocOpe_DataMapIteratorOfDataMapOfShapePnt;
 
-#endif
+#endif // _LocOpe_DataMapOfShapePnt_hxx

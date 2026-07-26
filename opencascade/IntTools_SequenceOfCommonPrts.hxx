@@ -1,6 +1,4 @@
-// Created on: 2000-05-18
-// Created by: Peter KURNEV
-// Copyright (c) 2000-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -13,12 +11,23 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef IntTools_SequenceOfCommonPrts_HeaderFile
-#define IntTools_SequenceOfCommonPrts_HeaderFile
+//! @file IntTools_SequenceOfCommonPrts.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection_Sequence<IntTools_CommonPrt> directly instead.
 
+#ifndef _IntTools_SequenceOfCommonPrts_hxx
+#define _IntTools_SequenceOfCommonPrts_hxx
+
+#include <Standard_Macro.hxx>
 #include <IntTools_CommonPrt.hxx>
 #include <NCollection_Sequence.hxx>
 
+Standard_HEADER_DEPRECATED("IntTools_SequenceOfCommonPrts.hxx is deprecated since OCCT 8.0.0. Use "
+                           "NCollection_Sequence<IntTools_CommonPrt> directly.")
+
+  Standard_DEPRECATED("IntTools_SequenceOfCommonPrts is deprecated, use "
+                      "NCollection_Sequence<IntTools_CommonPrt> directly")
 typedef NCollection_Sequence<IntTools_CommonPrt> IntTools_SequenceOfCommonPrts;
 
-#endif
+#endif // _IntTools_SequenceOfCommonPrts_hxx

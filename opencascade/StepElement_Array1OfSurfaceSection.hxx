@@ -1,4 +1,4 @@
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,12 +11,27 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef StepElement_Array1OfSurfaceSection_HeaderFile
-#define StepElement_Array1OfSurfaceSection_HeaderFile
+//! @file StepElement_Array1OfSurfaceSection.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection_Array1<opencascade::handle<StepElement_SurfaceSection>> directly
+//!             instead.
 
+#ifndef _StepElement_Array1OfSurfaceSection_hxx
+#define _StepElement_Array1OfSurfaceSection_hxx
+
+#include <Standard_Macro.hxx>
 #include <StepElement_SurfaceSection.hxx>
 #include <NCollection_Array1.hxx>
 
-typedef NCollection_Array1<Handle(StepElement_SurfaceSection)> StepElement_Array1OfSurfaceSection;
+Standard_HEADER_DEPRECATED(
+  "StepElement_Array1OfSurfaceSection.hxx is deprecated since OCCT 8.0.0. Use "
+  "NCollection_Array1<opencascade::handle<StepElement_SurfaceSection>> directly.")
 
-#endif
+  Standard_DEPRECATED(
+    "StepElement_Array1OfSurfaceSection is deprecated, use "
+    "NCollection_Array1<opencascade::handle<StepElement_SurfaceSection>> directly")
+typedef NCollection_Array1<opencascade::handle<StepElement_SurfaceSection>>
+  StepElement_Array1OfSurfaceSection;
+
+#endif // _StepElement_Array1OfSurfaceSection_hxx

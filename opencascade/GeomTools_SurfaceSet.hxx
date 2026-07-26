@@ -21,7 +21,8 @@
 #include <Standard_DefineAlloc.hxx>
 #include <Standard_Handle.hxx>
 
-#include <TColStd_IndexedMapOfTransient.hxx>
+#include <Standard_Transient.hxx>
+#include <NCollection_IndexedMap.hxx>
 #include <Standard_Integer.hxx>
 #include <Standard_OStream.hxx>
 #include <Standard_IStream.hxx>
@@ -41,43 +42,43 @@ public:
   //! Clears the content of the set.
   Standard_EXPORT void Clear();
 
-  //! Incorporate a new Surface in the  set and returns
+  //! Incorporate a new Surface in the set and returns
   //! its index.
-  Standard_EXPORT Standard_Integer Add(const Handle(Geom_Surface)& S);
+  Standard_EXPORT int Add(const occ::handle<Geom_Surface>& S);
 
   //! Returns the Surface of index <I>.
-  Standard_EXPORT Handle(Geom_Surface) Surface(const Standard_Integer I) const;
+  Standard_EXPORT occ::handle<Geom_Surface> Surface(const int I) const;
 
   //! Returns the index of <L>.
-  Standard_EXPORT Standard_Integer Index(const Handle(Geom_Surface)& S) const;
+  Standard_EXPORT int Index(const occ::handle<Geom_Surface>& S) const;
 
   //! Dumps the content of me on the stream <OS>.
   Standard_EXPORT void Dump(Standard_OStream& OS) const;
 
-  //! Writes the content of  me  on the stream <OS> in a
+  //! Writes the content of me on the stream <OS> in a
   //! format that can be read back by Read.
   Standard_EXPORT void Write(
     Standard_OStream&            OS,
     const Message_ProgressRange& theProgress = Message_ProgressRange()) const;
 
-  //! Reads the content of me from the  stream  <IS>. me
-  //! is first cleared.
+  //! Reads the content of me from the stream <IS>.
+  //! me is first cleared.
   Standard_EXPORT void Read(Standard_IStream&            IS,
                             const Message_ProgressRange& theProgress = Message_ProgressRange());
 
-  //! Dumps the surface on the stream,  if compact is True
+  //! Dumps the surface on the stream, if compact is True
   //! use the compact format that can be read back.
-  Standard_EXPORT static void PrintSurface(const Handle(Geom_Surface)& S,
-                                           Standard_OStream&           OS,
-                                           const Standard_Boolean      compact = Standard_False);
+  Standard_EXPORT static void PrintSurface(const occ::handle<Geom_Surface>& S,
+                                           Standard_OStream&                OS,
+                                           const bool                       compact = false);
 
-  //! Reads the surface  from  the stream.  The  surface  is
-  //! assumed   to have  been  written  with  the Print
+  //! Reads the surface from the stream. The surface is
+  //! assumed to have been written with the Print
   //! method (compact = True).
-  Standard_EXPORT static Handle(Geom_Surface) ReadSurface(Standard_IStream& IS);
+  Standard_EXPORT static occ::handle<Geom_Surface> ReadSurface(Standard_IStream& IS);
 
 private:
-  TColStd_IndexedMapOfTransient myMap;
+  NCollection_IndexedMap<occ::handle<Standard_Transient>> myMap;
 };
 
 #endif // _GeomTools_SurfaceSet_HeaderFile

@@ -17,9 +17,12 @@
 
 #include <NCollection_Array1.hxx>
 #include <OSD_Thread.hxx>
-#include <Standard_Atomic.hxx>
 #include <Standard_Condition.hxx>
-#include <Standard_Mutex.hxx>
+
+#include <Standard_ProgramError.hxx>
+
+#include <atomic>
+#include <optional>
 
 //! Class defining a thread pool for executing algorithms in multi-threaded mode.
 //! Thread pool allocates requested amount of threads and keep them alive
@@ -56,7 +59,7 @@ class OSD_ThreadPool : public Standard_Transient
 public:
   //! Return (or create) a default thread pool.
   //! Number of threads argument will be considered only when called first time.
-  Standard_EXPORT static const Handle(OSD_ThreadPool)& DefaultPool(int theNbThreads = -1);
+  Standard_EXPORT static const occ::handle<OSD_ThreadPool>& DefaultPool(int theNbThreads = -1);
 
 public:
   //! Main constructor.
@@ -69,7 +72,7 @@ public:
   Standard_EXPORT OSD_ThreadPool(int theNbThreads = -1);
 
   //! Destructor.
-  Standard_EXPORT virtual ~OSD_ThreadPool();
+  Standard_EXPORT ~OSD_ThreadPool() override;
 
   //! Return TRUE if at least 2 threads are available (including self-thread).
   bool HasThreads() const { return NbThreads() >= 2; }
@@ -78,10 +81,10 @@ public:
   int LowerThreadIndex() const { return 0; }
 
   //! Return the upper thread index (last index is reserved for self-thread).
-  int UpperThreadIndex() const { return LowerThreadIndex() + myThreads.Size(); }
+  int UpperThreadIndex() const { return LowerThreadIndex() + myThreads.Length(); }
 
   //! Return the number of threads; >= 1.
-  int NbThreads() const { return myThreads.Size() + 1; }
+  int NbThreads() const { return myThreads.Length() + 1; }
 
   //! Return maximum number of threads to be locked by a single Launcher object by default;
   //! the entire thread pool size is returned by default.
@@ -114,8 +117,8 @@ protected:
   public:
     //! Main constructor.
     EnumeratedThread(bool theIsSelfThread = false)
-        : myPool(NULL),
-          myJob(NULL),
+        : myPool(nullptr),
+          myJob(nullptr),
           myWakeEvent(false),
           myIdleEvent(false),
           myThreadIndex(0),
@@ -143,9 +146,9 @@ protected:
   public:
     //! Copy constructor.
     EnumeratedThread(const EnumeratedThread& theCopy)
-        : OSD_Thread(),
-          myPool(NULL),
-          myJob(NULL),
+        : OSD_Thread(theCopy),
+          myPool(nullptr),
+          myJob(nullptr),
           myWakeEvent(false),
           myIdleEvent(false),
           myThreadIndex(0),
@@ -180,19 +183,19 @@ protected:
     void performThread();
 
     //! Method is executed in the context of thread.
-    static Standard_Address runThread(Standard_Address theTask);
+    static void* runThread(void* theTask);
 
   private:
-    OSD_ThreadPool*          myPool;
-    JobInterface*            myJob;
-    Handle(Standard_Failure) myFailure;
-    Standard_Condition       myWakeEvent;
-    Standard_Condition       myIdleEvent;
-    int                      myThreadIndex;
-    volatile int             myUsageCounter;
-    bool                     myIsStarted;
-    bool                     myToCatchFpe;
-    bool                     myIsSelfThread;
+    OSD_ThreadPool*                      myPool;
+    JobInterface*                        myJob;
+    std::optional<Standard_ProgramError> myFailure;
+    Standard_Condition                   myWakeEvent;
+    Standard_Condition                   myIdleEvent;
+    int                                  myThreadIndex;
+    std::atomic<int>                     myUsageCounter;
+    bool                                 myIsStarted;
+    bool                                 myToCatchFpe;
+    bool                                 myIsSelfThread;
   };
 
 public:
@@ -258,8 +261,8 @@ public:
     Standard_EXPORT void wait();
 
   private:
-    Launcher(const Launcher& theCopy);
-    Launcher& operator=(const Launcher& theCopy);
+    Launcher(const Launcher& theCopy)            = delete;
+    Launcher& operator=(const Launcher& theCopy) = delete;
 
   private:
     // clang-format off
@@ -290,16 +293,16 @@ protected:
 
     //! Returns first non processed element or end.
     //! Thread-safe method.
-    int It() const { return Standard_Atomic_Increment(reinterpret_cast<volatile int*>(&myIt)) - 1; }
+    int It() const { return myIt.fetch_add(1); }
 
   private:
-    JobRange(const JobRange& theCopy);
-    JobRange& operator=(const JobRange& theCopy);
+    JobRange(const JobRange& theCopy)            = delete;
+    JobRange& operator=(const JobRange& theCopy) = delete;
 
   private:
-    const int&  myBegin; //!< First element of range
-    const int&  myEnd;   //!< Last  element of range
-    mutable int myIt;    //!< First non processed element of range
+    const int&               myBegin; //!< First element of range
+    const int&               myEnd;   //!< Last  element of range
+    mutable std::atomic<int> myIt;    //!< First non processed element of range
   };
 
   //! Auxiliary wrapper class for thread function.
@@ -315,17 +318,17 @@ protected:
     }
 
     //! Method is executed in the context of thread.
-    virtual void Perform(int theThreadIndex) Standard_OVERRIDE
+    void Perform(int theThreadIndex) override
     {
-      for (Standard_Integer anIter = myRange.It(); anIter < myRange.End(); anIter = myRange.It())
+      for (int anIter = myRange.It(); anIter < myRange.End(); anIter = myRange.It())
       {
         myPerformer(theThreadIndex, anIter);
       }
     }
 
   private:
-    Job(const Job& theCopy);
-    Job& operator=(const Job& theCopy);
+    Job(const Job& theCopy)            = delete;
+    Job& operator=(const Job& theCopy) = delete;
 
   private:                       //! @name private fields
     const FunctorT& myPerformer; //!< Link on functor
@@ -336,15 +339,15 @@ protected:
   void release();
 
   //! Perform the job and catch exceptions.
-  static void performJob(Handle(Standard_Failure)&     theFailure,
-                         OSD_ThreadPool::JobInterface* theJob,
-                         int                           theThreadIndex);
+  static void performJob(std::optional<Standard_ProgramError>& theFailure,
+                         OSD_ThreadPool::JobInterface*         theJob,
+                         int                                   theThreadIndex);
 
 private:
   //! This method should not be called (prohibited).
-  OSD_ThreadPool(const OSD_ThreadPool& theCopy);
+  OSD_ThreadPool(const OSD_ThreadPool& theCopy) = delete;
   //! This method should not be called (prohibited).
-  OSD_ThreadPool& operator=(const OSD_ThreadPool& theCopy);
+  OSD_ThreadPool& operator=(const OSD_ThreadPool& theCopy) = delete;
 
 private:
   // clang-format off

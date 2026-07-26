@@ -1,7 +1,4 @@
-// Created on: 1991-02-26
-// Created by: Isabelle GRIGNON
-// Copyright (c) 1991-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,12 +11,23 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef Extrema_SequenceOfPOnCurv_HeaderFile
-#define Extrema_SequenceOfPOnCurv_HeaderFile
+//! @file Extrema_SequenceOfPOnCurv.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection_Sequence<Extrema_POnCurv> directly instead.
 
+#ifndef _Extrema_SequenceOfPOnCurv_hxx
+#define _Extrema_SequenceOfPOnCurv_hxx
+
+#include <Standard_Macro.hxx>
 #include <Extrema_POnCurv.hxx>
 #include <NCollection_Sequence.hxx>
 
+Standard_HEADER_DEPRECATED("Extrema_SequenceOfPOnCurv.hxx is deprecated since OCCT 8.0.0. Use "
+                           "NCollection_Sequence<Extrema_POnCurv> directly.")
+
+  Standard_DEPRECATED(
+    "Extrema_SequenceOfPOnCurv is deprecated, use NCollection_Sequence<Extrema_POnCurv> directly")
 typedef NCollection_Sequence<Extrema_POnCurv> Extrema_SequenceOfPOnCurv;
 
-#endif
+#endif // _Extrema_SequenceOfPOnCurv_hxx

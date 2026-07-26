@@ -1,4 +1,4 @@
-// Copyright (c) 2013-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,14 +11,27 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _Message_HArrayOfMsg_HeaderFile
-#define _Message_HArrayOfMsg_HeaderFile
+//! @file Message_HArrayOfMsg.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection types directly instead.
 
+#ifndef _Message_HArrayOfMsg_hxx
+#define _Message_HArrayOfMsg_hxx
+
+#include <Standard_Macro.hxx>
 #include <Message_Msg.hxx>
 #include <NCollection_Array1.hxx>
 #include <NCollection_Handle.hxx>
 
-typedef NCollection_Array1<NCollection_Handle<Message_Msg>> Message_ArrayOfMsg;
-typedef NCollection_Handle<Message_ArrayOfMsg>              Message_HArrayOfMsg;
+Standard_HEADER_DEPRECATED(
+  "Message_HArrayOfMsg.hxx is deprecated since OCCT 8.0.0. Use NCollection types directly.")
 
-#endif // _Message_HArrayOfMsg_HeaderFile
+  Standard_DEPRECATED("Message_ArrayOfMsg is deprecated, use "
+                      "NCollection_Array1<NCollection_Handle<Message_Msg>> directly")
+typedef NCollection_Array1<NCollection_Handle<Message_Msg>> Message_ArrayOfMsg;
+Standard_DEPRECATED(
+  "Message_HArrayOfMsg is deprecated, use NCollection_Handle<Message_ArrayOfMsg> directly")
+typedef NCollection_Handle<Message_ArrayOfMsg> Message_HArrayOfMsg;
+
+#endif // _Message_HArrayOfMsg_hxx

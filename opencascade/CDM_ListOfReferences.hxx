@@ -1,7 +1,4 @@
-// Created on: 1997-05-06
-// Created by: Jean-Louis Frenkel, Remi Lequette
-// Copyright (c) 1997-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,13 +11,27 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef CDM_ListOfReferences_HeaderFile
-#define CDM_ListOfReferences_HeaderFile
+//! @file CDM_ListOfReferences.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection types directly instead.
 
+#ifndef _CDM_ListOfReferences_hxx
+#define _CDM_ListOfReferences_hxx
+
+#include <Standard_Macro.hxx>
 #include <CDM_Reference.hxx>
 #include <NCollection_List.hxx>
 
-typedef NCollection_List<Handle(CDM_Reference)>           CDM_ListOfReferences;
-typedef NCollection_List<Handle(CDM_Reference)>::Iterator CDM_ListIteratorOfListOfReferences;
+Standard_HEADER_DEPRECATED(
+  "CDM_ListOfReferences.hxx is deprecated since OCCT 8.0.0. Use NCollection types directly.")
 
-#endif
+  Standard_DEPRECATED("CDM_ListOfReferences is deprecated, use "
+                      "NCollection_List<opencascade::handle<CDM_Reference>> directly")
+typedef NCollection_List<opencascade::handle<CDM_Reference>> CDM_ListOfReferences;
+Standard_DEPRECATED("CDM_ListIteratorOfListOfReferences is deprecated, use "
+                    "NCollection_List<opencascade::handle<CDM_Reference>>::Iterator directly")
+typedef NCollection_List<opencascade::handle<CDM_Reference>>::Iterator
+  CDM_ListIteratorOfListOfReferences;
+
+#endif // _CDM_ListOfReferences_hxx

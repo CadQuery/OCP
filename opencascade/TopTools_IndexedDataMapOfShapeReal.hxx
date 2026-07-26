@@ -1,5 +1,4 @@
-// Created by: Eugeny MALTCHIKOV
-// Copyright (c) 2017 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -12,14 +11,28 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef TopTools_IndexedDataMapOfShapeReal_HeaderFile
-#define TopTools_IndexedDataMapOfShapeReal_HeaderFile
+//! @file TopTools_IndexedDataMapOfShapeReal.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection_IndexedDataMap<TopoDS_Shape, double, TopTools_ShapeMapHasher>
+//!             directly instead.
 
+#ifndef _TopTools_IndexedDataMapOfShapeReal_hxx
+#define _TopTools_IndexedDataMapOfShapeReal_hxx
+
+#include <Standard_Macro.hxx>
 #include <NCollection_IndexedDataMap.hxx>
 #include <TopoDS_Shape.hxx>
 #include <TopTools_ShapeMapHasher.hxx>
 
-typedef NCollection_IndexedDataMap<TopoDS_Shape, Standard_Real, TopTools_ShapeMapHasher>
+Standard_HEADER_DEPRECATED(
+  "TopTools_IndexedDataMapOfShapeReal.hxx is deprecated since OCCT 8.0.0. Use "
+  "NCollection_IndexedDataMap<TopoDS_Shape, double, TopTools_ShapeMapHasher> directly.")
+
+  Standard_DEPRECATED(
+    "TopTools_IndexedDataMapOfShapeReal is deprecated, use "
+    "NCollection_IndexedDataMap<TopoDS_Shape, double, TopTools_ShapeMapHasher> directly")
+typedef NCollection_IndexedDataMap<TopoDS_Shape, double, TopTools_ShapeMapHasher>
   TopTools_IndexedDataMapOfShapeReal;
 
-#endif
+#endif // _TopTools_IndexedDataMapOfShapeReal_hxx

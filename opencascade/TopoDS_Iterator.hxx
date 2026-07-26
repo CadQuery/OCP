@@ -17,9 +17,10 @@
 #ifndef _TopoDS_Iterator_HeaderFile
 #define _TopoDS_Iterator_HeaderFile
 
+#include <NCollection_ForwardRange.hxx>
+#include <NCollection_List.hxx>
 #include <Standard_NoSuchObject.hxx>
 #include <TopoDS_Shape.hxx>
-#include <TopoDS_ListIteratorOfListOfShape.hxx>
 #include <TopAbs_Orientation.hxx>
 #include <TopLoc_Location.hxx>
 
@@ -46,9 +47,8 @@ public:
   //! - If cumLoc is true, the function multiplies all
   //! sub-shapes by the location of S, i.e. it applies to
   //! each sub-shape the transformation that is associated with S.
-  TopoDS_Iterator(const TopoDS_Shape&    S,
-                  const Standard_Boolean cumOri = Standard_True,
-                  const Standard_Boolean cumLoc = Standard_True)
+  TopoDS_Iterator(const TopoDS_Shape& S, const bool cumOri = true, const bool cumLoc = true)
+      : myOrientation(TopAbs_FORWARD)
   {
     Initialize(S, cumOri, cumLoc);
   }
@@ -60,13 +60,13 @@ public:
   //! - If cumLoc is true, the function multiplies all
   //! sub-shapes by the location of S, i.e. it applies to
   //! each sub-shape the transformation that is associated with S.
-  Standard_EXPORT void Initialize(const TopoDS_Shape&    S,
-                                  const Standard_Boolean cumOri = Standard_True,
-                                  const Standard_Boolean cumLoc = Standard_True);
+  Standard_EXPORT void Initialize(const TopoDS_Shape& S,
+                                  const bool          cumOri = true,
+                                  const bool          cumLoc = true);
 
   //! Returns true if there is another sub-shape in the
   //! shape which this iterator is scanning.
-  Standard_Boolean More() const { return myShapes.More(); }
+  bool More() const { return myIterator.More(); }
 
   //! Moves on to the next sub-shape in the shape which
   //! this iterator is scanning.
@@ -84,11 +84,25 @@ public:
     return myShape;
   }
 
+  //! Returns an STL-compatible iterator for range-based for loops.
+  //! @warning Do not call Next() or Initialize() externally during range-for iteration.
+  NCollection_ForwardRangeIterator<TopoDS_Iterator> begin()
+  {
+    return NCollection_ForwardRangeIterator<TopoDS_Iterator>(this);
+  }
+
+  //! Returns a sentinel marking the end of iteration.
+  NCollection_ForwardRangeSentinel end() const { return NCollection_ForwardRangeSentinel{}; }
+
 private:
-  TopoDS_Shape                     myShape;
-  TopoDS_ListIteratorOfListOfShape myShapes;
-  TopAbs_Orientation               myOrientation;
-  TopLoc_Location                  myLocation;
+  //! Updates myShape from the current iterator position.
+  void updateCurrentShape();
+
+private:
+  TopoDS_Shape                             myShape;       //!< Current composed sub-shape
+  NCollection_List<TopoDS_Shape>::Iterator myIterator;    //!< Iterator over child shapes list
+  TopAbs_Orientation                       myOrientation; //!< Cumulative orientation
+  TopLoc_Location                          myLocation;    //!< Cumulative location
 };
 
 #endif // _TopoDS_Iterator_HeaderFile

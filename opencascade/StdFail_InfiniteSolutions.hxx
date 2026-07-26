@@ -17,13 +17,9 @@
 #ifndef _StdFail_InfiniteSolutions_HeaderFile
 #define _StdFail_InfiniteSolutions_HeaderFile
 
-#include <Standard_Type.hxx>
 #include <Standard_DefineException.hxx>
 #include <Standard_SStream.hxx>
 #include <Standard_Failure.hxx>
-
-class StdFail_InfiniteSolutions;
-DEFINE_STANDARD_HANDLE(StdFail_InfiniteSolutions, Standard_Failure)
 
 #if !defined No_Exception && !defined No_StdFail_InfiniteSolutions
   #define StdFail_InfiniteSolutions_Raise_if(CONDITION, MESSAGE)                                   \

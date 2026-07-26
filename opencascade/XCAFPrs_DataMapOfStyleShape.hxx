@@ -1,6 +1,4 @@
-// Created on: 2000-08-11
-// Created by: Andrey BETENEV
-// Copyright (c) 2000-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -13,15 +11,28 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef XCAFPrs_DataMapOfStyleShape_HeaderFile
-#define XCAFPrs_DataMapOfStyleShape_HeaderFile
+//! @file XCAFPrs_DataMapOfStyleShape.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection types directly instead.
 
+#ifndef _XCAFPrs_DataMapOfStyleShape_hxx
+#define _XCAFPrs_DataMapOfStyleShape_hxx
+
+#include <Standard_Macro.hxx>
 #include <TopoDS_Shape.hxx>
 #include <XCAFPrs_Style.hxx>
 #include <NCollection_DataMap.hxx>
 
+Standard_HEADER_DEPRECATED(
+  "XCAFPrs_DataMapOfStyleShape.hxx is deprecated since OCCT 8.0.0. Use NCollection types directly.")
+
+  Standard_DEPRECATED("XCAFPrs_DataMapOfStyleShape is deprecated, use "
+                      "NCollection_DataMap<XCAFPrs_Style, TopoDS_Shape> directly")
 typedef NCollection_DataMap<XCAFPrs_Style, TopoDS_Shape> XCAFPrs_DataMapOfStyleShape;
+Standard_DEPRECATED("XCAFPrs_DataMapIteratorOfDataMapOfStyleShape is deprecated, use "
+                    "NCollection_DataMap<XCAFPrs_Style, TopoDS_Shape>::Iterator directly")
 typedef NCollection_DataMap<XCAFPrs_Style, TopoDS_Shape>::Iterator
   XCAFPrs_DataMapIteratorOfDataMapOfStyleShape;
 
-#endif
+#endif // _XCAFPrs_DataMapOfStyleShape_hxx

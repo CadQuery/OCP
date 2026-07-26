@@ -26,20 +26,20 @@ public:
   //! Constructor. The alignment should be specified explicitly:
   //! 16 bytes for SSE instructions
   //! 32 bytes for AVX instructions
-  Standard_EXPORT NCollection_AlignedAllocator(const size_t theAlignment);
+  Standard_EXPORT NCollection_AlignedAllocator(const size_t theAlignment) noexcept;
 
   //! Allocate memory with given size. Returns NULL on failure.
-  Standard_EXPORT virtual void* Allocate(const size_t theSize) Standard_OVERRIDE;
+  Standard_EXPORT void* Allocate(const size_t theSize) override;
 
   //! Allocate memory with given size. Returns NULL on failure.
-  void* AllocateOptimal(const size_t theSize) Standard_OVERRIDE { return Allocate(theSize); }
+  void* AllocateOptimal(const size_t theSize) override { return Allocate(theSize); }
 
   //! Free a previously allocated memory.
-  Standard_EXPORT virtual void Free(void* thePtr) Standard_OVERRIDE;
+  Standard_EXPORT void Free(void* thePtr) override;
 
 private:
-  NCollection_AlignedAllocator(const NCollection_AlignedAllocator&);
-  NCollection_AlignedAllocator& operator=(const NCollection_AlignedAllocator&);
+  NCollection_AlignedAllocator(const NCollection_AlignedAllocator&)            = delete;
+  NCollection_AlignedAllocator& operator=(const NCollection_AlignedAllocator&) = delete;
 
 protected:
   size_t myAlignment; //!< alignment in bytes
@@ -49,6 +49,4 @@ public:
 };
 
 // Definition of HANDLE object using Standard_DefineHandle.hxx
-DEFINE_STANDARD_HANDLE(NCollection_AlignedAllocator, NCollection_BaseAllocator)
-
 #endif // NCollection_AlignedAllocator_HeaderFile

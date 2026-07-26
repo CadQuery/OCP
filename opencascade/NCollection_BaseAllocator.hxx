@@ -54,11 +54,11 @@ public:
   //! This method is designed to have the only one BaseAllocator (to avoid
   //! useless copying of collections). However one can use operator new to
   //! create more BaseAllocators, but it is injurious.
-  Standard_EXPORT static const Handle(NCollection_BaseAllocator)& CommonBaseAllocator(void);
+  Standard_EXPORT static const occ::handle<NCollection_BaseAllocator>& CommonBaseAllocator();
 
 protected:
   //! Constructor - prohibited
-  NCollection_BaseAllocator() {}
+  NCollection_BaseAllocator() noexcept {}
 
 private:
   //! Copy constructor - prohibited
@@ -68,6 +68,4 @@ public:
   // ---------- CasCade RunTime Type Information
   DEFINE_STANDARD_RTTIEXT(NCollection_BaseAllocator, Standard_Transient)
 };
-DEFINE_STANDARD_HANDLE(NCollection_BaseAllocator, Standard_Transient)
-
 #endif

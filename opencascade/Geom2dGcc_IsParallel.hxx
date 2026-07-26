@@ -17,12 +17,8 @@
 #ifndef _Geom2dGcc_IsParallel_HeaderFile
 #define _Geom2dGcc_IsParallel_HeaderFile
 
-#include <Standard_Type.hxx>
 #include <Standard_SStream.hxx>
 #include <Standard_DomainError.hxx>
-
-class Geom2dGcc_IsParallel;
-DEFINE_STANDARD_HANDLE(Geom2dGcc_IsParallel, Standard_DomainError)
 
 #if !defined No_Exception && !defined No_Geom2dGcc_IsParallel
   #define Geom2dGcc_IsParallel_Raise_if(CONDITION, MESSAGE)                                        \

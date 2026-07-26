@@ -14,12 +14,9 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-//=======================================================================
-// function : IsDone
-// purpose  :
-//=======================================================================
+//=================================================================================================
 
-inline Standard_Boolean TDF_CopyLabel::IsDone() const
+inline bool TDF_CopyLabel::IsDone() const
 {
   return myIsDone;
 }

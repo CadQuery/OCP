@@ -1,7 +1,4 @@
-// Created on: 1995-12-01
-// Created by: EXPRESS->CDL V0.2 Translator
-// Copyright (c) 1995-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,12 +11,26 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef StepGeom_HArray2OfSurfacePatch_HeaderFile
-#define StepGeom_HArray2OfSurfacePatch_HeaderFile
+//! @file StepGeom_HArray2OfSurfacePatch.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection_HArray2<opencascade::handle<StepGeom_SurfacePatch>> directly
+//!             instead.
 
+#ifndef _StepGeom_HArray2OfSurfacePatch_hxx
+#define _StepGeom_HArray2OfSurfacePatch_hxx
+
+#include <Standard_Macro.hxx>
 #include <StepGeom_Array2OfSurfacePatch.hxx>
-#include <NCollection_DefineHArray2.hxx>
+#include <NCollection_HArray2.hxx>
 
-DEFINE_HARRAY2(StepGeom_HArray2OfSurfacePatch, StepGeom_Array2OfSurfacePatch)
+Standard_HEADER_DEPRECATED(
+  "StepGeom_HArray2OfSurfacePatch.hxx is deprecated since OCCT 8.0.0. Use "
+  "NCollection_HArray2<opencascade::handle<StepGeom_SurfacePatch>> directly.")
 
-#endif
+  Standard_DEPRECATED("StepGeom_HArray2OfSurfacePatch is deprecated, use "
+                      "NCollection_HArray2<opencascade::handle<StepGeom_SurfacePatch>> directly")
+typedef NCollection_HArray2<opencascade::handle<StepGeom_SurfacePatch>>
+  StepGeom_HArray2OfSurfacePatch;
+
+#endif // _StepGeom_HArray2OfSurfacePatch_hxx

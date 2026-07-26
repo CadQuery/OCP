@@ -1,7 +1,4 @@
-// Created on: 1999-03-03
-// Created by: Fabrice SERVANT
-// Copyright (c) 1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,12 +11,23 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef IntPolyh_SeqOfStartPoints_HeaderFile
-#define IntPolyh_SeqOfStartPoints_HeaderFile
+//! @file IntPolyh_SeqOfStartPoints.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection_Sequence<IntPolyh_StartPoint> directly instead.
 
+#ifndef _IntPolyh_SeqOfStartPoints_hxx
+#define _IntPolyh_SeqOfStartPoints_hxx
+
+#include <Standard_Macro.hxx>
 #include <IntPolyh_StartPoint.hxx>
 #include <NCollection_Sequence.hxx>
 
+Standard_HEADER_DEPRECATED("IntPolyh_SeqOfStartPoints.hxx is deprecated since OCCT 8.0.0. Use "
+                           "NCollection_Sequence<IntPolyh_StartPoint> directly.")
+
+  Standard_DEPRECATED("IntPolyh_SeqOfStartPoints is deprecated, use "
+                      "NCollection_Sequence<IntPolyh_StartPoint> directly")
 typedef NCollection_Sequence<IntPolyh_StartPoint> IntPolyh_SeqOfStartPoints;
 
-#endif
+#endif // _IntPolyh_SeqOfStartPoints_hxx

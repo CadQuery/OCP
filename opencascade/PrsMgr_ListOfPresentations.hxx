@@ -1,6 +1,4 @@
-// Created on: 2013-11-24
-// Created by: Kirill Gavrilov
-// Copyright (c) 2013 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -13,12 +11,23 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef PrsMgr_ListOfPresentations_HeaderFile
-#define PrsMgr_ListOfPresentations_HeaderFile
+//! @file PrsMgr_ListOfPresentations.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection_List<opencascade::handle<Prs3d_Presentation>> directly instead.
 
+#ifndef _PrsMgr_ListOfPresentations_hxx
+#define _PrsMgr_ListOfPresentations_hxx
+
+#include <Standard_Macro.hxx>
 #include <NCollection_List.hxx>
 #include <Prs3d_Presentation.hxx>
 
-typedef NCollection_List<Handle(Prs3d_Presentation)> PrsMgr_ListOfPresentations;
+Standard_HEADER_DEPRECATED("PrsMgr_ListOfPresentations.hxx is deprecated since OCCT 8.0.0. Use "
+                           "NCollection_List<opencascade::handle<Prs3d_Presentation>> directly.")
 
-#endif // _PrsMgr_ListOfPresentations_H__
+  Standard_DEPRECATED("PrsMgr_ListOfPresentations is deprecated, use "
+                      "NCollection_List<opencascade::handle<Prs3d_Presentation>> directly")
+typedef NCollection_List<opencascade::handle<Prs3d_Presentation>> PrsMgr_ListOfPresentations;
+
+#endif // _PrsMgr_ListOfPresentations_hxx

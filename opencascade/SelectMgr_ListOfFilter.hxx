@@ -1,7 +1,4 @@
-// Created on: 1995-02-06
-// Created by: Mister rmi
-// Copyright (c) 1995-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,13 +11,27 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef SelectMgr_ListOfFilter_HeaderFile
-#define SelectMgr_ListOfFilter_HeaderFile
+//! @file SelectMgr_ListOfFilter.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection types directly instead.
 
+#ifndef _SelectMgr_ListOfFilter_hxx
+#define _SelectMgr_ListOfFilter_hxx
+
+#include <Standard_Macro.hxx>
 #include <SelectMgr_Filter.hxx>
 #include <NCollection_List.hxx>
 
-typedef NCollection_List<Handle(SelectMgr_Filter)>           SelectMgr_ListOfFilter;
-typedef NCollection_List<Handle(SelectMgr_Filter)>::Iterator SelectMgr_ListIteratorOfListOfFilter;
+Standard_HEADER_DEPRECATED(
+  "SelectMgr_ListOfFilter.hxx is deprecated since OCCT 8.0.0. Use NCollection types directly.")
 
-#endif
+  Standard_DEPRECATED("SelectMgr_ListOfFilter is deprecated, use "
+                      "NCollection_List<opencascade::handle<SelectMgr_Filter>> directly")
+typedef NCollection_List<opencascade::handle<SelectMgr_Filter>> SelectMgr_ListOfFilter;
+Standard_DEPRECATED("SelectMgr_ListIteratorOfListOfFilter is deprecated, use "
+                    "NCollection_List<opencascade::handle<SelectMgr_Filter>>::Iterator directly")
+typedef NCollection_List<opencascade::handle<SelectMgr_Filter>>::Iterator
+  SelectMgr_ListIteratorOfListOfFilter;
+
+#endif // _SelectMgr_ListOfFilter_hxx

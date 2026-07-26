@@ -1,7 +1,4 @@
-// Created on: 1993-11-17
-// Created by: Isabelle GRIGNON
-// Copyright (c) 1993-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,12 +11,23 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef ChFiDS_StripeArray1_HeaderFile
-#define ChFiDS_StripeArray1_HeaderFile
+//! @file ChFiDS_StripeArray1.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection_Array1<opencascade::handle<ChFiDS_Stripe>> directly instead.
 
+#ifndef _ChFiDS_StripeArray1_hxx
+#define _ChFiDS_StripeArray1_hxx
+
+#include <Standard_Macro.hxx>
 #include <ChFiDS_Stripe.hxx>
 #include <NCollection_Array1.hxx>
 
-typedef NCollection_Array1<Handle(ChFiDS_Stripe)> ChFiDS_StripeArray1;
+Standard_HEADER_DEPRECATED("ChFiDS_StripeArray1.hxx is deprecated since OCCT 8.0.0. Use "
+                           "NCollection_Array1<opencascade::handle<ChFiDS_Stripe>> directly.")
 
-#endif
+  Standard_DEPRECATED("ChFiDS_StripeArray1 is deprecated, use "
+                      "NCollection_Array1<opencascade::handle<ChFiDS_Stripe>> directly")
+typedef NCollection_Array1<opencascade::handle<ChFiDS_Stripe>> ChFiDS_StripeArray1;
+
+#endif // _ChFiDS_StripeArray1_hxx

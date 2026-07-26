@@ -1,6 +1,4 @@
-// Created on: 2003-10-10
-// Created by: Alexander SOLOVYOV
-// Copyright (c) 2003-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -13,15 +11,28 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef MeshVS_DataMapOfColorMapOfInteger_HeaderFile
-#define MeshVS_DataMapOfColorMapOfInteger_HeaderFile
+//! @file MeshVS_DataMapOfColorMapOfInteger.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection types directly instead.
 
+#ifndef _MeshVS_DataMapOfColorMapOfInteger_hxx
+#define _MeshVS_DataMapOfColorMapOfInteger_hxx
+
+#include <Standard_Macro.hxx>
 #include <Quantity_Color.hxx>
 #include <TColStd_MapOfInteger.hxx>
 #include <NCollection_DataMap.hxx>
 
+Standard_HEADER_DEPRECATED("MeshVS_DataMapOfColorMapOfInteger.hxx is deprecated since OCCT 8.0.0. "
+                           "Use NCollection types directly.")
+
+  Standard_DEPRECATED("MeshVS_DataMapOfColorMapOfInteger is deprecated, use "
+                      "NCollection_DataMap<Quantity_Color, TColStd_MapOfInteger> directly")
 typedef NCollection_DataMap<Quantity_Color, TColStd_MapOfInteger> MeshVS_DataMapOfColorMapOfInteger;
+Standard_DEPRECATED("MeshVS_DataMapIteratorOfDataMapOfColorMapOfInteger is deprecated, use "
+                    "NCollection_DataMap<Quantity_Color, TColStd_MapOfInteger>::Iterator directly")
 typedef NCollection_DataMap<Quantity_Color, TColStd_MapOfInteger>::Iterator
   MeshVS_DataMapIteratorOfDataMapOfColorMapOfInteger;
 
-#endif
+#endif // _MeshVS_DataMapOfColorMapOfInteger_hxx

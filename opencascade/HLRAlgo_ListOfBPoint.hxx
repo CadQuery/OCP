@@ -1,7 +1,4 @@
-// Created on: 1992-02-18
-// Created by: Christophe MARION
-// Copyright (c) 1992-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,13 +11,26 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef HLRAlgo_ListOfBPoint_HeaderFile
-#define HLRAlgo_ListOfBPoint_HeaderFile
+//! @file HLRAlgo_ListOfBPoint.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection types directly instead.
 
+#ifndef _HLRAlgo_ListOfBPoint_hxx
+#define _HLRAlgo_ListOfBPoint_hxx
+
+#include <Standard_Macro.hxx>
 #include <HLRAlgo_BiPoint.hxx>
 #include <NCollection_List.hxx>
 
-typedef NCollection_List<HLRAlgo_BiPoint>           HLRAlgo_ListOfBPoint;
+Standard_HEADER_DEPRECATED(
+  "HLRAlgo_ListOfBPoint.hxx is deprecated since OCCT 8.0.0. Use NCollection types directly.")
+
+  Standard_DEPRECATED(
+    "HLRAlgo_ListOfBPoint is deprecated, use NCollection_List<HLRAlgo_BiPoint> directly")
+typedef NCollection_List<HLRAlgo_BiPoint> HLRAlgo_ListOfBPoint;
+Standard_DEPRECATED("HLRAlgo_ListIteratorOfListOfBPoint is deprecated, use "
+                    "NCollection_List<HLRAlgo_BiPoint>::Iterator directly")
 typedef NCollection_List<HLRAlgo_BiPoint>::Iterator HLRAlgo_ListIteratorOfListOfBPoint;
 
-#endif
+#endif // _HLRAlgo_ListOfBPoint_hxx

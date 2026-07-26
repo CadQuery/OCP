@@ -1,7 +1,4 @@
-// Created on: 1997-03-17
-// Created by: Yves FRICAUD
-// Copyright (c) 1997-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,16 +11,31 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef TNaming_DataMapOfShapeShapesSet_HeaderFile
-#define TNaming_DataMapOfShapeShapesSet_HeaderFile
+//! @file TNaming_DataMapOfShapeShapesSet.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection types directly instead.
 
+#ifndef _TNaming_DataMapOfShapeShapesSet_hxx
+#define _TNaming_DataMapOfShapeShapesSet_hxx
+
+#include <Standard_Macro.hxx>
 #include <TNaming_ShapesSet.hxx>
 #include <TopTools_ShapeMapHasher.hxx>
 #include <NCollection_DataMap.hxx>
 
+Standard_HEADER_DEPRECATED("TNaming_DataMapOfShapeShapesSet.hxx is deprecated since OCCT 8.0.0. "
+                           "Use NCollection types directly.")
+
+  Standard_DEPRECATED(
+    "TNaming_DataMapOfShapeShapesSet is deprecated, use NCollection_DataMap<TopoDS_Shape, "
+    "TNaming_ShapesSet, TopTools_ShapeMapHasher> directly")
 typedef NCollection_DataMap<TopoDS_Shape, TNaming_ShapesSet, TopTools_ShapeMapHasher>
   TNaming_DataMapOfShapeShapesSet;
+Standard_DEPRECATED("TNaming_DataMapIteratorOfDataMapOfShapeShapesSet is deprecated, use "
+                    "NCollection_DataMap<TopoDS_Shape, TNaming_ShapesSet, "
+                    "TopTools_ShapeMapHasher>::Iterator directly")
 typedef NCollection_DataMap<TopoDS_Shape, TNaming_ShapesSet, TopTools_ShapeMapHasher>::Iterator
   TNaming_DataMapIteratorOfDataMapOfShapeShapesSet;
 
-#endif
+#endif // _TNaming_DataMapOfShapeShapesSet_hxx

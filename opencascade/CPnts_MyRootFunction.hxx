@@ -28,7 +28,7 @@
 
 //! Implements a function for the Newton algorithm to find the
 //! solution of Integral(F) = L
-//! (compute Length  and Derivative of the curve for Newton)
+//! (compute Length and Derivative of the curve for Newton)
 class CPnts_MyRootFunction : public math_FunctionWithDerivative
 {
 public:
@@ -36,36 +36,31 @@ public:
 
   CPnts_MyRootFunction();
 
-  //! F  is a pointer on a  function  D is a client data
+  //! F is a pointer on a function D is a client data
   //! Order is the order of integration to use
-  Standard_EXPORT void Init(const CPnts_RealFunction& F,
-                            const Standard_Address    D,
-                            const Standard_Integer    Order);
+  Standard_EXPORT void Init(const CPnts_RealFunction& F, void* const D, const int Order);
 
   //! We want to solve Integral(X0,X,F(X,D)) = L
-  Standard_EXPORT void Init(const Standard_Real X0, const Standard_Real L);
+  Standard_EXPORT void Init(const double X0, const double L);
 
   //! We want to solve Integral(X0,X,F(X,D)) = L
   //! with given tolerance
-  Standard_EXPORT void Init(const Standard_Real X0, const Standard_Real L, const Standard_Real Tol);
+  Standard_EXPORT void Init(const double X0, const double L, const double Tol);
 
   //! This is Integral(X0,X,F(X,D)) - L
-  Standard_EXPORT Standard_Boolean Value(const Standard_Real X, Standard_Real& F);
+  Standard_EXPORT bool Value(const double X, double& F) override;
 
   //! This is F(X,D)
-  Standard_EXPORT Standard_Boolean Derivative(const Standard_Real X, Standard_Real& Df);
+  Standard_EXPORT bool Derivative(const double X, double& Df) override;
 
-  Standard_EXPORT Standard_Boolean Values(const Standard_Real X,
-                                          Standard_Real&      F,
-                                          Standard_Real&      Df);
+  Standard_EXPORT bool Values(const double X, double& F, double& Df) override;
 
-protected:
 private:
   CPnts_MyGaussFunction myFunction;
-  Standard_Real         myX0;
-  Standard_Real         myL;
-  Standard_Integer      myOrder;
-  Standard_Real         myTol;
+  double                myX0;
+  double                myL;
+  int                   myOrder;
+  double                myTol;
 };
 
 #include <CPnts_MyRootFunction.lxx>

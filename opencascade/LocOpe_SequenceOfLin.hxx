@@ -1,7 +1,4 @@
-// Created on: 1995-04-25
-// Created by: Jacques GOUSSARD
-// Copyright (c) 1995-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,12 +11,23 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef LocOpe_SequenceOfLin_HeaderFile
-#define LocOpe_SequenceOfLin_HeaderFile
+//! @file LocOpe_SequenceOfLin.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection_Sequence<gp_Lin> directly instead.
 
+#ifndef _LocOpe_SequenceOfLin_hxx
+#define _LocOpe_SequenceOfLin_hxx
+
+#include <Standard_Macro.hxx>
 #include <gp_Lin.hxx>
 #include <NCollection_Sequence.hxx>
 
+Standard_HEADER_DEPRECATED("LocOpe_SequenceOfLin.hxx is deprecated since OCCT 8.0.0. Use "
+                           "NCollection_Sequence<gp_Lin> directly.")
+
+  Standard_DEPRECATED(
+    "LocOpe_SequenceOfLin is deprecated, use NCollection_Sequence<gp_Lin> directly")
 typedef NCollection_Sequence<gp_Lin> LocOpe_SequenceOfLin;
 
-#endif
+#endif // _LocOpe_SequenceOfLin_hxx

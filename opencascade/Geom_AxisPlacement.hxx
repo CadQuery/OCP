@@ -25,16 +25,13 @@
 class gp_Dir;
 class gp_Pnt;
 
-class Geom_AxisPlacement;
-DEFINE_STANDARD_HANDLE(Geom_AxisPlacement, Geom_Geometry)
-
 //! The abstract class AxisPlacement describes the
 //! common behavior of positioning systems in 3D space,
 //! such as axis or coordinate systems.
 //! The Geom package provides two implementations of
 //! 3D positioning systems:
 //! - the axis (Geom_Axis1Placement class), which is defined by:
-//! - its origin, also termed the "Location point" of the  axis,
+//! - its origin, also termed the "Location point" of the axis,
 //! - its unit vector, termed the "Direction" or "main
 //! Direction" of the axis;
 //! - the right-handed coordinate system
@@ -79,13 +76,13 @@ public:
   //! to calculate the new "XDirection" and the new "YDirection".
   Standard_EXPORT virtual void SetDirection(const gp_Dir& V) = 0;
 
-  //! Assigns the point P as the origin of this positioning  system.
+  //! Assigns the point P as the origin of this positioning system.
   Standard_EXPORT void SetLocation(const gp_Pnt& P);
 
   //! Computes the angular value, in radians, between the
   //! "main Direction" of this positioning system and that
   //! of positioning system Other. The result is a value between 0 and Pi.
-  Standard_EXPORT Standard_Real Angle(const Handle(Geom_AxisPlacement)& Other) const;
+  Standard_EXPORT double Angle(const occ::handle<Geom_AxisPlacement>& Other) const;
 
   //! Returns the main axis of the axis placement.
   //! For an "Axis2placement" it is the main axis (Location, Direction ).
@@ -102,8 +99,6 @@ public:
 
 protected:
   gp_Ax1 axis;
-
-private:
 };
 
 #endif // _Geom_AxisPlacement_HeaderFile

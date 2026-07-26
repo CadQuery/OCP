@@ -29,7 +29,7 @@ public:
   DEFINE_STANDARD_ALLOC
 
 public:
-  Standard_Boolean isNull() const { return myNodeType == LDOM_Node::UNKNOWN; }
+  bool isNull() const { return myNodeType == LDOM_Node::UNKNOWN; }
 
   LDOM_Node::NodeType getNodeType() const { return myNodeType; }
 
@@ -40,7 +40,7 @@ protected:
 
   LDOM_BasicNode()
       : myNodeType(LDOM_Node::UNKNOWN),
-        mySibling(NULL)
+        mySibling(nullptr)
   {
   }
 
@@ -48,7 +48,7 @@ protected:
 
   LDOM_BasicNode(LDOM_Node::NodeType aType)
       : myNodeType(aType),
-        mySibling(NULL)
+        mySibling(nullptr)
   {
   }
 

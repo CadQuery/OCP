@@ -1,5 +1,4 @@
-// Copyright (c) 1998-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -12,11 +11,22 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef TShort_Array1OfShortReal_HeaderFile
-#define TShort_Array1OfShortReal_HeaderFile
+//! @file TShort_Array1OfShortReal.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection_Array1<float> directly instead.
 
+#ifndef _TShort_Array1OfShortReal_hxx
+#define _TShort_Array1OfShortReal_hxx
+
+#include <Standard_Macro.hxx>
 #include <NCollection_Array1.hxx>
 
-typedef NCollection_Array1<Standard_ShortReal> TShort_Array1OfShortReal;
+Standard_HEADER_DEPRECATED("TShort_Array1OfShortReal.hxx is deprecated since OCCT 8.0.0. Use "
+                           "NCollection_Array1<float> directly.")
 
-#endif
+  Standard_DEPRECATED(
+    "TShort_Array1OfShortReal is deprecated, use NCollection_Array1<float> directly")
+typedef NCollection_Array1<float> TShort_Array1OfShortReal;
+
+#endif // _TShort_Array1OfShortReal_hxx

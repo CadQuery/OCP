@@ -20,12 +20,8 @@
 #include <Standard.hxx>
 #include <Standard_Type.hxx>
 
-#include <Standard_Type.hxx>
 #include <IFSelect_SelectAnyType.hxx>
 class TCollection_AsciiString;
-
-class IFSelect_SelectType;
-DEFINE_STANDARD_HANDLE(IFSelect_SelectType, IFSelect_SelectAnyType)
 
 //! A SelectType keeps or rejects Entities of which the Type
 //! is Kind of a given Cdl Type
@@ -37,24 +33,23 @@ public:
   Standard_EXPORT IFSelect_SelectType();
 
   //! Creates a SelectType for a given Type
-  Standard_EXPORT IFSelect_SelectType(const Handle(Standard_Type)& atype);
+  Standard_EXPORT IFSelect_SelectType(const occ::handle<Standard_Type>& atype);
 
   //! Sets a TYpe for filter
-  Standard_EXPORT void SetType(const Handle(Standard_Type)& atype);
+  Standard_EXPORT void SetType(const occ::handle<Standard_Type>& atype);
 
   //! Returns the Type to be matched for select : this is the type
   //! given at instantiation time
-  Standard_EXPORT Handle(Standard_Type) TypeForMatch() const Standard_OVERRIDE;
+  Standard_EXPORT occ::handle<Standard_Type> TypeForMatch() const override;
 
   //! Returns a text defining the criterium.
   //! (should by gotten from Type of Entity used for instantiation)
-  Standard_EXPORT TCollection_AsciiString ExtractLabel() const Standard_OVERRIDE;
+  Standard_EXPORT TCollection_AsciiString ExtractLabel() const override;
 
   DEFINE_STANDARD_RTTIEXT(IFSelect_SelectType, IFSelect_SelectAnyType)
 
-protected:
 private:
-  Handle(Standard_Type) thetype;
+  occ::handle<Standard_Type> thetype;
 };
 
 #endif // _IFSelect_SelectType_HeaderFile

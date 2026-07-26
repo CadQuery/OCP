@@ -26,20 +26,20 @@ class GCPnts_DistFunction2d : public math_Function
 {
 public:
   Standard_EXPORT GCPnts_DistFunction2d(const Adaptor2d_Curve2d& theCurve,
-                                        const Standard_Real      U1,
-                                        const Standard_Real      U2);
+                                        const double             U1,
+                                        const double             U2);
   //
   Standard_EXPORT GCPnts_DistFunction2d(const GCPnts_DistFunction2d& theOther);
 
-  Standard_EXPORT virtual Standard_Boolean Value(const Standard_Real X, Standard_Real& F);
+  Standard_EXPORT bool Value(const double X, double& F) override;
 
 private:
   GCPnts_DistFunction2d& operator=(const GCPnts_DistFunction2d& theOther);
 
   const Adaptor2d_Curve2d& myCurve;
   gp_Lin2d                 myLin;
-  Standard_Real            myU1;
-  Standard_Real            myU2;
+  double                   myU1;
+  double                   myU2;
 };
 
 //
@@ -51,12 +51,12 @@ class GCPnts_DistFunction2dMV : public math_MultipleVarFunction
 public:
   Standard_EXPORT GCPnts_DistFunction2dMV(GCPnts_DistFunction2d& theCurvLinDist);
 
-  Standard_EXPORT virtual Standard_Boolean Value(const math_Vector& X, Standard_Real& F);
+  Standard_EXPORT bool Value(const math_Vector& X, double& F) override;
 
-  Standard_EXPORT virtual Standard_Integer NbVariables() const;
+  Standard_EXPORT int NbVariables() const override;
 
 private:
-  GCPnts_DistFunction2dMV& operator=(const GCPnts_DistFunction2dMV& theOther);
+  GCPnts_DistFunction2dMV& operator=(const GCPnts_DistFunction2dMV& theOther) = delete;
   GCPnts_DistFunction2d&   myMaxCurvLinDist;
 };
 

@@ -36,58 +36,83 @@ public:
   Standard_EXPORT IntPatch_TheSegmentOfTheSOnBounds();
 
   //! Defines the concerned arc.
-  void SetValue(const Handle(Adaptor2d_Curve2d)& A);
+  void SetValue(const occ::handle<Adaptor2d_Curve2d>& A);
 
   //! Defines the first point or the last point,
   //! depending on the value of the boolean First.
   Standard_EXPORT void SetLimitPoint(const IntPatch_ThePathPointOfTheSOnBounds& V,
-                                     const Standard_Boolean                     First);
+                                     const bool                                 First);
 
   //! Returns the geometric curve on the surface 's domain
   //! which is solution.
-  const Handle(Adaptor2d_Curve2d)& Curve() const;
+  const occ::handle<Adaptor2d_Curve2d>& Curve() const;
 
   //! Returns True if there is a vertex (ThePathPoint) defining
   //! the lowest valid parameter on the arc.
-  Standard_Boolean HasFirstPoint() const;
+  bool HasFirstPoint() const;
 
   //! Returns the first point.
   const IntPatch_ThePathPointOfTheSOnBounds& FirstPoint() const;
 
   //! Returns True if there is a vertex (ThePathPoint) defining
   //! the greatest valid parameter on the arc.
-  Standard_Boolean HasLastPoint() const;
+  bool HasLastPoint() const;
 
   //! Returns the last point.
   const IntPatch_ThePathPointOfTheSOnBounds& LastPoint() const;
 
-protected:
 private:
-  Handle(Adaptor2d_Curve2d)           arc;
-  Standard_Boolean                    hasfp;
+  occ::handle<Adaptor2d_Curve2d>      arc;
+  bool                                hasfp;
   IntPatch_ThePathPointOfTheSOnBounds thefp;
-  Standard_Boolean                    haslp;
+  bool                                haslp;
   IntPatch_ThePathPointOfTheSOnBounds thelp;
 };
 
-#define TheVertex Handle(Adaptor3d_HVertex)
-#define TheVertex_hxx <Adaptor3d_HVertex.hxx>
-#define TheArc Handle(Adaptor2d_Curve2d)
-#define TheArc_hxx <Adaptor2d_Curve2d.hxx>
-#define ThePathPoint IntPatch_ThePathPointOfTheSOnBounds
-#define ThePathPoint_hxx <IntPatch_ThePathPointOfTheSOnBounds.hxx>
-#define IntStart_Segment IntPatch_TheSegmentOfTheSOnBounds
-#define IntStart_Segment_hxx <IntPatch_TheSegmentOfTheSOnBounds.hxx>
+//=================================================================================================
+// Inline implementations
+//=================================================================================================
 
-#include <IntStart_Segment.lxx>
+inline void IntPatch_TheSegmentOfTheSOnBounds::SetValue(const occ::handle<Adaptor2d_Curve2d>& A)
+{
+  hasfp = false;
+  haslp = false;
+  arc   = A;
+}
 
-#undef TheVertex
-#undef TheVertex_hxx
-#undef TheArc
-#undef TheArc_hxx
-#undef ThePathPoint
-#undef ThePathPoint_hxx
-#undef IntStart_Segment
-#undef IntStart_Segment_hxx
+inline const occ::handle<Adaptor2d_Curve2d>& IntPatch_TheSegmentOfTheSOnBounds::Curve() const
+{
+  return arc;
+}
+
+inline bool IntPatch_TheSegmentOfTheSOnBounds::HasFirstPoint() const
+{
+  return hasfp;
+}
+
+inline const IntPatch_ThePathPointOfTheSOnBounds& IntPatch_TheSegmentOfTheSOnBounds::FirstPoint()
+  const
+{
+  if (!hasfp)
+  {
+    throw Standard_DomainError();
+  }
+  return thefp;
+}
+
+inline bool IntPatch_TheSegmentOfTheSOnBounds::HasLastPoint() const
+{
+  return haslp;
+}
+
+inline const IntPatch_ThePathPointOfTheSOnBounds& IntPatch_TheSegmentOfTheSOnBounds::LastPoint()
+  const
+{
+  if (!haslp)
+  {
+    throw Standard_DomainError();
+  }
+  return thelp;
+}
 
 #endif // _IntPatch_TheSegmentOfTheSOnBounds_HeaderFile

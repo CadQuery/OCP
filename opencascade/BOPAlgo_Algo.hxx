@@ -22,13 +22,13 @@
 #include <Standard_DefineAlloc.hxx>
 #include <Standard_Handle.hxx>
 #include <Message_ProgressRange.hxx>
-#include <TColStd_Array1OfReal.hxx>
+#include <NCollection_Array1.hxx>
 
 #include <BOPAlgo_Options.hxx>
 
 class BOPAlgo_PISteps;
 
-//! The class provides the root interface for the algorithms in Boolean Component.<br>
+//! The class provides the root interface for the algorithms in Boolean Component.
 class BOPAlgo_Algo : public BOPAlgo_Options
 {
 public:
@@ -42,9 +42,9 @@ public:
 protected:
   //! Default constructor
   Standard_EXPORT BOPAlgo_Algo();
-  Standard_EXPORT virtual ~BOPAlgo_Algo();
+  Standard_EXPORT ~BOPAlgo_Algo() override;
 
-  Standard_EXPORT BOPAlgo_Algo(const Handle(NCollection_BaseAllocator)& theAllocator);
+  Standard_EXPORT BOPAlgo_Algo(const occ::handle<NCollection_BaseAllocator>& theAllocator);
 
   //! Checks input data
   Standard_EXPORT virtual void CheckData();
@@ -55,21 +55,20 @@ protected:
 protected: //! @name Analyzing operations to fill progress indicator
   //! Analyze progress steps of the whole operation.
   //! @param theWhole - sum of progress of all operations.
-  //! @oaram theSteps - steps of the operations supported by PI
+  //! @param theSteps - steps of the operations supported by PI
   //!
   //! To use this method, one has to override the following methods:
   //! * fillPIConstants - method filling values for constant operations.
   //! * fillPISteps - method filling steps for the rest of operations.
-  Standard_EXPORT void analyzeProgress(const Standard_Real theWhole,
-                                       BOPAlgo_PISteps&    theSteps) const;
+  Standard_EXPORT void analyzeProgress(const double theWhole, BOPAlgo_PISteps& theSteps) const;
 
   //! Fills the values for constant operations - the operations having constant relative running
   //! time.
   //! @param theWhole - sum of all operations supported by PI, i.e. the value to normalize the steps
   //! to, if necessary.
   //! @param theSteps - steps of the operations supported by PI
-  Standard_EXPORT virtual void fillPIConstants(const Standard_Real theWhole,
-                                               BOPAlgo_PISteps&    theSteps) const;
+  Standard_EXPORT virtual void fillPIConstants(const double     theWhole,
+                                               BOPAlgo_PISteps& theSteps) const;
 
   //! Fills the values for the operations dependent on the inputs.
   //! Filled values may not be normalized to represent percentage of total running time.
@@ -99,7 +98,7 @@ public:
 
 private:
   //! Disable the range enabled method
-  virtual void Perform(const Message_ProgressRange& /*theRange*/ = Message_ProgressRange()) {};
+  void Perform(const Message_ProgressRange& /*theRange*/ = Message_ProgressRange()) override {};
 
 protected:
   Message_ProgressRange myProgressRange;
@@ -111,20 +110,20 @@ class BOPAlgo_PISteps
 {
 public:
   //! Constructor
-  BOPAlgo_PISteps(const Standard_Integer theNbOp)
+  BOPAlgo_PISteps(const int theNbOp)
       : mySteps(0, theNbOp - 1)
   {
     mySteps.Init(0);
   }
 
   //! Returns the steps
-  const TColStd_Array1OfReal& Steps() const { return mySteps; }
+  const NCollection_Array1<double>& Steps() const { return mySteps; }
 
   //! Returns modifiable steps
-  TColStd_Array1OfReal& ChangeSteps() { return mySteps; }
+  NCollection_Array1<double>& ChangeSteps() { return mySteps; }
 
   //! Assign the value theStep to theOperation
-  void SetStep(const Standard_Integer theOperation, const Standard_Real theStep)
+  void SetStep(const int theOperation, const double theStep)
   {
     if (theOperation >= mySteps.Lower() && theOperation <= mySteps.Upper())
     {
@@ -133,7 +132,7 @@ public:
   }
 
   //! Returns the step assigned to the operation
-  Standard_Real GetStep(const Standard_Integer theOperation)
+  double GetStep(const int theOperation)
   {
     if (theOperation < mySteps.Lower() || theOperation > mySteps.Upper())
     {
@@ -143,7 +142,7 @@ public:
   }
 
 protected:
-  TColStd_Array1OfReal mySteps;
+  NCollection_Array1<double> mySteps;
 };
 
 #endif // _BOPAlgo_Algo_HeaderFile

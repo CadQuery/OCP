@@ -1,7 +1,4 @@
-// Created on: 1992-02-11
-// Created by: Christian CAILLET
-// Copyright (c) 1992-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,12 +11,23 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef StepData_HArray1OfField_HeaderFile
-#define StepData_HArray1OfField_HeaderFile
+//! @file StepData_HArray1OfField.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection_HArray1<StepData_Field> directly instead.
 
+#ifndef _StepData_HArray1OfField_hxx
+#define _StepData_HArray1OfField_hxx
+
+#include <Standard_Macro.hxx>
 #include <StepData_Array1OfField.hxx>
-#include <NCollection_DefineHArray1.hxx>
+#include <NCollection_HArray1.hxx>
 
-DEFINE_HARRAY1(StepData_HArray1OfField, StepData_Array1OfField)
+Standard_HEADER_DEPRECATED("StepData_HArray1OfField.hxx is deprecated since OCCT 8.0.0. Use "
+                           "NCollection_HArray1<StepData_Field> directly.")
 
-#endif
+  Standard_DEPRECATED(
+    "StepData_HArray1OfField is deprecated, use NCollection_HArray1<StepData_Field> directly")
+typedef NCollection_HArray1<StepData_Field> StepData_HArray1OfField;
+
+#endif // _StepData_HArray1OfField_hxx

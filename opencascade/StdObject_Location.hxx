@@ -17,9 +17,11 @@
 #include <StdObjMgt_ReadData.hxx>
 #include <StdObjMgt_WriteData.hxx>
 #include <StdObjMgt_Persistent.hxx>
-#include <StdObjMgt_TransientPersistentMap.hxx>
+#include <NCollection_DataMap.hxx>
 
 #include <TopLoc_Location.hxx>
+class Standard_Transient;
+class StdObjMgt_Persistent;
 
 class StdObject_Location
 {
@@ -31,11 +33,13 @@ public:
   TopLoc_Location Import() const;
 
   //! Creates a persistent wrapper object for a location
-  Standard_EXPORT static StdObject_Location Translate(const TopLoc_Location&            theLoc,
-                                                      StdObjMgt_TransientPersistentMap& theMap);
+  Standard_EXPORT static StdObject_Location Translate(
+    const TopLoc_Location& theLoc,
+    NCollection_DataMap<occ::handle<Standard_Transient>, occ::handle<StdObjMgt_Persistent>>&
+      theMap);
 
 private:
-  Handle(StdObjMgt_Persistent) myData;
+  occ::handle<StdObjMgt_Persistent> myData;
 
   friend StdObjMgt_ReadData&  operator>>(StdObjMgt_ReadData&, StdObject_Location&);
   friend StdObjMgt_WriteData& operator<<(StdObjMgt_WriteData&, const StdObject_Location&);

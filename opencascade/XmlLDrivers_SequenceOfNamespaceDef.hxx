@@ -1,6 +1,4 @@
-// Created on: 2001-07-25
-// Created by: Julia DOROVSKIKH
-// Copyright (c) 2001-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -13,12 +11,23 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef XmlLDrivers_SequenceOfNamespaceDef_HeaderFile
-#define XmlLDrivers_SequenceOfNamespaceDef_HeaderFile
+//! @file XmlLDrivers_SequenceOfNamespaceDef.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection_Sequence<XmlLDrivers_NamespaceDef> directly instead.
 
+#ifndef _XmlLDrivers_SequenceOfNamespaceDef_hxx
+#define _XmlLDrivers_SequenceOfNamespaceDef_hxx
+
+#include <Standard_Macro.hxx>
 #include <XmlLDrivers_NamespaceDef.hxx>
 #include <NCollection_Sequence.hxx>
 
+Standard_HEADER_DEPRECATED("XmlLDrivers_SequenceOfNamespaceDef.hxx is deprecated since OCCT 8.0.0. "
+                           "Use NCollection_Sequence<XmlLDrivers_NamespaceDef> directly.")
+
+  Standard_DEPRECATED("XmlLDrivers_SequenceOfNamespaceDef is deprecated, use "
+                      "NCollection_Sequence<XmlLDrivers_NamespaceDef> directly")
 typedef NCollection_Sequence<XmlLDrivers_NamespaceDef> XmlLDrivers_SequenceOfNamespaceDef;
 
-#endif
+#endif // _XmlLDrivers_SequenceOfNamespaceDef_hxx

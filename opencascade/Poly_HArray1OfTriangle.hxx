@@ -1,7 +1,4 @@
-// Created on: 1995-03-06
-// Created by: Laurent PAINNOT
-// Copyright (c) 1995-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,12 +11,23 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef Poly_HArray1OfTriangle_HeaderFile
-#define Poly_HArray1OfTriangle_HeaderFile
+//! @file Poly_HArray1OfTriangle.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection_HArray1<Poly_Triangle> directly instead.
 
+#ifndef _Poly_HArray1OfTriangle_hxx
+#define _Poly_HArray1OfTriangle_hxx
+
+#include <Standard_Macro.hxx>
 #include <Poly_Array1OfTriangle.hxx>
-#include <NCollection_DefineHArray1.hxx>
+#include <NCollection_HArray1.hxx>
 
-DEFINE_HARRAY1(Poly_HArray1OfTriangle, Poly_Array1OfTriangle)
+Standard_HEADER_DEPRECATED("Poly_HArray1OfTriangle.hxx is deprecated since OCCT 8.0.0. Use "
+                           "NCollection_HArray1<Poly_Triangle> directly.")
 
-#endif
+  Standard_DEPRECATED(
+    "Poly_HArray1OfTriangle is deprecated, use NCollection_HArray1<Poly_Triangle> directly")
+typedef NCollection_HArray1<Poly_Triangle> Poly_HArray1OfTriangle;
+
+#endif // _Poly_HArray1OfTriangle_hxx

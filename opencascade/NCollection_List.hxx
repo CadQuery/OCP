@@ -21,6 +21,8 @@
 
 #include <Standard_NoSuchObject.hxx>
 
+#include <initializer_list>
+
 /**
  * Purpose:      Simple list to link  items together keeping the first
  *               and the last one.
@@ -45,28 +47,34 @@ public:
     const_iterator;
 
   //! Returns an iterator pointing to the first element in the list.
-  iterator begin() const { return Iterator(*this); }
+  iterator begin() noexcept { return Iterator(*this); }
 
   //! Returns an iterator referring to the past-the-end element in the list.
-  iterator end() const { return Iterator(); }
+  iterator end() noexcept { return Iterator(); }
 
   //! Returns a const iterator pointing to the first element in the list.
-  const_iterator cbegin() const { return Iterator(*this); }
+  const_iterator begin() const noexcept { return Iterator(*this); }
 
   //! Returns a const iterator referring to the past-the-end element in the list.
-  const_iterator cend() const { return Iterator(); }
+  const_iterator end() const noexcept { return Iterator(); }
+
+  //! Returns a const iterator pointing to the first element in the list.
+  const_iterator cbegin() const noexcept { return Iterator(*this); }
+
+  //! Returns a const iterator referring to the past-the-end element in the list.
+  const_iterator cend() const noexcept { return Iterator(); }
 
 public:
   // ---------- PUBLIC METHODS ------------
 
   //! Empty constructor.
   NCollection_List()
-      : NCollection_BaseList(Handle(NCollection_BaseAllocator)())
+      : NCollection_BaseList(occ::handle<NCollection_BaseAllocator>())
   {
   }
 
   //! Constructor
-  explicit NCollection_List(const Handle(NCollection_BaseAllocator)& theAllocator)
+  explicit NCollection_List(const occ::handle<NCollection_BaseAllocator>& theAllocator)
       : NCollection_BaseList(theAllocator)
   {
   }
@@ -82,11 +90,26 @@ public:
   NCollection_List(NCollection_List&& theOther) noexcept
       : NCollection_BaseList(theOther.myAllocator)
   {
-    this->operator=(std::forward<NCollection_List>(theOther));
+    myFirst          = theOther.myFirst;
+    myLast           = theOther.myLast;
+    myLength         = theOther.myLength;
+    theOther.myFirst = theOther.myLast = nullptr;
+    theOther.myLength                  = 0;
   }
 
-  //! Size - Number of items
-  Standard_Integer Size(void) const { return Extent(); }
+  //! Initializer list constructor
+  //! @param theInitList initializer list of elements to populate the list
+  //! @param theAllocator optional allocator for memory management
+  NCollection_List(std::initializer_list<TheItemType>            theInitList,
+                   const occ::handle<NCollection_BaseAllocator>& theAllocator =
+                     occ::handle<NCollection_BaseAllocator>())
+      : NCollection_BaseList(theAllocator)
+  {
+    for (const auto& anItem : theInitList)
+    {
+      Append(anItem);
+    }
+  }
 
   //! Replace this list by the items of another list (theOther parameter).
   //! This method does not change the internal allocator.
@@ -120,7 +143,7 @@ public:
   }
 
   //! Clear this list
-  void Clear(const Handle(NCollection_BaseAllocator)& theAllocator = 0L)
+  void Clear(const occ::handle<NCollection_BaseAllocator>& theAllocator = nullptr)
   {
     PClear(ListNode::delNode);
     if (!theAllocator.IsNull())
@@ -128,28 +151,28 @@ public:
   }
 
   //! First item
-  const TheItemType& First(void) const
+  const TheItemType& First() const
   {
     Standard_NoSuchObject_Raise_if(IsEmpty(), "NCollection_List::First");
     return ((const ListNode*)PFirst())->Value();
   }
 
   //! First item (non-const)
-  TheItemType& First(void)
+  TheItemType& First()
   {
     Standard_NoSuchObject_Raise_if(IsEmpty(), "NCollection_List::First");
     return ((ListNode*)PFirst())->ChangeValue();
   }
 
   //! Last item
-  const TheItemType& Last(void) const
+  const TheItemType& Last() const
   {
     Standard_NoSuchObject_Raise_if(IsEmpty(), "NCollection_List::Last");
     return ((const ListNode*)PLast())->Value();
   }
 
   //! Last item (non-const)
-  TheItemType& Last(void)
+  TheItemType& Last()
   {
     Standard_NoSuchObject_Raise_if(IsEmpty(), "NCollection_List::Last");
     return ((ListNode*)PLast())->ChangeValue();
@@ -244,7 +267,7 @@ public:
   }
 
   //! RemoveFirst item
-  void RemoveFirst(void) { PRemoveFirst(ListNode::delNode); }
+  void RemoveFirst() { PRemoveFirst(ListNode::delNode); }
 
   //! Remove item pointed by iterator theIter;
   //! theIter is then set to the next item
@@ -253,17 +276,17 @@ public:
   //! Remove the first occurrence of the object.
   template <typename TheValueType> // instantiate this method on first call only for types defining
                                    // equality operator
-  Standard_Boolean Remove(const TheValueType& theObject)
+  bool Remove(const TheValueType& theObject)
   {
     for (Iterator anIter(*this); anIter.More(); anIter.Next())
     {
       if (anIter.Value() == theObject)
       {
         Remove(anIter);
-        return Standard_True;
+        return true;
       }
     }
-    return Standard_False;
+    return false;
   }
 
   //! InsertBefore
@@ -343,26 +366,82 @@ public:
     }
   }
 
+  //! Emplace one item at the end, constructing it in-place
+  //! @param theArgs arguments forwarded to TheItemType constructor
+  //! @return reference to the newly constructed item
+  template <typename... Args>
+  TheItemType& EmplaceAppend(Args&&... theArgs)
+  {
+    ListNode* pNew =
+      new (this->myAllocator) ListNode(std::in_place, nullptr, std::forward<Args>(theArgs)...);
+    PAppend(pNew);
+    return ((ListNode*)PLast())->ChangeValue();
+  }
+
+  //! Emplace one item at the beginning, constructing it in-place
+  //! @param theArgs arguments forwarded to TheItemType constructor
+  //! @return reference to the newly constructed item
+  template <typename... Args>
+  TheItemType& EmplacePrepend(Args&&... theArgs)
+  {
+    ListNode* pNew =
+      new (this->myAllocator) ListNode(std::in_place, nullptr, std::forward<Args>(theArgs)...);
+    PPrepend(pNew);
+    return ((ListNode*)PFirst())->ChangeValue();
+  }
+
+  //! Emplace one item before the iterator position, constructing it in-place
+  //! @param theIter iterator pointing to the position before which to insert
+  //! @param theArgs arguments forwarded to TheItemType constructor
+  //! @return reference to the newly constructed item
+  template <typename... Args>
+  TheItemType& EmplaceBefore(Iterator& theIter, Args&&... theArgs)
+  {
+    ListNode* pNew =
+      new (this->myAllocator) ListNode(std::in_place, nullptr, std::forward<Args>(theArgs)...);
+    PInsertBefore(pNew, theIter);
+    return pNew->ChangeValue();
+  }
+
+  //! Emplace one item after the iterator position, constructing it in-place
+  //! @param theIter iterator pointing to the position after which to insert
+  //! @param theArgs arguments forwarded to TheItemType constructor
+  //! @return reference to the newly constructed item
+  template <typename... Args>
+  TheItemType& EmplaceAfter(Iterator& theIter, Args&&... theArgs)
+  {
+    ListNode* pNew =
+      new (this->myAllocator) ListNode(std::in_place, nullptr, std::forward<Args>(theArgs)...);
+    PInsertAfter(pNew, theIter);
+    return pNew->ChangeValue();
+  }
+
   //! Reverse the list
-  void Reverse() { PReverse(); }
+  void Reverse() noexcept { PReverse(); }
+
+  //! Exchange the content of two lists without re-allocations.
+  //! Swaps all internal state including allocators, ensuring correct
+  //! deallocation. Existing iterators remain valid but will point to
+  //! the other list's elements.
+  void Exchange(NCollection_List& theOther) noexcept { PExchange(theOther); }
 
   //! Return true if object is stored in the list.
   template <typename TheValueType> // instantiate this method on first call only for types defining
                                    // equality operator
-  Standard_Boolean Contains(const TheValueType& theObject) const
+  bool Contains(const TheValueType& theObject) const
   {
     for (Iterator anIter(*this); anIter.More(); anIter.Next())
     {
       if (anIter.Value() == theObject)
       {
-        return Standard_True;
+        return true;
       }
     }
-    return Standard_False;
+    return false;
   }
 
   //! Destructor - clears the List
-  virtual ~NCollection_List(void) { Clear(); }
+  ~NCollection_List() override { Clear(); }
 
 private:
   // ----------- PRIVATE METHODS -----------

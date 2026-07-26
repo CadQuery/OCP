@@ -1,7 +1,4 @@
-// Created on: 1993-12-08
-// Created by: Isabelle GRIGNON
-// Copyright (c) 1993-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,15 +11,28 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef ChFiKPart_RstMap_HeaderFile
-#define ChFiKPart_RstMap_HeaderFile
+//! @file ChFiKPart_RstMap.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection types directly instead.
 
+#ifndef _ChFiKPart_RstMap_hxx
+#define _ChFiKPart_RstMap_hxx
+
+#include <Standard_Macro.hxx>
 #include <Standard_Integer.hxx>
 #include <Adaptor2d_Curve2d.hxx>
 #include <NCollection_DataMap.hxx>
 
-typedef NCollection_DataMap<Standard_Integer, Handle(Adaptor2d_Curve2d)> ChFiKPart_RstMap;
-typedef NCollection_DataMap<Standard_Integer, Handle(Adaptor2d_Curve2d)>::Iterator
+Standard_HEADER_DEPRECATED(
+  "ChFiKPart_RstMap.hxx is deprecated since OCCT 8.0.0. Use NCollection types directly.")
+
+  Standard_DEPRECATED("ChFiKPart_RstMap is deprecated, use NCollection_DataMap<int, "
+                      "opencascade::handle<Adaptor2d_Curve2d>> directly")
+typedef NCollection_DataMap<int, opencascade::handle<Adaptor2d_Curve2d>> ChFiKPart_RstMap;
+Standard_DEPRECATED("ChFiKPart_DataMapIteratorOfRstMap is deprecated, use NCollection_DataMap<int, "
+                    "opencascade::handle<Adaptor2d_Curve2d>>::Iterator directly")
+typedef NCollection_DataMap<int, opencascade::handle<Adaptor2d_Curve2d>>::Iterator
   ChFiKPart_DataMapIteratorOfRstMap;
 
-#endif
+#endif // _ChFiKPart_RstMap_hxx

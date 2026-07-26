@@ -21,9 +21,10 @@
 #include <Standard_DefineAlloc.hxx>
 #include <Standard_Handle.hxx>
 
-#include <TDF_IDList.hxx>
+#include <Standard_GUID.hxx>
+#include <NCollection_List.hxx>
 
-//! This package define  CAF main classes.
+//! This package define CAF main classes.
 //!
 //! * The standard application root class
 //!
@@ -46,9 +47,9 @@
 //! sum up, standard documents alone provide
 //! access to the data framework. They also allow
 //! you to:
-//! -   Update external links
-//! -   Manage the saving and opening of data
-//! -   Manage undo/redo functionality.
+//! - Update external links
+//! - Manage the saving and opening of data
+//! - Manage undo/redo functionality.
 //! Note
 //! For information on the relations between this
 //! component of OCAF and the others, refer to the
@@ -63,7 +64,7 @@ public:
   //! Appends to <anIDList> the list of the attributes
   //! IDs of this package. CAUTION: <anIDList> is NOT
   //! cleared before use.
-  Standard_EXPORT static void IDList(TDF_IDList& anIDList);
+  Standard_EXPORT static void IDList(NCollection_List<Standard_GUID>& anIDList);
 };
 
 #endif // _TDocStd_HeaderFile

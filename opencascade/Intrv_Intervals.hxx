@@ -21,11 +21,12 @@
 #include <Standard_DefineAlloc.hxx>
 #include <Standard_Handle.hxx>
 
-#include <Intrv_SequenceOfInterval.hxx>
+#include <Intrv_Interval.hxx>
+#include <NCollection_Sequence.hxx>
 class Intrv_Interval;
 
-//! The class  Intervals is a  sorted  sequence of non
-//! overlapping  Real Intervals.
+//! The class Intervals is a sorted sequence of non
+//! overlapping Real Intervals.
 class Intrv_Intervals
 {
 public:
@@ -41,7 +42,7 @@ public:
   Standard_EXPORT void Intersect(const Intrv_Interval& Tool);
 
   //! Intersects the intervals with the intervals in the
-  //! sequence  <Tool>.
+  //! sequence <Tool>.
   Standard_EXPORT void Intersect(const Intrv_Intervals& Tool);
 
   Standard_EXPORT void Subtract(const Intrv_Interval& Tool);
@@ -56,13 +57,12 @@ public:
 
   Standard_EXPORT void XUnite(const Intrv_Intervals& Tool);
 
-  Standard_Integer NbIntervals() const;
+  int NbIntervals() const;
 
-  const Intrv_Interval& Value(const Standard_Integer Index) const;
+  const Intrv_Interval& Value(const int Index) const;
 
-protected:
 private:
-  Intrv_SequenceOfInterval myInter;
+  NCollection_Sequence<Intrv_Interval> myInter;
 };
 
 #include <Intrv_Intervals.lxx>

@@ -54,16 +54,16 @@ public:
   DEFINE_STANDARD_ALLOC
 
   //! Creates an indefinite circle.
-  gp_Circ()
+  constexpr gp_Circ() noexcept
       : radius(RealLast())
   {
   }
 
   //! A2 locates the circle and gives its orientation in 3D space.
-  //! Warnings :
-  //! It is not forbidden to create a circle with theRadius = 0.0  Raises ConstructionError if
-  //! theRadius < 0.0
-  gp_Circ(const gp_Ax2& theA2, const Standard_Real theRadius)
+  //! Warnings:
+  //! It is not forbidden to create a circle with theRadius = 0.0
+  //! Raises ConstructionError if theRadius < 0.0
+  constexpr gp_Circ(const gp_Ax2& theA2, const double theRadius)
       : pos(theA2),
         radius(theRadius)
   {
@@ -78,16 +78,16 @@ public:
   void SetAxis(const gp_Ax1& theA1) { pos.SetAxis(theA1); }
 
   //! Changes the "Location" point (center) of the circle.
-  void SetLocation(const gp_Pnt& theP) { pos.SetLocation(theP); }
+  constexpr void SetLocation(const gp_Pnt& theP) noexcept { pos.SetLocation(theP); }
 
   //! Changes the position of the circle.
-  void SetPosition(const gp_Ax2& theA2) { pos = theA2; }
+  constexpr void SetPosition(const gp_Ax2& theA2) noexcept { pos = theA2; }
 
   //! Modifies the radius of this circle.
-  //! Warning. This class does not prevent the creation of a circle where theRadius is null.
+  //! Warning: This class does not prevent the creation of a circle where theRadius is null.
   //! Exceptions
   //! Standard_ConstructionError if theRadius is negative.
-  void SetRadius(const Standard_Real theRadius)
+  void SetRadius(const double theRadius)
   {
     Standard_ConstructionError_Raise_if(theRadius < 0.0,
                                         "gp_Circ::SetRadius() - radius should be positive number");
@@ -95,122 +95,126 @@ public:
   }
 
   //! Computes the area of the circle.
-  Standard_Real Area() const { return M_PI * radius * radius; }
+  constexpr double Area() const noexcept { return M_PI * radius * radius; }
 
   //! Returns the main axis of the circle.
   //! It is the axis perpendicular to the plane of the circle,
   //! passing through the "Location" point (center) of the circle.
-  const gp_Ax1& Axis() const { return pos.Axis(); }
+  constexpr const gp_Ax1& Axis() const noexcept { return pos.Axis(); }
 
   //! Computes the circumference of the circle.
-  Standard_Real Length() const { return 2. * M_PI * radius; }
+  constexpr double Length() const noexcept { return 2. * M_PI * radius; }
 
   //! Returns the center of the circle. It is the
   //! "Location" point of the local coordinate system
   //! of the circle
-  const gp_Pnt& Location() const { return pos.Location(); }
+  constexpr const gp_Pnt& Location() const noexcept { return pos.Location(); }
 
   //! Returns the position of the circle.
   //! It is the local coordinate system of the circle.
-  const gp_Ax2& Position() const { return pos; }
+  constexpr const gp_Ax2& Position() const noexcept { return pos; }
 
   //! Returns the radius of this circle.
-  Standard_Real Radius() const { return radius; }
+  constexpr double Radius() const noexcept { return radius; }
 
   //! Returns the "XAxis" of the circle.
   //! This axis is perpendicular to the axis of the conic.
   //! This axis and the "Yaxis" define the plane of the conic.
-  gp_Ax1 XAxis() const { return gp_Ax1(pos.Location(), pos.XDirection()); }
+  constexpr gp_Ax1 XAxis() const noexcept { return gp_Ax1(pos.Location(), pos.XDirection()); }
 
   //! Returns the "YAxis" of the circle.
   //! This axis and the "Xaxis" define the plane of the conic.
   //! The "YAxis" is perpendicular to the "Xaxis".
-  gp_Ax1 YAxis() const { return gp_Ax1(pos.Location(), pos.YDirection()); }
+  constexpr gp_Ax1 YAxis() const noexcept { return gp_Ax1(pos.Location(), pos.YDirection()); }
 
   //! Computes the minimum of distance between the point theP and
   //! any point on the circumference of the circle.
-  Standard_Real Distance(const gp_Pnt& theP) const { return sqrt(SquareDistance(theP)); }
+  double Distance(const gp_Pnt& theP) const noexcept { return sqrt(SquareDistance(theP)); }
 
   //! Computes the square distance between <me> and the point theP.
-  Standard_Real SquareDistance(const gp_Pnt& theP) const
+  double SquareDistance(const gp_Pnt& theP) const noexcept
   {
-    gp_Vec        aV(Location(), theP);
-    Standard_Real aX  = aV.Dot(pos.XDirection());
-    Standard_Real anY = aV.Dot(pos.YDirection());
-    Standard_Real aZ  = aV.Dot(pos.Direction());
-    Standard_Real aT  = sqrt(aX * aX + anY * anY) - radius;
+    gp_Vec aV(Location(), theP);
+    double aX  = aV.Dot(pos.XDirection());
+    double anY = aV.Dot(pos.YDirection());
+    double aZ  = aV.Dot(pos.Direction());
+    double aT  = sqrt(aX * aX + anY * anY) - radius;
     return (aT * aT + aZ * aZ);
   }
 
   //! Returns True if the point theP is on the circumference.
   //! The distance between <me> and <theP> must be lower or
   //! equal to theLinearTolerance.
-  Standard_Boolean Contains(const gp_Pnt& theP, const Standard_Real theLinearTolerance) const
+  bool Contains(const gp_Pnt& theP, const double theLinearTolerance) const noexcept
   {
     return Distance(theP) <= theLinearTolerance;
   }
 
-  Standard_EXPORT void Mirror(const gp_Pnt& theP);
+  Standard_EXPORT void Mirror(const gp_Pnt& theP) noexcept;
 
   //! Performs the symmetrical transformation of a circle
   //! with respect to the point theP which is the center of the
   //! symmetry.
-  Standard_NODISCARD Standard_EXPORT gp_Circ Mirrored(const gp_Pnt& theP) const;
+  [[nodiscard]] Standard_EXPORT gp_Circ Mirrored(const gp_Pnt& theP) const noexcept;
 
   Standard_EXPORT void Mirror(const gp_Ax1& theA1);
 
   //! Performs the symmetrical transformation of a circle with
   //! respect to an axis placement which is the axis of the
   //! symmetry.
-  Standard_NODISCARD Standard_EXPORT gp_Circ Mirrored(const gp_Ax1& theA1) const;
+  [[nodiscard]] Standard_EXPORT gp_Circ Mirrored(const gp_Ax1& theA1) const;
 
   Standard_EXPORT void Mirror(const gp_Ax2& theA2);
 
   //! Performs the symmetrical transformation of a circle with respect
   //! to a plane. The axis placement theA2 locates the plane of the
   //! of the symmetry : (Location, XDirection, YDirection).
-  Standard_NODISCARD Standard_EXPORT gp_Circ Mirrored(const gp_Ax2& theA2) const;
+  [[nodiscard]] Standard_EXPORT gp_Circ Mirrored(const gp_Ax2& theA2) const;
 
-  void Rotate(const gp_Ax1& theA1, const Standard_Real theAng) { pos.Rotate(theA1, theAng); }
+  void Rotate(const gp_Ax1& theA1, const double theAng) { pos.Rotate(theA1, theAng); }
 
   //! Rotates a circle. theA1 is the axis of the rotation.
   //! theAng is the angular value of the rotation in radians.
-  Standard_NODISCARD gp_Circ Rotated(const gp_Ax1& theA1, const Standard_Real theAng) const
+  [[nodiscard]] gp_Circ Rotated(const gp_Ax1& theA1, const double theAng) const
   {
     gp_Circ aC = *this;
     aC.pos.Rotate(theA1, theAng);
     return aC;
   }
 
-  void Scale(const gp_Pnt& theP, const Standard_Real theS);
+  void Scale(const gp_Pnt& theP, const double theS);
 
   //! Scales a circle. theS is the scaling value.
   //! Warnings :
   //! If theS is negative the radius stay positive but
-  //! the "XAxis" and the "YAxis" are  reversed as for
+  //! the "XAxis" and the "YAxis" are reversed as for
   //! an ellipse.
-  Standard_NODISCARD gp_Circ Scaled(const gp_Pnt& theP, const Standard_Real theS) const;
+  [[nodiscard]] gp_Circ Scaled(const gp_Pnt& theP, const double theS) const;
 
   void Transform(const gp_Trsf& theT);
 
   //! Transforms a circle with the transformation theT from class Trsf.
-  Standard_NODISCARD gp_Circ Transformed(const gp_Trsf& theT) const;
+  [[nodiscard]] gp_Circ Transformed(const gp_Trsf& theT) const;
 
-  void Translate(const gp_Vec& theV) { pos.Translate(theV); }
+  constexpr void Translate(const gp_Vec& theV) noexcept { pos.Translate(theV); }
 
   //! Translates a circle in the direction of the vector theV.
   //! The magnitude of the translation is the vector's magnitude.
-  Standard_NODISCARD gp_Circ Translated(const gp_Vec& theV) const
+  [[nodiscard]] constexpr gp_Circ Translated(const gp_Vec& theV) const noexcept
   {
     gp_Circ aC = *this;
     aC.pos.Translate(theV);
     return aC;
   }
 
-  void Translate(const gp_Pnt& theP1, const gp_Pnt& theP2) { pos.Translate(theP1, theP2); }
+  constexpr void Translate(const gp_Pnt& theP1, const gp_Pnt& theP2) noexcept
+  {
+    pos.Translate(theP1, theP2);
+  }
 
   //! Translates a circle from the point theP1 to the point theP2.
-  Standard_NODISCARD gp_Circ Translated(const gp_Pnt& theP1, const gp_Pnt& theP2) const
+  [[nodiscard]] constexpr gp_Circ Translated(const gp_Pnt& theP1,
+                                             const gp_Pnt& theP2) const noexcept
   {
     gp_Circ aC = *this;
     aC.pos.Translate(theP1, theP2);
@@ -218,15 +222,13 @@ public:
   }
 
 private:
-  gp_Ax2        pos;
-  Standard_Real radius;
+  gp_Ax2 pos;
+  double radius;
 };
 
-// =======================================================================
-// function : Scale
-// purpose  :
-// =======================================================================
-inline void gp_Circ::Scale(const gp_Pnt& theP, const Standard_Real theS)
+//=================================================================================================
+
+inline void gp_Circ::Scale(const gp_Pnt& theP, const double theS)
 {
   radius *= theS;
   if (radius < 0)
@@ -236,11 +238,9 @@ inline void gp_Circ::Scale(const gp_Pnt& theP, const Standard_Real theS)
   pos.Scale(theP, theS);
 }
 
-// =======================================================================
-// function : Scaled
-// purpose  :
-// =======================================================================
-inline gp_Circ gp_Circ::Scaled(const gp_Pnt& theP, const Standard_Real theS) const
+//=================================================================================================
+
+inline gp_Circ gp_Circ::Scaled(const gp_Pnt& theP, const double theS) const
 {
   gp_Circ aC = *this;
   aC.radius *= theS;
@@ -252,10 +252,8 @@ inline gp_Circ gp_Circ::Scaled(const gp_Pnt& theP, const Standard_Real theS) con
   return aC;
 }
 
-// =======================================================================
-// function : Transform
-// purpose  :
-// =======================================================================
+//=================================================================================================
+
 inline void gp_Circ::Transform(const gp_Trsf& theT)
 {
   radius *= theT.ScaleFactor();
@@ -266,10 +264,8 @@ inline void gp_Circ::Transform(const gp_Trsf& theT)
   pos.Transform(theT);
 }
 
-// =======================================================================
-// function : Transformed
-// purpose  :
-// =======================================================================
+//=================================================================================================
+
 inline gp_Circ gp_Circ::Transformed(const gp_Trsf& theT) const
 {
   gp_Circ aC = *this;

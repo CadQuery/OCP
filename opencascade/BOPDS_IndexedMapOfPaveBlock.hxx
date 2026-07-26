@@ -1,5 +1,4 @@
-// Created by: Eugeny MALTCHIKOV
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -12,12 +11,23 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef BOPDS_IndexedMapOfPaveBlock_HeaderFile
-#define BOPDS_IndexedMapOfPaveBlock_HeaderFile
+//! @file BOPDS_IndexedMapOfPaveBlock.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection_IndexedMap<opencascade::handle<BOPDS_PaveBlock>> directly instead.
 
+#ifndef _BOPDS_IndexedMapOfPaveBlock_hxx
+#define _BOPDS_IndexedMapOfPaveBlock_hxx
+
+#include <Standard_Macro.hxx>
 #include <NCollection_IndexedMap.hxx>
 #include <BOPDS_PaveBlock.hxx>
 
-typedef NCollection_IndexedMap<Handle(BOPDS_PaveBlock)> BOPDS_IndexedMapOfPaveBlock;
+Standard_HEADER_DEPRECATED("BOPDS_IndexedMapOfPaveBlock.hxx is deprecated since OCCT 8.0.0. Use "
+                           "NCollection_IndexedMap<opencascade::handle<BOPDS_PaveBlock>> directly.")
 
-#endif
+  Standard_DEPRECATED("BOPDS_IndexedMapOfPaveBlock is deprecated, use "
+                      "NCollection_IndexedMap<opencascade::handle<BOPDS_PaveBlock>> directly")
+typedef NCollection_IndexedMap<opencascade::handle<BOPDS_PaveBlock>> BOPDS_IndexedMapOfPaveBlock;
+
+#endif // _BOPDS_IndexedMapOfPaveBlock_hxx

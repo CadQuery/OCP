@@ -1,7 +1,4 @@
-// Created on: 1993-11-17
-// Created by: Isabelle GRIGNON
-// Copyright (c) 1993-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,12 +11,23 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef ChFiDS_SecHArray1_HeaderFile
-#define ChFiDS_SecHArray1_HeaderFile
+//! @file ChFiDS_SecHArray1.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection_HArray1<ChFiDS_CircSection> directly instead.
 
+#ifndef _ChFiDS_SecHArray1_hxx
+#define _ChFiDS_SecHArray1_hxx
+
+#include <Standard_Macro.hxx>
 #include <ChFiDS_SecArray1.hxx>
-#include <NCollection_DefineHArray1.hxx>
+#include <NCollection_HArray1.hxx>
 
-DEFINE_HARRAY1(ChFiDS_SecHArray1, ChFiDS_SecArray1)
+Standard_HEADER_DEPRECATED("ChFiDS_SecHArray1.hxx is deprecated since OCCT 8.0.0. Use "
+                           "NCollection_HArray1<ChFiDS_CircSection> directly.")
 
-#endif
+  Standard_DEPRECATED(
+    "ChFiDS_SecHArray1 is deprecated, use NCollection_HArray1<ChFiDS_CircSection> directly")
+typedef NCollection_HArray1<ChFiDS_CircSection> ChFiDS_SecHArray1;
+
+#endif // _ChFiDS_SecHArray1_hxx

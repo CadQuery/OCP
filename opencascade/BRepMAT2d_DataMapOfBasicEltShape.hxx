@@ -1,7 +1,4 @@
-// Created on: 1994-10-03
-// Created by: Yves FRICAUD
-// Copyright (c) 1994-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,15 +11,31 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef BRepMAT2d_DataMapOfBasicEltShape_HeaderFile
-#define BRepMAT2d_DataMapOfBasicEltShape_HeaderFile
+//! @file BRepMAT2d_DataMapOfBasicEltShape.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection types directly instead.
 
+#ifndef _BRepMAT2d_DataMapOfBasicEltShape_hxx
+#define _BRepMAT2d_DataMapOfBasicEltShape_hxx
+
+#include <Standard_Macro.hxx>
 #include <MAT_BasicElt.hxx>
 #include <TopoDS_Shape.hxx>
 #include <NCollection_DataMap.hxx>
 
-typedef NCollection_DataMap<Handle(MAT_BasicElt), TopoDS_Shape> BRepMAT2d_DataMapOfBasicEltShape;
-typedef NCollection_DataMap<Handle(MAT_BasicElt), TopoDS_Shape>::Iterator
+Standard_HEADER_DEPRECATED("BRepMAT2d_DataMapOfBasicEltShape.hxx is deprecated since OCCT 8.0.0. "
+                           "Use NCollection types directly.")
+
+  Standard_DEPRECATED(
+    "BRepMAT2d_DataMapOfBasicEltShape is deprecated, use "
+    "NCollection_DataMap<opencascade::handle<MAT_BasicElt>, TopoDS_Shape> directly")
+typedef NCollection_DataMap<opencascade::handle<MAT_BasicElt>, TopoDS_Shape>
+  BRepMAT2d_DataMapOfBasicEltShape;
+Standard_DEPRECATED(
+  "BRepMAT2d_DataMapIteratorOfDataMapOfBasicEltShape is deprecated, use "
+  "NCollection_DataMap<opencascade::handle<MAT_BasicElt>, TopoDS_Shape>::Iterator directly")
+typedef NCollection_DataMap<opencascade::handle<MAT_BasicElt>, TopoDS_Shape>::Iterator
   BRepMAT2d_DataMapIteratorOfDataMapOfBasicEltShape;
 
-#endif
+#endif // _BRepMAT2d_DataMapOfBasicEltShape_hxx

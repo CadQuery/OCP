@@ -20,17 +20,14 @@
 #include <IVtk_IShape.hxx>
 #include <IVtk_IShapeData.hxx>
 
-class IVtk_IShapeMesher;
-DEFINE_STANDARD_HANDLE(IVtk_IShapeMesher, IVtk_Interface)
-
 //! @class  IVtk_IShapeMesher
 //! @brief Interface for triangulator of 3D shapes.
 class IVtk_IShapeMesher : public IVtk_Interface
 {
 public:
-  typedef Handle(IVtk_IShapeMesher) Handle;
+  typedef occ::handle<IVtk_IShapeMesher> Handle;
 
-  virtual ~IVtk_IShapeMesher() {}
+  ~IVtk_IShapeMesher() override = default;
 
   //! Main entry point for building shape representation
   //! @param[in]  shape IShape to be meshed

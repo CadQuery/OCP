@@ -15,23 +15,20 @@
 
 #include <ShapeExtend_MsgRegistrator.hxx>
 
-//=======================================================================
-// function : MapTransient
-// purpose  :
-//=======================================================================
+//=================================================================================================
 
-inline const ShapeExtend_DataMapOfTransientListOfMsg& ShapeExtend_MsgRegistrator::MapTransient()
-  const
+inline const NCollection_DataMap<occ::handle<Standard_Transient>, NCollection_List<Message_Msg>>&
+  ShapeExtend_MsgRegistrator::MapTransient() const
 {
   return myMapTransient;
 }
 
-//=======================================================================
-// function : MapShape
-// purpose  :
-//=======================================================================
+//=================================================================================================
 
-inline const ShapeExtend_DataMapOfShapeListOfMsg& ShapeExtend_MsgRegistrator::MapShape() const
+inline const NCollection_DataMap<TopoDS_Shape,
+                                 NCollection_List<Message_Msg>,
+                                 TopTools_ShapeMapHasher>&
+  ShapeExtend_MsgRegistrator::MapShape() const
 {
   return myMapShape;
 }

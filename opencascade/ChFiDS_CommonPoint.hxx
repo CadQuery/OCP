@@ -28,9 +28,9 @@
 #include <Standard_Boolean.hxx>
 #include <TopAbs_Orientation.hxx>
 
-//! point    start/end of  fillet common  to  2 adjacent  filets
-//! and  to an edge on  one of 2 faces participating
-//! in  the construction of  the  fillet
+//! point start/end of fillet common to 2 adjacent filets
+//! and to an edge on one of 2 faces participating
+//! in the construction of the fillet
 class ChFiDS_CommonPoint
 {
 public:
@@ -47,33 +47,33 @@ public:
   //! of the surface.
   void SetVertex(const TopoDS_Vertex& theVertex)
   {
-    isvtx = Standard_True;
+    isvtx = true;
     vtx   = theVertex;
   }
 
   //! Sets the values of a point which is on the arc
   //! A, at parameter Param.
-  Standard_EXPORT void SetArc(const Standard_Real      Tol,
+  Standard_EXPORT void SetArc(const double             Tol,
                               const TopoDS_Edge&       A,
-                              const Standard_Real      Param,
+                              const double             Param,
                               const TopAbs_Orientation TArc);
 
   //! Sets the value of the parameter on the spine
-  Standard_EXPORT void SetParameter(const Standard_Real Param);
+  Standard_EXPORT void SetParameter(const double Param);
 
   //! Set the 3d point for a commonpoint that is not
   //! a vertex or on an arc.
   void SetPoint(const gp_Pnt& thePoint) { point = thePoint; }
 
-  //! Set the output 3d  vector
+  //! Set the output 3d vector
   void SetVector(const gp_Vec& theVector)
   {
-    hasvector = Standard_True;
+    hasvector = true;
     vector    = theVector;
   }
 
   //! This method set the fuzziness on the point.
-  void SetTolerance(const Standard_Real Tol)
+  void SetTolerance(const double Tol)
   {
     if (Tol > tol)
     {
@@ -82,11 +82,11 @@ public:
   }
 
   //! This method returns the fuzziness on the point.
-  Standard_Real Tolerance() const { return tol; }
+  double Tolerance() const { return tol; }
 
   //! Returns TRUE if the point is a vertex on the initial
   //! restriction facet of the surface.
-  Standard_Boolean IsVertex() const { return isvtx; }
+  bool IsVertex() const { return isvtx; }
 
   //! Returns the information about the point when it is
   //! on the domain of the first patch, i-e when the function
@@ -103,7 +103,7 @@ public:
 
   //! Returns TRUE if the point is a on an edge of the initial
   //! restriction facet of the surface.
-  Standard_Boolean IsOnArc() const { return isonarc; }
+  bool IsOnArc() const { return isonarc; }
 
   //! Returns the arc of restriction containing the
   //! vertex.
@@ -115,18 +115,18 @@ public:
 
   //! Returns the parameter of the point on the
   //! arc returned by the method Arc().
-  Standard_EXPORT Standard_Real ParameterOnArc() const;
+  Standard_EXPORT double ParameterOnArc() const;
 
   //! Returns the parameter on the spine
-  Standard_EXPORT Standard_Real Parameter() const;
+  Standard_EXPORT double Parameter() const;
 
   //! Returns the 3d point
   const gp_Pnt& Point() const { return point; }
 
-  //! Returns TRUE if the output vector is  stored.
-  Standard_Boolean HasVector() const { return hasvector; }
+  //! Returns TRUE if the output vector is stored.
+  bool HasVector() const { return hasvector; }
 
-  //! Returns the output  3d vector
+  //! Returns the output 3d vector
   const gp_Vec& Vector() const
   {
     if (!hasvector)
@@ -141,13 +141,13 @@ private:
   TopoDS_Vertex      vtx;
   gp_Pnt             point;
   gp_Vec             vector;
-  Standard_Real      tol;
-  Standard_Real      prmarc;
-  Standard_Real      prmtg;
+  double             tol;
+  double             prmarc;
+  double             prmtg;
   TopAbs_Orientation traarc;
-  Standard_Boolean   isonarc;
-  Standard_Boolean   isvtx;
-  Standard_Boolean   hasvector;
+  bool               isonarc;
+  bool               isvtx;
+  bool               hasvector;
 };
 
 #endif // _ChFiDS_CommonPoint_HeaderFile

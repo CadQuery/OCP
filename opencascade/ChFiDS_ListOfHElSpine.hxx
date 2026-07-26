@@ -1,7 +1,4 @@
-// Created on: 1993-11-17
-// Created by: Isabelle GRIGNON
-// Copyright (c) 1993-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,13 +11,27 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef ChFiDS_ListOfHElSpine_HeaderFile
-#define ChFiDS_ListOfHElSpine_HeaderFile
+//! @file ChFiDS_ListOfHElSpine.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection types directly instead.
 
+#ifndef _ChFiDS_ListOfHElSpine_hxx
+#define _ChFiDS_ListOfHElSpine_hxx
+
+#include <Standard_Macro.hxx>
 #include <ChFiDS_ElSpine.hxx>
 #include <NCollection_List.hxx>
 
-typedef NCollection_List<Handle(ChFiDS_ElSpine)>           ChFiDS_ListOfHElSpine;
-typedef NCollection_List<Handle(ChFiDS_ElSpine)>::Iterator ChFiDS_ListIteratorOfListOfHElSpine;
+Standard_HEADER_DEPRECATED(
+  "ChFiDS_ListOfHElSpine.hxx is deprecated since OCCT 8.0.0. Use NCollection types directly.")
 
-#endif
+  Standard_DEPRECATED("ChFiDS_ListOfHElSpine is deprecated, use "
+                      "NCollection_List<opencascade::handle<ChFiDS_ElSpine>> directly")
+typedef NCollection_List<opencascade::handle<ChFiDS_ElSpine>> ChFiDS_ListOfHElSpine;
+Standard_DEPRECATED("ChFiDS_ListIteratorOfListOfHElSpine is deprecated, use "
+                    "NCollection_List<opencascade::handle<ChFiDS_ElSpine>>::Iterator directly")
+typedef NCollection_List<opencascade::handle<ChFiDS_ElSpine>>::Iterator
+  ChFiDS_ListIteratorOfListOfHElSpine;
+
+#endif // _ChFiDS_ListOfHElSpine_hxx

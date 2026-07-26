@@ -1,4 +1,4 @@
-// Copyright (c) 2016-2019 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,13 +11,23 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _Aspect_TouchMap_HeaderFile
-#define _Aspect_TouchMap_HeaderFile
+//! @file Aspect_TouchMap.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection_IndexedDataMap<size_t, Aspect_Touch> directly instead.
 
+#ifndef _Aspect_TouchMap_hxx
+#define _Aspect_TouchMap_hxx
+
+#include <Standard_Macro.hxx>
 #include <Aspect_Touch.hxx>
-
 #include <NCollection_IndexedDataMap.hxx>
 
-typedef NCollection_IndexedDataMap<Standard_Size, Aspect_Touch> Aspect_TouchMap;
+Standard_HEADER_DEPRECATED("Aspect_TouchMap.hxx is deprecated since OCCT 8.0.0. Use "
+                           "NCollection_IndexedDataMap<size_t, Aspect_Touch> directly.")
 
-#endif // _Aspect_TouchMap_HeaderFile
+  Standard_DEPRECATED(
+    "Aspect_TouchMap is deprecated, use NCollection_IndexedDataMap<size_t, Aspect_Touch> directly")
+typedef NCollection_IndexedDataMap<size_t, Aspect_Touch> Aspect_TouchMap;
+
+#endif // _Aspect_TouchMap_hxx

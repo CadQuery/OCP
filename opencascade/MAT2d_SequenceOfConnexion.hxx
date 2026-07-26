@@ -1,7 +1,4 @@
-// Created on: 1993-07-06
-// Created by: Yves FRICAUD
-// Copyright (c) 1993-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,12 +11,23 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef MAT2d_SequenceOfConnexion_HeaderFile
-#define MAT2d_SequenceOfConnexion_HeaderFile
+//! @file MAT2d_SequenceOfConnexion.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection_Sequence<opencascade::handle<MAT2d_Connexion>> directly instead.
 
+#ifndef _MAT2d_SequenceOfConnexion_hxx
+#define _MAT2d_SequenceOfConnexion_hxx
+
+#include <Standard_Macro.hxx>
 #include <MAT2d_Connexion.hxx>
 #include <NCollection_Sequence.hxx>
 
-typedef NCollection_Sequence<Handle(MAT2d_Connexion)> MAT2d_SequenceOfConnexion;
+Standard_HEADER_DEPRECATED("MAT2d_SequenceOfConnexion.hxx is deprecated since OCCT 8.0.0. Use "
+                           "NCollection_Sequence<opencascade::handle<MAT2d_Connexion>> directly.")
 
-#endif
+  Standard_DEPRECATED("MAT2d_SequenceOfConnexion is deprecated, use "
+                      "NCollection_Sequence<opencascade::handle<MAT2d_Connexion>> directly")
+typedef NCollection_Sequence<opencascade::handle<MAT2d_Connexion>> MAT2d_SequenceOfConnexion;
+
+#endif // _MAT2d_SequenceOfConnexion_hxx

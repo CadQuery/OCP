@@ -1,7 +1,4 @@
-// Created on: 1993-08-10
-// Created by: Jean Yves LEBEY
-// Copyright (c) 1993-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,13 +11,26 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef HLRTopoBRep_ListOfVData_HeaderFile
-#define HLRTopoBRep_ListOfVData_HeaderFile
+//! @file HLRTopoBRep_ListOfVData.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection types directly instead.
 
+#ifndef _HLRTopoBRep_ListOfVData_hxx
+#define _HLRTopoBRep_ListOfVData_hxx
+
+#include <Standard_Macro.hxx>
 #include <HLRTopoBRep_VData.hxx>
 #include <NCollection_List.hxx>
 
-typedef NCollection_List<HLRTopoBRep_VData>           HLRTopoBRep_ListOfVData;
+Standard_HEADER_DEPRECATED(
+  "HLRTopoBRep_ListOfVData.hxx is deprecated since OCCT 8.0.0. Use NCollection types directly.")
+
+  Standard_DEPRECATED(
+    "HLRTopoBRep_ListOfVData is deprecated, use NCollection_List<HLRTopoBRep_VData> directly")
+typedef NCollection_List<HLRTopoBRep_VData> HLRTopoBRep_ListOfVData;
+Standard_DEPRECATED("HLRTopoBRep_ListIteratorOfListOfVData is deprecated, use "
+                    "NCollection_List<HLRTopoBRep_VData>::Iterator directly")
 typedef NCollection_List<HLRTopoBRep_VData>::Iterator HLRTopoBRep_ListIteratorOfListOfVData;
 
-#endif
+#endif // _HLRTopoBRep_ListOfVData_hxx

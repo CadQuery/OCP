@@ -17,15 +17,11 @@
 #ifndef _GProp_UndefinedAxis_HeaderFile
 #define _GProp_UndefinedAxis_HeaderFile
 
-#include <Standard_Type.hxx>
 #include <Standard_SStream.hxx>
 #include <Standard_DomainError.hxx>
 
 //! This exception is raised when a method makes reference to
 //! an undefined inertia axis of symmetry.
-
-class GProp_UndefinedAxis;
-DEFINE_STANDARD_HANDLE(GProp_UndefinedAxis, Standard_DomainError)
 
 #if !defined No_Exception && !defined No_GProp_UndefinedAxis
   #define GProp_UndefinedAxis_Raise_if(CONDITION, MESSAGE)                                         \

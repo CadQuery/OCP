@@ -1,7 +1,4 @@
-// Created on: 1992-08-13
-// Created by: Remi LEQUETTE
-// Copyright (c) 1992-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,14 +11,27 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef TopBas_ListOfTestInterference_HeaderFile
-#define TopBas_ListOfTestInterference_HeaderFile
+//! @file TopBas_ListOfTestInterference.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection types directly instead.
 
+#ifndef _TopBas_ListOfTestInterference_hxx
+#define _TopBas_ListOfTestInterference_hxx
+
+#include <Standard_Macro.hxx>
 #include <TopBas_TestInterference.hxx>
 #include <NCollection_List.hxx>
 
+Standard_HEADER_DEPRECATED("TopBas_ListOfTestInterference.hxx is deprecated since OCCT 8.0.0. Use "
+                           "NCollection types directly.")
+
+  Standard_DEPRECATED("TopBas_ListOfTestInterference is deprecated, use "
+                      "NCollection_List<TopBas_TestInterference> directly")
 typedef NCollection_List<TopBas_TestInterference> TopBas_ListOfTestInterference;
+Standard_DEPRECATED("TopBas_ListIteratorOfListOfTestInterference is deprecated, use "
+                    "NCollection_List<TopBas_TestInterference>::Iterator directly")
 typedef NCollection_List<TopBas_TestInterference>::Iterator
   TopBas_ListIteratorOfListOfTestInterference;
 
-#endif
+#endif // _TopBas_ListOfTestInterference_hxx

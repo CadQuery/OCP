@@ -1,7 +1,4 @@
-// Created on: 1999-06-10
-// Created by: Vladislav ROMASHKO
-// Copyright (c) 1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,15 +11,28 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef TFunction_DoubleMapOfIntegerLabel_HeaderFile
-#define TFunction_DoubleMapOfIntegerLabel_HeaderFile
+//! @file TFunction_DoubleMapOfIntegerLabel.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection types directly instead.
 
+#ifndef _TFunction_DoubleMapOfIntegerLabel_hxx
+#define _TFunction_DoubleMapOfIntegerLabel_hxx
+
+#include <Standard_Macro.hxx>
 #include <Standard_Integer.hxx>
 #include <TDF_Label.hxx>
 #include <NCollection_DoubleMap.hxx>
 
-typedef NCollection_DoubleMap<Standard_Integer, TDF_Label> TFunction_DoubleMapOfIntegerLabel;
-typedef NCollection_DoubleMap<Standard_Integer, TDF_Label>::Iterator
+Standard_HEADER_DEPRECATED("TFunction_DoubleMapOfIntegerLabel.hxx is deprecated since OCCT 8.0.0. "
+                           "Use NCollection types directly.")
+
+  Standard_DEPRECATED("TFunction_DoubleMapOfIntegerLabel is deprecated, use "
+                      "NCollection_DoubleMap<int, TDF_Label> directly")
+typedef NCollection_DoubleMap<int, TDF_Label> TFunction_DoubleMapOfIntegerLabel;
+Standard_DEPRECATED("TFunction_DoubleMapIteratorOfDoubleMapOfIntegerLabel is deprecated, use "
+                    "NCollection_DoubleMap<int, TDF_Label>::Iterator directly")
+typedef NCollection_DoubleMap<int, TDF_Label>::Iterator
   TFunction_DoubleMapIteratorOfDoubleMapOfIntegerLabel;
 
-#endif
+#endif // _TFunction_DoubleMapOfIntegerLabel_hxx

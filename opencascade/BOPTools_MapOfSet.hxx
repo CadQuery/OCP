@@ -1,5 +1,4 @@
-// Created by: Peter KURNEV
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -12,14 +11,25 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef BOPTools_MapOfSet_HeaderFile
-#define BOPTools_MapOfSet_HeaderFile
+//! @file BOPTools_MapOfSet.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection types directly instead.
 
+#ifndef _BOPTools_MapOfSet_hxx
+#define _BOPTools_MapOfSet_hxx
+
+#include <Standard_Macro.hxx>
 #include <BOPTools_Set.hxx>
-
 #include <NCollection_Map.hxx>
 
-typedef NCollection_Map<BOPTools_Set> BOPTools_MapOfSet;
-typedef BOPTools_MapOfSet::Iterator   BOPTools_MapIteratorOfMapOfSet;
+Standard_HEADER_DEPRECATED(
+  "BOPTools_MapOfSet.hxx is deprecated since OCCT 8.0.0. Use NCollection types directly.")
 
-#endif
+  Standard_DEPRECATED("BOPTools_MapOfSet is deprecated, use NCollection_Map<BOPTools_Set> directly")
+typedef NCollection_Map<BOPTools_Set> BOPTools_MapOfSet;
+Standard_DEPRECATED("BOPTools_MapIteratorOfMapOfSet is deprecated, use "
+                    "NCollection_Map<BOPTools_Set>::Iterator directly")
+typedef NCollection_Map<BOPTools_Set>::Iterator BOPTools_MapIteratorOfMapOfSet;
+
+#endif // _BOPTools_MapOfSet_hxx

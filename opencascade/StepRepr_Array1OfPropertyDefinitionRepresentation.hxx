@@ -1,7 +1,4 @@
-// Created on: 1995-12-01
-// Created by: EXPRESS->CDL V0.2 Translator
-// Copyright (c) 1995-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,13 +11,28 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef StepRepr_Array1OfPropertyDefinitionRepresentation_HeaderFile
-#define StepRepr_Array1OfPropertyDefinitionRepresentation_HeaderFile
+//! @file StepRepr_Array1OfPropertyDefinitionRepresentation.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use
+//!             NCollection_Array1<opencascade::handle<StepRepr_PropertyDefinitionRepresentation>>
+//!             directly instead.
 
+#ifndef _StepRepr_Array1OfPropertyDefinitionRepresentation_hxx
+#define _StepRepr_Array1OfPropertyDefinitionRepresentation_hxx
+
+#include <Standard_Macro.hxx>
 #include <StepRepr_PropertyDefinitionRepresentation.hxx>
 #include <NCollection_Array1.hxx>
 
-typedef NCollection_Array1<Handle(StepRepr_PropertyDefinitionRepresentation)>
+Standard_HEADER_DEPRECATED(
+  "StepRepr_Array1OfPropertyDefinitionRepresentation.hxx is deprecated since OCCT 8.0.0. Use "
+  "NCollection_Array1<opencascade::handle<StepRepr_PropertyDefinitionRepresentation>> directly.")
+
+  Standard_DEPRECATED(
+    "StepRepr_Array1OfPropertyDefinitionRepresentation is deprecated, use "
+    "NCollection_Array1<opencascade::handle<StepRepr_PropertyDefinitionRepresentation>> directly")
+typedef NCollection_Array1<opencascade::handle<StepRepr_PropertyDefinitionRepresentation>>
   StepRepr_Array1OfPropertyDefinitionRepresentation;
 
-#endif
+#endif // _StepRepr_Array1OfPropertyDefinitionRepresentation_hxx

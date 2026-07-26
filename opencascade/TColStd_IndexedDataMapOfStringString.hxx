@@ -1,4 +1,4 @@
-// Copyright (c) 2016 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,13 +11,27 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef TColStd_IndexedDataMapOfStringString_HeaderFile
-#define TColStd_IndexedDataMapOfStringString_HeaderFile
+//! @file TColStd_IndexedDataMapOfStringString.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection_IndexedDataMap<TCollection_AsciiString, TCollection_AsciiString>
+//!             directly instead.
 
+#ifndef _TColStd_IndexedDataMapOfStringString_hxx
+#define _TColStd_IndexedDataMapOfStringString_hxx
+
+#include <Standard_Macro.hxx>
 #include <TCollection_AsciiString.hxx>
 #include <NCollection_IndexedDataMap.hxx>
 
+Standard_HEADER_DEPRECATED(
+  "TColStd_IndexedDataMapOfStringString.hxx is deprecated since OCCT 8.0.0. Use "
+  "NCollection_IndexedDataMap<TCollection_AsciiString, TCollection_AsciiString> directly.")
+
+  Standard_DEPRECATED(
+    "TColStd_IndexedDataMapOfStringString is deprecated, use "
+    "NCollection_IndexedDataMap<TCollection_AsciiString, TCollection_AsciiString> directly")
 typedef NCollection_IndexedDataMap<TCollection_AsciiString, TCollection_AsciiString>
   TColStd_IndexedDataMapOfStringString;
 
-#endif // TColStd_IndexedDataMapOfStringString_HeaderFile
+#endif // _TColStd_IndexedDataMapOfStringString_hxx

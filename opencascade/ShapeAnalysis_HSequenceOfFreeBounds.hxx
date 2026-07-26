@@ -1,7 +1,4 @@
-// Created on: 1998-06-03
-// Created by: data exchange team
-// Copyright (c) 1998-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,12 +11,27 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef ShapeAnalysis_HSequenceOfFreeBounds_HeaderFile
-#define ShapeAnalysis_HSequenceOfFreeBounds_HeaderFile
+//! @file ShapeAnalysis_HSequenceOfFreeBounds.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection_HSequence<opencascade::handle<ShapeAnalysis_FreeBoundData>> directly
+//!             instead.
 
+#ifndef _ShapeAnalysis_HSequenceOfFreeBounds_hxx
+#define _ShapeAnalysis_HSequenceOfFreeBounds_hxx
+
+#include <Standard_Macro.hxx>
 #include <ShapeAnalysis_SequenceOfFreeBounds.hxx>
-#include <NCollection_DefineHSequence.hxx>
+#include <NCollection_HSequence.hxx>
 
-DEFINE_HSEQUENCE(ShapeAnalysis_HSequenceOfFreeBounds, ShapeAnalysis_SequenceOfFreeBounds)
+Standard_HEADER_DEPRECATED(
+  "ShapeAnalysis_HSequenceOfFreeBounds.hxx is deprecated since OCCT 8.0.0. Use "
+  "NCollection_HSequence<opencascade::handle<ShapeAnalysis_FreeBoundData>> directly.")
 
-#endif
+  Standard_DEPRECATED(
+    "ShapeAnalysis_HSequenceOfFreeBounds is deprecated, use "
+    "NCollection_HSequence<opencascade::handle<ShapeAnalysis_FreeBoundData>> directly")
+typedef NCollection_HSequence<opencascade::handle<ShapeAnalysis_FreeBoundData>>
+  ShapeAnalysis_HSequenceOfFreeBounds;
+
+#endif // _ShapeAnalysis_HSequenceOfFreeBounds_hxx

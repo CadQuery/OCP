@@ -1,7 +1,4 @@
-// Created on: 1997-05-06
-// Created by: Jean-Louis Frenkel, Remi Lequette
-// Copyright (c) 1997-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,11 +11,22 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _CDM_NamesDirectory_HeaderFile
-#define _CDM_NamesDirectory_HeaderFile
+//! @file CDM_NamesDirectory.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection_DataMap<TCollection_ExtendedString, int> directly instead.
 
+#ifndef _CDM_NamesDirectory_hxx
+#define _CDM_NamesDirectory_hxx
+
+#include <Standard_Macro.hxx>
 #include <TColStd_DataMapOfStringInteger.hxx>
 
-typedef TColStd_DataMapOfStringInteger CDM_NamesDirectory;
+Standard_HEADER_DEPRECATED("CDM_NamesDirectory.hxx is deprecated since OCCT 8.0.0. Use "
+                           "NCollection_DataMap<TCollection_ExtendedString, int> directly.")
 
-#endif // _CDM_NamesDirectory_HeaderFile
+  Standard_DEPRECATED("CDM_NamesDirectory is deprecated, use "
+                      "NCollection_DataMap<TCollection_ExtendedString, int> directly")
+typedef NCollection_DataMap<TCollection_ExtendedString, int> CDM_NamesDirectory;
+
+#endif // _CDM_NamesDirectory_hxx

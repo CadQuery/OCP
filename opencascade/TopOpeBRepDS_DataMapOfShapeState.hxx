@@ -1,7 +1,4 @@
-// Created on: 1993-06-17
-// Created by: Jean Yves LEBEY
-// Copyright (c) 1993-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,17 +11,32 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef TopOpeBRepDS_DataMapOfShapeState_HeaderFile
-#define TopOpeBRepDS_DataMapOfShapeState_HeaderFile
+//! @file TopOpeBRepDS_DataMapOfShapeState.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection types directly instead.
 
+#ifndef _TopOpeBRepDS_DataMapOfShapeState_hxx
+#define _TopOpeBRepDS_DataMapOfShapeState_hxx
+
+#include <Standard_Macro.hxx>
 #include <TopoDS_Shape.hxx>
 #include <TopAbs_State.hxx>
 #include <TopTools_ShapeMapHasher.hxx>
 #include <NCollection_DataMap.hxx>
 
+Standard_HEADER_DEPRECATED("TopOpeBRepDS_DataMapOfShapeState.hxx is deprecated since OCCT 8.0.0. "
+                           "Use NCollection types directly.")
+
+  Standard_DEPRECATED(
+    "TopOpeBRepDS_DataMapOfShapeState is deprecated, use NCollection_DataMap<TopoDS_Shape, "
+    "TopAbs_State, TopTools_ShapeMapHasher> directly")
 typedef NCollection_DataMap<TopoDS_Shape, TopAbs_State, TopTools_ShapeMapHasher>
   TopOpeBRepDS_DataMapOfShapeState;
+Standard_DEPRECATED(
+  "TopOpeBRepDS_DataMapIteratorOfDataMapOfShapeState is deprecated, use "
+  "NCollection_DataMap<TopoDS_Shape, TopAbs_State, TopTools_ShapeMapHasher>::Iterator directly")
 typedef NCollection_DataMap<TopoDS_Shape, TopAbs_State, TopTools_ShapeMapHasher>::Iterator
   TopOpeBRepDS_DataMapIteratorOfDataMapOfShapeState;
 
-#endif
+#endif // _TopOpeBRepDS_DataMapOfShapeState_hxx

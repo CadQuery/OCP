@@ -1,7 +1,4 @@
-// Created on: 1996-04-30
-// Created by: cle
-// Copyright (c) 1996-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,12 +11,23 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef Storage_HArrayOfSchema_HeaderFile
-#define Storage_HArrayOfSchema_HeaderFile
+//! @file Storage_HArrayOfSchema.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection_HArray1<opencascade::handle<Storage_Schema>> directly instead.
 
+#ifndef _Storage_HArrayOfSchema_hxx
+#define _Storage_HArrayOfSchema_hxx
+
+#include <Standard_Macro.hxx>
 #include <Storage_ArrayOfSchema.hxx>
-#include <NCollection_DefineHArray1.hxx>
+#include <NCollection_HArray1.hxx>
 
-DEFINE_HARRAY1(Storage_HArrayOfSchema, Storage_ArrayOfSchema)
+Standard_HEADER_DEPRECATED("Storage_HArrayOfSchema.hxx is deprecated since OCCT 8.0.0. Use "
+                           "NCollection_HArray1<opencascade::handle<Storage_Schema>> directly.")
 
-#endif
+  Standard_DEPRECATED("Storage_HArrayOfSchema is deprecated, use "
+                      "NCollection_HArray1<opencascade::handle<Storage_Schema>> directly")
+typedef NCollection_HArray1<opencascade::handle<Storage_Schema>> Storage_HArrayOfSchema;
+
+#endif // _Storage_HArrayOfSchema_hxx

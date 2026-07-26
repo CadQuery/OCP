@@ -21,7 +21,7 @@
 #include <NCollection_Array1.hxx>
 #include <NCollection_DataMap.hxx>
 #include <NCollection_IndexedMap.hxx>
-#include <NCollection_Vector.hxx>
+#include <NCollection_DynamicArray.hxx>
 #include <NCollection_Shared.hxx>
 #include <OSD_OpenFile.hxx>
 #include <RWMesh_CoordinateSystemConverter.hxx>
@@ -30,8 +30,7 @@
 #include <RWObj_SubMeshReason.hxx>
 #include <RWObj_Tools.hxx>
 #include <Standard_HashUtils.hxx>
-
-#include <vector>
+#include <NCollection_LinearVector.hxx>
 
 //! An abstract class implementing procedure to read OBJ file.
 //!
@@ -49,8 +48,7 @@ public:
 
   //! Open stream and pass it to Read method
   //! Returns true if success, false on error.
-  Standard_Boolean Read(const TCollection_AsciiString& theFile,
-                        const Message_ProgressRange&   theProgress)
+  bool Read(const TCollection_AsciiString& theFile, const Message_ProgressRange& theProgress)
   {
     std::ifstream aStream;
     OSD_OpenStream(aStream, theFile, std::ios_base::in | std::ios_base::binary);
@@ -60,11 +58,11 @@ public:
   //! Reads data from OBJ file.
   //! Unicode paths can be given in UTF-8 encoding.
   //! Returns true if success, false on error or user break.
-  Standard_Boolean Read(std::istream&                  theStream,
-                        const TCollection_AsciiString& theFile,
-                        const Message_ProgressRange&   theProgress)
+  bool Read(std::istream&                  theStream,
+            const TCollection_AsciiString& theFile,
+            const Message_ProgressRange&   theProgress)
   {
-    return read(theStream, theFile, theProgress, Standard_False);
+    return read(theStream, theFile, theProgress, false);
   }
 
   //! Open stream and pass it to Probe method.
@@ -72,8 +70,7 @@ public:
   //! @param theProgress progress indicator
   //! @return TRUE if success, FALSE on error or user break.
   //! @sa FileComments(), ExternalFiles(), NbProbeNodes(), NbProbeElems().
-  Standard_Boolean Probe(const TCollection_AsciiString& theFile,
-                         const Message_ProgressRange&   theProgress)
+  bool Probe(const TCollection_AsciiString& theFile, const Message_ProgressRange& theProgress)
   {
     std::ifstream aStream;
     OSD_OpenStream(aStream, theFile, std::ios_base::in | std::ios_base::binary);
@@ -88,11 +85,11 @@ public:
   //! @param theProgress progress indicator
   //! @return TRUE if success, FALSE on error or user break.
   //! @sa FileComments(), ExternalFiles(), NbProbeNodes(), NbProbeElems().
-  Standard_Boolean Probe(std::istream&                  theStream,
-                         const TCollection_AsciiString& theFile,
-                         const Message_ProgressRange&   theProgress)
+  bool Probe(std::istream&                  theStream,
+             const TCollection_AsciiString& theFile,
+             const Message_ProgressRange&   theProgress)
   {
-    return read(theStream, theFile, theProgress, Standard_True);
+    return read(theStream, theFile, theProgress, true);
   }
 
   //! Returns file comments (lines starting with # at the beginning of file).
@@ -105,17 +102,17 @@ public:
   }
 
   //! Number of probed nodes.
-  Standard_Integer NbProbeNodes() const { return myNbProbeNodes; }
+  int NbProbeNodes() const { return myNbProbeNodes; }
 
   //!< number of probed polygon elements (of unknown size).
-  Standard_Integer NbProbeElems() const { return myNbProbeElems; }
+  int NbProbeElems() const { return myNbProbeElems; }
 
   //! Returns memory limit in bytes; -1 (no limit) by default.
-  Standard_Size MemoryLimit() const { return myMemLimitBytes; }
+  size_t MemoryLimit() const { return myMemLimitBytes; }
 
   //! Specify memory limit in bytes, so that import will be aborted
   //! by specified limit before memory allocation error occurs.
-  void SetMemoryLimit(Standard_Size theMemLimit) { myMemLimitBytes = theMemLimit; }
+  void SetMemoryLimit(size_t theMemLimit) { myMemLimitBytes = theMemLimit; }
 
   //! Return transformation from one coordinate system to another; no transformation by default.
   const RWMesh_CoordinateSystemConverter& Transformation() const { return myCSTrsf; }
@@ -129,10 +126,10 @@ public:
   }
 
   //! Return single precision flag for reading vertex data (coordinates); FALSE by default.
-  Standard_Boolean IsSinglePrecision() const { return myObjVerts.IsSinglePrecision(); }
+  bool IsSinglePrecision() const { return myObjVerts.IsSinglePrecision(); }
 
   //! Setup single/double precision flag for reading vertex data (coordinates).
-  void SetSinglePrecision(Standard_Boolean theIsSinglePrecision)
+  void SetSinglePrecision(bool theIsSinglePrecision)
   {
     myObjVerts.SetSinglePrecision(theIsSinglePrecision);
   }
@@ -141,10 +138,10 @@ protected:
   //! Reads data from OBJ file.
   //! Unicode paths can be given in UTF-8 encoding.
   //! Returns true if success, false on error or user break.
-  Standard_EXPORT Standard_Boolean read(std::istream&                  theStream,
-                                        const TCollection_AsciiString& theFile,
-                                        const Message_ProgressRange&   theProgress,
-                                        const Standard_Boolean         theToProbe);
+  Standard_EXPORT bool read(std::istream&                  theStream,
+                            const TCollection_AsciiString& theFile,
+                            const Message_ProgressRange&   theProgress,
+                            const bool                     theToProbe);
 
   //! @name interface methods which should be implemented by sub-class
 protected:
@@ -157,73 +154,69 @@ protected:
   //! @param theMesh   mesh definition
   //! @param theReason reason to create new sub-mesh
   //! @return TRUE if new sub-mesh should be started since this point
-  virtual Standard_Boolean addMesh(const RWObj_SubMesh&      theMesh,
-                                   const RWObj_SubMeshReason theReason) = 0;
+  virtual bool addMesh(const RWObj_SubMesh& theMesh, const RWObj_SubMeshReason theReason) = 0;
 
   //! Retrieve sub-mesh node position, added by addNode().
-  virtual gp_Pnt getNode(Standard_Integer theIndex) const = 0;
+  virtual gp_Pnt getNode(int theIndex) const = 0;
 
   //! Callback function to be implemented in descendant.
   //! Should create new node with specified coordinates in the target model, and return its ID as
   //! integer.
-  virtual Standard_Integer addNode(const gp_Pnt& thePnt) = 0;
+  virtual int addNode(const gp_Pnt& thePnt) = 0;
 
   //! Callback function to be implemented in descendant.
   //! Should set normal coordinates for specified node.
   //! @param theIndex node ID as returned by addNode()
   //! @param theNorm  normal vector
-  virtual void setNodeNormal(const Standard_Integer theIndex, const Graphic3d_Vec3& theNorm) = 0;
+  virtual void setNodeNormal(const int theIndex, const NCollection_Vec3<float>& theNorm) = 0;
 
   //! Callback function to be implemented in descendant.
   //! Should set texture coordinates for specified node.
   //! @param theIndex node ID as returned by addNode()
   //! @param theUV    UV texture coordinates
-  virtual void setNodeUV(const Standard_Integer theIndex, const Graphic3d_Vec2& theUV) = 0;
+  virtual void setNodeUV(const int theIndex, const NCollection_Vec2<float>& theUV) = 0;
 
   //! Callback function to be implemented in descendant.
   //! Should create new element (triangle or quad if 4th index is != -1) built on specified nodes in
   //! the target model.
-  virtual void addElement(Standard_Integer theN1,
-                          Standard_Integer theN2,
-                          Standard_Integer theN3,
-                          Standard_Integer theN4) = 0;
+  virtual void addElement(int theN1, int theN2, int theN3, int theN4) = 0;
 
   //! @name implementation details
 private:
   //! Handle "v X Y Z".
   void pushVertex(const char* theXYZ)
   {
-    char*  aNext = NULL;
+    char*  aNext = nullptr;
     gp_Pnt anXYZ;
     RWObj_Tools::ReadVec3(theXYZ, aNext, anXYZ.ChangeCoord());
     myCSTrsf.TransformPosition(anXYZ.ChangeCoord());
 
-    myMemEstim += myObjVerts.IsSinglePrecision() ? sizeof(Graphic3d_Vec3) : sizeof(gp_Pnt);
+    myMemEstim += myObjVerts.IsSinglePrecision() ? sizeof(NCollection_Vec3<float>) : sizeof(gp_Pnt);
     myObjVerts.Append(anXYZ);
   }
 
   //! Handle "vn NX NY NZ".
   void pushNormal(const char* theXYZ)
   {
-    char*          aNext = NULL;
-    Graphic3d_Vec3 aNorm;
+    char*                   aNext = nullptr;
+    NCollection_Vec3<float> aNorm;
     RWObj_Tools::ReadVec3(theXYZ, aNext, aNorm);
     myCSTrsf.TransformNormal(aNorm);
 
-    myMemEstim += sizeof(Graphic3d_Vec3);
+    myMemEstim += sizeof(NCollection_Vec3<float>);
     myObjNorms.Append(aNorm);
   }
 
   //! Handle "vt U V".
   void pushTexel(const char* theUV)
   {
-    char*          aNext = NULL;
-    Graphic3d_Vec2 anUV;
+    char*                   aNext = nullptr;
+    NCollection_Vec2<float> anUV;
     anUV.x() = (float)Strtod(theUV, &aNext);
     theUV    = aNext;
     anUV.y() = (float)Strtod(theUV, &aNext);
 
-    myMemEstim += sizeof(Graphic3d_Vec2);
+    myMemEstim += sizeof(NCollection_Vec2<float>);
     myObjVertsUV.Append(anUV);
   }
 
@@ -233,23 +226,23 @@ private:
   //! Compute the center of planar polygon.
   //! @param theIndices polygon indices
   //! @return center of polygon
-  gp_XYZ polygonCenter(const NCollection_Array1<Standard_Integer>& theIndices);
+  gp_XYZ polygonCenter(const NCollection_Array1<int>& theIndices);
 
   //! Compute the normal to planar polygon.
   //! The logic is similar to ShapeAnalysis_Curve::IsPlanar().
   //! @param theIndices polygon indices
   //! @return polygon normal
-  gp_XYZ polygonNormal(const NCollection_Array1<Standard_Integer>& theIndices);
+  gp_XYZ polygonNormal(const NCollection_Array1<int>& theIndices);
 
   //! Create triangle fan from specified polygon.
   //! @param theIndices polygon nodes
   //! @return number of added triangles
-  Standard_Integer triangulatePolygonFan(const NCollection_Array1<Standard_Integer>& theIndices);
+  int triangulatePolygonFan(const NCollection_Array1<int>& theIndices);
 
   //! Triangulate specified polygon.
   //! @param theIndices polygon nodes
   //! @return number of added triangles
-  Standard_Integer triangulatePolygon(const NCollection_Array1<Standard_Integer>& theIndices);
+  int triangulatePolygon(const NCollection_Array1<int>& theIndices);
 
   //! Handle "o ObjectName".
   void pushObject(const char* theObjectName);
@@ -274,12 +267,13 @@ protected:
   //! Hasher for 3 ordered integers.
   struct ObjVec3iHasher
   {
-    std::size_t operator()(const Graphic3d_Vec3i& theKey) const noexcept
+    std::size_t operator()(const NCollection_Vec3<int>& theKey) const noexcept
     {
       return opencascade::hashBytes(&theKey[0], 3 * sizeof(int));
     }
 
-    bool operator()(const Graphic3d_Vec3i& theKey1, const Graphic3d_Vec3i& theKey2) const noexcept
+    bool operator()(const NCollection_Vec3<int>& theKey1,
+                    const NCollection_Vec3<int>& theKey2) const noexcept
     {
       return theKey1[0] == theKey2[0] && theKey1[1] == theKey2[1] && theKey1[2] == theKey2[2];
     }
@@ -291,7 +285,7 @@ protected:
   public:
     //! Empty constructor.
     VectorOfVertices()
-        : myIsSinglePrecision(Standard_False)
+        : myIsSinglePrecision(false)
     {
     }
 
@@ -299,7 +293,7 @@ protected:
     bool IsSinglePrecision() const { return myIsSinglePrecision; }
 
     //! Setup single/double precision flag.
-    void SetSinglePrecision(Standard_Boolean theIsSinglePrecision)
+    void SetSinglePrecision(bool theIsSinglePrecision)
     {
       myIsSinglePrecision = theIsSinglePrecision;
       myPntVec.Nullify();
@@ -311,29 +305,26 @@ protected:
     {
       if (myIsSinglePrecision)
       {
-        myVec3Vec = new NCollection_Shared<NCollection_Vector<Graphic3d_Vec3>>();
+        myVec3Vec = new NCollection_Shared<NCollection_DynamicArray<NCollection_Vec3<float>>>();
       }
       else
       {
-        myPntVec = new NCollection_Shared<NCollection_Vector<gp_Pnt>>();
+        myPntVec = new NCollection_Shared<NCollection_DynamicArray<gp_Pnt>>();
       }
     }
 
     //! Return vector lower index.
-    Standard_Integer Lower() const { return 0; }
+    int Lower() const { return 0; }
 
     //! Return vector upper index.
-    Standard_Integer Upper() const
-    {
-      return myIsSinglePrecision ? myVec3Vec->Upper() : myPntVec->Upper();
-    }
+    int Upper() const { return myIsSinglePrecision ? myVec3Vec->Upper() : myPntVec->Upper(); }
 
     //! Return point with the given index.
-    gp_Pnt Value(Standard_Integer theIndex) const
+    gp_Pnt Value(int theIndex) const
     {
       if (myIsSinglePrecision)
       {
-        const Graphic3d_Vec3& aPnt = myVec3Vec->Value(theIndex);
+        const NCollection_Vec3<float>& aPnt = myVec3Vec->Value(theIndex);
         return gp_Pnt(aPnt.x(), aPnt.y(), aPnt.z());
       }
       else
@@ -347,7 +338,8 @@ protected:
     {
       if (myIsSinglePrecision)
       {
-        myVec3Vec->Append(Graphic3d_Vec3((float)thePnt.X(), (float)thePnt.Y(), (float)thePnt.Z()));
+        myVec3Vec->Append(
+          NCollection_Vec3<float>((float)thePnt.X(), (float)thePnt.Y(), (float)thePnt.Z()));
       }
       else
       {
@@ -356,9 +348,9 @@ protected:
     }
 
   private:
-    Handle(NCollection_Shared<NCollection_Vector<gp_Pnt>>)         myPntVec;
-    Handle(NCollection_Shared<NCollection_Vector<Graphic3d_Vec3>>) myVec3Vec;
-    Standard_Boolean                                               myIsSinglePrecision;
+    Handle(NCollection_Shared<NCollection_DynamicArray<gp_Pnt>>)                  myPntVec;
+    Handle(NCollection_Shared<NCollection_DynamicArray<NCollection_Vec3<float>>>) myVec3Vec;
+    bool myIsSinglePrecision;
   };
 
 protected:
@@ -367,14 +359,14 @@ protected:
   TCollection_AsciiString          myFileComments;  //!< file header comments
   TCollection_AsciiString          myFolder;        //!< folder containing the OBJ file
   RWMesh_CoordinateSystemConverter myCSTrsf;        //!< coordinate system flipper
-  Standard_Size                    myMemLimitBytes; //!< memory limit in bytes
-  Standard_Size                    myMemEstim;      //!< estimated memory occupation in bytes
+  size_t                           myMemLimitBytes; //!< memory limit in bytes
+  size_t                           myMemEstim;      //!< estimated memory occupation in bytes
                                                     // clang-format off
-  Standard_Integer                   myNbLines;       //!< number of parsed lines (e.g. current line)
-  Standard_Integer                   myNbProbeNodes;  //!< number of probed nodes
-  Standard_Integer                   myNbProbeElems;  //!< number of probed elements
-  Standard_Integer                   myNbElemsBig;    //!< number of big elements (polygons with 5+ nodes)
-  Standard_Boolean                   myToAbort;       //!< flag indicating abort state (e.g. syntax error)
+  int                   myNbLines;       //!< number of parsed lines (e.g. current line)
+  int                   myNbProbeNodes;  //!< number of probed nodes
+  int                   myNbProbeElems;  //!< number of probed elements
+  int                   myNbElemsBig;    //!< number of big elements (polygons with 5+ nodes)
+  bool                   myToAbort;       //!< flag indicating abort state (e.g. syntax error)
                                                     // clang-format on
 
   // Each node in the Element specifies independent indices of Vertex position, Texture coordinates
@@ -382,15 +374,16 @@ protected:
   // set of nodal properties defines Vertex (thus node at the same location but with different
   // normal should be duplicated). The following code converts OBJ definition of nodal properties to
   // Primitive Array definition.
-  VectorOfVertices                   myObjVerts;   //!< temporary vector of vertices
-  NCollection_Vector<Graphic3d_Vec2> myObjVertsUV; //!< temporary vector of UV parameters
-  NCollection_Vector<Graphic3d_Vec3> myObjNorms;   //!< temporary vector of normals
-  NCollection_DataMap<Graphic3d_Vec3i, Standard_Integer, ObjVec3iHasher> myPackedIndices;
+  VectorOfVertices myObjVerts; //!< temporary vector of vertices
+  NCollection_DynamicArray<NCollection_Vec2<float>>
+    myObjVertsUV; //!< temporary vector of UV parameters
+  NCollection_DynamicArray<NCollection_Vec3<float>> myObjNorms; //!< temporary vector of normals
+  NCollection_DataMap<NCollection_Vec3<int>, int, ObjVec3iHasher> myPackedIndices;
   NCollection_DataMap<TCollection_AsciiString, RWObj_Material>
     myMaterials; //!< map of known materials
 
   RWObj_SubMesh                 myActiveSubMesh; //!< active sub-mesh definition
-  std::vector<Standard_Integer> myCurrElem;      //!< indices for the current element
+  NCollection_LinearVector<int> myCurrElem;      //!< indices for the current element
 };
 
 #endif // _RWObj_Reader_HeaderFile

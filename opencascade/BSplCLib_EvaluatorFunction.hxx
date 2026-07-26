@@ -29,34 +29,31 @@ class BSplCLib_EvaluatorFunction
 {
 public:
   //! Empty constructor
-  BSplCLib_EvaluatorFunction() {}
+  BSplCLib_EvaluatorFunction() = default;
 
   //! Destructor should be declared as virtual
-  virtual ~BSplCLib_EvaluatorFunction() {}
+  virtual ~BSplCLib_EvaluatorFunction() = default;
 
   //! Function evaluation method to be defined by descendant
-  virtual void Evaluate(const Standard_Integer theDerivativeRequest,
-                        const Standard_Real*   theStartEnd,
-                        const Standard_Real    theParameter,
-                        Standard_Real&         theResult,
-                        Standard_Integer&      theErrorCode) const = 0;
+  virtual void Evaluate(const int     theDerivativeRequest,
+                        const double* theStartEnd,
+                        const double  theParameter,
+                        double&       theResult,
+                        int&          theErrorCode) const = 0;
 
   //! Shortcut for function-call style usage
-  void operator()(const Standard_Integer theDerivativeRequest,
-                  const Standard_Real*   theStartEnd,
-                  const Standard_Real    theParameter,
-                  Standard_Real&         theResult,
-                  Standard_Integer&      theErrorCode) const
+  void operator()(const int     theDerivativeRequest,
+                  const double* theStartEnd,
+                  const double  theParameter,
+                  double&       theResult,
+                  int&          theErrorCode) const
   {
     Evaluate(theDerivativeRequest, theStartEnd, theParameter, theResult, theErrorCode);
   }
 
-private:
-  //! Copy constructor is declared private to forbid copying
-  BSplCLib_EvaluatorFunction(const BSplCLib_EvaluatorFunction&) {}
-
-  //! Assignment operator is declared private to forbid copying
-  void operator=(const BSplCLib_EvaluatorFunction&) {}
+  // copying is prohibited
+  BSplCLib_EvaluatorFunction(const BSplCLib_EvaluatorFunction&)            = delete;
+  BSplCLib_EvaluatorFunction& operator=(const BSplCLib_EvaluatorFunction&) = delete;
 };
 
 #endif

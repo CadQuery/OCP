@@ -1,5 +1,4 @@
-// Created by: Peter KURNEV
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -12,15 +11,28 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef BOPDS_IndexedDataMapOfShapeCoupleOfPaveBlocks_HeaderFile
-#define BOPDS_IndexedDataMapOfShapeCoupleOfPaveBlocks_HeaderFile
+//! @file BOPDS_IndexedDataMapOfShapeCoupleOfPaveBlocks.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection_IndexedDataMap<TopoDS_Shape, BOPDS_CoupleOfPaveBlocks,
+//!             TopTools_ShapeMapHasher> directly instead.
 
+#ifndef _BOPDS_IndexedDataMapOfShapeCoupleOfPaveBlocks_hxx
+#define _BOPDS_IndexedDataMapOfShapeCoupleOfPaveBlocks_hxx
+
+#include <Standard_Macro.hxx>
 #include <BOPDS_CoupleOfPaveBlocks.hxx>
-
 #include <NCollection_IndexedDataMap.hxx>
 #include <TopTools_ShapeMapHasher.hxx>
 
+Standard_HEADER_DEPRECATED("BOPDS_IndexedDataMapOfShapeCoupleOfPaveBlocks.hxx is deprecated since "
+                           "OCCT 8.0.0. Use NCollection_IndexedDataMap<TopoDS_Shape, "
+                           "BOPDS_CoupleOfPaveBlocks, TopTools_ShapeMapHasher> directly.")
+
+  Standard_DEPRECATED("BOPDS_IndexedDataMapOfShapeCoupleOfPaveBlocks is deprecated, use "
+                      "NCollection_IndexedDataMap<TopoDS_Shape, BOPDS_CoupleOfPaveBlocks, "
+                      "TopTools_ShapeMapHasher> directly")
 typedef NCollection_IndexedDataMap<TopoDS_Shape, BOPDS_CoupleOfPaveBlocks, TopTools_ShapeMapHasher>
   BOPDS_IndexedDataMapOfShapeCoupleOfPaveBlocks;
 
-#endif
+#endif // _BOPDS_IndexedDataMapOfShapeCoupleOfPaveBlocks_hxx

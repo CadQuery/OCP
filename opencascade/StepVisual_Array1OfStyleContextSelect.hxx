@@ -1,7 +1,4 @@
-// Created on: 1995-12-01
-// Created by: EXPRESS->CDL V0.2 Translator
-// Copyright (c) 1995-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,12 +11,23 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef StepVisual_Array1OfStyleContextSelect_HeaderFile
-#define StepVisual_Array1OfStyleContextSelect_HeaderFile
+//! @file StepVisual_Array1OfStyleContextSelect.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection_Array1<StepVisual_StyleContextSelect> directly instead.
 
+#ifndef _StepVisual_Array1OfStyleContextSelect_hxx
+#define _StepVisual_Array1OfStyleContextSelect_hxx
+
+#include <Standard_Macro.hxx>
 #include <StepVisual_StyleContextSelect.hxx>
 #include <NCollection_Array1.hxx>
 
+Standard_HEADER_DEPRECATED("StepVisual_Array1OfStyleContextSelect.hxx is deprecated since OCCT "
+                           "8.0.0. Use NCollection_Array1<StepVisual_StyleContextSelect> directly.")
+
+  Standard_DEPRECATED("StepVisual_Array1OfStyleContextSelect is deprecated, use "
+                      "NCollection_Array1<StepVisual_StyleContextSelect> directly")
 typedef NCollection_Array1<StepVisual_StyleContextSelect> StepVisual_Array1OfStyleContextSelect;
 
-#endif
+#endif // _StepVisual_Array1OfStyleContextSelect_hxx

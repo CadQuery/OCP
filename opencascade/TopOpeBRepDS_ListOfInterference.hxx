@@ -1,7 +1,4 @@
-// Created on: 1993-06-17
-// Created by: Jean Yves LEBEY
-// Copyright (c) 1993-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,14 +11,29 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef TopOpeBRepDS_ListOfInterference_HeaderFile
-#define TopOpeBRepDS_ListOfInterference_HeaderFile
+//! @file TopOpeBRepDS_ListOfInterference.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection types directly instead.
 
+#ifndef _TopOpeBRepDS_ListOfInterference_hxx
+#define _TopOpeBRepDS_ListOfInterference_hxx
+
+#include <Standard_Macro.hxx>
 #include <TopOpeBRepDS_Interference.hxx>
 #include <NCollection_List.hxx>
 
-typedef NCollection_List<Handle(TopOpeBRepDS_Interference)> TopOpeBRepDS_ListOfInterference;
-typedef NCollection_List<Handle(TopOpeBRepDS_Interference)>::Iterator
+Standard_HEADER_DEPRECATED("TopOpeBRepDS_ListOfInterference.hxx is deprecated since OCCT 8.0.0. "
+                           "Use NCollection types directly.")
+
+  Standard_DEPRECATED("TopOpeBRepDS_ListOfInterference is deprecated, use "
+                      "NCollection_List<opencascade::handle<TopOpeBRepDS_Interference>> directly")
+typedef NCollection_List<opencascade::handle<TopOpeBRepDS_Interference>>
+  TopOpeBRepDS_ListOfInterference;
+Standard_DEPRECATED(
+  "TopOpeBRepDS_ListIteratorOfListOfInterference is deprecated, use "
+  "NCollection_List<opencascade::handle<TopOpeBRepDS_Interference>>::Iterator directly")
+typedef NCollection_List<opencascade::handle<TopOpeBRepDS_Interference>>::Iterator
   TopOpeBRepDS_ListIteratorOfListOfInterference;
 
-#endif
+#endif // _TopOpeBRepDS_ListOfInterference_hxx

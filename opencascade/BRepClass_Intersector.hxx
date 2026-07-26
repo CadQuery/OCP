@@ -25,7 +25,7 @@ class gp_Lin2d;
 class BRepClass_Edge;
 class gp_Dir2d;
 
-//! Intersect an Edge  with a segment.
+//! Intersect an Edge with a segment.
 //! Implement the Intersector2d required by the classifier.
 class BRepClass_Intersector : public Geom2dInt_IntConicCurveOfGInter
 {
@@ -36,21 +36,18 @@ public:
 
   //! Intersect the line segment and the edge.
   Standard_EXPORT void Perform(const gp_Lin2d&       L,
-                               const Standard_Real   P,
-                               const Standard_Real   Tol,
+                               const double          P,
+                               const double          Tol,
                                const BRepClass_Edge& E);
 
-  //! Returns in <T>,  <N> and <C>  the tangent,  normal
-  //! and  curvature of the edge  <E> at parameter value
+  //! Returns in <T>, <N> and <C> the tangent, normal
+  //! and curvature of the edge <E> at parameter value
   //! <U>.
   Standard_EXPORT void LocalGeometry(const BRepClass_Edge& E,
-                                     const Standard_Real   U,
+                                     const double          U,
                                      gp_Dir2d&             T,
                                      gp_Dir2d&             N,
-                                     Standard_Real&        C) const;
-
-protected:
-private:
+                                     double&               C) const;
 };
 
 #endif // _BRepClass_Intersector_HeaderFile

@@ -1,5 +1,4 @@
-// Copyright (c) 1998-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -12,11 +11,22 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef TColStd_SequenceOfAddress_HeaderFile
-#define TColStd_SequenceOfAddress_HeaderFile
+//! @file TColStd_SequenceOfAddress.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection_Sequence<void*> directly instead.
 
+#ifndef _TColStd_SequenceOfAddress_hxx
+#define _TColStd_SequenceOfAddress_hxx
+
+#include <Standard_Macro.hxx>
 #include <NCollection_Sequence.hxx>
 
-typedef NCollection_Sequence<Standard_Address> TColStd_SequenceOfAddress;
+Standard_HEADER_DEPRECATED("TColStd_SequenceOfAddress.hxx is deprecated since OCCT 8.0.0. Use "
+                           "NCollection_Sequence<void*> directly.")
 
-#endif
+  Standard_DEPRECATED(
+    "TColStd_SequenceOfAddress is deprecated, use NCollection_Sequence<void*> directly")
+typedef NCollection_Sequence<void*> TColStd_SequenceOfAddress;
+
+#endif // _TColStd_SequenceOfAddress_hxx

@@ -37,7 +37,6 @@ jobs:
 
       - uses: ./.github/actions/micromamba
 
-      # --- Mac SDK Hack ---
       - name: SDK install and symlink (Mac)
         if: contains(inputs.runner_generate, 'mac')
         run: |
@@ -63,19 +62,10 @@ jobs:
         run: |
           OUTPUT=`micromamba run -n cpp-py-bindgen python -c'import toml; print(toml.load("ocp.toml")["output_folder"])'`
           echo "OUTPUT=$OUTPUT" >> $GITHUB_OUTPUT
-
-      - name: Restore OCP_src cache
-        id: cache-ocp-src-restore
-        uses: actions/cache/restore@v4
-        with:
-          path: ${{ steps.conf.outputs.OUTPUT }}
-          key: OCP-src-${{ inputs.platform }}-
-
-      # --- Generation Logic ---
       
       # Windows Special Case (Running on Linux targeting Windows)
       - name: Generate (Windows on Linux)
-        if: inputs.platform == 'Windows' && steps.cache-ocp-src-restore.outputs.cache-hit != 'true'
+        if: inputs.platform == 'Windows'
         run: |
           micromamba create --yes --platform win-64 --no-deps --prefix ./occt occt=7.9.2
           micromamba run -n cpp-py-bindgen cmake -S . -B . -G Ninja \
@@ -90,7 +80,7 @@ jobs:
 
       # Standard Case (Linux/Mac)
       - name: Generate (Standard)
-        if: inputs.platform != 'Windows' && steps.cache-ocp-src-restore.outputs.cache-hit != 'true'
+        if: inputs.platform != 'Windows'
         run: |
           micromamba run -n cpp-py-bindgen cmake -S . -B . -G Ninja \
             -DPython_ROOT_DIR=$CONDA_PREFIX \
@@ -100,30 +90,18 @@ jobs:
           cmake --build .
           ls -lRht
 
-      - name: Cache OCP_src
-        id: cache-ocp-src-save
-        uses: actions/cache/save@v4
-        with:
-          path: ${{ steps.conf.outputs.OUTPUT }}
-          key: ${{ steps.cache-ocp-src-restore.outputs.cache-primary-key }}
-
       - name: Copy pkl output
-        if: steps.cache-ocp-src-restore.outputs.cache-hit != 'true'
-        shell: bash -l {0}
         run: |
           mkdir -p ${{ steps.conf.outputs.OUTPUT }}_pkl
           cp *.pkl ${{ steps.conf.outputs.OUTPUT }}_pkl/
 
-      # --- Artifact Upload ---
       - name: Upload Sources
-        # if: steps.cache-ocp-src-restore.outputs.cache-hit != 'true'
         uses: actions/upload-artifact@v4
         with:
           name: OCP_src_${{ inputs.platform }}
           path: ${{ steps.conf.outputs.OUTPUT }}
 
       - name: Upload Pickles
-        if: steps.cache-ocp-src-restore.outputs.cache-hit != 'true'
         uses: actions/upload-artifact@v4
         with:
           name: OCP_pkl_${{ inputs.platform }}
@@ -153,14 +131,6 @@ jobs:
       - uses: actions/checkout@v4
         with:
           submodules: true
-
-      # rely on source artifact??
-      # - name: Restore OCP_src cache
-      #   id: cache-ocp-src-restore
-      #   uses: actions/cache/restore@v4
-      #   with:
-      #     path: ${{ steps.conf.outputs.OUTPUT }}
-      #     key: OCP-src-${{ inputs.platform }}-
 
       # --- Download Artifacts ---
       - name: Download Source Artifact

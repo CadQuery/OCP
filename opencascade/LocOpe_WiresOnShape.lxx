@@ -14,32 +14,23 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-//=======================================================================
-// function : SetCheckInterior
-// purpose  :
-//=======================================================================
+//=================================================================================================
 
-inline void LocOpe_WiresOnShape::SetCheckInterior(const Standard_Boolean ToCheckInterior)
+inline void LocOpe_WiresOnShape::SetCheckInterior(const bool ToCheckInterior)
 {
   myCheckInterior = ToCheckInterior;
 }
 
-//=======================================================================
-// function : IsDone
-// purpose  :
-//=======================================================================
+//=================================================================================================
 
-inline Standard_Boolean LocOpe_WiresOnShape::IsDone() const
+inline bool LocOpe_WiresOnShape::IsDone() const
 {
   return myDone;
 }
 
-//=======================================================================
-// function : IsFaceWithSection
-// purpose  :
-//=======================================================================
+//=================================================================================================
 
-inline Standard_Boolean LocOpe_WiresOnShape::IsFaceWithSection(const TopoDS_Shape& aFace) const
+inline bool LocOpe_WiresOnShape::IsFaceWithSection(const TopoDS_Shape& aFace) const
 {
   return (myFacesWithSection.Contains(aFace));
 }

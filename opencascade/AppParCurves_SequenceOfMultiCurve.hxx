@@ -1,7 +1,4 @@
-// Created on: 1991-04-11
-// Created by: Laurent PAINNOT
-// Copyright (c) 1991-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,12 +11,23 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef AppParCurves_SequenceOfMultiCurve_HeaderFile
-#define AppParCurves_SequenceOfMultiCurve_HeaderFile
+//! @file AppParCurves_SequenceOfMultiCurve.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection_Sequence<AppParCurves_MultiCurve> directly instead.
 
+#ifndef _AppParCurves_SequenceOfMultiCurve_hxx
+#define _AppParCurves_SequenceOfMultiCurve_hxx
+
+#include <Standard_Macro.hxx>
 #include <AppParCurves_MultiCurve.hxx>
 #include <NCollection_Sequence.hxx>
 
+Standard_HEADER_DEPRECATED("AppParCurves_SequenceOfMultiCurve.hxx is deprecated since OCCT 8.0.0. "
+                           "Use NCollection_Sequence<AppParCurves_MultiCurve> directly.")
+
+  Standard_DEPRECATED("AppParCurves_SequenceOfMultiCurve is deprecated, use "
+                      "NCollection_Sequence<AppParCurves_MultiCurve> directly")
 typedef NCollection_Sequence<AppParCurves_MultiCurve> AppParCurves_SequenceOfMultiCurve;
 
-#endif
+#endif // _AppParCurves_SequenceOfMultiCurve_hxx

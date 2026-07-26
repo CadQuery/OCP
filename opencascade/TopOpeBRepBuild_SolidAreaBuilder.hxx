@@ -28,8 +28,8 @@ class TopOpeBRepBuild_LoopClassifier;
 //! where the Loop is the composite topological object of the boundary,
 //! here wire or block of edges.
 //! The LoopSet gives an iteration on Loops.
-//! For each Loop  it indicates if it is on the boundary (wire) or if it
-//! results from  an interference (block of edges).
+//! For each Loop it indicates if it is on the boundary (wire) or if it
+//! results from an interference (block of edges).
 //! The result of the SolidAreaBuilder is an iteration on areas.
 //! An area is described by a set of Loops.
 class TopOpeBRepBuild_SolidAreaBuilder : public TopOpeBRepBuild_Area3dBuilder
@@ -41,17 +41,13 @@ public:
 
   //! Creates a SolidAreaBuilder to build Solids on
   //! the (shells,blocks of face) of <LS>, using the classifier <LC>.
-  Standard_EXPORT TopOpeBRepBuild_SolidAreaBuilder(
-    TopOpeBRepBuild_LoopSet&        LS,
-    TopOpeBRepBuild_LoopClassifier& LC,
-    const Standard_Boolean          ForceClass = Standard_False);
+  Standard_EXPORT TopOpeBRepBuild_SolidAreaBuilder(TopOpeBRepBuild_LoopSet&        LS,
+                                                   TopOpeBRepBuild_LoopClassifier& LC,
+                                                   const bool ForceClass = false);
 
   Standard_EXPORT void InitSolidAreaBuilder(TopOpeBRepBuild_LoopSet&        LS,
                                             TopOpeBRepBuild_LoopClassifier& LC,
-                                            const Standard_Boolean ForceClass = Standard_False);
-
-protected:
-private:
+                                            const bool                      ForceClass = false);
 };
 
 #endif // _TopOpeBRepBuild_SolidAreaBuilder_HeaderFile

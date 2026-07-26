@@ -20,6 +20,8 @@
 #include <Standard_TypeMismatch.hxx>
 #include <Standard_Macro.hxx>
 
+#include <cstring>
+
 //! Defines an array of values of configurable size.
 //! For instance, this class allows defining an array of 32-bit or 64-bit integer values with
 //! bitness determined in runtime. The element size in bytes (stride) should be specified at
@@ -33,8 +35,8 @@ public:
   DEFINE_STANDARD_ALLOC
 public:
   //! Empty constructor.
-  NCollection_AliasedArray(Standard_Integer theStride)
-      : myData(NULL),
+  NCollection_AliasedArray(int theStride)
+      : myData(nullptr),
         myStride(theStride),
         mySize(0),
         myDeletable(false)
@@ -46,8 +48,8 @@ public:
   }
 
   //! Constructor
-  NCollection_AliasedArray(Standard_Integer theStride, Standard_Integer theLength)
-      : myData(NULL),
+  NCollection_AliasedArray(int theStride, int theLength)
+      : myData(nullptr),
         myStride(theStride),
         mySize(theLength),
         myDeletable(true)
@@ -56,8 +58,8 @@ public:
     {
       throw Standard_RangeError("NCollection_AliasedArray, stride and length should be positive");
     }
-    myData = (Standard_Byte*)Standard::AllocateAligned(SizeBytes(), MyAlignSize);
-    if (myData == NULL)
+    myData = (uint8_t*)Standard::AllocateAligned(SizeBytes(), MyAlignSize);
+    if (myData == nullptr)
     {
       throw Standard_OutOfMemory("NCollection_AliasedArray, allocation failed");
     }
@@ -65,7 +67,7 @@ public:
 
   //! Copy constructor
   NCollection_AliasedArray(const NCollection_AliasedArray& theOther)
-      : myData(NULL),
+      : myData(nullptr),
         myStride(theOther.myStride),
         mySize(theOther.mySize),
         myDeletable(false)
@@ -73,8 +75,8 @@ public:
     if (mySize != 0)
     {
       myDeletable = true;
-      myData      = (Standard_Byte*)Standard::AllocateAligned(SizeBytes(), MyAlignSize);
-      if (myData == NULL)
+      myData      = (uint8_t*)Standard::AllocateAligned(SizeBytes(), MyAlignSize);
+      if (myData == nullptr)
       {
         throw Standard_OutOfMemory("NCollection_AliasedArray, allocation failed");
       }
@@ -83,7 +85,7 @@ public:
   }
 
   //! Move constructor
-  NCollection_AliasedArray(NCollection_AliasedArray&& theOther) Standard_Noexcept
+  NCollection_AliasedArray(NCollection_AliasedArray&& theOther) noexcept
       : myData(theOther.myData),
         myStride(theOther.myStride),
         mySize(theOther.mySize),
@@ -94,8 +96,8 @@ public:
 
   //! Constructor wrapping pre-allocated C-array of values without copying them.
   template <typename Type_t>
-  NCollection_AliasedArray(const Type_t& theBegin, Standard_Integer theLength)
-      : myData((Standard_Byte*)&theBegin),
+  NCollection_AliasedArray(const Type_t& theBegin, int theLength)
+      : myData((uint8_t*)&theBegin),
         myStride((int)sizeof(Type_t)),
         mySize(theLength),
         myDeletable(false)
@@ -107,31 +109,31 @@ public:
   }
 
   //! Returns an element size in bytes.
-  Standard_Integer Stride() const { return myStride; }
+  int Stride() const { return myStride; }
 
   //! Size query
-  Standard_Integer Size() const { return mySize; }
+  int Size() const { return mySize; }
 
   //! Length query (the same as Size())
-  Standard_Integer Length() const { return mySize; }
+  int Length() const { return mySize; }
 
   //! Return TRUE if array has zero length.
-  Standard_Boolean IsEmpty() const { return mySize == 0; }
+  bool IsEmpty() const { return mySize == 0; }
 
   //! Lower bound
-  Standard_Integer Lower() const { return 0; }
+  int Lower() const { return 0; }
 
   //! Upper bound
-  Standard_Integer Upper() const { return mySize - 1; }
+  int Upper() const { return mySize - 1; }
 
   //! myDeletable flag
-  Standard_Boolean IsDeletable() const { return myDeletable; }
+  bool IsDeletable() const { return myDeletable; }
 
   //! IsAllocated flag - for naming compatibility
-  Standard_Boolean IsAllocated() const { return myDeletable; }
+  bool IsAllocated() const { return myDeletable; }
 
   //! Return buffer size in bytes.
-  Standard_Size SizeBytes() const { return size_t(myStride) * size_t(mySize); }
+  size_t SizeBytes() const { return size_t(myStride) * size_t(mySize); }
 
   //! Copies data of theOther array to this.
   //! This array should be pre-allocated and have the same length as theOther;
@@ -145,7 +147,7 @@ public:
         throw Standard_DimensionMismatch(
           "NCollection_AliasedArray::Assign(), arrays have different size");
       }
-      if (myData != NULL)
+      if (myData != nullptr)
       {
         memcpy(myData, theOther.myData, SizeBytes());
       }
@@ -191,7 +193,7 @@ public:
   //! but existing values will not be discarded if theToCopyData set to FALSE.
   //! @param theLength new length of array
   //! @param theToCopyData flag to copy existing data into new array
-  void Resize(Standard_Integer theLength, Standard_Boolean theToCopyData)
+  void Resize(int theLength, bool theToCopyData)
   {
     if (theLength <= 0)
     {
@@ -202,15 +204,15 @@ public:
       return;
     }
 
-    const Standard_Integer anOldLen  = mySize;
-    const Standard_Byte*   anOldData = myData;
-    mySize                           = theLength;
+    const int      anOldLen  = mySize;
+    const uint8_t* anOldData = myData;
+    mySize                   = theLength;
     if (!theToCopyData && myDeletable)
     {
       Standard::FreeAligned(myData);
     }
-    myData = (Standard_Byte*)Standard::AllocateAligned(SizeBytes(), MyAlignSize);
-    if (myData == NULL)
+    myData = (uint8_t*)Standard::AllocateAligned(SizeBytes(), MyAlignSize);
+    if (myData == nullptr)
     {
       throw Standard_OutOfMemory("NCollection_AliasedArray, allocation failed");
     }
@@ -220,7 +222,7 @@ public:
       return;
     }
 
-    const size_t aLenCopy = size_t(Min(anOldLen, theLength)) * size_t(myStride);
+    const size_t aLenCopy = size_t((std::min)(anOldLen, theLength)) * size_t(myStride);
     memcpy(myData, anOldData, aLenCopy);
     if (myDeletable)
     {
@@ -240,7 +242,7 @@ public:
 
 public:
   //! Access raw bytes of specified element.
-  const Standard_Byte* value(Standard_Integer theIndex) const
+  const uint8_t* value(int theIndex) const
   {
     Standard_OutOfRange_Raise_if(theIndex < 0 || theIndex >= mySize,
                                  "NCollection_AliasedArray::value(), out of range index");
@@ -248,7 +250,7 @@ public:
   }
 
   //! Access raw bytes of specified element.
-  Standard_Byte* changeValue(Standard_Integer theIndex)
+  uint8_t* changeValue(int theIndex)
   {
     Standard_OutOfRange_Raise_if(theIndex < 0 || theIndex >= mySize,
                                  "NCollection_AliasedArray::changeValue(), out of range index");
@@ -259,7 +261,7 @@ public:
   template <typename Type_t>
   void Init(const Type_t& theValue)
   {
-    for (Standard_Integer anIter = 0; anIter < mySize; ++anIter)
+    for (int anIter = 0; anIter < mySize; ++anIter)
     {
       ChangeValue<Type_t>(anIter) = theValue;
     }
@@ -268,7 +270,7 @@ public:
   //! Access element with specified position and type.
   //! This method requires size of a type matching stride value.
   template <typename Type_t>
-  const Type_t& Value(Standard_Integer theIndex) const
+  const Type_t& Value(int theIndex) const
   {
     Standard_TypeMismatch_Raise_if(size_t(myStride) != sizeof(Type_t),
                                    "NCollection_AliasedArray::Value(), wrong type");
@@ -278,7 +280,7 @@ public:
   //! Access element with specified position and type.
   //! This method requires size of a type matching stride value.
   template <typename Type_t>
-  void Value(Standard_Integer theIndex, Type_t& theValue) const
+  void Value(int theIndex, Type_t& theValue) const
   {
     Standard_TypeMismatch_Raise_if(size_t(myStride) != sizeof(Type_t),
                                    "NCollection_AliasedArray::Value(), wrong type");
@@ -288,7 +290,7 @@ public:
   //! Access element with specified position and type.
   //! This method requires size of a type matching stride value.
   template <typename Type_t>
-  Type_t& ChangeValue(Standard_Integer theIndex)
+  Type_t& ChangeValue(int theIndex)
   {
     Standard_TypeMismatch_Raise_if(size_t(myStride) != sizeof(Type_t),
                                    "NCollection_AliasedArray::ChangeValue(), wrong type");
@@ -299,7 +301,7 @@ public:
   //! This method allows wrapping element into smaller type (e.g. to alias 2-components within
   //! 3-component vector).
   template <typename Type_t>
-  const Type_t& Value2(Standard_Integer theIndex) const
+  const Type_t& Value2(int theIndex) const
   {
     Standard_TypeMismatch_Raise_if(size_t(myStride) < sizeof(Type_t),
                                    "NCollection_AliasedArray::Value2(), wrong type");
@@ -310,7 +312,7 @@ public:
   //! This method allows wrapping element into smaller type (e.g. to alias 2-components within
   //! 3-component vector).
   template <typename Type_t>
-  void Value2(Standard_Integer theIndex, Type_t& theValue) const
+  void Value2(int theIndex, Type_t& theValue) const
   {
     Standard_TypeMismatch_Raise_if(size_t(myStride) < sizeof(Type_t),
                                    "NCollection_AliasedArray::Value2(), wrong type");
@@ -321,7 +323,7 @@ public:
   //! This method allows wrapping element into smaller type (e.g. to alias 2-components within
   //! 3-component vector).
   template <typename Type_t>
-  Type_t& ChangeValue2(Standard_Integer theIndex)
+  Type_t& ChangeValue2(int theIndex)
   {
     Standard_TypeMismatch_Raise_if(size_t(myStride) < sizeof(Type_t),
                                    "NCollection_AliasedArray::ChangeValue2(), wrong type");
@@ -357,10 +359,10 @@ public:
   }
 
 protected:
-  Standard_Byte*   myData;      //!< data pointer
-  Standard_Integer myStride;    //!< element size
-  Standard_Integer mySize;      //!< number of elements
-  Standard_Boolean myDeletable; //!< flag showing who allocated the array
+  uint8_t* myData;      //!< data pointer
+  int      myStride;    //!< element size
+  int      mySize;      //!< number of elements
+  bool     myDeletable; //!< flag showing who allocated the array
 };
 
 #endif // _NCollection_AliasedArray_HeaderFile

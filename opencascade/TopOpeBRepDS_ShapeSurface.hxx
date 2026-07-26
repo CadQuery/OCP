@@ -1,7 +1,4 @@
-// Created on: 1993-06-17
-// Created by: Jean Yves LEBEY
-// Copyright (c) 1993-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,17 +11,36 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef TopOpeBRepDS_ShapeSurface_HeaderFile
-#define TopOpeBRepDS_ShapeSurface_HeaderFile
+//! @file TopOpeBRepDS_ShapeSurface.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection types directly instead.
 
+#ifndef _TopOpeBRepDS_ShapeSurface_hxx
+#define _TopOpeBRepDS_ShapeSurface_hxx
+
+#include <Standard_Macro.hxx>
 #include <TopoDS_Shape.hxx>
 #include <Geom_Surface.hxx>
 #include <TopTools_ShapeMapHasher.hxx>
 #include <NCollection_DataMap.hxx>
 
-typedef NCollection_DataMap<TopoDS_Shape, Handle(Geom_Surface), TopTools_ShapeMapHasher>
+Standard_HEADER_DEPRECATED(
+  "TopOpeBRepDS_ShapeSurface.hxx is deprecated since OCCT 8.0.0. Use NCollection types directly.")
+
+  Standard_DEPRECATED(
+    "TopOpeBRepDS_ShapeSurface is deprecated, use NCollection_DataMap<TopoDS_Shape, "
+    "opencascade::handle<Geom_Surface>, TopTools_ShapeMapHasher> directly")
+typedef NCollection_DataMap<TopoDS_Shape,
+                            opencascade::handle<Geom_Surface>,
+                            TopTools_ShapeMapHasher>
   TopOpeBRepDS_ShapeSurface;
-typedef NCollection_DataMap<TopoDS_Shape, Handle(Geom_Surface), TopTools_ShapeMapHasher>::Iterator
+Standard_DEPRECATED(
+  "TopOpeBRepDS_DataMapIteratorOfShapeSurface is deprecated, use NCollection_DataMap<TopoDS_Shape, "
+  "opencascade::handle<Geom_Surface>, TopTools_ShapeMapHasher>::Iterator directly")
+typedef NCollection_DataMap<TopoDS_Shape,
+                            opencascade::handle<Geom_Surface>,
+                            TopTools_ShapeMapHasher>::Iterator
   TopOpeBRepDS_DataMapIteratorOfShapeSurface;
 
-#endif
+#endif // _TopOpeBRepDS_ShapeSurface_hxx

@@ -16,23 +16,13 @@
 #ifndef BVH_Types_HeaderFile
 #define BVH_Types_HeaderFile
 
-// Use this macro to switch between STL and OCCT vector types
-#define _BVH_USE_STD_VECTOR_
-
-#include <vector>
-
 #include <Bnd_Box.hxx>
 #include <NCollection_Mat4.hxx>
 #include <NCollection_Vec2.hxx>
 #include <NCollection_Vec3.hxx>
-#include <NCollection_Vector.hxx>
+#include <NCollection_LinearVector.hxx>
 #include <Standard_OStream.hxx>
 #include <Standard_Type.hxx>
-
-// GCC supports shrink function only in C++11 mode
-#if defined(_BVH_USE_STD_VECTOR_) && defined(_MSC_VER) && !defined(__INTEL_COMPILER)
-  #define _STD_VECTOR_SHRINK
-#endif
 
 namespace BVH
 {
@@ -110,67 +100,63 @@ struct MatrixType<T, 4>
   typedef NCollection_Mat4<T> Type;
 };
 
-//! Tool class for selecting type of array of vectors (STD or NCollection vector).
+//! Tool class for selecting type of array of vectors.
 //! \tparam T Numeric data type
 //! \tparam N Component number
 template <class T, int N = 1>
 struct ArrayType
 {
-#ifndef _BVH_USE_STD_VECTOR_
-  typedef NCollection_Vector<typename VectorType<T, N>::Type> Type;
-#else
-  typedef std::vector<typename VectorType<T, N>::Type> Type;
-#endif
+  typedef NCollection_LinearVector<typename VectorType<T, N>::Type> Type;
 };
 } // namespace BVH
 
 //! 2D vector of integers.
-typedef BVH::VectorType<Standard_Integer, 2>::Type BVH_Vec2i;
+typedef BVH::VectorType<int, 2>::Type BVH_Vec2i;
 //! 3D vector of integers.
-typedef BVH::VectorType<Standard_Integer, 3>::Type BVH_Vec3i;
+typedef BVH::VectorType<int, 3>::Type BVH_Vec3i;
 //! 4D vector of integers.
-typedef BVH::VectorType<Standard_Integer, 4>::Type BVH_Vec4i;
+typedef BVH::VectorType<int, 4>::Type BVH_Vec4i;
 
 //! Array of 2D vectors of integers.
-typedef BVH::ArrayType<Standard_Integer, 2>::Type BVH_Array2i;
+typedef BVH::ArrayType<int, 2>::Type BVH_Array2i;
 //! Array of 3D vectors of integers.
-typedef BVH::ArrayType<Standard_Integer, 3>::Type BVH_Array3i;
+typedef BVH::ArrayType<int, 3>::Type BVH_Array3i;
 //! Array of 4D vectors of integers.
-typedef BVH::ArrayType<Standard_Integer, 4>::Type BVH_Array4i;
+typedef BVH::ArrayType<int, 4>::Type BVH_Array4i;
 
 //! 2D vector of single precision reals.
-typedef BVH::VectorType<Standard_ShortReal, 2>::Type BVH_Vec2f;
+typedef BVH::VectorType<float, 2>::Type BVH_Vec2f;
 //! 3D vector of single precision reals.
-typedef BVH::VectorType<Standard_ShortReal, 3>::Type BVH_Vec3f;
+typedef BVH::VectorType<float, 3>::Type BVH_Vec3f;
 //! 4D vector of single precision reals.
-typedef BVH::VectorType<Standard_ShortReal, 4>::Type BVH_Vec4f;
+typedef BVH::VectorType<float, 4>::Type BVH_Vec4f;
 
 //! Array of 2D vectors of single precision reals.
-typedef BVH::ArrayType<Standard_ShortReal, 2>::Type BVH_Array2f;
+typedef BVH::ArrayType<float, 2>::Type BVH_Array2f;
 //! Array of 3D vectors of single precision reals.
-typedef BVH::ArrayType<Standard_ShortReal, 3>::Type BVH_Array3f;
+typedef BVH::ArrayType<float, 3>::Type BVH_Array3f;
 //! Array of 4D vectors of single precision reals.
-typedef BVH::ArrayType<Standard_ShortReal, 4>::Type BVH_Array4f;
+typedef BVH::ArrayType<float, 4>::Type BVH_Array4f;
 
 //! 2D vector of double precision reals.
-typedef BVH::VectorType<Standard_Real, 2>::Type BVH_Vec2d;
+typedef BVH::VectorType<double, 2>::Type BVH_Vec2d;
 //! 3D vector of double precision reals.
-typedef BVH::VectorType<Standard_Real, 3>::Type BVH_Vec3d;
+typedef BVH::VectorType<double, 3>::Type BVH_Vec3d;
 //! 4D vector of double precision reals.
-typedef BVH::VectorType<Standard_Real, 4>::Type BVH_Vec4d;
+typedef BVH::VectorType<double, 4>::Type BVH_Vec4d;
 
 //! Array of 2D vectors of double precision reals.
-typedef BVH::ArrayType<Standard_Real, 2>::Type BVH_Array2d;
+typedef BVH::ArrayType<double, 2>::Type BVH_Array2d;
 //! Array of 3D vectors of double precision reals.
-typedef BVH::ArrayType<Standard_Real, 3>::Type BVH_Array3d;
+typedef BVH::ArrayType<double, 3>::Type BVH_Array3d;
 //! Array of 4D vectors of double precision reals.
-typedef BVH::ArrayType<Standard_Real, 4>::Type BVH_Array4d;
+typedef BVH::ArrayType<double, 4>::Type BVH_Array4d;
 
 //! 4x4 matrix of single precision reals.
-typedef BVH::MatrixType<Standard_ShortReal, 4>::Type BVH_Mat4f;
+typedef BVH::MatrixType<float, 4>::Type BVH_Mat4f;
 
 //! 4x4 matrix of double precision reals.
-typedef BVH::MatrixType<Standard_Real, 4>::Type BVH_Mat4d;
+typedef BVH::MatrixType<double, 4>::Type BVH_Mat4d;
 
 namespace BVH
 {
@@ -188,7 +174,7 @@ struct VecComp<T, 2>
 {
   typedef typename BVH::VectorType<T, 2>::Type BVH_Vec2t;
 
-  static T Get(const BVH_Vec2t& theVec, const Standard_Integer theAxis)
+  static constexpr T Get(const BVH_Vec2t& theVec, const int theAxis)
   {
     return theAxis == 0 ? theVec.x() : theVec.y();
   }
@@ -199,7 +185,7 @@ struct VecComp<T, 3>
 {
   typedef typename BVH::VectorType<T, 3>::Type BVH_Vec3t;
 
-  static T Get(const BVH_Vec3t& theVec, const Standard_Integer theAxis)
+  static constexpr T Get(const BVH_Vec3t& theVec, const int theAxis)
   {
     return theAxis == 0 ? theVec.x() : (theAxis == 1 ? theVec.y() : theVec.z());
   }
@@ -210,15 +196,14 @@ struct VecComp<T, 4>
 {
   typedef typename BVH::VectorType<T, 4>::Type BVH_Vec4t;
 
-  static T Get(const BVH_Vec4t& theVec, const Standard_Integer theAxis)
+  static constexpr T Get(const BVH_Vec4t& theVec, const int theAxis)
   {
     return theAxis == 0 ? theVec.x()
                         : (theAxis == 1 ? theVec.y() : (theAxis == 2 ? theVec.z() : theVec.w()));
   }
 };
 
-//! Tool class providing typical operations on the array. It allows
-//! for interoperability between STD vector and NCollection vector.
+//! Tool class providing typical operations on the array.
 //! \tparam T Numeric data type
 //! \tparam N Component number
 template <class T, int N = 1>
@@ -227,86 +212,46 @@ struct Array
   typedef typename BVH::ArrayType<T, N>::Type BVH_ArrayNt;
 
   //! Returns a const reference to the element with the given index.
-  static inline const typename BVH::VectorType<T, N>::Type& Value(const BVH_ArrayNt&     theArray,
-                                                                  const Standard_Integer theIndex)
+  static inline const typename BVH::VectorType<T, N>::Type& Value(const BVH_ArrayNt& theArray,
+                                                                  const int          theIndex)
   {
-#ifdef _BVH_USE_STD_VECTOR_
-    return theArray[theIndex];
-#else
     return theArray.Value(theIndex);
-#endif
   }
 
   //! Returns a reference to the element with the given index.
-  static inline typename BVH::VectorType<T, N>::Type& ChangeValue(BVH_ArrayNt&           theArray,
-                                                                  const Standard_Integer theIndex)
+  static inline typename BVH::VectorType<T, N>::Type& ChangeValue(BVH_ArrayNt& theArray,
+                                                                  const int    theIndex)
   {
-#ifdef _BVH_USE_STD_VECTOR_
-    return theArray[theIndex];
-#else
     return theArray.ChangeValue(theIndex);
-#endif
   }
 
   //! Adds the new element at the end of the array.
   static inline void Append(BVH_ArrayNt&                                theArray,
                             const typename BVH::VectorType<T, N>::Type& theElement)
   {
-#ifdef _BVH_USE_STD_VECTOR_
-    theArray.push_back(theElement);
-#else
     theArray.Append(theElement);
-#endif
   }
 
   //! Returns the number of elements in the given array.
-  static inline Standard_Integer Size(const BVH_ArrayNt& theArray)
-  {
-#ifdef _BVH_USE_STD_VECTOR_
-    return static_cast<Standard_Integer>(theArray.size());
-#else
-    return static_cast<Standard_Integer>(theArray.Size());
-#endif
-  }
+  static inline int Size(const BVH_ArrayNt& theArray) { return static_cast<int>(theArray.Size()); }
 
   //! Removes all elements from the given array.
-  static inline void Clear(BVH_ArrayNt& theArray)
-  {
-#ifdef _BVH_USE_STD_VECTOR_
-    theArray.clear();
-#else
-    theArray.Clear();
-#endif
-  }
+  static inline void Clear(BVH_ArrayNt& theArray) { theArray.Clear(); }
 
   //! Requests that the array capacity be at least enough to
-  //! contain given number of elements. This function has no
-  //! effect in case of NCollection based array.
-  static inline void Reserve(BVH_ArrayNt& theArray, const Standard_Integer theCount)
+  //! contain given number of elements.
+  static inline void Reserve(BVH_ArrayNt& theArray, const int theCount)
   {
-#ifdef _BVH_USE_STD_VECTOR_
-    if (Size(theArray) == theCount)
-    {
-  #ifdef _STD_VECTOR_SHRINK
-      theArray.shrink_to_fit();
-  #endif
-    }
-    else
-    {
-      theArray.reserve(theCount);
-    }
-#else
-      // do nothing
-#endif
+    theArray.Reserve(theCount);
   }
 };
 
 template <class T>
-static inline Standard_Integer IntFloor(const T theValue)
+static inline constexpr int IntFloor(const T theValue)
 {
-  const Standard_Integer aRes = static_cast<Standard_Integer>(theValue);
+  const int aRes = static_cast<int>(theValue);
 
-  return aRes - static_cast<Standard_Integer>(aRes > theValue);
+  return aRes - static_cast<int>(aRes > theValue);
 }
 } // namespace BVH
 

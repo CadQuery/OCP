@@ -1,7 +1,4 @@
-// Created on : Thu May 14 15:13:19 2020
-// Created by: Igor KHOZHANOV
-// Generator:	Express (EXPRESS -> CASCADE/XSTEP Translator) V2.0
-// Copyright (c) Open CASCADE 2020
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,13 +11,25 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef StepVisual_HArray1OfRenderingPropertiesSelect_HeaderFile
-#define StepVisual_HArray1OfRenderingPropertiesSelect_HeaderFile
+//! @file StepVisual_HArray1OfRenderingPropertiesSelect.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection_HArray1<StepVisual_RenderingPropertiesSelect> directly instead.
 
+#ifndef _StepVisual_HArray1OfRenderingPropertiesSelect_hxx
+#define _StepVisual_HArray1OfRenderingPropertiesSelect_hxx
+
+#include <Standard_Macro.hxx>
 #include <StepVisual_Array1OfRenderingPropertiesSelect.hxx>
-#include <NCollection_DefineHArray1.hxx>
+#include <NCollection_HArray1.hxx>
 
-DEFINE_HARRAY1(StepVisual_HArray1OfRenderingPropertiesSelect,
-               StepVisual_Array1OfRenderingPropertiesSelect)
+Standard_HEADER_DEPRECATED(
+  "StepVisual_HArray1OfRenderingPropertiesSelect.hxx is deprecated since OCCT 8.0.0. Use "
+  "NCollection_HArray1<StepVisual_RenderingPropertiesSelect> directly.")
 
-#endif
+  Standard_DEPRECATED("StepVisual_HArray1OfRenderingPropertiesSelect is deprecated, use "
+                      "NCollection_HArray1<StepVisual_RenderingPropertiesSelect> directly")
+typedef NCollection_HArray1<StepVisual_RenderingPropertiesSelect>
+  StepVisual_HArray1OfRenderingPropertiesSelect;
+
+#endif // _StepVisual_HArray1OfRenderingPropertiesSelect_hxx

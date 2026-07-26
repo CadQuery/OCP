@@ -16,7 +16,16 @@
 #ifndef _Graphic3d_ShaderVariable_HeaderFile
 #define _Graphic3d_ShaderVariable_HeaderFile
 
-#include <Graphic3d_Vec.hxx>
+#include <NCollection_Vec2.hxx>
+
+#include <Standard_TypeDef.hxx>
+
+#include <NCollection_Vec3.hxx>
+
+#include <NCollection_Vec4.hxx>
+
+#include <NCollection_Mat3.hxx>
+#include <NCollection_Mat4.hxx>
 #include <Standard_Transient.hxx>
 #include <TCollection_AsciiString.hxx>
 
@@ -27,7 +36,7 @@ struct Graphic3d_ValueInterface
   Standard_EXPORT virtual ~Graphic3d_ValueInterface();
 
   //! Returns unique identifier of value type.
-  virtual Standard_Size TypeID() const = 0;
+  virtual size_t TypeID() const = 0;
 
   //! Returns variable value casted to specified type.
   template <class T>
@@ -46,51 +55,63 @@ struct Graphic3d_UniformValueTypeID
 };
 
 template <>
-struct Graphic3d_UniformValueTypeID<Standard_Integer>
+struct Graphic3d_UniformValueTypeID<int>
 {
-  static const Standard_Size ID = __LINE__;
+  static const size_t ID = __LINE__;
 };
 
 template <>
-struct Graphic3d_UniformValueTypeID<Standard_ShortReal>
+struct Graphic3d_UniformValueTypeID<float>
 {
-  static const Standard_Size ID = __LINE__;
+  static const size_t ID = __LINE__;
 };
 
 template <>
-struct Graphic3d_UniformValueTypeID<Graphic3d_Vec2>
+struct Graphic3d_UniformValueTypeID<NCollection_Vec2<float>>
 {
-  static const Standard_Size ID = __LINE__;
+  static const size_t ID = __LINE__;
 };
 
 template <>
-struct Graphic3d_UniformValueTypeID<Graphic3d_Vec3>
+struct Graphic3d_UniformValueTypeID<NCollection_Vec3<float>>
 {
-  static const Standard_Size ID = __LINE__;
+  static const size_t ID = __LINE__;
 };
 
 template <>
-struct Graphic3d_UniformValueTypeID<Graphic3d_Vec4>
+struct Graphic3d_UniformValueTypeID<NCollection_Vec4<float>>
 {
-  static const Standard_Size ID = __LINE__;
+  static const size_t ID = __LINE__;
 };
 
 template <>
-struct Graphic3d_UniformValueTypeID<Graphic3d_Vec2i>
+struct Graphic3d_UniformValueTypeID<NCollection_Vec2<int>>
 {
-  static const Standard_Size ID = __LINE__;
+  static const size_t ID = __LINE__;
 };
 
 template <>
-struct Graphic3d_UniformValueTypeID<Graphic3d_Vec3i>
+struct Graphic3d_UniformValueTypeID<NCollection_Vec3<int>>
 {
-  static const Standard_Size ID = __LINE__;
+  static const size_t ID = __LINE__;
 };
 
 template <>
-struct Graphic3d_UniformValueTypeID<Graphic3d_Vec4i>
+struct Graphic3d_UniformValueTypeID<NCollection_Vec4<int>>
 {
-  static const Standard_Size ID = __LINE__;
+  static const size_t ID = __LINE__;
+};
+
+template <>
+struct Graphic3d_UniformValueTypeID<NCollection_Mat3<float>>
+{
+  static const size_t ID = __LINE__;
+};
+
+template <>
+struct Graphic3d_UniformValueTypeID<NCollection_Mat4<float>>
+{
+  static const size_t ID = __LINE__;
 };
 
 //! Describes specific value of custom uniform variable.
@@ -104,48 +125,54 @@ struct Graphic3d_UniformValue : public Graphic3d_ValueInterface
   }
 
   //! Returns unique identifier of value type.
-  virtual Standard_Size TypeID() const;
+  size_t TypeID() const override;
 
   //! Value of custom uniform variable.
   T Value;
 };
 
 //! Integer uniform value.
-typedef Graphic3d_UniformValue<Standard_Integer> Graphic3d_UniformInt;
+typedef Graphic3d_UniformValue<int> Graphic3d_UniformInt;
 
 //! Integer uniform 2D vector.
-typedef Graphic3d_UniformValue<Graphic3d_Vec2i> Graphic3d_UniformVec2i;
+typedef Graphic3d_UniformValue<NCollection_Vec2<int>> Graphic3d_UniformVec2i;
 
 //! Integer uniform 3D vector.
-typedef Graphic3d_UniformValue<Graphic3d_Vec3i> Graphic3d_UniformVec3i;
+typedef Graphic3d_UniformValue<NCollection_Vec3<int>> Graphic3d_UniformVec3i;
 
 //! Integer uniform 4D vector.
-typedef Graphic3d_UniformValue<Graphic3d_Vec4i> Graphic3d_UniformVec4i;
+typedef Graphic3d_UniformValue<NCollection_Vec4<int>> Graphic3d_UniformVec4i;
 
 //! Floating-point uniform value.
-typedef Graphic3d_UniformValue<Standard_ShortReal> Graphic3d_UniformFloat;
+typedef Graphic3d_UniformValue<float> Graphic3d_UniformFloat;
 
 //! Floating-point uniform 2D vector.
-typedef Graphic3d_UniformValue<Graphic3d_Vec2> Graphic3d_UniformVec2;
+typedef Graphic3d_UniformValue<NCollection_Vec2<float>> Graphic3d_UniformVec2;
 
 //! Floating-point uniform 3D vector.
-typedef Graphic3d_UniformValue<Graphic3d_Vec3> Graphic3d_UniformVec3;
+typedef Graphic3d_UniformValue<NCollection_Vec3<float>> Graphic3d_UniformVec3;
 
 //! Floating-point uniform 4D vector.
-typedef Graphic3d_UniformValue<Graphic3d_Vec4> Graphic3d_UniformVec4;
+typedef Graphic3d_UniformValue<NCollection_Vec4<float>> Graphic3d_UniformVec4;
+
+//! Floating-point uniform 3x3 matrix.
+typedef Graphic3d_UniformValue<NCollection_Mat3<float>> Graphic3d_UniformMat3;
+
+//! Floating-point uniform 4x4 matrix.
+typedef Graphic3d_UniformValue<NCollection_Mat4<float>> Graphic3d_UniformMat4;
 
 //! Describes custom uniform shader variable.
 class Graphic3d_ShaderVariable : public Standard_Transient
 {
 public:
   //! Releases resources of shader variable.
-  Standard_EXPORT virtual ~Graphic3d_ShaderVariable();
+  Standard_EXPORT ~Graphic3d_ShaderVariable() override;
 
   //! Returns name of shader variable.
   Standard_EXPORT const TCollection_AsciiString& Name() const;
 
   //! Checks if the shader variable is valid or not.
-  Standard_EXPORT Standard_Boolean IsDone() const;
+  Standard_EXPORT bool IsDone() const;
 
   //! Returns interface of shader variable value.
   Standard_EXPORT Graphic3d_ValueInterface* Value();
@@ -169,8 +196,6 @@ protected:
   //! The generic value of shader variable.
   Graphic3d_ValueInterface* myValue;
 };
-
-DEFINE_STANDARD_HANDLE(Graphic3d_ShaderVariable, Standard_Transient)
 
 #include <Graphic3d_ShaderVariable.lxx>
 

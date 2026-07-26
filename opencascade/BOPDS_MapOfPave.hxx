@@ -1,5 +1,4 @@
-// Created by: Eugeny MALTCHIKOV
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -12,13 +11,25 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef BOPDS_MapOfPave_HeaderFile
-#define BOPDS_MapOfPave_HeaderFile
+//! @file BOPDS_MapOfPave.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection types directly instead.
 
+#ifndef _BOPDS_MapOfPave_hxx
+#define _BOPDS_MapOfPave_hxx
+
+#include <Standard_Macro.hxx>
 #include <NCollection_Map.hxx>
 #include <BOPDS_Pave.hxx>
 
-typedef NCollection_Map<BOPDS_Pave> BOPDS_MapOfPave;
-typedef BOPDS_MapOfPave::Iterator   BOPDS_MapIteratorOfMapOfPave;
+Standard_HEADER_DEPRECATED(
+  "BOPDS_MapOfPave.hxx is deprecated since OCCT 8.0.0. Use NCollection types directly.")
 
-#endif
+  Standard_DEPRECATED("BOPDS_MapOfPave is deprecated, use NCollection_Map<BOPDS_Pave> directly")
+typedef NCollection_Map<BOPDS_Pave> BOPDS_MapOfPave;
+Standard_DEPRECATED(
+  "BOPDS_MapIteratorOfMapOfPave is deprecated, use NCollection_Map<BOPDS_Pave>::Iterator directly")
+typedef NCollection_Map<BOPDS_Pave>::Iterator BOPDS_MapIteratorOfMapOfPave;
+
+#endif // _BOPDS_MapOfPave_hxx

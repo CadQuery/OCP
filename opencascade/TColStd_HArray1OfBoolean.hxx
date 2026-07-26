@@ -1,5 +1,4 @@
-// Copyright (c) 1998-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -12,12 +11,23 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef TColStd_HArray1OfBoolean_HeaderFile
-#define TColStd_HArray1OfBoolean_HeaderFile
+//! @file TColStd_HArray1OfBoolean.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection_HArray1<bool> directly instead.
 
+#ifndef _TColStd_HArray1OfBoolean_hxx
+#define _TColStd_HArray1OfBoolean_hxx
+
+#include <Standard_Macro.hxx>
 #include <TColStd_Array1OfBoolean.hxx>
-#include <NCollection_DefineHArray1.hxx>
+#include <NCollection_HArray1.hxx>
 
-DEFINE_HARRAY1(TColStd_HArray1OfBoolean, TColStd_Array1OfBoolean)
+Standard_HEADER_DEPRECATED("TColStd_HArray1OfBoolean.hxx is deprecated since OCCT 8.0.0. Use "
+                           "NCollection_HArray1<bool> directly.")
 
-#endif
+  Standard_DEPRECATED(
+    "TColStd_HArray1OfBoolean is deprecated, use NCollection_HArray1<bool> directly")
+typedef NCollection_HArray1<bool> TColStd_HArray1OfBoolean;
+
+#endif // _TColStd_HArray1OfBoolean_hxx

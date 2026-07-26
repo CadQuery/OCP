@@ -1,7 +1,4 @@
-// Created on: 1991-06-27
-// Created by: Remi LEQUETTE
-// Copyright (c) 1991-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,14 +11,29 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef BRep_ListOfPointRepresentation_HeaderFile
-#define BRep_ListOfPointRepresentation_HeaderFile
+//! @file BRep_ListOfPointRepresentation.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection types directly instead.
 
+#ifndef _BRep_ListOfPointRepresentation_hxx
+#define _BRep_ListOfPointRepresentation_hxx
+
+#include <Standard_Macro.hxx>
 #include <BRep_PointRepresentation.hxx>
 #include <NCollection_List.hxx>
 
-typedef NCollection_List<Handle(BRep_PointRepresentation)> BRep_ListOfPointRepresentation;
-typedef NCollection_List<Handle(BRep_PointRepresentation)>::Iterator
+Standard_HEADER_DEPRECATED("BRep_ListOfPointRepresentation.hxx is deprecated since OCCT 8.0.0. Use "
+                           "NCollection types directly.")
+
+  Standard_DEPRECATED("BRep_ListOfPointRepresentation is deprecated, use "
+                      "NCollection_List<opencascade::handle<BRep_PointRepresentation>> directly")
+typedef NCollection_List<opencascade::handle<BRep_PointRepresentation>>
+  BRep_ListOfPointRepresentation;
+Standard_DEPRECATED(
+  "BRep_ListIteratorOfListOfPointRepresentation is deprecated, use "
+  "NCollection_List<opencascade::handle<BRep_PointRepresentation>>::Iterator directly")
+typedef NCollection_List<opencascade::handle<BRep_PointRepresentation>>::Iterator
   BRep_ListIteratorOfListOfPointRepresentation;
 
-#endif
+#endif // _BRep_ListOfPointRepresentation_hxx

@@ -1,7 +1,4 @@
-// Created on: 1994-02-03
-// Created by: Jean Marc LACHAUME
-// Copyright (c) 1994-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,15 +11,28 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef Geom2dHatch_Hatchings_HeaderFile
-#define Geom2dHatch_Hatchings_HeaderFile
+//! @file Geom2dHatch_Hatchings.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection types directly instead.
 
+#ifndef _Geom2dHatch_Hatchings_hxx
+#define _Geom2dHatch_Hatchings_hxx
+
+#include <Standard_Macro.hxx>
 #include <Standard_Integer.hxx>
 #include <Geom2dHatch_Hatching.hxx>
 #include <NCollection_DataMap.hxx>
 
-typedef NCollection_DataMap<Standard_Integer, Geom2dHatch_Hatching> Geom2dHatch_Hatchings;
-typedef NCollection_DataMap<Standard_Integer, Geom2dHatch_Hatching>::Iterator
+Standard_HEADER_DEPRECATED(
+  "Geom2dHatch_Hatchings.hxx is deprecated since OCCT 8.0.0. Use NCollection types directly.")
+
+  Standard_DEPRECATED("Geom2dHatch_Hatchings is deprecated, use NCollection_DataMap<int, "
+                      "Geom2dHatch_Hatching> directly")
+typedef NCollection_DataMap<int, Geom2dHatch_Hatching> Geom2dHatch_Hatchings;
+Standard_DEPRECATED("Geom2dHatch_DataMapIteratorOfHatchings is deprecated, use "
+                    "NCollection_DataMap<int, Geom2dHatch_Hatching>::Iterator directly")
+typedef NCollection_DataMap<int, Geom2dHatch_Hatching>::Iterator
   Geom2dHatch_DataMapIteratorOfHatchings;
 
-#endif
+#endif // _Geom2dHatch_Hatchings_hxx

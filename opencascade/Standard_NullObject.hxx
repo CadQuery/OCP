@@ -17,13 +17,9 @@
 #ifndef _Standard_NullObject_HeaderFile
 #define _Standard_NullObject_HeaderFile
 
-#include <Standard_Type.hxx>
 #include <Standard_DefineException.hxx>
 #include <Standard_SStream.hxx>
 #include <Standard_DomainError.hxx>
-
-class Standard_NullObject;
-DEFINE_STANDARD_HANDLE(Standard_NullObject, Standard_DomainError)
 
 #if !defined No_Exception && !defined No_Standard_NullObject
   #define Standard_NullObject_Raise_if(CONDITION, MESSAGE)                                         \

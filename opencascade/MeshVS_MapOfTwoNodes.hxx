@@ -1,6 +1,4 @@
-// Created on: 2003-10-10
-// Created by: Alexander SOLOVYOV
-// Copyright (c) 2003-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -13,13 +11,26 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef MeshVS_MapOfTwoNodes_HeaderFile
-#define MeshVS_MapOfTwoNodes_HeaderFile
+//! @file MeshVS_MapOfTwoNodes.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection types directly instead.
 
+#ifndef _MeshVS_MapOfTwoNodes_hxx
+#define _MeshVS_MapOfTwoNodes_hxx
+
+#include <Standard_Macro.hxx>
 #include <MeshVS_TwoNodes.hxx>
 #include <NCollection_Map.hxx>
 
-typedef NCollection_Map<MeshVS_TwoNodes>           MeshVS_MapOfTwoNodes;
+Standard_HEADER_DEPRECATED(
+  "MeshVS_MapOfTwoNodes.hxx is deprecated since OCCT 8.0.0. Use NCollection types directly.")
+
+  Standard_DEPRECATED(
+    "MeshVS_MapOfTwoNodes is deprecated, use NCollection_Map<MeshVS_TwoNodes> directly")
+typedef NCollection_Map<MeshVS_TwoNodes> MeshVS_MapOfTwoNodes;
+Standard_DEPRECATED("MeshVS_MapIteratorOfMapOfTwoNodes is deprecated, use "
+                    "NCollection_Map<MeshVS_TwoNodes>::Iterator directly")
 typedef NCollection_Map<MeshVS_TwoNodes>::Iterator MeshVS_MapIteratorOfMapOfTwoNodes;
 
-#endif
+#endif // _MeshVS_MapOfTwoNodes_hxx

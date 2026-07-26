@@ -31,64 +31,111 @@ public:
 
   Standard_EXPORT IntPatch_ThePathPointOfTheSOnBounds();
 
-  Standard_EXPORT IntPatch_ThePathPointOfTheSOnBounds(const gp_Pnt&                    P,
-                                                      const Standard_Real              Tol,
-                                                      const Handle(Adaptor3d_HVertex)& V,
-                                                      const Handle(Adaptor2d_Curve2d)& A,
-                                                      const Standard_Real              Parameter);
+  Standard_EXPORT IntPatch_ThePathPointOfTheSOnBounds(const gp_Pnt&                         P,
+                                                      const double                          Tol,
+                                                      const occ::handle<Adaptor3d_HVertex>& V,
+                                                      const occ::handle<Adaptor2d_Curve2d>& A,
+                                                      const double Parameter);
 
-  Standard_EXPORT IntPatch_ThePathPointOfTheSOnBounds(const gp_Pnt&                    P,
-                                                      const Standard_Real              Tol,
-                                                      const Handle(Adaptor2d_Curve2d)& A,
-                                                      const Standard_Real              Parameter);
+  Standard_EXPORT IntPatch_ThePathPointOfTheSOnBounds(const gp_Pnt&                         P,
+                                                      const double                          Tol,
+                                                      const occ::handle<Adaptor2d_Curve2d>& A,
+                                                      const double Parameter);
 
-  void SetValue(const gp_Pnt&                    P,
-                const Standard_Real              Tol,
-                const Handle(Adaptor3d_HVertex)& V,
-                const Handle(Adaptor2d_Curve2d)& A,
-                const Standard_Real              Parameter);
+  void SetValue(const gp_Pnt&                         P,
+                const double                          Tol,
+                const occ::handle<Adaptor3d_HVertex>& V,
+                const occ::handle<Adaptor2d_Curve2d>& A,
+                const double                          Parameter);
 
-  void SetValue(const gp_Pnt&                    P,
-                const Standard_Real              Tol,
-                const Handle(Adaptor2d_Curve2d)& A,
-                const Standard_Real              Parameter);
+  void SetValue(const gp_Pnt&                         P,
+                const double                          Tol,
+                const occ::handle<Adaptor2d_Curve2d>& A,
+                const double                          Parameter);
 
   const gp_Pnt& Value() const;
 
-  Standard_Real Tolerance() const;
+  double Tolerance() const;
 
-  Standard_Boolean IsNew() const;
+  bool IsNew() const;
 
-  const Handle(Adaptor3d_HVertex)& Vertex() const;
+  const occ::handle<Adaptor3d_HVertex>& Vertex() const;
 
-  const Handle(Adaptor2d_Curve2d)& Arc() const;
+  const occ::handle<Adaptor2d_Curve2d>& Arc() const;
 
-  Standard_Real Parameter() const;
+  double Parameter() const;
 
-protected:
 private:
-  gp_Pnt                    point;
-  Standard_Real             tol;
-  Standard_Boolean          isnew;
-  Handle(Adaptor3d_HVertex) vtx;
-  Handle(Adaptor2d_Curve2d) arc;
-  Standard_Real             param;
+  gp_Pnt                         point;
+  double                         tol;
+  bool                           isnew;
+  occ::handle<Adaptor3d_HVertex> vtx;
+  occ::handle<Adaptor2d_Curve2d> arc;
+  double                         param;
 };
 
-#define TheVertex Handle(Adaptor3d_HVertex)
-#define TheVertex_hxx <Adaptor3d_HVertex.hxx>
-#define TheArc Handle(Adaptor2d_Curve2d)
-#define TheArc_hxx <Adaptor2d_Curve2d.hxx>
-#define IntStart_PathPoint IntPatch_ThePathPointOfTheSOnBounds
-#define IntStart_PathPoint_hxx <IntPatch_ThePathPointOfTheSOnBounds.hxx>
+//=================================================================================================
+// Inline implementations
+//=================================================================================================
 
-#include <IntStart_PathPoint.lxx>
+inline void IntPatch_ThePathPointOfTheSOnBounds::SetValue(const gp_Pnt&                         P,
+                                                          const double                          Tol,
+                                                          const occ::handle<Adaptor3d_HVertex>& V,
+                                                          const occ::handle<Adaptor2d_Curve2d>& A,
+                                                          const double Parameter)
+{
+  isnew = false;
+  point = P;
+  tol   = Tol;
+  vtx   = V;
+  arc   = A;
+  param = Parameter;
+}
 
-#undef TheVertex
-#undef TheVertex_hxx
-#undef TheArc
-#undef TheArc_hxx
-#undef IntStart_PathPoint
-#undef IntStart_PathPoint_hxx
+inline void IntPatch_ThePathPointOfTheSOnBounds::SetValue(const gp_Pnt&                         P,
+                                                          const double                          Tol,
+                                                          const occ::handle<Adaptor2d_Curve2d>& A,
+                                                          const double Parameter)
+{
+  isnew = true;
+  point = P;
+  tol   = Tol;
+  arc   = A;
+  param = Parameter;
+}
+
+inline const gp_Pnt& IntPatch_ThePathPointOfTheSOnBounds::Value() const
+{
+  return point;
+}
+
+inline double IntPatch_ThePathPointOfTheSOnBounds::Tolerance() const
+{
+  return tol;
+}
+
+inline bool IntPatch_ThePathPointOfTheSOnBounds::IsNew() const
+{
+  return isnew;
+}
+
+inline const occ::handle<Adaptor3d_HVertex>& IntPatch_ThePathPointOfTheSOnBounds::Vertex() const
+{
+  if (isnew)
+  {
+    throw Standard_DomainError();
+  }
+  return vtx;
+}
+
+inline const occ::handle<Adaptor2d_Curve2d>& IntPatch_ThePathPointOfTheSOnBounds::Arc() const
+{
+  return arc;
+}
+
+inline double IntPatch_ThePathPointOfTheSOnBounds::Parameter() const
+{
+  return param;
+}
 
 #endif // _IntPatch_ThePathPointOfTheSOnBounds_HeaderFile

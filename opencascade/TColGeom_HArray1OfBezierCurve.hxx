@@ -1,7 +1,4 @@
-// Created on: 1993-03-09
-// Created by: Philippe DAUTRY
-// Copyright (c) 1993-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,13 +11,24 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef TColGeom_HArray1OfBezierCurve_HeaderFile
-#define TColGeom_HArray1OfBezierCurve_HeaderFile
+//! @file TColGeom_HArray1OfBezierCurve.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection_HArray1<opencascade::handle<Geom_BezierCurve>> directly instead.
 
+#ifndef _TColGeom_HArray1OfBezierCurve_hxx
+#define _TColGeom_HArray1OfBezierCurve_hxx
+
+#include <Standard_Macro.hxx>
 #include <Geom_BezierCurve.hxx>
 #include <TColGeom_Array1OfBezierCurve.hxx>
-#include <NCollection_DefineHArray1.hxx>
+#include <NCollection_HArray1.hxx>
 
-DEFINE_HARRAY1(TColGeom_HArray1OfBezierCurve, TColGeom_Array1OfBezierCurve)
+Standard_HEADER_DEPRECATED("TColGeom_HArray1OfBezierCurve.hxx is deprecated since OCCT 8.0.0. Use "
+                           "NCollection_HArray1<opencascade::handle<Geom_BezierCurve>> directly.")
 
-#endif
+  Standard_DEPRECATED("TColGeom_HArray1OfBezierCurve is deprecated, use "
+                      "NCollection_HArray1<opencascade::handle<Geom_BezierCurve>> directly")
+typedef NCollection_HArray1<opencascade::handle<Geom_BezierCurve>> TColGeom_HArray1OfBezierCurve;
+
+#endif // _TColGeom_HArray1OfBezierCurve_hxx

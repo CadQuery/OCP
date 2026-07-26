@@ -1,7 +1,4 @@
-// Created on: 1999-06-10
-// Created by: Vladislav ROMASHKO
-// Copyright (c) 1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,15 +11,31 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef TFunction_DataMapOfGUIDDriver_HeaderFile
-#define TFunction_DataMapOfGUIDDriver_HeaderFile
+//! @file TFunction_DataMapOfGUIDDriver.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection types directly instead.
 
+#ifndef _TFunction_DataMapOfGUIDDriver_hxx
+#define _TFunction_DataMapOfGUIDDriver_hxx
+
+#include <Standard_Macro.hxx>
 #include <TFunction_Driver.hxx>
 #include <Standard_GUID.hxx>
 #include <NCollection_DataMap.hxx>
 
-typedef NCollection_DataMap<Standard_GUID, Handle(TFunction_Driver)> TFunction_DataMapOfGUIDDriver;
-typedef NCollection_DataMap<Standard_GUID, Handle(TFunction_Driver)>::Iterator
+Standard_HEADER_DEPRECATED("TFunction_DataMapOfGUIDDriver.hxx is deprecated since OCCT 8.0.0. Use "
+                           "NCollection types directly.")
+
+  Standard_DEPRECATED(
+    "TFunction_DataMapOfGUIDDriver is deprecated, use NCollection_DataMap<Standard_GUID, "
+    "opencascade::handle<TFunction_Driver>> directly")
+typedef NCollection_DataMap<Standard_GUID, opencascade::handle<TFunction_Driver>>
+  TFunction_DataMapOfGUIDDriver;
+Standard_DEPRECATED(
+  "TFunction_DataMapIteratorOfDataMapOfGUIDDriver is deprecated, use "
+  "NCollection_DataMap<Standard_GUID, opencascade::handle<TFunction_Driver>>::Iterator directly")
+typedef NCollection_DataMap<Standard_GUID, opencascade::handle<TFunction_Driver>>::Iterator
   TFunction_DataMapIteratorOfDataMapOfGUIDDriver;
 
-#endif
+#endif // _TFunction_DataMapOfGUIDDriver_hxx

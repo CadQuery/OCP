@@ -27,7 +27,7 @@ class TopoDS_Shell;
 class TopoDS_Solid;
 class TopoDS_Face;
 
-//! Makes a solid from compsolid  or  shells.
+//! Makes a solid from compsolid or shells.
 class BRepLib_MakeSolid : public BRepLib_MakeShape
 {
 public:
@@ -65,13 +65,10 @@ public:
 
   //! returns the status of the Face after
   //! the shape creation.
-  Standard_EXPORT virtual BRepLib_ShapeModification FaceStatus(const TopoDS_Face& F) const
-    Standard_OVERRIDE;
+  Standard_EXPORT BRepLib_ShapeModification FaceStatus(const TopoDS_Face& F) const override;
 
 protected:
-  TopTools_ListOfShape myDeletedFaces;
-
-private:
+  NCollection_List<TopoDS_Shape> myDeletedFaces;
 };
 
 #endif // _BRepLib_MakeSolid_HeaderFile

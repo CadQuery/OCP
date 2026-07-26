@@ -17,13 +17,9 @@
 #ifndef _Interface_InterfaceMismatch_HeaderFile
 #define _Interface_InterfaceMismatch_HeaderFile
 
-#include <Standard_Type.hxx>
 #include <Standard_DefineException.hxx>
 #include <Standard_SStream.hxx>
 #include <Interface_InterfaceError.hxx>
-
-class Interface_InterfaceMismatch;
-DEFINE_STANDARD_HANDLE(Interface_InterfaceMismatch, Interface_InterfaceError)
 
 #if !defined No_Exception && !defined No_Interface_InterfaceMismatch
   #define Interface_InterfaceMismatch_Raise_if(CONDITION, MESSAGE)                                 \

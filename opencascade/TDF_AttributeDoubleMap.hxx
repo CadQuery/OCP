@@ -1,6 +1,4 @@
-// Created by: DAUTRY Philippe
-// Copyright (c) 1997-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -13,15 +11,32 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef TDF_AttributeDoubleMap_HeaderFile
-#define TDF_AttributeDoubleMap_HeaderFile
+//! @file TDF_AttributeDoubleMap.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection types directly instead.
 
-#include <TDF_Attribute.hxx>
+#ifndef _TDF_AttributeDoubleMap_hxx
+#define _TDF_AttributeDoubleMap_hxx
+
+#include <Standard_Macro.hxx>
 #include <TDF_Attribute.hxx>
 #include <NCollection_DoubleMap.hxx>
 
-typedef NCollection_DoubleMap<Handle(TDF_Attribute), Handle(TDF_Attribute)> TDF_AttributeDoubleMap;
-typedef NCollection_DoubleMap<Handle(TDF_Attribute), Handle(TDF_Attribute)>::Iterator
+Standard_HEADER_DEPRECATED(
+  "TDF_AttributeDoubleMap.hxx is deprecated since OCCT 8.0.0. Use NCollection types directly.")
+
+  Standard_DEPRECATED("TDF_AttributeDoubleMap is deprecated, use "
+                      "NCollection_DoubleMap<opencascade::handle<TDF_Attribute>, "
+                      "opencascade::handle<TDF_Attribute>> directly")
+typedef NCollection_DoubleMap<opencascade::handle<TDF_Attribute>,
+                              opencascade::handle<TDF_Attribute>>
+  TDF_AttributeDoubleMap;
+Standard_DEPRECATED("TDF_DoubleMapIteratorOfAttributeDoubleMap is deprecated, use "
+                    "NCollection_DoubleMap<opencascade::handle<TDF_Attribute>, "
+                    "opencascade::handle<TDF_Attribute>>::Iterator directly")
+typedef NCollection_DoubleMap<opencascade::handle<TDF_Attribute>,
+                              opencascade::handle<TDF_Attribute>>::Iterator
   TDF_DoubleMapIteratorOfAttributeDoubleMap;
 
-#endif
+#endif // _TDF_AttributeDoubleMap_hxx

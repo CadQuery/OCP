@@ -1,7 +1,4 @@
-// Created on: 1991-10-10
-// Created by: Jean Claude VAUTHIER
-// Copyright (c) 1991-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,12 +11,25 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef Convert_SequenceOfArray1OfPoles_HeaderFile
-#define Convert_SequenceOfArray1OfPoles_HeaderFile
+//! @file Convert_SequenceOfArray1OfPoles.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection_Sequence<opencascade::handle<TColgp_HArray1OfPnt>> directly instead.
 
+#ifndef _Convert_SequenceOfArray1OfPoles_hxx
+#define _Convert_SequenceOfArray1OfPoles_hxx
+
+#include <Standard_Macro.hxx>
 #include <TColgp_HArray1OfPnt.hxx>
 #include <NCollection_Sequence.hxx>
 
-typedef NCollection_Sequence<Handle(TColgp_HArray1OfPnt)> Convert_SequenceOfArray1OfPoles;
+Standard_HEADER_DEPRECATED(
+  "Convert_SequenceOfArray1OfPoles.hxx is deprecated since OCCT 8.0.0. Use "
+  "NCollection_Sequence<opencascade::handle<TColgp_HArray1OfPnt>> directly.")
 
-#endif
+  Standard_DEPRECATED("Convert_SequenceOfArray1OfPoles is deprecated, use "
+                      "NCollection_Sequence<opencascade::handle<TColgp_HArray1OfPnt>> directly")
+typedef NCollection_Sequence<opencascade::handle<TColgp_HArray1OfPnt>>
+  Convert_SequenceOfArray1OfPoles;
+
+#endif // _Convert_SequenceOfArray1OfPoles_hxx

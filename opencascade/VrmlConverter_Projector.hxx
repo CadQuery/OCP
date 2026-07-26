@@ -30,32 +30,30 @@
 #include <VrmlConverter_TypeOfLight.hxx>
 #include <Vrml_MatrixTransform.hxx>
 #include <Standard_Transient.hxx>
-#include <TopTools_Array1OfShape.hxx>
+#include <TopoDS_Shape.hxx>
+#include <NCollection_Array1.hxx>
 #include <Standard_OStream.hxx>
 
-class VrmlConverter_Projector;
-DEFINE_STANDARD_HANDLE(VrmlConverter_Projector, Standard_Transient)
-
-//! defines projector  and calculates properties of cameras and lights from Vrml
-//! ( OrthograpicCamera, PerspectiveCamera, DirectionalLight, PointLight, SpotLight
-//! and  MatrixTransform  )  to display all scene  shapes  with  arbitrary locations
-//! for requested the Projection Vector,  High Point Direction and the Focus
-//! and adds them ( method Add ) to anOSream.
+//! defines projector and calculates properties of cameras and lights from Vrml
+//! (OrthograpicCamera, PerspectiveCamera, DirectionalLight, PointLight, SpotLight
+//! and MatrixTransform) to display all scene shapes with arbitrary locations
+//! for requested the Projection Vector, High Point Direction and the Focus
+//! and adds them (method Add) to anOSream.
 class VrmlConverter_Projector : public Standard_Transient
 {
 
 public:
   Standard_EXPORT VrmlConverter_Projector(
-    const TopTools_Array1OfShape&    Shapes,
-    const Standard_Real              Focus,
-    const Standard_Real              DX,
-    const Standard_Real              DY,
-    const Standard_Real              DZ,
-    const Standard_Real              XUp,
-    const Standard_Real              YUp,
-    const Standard_Real              ZUp,
-    const VrmlConverter_TypeOfCamera Camera = VrmlConverter_NoCamera,
-    const VrmlConverter_TypeOfLight  Light  = VrmlConverter_NoLight);
+    const NCollection_Array1<TopoDS_Shape>& Shapes,
+    const double                            Focus,
+    const double                            DX,
+    const double                            DY,
+    const double                            DZ,
+    const double                            XUp,
+    const double                            YUp,
+    const double                            ZUp,
+    const VrmlConverter_TypeOfCamera        Camera = VrmlConverter_NoCamera,
+    const VrmlConverter_TypeOfLight         Light  = VrmlConverter_NoLight);
 
   Standard_EXPORT void SetCamera(const VrmlConverter_TypeOfCamera aCamera);
 
@@ -65,13 +63,13 @@ public:
 
   Standard_EXPORT VrmlConverter_TypeOfLight Light() const;
 
-  //! Adds  into anOStream  if  they  are  defined in  Create.
+  //! Adds into anOStream if they are defined in Create.
   //! PerspectiveCamera,
   //! OrthographicCamera,
   //! DirectionLight,
   //! PointLight,
   //! SpotLight
-  //! with  MatrixTransform  from VrmlConverter;
+  //! with MatrixTransform from VrmlConverter;
   Standard_EXPORT void Add(Standard_OStream& anOStream) const;
 
   Standard_EXPORT HLRAlgo_Projector Projector() const;

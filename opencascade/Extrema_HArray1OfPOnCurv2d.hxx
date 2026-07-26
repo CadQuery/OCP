@@ -1,7 +1,4 @@
-// Created on: 1991-02-26
-// Created by: Isabelle GRIGNON
-// Copyright (c) 1991-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,13 +11,24 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef Extrema_HArray1OfPOnCurv2d_HeaderFile
-#define Extrema_HArray1OfPOnCurv2d_HeaderFile
+//! @file Extrema_HArray1OfPOnCurv2d.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection_HArray1<Extrema_POnCurv2d> directly instead.
 
+#ifndef _Extrema_HArray1OfPOnCurv2d_hxx
+#define _Extrema_HArray1OfPOnCurv2d_hxx
+
+#include <Standard_Macro.hxx>
 #include <Extrema_POnCurv2d.hxx>
 #include <Extrema_Array1OfPOnCurv2d.hxx>
-#include <NCollection_DefineHArray1.hxx>
+#include <NCollection_HArray1.hxx>
 
-DEFINE_HARRAY1(Extrema_HArray1OfPOnCurv2d, Extrema_Array1OfPOnCurv2d)
+Standard_HEADER_DEPRECATED("Extrema_HArray1OfPOnCurv2d.hxx is deprecated since OCCT 8.0.0. Use "
+                           "NCollection_HArray1<Extrema_POnCurv2d> directly.")
 
-#endif
+  Standard_DEPRECATED(
+    "Extrema_HArray1OfPOnCurv2d is deprecated, use NCollection_HArray1<Extrema_POnCurv2d> directly")
+typedef NCollection_HArray1<Extrema_POnCurv2d> Extrema_HArray1OfPOnCurv2d;
+
+#endif // _Extrema_HArray1OfPOnCurv2d_hxx

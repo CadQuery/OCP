@@ -1,6 +1,4 @@
-// Created on: 2000-04-09
-// Created by: Sergey MOZOKHIN
-// Copyright (c) 2000-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -13,17 +11,33 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef STEPCAFControl_DataMapOfPDExternFile_HeaderFile
-#define STEPCAFControl_DataMapOfPDExternFile_HeaderFile
+//! @file STEPCAFControl_DataMapOfPDExternFile.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection types directly instead.
 
+#ifndef _STEPCAFControl_DataMapOfPDExternFile_hxx
+#define _STEPCAFControl_DataMapOfPDExternFile_hxx
+
+#include <Standard_Macro.hxx>
 #include <StepBasic_ProductDefinition.hxx>
 #include <STEPCAFControl_ExternFile.hxx>
 #include <NCollection_DataMap.hxx>
 
-typedef NCollection_DataMap<Handle(StepBasic_ProductDefinition), Handle(STEPCAFControl_ExternFile)>
+Standard_HEADER_DEPRECATED("STEPCAFControl_DataMapOfPDExternFile.hxx is deprecated since OCCT "
+                           "8.0.0. Use NCollection types directly.")
+
+  Standard_DEPRECATED("STEPCAFControl_DataMapOfPDExternFile is deprecated, use "
+                      "NCollection_DataMap<opencascade::handle<StepBasic_ProductDefinition>, "
+                      "opencascade::handle<STEPCAFControl_ExternFile>> directly")
+typedef NCollection_DataMap<opencascade::handle<StepBasic_ProductDefinition>,
+                            opencascade::handle<STEPCAFControl_ExternFile>>
   STEPCAFControl_DataMapOfPDExternFile;
-typedef NCollection_DataMap<Handle(StepBasic_ProductDefinition),
-                            Handle(STEPCAFControl_ExternFile)>::Iterator
+Standard_DEPRECATED("STEPCAFControl_DataMapIteratorOfDataMapOfPDExternFile is deprecated, use "
+                    "NCollection_DataMap<opencascade::handle<StepBasic_ProductDefinition>, "
+                    "opencascade::handle<STEPCAFControl_ExternFile>>::Iterator directly")
+typedef NCollection_DataMap<opencascade::handle<StepBasic_ProductDefinition>,
+                            opencascade::handle<STEPCAFControl_ExternFile>>::Iterator
   STEPCAFControl_DataMapIteratorOfDataMapOfPDExternFile;
 
-#endif
+#endif // _STEPCAFControl_DataMapOfPDExternFile_hxx

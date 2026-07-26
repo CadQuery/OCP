@@ -17,14 +17,12 @@
 #include <StdLPersistent_HArray1.hxx>
 #include <StdObject_Shape.hxx>
 
-#include <NCollection_DefineHArray1.hxx>
-
-DEFINE_HARRAY1(StdPersistent_HArray1OfShape1, NCollection_Array1<StdObject_Shape>)
+#include <NCollection_HArray1.hxx>
 
 class StdPersistent_HArray1 : private StdLPersistent_HArray1
 {
 public:
-  typedef instance<StdPersistent_HArray1OfShape1> Shape1;
+  typedef instance<NCollection_HArray1<StdObject_Shape>> Shape1;
 };
 
 #endif

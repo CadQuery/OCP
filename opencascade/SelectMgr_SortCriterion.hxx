@@ -17,7 +17,8 @@
 #ifndef _SelectMgr_SortCriterion_HeaderFile
 #define _SelectMgr_SortCriterion_HeaderFile
 
-#include <Graphic3d_Vec3.hxx>
+#include <NCollection_Vec3.hxx>
+#include <Standard_TypeDef.hxx>
 #include <Precision.hxx>
 #include <Select3D_SensitiveEntity.hxx>
 
@@ -26,19 +27,19 @@
 class SelectMgr_SortCriterion
 {
 public:
-  Handle(Select3D_SensitiveEntity) Entity; //!< detected entity
-  gp_Pnt                           Point;  //!< 3D point
-  Graphic3d_Vec3                   Normal; //!< surface normal or 0 vector if undefined
-  Standard_Real                    Depth;  //!< distance from the view plane to the entity
-                                           // clang-format off
-  Standard_Real      MinDist;           //!< distance from the clicked point to the entity on the view plane
-  Standard_Real      Tolerance;         //!< tolerance used for selecting candidates
-  Standard_Integer   SelectionPriority; //!< selection priority
-  Standard_Integer   DisplayPriority;   //!< display priority
-  Standard_Integer   ZLayerPosition;    //!< ZLayer rendering order index, stronger than a depth
-  Standard_Integer   NbOwnerMatches;    //!< overall number of entities collected for the same owner
-                                           // clang-format on
-  Standard_Boolean IsPreferPriority;       //!< flag to signal comparison to be done over priority
+  occ::handle<Select3D_SensitiveEntity> Entity; //!< detected entity
+  gp_Pnt                                Point;  //!< 3D point
+  NCollection_Vec3<float>               Normal; //!< surface normal or 0 vector if undefined
+  double                                Depth;  //!< distance from the view plane to the entity
+                                                // clang-format off
+  double      MinDist;           //!< distance from the clicked point to the entity on the view plane
+  double      Tolerance;         //!< tolerance used for selecting candidates
+  int   SelectionPriority; //!< selection priority
+  int   DisplayPriority;   //!< display priority
+  int   ZLayerPosition;    //!< ZLayer rendering order index, stronger than a depth
+  int   NbOwnerMatches;    //!< overall number of entities collected for the same owner
+                                                // clang-format on
+  bool IsPreferPriority; //!< flag to signal comparison to be done over priority
 
 public:
   DEFINE_STANDARD_ALLOC
@@ -52,7 +53,7 @@ public:
         DisplayPriority(0),
         ZLayerPosition(0),
         NbOwnerMatches(0),
-        IsPreferPriority(Standard_False)
+        IsPreferPriority(false)
   {
   }
 
@@ -66,27 +67,27 @@ public:
     }
 
     // closest object is selected if their depths are not equal within tolerance
-    if (Abs(Depth - theOther.Depth) > Tolerance + theOther.Tolerance)
+    if (std::abs(Depth - theOther.Depth) > Tolerance + theOther.Tolerance)
     {
       return Depth < theOther.Depth;
     }
 
-    Standard_Real aCos = 1.0;
+    double aCos = 1.0;
     if (Normal.Modulus() > 0 && theOther.Normal.Modulus() > 0)
     {
       gp_Dir aNormal(Normal.x(), Normal.y(), Normal.z());
       gp_Dir anOtherNormal(theOther.Normal.x(), theOther.Normal.y(), theOther.Normal.z());
-      aCos = Abs(Cos(aNormal.Angle(anOtherNormal)));
+      aCos = std::abs(std::cos(aNormal.Angle(anOtherNormal)));
     }
 
-    Standard_Real aDepth       = Depth - Tolerance;
-    Standard_Real anOtherDepth = theOther.Depth - theOther.Tolerance;
+    double aDepth       = Depth - Tolerance;
+    double anOtherDepth = theOther.Depth - theOther.Tolerance;
     // Comparison depths taking into account tolerances occurs when the surfaces are parallel
     // or have the same sensitivity and the angle between them is less than 60 degrees.
-    if (Abs(aDepth - anOtherDepth) > Precision::Confusion())
+    if (std::abs(aDepth - anOtherDepth) > Precision::Confusion())
     {
-      if ((aCos > 0.5 && Abs(Tolerance - theOther.Tolerance) < Precision::Confusion())
-          || Abs(aCos - 1.0) < Precision::Confusion())
+      if ((aCos > 0.5 && std::abs(Tolerance - theOther.Tolerance) < Precision::Confusion())
+          || std::abs(aCos - 1.0) < Precision::Confusion())
       {
         return aDepth < anOtherDepth;
       }
@@ -128,7 +129,7 @@ public:
     }
 
     // if (Abs (Depth - theOther.Depth) <= (Tolerance + theOther.Tolerance))
-    if (Abs(Depth - theOther.Depth) <= Precision::Confusion())
+    if (std::abs(Depth - theOther.Depth) <= Precision::Confusion())
     {
       return MinDist < theOther.MinDist;
     }

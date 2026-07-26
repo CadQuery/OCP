@@ -1,7 +1,4 @@
-// Created on : Thu Mar 24 18:30:12 2022
-// Created by: snn
-// Generator: Express (EXPRESS -> CASCADE/XSTEP Translator) V2.0
-// Copyright (c) Open CASCADE 2022
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,13 +11,27 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef StepVisual_Array1OfTessellatedStructuredItem_HeaderFile
-#define StepVisual_Array1OfTessellatedStructuredItem_HeaderFile
+//! @file StepVisual_Array1OfTessellatedStructuredItem.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection_Array1<opencascade::handle<StepVisual_TessellatedStructuredItem>>
+//!             directly instead.
 
+#ifndef _StepVisual_Array1OfTessellatedStructuredItem_hxx
+#define _StepVisual_Array1OfTessellatedStructuredItem_hxx
+
+#include <Standard_Macro.hxx>
 #include <StepVisual_TessellatedStructuredItem.hxx>
 #include <NCollection_Array1.hxx>
 
-typedef NCollection_Array1<Handle(StepVisual_TessellatedStructuredItem)>
+Standard_HEADER_DEPRECATED(
+  "StepVisual_Array1OfTessellatedStructuredItem.hxx is deprecated since OCCT 8.0.0. Use "
+  "NCollection_Array1<opencascade::handle<StepVisual_TessellatedStructuredItem>> directly.")
+
+  Standard_DEPRECATED(
+    "StepVisual_Array1OfTessellatedStructuredItem is deprecated, use "
+    "NCollection_Array1<opencascade::handle<StepVisual_TessellatedStructuredItem>> directly")
+typedef NCollection_Array1<opencascade::handle<StepVisual_TessellatedStructuredItem>>
   StepVisual_Array1OfTessellatedStructuredItem;
 
-#endif
+#endif // _StepVisual_Array1OfTessellatedStructuredItem_hxx

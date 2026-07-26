@@ -1,5 +1,4 @@
-// Copyright (c) 1998-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -12,13 +11,24 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef TColStd_HSequenceOfInteger_HeaderFile
-#define TColStd_HSequenceOfInteger_HeaderFile
+//! @file TColStd_HSequenceOfInteger.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection_HSequence<int> directly instead.
 
+#ifndef _TColStd_HSequenceOfInteger_hxx
+#define _TColStd_HSequenceOfInteger_hxx
+
+#include <Standard_Macro.hxx>
 #include <Standard_Integer.hxx>
 #include <TColStd_SequenceOfInteger.hxx>
-#include <NCollection_DefineHSequence.hxx>
+#include <NCollection_HSequence.hxx>
 
-DEFINE_HSEQUENCE(TColStd_HSequenceOfInteger, TColStd_SequenceOfInteger)
+Standard_HEADER_DEPRECATED("TColStd_HSequenceOfInteger.hxx is deprecated since OCCT 8.0.0. Use "
+                           "NCollection_HSequence<int> directly.")
 
-#endif
+  Standard_DEPRECATED(
+    "TColStd_HSequenceOfInteger is deprecated, use NCollection_HSequence<int> directly")
+typedef NCollection_HSequence<int> TColStd_HSequenceOfInteger;
+
+#endif // _TColStd_HSequenceOfInteger_hxx

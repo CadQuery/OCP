@@ -1,7 +1,4 @@
-// Created on: 1999-10-11
-// Created by: Atelier CAS2000
-// Copyright (c) 1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,12 +11,23 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef BRepOffsetAPI_SequenceOfSequenceOfReal_HeaderFile
-#define BRepOffsetAPI_SequenceOfSequenceOfReal_HeaderFile
+//! @file BRepOffsetAPI_SequenceOfSequenceOfReal.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection_Sequence<TColStd_SequenceOfReal> directly instead.
 
+#ifndef _BRepOffsetAPI_SequenceOfSequenceOfReal_hxx
+#define _BRepOffsetAPI_SequenceOfSequenceOfReal_hxx
+
+#include <Standard_Macro.hxx>
 #include <TColStd_SequenceOfReal.hxx>
 #include <NCollection_Sequence.hxx>
 
+Standard_HEADER_DEPRECATED("BRepOffsetAPI_SequenceOfSequenceOfReal.hxx is deprecated since OCCT "
+                           "8.0.0. Use NCollection_Sequence<TColStd_SequenceOfReal> directly.")
+
+  Standard_DEPRECATED("BRepOffsetAPI_SequenceOfSequenceOfReal is deprecated, use "
+                      "NCollection_Sequence<TColStd_SequenceOfReal> directly")
 typedef NCollection_Sequence<TColStd_SequenceOfReal> BRepOffsetAPI_SequenceOfSequenceOfReal;
 
-#endif
+#endif // _BRepOffsetAPI_SequenceOfSequenceOfReal_hxx

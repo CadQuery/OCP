@@ -1,7 +1,4 @@
-// Created on: 1992-08-24
-// Created by: Jacques GOUSSARD
-// Copyright (c) 1992-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,12 +11,23 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef IntSurf_SequenceOfCouple_HeaderFile
-#define IntSurf_SequenceOfCouple_HeaderFile
+//! @file IntSurf_SequenceOfCouple.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection_Sequence<IntSurf_Couple> directly instead.
 
+#ifndef _IntSurf_SequenceOfCouple_hxx
+#define _IntSurf_SequenceOfCouple_hxx
+
+#include <Standard_Macro.hxx>
 #include <IntSurf_Couple.hxx>
 #include <NCollection_Sequence.hxx>
 
+Standard_HEADER_DEPRECATED("IntSurf_SequenceOfCouple.hxx is deprecated since OCCT 8.0.0. Use "
+                           "NCollection_Sequence<IntSurf_Couple> directly.")
+
+  Standard_DEPRECATED(
+    "IntSurf_SequenceOfCouple is deprecated, use NCollection_Sequence<IntSurf_Couple> directly")
 typedef NCollection_Sequence<IntSurf_Couple> IntSurf_SequenceOfCouple;
 
-#endif
+#endif // _IntSurf_SequenceOfCouple_hxx

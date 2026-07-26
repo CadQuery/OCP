@@ -1,6 +1,4 @@
-// Created on: 2015-08-06
-// Created by: Ilya Novikov
-// Copyright (c) 2004-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -13,13 +11,25 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef XCAFDimTolObjects_DatumModifiersSequence_HeaderFile
-#define XCAFDimTolObjects_DatumModifiersSequence_HeaderFile
+//! @file XCAFDimTolObjects_DatumModifiersSequence.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection_Sequence<XCAFDimTolObjects_DatumSingleModif> directly instead.
 
+#ifndef _XCAFDimTolObjects_DatumModifiersSequence_hxx
+#define _XCAFDimTolObjects_DatumModifiersSequence_hxx
+
+#include <Standard_Macro.hxx>
 #include <NCollection_Sequence.hxx>
 #include <XCAFDimTolObjects_DatumSingleModif.hxx>
 
+Standard_HEADER_DEPRECATED(
+  "XCAFDimTolObjects_DatumModifiersSequence.hxx is deprecated since OCCT 8.0.0. Use "
+  "NCollection_Sequence<XCAFDimTolObjects_DatumSingleModif> directly.")
+
+  Standard_DEPRECATED("XCAFDimTolObjects_DatumModifiersSequence is deprecated, use "
+                      "NCollection_Sequence<XCAFDimTolObjects_DatumSingleModif> directly")
 typedef NCollection_Sequence<XCAFDimTolObjects_DatumSingleModif>
   XCAFDimTolObjects_DatumModifiersSequence;
 
-#endif
+#endif // _XCAFDimTolObjects_DatumModifiersSequence_hxx

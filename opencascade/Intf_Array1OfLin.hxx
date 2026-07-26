@@ -1,7 +1,4 @@
-// Created on: 1991-05-23
-// Created by: Didier PIFFAULT
-// Copyright (c) 1991-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,14 +11,22 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef Intf_Array1OfLin_HeaderFile
-#define Intf_Array1OfLin_HeaderFile
+//! @file Intf_Array1OfLin.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection_Array1<gp_Lin> directly instead.
 
+#ifndef _Intf_Array1OfLin_hxx
+#define _Intf_Array1OfLin_hxx
+
+#include <Standard_Macro.hxx>
 #include <gp_Lin.hxx>
 #include <NCollection_Array1.hxx>
 
-//! Describes  a set of Straight Lines  to  intersect with the Polyhedron.
+Standard_HEADER_DEPRECATED(
+  "Intf_Array1OfLin.hxx is deprecated since OCCT 8.0.0. Use NCollection_Array1<gp_Lin> directly.")
 
+  Standard_DEPRECATED("Intf_Array1OfLin is deprecated, use NCollection_Array1<gp_Lin> directly")
 typedef NCollection_Array1<gp_Lin> Intf_Array1OfLin;
 
-#endif
+#endif // _Intf_Array1OfLin_hxx

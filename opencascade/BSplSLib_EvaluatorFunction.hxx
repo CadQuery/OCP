@@ -32,31 +32,31 @@ class BSplSLib_EvaluatorFunction
 {
 public:
   //! Empty constructor
-  BSplSLib_EvaluatorFunction() {}
+  BSplSLib_EvaluatorFunction() = default;
 
   //! Destructor should be declared as virtual
-  virtual ~BSplSLib_EvaluatorFunction() {}
+  virtual ~BSplSLib_EvaluatorFunction() = default;
 
   //! Function evaluation method to be defined by descendant
-  virtual void Evaluate(const Standard_Integer theDerivativeRequest,
-                        const Standard_Real    theUParameter,
-                        const Standard_Real    theVParameter,
-                        Standard_Real&         theResult,
-                        Standard_Integer&      theErrorCode) const = 0;
+  virtual void Evaluate(const int    theDerivativeRequest,
+                        const double theUParameter,
+                        const double theVParameter,
+                        double&      theResult,
+                        int&         theErrorCode) const = 0;
 
   //! Shortcut for function-call style usage
-  void operator()(const Standard_Integer theDerivativeRequest,
-                  const Standard_Real    theUParameter,
-                  const Standard_Real    theVParameter,
-                  Standard_Real&         theResult,
-                  Standard_Integer&      theErrorCode) const
+  void operator()(const int    theDerivativeRequest,
+                  const double theUParameter,
+                  const double theVParameter,
+                  double&      theResult,
+                  int&         theErrorCode) const
   {
     Evaluate(theDerivativeRequest, theUParameter, theVParameter, theResult, theErrorCode);
   }
 
 private:
   //! Copy constructor is declared private to forbid copying
-  BSplSLib_EvaluatorFunction(const BSplSLib_EvaluatorFunction&) {}
+  BSplSLib_EvaluatorFunction(const BSplSLib_EvaluatorFunction&) = default;
 
   //! Assignment operator is declared private to forbid copying
   void operator=(const BSplSLib_EvaluatorFunction&) {}

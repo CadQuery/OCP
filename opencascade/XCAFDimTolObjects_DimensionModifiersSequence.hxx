@@ -1,6 +1,4 @@
-// Created on: 2015-08-06
-// Created by: Ilya Novikov
-// Copyright (c) 2004-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -13,13 +11,25 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef XCAFDimTolObjects_DimensionModifiersSequence_HeaderFile
-#define XCAFDimTolObjects_DimensionModifiersSequence_HeaderFile
+//! @file XCAFDimTolObjects_DimensionModifiersSequence.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection_Sequence<XCAFDimTolObjects_DimensionModif> directly instead.
 
+#ifndef _XCAFDimTolObjects_DimensionModifiersSequence_hxx
+#define _XCAFDimTolObjects_DimensionModifiersSequence_hxx
+
+#include <Standard_Macro.hxx>
 #include <NCollection_Sequence.hxx>
 #include <XCAFDimTolObjects_DimensionModif.hxx>
 
+Standard_HEADER_DEPRECATED(
+  "XCAFDimTolObjects_DimensionModifiersSequence.hxx is deprecated since OCCT 8.0.0. Use "
+  "NCollection_Sequence<XCAFDimTolObjects_DimensionModif> directly.")
+
+  Standard_DEPRECATED("XCAFDimTolObjects_DimensionModifiersSequence is deprecated, use "
+                      "NCollection_Sequence<XCAFDimTolObjects_DimensionModif> directly")
 typedef NCollection_Sequence<XCAFDimTolObjects_DimensionModif>
   XCAFDimTolObjects_DimensionModifiersSequence;
 
-#endif
+#endif // _XCAFDimTolObjects_DimensionModifiersSequence_hxx

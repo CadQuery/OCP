@@ -16,80 +16,59 @@
 #include <Message_Algorithm.hxx>
 #include <TCollection_HExtendedString.hxx>
 
-//=======================================================================
-// function : SetStatus
-// purpose  :
-//=======================================================================
+//=================================================================================================
 
-inline void Message_Algorithm::SetStatus(const Message_Status&  theStat,
-                                         const Standard_CString theStr,
-                                         const Standard_Boolean noRepetitions)
+inline void Message_Algorithm::SetStatus(const Message_Status& theStat,
+                                         const char* const     theStr,
+                                         const bool            noRepetitions)
 {
   SetStatus(theStat, new TCollection_HExtendedString(theStr), noRepetitions);
 }
 
-//=======================================================================
-// function : SetStatus
-// purpose  :
-//=======================================================================
+//=================================================================================================
 
 inline void Message_Algorithm::SetStatus(const Message_Status&          theStat,
                                          const TCollection_AsciiString& theStr,
-                                         const Standard_Boolean         noRepetitions)
+                                         const bool                     noRepetitions)
 {
   SetStatus(theStat, new TCollection_HExtendedString(theStr), noRepetitions);
 }
 
-//=======================================================================
-// function : SetStatus
-// purpose  :
-//=======================================================================
+//=================================================================================================
 
-inline void Message_Algorithm::SetStatus(const Message_Status&                   theStat,
-                                         const Handle(TCollection_HAsciiString)& theStr,
-                                         const Standard_Boolean                  noRepetitions)
+inline void Message_Algorithm::SetStatus(const Message_Status&                        theStat,
+                                         const occ::handle<TCollection_HAsciiString>& theStr,
+                                         const bool                                   noRepetitions)
 {
   SetStatus(theStat, new TCollection_HExtendedString(theStr), noRepetitions);
 }
 
-//=======================================================================
-// function : SetStatus
-// purpose  :
-//=======================================================================
+//=================================================================================================
 
 inline void Message_Algorithm::SetStatus(const Message_Status&             theStat,
                                          const TCollection_ExtendedString& theStr,
-                                         const Standard_Boolean            noRepetitions)
+                                         const bool                        noRepetitions)
 {
   SetStatus(theStat, new TCollection_HExtendedString(theStr), noRepetitions);
 }
 
-//=======================================================================
-// function : GetStatus
-// purpose  :
-//=======================================================================
+//=================================================================================================
 
 inline const Message_ExecStatus& Message_Algorithm::GetStatus() const
 {
   return myStatus;
 }
 
-//=======================================================================
-// function : ChangeStatus
-// purpose  :
-//=======================================================================
+//=================================================================================================
 
 inline Message_ExecStatus& Message_Algorithm::ChangeStatus()
 {
   return myStatus;
 }
 
-//=======================================================================
-// function : GetMessenger
-// purpose  :
-//=======================================================================
+//=================================================================================================
 
-inline Handle(Message_Messenger) Message_Algorithm::GetMessenger() const
+inline occ::handle<Message_Messenger> Message_Algorithm::GetMessenger() const
 {
   return myMessenger;
 }

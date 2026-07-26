@@ -29,14 +29,13 @@ class LDOM_Element : public LDOM_Node
 public:
   // ---------- PUBLIC METHODS ----------
 
-  LDOM_Element() {}
+  LDOM_Element() = default;
 
   //    Empty constructor
 
   LDOM_Element(const LDOM_Element& anOther)
-      : LDOM_Node(anOther)
-  {
-  }
+
+    = default;
 
   //    Copy constructor
 
@@ -83,7 +82,7 @@ protected:
   friend class LDOMParser;
   // ---------- PROTECTED METHODS ----------
 
-  LDOM_Element(const LDOM_BasicElement& anElem, const Handle(LDOM_MemManager)& aDoc);
+  LDOM_Element(const LDOM_BasicElement& anElem, const occ::handle<LDOM_MemManager>& aDoc);
 
 private:
   // ---------- PRIVATE FIELDS ----------

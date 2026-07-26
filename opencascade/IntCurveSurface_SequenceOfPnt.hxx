@@ -1,7 +1,4 @@
-// Created on: 1993-04-07
-// Created by: Laurent BUCHARD
-// Copyright (c) 1993-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,12 +11,23 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef IntCurveSurface_SequenceOfPnt_HeaderFile
-#define IntCurveSurface_SequenceOfPnt_HeaderFile
+//! @file IntCurveSurface_SequenceOfPnt.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection_Sequence<IntCurveSurface_IntersectionPoint> directly instead.
 
+#ifndef _IntCurveSurface_SequenceOfPnt_hxx
+#define _IntCurveSurface_SequenceOfPnt_hxx
+
+#include <Standard_Macro.hxx>
 #include <IntCurveSurface_IntersectionPoint.hxx>
 #include <NCollection_Sequence.hxx>
 
+Standard_HEADER_DEPRECATED("IntCurveSurface_SequenceOfPnt.hxx is deprecated since OCCT 8.0.0. Use "
+                           "NCollection_Sequence<IntCurveSurface_IntersectionPoint> directly.")
+
+  Standard_DEPRECATED("IntCurveSurface_SequenceOfPnt is deprecated, use "
+                      "NCollection_Sequence<IntCurveSurface_IntersectionPoint> directly")
 typedef NCollection_Sequence<IntCurveSurface_IntersectionPoint> IntCurveSurface_SequenceOfPnt;
 
-#endif
+#endif // _IntCurveSurface_SequenceOfPnt_hxx

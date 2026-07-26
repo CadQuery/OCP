@@ -21,53 +21,49 @@
 
 #include <gp_Pnt.hxx>
 #include <Standard_Real.hxx>
-#include <BRep_ListOfPointRepresentation.hxx>
+#include <BRep_PointRepresentation.hxx>
+#include <NCollection_List.hxx>
 #include <TopoDS_TVertex.hxx>
 class TopoDS_TShape;
 
-class BRep_TVertex;
-DEFINE_STANDARD_HANDLE(BRep_TVertex, TopoDS_TVertex)
-
-//! The TVertex from  BRep inherits  from  the TVertex
+//! The TVertex from BRep inherits from the TVertex
 //! from TopoDS. It contains the geometric data.
 //!
-//! The  TVertex contains a 3d point, location and a tolerance.
+//! The TVertex contains a 3d point, location and a tolerance.
 class BRep_TVertex : public TopoDS_TVertex
 {
 
 public:
   Standard_EXPORT BRep_TVertex();
 
-  Standard_Real Tolerance() const;
+  double Tolerance() const;
 
-  void Tolerance(const Standard_Real T);
+  void Tolerance(const double T);
 
-  //! Sets the tolerance  to the   max  of <T>  and  the
-  //! current  tolerance.
-  void UpdateTolerance(const Standard_Real T);
+  //! Sets the tolerance to the max of <T> and the
+  //! current tolerance.
+  void UpdateTolerance(const double T);
 
   const gp_Pnt& Pnt() const;
 
   void Pnt(const gp_Pnt& P);
 
-  const BRep_ListOfPointRepresentation& Points() const;
+  const NCollection_List<occ::handle<BRep_PointRepresentation>>& Points() const;
 
-  BRep_ListOfPointRepresentation& ChangePoints();
+  NCollection_List<occ::handle<BRep_PointRepresentation>>& ChangePoints();
 
-  //! Returns a copy  of the  TShape  with no sub-shapes.
-  Standard_EXPORT Handle(TopoDS_TShape) EmptyCopy() const Standard_OVERRIDE;
+  //! Returns a copy of the TShape with no sub-shapes.
+  Standard_EXPORT occ::handle<TopoDS_TShape> EmptyCopy() const override;
 
   //! Dumps the content of me into the stream
-  Standard_EXPORT virtual void DumpJson(Standard_OStream& theOStream,
-                                        Standard_Integer  theDepth = -1) const Standard_OVERRIDE;
+  Standard_EXPORT void DumpJson(Standard_OStream& theOStream, int theDepth = -1) const override;
 
   DEFINE_STANDARD_RTTIEXT(BRep_TVertex, TopoDS_TVertex)
 
-protected:
 private:
-  gp_Pnt                         myPnt;
-  Standard_Real                  myTolerance;
-  BRep_ListOfPointRepresentation myPoints;
+  gp_Pnt                                                  myPnt;
+  double                                                  myTolerance;
+  NCollection_List<occ::handle<BRep_PointRepresentation>> myPoints;
 };
 
 #include <BRep_TVertex.lxx>

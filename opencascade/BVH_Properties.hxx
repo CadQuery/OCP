@@ -26,7 +26,7 @@ class BVH_Properties : public Standard_Transient
   DEFINE_STANDARD_RTTIEXT(BVH_Properties, Standard_Transient)
 public:
   //! Releases resources of object properties.
-  Standard_EXPORT virtual ~BVH_Properties() = 0;
+  Standard_EXPORT ~BVH_Properties() override = 0;
 };
 
 //! Stores transform properties of geometric object.
@@ -39,7 +39,7 @@ public:
 
 public:
   //! Creates new identity transformation.
-  BVH_Transform() {}
+  BVH_Transform() = default;
 
   //! Creates new transformation with specified matrix.
   BVH_Transform(const BVH_MatNt& theTransform)
@@ -48,7 +48,7 @@ public:
   }
 
   //! Releases resources of transformation properties.
-  virtual ~BVH_Transform() {}
+  ~BVH_Transform() override = default;
 
   //! Returns transformation matrix.
   const BVH_MatNt& Transform() const { return myTransform; }
@@ -161,10 +161,8 @@ struct UnitVector<T, 4>
 };
 } // namespace BVH
 
-// =======================================================================
-// function : SetTransform
-// purpose  :
-// =======================================================================
+//=================================================================================================
+
 template <class T, int N>
 void BVH_Transform<T, N>::SetTransform(const BVH_MatNt& theTransform)
 {
@@ -172,21 +170,19 @@ void BVH_Transform<T, N>::SetTransform(const BVH_MatNt& theTransform)
   BVH::MatrixOp<T, N>::Inverse(myTransform, myTransformInversed);
 }
 
-// =======================================================================
-// function : Apply
-// purpose  :
-// =======================================================================
+//=================================================================================================
+
 template <class T, int N>
 BVH_Box<T, N> BVH_Transform<T, N>::Apply(const BVH_Box<T, N>& theBox) const
 {
   typename BVH_Box<T, N>::BVH_VecNt aSize = theBox.Size();
 
   BVH_Box<T, N> aBox;
-  for (Standard_Integer aX = 0; aX <= 1; ++aX)
+  for (int aX = 0; aX <= 1; ++aX)
   {
-    for (Standard_Integer aY = 0; aY <= 1; ++aY)
+    for (int aY = 0; aY <= 1; ++aY)
     {
-      for (Standard_Integer aZ = 0; aZ <= 1; ++aZ)
+      for (int aZ = 0; aZ <= 1; ++aZ)
       {
         typename BVH_Box<T, N>::BVH_VecNt aCorner =
           theBox.CornerMin() + BVH::UnitVector<T, N>::DX() * aSize * static_cast<T>(aX)

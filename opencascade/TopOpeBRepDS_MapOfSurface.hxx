@@ -1,7 +1,4 @@
-// Created on: 1993-06-17
-// Created by: Jean Yves LEBEY
-// Copyright (c) 1993-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,15 +11,28 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef TopOpeBRepDS_MapOfSurface_HeaderFile
-#define TopOpeBRepDS_MapOfSurface_HeaderFile
+//! @file TopOpeBRepDS_MapOfSurface.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection types directly instead.
 
+#ifndef _TopOpeBRepDS_MapOfSurface_hxx
+#define _TopOpeBRepDS_MapOfSurface_hxx
+
+#include <Standard_Macro.hxx>
 #include <Standard_Integer.hxx>
 #include <TopOpeBRepDS_SurfaceData.hxx>
 #include <NCollection_DataMap.hxx>
 
-typedef NCollection_DataMap<Standard_Integer, TopOpeBRepDS_SurfaceData> TopOpeBRepDS_MapOfSurface;
-typedef NCollection_DataMap<Standard_Integer, TopOpeBRepDS_SurfaceData>::Iterator
+Standard_HEADER_DEPRECATED(
+  "TopOpeBRepDS_MapOfSurface.hxx is deprecated since OCCT 8.0.0. Use NCollection types directly.")
+
+  Standard_DEPRECATED("TopOpeBRepDS_MapOfSurface is deprecated, use NCollection_DataMap<int, "
+                      "TopOpeBRepDS_SurfaceData> directly")
+typedef NCollection_DataMap<int, TopOpeBRepDS_SurfaceData> TopOpeBRepDS_MapOfSurface;
+Standard_DEPRECATED("TopOpeBRepDS_DataMapIteratorOfMapOfSurface is deprecated, use "
+                    "NCollection_DataMap<int, TopOpeBRepDS_SurfaceData>::Iterator directly")
+typedef NCollection_DataMap<int, TopOpeBRepDS_SurfaceData>::Iterator
   TopOpeBRepDS_DataMapIteratorOfMapOfSurface;
 
-#endif
+#endif // _TopOpeBRepDS_MapOfSurface_hxx

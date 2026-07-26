@@ -1,7 +1,4 @@
-// Created on: 1995-01-27
-// Created by: Jacques GOUSSARD
-// Copyright (c) 1995-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,13 +11,25 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef GeomInt_SequenceOfParameterAndOrientation_HeaderFile
-#define GeomInt_SequenceOfParameterAndOrientation_HeaderFile
+//! @file GeomInt_SequenceOfParameterAndOrientation.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection_Sequence<GeomInt_ParameterAndOrientation> directly instead.
 
+#ifndef _GeomInt_SequenceOfParameterAndOrientation_hxx
+#define _GeomInt_SequenceOfParameterAndOrientation_hxx
+
+#include <Standard_Macro.hxx>
 #include <GeomInt_ParameterAndOrientation.hxx>
 #include <NCollection_Sequence.hxx>
 
+Standard_HEADER_DEPRECATED(
+  "GeomInt_SequenceOfParameterAndOrientation.hxx is deprecated since OCCT 8.0.0. Use "
+  "NCollection_Sequence<GeomInt_ParameterAndOrientation> directly.")
+
+  Standard_DEPRECATED("GeomInt_SequenceOfParameterAndOrientation is deprecated, use "
+                      "NCollection_Sequence<GeomInt_ParameterAndOrientation> directly")
 typedef NCollection_Sequence<GeomInt_ParameterAndOrientation>
   GeomInt_SequenceOfParameterAndOrientation;
 
-#endif
+#endif // _GeomInt_SequenceOfParameterAndOrientation_hxx

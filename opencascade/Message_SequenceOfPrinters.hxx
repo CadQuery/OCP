@@ -1,7 +1,4 @@
-// Created on: 1999-07-29
-// Created by: Roman LYGIN
-// Copyright (c) 1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,12 +11,23 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef Message_SequenceOfPrinters_HeaderFile
-#define Message_SequenceOfPrinters_HeaderFile
+//! @file Message_SequenceOfPrinters.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection_Sequence<opencascade::handle<Message_Printer>> directly instead.
 
+#ifndef _Message_SequenceOfPrinters_hxx
+#define _Message_SequenceOfPrinters_hxx
+
+#include <Standard_Macro.hxx>
 #include <Message_Printer.hxx>
 #include <NCollection_Sequence.hxx>
 
-typedef NCollection_Sequence<Handle(Message_Printer)> Message_SequenceOfPrinters;
+Standard_HEADER_DEPRECATED("Message_SequenceOfPrinters.hxx is deprecated since OCCT 8.0.0. Use "
+                           "NCollection_Sequence<opencascade::handle<Message_Printer>> directly.")
 
-#endif
+  Standard_DEPRECATED("Message_SequenceOfPrinters is deprecated, use "
+                      "NCollection_Sequence<opencascade::handle<Message_Printer>> directly")
+typedef NCollection_Sequence<opencascade::handle<Message_Printer>> Message_SequenceOfPrinters;
+
+#endif // _Message_SequenceOfPrinters_hxx

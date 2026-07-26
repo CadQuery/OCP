@@ -17,43 +17,47 @@
 #define NCollection_SparseArrayBase_HeaderFile
 
 #include <Standard.hxx>
+#include <Standard_TypeDef.hxx>
 #include <Standard_OutOfRange.hxx>
-
-typedef size_t Standard_Size;
 
 /**
  * Base class for NCollection_SparseArray;
  * provides non-template implementation of general mechanics
  * of block allocation, items creation / deletion etc.
+ *
+ * Type-specific item operations (construction, destruction, copy)
+ * are provided by the derived template class via function pointers
+ * passed as arguments to the protected methods.
  */
 
 class NCollection_SparseArrayBase
 {
 public:
-  //!@name Type-independent public interface
+  //!@name Function pointer types for type-specific item operations
   //!@{
 
-  //! Clears all the data
-  Standard_EXPORT void Clear();
-
-  //! Returns number of currently contained items
-  Standard_Size Size() const { return mySize; }
-
-  //! Check whether the value at given index is set
-  Standard_EXPORT Standard_Boolean HasValue(const Standard_Size theIndex) const;
-
-  //! Deletes the item from the array;
-  //! returns True if that item was defined
-  Standard_EXPORT Standard_Boolean UnsetValue(const Standard_Size theIndex);
+  //! Copy-construct a new item at theAddress from theOther
+  using CreateItemFunc = void (*)(void* theAddress, void* theOther);
+  //! Destroy the item at theAddress
+  using DestroyItemFunc = void (*)(void* theAddress);
+  //! Copy-assign the item at theAddress from theOther
+  using CopyItemFunc = void (*)(void* theAddress, void* theOther);
 
   //!@}
 
-#if defined(__SUNPRO_CC) && (__SUNPRO_CC <= 0x530)
-public: // work-around against obsolete SUN WorkShop 5.3 compiler
-#else
-private:
-#endif
+public:
+  //!@name Type-independent public interface
+  //!@{
 
+  //! Returns number of currently contained items
+  size_t Size() const noexcept { return mySize; }
+
+  //! Check whether the value at given index is set
+  Standard_EXPORT bool HasValue(const size_t theIndex) const;
+
+  //!@}
+
+private:
   /**
    * The block of data contains array of items, counter
    * and bit field, allocated as single piece of memory addressed
@@ -72,39 +76,36 @@ private:
     typedef unsigned char Cell; //!< type of items used to hold bits
 
     //! Number of bits in each cell
-    static Standard_Size BitsPerCell() { return sizeof(Cell) * 8; }
+    static constexpr size_t BitsPerCell() noexcept { return sizeof(Cell) * 8; }
 
   public:
     //! Initializes the block by pointer to block data
-    Block(const Standard_Address theAddr,
-          const Standard_Size    theNbItems,
-          const Standard_Size    theItemSize)
-        : Count((Standard_Size*)theAddr),
-          Array((char*)theAddr + sizeof(Standard_Size)),
-          Bits((Cell*)((char*)theAddr + sizeof(Standard_Size) + theNbItems * theItemSize))
+    Block(void* const theAddr, const size_t theNbItems, const size_t theItemSize)
+        : Count((size_t*)theAddr),
+          Array((char*)theAddr + sizeof(size_t)),
+          Bits((Cell*)((char*)theAddr + sizeof(size_t) + theNbItems * theItemSize))
     {
     }
 
     //! Compute required size for block data, in bytes
-    static Standard_Size Size(const Standard_Size theNbItems, const Standard_Size theItemSize)
+    static constexpr size_t Size(const size_t theNbItems, const size_t theItemSize) noexcept
     {
-      return sizeof(Standard_Size)
-             + sizeof(Cell) * ((theNbItems + BitsPerCell() - 1) / BitsPerCell())
+      return sizeof(size_t) + sizeof(Cell) * ((theNbItems + BitsPerCell() - 1) / BitsPerCell())
              + theNbItems * theItemSize;
     }
 
     //! Returns address of array from address of block
-    static char* ToArray(const Standard_Address theAddress,
-                         const Standard_Size /*theNbItems*/,
-                         const Standard_Size /*theItemSize*/)
+    static char* ToArray(void* const theAddress,
+                         const size_t /*theNbItems*/,
+                         const size_t /*theItemSize*/) noexcept
     {
-      return (char*)theAddress + sizeof(Standard_Size);
+      return (char*)theAddress + sizeof(size_t);
     }
 
   public:
     //! Set bit for i-th item; returns non-null if that bit has
     //! not been set previously
-    Cell Set(Standard_Size i)
+    Cell Set(size_t i) noexcept
     {
       Cell* abyte = Bits + i / BitsPerCell();
       Cell  amask = (Cell)('\1' << (i % BitsPerCell()));
@@ -114,7 +115,7 @@ private:
     }
 
     //! Check bit for i-th item; returns non-null if that bit is set
-    Cell IsSet(Standard_Size i)
+    Cell IsSet(size_t i) noexcept
     {
       Cell* abyte = Bits + i / BitsPerCell();
       Cell  amask = (Cell)('\1' << (i % BitsPerCell()));
@@ -123,7 +124,7 @@ private:
 
     //! Unset bit for i-th item; returns non-null if that bit
     //! has been set previously
-    Cell Unset(Standard_Size i)
+    Cell Unset(size_t i) noexcept
     {
       Cell* abyte = Bits + i / BitsPerCell();
       Cell  amask = (Cell)('\1' << (i % BitsPerCell()));
@@ -133,9 +134,9 @@ private:
     }
 
   public:
-    Standard_Size*   Count; //!< items counter
-    Standard_Address Array; //!< pointer to the data items array
-    Cell*            Bits;  //!< bit map for defined/undefined flags
+    size_t* Count; //!< items counter
+    void*   Array; //!< pointer to the data items array
+    Cell*   Bits;  //!< bit map for defined/undefined flags
   };
 
 public:
@@ -152,73 +153,78 @@ public:
     void Restart() { init(myArr); }
 
     //! Returns True if current item is available
-    Standard_Boolean More() const { return myHasMore; }
+    bool More() const noexcept { return myHasMore; }
 
     //! Advances to the next item
     Standard_EXPORT void Next();
 
     //! Returns current index
-    Standard_Size Index() const { return myIBlock * myArr->myBlockSize + myInd; }
+    size_t Index() const noexcept { return myIBlock * myArr->myBlockSize + myInd; }
 
   protected:
     // Methods for descendant
 
     //! Empty constructor
-    Standard_EXPORT Iterator(const NCollection_SparseArrayBase* theArray = 0);
+    Standard_EXPORT Iterator(const NCollection_SparseArrayBase* theArray = nullptr);
 
     //! Initialize by the specified array
     Standard_EXPORT void init(const NCollection_SparseArrayBase* theArray);
 
     //! Returns address of the current item
-    Standard_Address value() const { return myArr->getItem(myBlock, myInd); }
+    void* value() const noexcept { return myArr->getItem(myBlock, myInd); }
 
   private:
     const NCollection_SparseArrayBase* myArr;
-    Standard_Boolean                   myHasMore;
-    Standard_Size                      myIBlock;
-    Standard_Size                      myInd;
+    bool                               myHasMore;
+    size_t                             myIBlock;
+    size_t                             myInd;
     Block                              myBlock;
   };
   friend class Iterator;
 
 private:
-  // Copy constructor and assignment operator are private thus not accessible
-  NCollection_SparseArrayBase(const NCollection_SparseArrayBase&);
-  void operator=(const NCollection_SparseArrayBase&);
+  // Copy constructor and assignment operator are deleted
+  NCollection_SparseArrayBase(const NCollection_SparseArrayBase&)            = delete;
+  NCollection_SparseArrayBase& operator=(const NCollection_SparseArrayBase&) = delete;
 
 protected:
   // Object life
 
-  //! Constructor; initialized by size of item and of block (in items)
-  NCollection_SparseArrayBase(Standard_Size theItemSize, Standard_Size theBlockSize)
+  //! Constructor; initialized by size of item, block size, and item destructor function.
+  //! @param theDestroyItem is stored to enable proper item destruction in the base destructor
+  NCollection_SparseArrayBase(size_t          theItemSize,
+                              size_t          theBlockSize,
+                              DestroyItemFunc theDestroyItem) noexcept
       : myItemSize(theItemSize),
         myBlockSize(theBlockSize),
         myNbBlocks(0),
         mySize(0),
-        myData(0)
+        myData(nullptr),
+        myDestroyItem(theDestroyItem)
   {
   }
 
-  //! Destructor
-  virtual ~NCollection_SparseArrayBase() { Clear(); }
+  //! Destructor; properly destroys all items and frees all memory.
+  //! Uses the stored DestroyItemFunc, so no virtual dispatch is needed.
+  ~NCollection_SparseArrayBase() { clearItems(myDestroyItem); }
 
 protected:
   // Data access interface for descendants
 
   //! Creates Block structure for block pointed by theAddr
-  Block getBlock(const Standard_Address theAddr) const
+  Block getBlock(void* const theAddr) const noexcept
   {
     return Block(theAddr, myBlockSize, myItemSize);
   }
 
   //! Find address of the item in the block by index (in the block)
-  Standard_Address getItem(const Block& theBlock, Standard_Size theInd) const
+  void* getItem(const Block& theBlock, size_t theInd) const noexcept
   {
     return ((char*)theBlock.Array) + myItemSize * theInd;
   }
 
   //! Direct const access to the item
-  Standard_Address getValue(const Standard_Size theIndex) const
+  void* getValue(const size_t theIndex) const
   {
     Standard_OutOfRange_Raise_if(
       !HasValue(theIndex),
@@ -228,49 +234,53 @@ protected:
       + myItemSize * (theIndex % myBlockSize);
   }
 
-  //! Set a value to the specified item; returns address of the set item
-  Standard_EXPORT Standard_Address setValue(const Standard_Size    theIndex,
-                                            const Standard_Address theValue);
+  //! Clears all items and frees all memory.
+  //! @param theDestroyItem function to call destructor on each item
+  Standard_EXPORT void clearItems(DestroyItemFunc theDestroyItem);
+
+  //! Deletes the item at theIndex from the array;
+  //! returns True if the item was defined.
+  //! @param theDestroyItem function to call destructor on the item
+  Standard_EXPORT bool unsetValue(const size_t theIndex, DestroyItemFunc theDestroyItem);
+
+  //! Set a value to the specified item; returns address of the set item.
+  //! @param theCreateItem function to copy-construct a new item
+  //! @param theCopyItem function to copy-assign an existing item
+  Standard_EXPORT void* setValue(const size_t   theIndex,
+                                 void* const    theValue,
+                                 CreateItemFunc theCreateItem,
+                                 CopyItemFunc   theCopyItem);
 
   //! Copy contents of theOther to this;
-  //! assumes that this and theOther have exactly the same type of arguments
-  Standard_EXPORT void assign(const NCollection_SparseArrayBase& theOther);
+  //! assumes that this and theOther have exactly the same type of arguments.
+  //! @param theCreateItem function to copy-construct a new item
+  //! @param theDestroyItem function to call destructor on an item
+  //! @param theCopyItem function to copy-assign an existing item
+  Standard_EXPORT void assign(const NCollection_SparseArrayBase& theOther,
+                              CreateItemFunc                     theCreateItem,
+                              DestroyItemFunc                    theDestroyItem,
+                              CopyItemFunc                       theCopyItem);
 
   //! Exchange contents of theOther and this;
   //! assumes that this and theOther have exactly the same type of arguments
-  Standard_EXPORT void exchange(NCollection_SparseArrayBase& theOther);
-
-protected:
-  // Methods to be provided by descendant
-
-  //! Create new item at the specified address with default constructor
-  //  virtual void createItem (Standard_Address theAddress) = 0;
-
-  //! Create new item at the specified address with copy constructor
-  //! from existing item
-  virtual void createItem(Standard_Address theAddress, Standard_Address theOther) = 0;
-
-  //! Call destructor to the item
-  virtual void destroyItem(Standard_Address theAddress) = 0;
-
-  //! Call assignment operator to the item
-  virtual void copyItem(Standard_Address theAddress, Standard_Address theOther) = 0;
+  Standard_EXPORT void exchange(NCollection_SparseArrayBase& theOther) noexcept;
 
 private:
   // Implementation of memory allocation/deallocation and access mechanics
 
   //! Allocate space for at least iBlock+1 blocks
-  void allocData(const Standard_Size iBlock);
+  void allocData(const size_t iBlock);
 
-  //! Free specified block
-  void freeBlock(const Standard_Size iBlock);
+  //! Free specified block, destroying all items via theDestroyItem
+  void freeBlock(const size_t iBlock, DestroyItemFunc theDestroyItem);
 
 protected:
-  Standard_Size     myItemSize;  //!< size of item
-  Standard_Size     myBlockSize; //!< block size (in items)
-  Standard_Size     myNbBlocks;  //!< allocated size of blocks table
-  Standard_Size     mySize;      //!< number of currently defined items
-  Standard_Address* myData;      //!< array of pointers to data blocks
+  size_t          myItemSize;    //!< size of item
+  size_t          myBlockSize;   //!< block size (in items)
+  size_t          myNbBlocks;    //!< allocated size of blocks table
+  size_t          mySize;        //!< number of currently defined items
+  void**          myData;        //!< array of pointers to data blocks
+  DestroyItemFunc myDestroyItem; //!< function to call destructor on items
 };
 
 #endif

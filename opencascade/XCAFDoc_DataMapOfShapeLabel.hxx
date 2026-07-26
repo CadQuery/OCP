@@ -1,6 +1,4 @@
-// Created on: 2000-08-08
-// Created by: data exchange team
-// Copyright (c) 2000-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -13,16 +11,31 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef XCAFDoc_DataMapOfShapeLabel_HeaderFile
-#define XCAFDoc_DataMapOfShapeLabel_HeaderFile
+//! @file XCAFDoc_DataMapOfShapeLabel.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection types directly instead.
 
+#ifndef _XCAFDoc_DataMapOfShapeLabel_hxx
+#define _XCAFDoc_DataMapOfShapeLabel_hxx
+
+#include <Standard_Macro.hxx>
 #include <TDF_Label.hxx>
 #include <TopTools_ShapeMapHasher.hxx>
 #include <NCollection_DataMap.hxx>
 
+Standard_HEADER_DEPRECATED(
+  "XCAFDoc_DataMapOfShapeLabel.hxx is deprecated since OCCT 8.0.0. Use NCollection types directly.")
+
+  Standard_DEPRECATED(
+    "XCAFDoc_DataMapOfShapeLabel is deprecated, use NCollection_DataMap<TopoDS_Shape, TDF_Label, "
+    "TopTools_ShapeMapHasher> directly")
 typedef NCollection_DataMap<TopoDS_Shape, TDF_Label, TopTools_ShapeMapHasher>
   XCAFDoc_DataMapOfShapeLabel;
+Standard_DEPRECATED(
+  "XCAFDoc_DataMapIteratorOfDataMapOfShapeLabel is deprecated, use "
+  "NCollection_DataMap<TopoDS_Shape, TDF_Label, TopTools_ShapeMapHasher>::Iterator directly")
 typedef NCollection_DataMap<TopoDS_Shape, TDF_Label, TopTools_ShapeMapHasher>::Iterator
   XCAFDoc_DataMapIteratorOfDataMapOfShapeLabel;
 
-#endif
+#endif // _XCAFDoc_DataMapOfShapeLabel_hxx

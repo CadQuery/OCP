@@ -21,15 +21,14 @@
 #include <Standard_DefineAlloc.hxx>
 
 #include <gp_Dir.hxx>
-#include <TColStd_Array2OfReal.hxx>
-#include <TopTrans_Array2OfOrientation.hxx>
+#include <NCollection_Array2.hxx>
 #include <TopAbs_Orientation.hxx>
 #include <TopAbs_State.hxx>
 
-//! This algorithm  is used to  compute the transition
+//! This algorithm is used to compute the transition
 //! of a 3D surface intersecting a topological surfacic
 //! boundary on a 3D curve ( intersection curve ).
-//! The  boundary is  described  by a  set of faces
+//! The boundary is described by a set of faces
 //! each face is described by
 //! - its support surface,
 //! - an orientation defining its matter side.
@@ -37,14 +36,14 @@
 //! intersection point by a second order development.
 //! A surface is described by the normal vector, the
 //! principal directions and the principal curvatures.
-//! A curve is described  by the  tangent, the normal
+//! A curve is described by the tangent, the normal
 //! and the curvature.
-//! The  algorithm  keeps track of the two faces elements
+//! The algorithm keeps track of the two faces elements
 //! closest to the part of the curve "before" and "after"
-//! the intersection,  these  two elements are updated
+//! the intersection, these two elements are updated
 //! for each new face.
-//! The position of the  curve can be computed when at
-//! least  one surface  element has   been given, this
+//! The position of the curve can be computed when at
+//! least one surface element has been given, this
 //! position is "In","Out" or "On" for the part of the
 //! curve "Before" or "After" the intersection.
 class TopTrans_SurfaceTransition
@@ -55,18 +54,18 @@ public:
   //! Create an empty Surface Transition.
   Standard_EXPORT TopTrans_SurfaceTransition();
 
-  //! Initialize  a  Surface Transition with the local
+  //! Initialize a Surface Transition with the local
   //! description of the intersection curve and of the
   //! reference surface.
   //! PREQUESITORY : Norm oriented OUTSIDE "geometric matter"
-  Standard_EXPORT void Reset(const gp_Dir&       Tgt,
-                             const gp_Dir&       Norm,
-                             const gp_Dir&       MaxD,
-                             const gp_Dir&       MinD,
-                             const Standard_Real MaxCurv,
-                             const Standard_Real MinCurv);
+  Standard_EXPORT void Reset(const gp_Dir& Tgt,
+                             const gp_Dir& Norm,
+                             const gp_Dir& MaxD,
+                             const gp_Dir& MinD,
+                             const double  MaxCurv,
+                             const double  MinCurv);
 
-  //! Initialize  a  Surface Transition  with the  local
+  //! Initialize a Surface Transition with the local
   //! description of a straight line.
   Standard_EXPORT void Reset(const gp_Dir& Tgt, const gp_Dir& Norm);
 
@@ -84,30 +83,30 @@ public:
   //! O REVERSED means the face is AFTER
   //! O INTERNAL means the curve intersection is in the face.
   //! PREQUESITORY : Norm oriented OUTSIDE "geometric matter"
-  Standard_EXPORT void Compare(const Standard_Real      Tole,
+  Standard_EXPORT void Compare(const double             Tole,
                                const gp_Dir&            Norm,
                                const gp_Dir&            MaxD,
                                const gp_Dir&            MinD,
-                               const Standard_Real      MaxCurv,
-                               const Standard_Real      MinCurv,
+                               const double             MaxCurv,
+                               const double             MinCurv,
                                const TopAbs_Orientation S,
                                const TopAbs_Orientation O);
 
   //! Add a plane or a cylindric face to the boundary.
-  Standard_EXPORT void Compare(const Standard_Real      Tole,
+  Standard_EXPORT void Compare(const double             Tole,
                                const gp_Dir&            Norm,
                                const TopAbs_Orientation S,
                                const TopAbs_Orientation O);
 
   //! Returns the state of the reference surface before
   //! the interference, this is the position relative to
-  //! the surface of a  point very close to the intersection
+  //! the surface of a point very close to the intersection
   //! on the negative side of the tangent.
   Standard_EXPORT TopAbs_State StateBefore() const;
 
   //! Returns the state of the reference surface after
   //! interference, this is the position relative to the
-  //! surface of a point very  close to the intersection
+  //! surface of a point very close to the intersection
   //! on the positive side of the tangent.
   Standard_EXPORT TopAbs_State StateAfter() const;
 
@@ -115,28 +114,28 @@ public:
 
   Standard_EXPORT static TopAbs_State GetAfter(const TopAbs_Orientation Tran);
 
-protected:
 private:
-  Standard_EXPORT void UpdateReference(const Standard_Real      Tole,
-                                       const Standard_Boolean   isInfRef,
-                                       Standard_Real&           CosInf,
-                                       Standard_Real&           CosSup,
+  Standard_EXPORT void UpdateReference(const double             Tole,
+                                       const bool               isInfRef,
+                                       double&                  CosInf,
+                                       double&                  CosSup,
                                        const TopAbs_Orientation Tran,
                                        TopAbs_Orientation&      TranRef);
 
-  Standard_EXPORT Standard_Real ComputeCos(const Standard_Real      Tole,
-                                           const gp_Dir&            Norm,
-                                           const TopAbs_Orientation O,
-                                           Standard_Boolean&        isleft) const;
+  Standard_EXPORT double ComputeCos(const double             Tole,
+                                    const gp_Dir&            Norm,
+                                    const TopAbs_Orientation O,
+                                    bool&                    isleft) const;
 
-  gp_Dir                       myTgt;
-  gp_Dir                       myNorm;
-  gp_Dir                       beafter;
-  Standard_Real                myCurvRef;
-  TColStd_Array2OfReal         myAng;
-  TColStd_Array2OfReal         myCurv;
-  TopTrans_Array2OfOrientation myOri;
-  Standard_Boolean             myTouchFlag;
+  gp_Dir                                 myTgt;
+  gp_Dir                                 myNorm;
+  gp_Dir                                 beafter;
+  double                                 myCurvRef;
+  NCollection_Array2<double>             myAng;
+  NCollection_Array2<double>             myCurv;
+  NCollection_Array2<TopAbs_Orientation> myOri;
+  bool                                   myIsDefined;
+  bool                                   myTouchFlag;
 };
 
 #endif // _TopTrans_SurfaceTransition_HeaderFile

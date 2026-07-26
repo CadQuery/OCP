@@ -1,7 +1,4 @@
-// Created on: 1992-06-22
-// Created by: Gilles DEBARBOUILLE
-// Copyright (c) 1992-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,12 +11,23 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef Units_TokensSequence_HeaderFile
-#define Units_TokensSequence_HeaderFile
+//! @file Units_TokensSequence.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection_HSequence<opencascade::handle<Units_Token>> directly instead.
 
+#ifndef _Units_TokensSequence_hxx
+#define _Units_TokensSequence_hxx
+
+#include <Standard_Macro.hxx>
 #include <Units_TksSequence.hxx>
-#include <NCollection_DefineHSequence.hxx>
+#include <NCollection_HSequence.hxx>
 
-DEFINE_HSEQUENCE(Units_TokensSequence, Units_TksSequence)
+Standard_HEADER_DEPRECATED("Units_TokensSequence.hxx is deprecated since OCCT 8.0.0. Use "
+                           "NCollection_HSequence<opencascade::handle<Units_Token>> directly.")
 
-#endif
+  Standard_DEPRECATED("Units_TokensSequence is deprecated, use "
+                      "NCollection_HSequence<opencascade::handle<Units_Token>> directly")
+typedef NCollection_HSequence<opencascade::handle<Units_Token>> Units_TokensSequence;
+
+#endif // _Units_TokensSequence_hxx

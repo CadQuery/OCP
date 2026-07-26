@@ -21,8 +21,9 @@
 #include <Standard_DefineAlloc.hxx>
 #include <Standard_Handle.hxx>
 
-#include <TColStd_SequenceOfReal.hxx>
+#include <NCollection_Sequence.hxx>
 #include <Standard_Boolean.hxx>
+class HLRBRep_Surface;
 class HLRBRep_SurfaceTool;
 class gp_Lin;
 class HLRBRep_LineTool;
@@ -35,28 +36,25 @@ public:
 
   //! Provides the signed distance function : Q(w)
   //! and its first derivative dQ(w)/dw
-  Standard_EXPORT HLRBRep_TheQuadCurvExactInterCSurf(const Standard_Address& S, const gp_Lin& C);
+  Standard_EXPORT HLRBRep_TheQuadCurvExactInterCSurf(HLRBRep_Surface* S, const gp_Lin& C);
 
-  Standard_EXPORT Standard_Boolean IsDone() const;
+  Standard_EXPORT bool IsDone() const;
 
-  Standard_EXPORT Standard_Integer NbRoots() const;
+  Standard_EXPORT int NbRoots() const;
 
-  Standard_EXPORT Standard_Real Root(const Standard_Integer Index) const;
+  Standard_EXPORT double Root(const int Index) const;
 
-  Standard_EXPORT Standard_Integer NbIntervals() const;
+  Standard_EXPORT int NbIntervals() const;
 
   //! U1 and U2 are the parameters of
   //! a segment on the curve.
-  Standard_EXPORT void Intervals(const Standard_Integer Index,
-                                 Standard_Real&         U1,
-                                 Standard_Real&         U2) const;
+  Standard_EXPORT void Intervals(const int Index, double& U1, double& U2) const;
 
-protected:
 private:
-  Standard_Integer       nbpnts;
-  TColStd_SequenceOfReal pnts;
-  Standard_Integer       nbintv;
-  TColStd_SequenceOfReal intv;
+  int                          nbpnts;
+  NCollection_Sequence<double> pnts;
+  int                          nbintv;
+  NCollection_Sequence<double> intv;
 };
 
 #endif // _HLRBRep_TheQuadCurvExactInterCSurf_HeaderFile

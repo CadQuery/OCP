@@ -1,7 +1,4 @@
-// Created on: 1994-03-03
-// Created by: Joelle CHAUVET
-// Copyright (c) 1994-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,12 +11,23 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef BRepFill_SequenceOfFaceAndOrder_HeaderFile
-#define BRepFill_SequenceOfFaceAndOrder_HeaderFile
+//! @file BRepFill_SequenceOfFaceAndOrder.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection_Sequence<BRepFill_FaceAndOrder> directly instead.
 
+#ifndef _BRepFill_SequenceOfFaceAndOrder_hxx
+#define _BRepFill_SequenceOfFaceAndOrder_hxx
+
+#include <Standard_Macro.hxx>
 #include <BRepFill_FaceAndOrder.hxx>
 #include <NCollection_Sequence.hxx>
 
+Standard_HEADER_DEPRECATED("BRepFill_SequenceOfFaceAndOrder.hxx is deprecated since OCCT 8.0.0. "
+                           "Use NCollection_Sequence<BRepFill_FaceAndOrder> directly.")
+
+  Standard_DEPRECATED("BRepFill_SequenceOfFaceAndOrder is deprecated, use "
+                      "NCollection_Sequence<BRepFill_FaceAndOrder> directly")
 typedef NCollection_Sequence<BRepFill_FaceAndOrder> BRepFill_SequenceOfFaceAndOrder;
 
-#endif
+#endif // _BRepFill_SequenceOfFaceAndOrder_hxx

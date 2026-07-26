@@ -17,6 +17,7 @@
 #include <Standard.hxx>
 #include <NCollection_BaseAllocator.hxx>
 
+#include <type_traits>
 #include <utility>
 
 //! Implements allocator requirements as defined in ISO C++ Standard 2003, section 20.1.5.
@@ -53,10 +54,10 @@ public:
   //! Constructor.
   //! Creates an object using the default Open CASCADE allocation mechanism, i.e., which uses
   //! Standard::Allocate() and Standard::Free() underneath.
-  NCollection_Allocator() noexcept {}
+  NCollection_Allocator() noexcept = default;
 
   //! Constructor.
-  NCollection_Allocator(const Handle(NCollection_BaseAllocator)&) noexcept {}
+  NCollection_Allocator(const occ::handle<NCollection_BaseAllocator>&) noexcept {}
 
   //! Assignment operator
   template <typename OtherType>
@@ -74,13 +75,13 @@ public:
   }
 
   //! Returns an object address.
-  pointer address(reference theItem) const { return &theItem; }
+  pointer address(reference theItem) const noexcept { return &theItem; }
 
   //! Returns an object address.
-  const_pointer address(const_reference theItem) const { return &theItem; }
+  const_pointer address(const_reference theItem) const noexcept { return &theItem; }
 
   //! Allocates memory for theSize objects.
-  pointer allocate(const size_type theSize, const void* /*hint*/ = 0) const
+  pointer allocate(const size_type theSize, const void* /*hint*/ = nullptr) const
   {
     return static_cast<pointer>(Standard::AllocateOptimal(theSize * sizeof(ItemType)));
   }
@@ -88,7 +89,7 @@ public:
   //! Frees previously allocated memory.
   void deallocate(pointer thePnt, const size_type) const
   {
-    Standard::Free(static_cast<Standard_Address>(thePnt));
+    Standard::Free(static_cast<void*>(thePnt));
   }
 
   //! Reallocates memory for theSize objects.
@@ -107,31 +108,31 @@ public:
 
   //! Destroys the object.
   //! Uses the object destructor.
-  void destroy(pointer thePnt)
+  void destroy(pointer thePnt) noexcept(std::is_nothrow_destructible<value_type>::value)
   {
     (void)thePnt;
     thePnt->~value_type();
   }
 
-  bool operator==(const NCollection_Allocator&) const { return true; }
+  constexpr bool operator==(const NCollection_Allocator&) const noexcept { return true; }
 
   template <class U>
-  bool operator==(const NCollection_Allocator<U>&) const noexcept
+  constexpr bool operator==(const NCollection_Allocator<U>&) const noexcept
   {
     return true;
   }
 
-  bool operator!=(const NCollection_Allocator&) const noexcept { return false; }
+  constexpr bool operator!=(const NCollection_Allocator&) const noexcept { return false; }
 
   template <class U>
-  bool operator!=(const NCollection_Allocator<U>&) const noexcept
+  constexpr bool operator!=(const NCollection_Allocator<U>&) const noexcept
   {
     return false;
   }
 };
 
 template <class U, class V>
-bool operator==(const NCollection_Allocator<U>&, const NCollection_Allocator<V>&)
+constexpr bool operator==(const NCollection_Allocator<U>&, const NCollection_Allocator<V>&) noexcept
 {
   return true;
 }

@@ -13,18 +13,8 @@ using opencascade::handle;
 template <typename CppException>
 void register_occ_exception(py::handle scope,
                         const char *name){
-    
-    static py::exception<CppException> ex;
-    if (!ex) ex = py::exception<CppException>(scope, name);
 
-    py::register_exception_translator([](std::exception_ptr p) {
-        if (!p) return;
-        try {
-            std::rethrow_exception(p);
-        } catch (const CppException &e) {
-            ex(e.GetMessageString());
-        }
-    });    
+    py::register_exception<CppException>(scope, name);
 };
 
 
@@ -39,10 +29,14 @@ inline void register_default_constructor(py::module m, const char* name){
 };
 
 template <typename T>
-inline void copy_if_copy_constructible(T& t1, T& t2){
+inline void copy_if_assignable(T& t1, T& t2){
 
-    if constexpr (std::is_copy_constructible<T>::value){
-       t1 = t2;
+    if constexpr (std::is_assignable<T, T>::value){
+        t1 = t2;
+    }
+    else
+    {
+        throw py::type_error("Cannot assign, function wrapper not working properly.");
     }
 
 };

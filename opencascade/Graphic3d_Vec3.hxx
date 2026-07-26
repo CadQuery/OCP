@@ -1,4 +1,4 @@
-// Copyright (c) 2013-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -11,17 +11,32 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _Graphic3d_Vec3_HeaderFile
-#define _Graphic3d_Vec3_HeaderFile
+//! @file Graphic3d_Vec3.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection types directly instead.
 
+#ifndef _Graphic3d_Vec3_hxx
+#define _Graphic3d_Vec3_hxx
+
+#include <Standard_Macro.hxx>
 #include <NCollection_Vec3.hxx>
 #include <Standard_TypeDef.hxx>
 
-typedef NCollection_Vec3<Standard_ShortReal> Graphic3d_Vec3;
-typedef NCollection_Vec3<Standard_Real>      Graphic3d_Vec3d;
-typedef NCollection_Vec3<Standard_Integer>   Graphic3d_Vec3i;
-typedef NCollection_Vec3<unsigned int>       Graphic3d_Vec3u;
-typedef NCollection_Vec3<Standard_Byte>      Graphic3d_Vec3ub;
-typedef NCollection_Vec3<Standard_Character> Graphic3d_Vec3b;
+Standard_HEADER_DEPRECATED(
+  "Graphic3d_Vec3.hxx is deprecated since OCCT 8.0.0. Use NCollection types directly.")
 
-#endif // _Graphic3d_Vec3_HeaderFile
+  Standard_DEPRECATED("Graphic3d_Vec3 is deprecated, use NCollection_Vec3<float> directly")
+typedef NCollection_Vec3<float> Graphic3d_Vec3;
+Standard_DEPRECATED("Graphic3d_Vec3d is deprecated, use NCollection_Vec3<double> directly")
+typedef NCollection_Vec3<double> Graphic3d_Vec3d;
+Standard_DEPRECATED("Graphic3d_Vec3i is deprecated, use NCollection_Vec3<int> directly")
+typedef NCollection_Vec3<int> Graphic3d_Vec3i;
+Standard_DEPRECATED("Graphic3d_Vec3u is deprecated, use NCollection_Vec3<unsigned int> directly")
+typedef NCollection_Vec3<unsigned int> Graphic3d_Vec3u;
+Standard_DEPRECATED("Graphic3d_Vec3ub is deprecated, use NCollection_Vec3<uint8_t> directly")
+typedef NCollection_Vec3<uint8_t> Graphic3d_Vec3ub;
+Standard_DEPRECATED("Graphic3d_Vec3b is deprecated, use NCollection_Vec3<char> directly")
+typedef NCollection_Vec3<char> Graphic3d_Vec3b;
+
+#endif // _Graphic3d_Vec3_hxx

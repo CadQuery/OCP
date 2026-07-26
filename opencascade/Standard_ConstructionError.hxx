@@ -17,13 +17,9 @@
 #ifndef _Standard_ConstructionError_HeaderFile
 #define _Standard_ConstructionError_HeaderFile
 
-#include <Standard_Type.hxx>
 #include <Standard_DefineException.hxx>
 #include <Standard_SStream.hxx>
 #include <Standard_DomainError.hxx>
-
-class Standard_ConstructionError;
-DEFINE_STANDARD_HANDLE(Standard_ConstructionError, Standard_DomainError)
 
 #if !defined No_Exception && !defined No_Standard_ConstructionError
   #define Standard_ConstructionError_Raise_if(CONDITION, MESSAGE)                                  \

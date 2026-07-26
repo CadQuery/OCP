@@ -40,26 +40,24 @@ public:
 
 private:
   // Disable assignment operator.
-  XCAFPrs_DocumentIdIterator& operator=(const XCAFPrs_DocumentIdIterator&);
+  XCAFPrs_DocumentIdIterator& operator=(const XCAFPrs_DocumentIdIterator&) = delete;
 
 private:
   const TCollection_AsciiString& myPath;     //!< full path
   TCollection_AsciiString        mySubId;    //!< current value
-  Standard_Integer               myPosition; //!< last processed new-line symbol
+  int                            myPosition; //!< last processed new-line symbol
 };
 
-// =======================================================================
-// function : Next
-// purpose  :
-// =======================================================================
+//=================================================================================================
+
 inline void XCAFPrs_DocumentIdIterator::Next()
 {
-  for (Standard_Integer aCharIndex = myPosition + 1; aCharIndex <= myPath.Length(); ++aCharIndex)
+  for (int aCharIndex = myPosition + 1; aCharIndex <= myPath.Length(); ++aCharIndex)
   {
     if (myPath.Value(aCharIndex) == '/')
     {
       // intermediate items have trailing dot and separator before the next item
-      const Standard_Integer aLen = aCharIndex - myPosition - 2;
+      const int aLen = aCharIndex - myPosition - 2;
       if (aLen < 1)
       {
         return; // assert - should never happen for valid IDs!

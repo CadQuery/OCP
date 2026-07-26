@@ -1,7 +1,4 @@
-// Created on: 1993-01-26
-// Created by: Laurent PAINNOT
-// Copyright (c) 1993-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,12 +11,23 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef Approx_Array1OfGTrsf2d_HeaderFile
-#define Approx_Array1OfGTrsf2d_HeaderFile
+//! @file Approx_Array1OfGTrsf2d.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection_Array1<gp_GTrsf2d> directly instead.
 
+#ifndef _Approx_Array1OfGTrsf2d_hxx
+#define _Approx_Array1OfGTrsf2d_hxx
+
+#include <Standard_Macro.hxx>
 #include <NCollection_Array1.hxx>
 #include <gp_GTrsf2d.hxx>
 
+Standard_HEADER_DEPRECATED("Approx_Array1OfGTrsf2d.hxx is deprecated since OCCT 8.0.0. Use "
+                           "NCollection_Array1<gp_GTrsf2d> directly.")
+
+  Standard_DEPRECATED(
+    "Approx_Array1OfGTrsf2d is deprecated, use NCollection_Array1<gp_GTrsf2d> directly")
 typedef NCollection_Array1<gp_GTrsf2d> Approx_Array1OfGTrsf2d;
 
-#endif
+#endif // _Approx_Array1OfGTrsf2d_hxx

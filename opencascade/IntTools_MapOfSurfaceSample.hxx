@@ -1,6 +1,4 @@
-// Created on: 2000-05-18
-// Created by: Peter KURNEV
-// Copyright (c) 2000-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -13,14 +11,27 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef IntTools_MapOfSurfaceSample_HeaderFile
-#define IntTools_MapOfSurfaceSample_HeaderFile
+//! @file IntTools_MapOfSurfaceSample.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection types directly instead.
 
+#ifndef _IntTools_MapOfSurfaceSample_hxx
+#define _IntTools_MapOfSurfaceSample_hxx
+
+#include <Standard_Macro.hxx>
 #include <IntTools_SurfaceRangeSample.hxx>
 #include <NCollection_Map.hxx>
 
+Standard_HEADER_DEPRECATED(
+  "IntTools_MapOfSurfaceSample.hxx is deprecated since OCCT 8.0.0. Use NCollection types directly.")
+
+  Standard_DEPRECATED("IntTools_MapOfSurfaceSample is deprecated, use "
+                      "NCollection_Map<IntTools_SurfaceRangeSample> directly")
 typedef NCollection_Map<IntTools_SurfaceRangeSample> IntTools_MapOfSurfaceSample;
+Standard_DEPRECATED("IntTools_MapIteratorOfMapOfSurfaceSample is deprecated, use "
+                    "NCollection_Map<IntTools_SurfaceRangeSample>::Iterator directly")
 typedef NCollection_Map<IntTools_SurfaceRangeSample>::Iterator
   IntTools_MapIteratorOfMapOfSurfaceSample;
 
-#endif
+#endif // _IntTools_MapOfSurfaceSample_hxx

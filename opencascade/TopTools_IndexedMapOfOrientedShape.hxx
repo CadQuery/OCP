@@ -1,7 +1,4 @@
-// Created on: 1993-01-14
-// Created by: Remi LEQUETTE
-// Copyright (c) 1993-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,12 +11,23 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef TopTools_IndexedMapOfOrientedShape_HeaderFile
-#define TopTools_IndexedMapOfOrientedShape_HeaderFile
+//! @file TopTools_IndexedMapOfOrientedShape.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection_IndexedMap<TopoDS_Shape> directly instead.
 
+#ifndef _TopTools_IndexedMapOfOrientedShape_hxx
+#define _TopTools_IndexedMapOfOrientedShape_hxx
+
+#include <Standard_Macro.hxx>
 #include <TopoDS_Shape.hxx>
 #include <NCollection_IndexedMap.hxx>
 
+Standard_HEADER_DEPRECATED("TopTools_IndexedMapOfOrientedShape.hxx is deprecated since OCCT 8.0.0. "
+                           "Use NCollection_IndexedMap<TopoDS_Shape> directly.")
+
+  Standard_DEPRECATED("TopTools_IndexedMapOfOrientedShape is deprecated, use "
+                      "NCollection_IndexedMap<TopoDS_Shape> directly")
 typedef NCollection_IndexedMap<TopoDS_Shape> TopTools_IndexedMapOfOrientedShape;
 
-#endif
+#endif // _TopTools_IndexedMapOfOrientedShape_hxx

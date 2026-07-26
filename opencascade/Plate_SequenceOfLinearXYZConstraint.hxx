@@ -1,7 +1,4 @@
-// Created on: 1995-10-17
-// Created by: Andre LIEUTIER
-// Copyright (c) 1995-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,12 +11,23 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef Plate_SequenceOfLinearXYZConstraint_HeaderFile
-#define Plate_SequenceOfLinearXYZConstraint_HeaderFile
+//! @file Plate_SequenceOfLinearXYZConstraint.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection_Sequence<Plate_LinearXYZConstraint> directly instead.
 
+#ifndef _Plate_SequenceOfLinearXYZConstraint_hxx
+#define _Plate_SequenceOfLinearXYZConstraint_hxx
+
+#include <Standard_Macro.hxx>
 #include <Plate_LinearXYZConstraint.hxx>
 #include <NCollection_Sequence.hxx>
 
+Standard_HEADER_DEPRECATED("Plate_SequenceOfLinearXYZConstraint.hxx is deprecated since OCCT "
+                           "8.0.0. Use NCollection_Sequence<Plate_LinearXYZConstraint> directly.")
+
+  Standard_DEPRECATED("Plate_SequenceOfLinearXYZConstraint is deprecated, use "
+                      "NCollection_Sequence<Plate_LinearXYZConstraint> directly")
 typedef NCollection_Sequence<Plate_LinearXYZConstraint> Plate_SequenceOfLinearXYZConstraint;
 
-#endif
+#endif // _Plate_SequenceOfLinearXYZConstraint_hxx

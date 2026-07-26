@@ -1,7 +1,4 @@
-// Created on: 1995-12-01
-// Created by: EXPRESS->CDL V0.2 Translator
-// Copyright (c) 1995-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,12 +11,23 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef StepAP214_HArray1OfOrganizationItem_HeaderFile
-#define StepAP214_HArray1OfOrganizationItem_HeaderFile
+//! @file StepAP214_HArray1OfOrganizationItem.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection_HArray1<StepAP214_OrganizationItem> directly instead.
 
+#ifndef _StepAP214_HArray1OfOrganizationItem_hxx
+#define _StepAP214_HArray1OfOrganizationItem_hxx
+
+#include <Standard_Macro.hxx>
 #include <StepAP214_Array1OfOrganizationItem.hxx>
-#include <NCollection_DefineHArray1.hxx>
+#include <NCollection_HArray1.hxx>
 
-DEFINE_HARRAY1(StepAP214_HArray1OfOrganizationItem, StepAP214_Array1OfOrganizationItem)
+Standard_HEADER_DEPRECATED("StepAP214_HArray1OfOrganizationItem.hxx is deprecated since OCCT "
+                           "8.0.0. Use NCollection_HArray1<StepAP214_OrganizationItem> directly.")
 
-#endif
+  Standard_DEPRECATED("StepAP214_HArray1OfOrganizationItem is deprecated, use "
+                      "NCollection_HArray1<StepAP214_OrganizationItem> directly")
+typedef NCollection_HArray1<StepAP214_OrganizationItem> StepAP214_HArray1OfOrganizationItem;
+
+#endif // _StepAP214_HArray1OfOrganizationItem_hxx

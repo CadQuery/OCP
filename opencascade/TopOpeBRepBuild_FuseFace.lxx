@@ -16,116 +16,83 @@
 
 #include <StdFail_NotDone.hxx>
 
-//=======================================================================
-// function : TopOpeBRepBuild_FuseFace
-// purpose  :
-//=======================================================================
+//=================================================================================================
 
 inline TopOpeBRepBuild_FuseFace::TopOpeBRepBuild_FuseFace()
-    : myInternal(Standard_False),
-      myModified(Standard_False),
-      myDone(Standard_False)
+    : myInternal(false),
+      myModified(false),
+      myDone(false)
 {
 }
 
-//=======================================================================
-// function : TopOpeBRepBuild_FuseFace
-// purpose  :
-//=======================================================================
+//=================================================================================================
 
-inline TopOpeBRepBuild_FuseFace::TopOpeBRepBuild_FuseFace(const TopTools_ListOfShape& LIF,
-                                                          const TopTools_ListOfShape& LRF,
-                                                          const Standard_Integer      CXM)
+inline TopOpeBRepBuild_FuseFace::TopOpeBRepBuild_FuseFace(const NCollection_List<TopoDS_Shape>& LIF,
+                                                          const NCollection_List<TopoDS_Shape>& LRF,
+                                                          const int                             CXM)
 {
   Init(LIF, LRF, CXM);
 }
 
-//=======================================================================
-// function : IsDone
-// purpose  :
-//=======================================================================
+//=================================================================================================
 
-inline Standard_Boolean TopOpeBRepBuild_FuseFace::IsDone() const
+inline bool TopOpeBRepBuild_FuseFace::IsDone() const
 {
   return myDone;
 }
 
-//=======================================================================
-// function : IsModified
-// purpose  :
-//=======================================================================
+//=================================================================================================
 
-inline Standard_Boolean TopOpeBRepBuild_FuseFace::IsModified() const
+inline bool TopOpeBRepBuild_FuseFace::IsModified() const
 {
   return myModified;
 }
 
-//=======================================================================
-// function : ListOfFusionnedFaces
-// purpose  :
-//=======================================================================
+//=================================================================================================
 
-inline const TopTools_ListOfShape& TopOpeBRepBuild_FuseFace::LFuseFace() const
+inline const NCollection_List<TopoDS_Shape>& TopOpeBRepBuild_FuseFace::LFuseFace() const
 {
   return myLFF;
 }
 
-//=======================================================================
-// function : ListOfInternalEdges
-// purpose  :
-//=======================================================================
+//=================================================================================================
 
-inline const TopTools_ListOfShape& TopOpeBRepBuild_FuseFace::LInternEdge() const
+inline const NCollection_List<TopoDS_Shape>& TopOpeBRepBuild_FuseFace::LInternEdge() const
 {
   return myLIE;
 }
 
-//=======================================================================
-// function : ListOfExternalEdges
-// purpose  :
-//=======================================================================
+//=================================================================================================
 
-inline const TopTools_ListOfShape& TopOpeBRepBuild_FuseFace::LExternEdge() const
+inline const NCollection_List<TopoDS_Shape>& TopOpeBRepBuild_FuseFace::LExternEdge() const
 {
   return myLEE;
 }
 
-//=======================================================================
-// function : ListOfModifiedEdges
-// purpose  :
-//=======================================================================
+//=================================================================================================
 
-inline const TopTools_ListOfShape& TopOpeBRepBuild_FuseFace::LModifEdge() const
+inline const NCollection_List<TopoDS_Shape>& TopOpeBRepBuild_FuseFace::LModifEdge() const
 {
   return myLME;
 }
 
-//=======================================================================
-// function : ListOfInternalVertex
-// purpose  :
-//=======================================================================
+//=================================================================================================
 
-inline const TopTools_ListOfShape& TopOpeBRepBuild_FuseFace::LInternVertex() const
+inline const NCollection_List<TopoDS_Shape>& TopOpeBRepBuild_FuseFace::LInternVertex() const
 {
   return myLIV;
 }
 
-//=======================================================================
-// function : ListOfExternalVertex
-// purpose  :
-//=======================================================================
+//=================================================================================================
 
-inline const TopTools_ListOfShape& TopOpeBRepBuild_FuseFace::LExternVertex() const
+inline const NCollection_List<TopoDS_Shape>& TopOpeBRepBuild_FuseFace::LExternVertex() const
 {
   return myLEV;
 }
 
-//=======================================================================
-// function : ListOfModifiedVertex
-// purpose  :
-//=======================================================================
+//=================================================================================================
 
-inline const TopTools_ListOfShape& TopOpeBRepBuild_FuseFace::LModifVertex() const
+inline const NCollection_List<TopoDS_Shape>& TopOpeBRepBuild_FuseFace::LModifVertex() const
 {
   return myLMV;
 }

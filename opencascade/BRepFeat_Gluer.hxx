@@ -24,7 +24,8 @@
 #include <LocOpe_Gluer.hxx>
 #include <BRepBuilderAPI_MakeShape.hxx>
 #include <LocOpe_Operation.hxx>
-#include <TopTools_ListOfShape.hxx>
+#include <TopoDS_Shape.hxx>
+#include <NCollection_List.hxx>
 class TopoDS_Shape;
 class TopoDS_Face;
 class TopoDS_Edge;
@@ -85,20 +86,18 @@ public:
   //! Returns the resulting compound shape.
   const TopoDS_Shape& GluedShape() const;
 
-  //! This is  called by  Shape().  It does  nothing but
+  //! This is called by Shape(). It does nothing but
   //! may be redefined.
-  Standard_EXPORT virtual void Build(
-    const Message_ProgressRange& theRange = Message_ProgressRange()) Standard_OVERRIDE;
+  Standard_EXPORT void Build(
+    const Message_ProgressRange& theRange = Message_ProgressRange()) override;
 
-  //! returns the status of the Face after
+  //! Returns the status of the Face after
   //! the shape creation.
-  Standard_EXPORT virtual Standard_Boolean IsDeleted(const TopoDS_Shape& F) Standard_OVERRIDE;
+  Standard_EXPORT bool IsDeleted(const TopoDS_Shape& F) override;
 
-  //! returns the list of generated Faces.
-  Standard_EXPORT virtual const TopTools_ListOfShape& Modified(const TopoDS_Shape& F)
-    Standard_OVERRIDE;
+  //! Returns the list of generated Faces.
+  Standard_EXPORT const NCollection_List<TopoDS_Shape>& Modified(const TopoDS_Shape& F) override;
 
-protected:
 private:
   LocOpe_Gluer myGluer;
 };

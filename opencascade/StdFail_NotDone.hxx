@@ -17,13 +17,9 @@
 #ifndef _StdFail_NotDone_HeaderFile
 #define _StdFail_NotDone_HeaderFile
 
-#include <Standard_Type.hxx>
 #include <Standard_DefineException.hxx>
 #include <Standard_SStream.hxx>
 #include <Standard_Failure.hxx>
-
-class StdFail_NotDone;
-DEFINE_STANDARD_HANDLE(StdFail_NotDone, Standard_Failure)
 
 #if !defined No_Exception && !defined No_StdFail_NotDone
   #define StdFail_NotDone_Raise_if(CONDITION, MESSAGE)                                             \

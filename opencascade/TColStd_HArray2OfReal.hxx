@@ -1,5 +1,4 @@
-// Copyright (c) 1998-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -12,12 +11,23 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef TColStd_HArray2OfReal_HeaderFile
-#define TColStd_HArray2OfReal_HeaderFile
+//! @file TColStd_HArray2OfReal.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection_HArray2<double> directly instead.
 
+#ifndef _TColStd_HArray2OfReal_hxx
+#define _TColStd_HArray2OfReal_hxx
+
+#include <Standard_Macro.hxx>
 #include <TColStd_Array2OfReal.hxx>
-#include <NCollection_DefineHArray2.hxx>
+#include <NCollection_HArray2.hxx>
 
-DEFINE_HARRAY2(TColStd_HArray2OfReal, TColStd_Array2OfReal)
+Standard_HEADER_DEPRECATED("TColStd_HArray2OfReal.hxx is deprecated since OCCT 8.0.0. Use "
+                           "NCollection_HArray2<double> directly.")
 
-#endif
+  Standard_DEPRECATED(
+    "TColStd_HArray2OfReal is deprecated, use NCollection_HArray2<double> directly")
+typedef NCollection_HArray2<double> TColStd_HArray2OfReal;
+
+#endif // _TColStd_HArray2OfReal_hxx

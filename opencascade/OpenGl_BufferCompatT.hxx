@@ -46,26 +46,26 @@ public:
   }
 
   //! Destroy object.
-  virtual ~OpenGl_BufferCompatT() { Release(NULL); }
+  ~OpenGl_BufferCompatT() override { Release(nullptr); }
 
   //! Return TRUE.
-  virtual bool IsVirtual() const Standard_OVERRIDE { return true; }
+  bool IsVirtual() const override { return true; }
 
   //! Creates VBO name (id) if not yet generated.
   //! Data should be initialized by another method.
-  inline bool Create(const Handle(OpenGl_Context)& theGlCtx) Standard_OVERRIDE;
+  inline bool Create(const occ::handle<OpenGl_Context>& theGlCtx) override;
 
   //! Destroy object - will release memory if any.
-  inline virtual void Release(OpenGl_Context* theGlCtx) Standard_OVERRIDE;
+  inline void Release(OpenGl_Context* theGlCtx) override;
 
   //! Bind this VBO.
-  virtual void Bind(const Handle(OpenGl_Context)&) const Standard_OVERRIDE
+  void Bind(const occ::handle<OpenGl_Context>&) const override
   {
     //
   }
 
   //! Unbind this VBO.
-  virtual void Unbind(const Handle(OpenGl_Context)&) const Standard_OVERRIDE
+  void Unbind(const occ::handle<OpenGl_Context>&) const override
   {
     //
   }
@@ -73,43 +73,41 @@ public:
 public: //! @name advanced methods
   //! Initialize buffer with existing data.
   //! Data will NOT be copied by this method!
-  inline bool initLink(const Handle(NCollection_Buffer)& theData,
-                       const unsigned int                theComponentsNb,
-                       const Standard_Integer            theElemsNb,
-                       const unsigned int                theDataType);
+  inline bool initLink(const occ::handle<NCollection_Buffer>& theData,
+                       const unsigned int                     theComponentsNb,
+                       const int                              theElemsNb,
+                       const unsigned int                     theDataType);
 
   //! Initialize buffer with new data (data will be copied).
-  inline virtual bool init(const Handle(OpenGl_Context)& theGlCtx,
-                           const unsigned int            theComponentsNb,
-                           const Standard_Integer        theElemsNb,
-                           const void*                   theData,
-                           const unsigned int            theDataType,
-                           const Standard_Integer        theStride) Standard_OVERRIDE;
+  inline bool init(const occ::handle<OpenGl_Context>& theGlCtx,
+                   const unsigned int                 theComponentsNb,
+                   const int                          theElemsNb,
+                   const void*                        theData,
+                   const unsigned int                 theDataType,
+                   const int                          theStride) override;
 
   //! Update part of the buffer with new data.
-  inline virtual bool subData(const Handle(OpenGl_Context)& theGlCtx,
-                              const Standard_Integer        theElemFrom,
-                              const Standard_Integer        theElemsNb,
-                              const void*                   theData,
-                              const unsigned int            theDataType) Standard_OVERRIDE;
+  inline bool subData(const occ::handle<OpenGl_Context>& theGlCtx,
+                      const int                          theElemFrom,
+                      const int                          theElemsNb,
+                      const void*                        theData,
+                      const unsigned int                 theDataType) override;
 
   //! Read back buffer sub-range.
-  inline virtual bool getSubData(const Handle(OpenGl_Context)& theGlCtx,
-                                 const Standard_Integer        theElemFrom,
-                                 const Standard_Integer        theElemsNb,
-                                 void*                         theData,
-                                 const unsigned int            theDataType) Standard_OVERRIDE;
+  inline bool getSubData(const occ::handle<OpenGl_Context>& theGlCtx,
+                         const int                          theElemFrom,
+                         const int                          theElemsNb,
+                         void*                              theData,
+                         const unsigned int                 theDataType) override;
 
 protected:
-  Handle(NCollection_Buffer) myData; //!< buffer data
+  occ::handle<NCollection_Buffer> myData; //!< buffer data
 };
 
-// =======================================================================
-// function : Create
-// purpose  :
-// =======================================================================
+//=================================================================================================
+
 template <class BaseBufferT>
-bool OpenGl_BufferCompatT<BaseBufferT>::Create(const Handle(OpenGl_Context)&)
+bool OpenGl_BufferCompatT<BaseBufferT>::Create(const occ::handle<OpenGl_Context>&)
 {
   if (BaseBufferT::myBufferId == OpenGl_Buffer::NO_BUFFER)
   {
@@ -119,10 +117,8 @@ bool OpenGl_BufferCompatT<BaseBufferT>::Create(const Handle(OpenGl_Context)&)
   return BaseBufferT::myBufferId != OpenGl_Buffer::NO_BUFFER;
 }
 
-// =======================================================================
-// function : Release
-// purpose  :
-// =======================================================================
+//=================================================================================================
+
 template <class BaseBufferT>
 void OpenGl_BufferCompatT<BaseBufferT>::Release(OpenGl_Context*)
 {
@@ -131,24 +127,22 @@ void OpenGl_BufferCompatT<BaseBufferT>::Release(OpenGl_Context*)
     return;
   }
 
-  BaseBufferT::myOffset   = NULL;
+  BaseBufferT::myOffset   = nullptr;
   BaseBufferT::myBufferId = OpenGl_Buffer::NO_BUFFER;
   myData.Nullify();
 }
 
-// =======================================================================
-// function : initLink
-// purpose  :
-// =======================================================================
+//=================================================================================================
+
 template <class BaseBufferT>
-bool OpenGl_BufferCompatT<BaseBufferT>::initLink(const Handle(NCollection_Buffer)& theData,
-                                                 const unsigned int                theComponentsNb,
-                                                 const Standard_Integer            theElemsNb,
-                                                 const unsigned int                theDataType)
+bool OpenGl_BufferCompatT<BaseBufferT>::initLink(const occ::handle<NCollection_Buffer>& theData,
+                                                 const unsigned int theComponentsNb,
+                                                 const int          theElemsNb,
+                                                 const unsigned int theDataType)
 {
   if (theData.IsNull())
   {
-    BaseBufferT::myOffset = NULL;
+    BaseBufferT::myOffset = nullptr;
     return false;
   }
 
@@ -164,21 +158,19 @@ bool OpenGl_BufferCompatT<BaseBufferT>::initLink(const Handle(NCollection_Buffer
   return true;
 }
 
-// =======================================================================
-// function : init
-// purpose  :
-// =======================================================================
+//=================================================================================================
+
 template <class BaseBufferT>
-bool OpenGl_BufferCompatT<BaseBufferT>::init(const Handle(OpenGl_Context)& theCtx,
-                                             const unsigned int            theComponentsNb,
-                                             const Standard_Integer        theElemsNb,
-                                             const void*                   theData,
-                                             const unsigned int            theDataType,
-                                             const Standard_Integer        theStride)
+bool OpenGl_BufferCompatT<BaseBufferT>::init(const occ::handle<OpenGl_Context>& theCtx,
+                                             const unsigned int                 theComponentsNb,
+                                             const int                          theElemsNb,
+                                             const void*                        theData,
+                                             const unsigned int                 theDataType,
+                                             const int                          theStride)
 {
   if (!Create(theCtx))
   {
-    BaseBufferT::myOffset = NULL;
+    BaseBufferT::myOffset = nullptr;
     return false;
   }
 
@@ -189,35 +181,33 @@ bool OpenGl_BufferCompatT<BaseBufferT>::init(const Handle(OpenGl_Context)& theCt
   const size_t aNbBytes = size_t(BaseBufferT::myElemsNb) * theStride;
   if (!myData->Allocate(aNbBytes))
   {
-    BaseBufferT::myOffset = NULL;
+    BaseBufferT::myOffset = nullptr;
     return false;
   }
 
   BaseBufferT::myOffset = myData->ChangeData();
-  if (theData != NULL)
+  if (theData != nullptr)
   {
     memcpy(myData->ChangeData(), theData, aNbBytes);
   }
   return true;
 }
 
-// =======================================================================
-// function : subData
-// purpose  :
-// =======================================================================
+//=================================================================================================
+
 template <class BaseBufferT>
-bool OpenGl_BufferCompatT<BaseBufferT>::subData(const Handle(OpenGl_Context)&,
-                                                const Standard_Integer theElemFrom,
-                                                const Standard_Integer theElemsNb,
-                                                const void*            theData,
-                                                const unsigned int     theDataType)
+bool OpenGl_BufferCompatT<BaseBufferT>::subData(const occ::handle<OpenGl_Context>&,
+                                                const int          theElemFrom,
+                                                const int          theElemsNb,
+                                                const void*        theData,
+                                                const unsigned int theDataType)
 {
   if (!BaseBufferT::IsValid() || BaseBufferT::myDataType != theDataType || theElemFrom < 0
       || ((theElemFrom + theElemsNb) > BaseBufferT::myElemsNb))
   {
     return false;
   }
-  else if (theData == NULL)
+  else if (theData == nullptr)
   {
     return true;
   }
@@ -229,19 +219,17 @@ bool OpenGl_BufferCompatT<BaseBufferT>::subData(const Handle(OpenGl_Context)&,
   return true;
 }
 
-// =======================================================================
-// function : getSubData
-// purpose  :
-// =======================================================================
+//=================================================================================================
+
 template <class BaseBufferT>
-bool OpenGl_BufferCompatT<BaseBufferT>::getSubData(const Handle(OpenGl_Context)&,
-                                                   const Standard_Integer theElemFrom,
-                                                   const Standard_Integer theElemsNb,
-                                                   void*                  theData,
-                                                   const unsigned int     theDataType)
+bool OpenGl_BufferCompatT<BaseBufferT>::getSubData(const occ::handle<OpenGl_Context>&,
+                                                   const int          theElemFrom,
+                                                   const int          theElemsNb,
+                                                   void*              theData,
+                                                   const unsigned int theDataType)
 {
   if (!BaseBufferT::IsValid() || BaseBufferT::myDataType != theDataType || theElemFrom < 0
-      || ((theElemFrom + theElemsNb) > BaseBufferT::myElemsNb) || theData == NULL)
+      || ((theElemFrom + theElemsNb) > BaseBufferT::myElemsNb) || theData == nullptr)
   {
     return false;
   }

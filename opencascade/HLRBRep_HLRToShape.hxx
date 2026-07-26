@@ -65,48 +65,69 @@ public:
   //! Constructs a framework for filtering the
   //! results of the HLRBRep_Algo algorithm, A.
   //! Use the extraction filters to obtain the results you want for A.
-  Standard_EXPORT HLRBRep_HLRToShape(const Handle(HLRBRep_Algo)& A);
+  Standard_EXPORT HLRBRep_HLRToShape(const occ::handle<HLRBRep_Algo>& A);
 
+  //! Return visible sharp edges (of C0-continuity).
   TopoDS_Shape VCompound();
 
+  //! Return visible sharp edges (of C0-continuity) of specified shape.
   TopoDS_Shape VCompound(const TopoDS_Shape& S);
 
+  //! Return visible smooth edges (G1-continuity between two surfaces).
   TopoDS_Shape Rg1LineVCompound();
 
+  //! Return visible smooth edges (G1-continuity between two surfaces) of specified shape.
   TopoDS_Shape Rg1LineVCompound(const TopoDS_Shape& S);
 
+  //! Return visible sewn edges (of CN-continuity on one surface).
   TopoDS_Shape RgNLineVCompound();
 
+  //! Return visible sewn edges (of CN-continuity on one surface) of specified shape.
   TopoDS_Shape RgNLineVCompound(const TopoDS_Shape& S);
 
+  //! Return visible outline edges ("silhouette").
   TopoDS_Shape OutLineVCompound();
 
+  //! Return visible outline edges ("silhouette").
   TopoDS_Shape OutLineVCompound3d();
 
+  //! Return visible outline edges ("silhouette") of specified shape.
   TopoDS_Shape OutLineVCompound(const TopoDS_Shape& S);
 
+  //! Return visible isoparameters.
   TopoDS_Shape IsoLineVCompound();
 
+  //! Return visible isoparameters of specified shape.
   TopoDS_Shape IsoLineVCompound(const TopoDS_Shape& S);
 
+  //! Return hidden sharp edges (of C0-continuity).
   TopoDS_Shape HCompound();
 
+  //! Return hidden sharp edges (of C0-continuity) of specified shape.
   TopoDS_Shape HCompound(const TopoDS_Shape& S);
 
+  //! Return hidden smooth edges (G1-continuity between two surfaces).
   TopoDS_Shape Rg1LineHCompound();
 
+  //! Return hidden smooth edges (G1-continuity between two surfaces) of specified shape.
   TopoDS_Shape Rg1LineHCompound(const TopoDS_Shape& S);
 
+  //! Return hidden sewn edges (of CN-continuity on one surface).
   TopoDS_Shape RgNLineHCompound();
 
+  //! Return hidden sewn edges (of CN-continuity on one surface) of specified shape.
   TopoDS_Shape RgNLineHCompound(const TopoDS_Shape& S);
 
+  //! Return hidden outline edges ("silhouette").
   TopoDS_Shape OutLineHCompound();
 
+  //! Return hidden outline edges ("silhouette") of specified shape.
   TopoDS_Shape OutLineHCompound(const TopoDS_Shape& S);
 
+  //! Return hidden isoparameters.
   TopoDS_Shape IsoLineHCompound();
 
+  //! Return hidden isoparameters of specified shape.
   TopoDS_Shape IsoLineHCompound(const TopoDS_Shape& S);
 
   //! Returns compound of resulting edges
@@ -114,8 +135,8 @@ public:
   //! taking into account the kind of space
   //! (2d or 3d)
   TopoDS_Shape CompoundOfEdges(const HLRBRep_TypeOfResultingEdge type,
-                               const Standard_Boolean            visible,
-                               const Standard_Boolean            In3d);
+                               const bool                        visible,
+                               const bool                        In3d);
 
   //! For specified shape
   //! returns compound of resulting edges
@@ -124,33 +145,32 @@ public:
   //! (2d or 3d)
   TopoDS_Shape CompoundOfEdges(const TopoDS_Shape&               S,
                                const HLRBRep_TypeOfResultingEdge type,
-                               const Standard_Boolean            visible,
-                               const Standard_Boolean            In3d);
+                               const bool                        visible,
+                               const bool                        In3d);
 
-protected:
 private:
-  Standard_EXPORT TopoDS_Shape InternalCompound(const Standard_Integer typ,
-                                                const Standard_Boolean visible,
-                                                const TopoDS_Shape&    S,
-                                                const Standard_Boolean In3d = Standard_False);
+  Standard_EXPORT TopoDS_Shape InternalCompound(const int           typ,
+                                                const bool          visible,
+                                                const TopoDS_Shape& S,
+                                                const bool          In3d = false);
 
-  Standard_EXPORT void DrawFace(const Standard_Boolean visible,
-                                const Standard_Integer typ,
-                                const Standard_Integer iface,
-                                Handle(HLRBRep_Data)&  DS,
-                                TopoDS_Shape&          Result,
-                                Standard_Boolean&      added,
-                                const Standard_Boolean In3d = Standard_False) const;
+  Standard_EXPORT void DrawFace(const bool                 visible,
+                                const int                  typ,
+                                const int                  iface,
+                                occ::handle<HLRBRep_Data>& DS,
+                                TopoDS_Shape&              Result,
+                                bool&                      added,
+                                const bool                 In3d = false) const;
 
-  Standard_EXPORT void DrawEdge(const Standard_Boolean visible,
-                                const Standard_Boolean inFace,
-                                const Standard_Integer typ,
-                                HLRBRep_EdgeData&      ed,
-                                TopoDS_Shape&          Result,
-                                Standard_Boolean&      added,
-                                const Standard_Boolean In3d = Standard_False) const;
+  Standard_EXPORT void DrawEdge(const bool        visible,
+                                const bool        inFace,
+                                const int         typ,
+                                HLRBRep_EdgeData& ed,
+                                TopoDS_Shape&     Result,
+                                bool&             added,
+                                const bool        In3d = false) const;
 
-  Handle(HLRBRep_Algo) myAlgo;
+  occ::handle<HLRBRep_Algo> myAlgo;
 };
 
 #include <HLRBRep_HLRToShape.lxx>

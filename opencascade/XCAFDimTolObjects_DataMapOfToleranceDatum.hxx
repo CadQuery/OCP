@@ -1,6 +1,4 @@
-// Created on: 2015-08-06
-// Created by: Ilya Novikov
-// Copyright (c) 2004-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -13,15 +11,31 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef XCAFDimTolObjects_DataMapOfToleranceDatum_HeaderFile
-#define XCAFDimTolObjects_DataMapOfToleranceDatum_HeaderFile
+//! @file XCAFDimTolObjects_DataMapOfToleranceDatum.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection_DataMap<opencascade::handle<XCAFDimTolObjects_GeomToleranceObject>,
+//!             opencascade::handle<XCAFDimTolObjects_DatumObject>> directly instead.
 
+#ifndef _XCAFDimTolObjects_DataMapOfToleranceDatum_hxx
+#define _XCAFDimTolObjects_DataMapOfToleranceDatum_hxx
+
+#include <Standard_Macro.hxx>
 #include <NCollection_DataMap.hxx>
 #include <XCAFDimTolObjects_GeomToleranceObject.hxx>
 #include <XCAFDimTolObjects_DatumObject.hxx>
 
-typedef NCollection_DataMap<Handle(XCAFDimTolObjects_GeomToleranceObject),
-                            Handle(XCAFDimTolObjects_DatumObject)>
+Standard_HEADER_DEPRECATED(
+  "XCAFDimTolObjects_DataMapOfToleranceDatum.hxx is deprecated since OCCT 8.0.0. Use "
+  "NCollection_DataMap<opencascade::handle<XCAFDimTolObjects_GeomToleranceObject>, "
+  "opencascade::handle<XCAFDimTolObjects_DatumObject>> directly.")
+
+  Standard_DEPRECATED(
+    "XCAFDimTolObjects_DataMapOfToleranceDatum is deprecated, use "
+    "NCollection_DataMap<opencascade::handle<XCAFDimTolObjects_GeomToleranceObject>, "
+    "opencascade::handle<XCAFDimTolObjects_DatumObject>> directly")
+typedef NCollection_DataMap<opencascade::handle<XCAFDimTolObjects_GeomToleranceObject>,
+                            opencascade::handle<XCAFDimTolObjects_DatumObject>>
   XCAFDimTolObjects_DataMapOfToleranceDatum;
 
-#endif
+#endif // _XCAFDimTolObjects_DataMapOfToleranceDatum_hxx

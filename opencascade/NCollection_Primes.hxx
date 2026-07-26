@@ -16,6 +16,8 @@
 
 #include <Standard_Macro.hxx>
 
+#include <cstddef>
+
 //! Namespace provides a collection of prime numbers.
 //!
 //! This namespace is used to store a collection of prime numbers that are used as
@@ -31,7 +33,8 @@
 namespace NCollection_Primes
 {
 //! Returns the next prime number greater than or equal to theN.
-Standard_EXPORT int NextPrimeForMap(const int theN);
+//! If theN exceeds the largest available prime, returns theN + 1.
+Standard_EXPORT size_t NextPrimeForMap(const size_t theN) noexcept;
 }; // namespace NCollection_Primes
 
 #endif // _NCollection_Primes_HeaderFile

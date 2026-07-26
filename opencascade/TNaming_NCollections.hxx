@@ -1,6 +1,4 @@
-// Created on: 2010-03-25
-// Created by: Sergey ZARITCHNY
-// Copyright (c) 2010-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -13,14 +11,33 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef TNaming_NCollections_HeaderFile
-#define TNaming_NCollections_HeaderFile
+//! @file TNaming_NCollections.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection types directly instead.
+
+#ifndef _TNaming_NCollections_hxx
+#define _TNaming_NCollections_hxx
+
+#include <Standard_Macro.hxx>
 #include <NCollection_Map.hxx>
 #include <NCollection_DataMap.hxx>
-typedef NCollection_Map<TopoDS_Shape>                         TNaming_MapOfShape;
-typedef TNaming_MapOfShape::Iterator                          TNaming_MapIteratorOfMapOfShape;
+
+Standard_HEADER_DEPRECATED(
+  "TNaming_NCollections.hxx is deprecated since OCCT 8.0.0. Use NCollection types directly.")
+
+  Standard_DEPRECATED(
+    "TNaming_MapOfShape is deprecated, use NCollection_Map<TopoDS_Shape> directly")
+typedef NCollection_Map<TopoDS_Shape> TNaming_MapOfShape;
+Standard_DEPRECATED("TNaming_DataMapOfShapeMapOfShape is deprecated, use "
+                    "NCollection_DataMap<TopoDS_Shape, TNaming_MapOfShape> directly")
 typedef NCollection_DataMap<TopoDS_Shape, TNaming_MapOfShape> TNaming_DataMapOfShapeMapOfShape;
-typedef TNaming_DataMapOfShapeMapOfShape::Iterator
+Standard_DEPRECATED("TNaming_MapIteratorOfMapOfShape is deprecated, use "
+                    "NCollection_Map<TopoDS_Shape>::Iterator directly")
+typedef NCollection_Map<TopoDS_Shape>::Iterator TNaming_MapIteratorOfMapOfShape;
+Standard_DEPRECATED("TNaming_DataMapIteratorOfDataMapOfShapeMapOfShape is deprecated, use "
+                    "NCollection_DataMap<TopoDS_Shape, TNaming_MapOfShape>::Iterator directly")
+typedef NCollection_DataMap<TopoDS_Shape, TNaming_MapOfShape>::Iterator
   TNaming_DataMapIteratorOfDataMapOfShapeMapOfShape;
 
-#endif
+#endif // _TNaming_NCollections_hxx

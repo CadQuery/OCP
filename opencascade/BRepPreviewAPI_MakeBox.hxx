@@ -30,11 +30,11 @@ class BRepPreviewAPI_MakeBox : public BRepPrimAPI_MakeBox
 {
 public:
   //! Constructor
-  BRepPreviewAPI_MakeBox() {}
+  BRepPreviewAPI_MakeBox() = default;
 
   //! Creates a preview depending on point values.
-  Standard_EXPORT virtual void Build(
-    const Message_ProgressRange& theRange = Message_ProgressRange()) Standard_OVERRIDE;
+  Standard_EXPORT void Build(
+    const Message_ProgressRange& theRange = Message_ProgressRange()) override;
 
 private:
   //! Create a vertex if thin box in all directions is a point.

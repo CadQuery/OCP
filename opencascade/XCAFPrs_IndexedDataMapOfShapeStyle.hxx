@@ -1,6 +1,4 @@
-// Created on: 2000-08-11
-// Created by: Andrey BETENEV
-// Copyright (c) 2000-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -13,16 +11,31 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef XCAFPrs_IndexedDataMapOfShapeStyle_HeaderFile
-#define XCAFPrs_IndexedDataMapOfShapeStyle_HeaderFile
+//! @file XCAFPrs_IndexedDataMapOfShapeStyle.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection types directly instead.
 
+#ifndef _XCAFPrs_IndexedDataMapOfShapeStyle_hxx
+#define _XCAFPrs_IndexedDataMapOfShapeStyle_hxx
+
+#include <Standard_Macro.hxx>
 #include <XCAFPrs_Style.hxx>
 #include <TopTools_ShapeMapHasher.hxx>
 #include <NCollection_IndexedDataMap.hxx>
 
+Standard_HEADER_DEPRECATED("XCAFPrs_IndexedDataMapOfShapeStyle.hxx is deprecated since OCCT 8.0.0. "
+                           "Use NCollection types directly.")
+
+  Standard_DEPRECATED(
+    "XCAFPrs_IndexedDataMapOfShapeStyle is deprecated, use "
+    "NCollection_IndexedDataMap<TopoDS_Shape, XCAFPrs_Style, TopTools_ShapeMapHasher> directly")
 typedef NCollection_IndexedDataMap<TopoDS_Shape, XCAFPrs_Style, TopTools_ShapeMapHasher>
   XCAFPrs_IndexedDataMapOfShapeStyle;
+Standard_DEPRECATED("XCAFPrs_DataMapIteratorOfIndexedDataMapOfShapeStyle is deprecated, use "
+                    "NCollection_IndexedDataMap<TopoDS_Shape, XCAFPrs_Style, "
+                    "TopTools_ShapeMapHasher>::Iterator directly")
 typedef NCollection_IndexedDataMap<TopoDS_Shape, XCAFPrs_Style, TopTools_ShapeMapHasher>::Iterator
   XCAFPrs_DataMapIteratorOfIndexedDataMapOfShapeStyle;
 
-#endif
+#endif // _XCAFPrs_IndexedDataMapOfShapeStyle_hxx

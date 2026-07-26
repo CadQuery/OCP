@@ -1,7 +1,4 @@
-// Created on: 1997-03-17
-// Created by: Yves FRICAUD
-// Copyright (c) 1997-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,14 +11,27 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef TNaming_ListOfNamedShape_HeaderFile
-#define TNaming_ListOfNamedShape_HeaderFile
+//! @file TNaming_ListOfNamedShape.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection types directly instead.
 
+#ifndef _TNaming_ListOfNamedShape_hxx
+#define _TNaming_ListOfNamedShape_hxx
+
+#include <Standard_Macro.hxx>
 #include <TNaming_NamedShape.hxx>
 #include <NCollection_List.hxx>
 
-typedef NCollection_List<Handle(TNaming_NamedShape)> TNaming_ListOfNamedShape;
-typedef NCollection_List<Handle(TNaming_NamedShape)>::Iterator
+Standard_HEADER_DEPRECATED(
+  "TNaming_ListOfNamedShape.hxx is deprecated since OCCT 8.0.0. Use NCollection types directly.")
+
+  Standard_DEPRECATED("TNaming_ListOfNamedShape is deprecated, use "
+                      "NCollection_List<opencascade::handle<TNaming_NamedShape>> directly")
+typedef NCollection_List<opencascade::handle<TNaming_NamedShape>> TNaming_ListOfNamedShape;
+Standard_DEPRECATED("TNaming_ListIteratorOfListOfNamedShape is deprecated, use "
+                    "NCollection_List<opencascade::handle<TNaming_NamedShape>>::Iterator directly")
+typedef NCollection_List<opencascade::handle<TNaming_NamedShape>>::Iterator
   TNaming_ListIteratorOfListOfNamedShape;
 
-#endif
+#endif // _TNaming_ListOfNamedShape_hxx

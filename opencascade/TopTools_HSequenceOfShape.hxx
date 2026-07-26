@@ -1,7 +1,4 @@
-// Created on: 1993-01-14
-// Created by: Remi LEQUETTE
-// Copyright (c) 1993-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,13 +11,24 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef TopTools_HSequenceOfShape_HeaderFile
-#define TopTools_HSequenceOfShape_HeaderFile
+//! @file TopTools_HSequenceOfShape.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection_HSequence<TopoDS_Shape> directly instead.
 
+#ifndef _TopTools_HSequenceOfShape_hxx
+#define _TopTools_HSequenceOfShape_hxx
+
+#include <Standard_Macro.hxx>
 #include <TopoDS_Shape.hxx>
 #include <TopTools_SequenceOfShape.hxx>
-#include <NCollection_DefineHSequence.hxx>
+#include <NCollection_HSequence.hxx>
 
-DEFINE_HSEQUENCE(TopTools_HSequenceOfShape, TopTools_SequenceOfShape)
+Standard_HEADER_DEPRECATED("TopTools_HSequenceOfShape.hxx is deprecated since OCCT 8.0.0. Use "
+                           "NCollection_HSequence<TopoDS_Shape> directly.")
 
-#endif
+  Standard_DEPRECATED(
+    "TopTools_HSequenceOfShape is deprecated, use NCollection_HSequence<TopoDS_Shape> directly")
+typedef NCollection_HSequence<TopoDS_Shape> TopTools_HSequenceOfShape;
+
+#endif // _TopTools_HSequenceOfShape_hxx

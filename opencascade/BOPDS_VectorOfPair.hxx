@@ -1,5 +1,4 @@
-// Created by: Eugeny MALTCHIKOV
-// Copyright (c) 2017 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -12,12 +11,23 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef BOPDS_VectorOfPair_HeaderFile
-#define BOPDS_VectorOfPair_HeaderFile
+//! @file BOPDS_VectorOfPair.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection_DynamicArray<BOPDS_Pair> directly instead.
 
-#include <NCollection_Vector.hxx>
+#ifndef _BOPDS_VectorOfPair_hxx
+#define _BOPDS_VectorOfPair_hxx
+
+#include <Standard_Macro.hxx>
+#include <NCollection_DynamicArray.hxx>
 #include <BOPDS_Pair.hxx>
 
-typedef NCollection_Vector<BOPDS_Pair> BOPDS_VectorOfPair;
+Standard_HEADER_DEPRECATED("BOPDS_VectorOfPair.hxx is deprecated since OCCT 8.0.0. Use "
+                           "NCollection_DynamicArray<BOPDS_Pair> directly.")
 
-#endif
+  Standard_DEPRECATED(
+    "BOPDS_VectorOfPair is deprecated, use NCollection_DynamicArray<BOPDS_Pair> directly")
+typedef NCollection_DynamicArray<BOPDS_Pair> BOPDS_VectorOfPair;
+
+#endif // _BOPDS_VectorOfPair_hxx

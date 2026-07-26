@@ -1,5 +1,4 @@
-// Copyright (c) 1998-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -12,12 +11,27 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef TColStd_HSequenceOfHAsciiString_HeaderFile
-#define TColStd_HSequenceOfHAsciiString_HeaderFile
+//! @file TColStd_HSequenceOfHAsciiString.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection_HSequence<opencascade::handle<TCollection_HAsciiString>> directly
+//!             instead.
 
+#ifndef _TColStd_HSequenceOfHAsciiString_hxx
+#define _TColStd_HSequenceOfHAsciiString_hxx
+
+#include <Standard_Macro.hxx>
 #include <TColStd_SequenceOfHAsciiString.hxx>
-#include <NCollection_DefineHSequence.hxx>
+#include <NCollection_HSequence.hxx>
 
-DEFINE_HSEQUENCE(TColStd_HSequenceOfHAsciiString, TColStd_SequenceOfHAsciiString)
+Standard_HEADER_DEPRECATED(
+  "TColStd_HSequenceOfHAsciiString.hxx is deprecated since OCCT 8.0.0. Use "
+  "NCollection_HSequence<opencascade::handle<TCollection_HAsciiString>> directly.")
 
-#endif
+  Standard_DEPRECATED(
+    "TColStd_HSequenceOfHAsciiString is deprecated, use "
+    "NCollection_HSequence<opencascade::handle<TCollection_HAsciiString>> directly")
+typedef NCollection_HSequence<opencascade::handle<TCollection_HAsciiString>>
+  TColStd_HSequenceOfHAsciiString;
+
+#endif // _TColStd_HSequenceOfHAsciiString_hxx

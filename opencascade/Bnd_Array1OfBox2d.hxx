@@ -1,7 +1,4 @@
-// Created on: 1991-01-08
-// Created by: Didier Piffault
-// Copyright (c) 1991-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -14,12 +11,22 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef Bnd_Array1OfBox2d_HeaderFile
-#define Bnd_Array1OfBox2d_HeaderFile
+//! @file Bnd_Array1OfBox2d.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection_Array1<Bnd_Box2d> directly instead.
 
+#ifndef _Bnd_Array1OfBox2d_hxx
+#define _Bnd_Array1OfBox2d_hxx
+
+#include <Standard_Macro.hxx>
 #include <Bnd_Box2d.hxx>
 #include <NCollection_Array1.hxx>
 
+Standard_HEADER_DEPRECATED("Bnd_Array1OfBox2d.hxx is deprecated since OCCT 8.0.0. Use "
+                           "NCollection_Array1<Bnd_Box2d> directly.")
+
+  Standard_DEPRECATED("Bnd_Array1OfBox2d is deprecated, use NCollection_Array1<Bnd_Box2d> directly")
 typedef NCollection_Array1<Bnd_Box2d> Bnd_Array1OfBox2d;
 
-#endif
+#endif // _Bnd_Array1OfBox2d_hxx

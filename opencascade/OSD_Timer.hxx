@@ -30,8 +30,8 @@
 //! This function is portable and it measures ELAPSED
 //! time and CPU time in seconds and microseconds.
 //! Example: OSD_Timer aTimer;
-//! aTimer.Start();   // Start  the timers (t1).
-//! .....            // Do something.
+//! aTimer.Start();   // Start the timers (t1).
+//! .....             // Do something.
 //! aTimer.Stop();    // Stop the timers (t2).
 //! aTimer.Show();    // Give the elapsed time between t1 and t2.
 //! // Give also the process CPU time between
@@ -44,7 +44,7 @@ public:
   //! Returned value is intended for precise elapsed time measurements as a delta between
   //! timestamps. On Windows implemented via QueryPerformanceCounter(), on other systems via
   //! gettimeofday().
-  Standard_EXPORT static Standard_Real GetWallClockTime();
+  Standard_EXPORT static double GetWallClockTime();
 
 public:
   DEFINE_STANDARD_ALLOC
@@ -55,46 +55,46 @@ public:
   //!                          otherwise CPU of the process (all threads, and completed children) is
   //!                          measured; this flag does NOT affect ElapsedTime() value, only values
   //!                          returned by OSD_Chronometer
-  Standard_EXPORT OSD_Timer(Standard_Boolean theThisThreadOnly = Standard_False);
+  Standard_EXPORT OSD_Timer(bool theThisThreadOnly = false);
 
   //! Stops and reinitializes the timer with specified elapsed time.
-  Standard_EXPORT void Reset(const Standard_Real theTimeElapsedSec);
+  Standard_EXPORT void Reset(const double theTimeElapsedSec);
 
   //! Stops and reinitializes the timer with zero elapsed time.
-  Standard_EXPORT virtual void Reset() Standard_OVERRIDE;
+  Standard_EXPORT void Reset() override;
 
   //! Restarts the Timer.
-  Standard_EXPORT virtual void Restart() Standard_OVERRIDE;
+  Standard_EXPORT void Restart() override;
 
   //! Shows both the elapsed time and CPU time on the standard output
   //! stream <cout>.The chronometer can be running (Lap Time) or
   //! stopped.
-  Standard_EXPORT virtual void Show() const Standard_OVERRIDE;
+  Standard_EXPORT void Show() const override;
 
-  //! Shows both the elapsed time and CPU  time on the
+  //! Shows both the elapsed time and CPU time on the
   //! output stream <OS>.
-  Standard_EXPORT virtual void Show(Standard_OStream& os) const Standard_OVERRIDE;
+  Standard_EXPORT void Show(Standard_OStream& os) const override;
 
   //! returns both the elapsed time(seconds,minutes,hours)
-  //! and CPU  time.
-  Standard_EXPORT void Show(Standard_Real&    theSeconds,
-                            Standard_Integer& theMinutes,
-                            Standard_Integer& theHours,
-                            Standard_Real&    theCPUtime) const;
+  //! and CPU time.
+  Standard_EXPORT void Show(double& theSeconds,
+                            int&    theMinutes,
+                            int&    theHours,
+                            double& theCPUtime) const;
 
   //! Stops the Timer.
-  Standard_EXPORT virtual void Stop() Standard_OVERRIDE;
+  Standard_EXPORT void Stop() override;
 
   //! Starts (after Create or Reset) or restarts (after Stop)
   //! the Timer.
-  Standard_EXPORT virtual void Start() Standard_OVERRIDE;
+  Standard_EXPORT void Start() override;
 
   //! Returns elapsed time in seconds.
-  Standard_EXPORT Standard_Real ElapsedTime() const;
+  Standard_EXPORT double ElapsedTime() const;
 
 private:
-  Standard_Real myTimeStart;
-  Standard_Real myTimeCumul;
+  double myTimeStart;
+  double myTimeCumul;
 };
 
 #endif // _OSD_Timer_HeaderFile

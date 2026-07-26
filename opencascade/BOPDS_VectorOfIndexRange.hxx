@@ -1,5 +1,4 @@
-// Created by: Peter KURNEV
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -12,12 +11,23 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef BOPDS_VectorOfIndexRange_HeaderFile
-#define BOPDS_VectorOfIndexRange_HeaderFile
+//! @file BOPDS_VectorOfIndexRange.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection_DynamicArray<BOPDS_IndexRange> directly instead.
 
-#include <NCollection_Vector.hxx>
+#ifndef _BOPDS_VectorOfIndexRange_hxx
+#define _BOPDS_VectorOfIndexRange_hxx
+
+#include <Standard_Macro.hxx>
+#include <NCollection_DynamicArray.hxx>
 #include <BOPDS_IndexRange.hxx>
 
-typedef NCollection_Vector<BOPDS_IndexRange> BOPDS_VectorOfIndexRange;
+Standard_HEADER_DEPRECATED("BOPDS_VectorOfIndexRange.hxx is deprecated since OCCT 8.0.0. Use "
+                           "NCollection_DynamicArray<BOPDS_IndexRange> directly.")
 
-#endif
+  Standard_DEPRECATED("BOPDS_VectorOfIndexRange is deprecated, use "
+                      "NCollection_DynamicArray<BOPDS_IndexRange> directly")
+typedef NCollection_DynamicArray<BOPDS_IndexRange> BOPDS_VectorOfIndexRange;
+
+#endif // _BOPDS_VectorOfIndexRange_hxx

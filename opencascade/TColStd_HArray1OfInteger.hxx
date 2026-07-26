@@ -1,5 +1,4 @@
-// Copyright (c) 1998-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -12,13 +11,24 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef TColStd_HArray1OfInteger_HeaderFile
-#define TColStd_HArray1OfInteger_HeaderFile
+//! @file TColStd_HArray1OfInteger.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection_HArray1<int> directly instead.
 
+#ifndef _TColStd_HArray1OfInteger_hxx
+#define _TColStd_HArray1OfInteger_hxx
+
+#include <Standard_Macro.hxx>
 #include <Standard_Integer.hxx>
 #include <TColStd_Array1OfInteger.hxx>
-#include <NCollection_DefineHArray1.hxx>
+#include <NCollection_HArray1.hxx>
 
-DEFINE_HARRAY1(TColStd_HArray1OfInteger, TColStd_Array1OfInteger)
+Standard_HEADER_DEPRECATED("TColStd_HArray1OfInteger.hxx is deprecated since OCCT 8.0.0. Use "
+                           "NCollection_HArray1<int> directly.")
 
-#endif
+  Standard_DEPRECATED(
+    "TColStd_HArray1OfInteger is deprecated, use NCollection_HArray1<int> directly")
+typedef NCollection_HArray1<int> TColStd_HArray1OfInteger;
+
+#endif // _TColStd_HArray1OfInteger_hxx

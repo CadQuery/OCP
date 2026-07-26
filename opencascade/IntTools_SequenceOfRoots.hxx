@@ -1,6 +1,4 @@
-// Created on: 2000-05-18
-// Created by: Peter KURNEV
-// Copyright (c) 2000-2014 OPEN CASCADE SAS
+// Copyright (c) 2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -13,12 +11,23 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef IntTools_SequenceOfRoots_HeaderFile
-#define IntTools_SequenceOfRoots_HeaderFile
+//! @file IntTools_SequenceOfRoots.hxx
+//! @brief Deprecated typedef for backward compatibility.
+//! @deprecated This header is deprecated since OCCT 8.0.0.
+//!             Use NCollection_Sequence<IntTools_Root> directly instead.
 
+#ifndef _IntTools_SequenceOfRoots_hxx
+#define _IntTools_SequenceOfRoots_hxx
+
+#include <Standard_Macro.hxx>
 #include <IntTools_Root.hxx>
 #include <NCollection_Sequence.hxx>
 
+Standard_HEADER_DEPRECATED("IntTools_SequenceOfRoots.hxx is deprecated since OCCT 8.0.0. Use "
+                           "NCollection_Sequence<IntTools_Root> directly.")
+
+  Standard_DEPRECATED(
+    "IntTools_SequenceOfRoots is deprecated, use NCollection_Sequence<IntTools_Root> directly")
 typedef NCollection_Sequence<IntTools_Root> IntTools_SequenceOfRoots;
 
-#endif
+#endif // _IntTools_SequenceOfRoots_hxx

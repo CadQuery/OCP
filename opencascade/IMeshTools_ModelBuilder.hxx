@@ -34,12 +34,12 @@ class IMeshTools_ModelBuilder : public Message_Algorithm
 {
 public:
   //! Destructor.
-  virtual ~IMeshTools_ModelBuilder() {}
+  ~IMeshTools_ModelBuilder() override = default;
 
   //! Exceptions protected method to create discrete model for the given shape.
   //! Returns nullptr in case of failure.
-  Handle(IMeshData_Model) Perform(const TopoDS_Shape&          theShape,
-                                  const IMeshTools_Parameters& theParameters)
+  occ::handle<IMeshData_Model> Perform(const TopoDS_Shape&          theShape,
+                                       const IMeshTools_Parameters& theParameters)
   {
     ClearStatus();
 
@@ -52,7 +52,7 @@ public:
     catch (Standard_Failure const&)
     {
       SetStatus(Message_Fail2);
-      return NULL;
+      return nullptr;
     }
   }
 
@@ -64,7 +64,7 @@ protected:
 
   //! Creates discrete model for the given shape.
   //! Returns nullptr in case of failure.
-  Standard_EXPORT virtual Handle(IMeshData_Model) performInternal(
+  Standard_EXPORT virtual occ::handle<IMeshData_Model> performInternal(
     const TopoDS_Shape&          theShape,
     const IMeshTools_Parameters& theParameters) = 0;
 };
