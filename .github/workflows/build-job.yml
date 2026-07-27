@@ -217,6 +217,12 @@ jobs:
              python -c"import OCP"
           fi
 
+      - name: Run tests
+        run: |
+          micromamba activate cpp-py-bindgen
+          cd build
+          python -m pytest ../tests
+
       - name: Build Conda Package
         env:
           BUILD_STRING: "1"
