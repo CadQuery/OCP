@@ -10,7 +10,7 @@ runs:
     - name: add to path
       if: ${{ !contains(runner.os,'mac')}}
       shell: bash
-      run: echo 'PATH="${PATH}:${HOME}"' >> $GITHUB_PATH
+      run: echo 'PATH="$PATH:$HOME"' >> $GITHUB_PATH
 
     - name: 'Install (MacOS)'
       if: contains(runner.os,'mac')
