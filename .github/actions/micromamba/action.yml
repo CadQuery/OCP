@@ -12,6 +12,11 @@ runs:
       shell: bash
       run: echo "PATH=$PATH:$HOME/.local/bin" >> $GITHUB_PATH
 
+    - name: deinit
+      if: ${{ !contains(runner.os,'mac')}}
+      shell: bash
+      run: micromamba shell deinit
+
     - name: 'Install (MacOS)'
       if: contains(runner.os,'mac')
       shell: bash
