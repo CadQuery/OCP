@@ -24,7 +24,7 @@ jobs:
     with:
       name: Windows
       # Note: As per your Azure setup, Windows generation runs on Linux first
-      runner_generate: ubuntu-22.04
+      runner_generate: windows-latest
       runner_compile: windows-latest
       platform: Windows
     secrets:
