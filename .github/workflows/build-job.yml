@@ -56,6 +56,8 @@ jobs:
         run: |
           export CONDA_DEVENV_ENV_MANAGER=mamba
           micromamba create -n bindgen
+          env
+          micromamba run mamba info
           micromamba run mamba-devenv -f environment.devenv.yml
 
       - name: Read output dir
