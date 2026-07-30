@@ -20,7 +20,7 @@ runs:
     - name: add to path
       if: ${{ contains(runner.os,'Windows')}}
       shell: bash
-      echo "PATH=$PATH:/c/tools/mambaforge/Library/bin" >> $GIHUB_PATH
+      run: echo "PATH=$PATH:/c/tools/mambaforge/Library/bin" >> $GIHUB_PATH
 
     - name: install micromamba
       if: ${{ contains(runner.os,'Windows')}}
