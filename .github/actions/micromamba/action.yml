@@ -17,6 +17,11 @@ runs:
       shell: bash
       run: choco install mambaforge --params="'/AddToPath:1'"
 
+    - name: install micromamba 1
+      if: ${{ contains(runner.os,'Windows')}}
+      shell: bash
+      run: c:/tools/mambaforge/Library/bin/mamba.exe install micromamba
+
     - name: install micromamba
       if: ${{ contains(runner.os,'Windows')}}
       shell: bash
