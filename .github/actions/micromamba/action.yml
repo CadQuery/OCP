@@ -17,10 +17,15 @@ runs:
       shell: bash
       run: choco install mambaforge
 
+    - name: add to path
+      if: ${{ contains(runner.os,'Windows')}}
+      shell: bash
+      echo "PATH=$PATH:/c/tools/mambaforge/Library/bin" >> $GIHUB_PATH
+
     - name: install micromamba
       if: ${{ contains(runner.os,'Windows')}}
       shell: bash
-      run: mamba install micromamba
+      run: echo $PATH && mamba install micromamba
 
     - name: 'Install (MacOS)'
       if: contains(runner.os,'mac')
