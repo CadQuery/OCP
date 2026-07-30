@@ -3,19 +3,22 @@ runs:
   using: 'composite'
   steps:
     - name: install micromamba
-      if: ${{ !contains(runner.os,'mac')}}
+      if: ${{ contains(runner.os,'Linux')}}
       shell: bash
       run: "bash <(curl -L https://micro.mamba.pm/install.sh)"
 
     - name: add to path
-      if: ${{ !contains(runner.os,'mac')}}
+      if: ${{ contains(runner.os,'Linux')}}
       shell: bash
       run: echo "PATH=$PATH:$HOME/.local/bin" >> $GITHUB_PATH
 
-    - name: deinit
-      if: ${{ !contains(runner.os,'mac')}}
-      shell: bash
-      run: micromamba shell deinit
+    - name: install mambaforge
+      if: ${{ contains(runner.os,'Windows')}}
+      run: choco install mambaforge
+
+    - name: install micromamba
+      if: ${{ contains(runner.os,'Windows')}}
+      run: mamba install micromamba
 
     - name: 'Install (MacOS)'
       if: contains(runner.os,'mac')
