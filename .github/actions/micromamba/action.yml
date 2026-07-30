@@ -14,10 +14,12 @@ runs:
 
     - name: install mambaforge
       if: ${{ contains(runner.os,'Windows')}}
+      shell: bash
       run: choco install mambaforge
 
     - name: install micromamba
       if: ${{ contains(runner.os,'Windows')}}
+      shell: bash
       run: mamba install micromamba
 
     - name: 'Install (MacOS)'
