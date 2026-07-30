@@ -19,8 +19,8 @@ runs:
 
     - name: install micromamba 1
       if: ${{ contains(runner.os,'Windows')}}
-      shell: bash
-      run: c:/tools/mambaforge/Library/bin/mamba.exe install micromamba
+      shell: cmd
+      run: c:/tools/mambaforge/Library/condabin/mamba.bat install micromamba
 
     - name: install micromamba
       if: ${{ contains(runner.os,'Windows')}}
