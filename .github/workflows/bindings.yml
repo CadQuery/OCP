@@ -24,7 +24,7 @@ jobs:
     with:
       name: Windows
       # NB: cross-generating for Windows on Linux
-      runner_generate: ubuntu-22.04
+      runner_generate: windows-latest
       runner_compile: windows-latest
       platform: Windows
     secrets:

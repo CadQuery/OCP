@@ -17,12 +17,18 @@ runs:
       shell: bash -l {0}
       run: choco install mambaforge --params="'/AddToPath:1'"
 
-    - name: add to path (Windows)
+    - name: add to path (Windows + Bash)
       if: ${{ contains(runner.os,'Windows')}}
       shell: bash -l {0}
       run: |
         echo "PATH=$PATH:/c/tools/mambaforge/Library/bin" >> $GITHUB_PATH
         ls /c/tools/mambaforge/Library/bin
+
+    - name: add to path (Windows + Powershell)
+      if: ${{ contains(runner.os,'Windows')}}
+      shell: powershell
+      run: |
+        "c:/tools/mambaforge/Library/bin" | Out-File -FilePath "$env:GITHUB_PATH" -Append
 
     - name: install micromamba (Windows)
       if: ${{ contains(runner.os,'Windows')}}
@@ -37,3 +43,7 @@ runs:
     - name: 'Check installation'
       shell: bash -l {0}
       run: which micromamba && micromamba info
+
+    - name: 'Check installation on Powershell'
+      shell: powershell
+      run: micromamba info
