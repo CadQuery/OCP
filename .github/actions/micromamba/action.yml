@@ -4,17 +4,17 @@ runs:
   steps:
     - name: install micromamba
       if: ${{ contains(runner.os,'Linux')}}
-      shell: bash
+      shell: bash -l {0}
       run: "bash <(curl -L https://micro.mamba.pm/install.sh)"
 
     - name: add to path
       if: ${{ contains(runner.os,'Linux')}}
-      shell: bash
+      shell: bash -l {0}
       run: echo "PATH=$PATH:$HOME/.local/bin" >> $GITHUB_PATH
 
     - name: install mambaforge
       if: ${{ contains(runner.os,'Windows')}}
-      shell: bash
+      shell: bash -l {0}
       run: choco install mambaforge --params="'/AddToPath:1'"
 
     - name: install micromamba 1
@@ -24,14 +24,14 @@ runs:
 
     - name: install micromamba
       if: ${{ contains(runner.os,'Windows')}}
-      shell: bash
+      shell: bash -l {0}
       run: echo $PATH && mamba install micromamba
 
     - name: 'Install (MacOS)'
       if: contains(runner.os,'mac')
-      shell: bash
+      shell: bash -l {0}
       run: brew install micromamba
 
     - name: 'Check installation'
-      shell: bash
+      shell: bash -l {0}
       run: which micromamba && micromamba info
