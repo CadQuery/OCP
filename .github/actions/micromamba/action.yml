@@ -17,15 +17,17 @@ runs:
       shell: bash -l {0}
       run: choco install mambaforge --params="'/AddToPath:1'"
 
-    - name: install micromamba 1
+    - name: install micromamba (Windows)
       if: ${{ contains(runner.os,'Windows')}}
       shell: cmd
       run: c:/tools/mambaforge/condabin/mamba.bat install micromamba
 
-    - name: install micromamba
+    - name: add to path (Windows)
       if: ${{ contains(runner.os,'Windows')}}
       shell: bash -l {0}
-      run: echo $PATH && mamba install micromamba
+      run: |
+        echo "PATH=$PATH:c:/tools/mambaforge/Library/bin" >> $GITHUB_PATH
+        ls /c/tools/mambaforge/Library/bin
 
     - name: 'Install (MacOS)'
       if: contains(runner.os,'mac')
