@@ -23,8 +23,8 @@ jobs:
     uses: ./.github/workflows/build-job.yml
     with:
       name: Windows
-      # Note: As per your Azure setup, Windows generation runs on Linux first
-      runner_generate: windows-latest
+      # NB: cross-generating for Windows on Linux
+      runner_generate: ubuntu-22.04
       runner_compile: windows-latest
       platform: Windows
     secrets:
