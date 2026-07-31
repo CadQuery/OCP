@@ -45,5 +45,6 @@ runs:
       run: which micromamba && micromamba info
 
     - name: 'Check installation on Powershell'
+      if: ${{ contains(runner.os,'Windows')}}
       shell: powershell
       run: micromamba info
