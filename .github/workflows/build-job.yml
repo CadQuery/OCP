@@ -95,6 +95,7 @@ jobs:
         run: |
           mkdir -p ${{ steps.conf.outputs.OUTPUT }}_pkl
           cp *.pkl ${{ steps.conf.outputs.OUTPUT }}_pkl/
+          cp *.dat ${{ steps.conf.outputs.OUTPUT }}_pkl/
 
       - name: Upload Sources
         uses: actions/upload-artifact@v7
