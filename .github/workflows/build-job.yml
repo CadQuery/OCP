@@ -67,7 +67,7 @@ jobs:
       - name: Generate (Windows on Linux)
         if: inputs.platform == 'Windows'
         run: |
-          micromamba create --yes --platform win-64 --no-deps --prefix ./occt occt=7.9.2
+          micromamba create --yes --platform win-64 --no-deps --prefix ./occt occt=8.0.0
           micromamba run -n cpp-py-bindgen cmake -S . -B . -G Ninja \
             -DPython_ROOT_DIR=$CONDA_PREFIX \
             -DPython3_ROOT_DIR=$CONDA_PREFIX \
