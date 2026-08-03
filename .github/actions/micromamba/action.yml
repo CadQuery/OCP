@@ -2,21 +2,49 @@ name: 'Install micromamba'
 runs:
   using: 'composite'
   steps:
-    - name: install micromamba
-      if: ${{ !contains(runner.os,'mac')}}
-      shell: bash
-      run: "bash <(curl -L micro.mamba.pm/install.sh) && cp ~/.local/bin/micromamba ."
+    - name: install micromamba (Linux)
+      if: ${{ contains(runner.os,'Linux')}}
+      shell: bash -l {0}
+      run: "bash <(curl -L https://micro.mamba.pm/install.sh)"
 
-    - name: add to path
-      if: ${{ !contains(runner.os,'mac')}}
-      shell: bash
-      run: echo 'PATH="${PATH}:${HOME}"' >> $GITHUB_PATH
+    - name: add to path (Linux)
+      if: ${{ contains(runner.os,'Linux')}}
+      shell: bash -l {0}
+      run: echo "PATH=$PATH:$HOME/.local/bin" >> $GITHUB_PATH
+
+    - name: install mambaforge (Windows)
+      if: ${{ contains(runner.os,'Windows')}}
+      shell: bash -l {0}
+      run: choco install mambaforge --params="'/AddToPath:1'"
+
+    - name: add to path (Windows + Bash)
+      if: ${{ contains(runner.os,'Windows')}}
+      shell: bash -l {0}
+      run: |
+        echo "PATH=$PATH:/c/tools/mambaforge/Library/bin" >> $GITHUB_PATH
+        ls /c/tools/mambaforge/Library/bin
+
+    - name: add to path (Windows + Powershell)
+      if: ${{ contains(runner.os,'Windows')}}
+      shell: powershell
+      run: |
+        "c:/tools/mambaforge/Library/bin" | Out-File -FilePath "$env:GITHUB_PATH" -Append
+
+    - name: install micromamba (Windows)
+      if: ${{ contains(runner.os,'Windows')}}
+      shell: cmd
+      run: c:/tools/mambaforge/condabin/mamba.bat install micromamba
 
     - name: 'Install (MacOS)'
       if: contains(runner.os,'mac')
-      shell: bash
+      shell: bash -l {0}
       run: brew install micromamba
 
     - name: 'Check installation'
-      shell: bash
+      shell: bash -l {0}
       run: which micromamba && micromamba info
+
+    - name: 'Check installation on Powershell'
+      if: ${{ contains(runner.os,'Windows')}}
+      shell: powershell
+      run: micromamba info
