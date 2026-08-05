@@ -334,10 +334,10 @@ modules = [
 "Vrml",
 "VrmlAPI",
 "RWGltf",
-# "IVtk",
-# "IVtkOCC",
-# "IVtkTools",
-# "IVtkVTK",
+"IVtk",
+"IVtkOCC",
+"IVtkTools",
+"IVtkVTK",
 "DE",
 "IMeshTools",
 "IMeshData",
@@ -1361,11 +1361,13 @@ exclude_collection = [
 "Vec2_unsigned  int",
 "Sequence_const gp_Pnt2d",
 "IndexedDataMap_Standard_Transient_Standard_Transient",
-"IndexedDataMap_TCollection_AsciiString_Standard_Transient"
+"IndexedDataMap_TCollection_AsciiString_Standard_Transient",
+"List_IVtk_PointId"
 ]
 
 collection_pattern = "NCollection"
-collection_include_header_pre = "#include <BRepExtrema_ProximityDistTool.hxx>"
+collection_include_header_pre = """#include <BRepExtrema_ProximityDistTool.hxx>
+#include <gp_XYZ.hxx>"""
 
 module_mapping = "lambda x: Path(x).splitpath()[-1].split('.')[0].split('_')[0]"
 
