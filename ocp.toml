@@ -19,6 +19,7 @@ exclude_namespaces = [
 ]
 
 modules = [
+"GeomLProp",
 "NCollection",
 "AIS",
 "Standard",
@@ -343,6 +344,7 @@ modules = [
 "IMeshData",
 "APIHeaderSection",
 "UnitsMethods",
+"RWMesh",
 ]
 
 exclude = [
@@ -2627,3 +2629,7 @@ using rapidjson::BasicOStreamWrapper;"""
         #include <GeomEval_RepSurfaceDesc.hxx>
         #include <GeomEval_RepCurveDesc.hxx>
         """
+
+    [Modules.RWMesh]
+
+        include_header_pre = "#include <OSD_FileSystem.hxx>"
