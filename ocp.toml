@@ -19,6 +19,7 @@ exclude_namespaces = [
 ]
 
 modules = [
+"GeomLProp",
 "NCollection",
 "AIS",
 "Standard",
@@ -343,6 +344,7 @@ modules = [
 "IMeshData",
 "APIHeaderSection",
 "UnitsMethods",
+"RWMesh",
 ]
 
 exclude = [
@@ -1412,17 +1414,18 @@ class Adaptor3d_Surface;
 
 [Operators]
 
-    "operator*" = ["__mul__","__rmul__"]
-    "operator*=" = ["__imul__"]
-    "operator/" = ["__truediv__"]
-    "operator/=" = ["__itruediv__"]
-    "operator+" = ["__add__"]
-    "operator+=" = ["__iadd__"]
-    "operator-" = ["__sub__"]
-    "operator-=" = ["__isub__"]
-    "operator^" = ["__pow__"]
-    "operator^=" = ["__ipow__"]
-    "operator()" = ["__call__"]
+    "operator*".2 = ["__mul__","__rmul__"]
+    "operator*=".2 = ["__imul__"]
+    "operator/".2 = ["__truediv__"]
+    "operator/=".2 = ["__itruediv__"]
+    "operator+".2 = ["__add__"]
+    "operator+=".2 = ["__iadd__"]
+    "operator-".1 = ["__neg__"]
+    "operator-".2 = ["__sub__"]
+    "operator-=".2 = ["__isub__"]
+    "operator^".2 = ["__pow__"]
+    "operator^=".2 = ["__ipow__"]
+    "operator()".2 = ["__call__"]
 
 [Extras]
 
@@ -2626,3 +2629,7 @@ using rapidjson::BasicOStreamWrapper;"""
         #include <GeomEval_RepSurfaceDesc.hxx>
         #include <GeomEval_RepCurveDesc.hxx>
         """
+
+    [Modules.RWMesh]
+
+        include_header_pre = "#include <OSD_FileSystem.hxx>"
