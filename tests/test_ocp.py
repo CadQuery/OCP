@@ -140,7 +140,7 @@ from OCP.gp import gp_Pnt
 
 def test_edges2wire():
 
-    p1 = gp_Pnt(0, 0, 0)
+    p1 = gp_Pnt()
     p2 = gp_Pnt(1, 0, 0)
     e1 = BRepBuilderAPI_MakeEdge(p1, p2).Edge()
 
@@ -170,7 +170,7 @@ import math
 @fixture
 def surf():
 
-    p = gp_Pnt(0, 0, 0)
+    p = gp_Pnt()
     v = gp_Dir(0, 0, 1)
     a = gp_Ax3(p, v)
     s = gp_Sphere(a, 1.0)
