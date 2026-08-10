@@ -1364,7 +1364,9 @@ exclude_collection = [
 "Sequence_const gp_Pnt2d",
 "IndexedDataMap_Standard_Transient_Standard_Transient",
 "IndexedDataMap_TCollection_AsciiString_Standard_Transient",
-"List_IVtk_PointId"
+"List_IVtk_PointId",
+"ForwardRangeIterator_TopExp_Explorer",
+"ForwardRangeIterator_TopoDS_Iterator",
 ]
 
 collection_pattern = "NCollection"
