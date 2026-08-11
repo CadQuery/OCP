@@ -1367,6 +1367,7 @@ exclude_collection = [
 "List_IVtk_PointId",
 "ForwardRangeIterator_TopExp_Explorer",
 "ForwardRangeIterator_TopoDS_Iterator",
+"IndexedMap_const Graphic3d_CStructure"
 ]
 
 collection_pattern = "NCollection"
