@@ -1367,7 +1367,13 @@ exclude_collection = [
 "List_IVtk_PointId",
 "ForwardRangeIterator_TopExp_Explorer",
 "ForwardRangeIterator_TopoDS_Iterator",
-"IndexedMap_const Graphic3d_CStructure"
+"IndexedMap_const Graphic3d_CStructure",
+"Array1_SelectMgr_BVHThreadPool :: BVHThread",
+"DynamicArray_IntPatch_BVHTraversal :: TrianglePair",
+"List_Poly_CoherentTriangulation :: TwoIntegers",
+"DataMap_TopoDS_Shape_TNaming_PtrRefShape",
+"IndexedMap_Graphic3d_CView",
+"IndexedDataMap_TCollection_AsciiString_Aspect_XRAction"
 ]
 
 collection_pattern = "NCollection"
