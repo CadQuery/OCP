@@ -1377,8 +1377,11 @@ exclude_collection = [
 ]
 
 collection_pattern = "NCollection"
-collection_include_header_pre = """#include <BRepExtrema_ProximityDistTool.hxx>
-#include <gp_XYZ.hxx>"""
+collection_include_header_pre_top = """#include <BRepExtrema_ProximityDistTool.hxx>
+#include <gp_XYZ.hxx>
+
+class OpenGl_ShaderProgram;
+"""
 
 module_mapping = "lambda x: Path(x).splitpath()[-1].split('.')[0].split('_')[0]"
 
