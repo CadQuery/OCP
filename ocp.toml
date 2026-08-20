@@ -19,7 +19,6 @@ exclude_namespaces = [
 ]
 
 modules = [
-"GeomLProp",
 "NCollection",
 "AIS",
 "Standard",
@@ -1345,6 +1344,7 @@ exclude = [
 "gp_Vec2f.hxx",
 "gp_Vec3f.hxx",
 "math_Array1OfValueAndWeight.hxx",
+"IMeshData_Types.hxx"
 ]
 
 #           "BVH_Box.hxx","BVH_tools.hxx"
@@ -1367,12 +1367,24 @@ exclude_collection = [
 "List_IVtk_PointId",
 "ForwardRangeIterator_TopExp_Explorer",
 "ForwardRangeIterator_TopoDS_Iterator",
-"IndexedMap_const Graphic3d_CStructure"
+"IndexedMap_const Graphic3d_CStructure",
+"Array1_SelectMgr_BVHThreadPool::BVHThread",
+"DynamicArray_IntPatch_BVHTraversal::TrianglePair",
+"List_Poly_CoherentTriangulation::TwoIntegers",
+"DataMap_TopoDS_Shape_TNaming_PtrRefShape",
+"IndexedMap_Graphic3d_CView",
+"IndexedDataMap_TCollection_AsciiString_Aspect_XRAction",
+"DynamicArray_BRepExtrema_ProximityDistTool::ProxPnt_Status",
+"DataMap_unsigned  int_AIS_MouseGesture",
+"DataMap_unsigned  int_AIS_SelectionScheme"
 ]
 
 collection_pattern = "NCollection"
-collection_include_header_pre = """#include <BRepExtrema_ProximityDistTool.hxx>
-#include <gp_XYZ.hxx>"""
+collection_include_header_pre_top = """#include <BRepExtrema_ProximityDistTool.hxx>
+#include <gp_XYZ.hxx>
+
+class OpenGl_ShaderProgram;
+"""
 
 module_mapping = "lambda x: Path(x).splitpath()[-1].split('.')[0].split('_')[0]"
 
@@ -2636,3 +2648,13 @@ using rapidjson::BasicOStreamWrapper;"""
     [Modules.RWMesh]
 
         include_header_pre = "#include <OSD_FileSystem.hxx>"
+
+    [Modules.Extrema]
+
+        exclude_typedefs = ["Extrema_ECC","Extrema_ECC2d","Extrema_EPCOfELPCOfLocateExtPC",
+          "Extrema_EPCOfELPCOfLocateExtPC2d","Extrema_ELPCOfLocateExtPC","Extrema_ELPCOfLocateExtPC2d"
+        ]
+
+    [Modules.Bnd]
+
+        exclude_typedefs = ["Bnd_B2d","Bnd_B2f","Bnd_B3d","Bnd_B3f"]

@@ -3,7 +3,7 @@ from pytest import fixture, approx
 
 from OCP.BRepPrimAPI import BRepPrimAPI_MakeBox
 from OCP.TopoDS import TopoDS_Shape
-from OCP import List_TopoDS_Shape
+from OCP.collections import List_TopoDS_Shape
 
 # %% TopoDS_Shape
 
@@ -134,7 +134,7 @@ def test_roundtrip():
 
 from OCP.BRepBuilderAPI import BRepBuilderAPI_MakeEdge
 from OCP.ShapeAnalysis import ShapeAnalysis_FreeBounds
-from OCP import HSequence_TopoDS_Shape
+from OCP.collections import HSequence_TopoDS_Shape
 from OCP.gp import gp_Pnt
 
 
