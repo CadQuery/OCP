@@ -2659,3 +2659,15 @@ using rapidjson::BasicOStreamWrapper;"""
     [Modules.Bnd]
 
         exclude_typedefs = ["Bnd_B2d","Bnd_B2f","Bnd_B3d","Bnd_B3f"]
+
+    [Modules.GeomLProp]
+
+        include_header_pre = """
+        #include <Adaptor3d_Curve.hxx>
+        """
+
+        [Modules.GeomLProp.template_specializations.GeomLProp_CLProps_Adaptor3D]
+
+        base = "GeomLProp_CLPropsBase"
+        args = ["gp_Pnt", "gp_Vec", "gp_Dir", "occ::handle<Adaptor3d_Curve>"]
+
