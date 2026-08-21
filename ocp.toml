@@ -1376,13 +1376,13 @@ exclude_collection = [
 "IndexedDataMap_TCollection_AsciiString_Aspect_XRAction",
 "DynamicArray_BRepExtrema_ProximityDistTool::ProxPnt_Status",
 "DataMap_unsigned  int_AIS_MouseGesture",
-"DataMap_unsigned  int_AIS_SelectionScheme"
+"DataMap_unsigned  int_AIS_SelectionScheme",
+"DataMap_TopoDS_Shape_TNaming_PtrRefShape_TopTools_ShapeMapHasher"
 ]
 
 collection_pattern = "NCollection"
 collection_include_header_pre_top = """#include <BRepExtrema_ProximityDistTool.hxx>
 #include <gp_XYZ.hxx>
-#include <TNaming_RefShape.hxx>
 
 class OpenGl_ShaderProgram;
 """
