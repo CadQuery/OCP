@@ -1376,7 +1376,8 @@ exclude_collection = [
 "IndexedDataMap_TCollection_AsciiString_Aspect_XRAction",
 "DynamicArray_BRepExtrema_ProximityDistTool::ProxPnt_Status",
 "DataMap_unsigned  int_AIS_MouseGesture",
-"DataMap_unsigned  int_AIS_SelectionScheme"
+"DataMap_unsigned  int_AIS_SelectionScheme",
+"DataMap_TopoDS_Shape_TNaming_PtrRefShape_TopTools_ShapeMapHasher"
 ]
 
 collection_pattern = "NCollection"
