@@ -107,6 +107,7 @@ public:
                            theAlphaMode,
                            Aspect_IS_SOLID,
                            theHasVertColor,
+                           true, // use vertex color for back faces by default for compatibility
                            theEnableEnvMap,
                            false,
                            theCustomProgram);
@@ -118,6 +119,7 @@ public:
                        Graphic3d_AlphaMode                      theAlphaMode,
                        Aspect_InteriorStyle                     theInteriorStyle,
                        bool                                     theHasVertColor,
+                       bool                                     theToUseVertexColorForBackFaces,
                        bool                                     theEnableEnvMap,
                        bool                                     theEnableMeshEdges,
                        const occ::handle<OpenGl_ShaderProgram>& theCustomProgram)
@@ -136,6 +138,7 @@ public:
                                      theAlphaMode,
                                      theInteriorStyle,
                                      theHasVertColor,
+                                     theToUseVertexColorForBackFaces,
                                      theEnableEnvMap,
                                      theEnableMeshEdges);
     occ::handle<OpenGl_ShaderProgram>& aProgram = getStdProgram(aShadeModelOnFace, aBits);
@@ -155,8 +158,13 @@ public:
       return bindProgramWithState(theCustomProgram, theShadingModel);
     }
 
-    int aBits =
-      getProgramBits(theTextures, theAlphaMode, Aspect_IS_SOLID, theHasVertColor, false, false);
+    int aBits = getProgramBits(theTextures,
+                               theAlphaMode,
+                               Aspect_IS_SOLID,
+                               theHasVertColor,
+                               true, // lines have no front/back face semantics
+                               false,
+                               false);
     if (theLineType != Aspect_TOL_SOLID)
     {
       aBits |= Graphic3d_ShaderFlags_StippleLine;
@@ -188,6 +196,7 @@ public:
                                      Graphic3d_AlphaMode_Opaque,
                                      Aspect_IS_SOLID,
                                      false,
+                                     true, // outline has no vertex-color back-face policy
                                      false,
                                      false);
     if (myOutlinePrograms.IsNull())
@@ -600,6 +609,7 @@ protected:
                      Graphic3d_AlphaMode                   theAlphaMode,
                      Aspect_InteriorStyle                  theInteriorStyle,
                      bool                                  theHasVertColor,
+                     bool                                  theToUseVertexColorForBackFaces,
                      bool                                  theEnableEnvMap,
                      bool                                  theEnableMeshEdges) const
   {
@@ -635,6 +645,10 @@ protected:
     if (theHasVertColor && theInteriorStyle != Aspect_IS_HIDDENLINE)
     {
       aBits |= Graphic3d_ShaderFlags_VertColor;
+      if (!theToUseVertexColorForBackFaces)
+      {
+        aBits |= Graphic3d_ShaderFlags_VertColorFrontOnly;
+      }
     }
 
     if (myOitState.ActiveMode() == Graphic3d_RTM_BLEND_OIT)
