@@ -186,3 +186,21 @@ def test_bounds(surf):
     u2 == approx(2.0 * math.pi)
     v1 == approx(-0.5 * math.pi)
     v2 == approx(0.5 * math.pi)
+
+
+# %% attributes based on from OCP.XCAFDoc import XCAFDoc_VisMaterialPBR
+
+from OCP.XCAFDoc import XCAFDoc_VisMaterialPBR
+from OCP.Quantity import Quantity_ColorRGBA
+
+
+def test_attributes():
+
+    pbr = XCAFDoc_VisMaterialPBR()
+
+    assert isinstance(pbr.BaseColor, Quantity_ColorRGBA)
+    assert isinstance(pbr.Metallic, float)
+
+    assert pbr.Metallic == 1.0
+    pbr.Metallic = 0.0
+    assert pbr.Metallic == 0.0
