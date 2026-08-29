@@ -25,11 +25,15 @@ def test_iter():
     s3 = TopoDS_Shape()
 
     shape_list = List_TopoDS_Shape()
+
+    assert len(shape_list) == 0
+
     shape_list.Append(s1)
     shape_list.Append(s2)
     shape_list.Append(s3)
 
     assert shape_list.Size() == 3
+    assert len(shape_list) == 3
 
     for s in shape_list:
         assert isinstance(s, TopoDS_Shape)
@@ -188,7 +192,7 @@ def test_bounds(surf):
     v2 == approx(0.5 * math.pi)
 
 
-# %% attributes based on from OCP.XCAFDoc import XCAFDoc_VisMaterialPBR
+# %% attributes based on XCAFDoc_VisMaterialPBR
 
 from OCP.XCAFDoc import XCAFDoc_VisMaterialPBR
 from OCP.Quantity import Quantity_ColorRGBA
@@ -204,3 +208,70 @@ def test_attributes():
     assert pbr.Metallic == 1.0
     pbr.Metallic = 0.0
     assert pbr.Metallic == 0.0
+
+
+# %% gp
+
+from OCP.gp import gp_Vec, gp_Dir, gp_Pnt
+
+
+def test_vec():
+
+    v0 = gp_Vec()
+
+    assert v0.Magnitude() == 0.0
+
+    v1 = gp_Vec(1, 0, 0)
+
+    assert v1.X() == 1.0
+    assert (2 * v1).X() == 2.0
+    assert (v1 / 2).X() == 0.5
+    assert (v1 + v1).X() == 2.0
+
+
+def test_dir():
+
+    d0 = gp_Dir()
+
+    assert d0.X() == 1.0
+    assert d0.Y() == 0.0
+    assert d0.Z() == 0.0
+
+
+def test_pnt():
+
+    p0 = gp_Pnt()
+
+    assert p0.X() == 0.0
+    assert p0.Y() == 0.0
+    assert p0.Z() == 0.0
+
+    p1 = gp_Pnt(1, 0, 0)
+
+    assert p1.X() == 1.0
+    assert p1.Y() == 0.0
+    assert p1.Z() == 0.0
+
+
+# %% TopLoc_Location
+
+from OCP.TopLoc import TopLoc_Location
+from OCP.gp import gp_Trsf
+
+
+def test_location():
+
+    T = gp_Trsf()
+    T.SetTranslation(gp_Vec(1, 0, 0))
+
+    loc0 = TopLoc_Location(T)
+
+    assert (loc0 / loc0).Transformation().TranslationPart().SquareModulus() == 0.0
+
+    loc1 = loc0 * loc0
+
+    trans = loc1.Transformation().TranslationPart()
+
+    assert trans.X() == 2.0
+    assert trans.Y() == 0.0
+    assert trans.Z() == 0.0
