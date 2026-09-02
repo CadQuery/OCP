@@ -15,6 +15,7 @@
 #define NCollection_LinearVector_HeaderFile
 
 #include <NCollection_Allocator.hxx>
+#include <NCollection_Array1.hxx>
 #include <Standard_OutOfMemory.hxx>
 #include <Standard_OutOfRange.hxx>
 
@@ -487,6 +488,14 @@ public:
     }
   }
 
+  //! Returns a span as Array1 with shared memory.
+  //! Modifying the vector or the array may invalidate the shared buffer.
+  //! @return array view of the vector data
+  NCollection_Array1<TheItemType> ToArray1() const
+  {
+    return NCollection_Array1<TheItemType>(myData, mySize);
+  }
+
   //! @return iterator to the first element.
   iterator begin() noexcept { return myData; }
 
@@ -510,7 +519,7 @@ private:
   void grow(const size_t theMinCapacity)
   {
     Standard_OutOfMemory_Raise_if(theMinCapacity > MaxSize(), "NCollection_LinearVector::grow");
-    size_t aNewCap = myCapacity > 0 ? myCapacity * 2 : 8;
+    size_t aNewCap = myCapacity > 0 ? myCapacity * 2 : 2;
     if (myCapacity > MaxSize() / 2)
     {
       aNewCap = MaxSize();
