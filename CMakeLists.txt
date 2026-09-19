@@ -1,8 +1,9 @@
 cmake_minimum_required(VERSION 3.29)
 project(OCP)
 
+cmake_host_system_information(RESULT N_CORES QUERY NUMBER_OF_LOGICAL_CORES)
 set(N_PROC
-    2
+    ${N_CORES}
     CACHE STRING "Number of processes used for generating code")
 set(DLL_EXT
     dll
