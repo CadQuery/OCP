@@ -69,7 +69,7 @@ message(STATUS "Include dirs: ${VTK_INCLUDE_DIR}")
 message(STATUS "Include dirs: ${CMAKE_CXX_IMPLICIT_INCLUDE_DIRECTORIES}")
 
 # OSX
-if(${CMAKE_SYSTEM_NAME} STREQUAL "Darwin")
+if(PLATFORM STREQUAL "OSX" OR ${CMAKE_SYSTEM_NAME} STREQUAL "Darwin")
   list(APPEND CXX_INCLUDES -i /opt/usr/local/include/c++/v1/ -i
        /opt/usr/local/include/)
 
