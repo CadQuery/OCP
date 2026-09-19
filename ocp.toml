@@ -1449,7 +1449,7 @@ class Adaptor3d_Surface;
 
 [Attributes]
 
-    __version__ = "8.0.1.0"
+    __version__ = "8.0.1.1"
 
 [Modules]
 
@@ -1534,10 +1534,6 @@ void register_template_NCollection_Vector(py::object &m, const char *name){
         exclude_functions = ["OSD","OSD_OpenStream"]
         exclude_classes = ["OSD","OSD_FileSystem","OSD_CachedFileSystem","OSD_FileSystemSelector","OSD_LocalFileSystem"]
         exclude_methods = ["OSD_SharedLibrary::DlSymb"]
-        #"OSD_FileSystem::IsOpenIStream","OSD_FileSystem::IsOpenOStream","OSD_FileSystem::OpenOStream","OSD_FileSystem::OpenIStream",
-        #"OSD_CachedFileSystem::IsOpenIStream","OSD_CachedFileSystem::IsOpenOStream","OSD_CachedFileSystem::OpenOStream","OSD_CachedFileSystem::OpenIStream",
-        #"OSD_FileSystemSelector::IsOpenIStream","OSD_FileSystemSelector::IsOpenOStream","OSD_FileSystemSelector::OpenOStream","OSD_FileSystemSelector::OpenIStream",
-        #"OSD_LocalFileSystem::IsOpenIStream","OSD_LocalFileSystem::IsOpenOStream","OSD_LocalFileSystem::OpenOStream","OSD_LocalFileSystem::OpenIStream"]
 
         include_body_pre = 'py::class_<OSD_FileSystem, opencascade::handle<OSD_FileSystem>>(m, "OSD_FileSystem");'
 
@@ -1565,6 +1561,21 @@ void register_template_NCollection_Vector(py::object &m, const char *name){
         [Modules.TCollection.Classes.TCollection_ExtendedString]
 
             exclude_constructors = ["string_view"]
+
+        include_body_post = """py::implicitly_convertible<std::string, TCollection_HAsciiString>();
+py::implicitly_convertible<std::string, TCollection_AsciiString>();"""
+
+        [[Modules.TCollection.Classes.TCollection_HAsciiString.additional_constructors]]
+
+            body = "[](const std::string &s){ return TCollection_HAsciiString(s.c_str()); }"
+            help = "std::strings based constructor"
+            arguments  = ["aString"]
+
+        [[Modules.TCollection.Classes.TCollection_AsciiString.additional_constructors]]
+
+            body = "[](const std::string &s){ return TCollection_AsciiString(s.c_str()); }"
+            help = "std::strings based constructor"
+            arguments  = ["aString"]
 
     [Modules.TColStd]
 
@@ -1873,8 +1884,6 @@ auto OptionsForAttach = [](){return AIS_Manipulator::OptionsForAttach();};"""
 
         exclude_typedefs = ["Select3D_IndexedMapOfEntity","Graphic3d_Vec3d","Select3D_BndBox3d"]  #couldn't deduce template parameter ‘Hasher’
 
-        # exclude_methods = ["Select3D_SensitiveFace::GetPoints","Select3D_SensitivePoly::Points3D", "Select3D_InteriorSensitivePointSet::GetPoints"]
-
         [Modules.Select3D.Classes.Select3D_SensitiveCircle]
 
             exclude_constructors = [0,1] #missing vftable
@@ -2168,6 +2177,12 @@ struct __GLXFBConfigRec {};"""
 
         exclude_classes = ["StepData_EnumTool"]
 
+        [Modules.StepData.Classes.StepData_SelectType.additional_methods.SetValue]
+
+            body = "[](StepData_SelectType &self , py::object& ent){self.SetValue(cast_pyobject<Standard_Transient>(ent));}"
+            help = "SetValue supporting python objects"
+            arguments  = ["ent"]
+
     [Modules.LDOM]
 
         exclude_classes = ["LDOMString","LDOM_MemManager","LDOM_BasicText"]
@@ -2185,7 +2200,6 @@ struct __GLXFBConfigRec {};"""
     [Modules.ShapeAnalysis]
 
         exclude_classes = ["ShapeAnalysis_BoxBndTreeSelector"]
-        # exlcude_methods = ["ShapeAnalysis_FreeBounds::ConnectEdgesToWires", "ShapeAnalysis_FreeBounds::ConnectWiresToWires","ShapeAnalysis_FreeBounds::SplitWires"]
 
     [Modules.V3d]
 
@@ -2346,11 +2360,21 @@ using rapidjson::BasicOStreamWrapper;"""
 
     [Modules.Interface]
 
-        # exclude_methods = ["Interface_IntList::Internals", "Interface_STAT::Internals"]
-
         [Modules.Interface.parsing_headers]
 
             "Interface_ValueInterpret.hxx" = "#include <Interface_TypedValue.hxx>"
+
+        [Modules.Interface.Classes.Interface_InterfaceModel.additional_methods.AddEntity]
+
+            body = "[](Interface_InterfaceModel &self , py::object& ent){self.AddEntity(cast_pyobject<Standard_Transient>(ent));}"
+            help = "AddEntity supporting python objects"
+            arguments  = ["anEnt"]
+
+        [Modules.Interface.Classes.Interface_InterfaceModel.additional_methods.AddWithRefs]
+
+            body = "[](Interface_InterfaceModel &self , py::object& ent){self.AddWithRefs(cast_pyobject<Standard_Transient>(ent));}"
+            help = "AddWithRefs supporting python objects"
+            arguments  = ["anEnt"]
 
     [Modules.IVtkVTK]
 
@@ -2449,8 +2473,6 @@ using rapidjson::BasicOStreamWrapper;"""
 
     [Modules.IGESGeom]
 
-        # exclude_methods = ["IGESGeom_SplineSurface::Polynomials"]
-
         module_parsing_header = "#include <Standard_OStream.hxx>"
 
     [Modules.IGESGraph]
@@ -2462,8 +2484,6 @@ using rapidjson::BasicOStreamWrapper;"""
         module_parsing_header = "#include <Standard_OStream.hxx>"
 
     [Modules.GeomConvert]
-
-        # exclude_methods = ["GeomConvert::ConcatG1","GeomConvert::ConcatC1","GeomConvert::C0BSplineToC1BSplineCurve","GeomConvert::C0BSplineToArrayOfC1BSplineCurve",]
 
         [Modules.GeomConvert.parsing_headers]
 
@@ -2568,52 +2588,7 @@ using rapidjson::BasicOStreamWrapper;"""
     [Modules.StepAP214]
 
         include_header_pre = "#include <Interface_InterfaceModel.hxx>"
-    #
-    # [Modules.AppDef]
-    #
-    #     exclude_methods = ["AppDef_SmoothCriterion::GetCurve","AppDef_LinearCriteria::GetCurve"]
-    #
-    # [Modules.BRepGProp]
-    #
-    #     exclude_methods = ["BRepGProp_Face::GetUKnots", "BRepGProp_Face::GetTKnots", "BRepG_MeshCinert::PreparePolygon"]
-    #
-    # # [Modules.BSplCLib]
-    # #
-    # #     exclude_methods =["BSplCLib::MergeBSplineKnots"]
-    #
-    # [Modules.Convert]
-    #
-    #     exclude_methods = [
-    #         "Convert_CompPolynomialToPoles::Poles","Convert_CompPolynomialToPoles::Knots","Convert_CompPolynomialToPoles::Multiplicities",
-    #         "Convert_ConicToBSplineCurve::BuildCosAndSin"
-    #     ]
-    #     
-    # [Modules.FEmTool]
-    #
-    #     exclude_methods = ["FEmTool_Assembly::GetAssemblyTable"]
-    #
-    # [Modules.Geom2dConvert]
-    #
-    #     exclude_methods = ["Geom2dConvert::ConcatG1","Geom2dConvert::ConcatC1","Geom2dConvert::C0BSplineToC1BSplineCurve","Geom2dConvert::C0BSplineToArrayOfC1BSplineCurve",]
-    #
-    # [Modules.GeomLib]
-    #
-    #     exclude_methods = ["GeomLib::RemovePointsFromArray", "GeomLib::DensifyArray1OfReal"]
-    #
-    # [Modules.IntCurveSurface]
-    #
-    #     exclude_methods = ["IntCurveSurface_TheHCurveTool::SamplePars"]
-    #
-    # [Modules.Plate]
-    #
-    #     exclude_methods = ["Plate_Plate::CoefPol"]
-    #
-    #
-    # [Modules.ShapeExtend]
-    #
-    #     exclude_methods = ["ShapeExtend::DispatchList"]
-    #
-    #
+
     [Modules.math]
 
         exclude_methods = ["math_Matrix::operator="] # move assignemnt operator...
