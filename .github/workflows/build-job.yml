@@ -138,7 +138,7 @@ jobs:
     
     env:
       OCP_src: OCP_src_${{ inputs.platform }}
-      n_cores: 2
+      n_cores: 4
       PYTHON_VERSION: 3.${{ matrix.py_min }}
       STAGE: "compile"
       ANACONDA_TOKEN: ${{ secrets.ANACONDA_TOKEN }}
@@ -177,16 +177,16 @@ jobs:
         run: |
           micromamba run -n bindgen cmake -B build -S "../${OCP_src}" -G Ninja \
             -DCMAKE_BUILD_TYPE=Release
-          micromamba run -n bindgen cmake --build build -j 2 -- -k 0
+          micromamba run -n bindgen cmake --build build -j $n_cores -- -k 0
           rm -rf build/CMakeFiles
 
       - name: Compile (Mac)
         if: contains(inputs.runner_compile, 'mac')
         run: |
-          micromamba run -n bindgen cmake -B build -S "../${OCP_src}" -G Ninja \ 
+          micromamba run -n bindgen cmake -B build -S "../${OCP_src}" -G Ninja \
             -DCMAKE_BUILD_TYPE=Release \
             -DCMAKE_OSX_SYSROOT=/opt/MacOSX10.15.sdk/
-          micromamba run -n bindgen cmake --build build -j 2 -- -k 0
+          micromamba run -n bindgen cmake --build build -j $n_cores -- -k 0
           rm -rf build/CMakeFiles
 
       - name: Compile (Windows)
@@ -199,7 +199,7 @@ jobs:
             -DPython3_FIND_STRATEGY=LOCATION `
             -DPython3_ROOT_DIR=$env:CONDA_PREFIX `
             -DCMAKE_LINKER=lld-link.exe
-          micromamba run -n bindgen cmake --build build -j 1 -- -v -k 0
+          micromamba run -n bindgen cmake --build build -j $env:n_cores -- -v -k 0
           micromamba run -n bindgen cmake -E rm -rf build\CMakeFiles
         env:
           CXX: "cl.exe"
