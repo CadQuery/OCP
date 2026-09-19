@@ -119,7 +119,7 @@ set(ENV{PYTHONPATH} ${CMAKE_SOURCE_DIR}/pywrap)
 add_custom_command(
   OUTPUT ${CMAKE_BINARY_DIR}/tmp.pkl
   COMMAND
-    ${CMAKE_COMMAND} -E env "PYTHONPATH=${CMAKE_SOURCE_DIR}/pywrap"
+    ${CMAKE_COMMAND} -E env "PYTHONPATH=${CMAKE_SOURCE_DIR}/pywrap" PYTHONHASHSEED=0
     ${Python_EXECUTABLE} -m bindgen -n ${N_PROC} -l ${LIBCLANG_PATH} -i
     ${VTK_INCLUDE_DIR}/
     # -i ${OPENGL_INCLUDE_DIRS}
@@ -137,7 +137,7 @@ add_custom_target(pywrap_parse ALL DEPENDS ${CMAKE_BINARY_DIR}/tmp.pkl)
 add_custom_command(
   OUTPUT ${CMAKE_BINARY_DIR}/tmp_filtered.pkl
   COMMAND
-    ${CMAKE_COMMAND} -E env "PYTHONPATH=${CMAKE_SOURCE_DIR}/pywrap"
+    ${CMAKE_COMMAND} -E env "PYTHONPATH=${CMAKE_SOURCE_DIR}/pywrap" PYTHONHASHSEED=0
     ${Python_EXECUTABLE} -m bindgen -n ${N_PROC} -l ${LIBCLANG_PATH} -i
     ${VTK_INCLUDE_DIR}/
     # -i ${OPENGL_INCLUDE_DIRS}
@@ -156,7 +156,7 @@ add_custom_target(pywrap_transform ALL
 add_custom_command(
   OUTPUT ${CMAKE_BINARY_DIR}/OCP/CMakeLists.txt
   COMMAND
-    ${CMAKE_COMMAND} -E env "PYTHONPATH=${CMAKE_SOURCE_DIR}/pywrap"
+    ${CMAKE_COMMAND} -E env "PYTHONPATH=${CMAKE_SOURCE_DIR}/pywrap" PYTHONHASHSEED=0
     ${Python_EXECUTABLE} -m bindgen -n ${N_PROC} -l ${LIBCLANG_PATH} -i
     ${VTK_INCLUDE_DIR}/
     # -i ${OPENGL_INCLUDE_DIRS}
