@@ -138,6 +138,9 @@ jobs:
     
     env:
       OCP_src: OCP_src_${{ inputs.platform }}
+      CMAKE_CXX_COMPILER_LAUNCHER: sccache
+      SCCACHE_GHA_ENABLED: "true"
+      SCCACHE_GHA_VERSION: 1  # bump to start from an empty cache
       n_cores: 4
       PYTHON_VERSION: 3.${{ matrix.py_min }}
       STAGE: "compile"
@@ -172,6 +175,8 @@ jobs:
           micromamba create -n bindgen
           micromamba run mamba-devenv -f environment.devenv.yml
 
+      - uses: mozilla-actions/sccache-action@v0.0.11
+
       - name: Compile (Ubuntu)
         if: contains(inputs.runner_compile, 'ubuntu')
         run: |
@@ -203,6 +208,9 @@ jobs:
           micromamba run -n bindgen cmake -E rm -rf build\CMakeFiles
         env:
           CXX: "cl.exe"
+
+      - name: Cache statistics
+        run: sccache --show-stats
 
       - name: Upload Compilation Artifacts
         uses: actions/upload-artifact@v7
