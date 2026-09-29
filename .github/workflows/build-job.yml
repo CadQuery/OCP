@@ -88,7 +88,7 @@ jobs:
             -DPython3_ROOT_DIR=$CONDA_PREFIX \
             -DPython_FIND_VIRTUALENV=ONLY \
             -DPython3_FIND_VIRTUALENV=ONLY
-          cmake --build .
+          cmake --build . -- -v
           ls -lRht
 
       - name: Copy pkl output
