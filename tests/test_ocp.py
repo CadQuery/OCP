@@ -3,26 +3,32 @@ from pytest import fixture, approx
 
 from OCP.BRepPrimAPI import BRepPrimAPI_MakeBox
 from OCP.TopoDS import TopoDS_Shape
-from OCP.collections import List_TopoDS_Shape
+from OCP.collections import List_TopoDS_Shape, Array1_TopoDS_Shape
 
 # %% TopoDS_Shape
 
 
-def test_hash():
+@fixture
+def boxes():
 
     s1 = BRepPrimAPI_MakeBox(1, 1, 1).Shape()
     s2 = BRepPrimAPI_MakeBox(1, 1, 1).Shape()
     s3 = BRepPrimAPI_MakeBox(1, 1, 1).Shape()
 
+    return s1, s2, s3
+
+
+def test_hash(boxes):
+
+    s1, s2, s3 = boxes
+
     assert len({s1, s2, s3}) == 3
     assert len({s1, s1, s3}) == 2
 
 
-def test_iter():
+def test_iter(boxes):
 
-    s1 = TopoDS_Shape()
-    s2 = TopoDS_Shape()
-    s3 = TopoDS_Shape()
+    s1, s2, s3 = boxes
 
     shape_list = List_TopoDS_Shape()
 
@@ -37,6 +43,38 @@ def test_iter():
 
     for s in shape_list:
         assert isinstance(s, TopoDS_Shape)
+
+    for s in list(shape_list):
+        assert isinstance(s, TopoDS_Shape)
+
+
+def test_shape_list_bool(boxes):
+
+    l = List_TopoDS_Shape()
+
+    assert not l
+    assert l.IsEmpty()
+
+    for s in boxes:
+        l.Append(s)
+
+    assert l
+    assert not l.IsEmpty()
+
+
+def test_shape_array(boxes):
+
+    l = Array1_TopoDS_Shape(0, 2)
+
+    assert l
+    assert not l.IsEmpty()
+    assert len(l) == 3
+
+    for i,s in enumerate(boxes):
+        l.SetValue(i, s)
+
+    for i,s in enumerate(boxes):
+        assert s.IsEqual(l(i)) 
 
 
 # %% primitive
