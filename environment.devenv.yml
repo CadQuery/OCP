@@ -23,6 +23,7 @@ dependencies:
   - toposort
   - py-lief
   - msitools # [linux]
+  - cxxheaderparser
   {% else %}
   - cxx-compiler
   - tbb-devel # [win]
