@@ -273,6 +273,7 @@ modules = [
 "StepGeom",
 "StepRepr",
 "StepShape",
+"StepKinematics",
 "RWStepDimTol",
 "RWStepVisual",
 "StepDimTol",
