@@ -344,6 +344,7 @@ modules = [
 "APIHeaderSection",
 "UnitsMethods",
 "RWMesh",
+"BRepGraph",
 ]
 
 exclude = [
@@ -2633,3 +2634,7 @@ using rapidjson::BasicOStreamWrapper;"""
     [Modules.Bnd]
 
         exclude_typedefs = ["Bnd_B2d","Bnd_B2f","Bnd_B3d","Bnd_B3f"]
+
+    [Modules.BRepGraph]
+
+        exclude_classes = ["std::hash*", "BRepGraph_Data"]
