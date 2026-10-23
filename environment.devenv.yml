@@ -9,7 +9,7 @@ dependencies:
   - ninja
   {% if  get_env("STAGE", default="generate") == "generate" %}
   - clangdev
-  - python-clang=21.*
+  - python-clang=22.*
   - joblib
   - toml
   - click
