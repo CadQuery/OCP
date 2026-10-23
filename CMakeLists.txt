@@ -129,7 +129,7 @@ add_custom_command(
     ${CMAKE_SOURCE_DIR} ${CXX_INCLUDES} parse ${CMAKE_SOURCE_DIR}/ocp.toml
     tmp.pkl ${PLATFORM}
   WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
-  DEPENDS ${CMAKE_SOURCE_DIR}/ocp.toml
+  # DEPENDS ${CMAKE_SOURCE_DIR}/ocp.toml
   USES_TERMINAL
   COMMENT "Running pywrap - parse")
 
