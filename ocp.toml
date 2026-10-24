@@ -1876,8 +1876,7 @@ struct NSOpenGLContext {};"""
 
         # exclude_methods = ["AIS_InteractiveContext::EntityOwners"]
         include_header_pre = """#include <Media_PlayerContext.hxx>
-#include <WNT_HIDSpaceMouse.hxx>
-auto OptionsForAttach = [](){return AIS_Manipulator::OptionsForAttach();};"""
+#include <WNT_HIDSpaceMouse.hxx>"""
         include_body_pre = "py::class_<AIS_Manipulator::OptionsForAttach>(m,\"AIS_Manipulator_OptionsForAttach\");"
         exclude_typedefs = ["AIS_DataMapOfShapeDrawer","AIS_DataMapOfIOStatus","AIS_DataMapOfILC","AIS_IndexedDataMapOfOwnerPrs"]
 
