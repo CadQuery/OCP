@@ -344,6 +344,7 @@ modules = [
 "APIHeaderSection",
 "UnitsMethods",
 "RWMesh",
+"BRepGraph",
 ]
 
 exclude = [
@@ -1347,8 +1348,6 @@ exclude = [
 "IMeshData_Types.hxx"
 ]
 
-#           "BVH_Box.hxx","BVH_tools.hxx"
-
 exceptions = ["Standard_Failure"]
 
 exclude_collection = [
@@ -1377,7 +1376,22 @@ exclude_collection = [
 "DynamicArray_BRepExtrema_ProximityDistTool::ProxPnt_Status",
 "DataMap_unsigned  int_AIS_MouseGesture",
 "DataMap_unsigned  int_AIS_SelectionScheme",
-"DataMap_TopoDS_Shape_TNaming_PtrRefShape_TopTools_ShapeMapHasher"
+"DataMap_TopoDS_Shape_TNaming_PtrRefShape_TopTools_ShapeMapHasher",
+"LinearVector_GLuint64",
+# BRepGraph related
+"FlatDataMap_BRepGraph_ItemId_BRepGraph_ItemId",
+"FlatMap_BRepGraph_ItemUID",
+"FlatMap_BRepGraph_NodeId",
+"FlatMap_BRepGraph_UID",
+"ForwardRangeIterator_BRepGraph_CacheIterator",
+"ForwardRangeIterator_BRepGraph_ChildExplorer",
+"ForwardRangeIterator_BRepGraph_DefsIterator::DefsVertexOfEdge",
+"ForwardRangeIterator_BRepGraph_LayerIterator",
+"ForwardRangeIterator_BRepGraph_ParentExplorer",
+"ForwardRangeIterator_BRepGraph_RefsIterator::RefsVertexOfEdge",
+"ForwardRangeIterator_BRepGraph_RelatedIterator",
+"ForwardRangeIterator_BRepGraph_RootProductIterator",
+"ForwardRangeIterator_BRepGraph_SupplementIterator",
 ]
 
 collection_pattern = "NCollection"
@@ -1390,7 +1404,7 @@ class OpenGl_ShaderProgram;
 module_mapping = "lambda x: Path(x).splitpath()[-1].split('.')[0].split('_')[0]"
 
 byref_types = ["Standard_Real","Standard_Integer","Standard_Boolean","int","double","bool","float"]
-byref_types_smart_ptr = ["opencascade::handle", "handle", "Handle"]
+byref_types_smart_ptr = ["occ::handle", "opencascade::handle", "handle", "Handle"]
 
 parsing_header = '''#pragma clang diagnostic ignored "-Wmacro-redefined"
 class Adaptor2d_Curve2d;
@@ -1862,8 +1876,7 @@ struct NSOpenGLContext {};"""
 
         # exclude_methods = ["AIS_InteractiveContext::EntityOwners"]
         include_header_pre = """#include <Media_PlayerContext.hxx>
-#include <WNT_HIDSpaceMouse.hxx>
-auto OptionsForAttach = [](){return AIS_Manipulator::OptionsForAttach();};"""
+#include <WNT_HIDSpaceMouse.hxx>"""
         include_body_pre = "py::class_<AIS_Manipulator::OptionsForAttach>(m,\"AIS_Manipulator_OptionsForAttach\");"
         exclude_typedefs = ["AIS_DataMapOfShapeDrawer","AIS_DataMapOfIOStatus","AIS_DataMapOfILC","AIS_IndexedDataMapOfOwnerPrs"]
 
@@ -2633,3 +2646,7 @@ using rapidjson::BasicOStreamWrapper;"""
     [Modules.Bnd]
 
         exclude_typedefs = ["Bnd_B2d","Bnd_B2f","Bnd_B3d","Bnd_B3f"]
+
+    [Modules.BRepGraph]
+
+        exclude_classes = ["std::hash*", "BRepGraph_Data", "BRepGraph_IteratorDetail::*", "BRepGraph_RefsIterator::Detail::*", "BRepGraph_ReverseIterator::DefTraits*"]
