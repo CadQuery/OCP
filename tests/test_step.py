@@ -28,7 +28,10 @@ from OCP.XSControl import XSControl_WorkSession
 from OCP.BRepBuilderAPI import BRepBuilderAPI_MakeVertex
 
 
-def _step_with_supplemental_geom(path: str, loc_name: str,) -> None:
+def _step_with_supplemental_geom(
+    path: str,
+    loc_name: str,
+) -> None:
 
     # create a doc and add a dummy vertex shape
     app = XCAFApp_Application.GetApplication_s()
@@ -65,7 +68,9 @@ def _step_with_supplemental_geom(path: str, loc_name: str,) -> None:
 
     cgr = StepRepr_ConstructiveGeometryRepresentation()
     cgr.Init(
-        "Additional coordinate system", cs_array, rep.ContextOfItems(),
+        "Additional coordinate system",
+        cs_array,
+        rep.ContextOfItems(),
     )
 
     cgrr = StepRepr_ConstructiveGeometryRepresentationRelationship()

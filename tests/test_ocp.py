@@ -70,11 +70,11 @@ def test_shape_array(boxes):
     assert not l.IsEmpty()
     assert len(l) == 3
 
-    for i,s in enumerate(boxes):
+    for i, s in enumerate(boxes):
         l.SetValue(i, s)
 
-    for i,s in enumerate(boxes):
-        assert s.IsEqual(l(i)) 
+    for i, s in enumerate(boxes):
+        assert s.IsEqual(l(i))
 
 
 # %% primitive
@@ -313,3 +313,46 @@ def test_location():
     assert trans.X() == 2.0
     assert trans.Y() == 0.0
     assert trans.Z() == 0.0
+
+
+# %% Vis materials and handling of fields in general
+from OCP.Image import Image_Texture
+from OCP.Quantity import Quantity_ColorRGBA, Quantity_TOC_RGB
+from OCP.TCollection import TCollection_HAsciiString
+from OCP.XCAFDoc import XCAFDoc_VisMaterial, XCAFDoc_VisMaterialPBR
+from OCP.collections import Vec3_float
+
+
+def test_vismaterialpbr():
+
+    name = "Dummy"
+    rgba = (0.0, 0.0, 0.0, 1.0)
+    metallic = 0.0
+    roughness = 0.5
+    emissive_strength = 5.0
+    emissive_factor = (1.0, 0.35, 0.0)
+    emissive = [
+        e * emissive_strength for e in emissive_factor
+    ]  # strength not supported in occt
+
+    pbr = XCAFDoc_VisMaterialPBR()
+
+    pbr.BaseColor = Quantity_ColorRGBA(*rgba)
+    pbr.Metallic = metallic
+    pbr.Roughness = roughness
+    pbr.EmissiveFactor = Vec3_float(*emissive)
+    m = XCAFDoc_VisMaterial()
+    m.SetPbrMaterial(pbr)
+    m.SetRawName(TCollection_HAsciiString(name))
+
+    p = m.PbrMaterial()
+
+    assert m.RawName().ToCString() == name
+    assert (
+        p.BaseColor.GetRGB().Values(Quantity_TOC_RGB) == (0.0, 0.0, 0.0)
+        and p.BaseColor.Alpha() == 1.0
+    )
+    assert (p.Metallic, p.Roughness) == (metallic, roughness)
+    assert (p.EmissiveFactor.r(), p.EmissiveFactor.g(), p.EmissiveFactor.b()) == approx(
+        emissive
+    )
