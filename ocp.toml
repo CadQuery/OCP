@@ -2457,7 +2457,7 @@ using rapidjson::BasicOStreamWrapper;"""
 
     [Modules.BRepTopAdaptor]
 
-        exclude_classes = ["BRepTopAdaptor_FClass2d"]
+        exclude_methods = ["BRepTopAdaptor_FClass2d::Copy"]
 
         [Modules.BRepTopAdaptor.parsing_headers]
 
