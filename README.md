@@ -3,7 +3,7 @@
 [![Build Bindings](https://github.com/CadQuery/OCP/actions/workflows/bindings.yml/badge.svg)](https://github.com/CadQuery/OCP/actions/workflows/bindings.yml)
 [![Anaconda-Server Badge](https://anaconda.org/cadquery/ocp/badges/installer/conda.svg)](https://conda.anaconda.org/cadquery)
 
-Python wrapper for OCCT generated using pywrap. Typing stubs available [here](https://github.com/CadQuery/OCP-stubs).
+Python wrapper for [OCCT](https://github.com/Open-Cascade-SAS/OCCT) using [pybind11](https://github.com/pybind/pybind11) generated using [pywrap](https://github.com/CadQuery/pywrap).
 
 ## Goals
 * Provide thin bindings to OCCT.
@@ -30,3 +30,8 @@ To generate the bindings you'll need to use packages version specified in the `e
 pywrap -i path1/include -i path2/include -l path/to/libclang.so all ocp.toml
 ```
 Building from the released sources without the generation step is possible too. Note that this is how the conda-forge package is built.
+
+## License
+The configuration and generated sources are under Apache 2.0. license and copyright by the contributors. 
+The bundled OCCT headers used for generation are copyright by OPEN CASCADE SAS and are redistributed under [LGPL2.1](opencascade/LICENSE_LGPL_21.txt)  with a special [exception](opencascade/OCCT_LGPL_EXCEPTION.txt). Doc strings used by OCP are extracted from the header files and remain the intellectual property of
+OPEN CASCADE SAS.
