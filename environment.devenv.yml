@@ -15,7 +15,6 @@ dependencies:
   - click
   - jinja2
   - logzero
-  - pandas
   - path
   - pyparsing
   - schema

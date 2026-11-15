@@ -1417,7 +1417,7 @@ class Adaptor3d_Surface;
 [OSX]
     modules = ["Cocoa"]
     symbols = "symbols_mangled_mac.dat"
-    prefix = "/usr/local/miniconda/envs/cpp-py-bindgen"
+    prefix = "/opt/MacOSX.sdk"
     includes = ['/usr/local/Cellar/gcc@8/8.3.0_2/lib/gcc/8/gcc/x86_64-apple-darwin19/8.3.0/../../../../../../include/c++/8.3.0',
                 '/usr/local/Cellar/gcc@8/8.3.0_2/lib/gcc/8/gcc/x86_64-apple-darwin19/8.3.0/../../../../../../include/c++/8.3.0/x86_64-apple-darwin19',
                 '/usr/local/Cellar/gcc@8/8.3.0_2/lib/gcc/8/gcc/x86_64-apple-darwin19/8.3.0/../../../../../../include/c++/8.3.0/backward',

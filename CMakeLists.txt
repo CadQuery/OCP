@@ -1,8 +1,9 @@
 cmake_minimum_required(VERSION 3.29)
 project(OCP)
 
+cmake_host_system_information(RESULT N_CORES QUERY NUMBER_OF_LOGICAL_CORES)
 set(N_PROC
-    2
+    ${N_CORES}
     CACHE STRING "Number of processes used for generating code")
 set(DLL_EXT
     dll
@@ -68,7 +69,7 @@ message(STATUS "Include dirs: ${VTK_INCLUDE_DIR}")
 message(STATUS "Include dirs: ${CMAKE_CXX_IMPLICIT_INCLUDE_DIRECTORIES}")
 
 # OSX
-if(${CMAKE_SYSTEM_NAME} STREQUAL "Darwin")
+if(PLATFORM STREQUAL "OSX" OR ${CMAKE_SYSTEM_NAME} STREQUAL "Darwin")
   list(APPEND CXX_INCLUDES -i /opt/usr/local/include/c++/v1/ -i
        /opt/usr/local/include/)
 
@@ -118,7 +119,7 @@ set(ENV{PYTHONPATH} ${CMAKE_SOURCE_DIR}/pywrap)
 add_custom_command(
   OUTPUT ${CMAKE_BINARY_DIR}/tmp.pkl
   COMMAND
-    ${CMAKE_COMMAND} -E env "PYTHONPATH=${CMAKE_SOURCE_DIR}/pywrap"
+    ${CMAKE_COMMAND} -E env "PYTHONPATH=${CMAKE_SOURCE_DIR}/pywrap" PYTHONHASHSEED=0
     ${Python_EXECUTABLE} -m bindgen -n ${N_PROC} -l ${LIBCLANG_PATH} -i
     ${VTK_INCLUDE_DIR}/
     # -i ${OPENGL_INCLUDE_DIRS}
@@ -136,7 +137,7 @@ add_custom_target(pywrap_parse ALL DEPENDS ${CMAKE_BINARY_DIR}/tmp.pkl)
 add_custom_command(
   OUTPUT ${CMAKE_BINARY_DIR}/tmp_filtered.pkl
   COMMAND
-    ${CMAKE_COMMAND} -E env "PYTHONPATH=${CMAKE_SOURCE_DIR}/pywrap"
+    ${CMAKE_COMMAND} -E env "PYTHONPATH=${CMAKE_SOURCE_DIR}/pywrap" PYTHONHASHSEED=0
     ${Python_EXECUTABLE} -m bindgen -n ${N_PROC} -l ${LIBCLANG_PATH} -i
     ${VTK_INCLUDE_DIR}/
     # -i ${OPENGL_INCLUDE_DIRS}
@@ -155,7 +156,7 @@ add_custom_target(pywrap_transform ALL
 add_custom_command(
   OUTPUT ${CMAKE_BINARY_DIR}/OCP/CMakeLists.txt
   COMMAND
-    ${CMAKE_COMMAND} -E env "PYTHONPATH=${CMAKE_SOURCE_DIR}/pywrap"
+    ${CMAKE_COMMAND} -E env "PYTHONPATH=${CMAKE_SOURCE_DIR}/pywrap" PYTHONHASHSEED=0
     ${Python_EXECUTABLE} -m bindgen -n ${N_PROC} -l ${LIBCLANG_PATH} -i
     ${VTK_INCLUDE_DIR}/
     # -i ${OPENGL_INCLUDE_DIRS}

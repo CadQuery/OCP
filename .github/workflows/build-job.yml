@@ -40,11 +40,12 @@ jobs:
       - uses: ./.github/actions/micromamba
 
       - name: SDK install and symlink (Mac)
-        if: contains(inputs.runner_generate, 'mac')
+        if: inputs.platform == 'OSX'
         run: |
           curl -L -O https://github.com/phracker/MacOSX-SDKs/releases/download/11.3/MacOSX11.3.sdk.tar.xz
           sudo mkdir -p /opt
           sudo tar -xf MacOSX11.3.sdk.tar.xz -C /opt
+          sudo ln -s /opt/MacOSX11.3.sdk /opt/MacOSX.sdk
           sudo mkdir -p /opt/usr/local/
           sudo ln -s /opt/MacOSX11.3.sdk/usr/include /opt/usr/local/include
           sudo ln -s /opt/MacOSX11.3.sdk/System/Library/Frameworks/OpenGL.framework/Headers /usr/local/include/OpenGL
@@ -59,6 +60,7 @@ jobs:
           env
           micromamba run mamba info
           micromamba run mamba-devenv -f environment.devenv.yml
+          echo "OCCT=$(sed -n 's/^ *- occt=\([0-9.]*\).*/\1/p' environment.devenv.yml)" >> $GITHUB_ENV
 
       - name: Read output dir
         id: conf
@@ -69,7 +71,7 @@ jobs:
       - name: Generate (Windows on Linux)
         if: inputs.platform == 'Windows'
         run: |
-          micromamba create --yes --platform win-64 --no-deps --prefix ./occt occt=8.0.0
+          micromamba create --yes --platform win-64 --no-deps --prefix ./occt occt=${OCCT:?}
           micromamba run -n bindgen cmake -S . -B . -G Ninja \
             -DPython_ROOT_DIR=$CONDA_PREFIX \
             -DPython3_ROOT_DIR=$CONDA_PREFIX \
@@ -80,8 +82,23 @@ jobs:
           cmake --build . -- -v
           ls -lRht
 
+      - name: Generate (OSX on Linux)
+        if: inputs.platform == 'OSX'
+        run: |
+          CONDA_OVERRIDE_OSX=11.0 micromamba create --yes --platform osx-64 --no-deps --prefix ./occt occt=${OCCT:?}
+          micromamba run -n bindgen cmake -S . -B . -G Ninja \
+            -DPython_ROOT_DIR=$CONDA_PREFIX \
+            -DPython3_ROOT_DIR=$CONDA_PREFIX \
+            -DPython_FIND_VIRTUALENV=ONLY \
+            -DPython3_FIND_VIRTUALENV=ONLY \
+            -DOCCT_LIB_DIR=./occt/lib/ \
+            -DDLL_EXT=dylib \
+            -DPLATFORM=OSX
+          cmake --build . -- -v
+          ls -lRht
+
       - name: Generate (Standard)
-        if: inputs.platform != 'Windows'
+        if: inputs.platform != 'Windows' && inputs.platform != 'OSX'
         run: |
           micromamba run -n bindgen cmake -S . -B . -G Ninja \
             -DPython_ROOT_DIR=$CONDA_PREFIX \
@@ -121,7 +138,10 @@ jobs:
     
     env:
       OCP_src: OCP_src_${{ inputs.platform }}
-      n_cores: 2
+      CMAKE_CXX_COMPILER_LAUNCHER: sccache
+      SCCACHE_GHA_ENABLED: "true"
+      SCCACHE_GHA_VERSION: 1  # bump to start from an empty cache
+      n_cores: 4
       PYTHON_VERSION: 3.${{ matrix.py_min }}
       STAGE: "compile"
       ANACONDA_TOKEN: ${{ secrets.ANACONDA_TOKEN }}
@@ -155,21 +175,23 @@ jobs:
           micromamba create -n bindgen
           micromamba run mamba-devenv -f environment.devenv.yml
 
+      - uses: mozilla-actions/sccache-action@v0.0.11
+
       - name: Compile (Ubuntu)
         if: contains(inputs.runner_compile, 'ubuntu')
         run: |
           micromamba run -n bindgen cmake -B build -S "../${OCP_src}" -G Ninja \
             -DCMAKE_BUILD_TYPE=Release
-          micromamba run -n bindgen cmake --build build -j 2 -- -k 0
+          micromamba run -n bindgen cmake --build build -j $n_cores -- -k 0
           rm -rf build/CMakeFiles
 
       - name: Compile (Mac)
         if: contains(inputs.runner_compile, 'mac')
         run: |
-          micromamba run -n bindgen cmake -B build -S "../${OCP_src}" -G Ninja \ 
+          micromamba run -n bindgen cmake -B build -S "../${OCP_src}" -G Ninja \
             -DCMAKE_BUILD_TYPE=Release \
             -DCMAKE_OSX_SYSROOT=/opt/MacOSX10.15.sdk/
-          micromamba run -n bindgen cmake --build build -j 2 -- -k 0
+          micromamba run -n bindgen cmake --build build -j $n_cores -- -k 0
           rm -rf build/CMakeFiles
 
       - name: Compile (Windows)
@@ -182,10 +204,13 @@ jobs:
             -DPython3_FIND_STRATEGY=LOCATION `
             -DPython3_ROOT_DIR=$env:CONDA_PREFIX `
             -DCMAKE_LINKER=lld-link.exe
-          micromamba run -n bindgen cmake --build build -j 1 -- -v -k 0
+          micromamba run -n bindgen cmake --build build -j $env:n_cores -- -v -k 0
           micromamba run -n bindgen cmake -E rm -rf build\CMakeFiles
         env:
           CXX: "cl.exe"
+
+      - name: Cache statistics
+        run: sccache --show-stats
 
       - name: Upload Compilation Artifacts
         uses: actions/upload-artifact@v7

@@ -34,7 +34,8 @@ jobs:
     uses: ./.github/workflows/build-job.yml
     with:
       name: OSX
-      runner_generate: macos-15-intel # Using 13 for x86_64 compatibility or latest as needed
+      # NB: cross-generating for OSX on Linux
+      runner_generate: ubuntu-22.04
       runner_compile: macos-15-intel
       platform: OSX
     secrets:
