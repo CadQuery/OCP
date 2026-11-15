@@ -3,26 +3,32 @@ from pytest import fixture, approx
 
 from OCP.BRepPrimAPI import BRepPrimAPI_MakeBox
 from OCP.TopoDS import TopoDS_Shape
-from OCP.collections import List_TopoDS_Shape
+from OCP.collections import List_TopoDS_Shape, Array1_TopoDS_Shape
 
 # %% TopoDS_Shape
 
 
-def test_hash():
+@fixture
+def boxes():
 
     s1 = BRepPrimAPI_MakeBox(1, 1, 1).Shape()
     s2 = BRepPrimAPI_MakeBox(1, 1, 1).Shape()
     s3 = BRepPrimAPI_MakeBox(1, 1, 1).Shape()
 
+    return s1, s2, s3
+
+
+def test_hash(boxes):
+
+    s1, s2, s3 = boxes
+
     assert len({s1, s2, s3}) == 3
     assert len({s1, s1, s3}) == 2
 
 
-def test_iter():
+def test_iter(boxes):
 
-    s1 = TopoDS_Shape()
-    s2 = TopoDS_Shape()
-    s3 = TopoDS_Shape()
+    s1, s2, s3 = boxes
 
     shape_list = List_TopoDS_Shape()
 
@@ -37,6 +43,38 @@ def test_iter():
 
     for s in shape_list:
         assert isinstance(s, TopoDS_Shape)
+
+    for s in list(shape_list):
+        assert isinstance(s, TopoDS_Shape)
+
+
+def test_shape_list_bool(boxes):
+
+    l = List_TopoDS_Shape()
+
+    assert not l
+    assert l.IsEmpty()
+
+    for s in boxes:
+        l.Append(s)
+
+    assert l
+    assert not l.IsEmpty()
+
+
+def test_shape_array(boxes):
+
+    l = Array1_TopoDS_Shape(0, 2)
+
+    assert l
+    assert not l.IsEmpty()
+    assert len(l) == 3
+
+    for i, s in enumerate(boxes):
+        l.SetValue(i, s)
+
+    for i, s in enumerate(boxes):
+        assert s.IsEqual(l(i))
 
 
 # %% primitive
@@ -275,3 +313,46 @@ def test_location():
     assert trans.X() == 2.0
     assert trans.Y() == 0.0
     assert trans.Z() == 0.0
+
+
+# %% Vis materials and handling of fields in general
+from OCP.Image import Image_Texture
+from OCP.Quantity import Quantity_ColorRGBA, Quantity_TOC_RGB
+from OCP.TCollection import TCollection_HAsciiString
+from OCP.XCAFDoc import XCAFDoc_VisMaterial, XCAFDoc_VisMaterialPBR
+from OCP.collections import Vec3_float
+
+
+def test_vismaterialpbr():
+
+    name = "Dummy"
+    rgba = (0.0, 0.0, 0.0, 1.0)
+    metallic = 0.0
+    roughness = 0.5
+    emissive_strength = 5.0
+    emissive_factor = (1.0, 0.35, 0.0)
+    emissive = [
+        e * emissive_strength for e in emissive_factor
+    ]  # strength not supported in occt
+
+    pbr = XCAFDoc_VisMaterialPBR()
+
+    pbr.BaseColor = Quantity_ColorRGBA(*rgba)
+    pbr.Metallic = metallic
+    pbr.Roughness = roughness
+    pbr.EmissiveFactor = Vec3_float(*emissive)
+    m = XCAFDoc_VisMaterial()
+    m.SetPbrMaterial(pbr)
+    m.SetRawName(TCollection_HAsciiString(name))
+
+    p = m.PbrMaterial()
+
+    assert m.RawName().ToCString() == name
+    assert (
+        p.BaseColor.GetRGB().Values(Quantity_TOC_RGB) == (0.0, 0.0, 0.0)
+        and p.BaseColor.Alpha() == 1.0
+    )
+    assert (p.Metallic, p.Roughness) == (metallic, roughness)
+    assert (p.EmissiveFactor.r(), p.EmissiveFactor.g(), p.EmissiveFactor.b()) == approx(
+        emissive
+    )

@@ -1,8 +1,10 @@
 cmake_minimum_required(VERSION 3.29)
 project(OCP)
 
+cmake_host_system_information(RESULT N_CORES QUERY NUMBER_OF_LOGICAL_CORES)
+
 set(N_PROC
-    2
+    ${N_CORES}
     CACHE STRING "Number of processes used for generating code")
 set(DLL_EXT
     dll
@@ -127,7 +129,7 @@ add_custom_command(
     ${CMAKE_SOURCE_DIR} ${CXX_INCLUDES} parse ${CMAKE_SOURCE_DIR}/ocp.toml
     tmp.pkl ${PLATFORM}
   WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
-  DEPENDS ${CMAKE_SOURCE_DIR}/ocp.toml
+  # DEPENDS ${CMAKE_SOURCE_DIR}/ocp.toml
   USES_TERMINAL
   COMMENT "Running pywrap - parse")
 
