@@ -115,13 +115,16 @@ endif()
 
 set(ENV{PYTHONPATH} ${CMAKE_SOURCE_DIR}/pywrap)
 
+# handle the possibility of multiple opengl include dirs
+list(JOIN OPENGL_INCLUDE_DIRS " -i " OPENGL_INCLUDE_DIRS)
+
 add_custom_command(
   OUTPUT ${CMAKE_BINARY_DIR}/tmp.pkl
   COMMAND
     ${CMAKE_COMMAND} -E env "PYTHONPATH=${CMAKE_SOURCE_DIR}/pywrap"
     ${Python_EXECUTABLE} -m bindgen -n ${N_PROC} -l ${LIBCLANG_PATH} -i
     ${VTK_INCLUDE_DIR}/
-    # -i ${OPENGL_INCLUDE_DIRS}
+    -i ${OPENGL_INCLUDE_DIRS}
     -i ${RapidJSON_INCLUDE_DIRS} -i
     ${CLANG_INSTALL_PREFIX}/lib/clang/${LLVM_VERSION_MAJOR}/include/ -p
     ${CMAKE_SOURCE_DIR} ${CXX_INCLUDES} parse ${CMAKE_SOURCE_DIR}/ocp.toml
@@ -139,7 +142,7 @@ add_custom_command(
     ${CMAKE_COMMAND} -E env "PYTHONPATH=${CMAKE_SOURCE_DIR}/pywrap"
     ${Python_EXECUTABLE} -m bindgen -n ${N_PROC} -l ${LIBCLANG_PATH} -i
     ${VTK_INCLUDE_DIR}/
-    # -i ${OPENGL_INCLUDE_DIRS}
+    -i ${OPENGL_INCLUDE_DIRS}
     -i ${RapidJSON_INCLUDE_DIRS} -i
     ${CLANG_INSTALL_PREFIX}/lib/clang/${LLVM_VERSION_MAJOR}/include/ -p
     ${CMAKE_SOURCE_DIR} ${CXX_INCLUDES} transform ${CMAKE_SOURCE_DIR}/ocp.toml
@@ -158,7 +161,7 @@ add_custom_command(
     ${CMAKE_COMMAND} -E env "PYTHONPATH=${CMAKE_SOURCE_DIR}/pywrap"
     ${Python_EXECUTABLE} -m bindgen -n ${N_PROC} -l ${LIBCLANG_PATH} -i
     ${VTK_INCLUDE_DIR}/
-    # -i ${OPENGL_INCLUDE_DIRS}
+    -i ${OPENGL_INCLUDE_DIRS}
     -i ${RapidJSON_INCLUDE_DIRS} -i
     ${CLANG_INSTALL_PREFIX}/lib/clang/${LLVM_VERSION_MAJOR}/include/ -p
     ${CMAKE_SOURCE_DIR} ${CXX_INCLUDES} generate ${CMAKE_SOURCE_DIR}/ocp.toml
